@@ -1,0 +1,25 @@
+::playerRoom
+!Your room
+A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
+
+Its furnishing are plain with no decorations.
+
+Desk
+	There is nothing here at the moment
+
+Got to the bathroom and:
+	[[Shower|playerRoomShower]]
+<<if $player.acceptance > 0>>
+	[[Do make-up|playerRoomMakup]]
+	[[Morning Routine|playerRoomMrnRoutine]]
+<</if>>
+
+Check the [[Wardrobe|playerRoomWardrobe]]
+
+<<if $flags.manorIntro is true>>
+	[[Wait to meet the master of the house|ManorVisit_8]]
+<<elseif $time >= 18>>
+	[[Go to bed.|sleep]]
+<<else>>
+	[[Do your chores.|playerToDoList]]
+<</if>>

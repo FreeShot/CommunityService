@@ -1,0 +1,76 @@
+::StoryCaption
+Time : <<time>>
+Day : <<day>>
+<<if $flags.cuff.recieved>>[[CUFF]]<</if>>
+
+::CUFF [nobr]
+<<if $flags.cuff.init is false>>
+<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
+<<elseif $flags.cuff.full>>
+[[Chores|playerToDoList]]<br>
+[[appearence]]<br>
+[[skills]]<br>
+[[possesions|inventory]]<br>
+<<if $flags.rules>>
+[[rules]]<br>
+<</if>>
+<</if>>
+<<return>>
+
+::playerToDoList
+TODO: clean up
+General Task
+	[[Laundry]]
+	[[Dishes]]
+	[[Clean Kitchen]]
+
+Estate Ground Floor
+	[[Sweep, mop and dust]]
+	[[Clean windows]]
+
+Estate Upper Floor
+	[[Sweep, mop and dust]]
+	[[Clean windows]]
+	[[Tidy Rec Room]]
+
+Estate Bedrooms
+	[[Make beds]]
+	[[Clean linen]]
+	[[Tidy bathroom]]
+
+[[Back to main menu|CUFF]]
+[[Go back to your room|playerRoom]]
+
+::appearence
+Makeup
+
+Hair
+
+Lips
+
+Skin / Body hairs
+
+Chest
+
+Butt
+
+Waist / hips
+
+Penis
+
+Clothing
+
+Summary
+	boy
+	cute girl
+	hot girl
+
+<<return>>
+
+::skills
+W.I.P.
+<<return>>
+
+::inventory
+W.I.P.
+TODO : List current held items

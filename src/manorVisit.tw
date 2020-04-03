@@ -1,0 +1,188 @@
+::ManorVisit_1
+You're taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+
+<<speak "DarkGoldenRod">>"State correction here with your new servant."<</speak>>
+
+The guard shoves you forward.
+
+The man looks you up and down. The appraising stare makes you feel unconfortable, as if you were examined like stock on a farm.
+
+<<speak $butler.color>>"Quite. If you please."<</speak>>
+
+The older man gestures to your cuff and the guard grabs it.
+
+<<speak "DarkGoldenRod">>"Welcome to your new home, kid."<</speak>>
+
+He uses a hand held device to re-code your tracker to this location. The older man adds a passcode and the guard leaves without another word.
+
+<<speak $butler.color>>"Very well then. Follow me."<</speak>>
+
+With that, the turns around and walks into the estate proper.
+
+[[Follow|ManorVisit_2]]
+
+::ManorVisit_2
+<span class="estateRoom">Foyer</span>
+[img[setup.ImagePath + "estate/estateMainFoyer2.jpg"]]
+You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
+
+<<speak $butler.color>>"You may call me $butler.name"<</speak>>
+
+<<speak $player.color>>"Hi, my name's..."<</speak>>
+
+<<speak $butler.color>>"$player.name. Yes, I am well aware. We've been missing a servant for some time now, so $owner.name was quick to aquire your contract. Your predecessor was a valuable and competent asset and we expect the same from you"<</speak>>
+
+He continues walking through the foyer and into the main lounge
+
+You follow $bulter.name to the [[Main Lounge|ManorVisit_3]]
+
+::ManorVisit_3
+<span class="estateRoom">Main Lounge</span>
+[img[setup.ImagePath + "estate/estateMainLounge1.jpg"]]
+This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
+
+<<speak $player.color>>"So, what am I supposed to be doing around here?"<</speak>>
+
+<<speak $butler.color>>"As I was in the process of explaining, you are here to tend all the Sono family's needs around the household. You will clean, perform maintenance and occasionally cook.<b>AL</b> should have been updated your CUFF with a full list of the rules. I suggest you familliarise yourself with them as any breach will not be tolerated"<</speak>>
+
+Your [[CUFF]] beeps and a tiny red light flashes on and off.
+
+<<speak $butler.color>>"Now follow me to the [[Kitchen|ManorVisit_4]]"<</speak>>
+<<set $flags.cuff.init>>
+<<set $flags.cuff.rules>>
+::ManorVisit_4
+<span class="estateRoom">Kitchen</span>
+[img[setup.ImagePath + "estate/estateMainKitchen2.jpg"]]
+You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
+
+[img[setup.ImagePath + "characters/chesChopping1.jpg"]]
+
+<<speak $butler.color>>"$cook.name cooks all the meals and caters for any smaller gathering on the estate. He starts later in the day which is why you will be taking over for breakfast."<</speak>>
+
+<<speak $cook.color>>"Appreciate the help. Just make sure you leave my kitchen clean."<</speak>>
+
+The old chef points his knife at you to emphasize his point.
+
+<<speak $butler.color>>"You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper."<</speak>>
+
+::ManorVisit_5
+<span class="estateRoom">Garden</span>
+[img[setup.ImagePath+'estate/estateGarden3.jpg']]
+You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
+
+There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
+
+<<speak $butler.color>>"Now, before you get any ideas, I will remind you that facility access is by permission only which you will need to earn."<</speak>>
+
+<<speak $player.color>>"I wasn't going to use them..."<</speak>>, you mumble to yourself.
+
+Off on one of the far side, you see an elderly man working away.
+
+<<speak $butler.color>>"That's $gardner.name. We won't bother him since he's busy at the moment but you will be expected to aide him. He's getting on in yeas so needs a young back to help."<</speak>>
+
+$butler.name glances at your slight frame and then back to Juan.
+
+<<speak $butler.color>>"But this will have to do."<</speak>>
+
+You watch as the old gardner drops what he is doing and grabs his back with one arm as if to emphasise the point.
+
+<<speak $butler.color>>"Now follow me."<</speak>>
+
+$butler.name walks back inside, through the kitchen and back to the foyer.
+
+<<speak $butler.color>>"As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I'll show you the upstairs rooms."<</speak>>
+
+Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
+
+::ManorVisit_6
+<spak class="estateRoom">Upper Hall</span>
+The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
+
+Both look similar, but one is clearly younger than the other. They're both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
+
+The younger one is talking about a recent holiday which sends a little pang of nervousness given your recent problems.
+
+<<speak $butler.color>>"Excuse me $wife.title, $daughter.title."<</speak>>
+
+$butler.name bows slightly to each woman.
+
+<<speak $wife.color>>"Yes $butler.name ?"<</speak>>, the older woman answers
+
+<<speak $butler.color>>"I would like to introduce $player.name. This is the new servant for the contract $owner.title acquired recently."<</speak>>
+
+<<speak $daughter.color>>"Well, well. What a cutie."<</speak>> The younger daughter grins and winks as whe looks at you up and down.
+
+$wife.name walks towards you. You hold out your hand, but she ignores it and walks around and examines you. You shift nervously.
+
+<<think $player.color>>"It feels like she's checking out a piece of meat."<</think>> You think to yourself.
+
+<<speak $wife.color>>"He's a bit unkempt, but he'll do."<</speak>>
+
+$wife.name stops in front of you.
+
+<<speak $wife.color>>"I expect you to keep things up to the standard we've become accustomed to. I don't need to waste time training another maid."<</speak>>
+
+<<speak $player.color>>"I'll do my best."<</speak>>
+
+A stern look crosses over $wife.name's face.
+
+<<speak $wife.color>>"You will address me as $wife.title at all times and my husband as $owner.title. Is that understood ?"<</speak>>
+
+You stammer. <<speak $player.color>>"Yes $wife.title."<</speak>>
+
+<<speak $wife.color>>"Good. You'll also refer to my daughter as $daughter.title and my son as $son.title"<</speak>>
+
+<<speak $daughter.color>>"Geez Mum, you're making him nervous."<</speak>>
+
+<<speak $wife.color>>"They need a firm hand to get the best out of them."<</speak>>
+
+<<speak $butler.color>>"If you please $wife.title. I need to get $player.name acquainted with the rest of the estate."<</speak>>
+
+<<speak $wife.color>>Of course $butler.name. Make sure to come straight at me if he gives you any trouble.<</speak>>
+
+<<speak $butler.color>>Of course $wife.title.<</speak>>
+
+$butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]
+
+::ManorVisit_7
+<span class="estateRoom">Your room</span>
+$butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
+
+<<speak $butler.color>>This is where you'll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.<</speak>>
+
+At first glance it seems like a nice room. It's defienitely not large, with just enough room to move and not at all the like the prison cell you were expecting.
+
+<<speak $butler.color>>"You can stay there for now. I will come and collect you when $owner.name is ready to meet you."<</speak>>
+
+$butler.color closes the door behind you, leaving you alone.
+
+[[Inspect the room|playerRoom]]
+
+::ManorVisit_8
+At exactly 7pm, the door to your room opens and $butler.name walks in.
+
+<<speak $butler.color>>"$owner.name is waiting for you in his office."<</speak>>
+
+He turns around and starts walking expecting you to follow.
+
+Not wanting to push your luck, you quickly catch up and fall in behind $butler.name. He takes you back to the study and you see $owner.name sitting behing his desk, working at his computer.
+
+<<speak $owner.color>>"I expect $butler.name has already gone over the rules and updated your CUFF accordingly ?"<</speak>>
+
+<<speak $player.color>>"Yes sir."<</speak>>
+
+<<speak $owner.color>>"Very good. You will answer to $butler.name after myself and my wife at all time. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he's not impressed, I'm not impressed. Is that understood?"<</speak>>
+
+<<speak $player.color>>"Yes sir."<</speak>>
+
+<<speak $owner.color>>"$butler.name?"<</speak>>
+
+The older man replies <<speak $butler.color>>Yes sir.<</speak>>
+
+<<speak $owner.color>>"See that he understands how to present himself as well. Slouching doesn't benefit his slight figure."<</speak>>
+
+<<speak $butler.color>>As you wish, sir.<</speak>>
+
+<<speak $owner.color>>"That will be all."<</speak>>
+
+$butler.name leads you back to your [[small living space|playerRoom]].<<set $flags.manorIntro to false>><<set $flags.cuff.full to true>>
