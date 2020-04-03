@@ -28,7 +28,7 @@ The man is rubbing his fingers together with a sly smile.
 <<speak "Peru">>Great ! you're a life saver. Have a safe trip.<</speak>>
 
 With that, the man hands over the package.
-C
+
 The package looks ordinary enough. You give it a shake, but don't hear anything inside. It's best to leave it alone since it might be something private.
 
 <<speak $player.color>>"What's in..."<</speak>>

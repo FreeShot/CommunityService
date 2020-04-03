@@ -100,7 +100,8 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="12" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="12" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 
 body
 {
@@ -137,14 +138,19 @@ span.estateRoom {
 	font-family: 'Baloo Thambi 2', cursive;
 }
 
+body {
+	background-color: #1C030E;
+	color: #EBD8E2;
+}
+/* twine-user-stylesheet #2: "ui.css" */
 #ui-bar{
-	background-color: #5F233D;
+	background-color: #2C0C1A;
 	border-color: #3D1627;
-	color: #C9A9B7;
+	color: #F4A9CE;
 }
 
 #ui-bar hr {
-	border-color: #C9A9B7;
+	border-color: #F4A9CE;
 }
 
 #ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]{
@@ -191,11 +197,6 @@ span.estateRoom {
 #menu li:not(:first-child) {
     border-top: 0px;
     margin-top: 3px;
-}
-
-body {
-	background-color: #2C0A19;
-	color: #E9CBD8;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "chores.js" */
 /* twine-user-script #2: "speak.js" */
 Macro.add("speak", {
@@ -328,7 +329,7 @@ The man is rubbing his fingers together with a sly smile.
 &lt;&lt;speak &quot;Peru&quot;&gt;&gt;Great ! you&#39;re a life saver. Have a safe trip.&lt;&lt;/speak&gt;&gt;
 
 With that, the man hands over the package.
-C
+
 The package looks ordinary enough. You give it a shake, but don&#39;t hear anything inside. It&#39;s best to leave it alone since it might be something private.
 
 &lt;&lt;speak $player.color&gt;&gt;&quot;What&#39;s in...&quot;&lt;&lt;/speak&gt;&gt;
@@ -628,9 +629,8 @@ The older man replies &lt;&lt;speak $butler.color&gt;&gt;Yes sir.&lt;&lt;/speak&
 $butler.name leads you back to your [[small living space|playerRoom]].&lt;&lt;set $flags.manorIntro to false&gt;&gt;&lt;&lt;set $flags.cuff.full to true&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="StoryCaption" tags="" position="225,350" size="100,100">&lt;hr&gt;
 &lt;span class=&quot;date&quot;&gt;$dateTime.getDate&lt;/span&gt;
 &lt;hr&gt;
-&lt;span class=&quot;time&quot;&gt;$dateTime.getClock&lt;/span&gt;
-&lt;hr&gt;
-&lt;&lt;if $flags.cuff.recieved&gt;&gt;[[CUFF]]&lt;hr&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="CUFF" tags="nobr" position="350,350" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
+&lt;span class=&quot;time&quot;&gt;$dateTime.getClock&lt;/span&gt;\
+&lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;hr&gt;[[CUFF]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="CUFF" tags="nobr" position="350,350" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;elseif $flags.cuff.full&gt;&gt;
 	[[Chores|playerToDoList]]&lt;br&gt;

@@ -35,63 +35,7 @@ span.estateRoom {
 	font-family: 'Baloo Thambi 2', cursive;
 }
 
-#ui-bar{
-	background-color: #5F233D;
-	border-color: #3D1627;
-	color: #C9A9B7;
-}
-
-#ui-bar hr {
-	border-color: #C9A9B7;
-}
-
-#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]{
-	border-radius: 14px;
-	border-color: #62022C;
-	background-color: #694957;
-	color: #9A7A88;
-}
-
-#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]:hover {
-	border-radius: 14px;
-	border-color: #62022C;
-	background-color: #5C2C41;
-	color: #9A7A88;
-}
-
-#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]:disabled{
-	border-radius: 14px;
-	border-color: #62022C;
-	background-color: #704B5B;
-	color: #9A7A88;
-}
-
-#ui-bar-toggle:not {
-	border-top-left-radius: 14px;
-	border-bottom-left-radius: 14px;
-	border-color: #62022C;
-	background-color: #694957;
-	color: #9A7A88;
-}
-
-#ui-bar-toggle:hover:not {
-	border-top-left-radius: 14px;
-	border-bottom-left-radius: 14px;
-	border-color: #62022C;
-	background-color: #5C2C41;
-	color: #9A7A88;
-}
-
-#menu ul {
-	border: 0px;
-}
-
-#menu li:not(:first-child) {
-    border-top: 0px;
-    margin-top: 3px;
-}
-
 body {
-	background-color: #2C0A19;
-	color: #E9CBD8;
+	background-color: #1C030E;
+	color: #EBD8E2;
 }
