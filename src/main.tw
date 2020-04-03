@@ -12,7 +12,7 @@ With Yaflow's coding hand
 }
 
 ::StoryInit
-<<set $dateTime to new DateTime("2075-08-19 12:14:00")>>
+<<set $dateTime to new DateTime("2075-08-19 12:00:00")>>
 <<set $flags to {
 	"cuff" : {
 		"recieved" : false,

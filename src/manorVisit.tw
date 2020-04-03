@@ -1,4 +1,5 @@
 ::ManorVisit_1
+<<= $dateTime.addTime(0, 3, 45)>>
 You're taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 <<speak "DarkGoldenRod">>"State correction here with your new servant."<</speak>>
