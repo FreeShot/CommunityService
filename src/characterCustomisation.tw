@@ -1,9 +1,9 @@
 ::CreateCharacter
 Your name is <<textbox "$player.name" $player.name true>><br>
-[[Start with the introduction|Intro1]]<br>
+[[Start with the introduction|Intro1]] (Recommended for first timers)
 <<link "Skip the introduction" "ManorVisit_1">>
 <<set $flags.cuff.recieved to true>>
-<</link>><br>
+<</link>>
 <<link "Skip the visit of the manor" "playerRoom">>
 <<set $flags.cuff.recieved to true>>
 <<set $flags.cuff.init to true>>

@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body
 {
   color:  DarkGrey;
 }
 
-span.estateRoom {
-  font-size: 30px;
+.estateRoom{
+	font-size: 30px;
+	font-family: 'Gotu', sans-serif;
 }
 
 .date {
@@ -21,6 +23,7 @@ span.estateRoom {
 	border: #FF3D3D 2px solid;
 	border-radius: 5px;
 	padding: 2px 7px; 
+	background-color: #4A1111;
 }
 
 #story-title {
@@ -38,4 +41,28 @@ span.estateRoom {
 body {
 	background-color: #1C030E;
 	color: #EBD8E2;
+}
+
+a.link-internal {
+	color: #FF4D9A;
+}
+
+a.link-internal:hover {
+	color: #FF66A9;
+	text-decoration: underline;
+}
+
+.gameTitle {
+	position: center;
+	font-size: 200%;
+	font-family: 'Quicksand', sans-serif;
+	width: auto;
+}
+
+div.warning {
+	background-color: #660335; 
+	border-radius: 15px;
+	border: dashed 3px #8E0248;
+	padding: 10px;
+	margin: 10px 0px 10px -15px;
 }

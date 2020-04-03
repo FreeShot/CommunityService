@@ -34,7 +34,14 @@ With Yaflow's coding hand
 <<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
 
 ::Start [nobr]
-Todo : Add warning
-[[Start the game|CreateCharacter]]
+<div class=gameTitle>
+<h1>Community Service</h1>
+</div>
+<div class="warning">
+This game is intended for a mature audience. If you are too young, please <a class="link-internal" href="https://www.google.fr">leave.</a>
+</div>
 
-::Widgets [nobr widget]
+
+
+
+[[Start the game|CreateCharacter]]

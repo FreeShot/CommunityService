@@ -48,8 +48,8 @@ This is the main sitting room and is central to the rest of the building. It has
 Your [[CUFF]] beeps and a tiny red light flashes on and off.
 
 <<speak $butler.color>>"Now follow me to the [[Kitchen|ManorVisit_4]]"<</speak>>
-<<set $flags.cuff.init>>
-<<set $flags.cuff.rules>>
+<<set $flags.cuff.init to true>>
+<<set $flags.cuff.rules to true>>
 ::ManorVisit_4
 <span class="estateRoom">Kitchen</span>
 [img[setup.ImagePath + "estate/estateMainKitchen2.jpg"]]

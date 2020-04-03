@@ -8,15 +8,14 @@
 ::CUFF [nobr]
 <<if $flags.cuff.init is false>>
 	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
-<<elseif $flags.cuff.full>>
+<<elseif $flags.cuff.full is true>>
 	[[Chores|playerToDoList]]<br>
 	[[appearence]]<br>
 	[[skills]]<br>
 	[[possesions|inventory]]<br>
-
-	<<if $flags.rules>>
-		[[rules]]<br>
-	<</if>>
+<</if>>
+<<if $flags.cuff.rules is true>>
+	[[rules]]<br>
 <</if>>
 <<return>>
 
