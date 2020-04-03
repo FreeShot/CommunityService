@@ -38,7 +38,7 @@ You look up, but the man is already getting into a nearby car and driving away.
 You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]
 
 ::Intro3
-You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is. You play with your queue. Half an hour layer, you finally reach the front.
+You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is long. You play with your queue. Half an hour layer, you finally reach the front.
 
 It doesn't take long to reach the airport and get to the security check-in. You hadn't really thought much about the box until you're putting it on the conveyor for the x-ray machine along with the rest of your suff. One of the gard waves at you through the metal detector. While you're waiting at the other end, an old lady in front of you drops her bag so you duck down to pick it.
 
@@ -71,7 +71,7 @@ The box is still closed.
 <<speak "GoldenRod">>What's his name?<</speak>>
 
 <<nobr>>
-<<thought $player.color>>$player.name, you idiot!<</thought>>
+<<think $player.color>>$player.name, you idiot!<</think>>
 <<speak $player.color>>"He didn't say."<</speak>>
 <</nobr>>
 
@@ -93,7 +93,7 @@ You are currently in a meeting room with your Sentencing Officer waiting to find
 
 <<speak "DarkGoldenRod">>"You're in a tight bind here young man. The courts have already assessed your finances and we know you can't pay your fine."<</speak>>
 
-To the mans credit he has been making a sensere effort to help but he can only do so much.
+To the mans credit he has been making a sincere effort to help but he can only do so much.
 
 <<speak "DarkGoldenRod">>"Given that this is your first offence I'm willing to offer you two options. First, we could ship you off to a labour camp. It's hard work but you're guaranteed to pay off you debt in a few years. You'll answer to the state though so don't think it will be easy."<</speak>>
 
@@ -146,5 +146,5 @@ The woman wraps a black band around your wrist and uses a tool to press button w
 
 With the formalities complete you get taken away so you can be sent to your owners. You ask about your things before leaving and get told they will kept by the state until the debt is paid off. Looks like you're stuck with only the clothes on your back for now.
 
-[[Be taken to your owner.|MansionVisit_1]]
+[[Be taken to your owner.|ManorVisit_1]]
 

@@ -1,0 +1,8 @@
+::sleep
+You sleep in your bed
+
+[[wakeUp]]
+
+::wakeUp
+
+<<goto playerRoom>>

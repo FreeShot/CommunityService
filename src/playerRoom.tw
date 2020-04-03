@@ -11,7 +11,7 @@ Got to the bathroom and:
 	[[Shower|playerRoomShower]]
 <<if $player.acceptance > 0>>
 	[[Do make-up|playerRoomMakup]]
-	[[Morning Routine|playerRoomMrnRoutine]]
+	[[Morning Routine|playerRoomMorningRoutine]]
 <</if>>
 
 Check the [[Wardrobe|playerRoomWardrobe]]
@@ -22,4 +22,20 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	[[Go to bed.|sleep]]
 <<else>>
 	[[Do your chores.|playerToDoList]]
+<</if>>
+
+::playerRoomShower
+Todo: Add shower event
+
+::playerRoomMakup
+Todo: Add makeup event
+
+::playerRoomMorningRoutine
+Todo: Add routine
+
+::playerRoomWardrobe
+Todo: Add clothes
+<<if $flags.wardrobeFirstLook is true>>
+<<set $flags.wardrobeFirstLook to false>>
+Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It's a little disheartening that such a small shirt looks like it would fit you.
 <</if>>

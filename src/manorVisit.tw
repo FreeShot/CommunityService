@@ -95,7 +95,7 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
 
 ::ManorVisit_6
-<spak class="estateRoom">Upper Hall</span>
+<span class="estateRoom">Upper Hall</span>
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They're both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
@@ -154,7 +154,7 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 <<speak $butler.color>>"You can stay there for now. I will come and collect you when $owner.name is ready to meet you."<</speak>>
 
-$butler.color closes the door behind you, leaving you alone.
+$butler.name closes the door behind you, leaving you alone.
 
 [[Inspect the room|playerRoom]]
 

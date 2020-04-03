@@ -11,7 +11,7 @@ Macro.add("speak", {
 	}
 });
 
-Macro.add("thought", {
+Macro.add("think", {
 	tags : null,
 	handler : function () {
 		$(this.output).wiki(

@@ -12,8 +12,7 @@ With Yaflow's coding hand
 }
 
 ::StoryInit
-<<set $date to {"day" : new Date(2075, 7, 19),"time" : 0}>>
-
+<<set $dateTime to new DateTime(2075, 8, 19, 22, 0)>>
 <<set $flags to {
 	"cuff" : {
 		"recieved" : false,
@@ -21,43 +20,21 @@ With Yaflow's coding hand
 		"full" : false,
 		"rules" : false
 	},
-	"manorIntro" : true
+	"manorIntro" : true,
+	"wardrobeFirstLook" : false
 }>>
 
 <<set $player to {"name" : "Alex","color" : "DeepSkyBlue"}>>
-
 <<set $owner to {"name" : "Mr Sono","color" : "Drown","title" : "sir"}>>
-
 <<set $wife to {"name" : "Mrs Sono","color" : "MediumOrchid","title" : "Ma'am"}>>
-
 <<set $daugther to {"name" : "Adeline",	"color" : "DarkSalmon","title" : "Ms Sono"}>>
-
 <<set $son to {"name" : "Mr Sono","color" : "LightGreen","title" : "Mr Sono"}>>
-
-<<set $butler to {"name" : "Mr Benson", "color" : "DarkOliveGreen"}>>
-
+<<set $butler to {"name" : "Mr Benson", "color" : "DarkOliveGreen", "title" : "DarkOliveGreen"}>>
 <<set $cook to {"name" : "Ivan", "color" : "DarkKhaki"}>>
-
 <<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
 
 ::Start [nobr]
-Your name is <<textbox "$player.name" $player.name true>><br>
-[[Start with the introduction|Intro1]]<br>
-<<link "Skip the introduction" "ManorVisit_1">>
-<<set $flags.cuff.recieved to true>>
-<</link>><br>
-<<link "Skip the visit of the manor" "playerRoom">>
-<<set $flags.cuff.recieved to true>>
-<<set $flags.cuff.init to true>>
-<<set $flags.cuff.full to true>>
-<<set $flags.cuff.rules to true>>
-<<set $flags.manorIntro to false>>
-<</link>>
+Todo : Add warning
+[[Start the game|CreateCharacter]]
 
 ::Widgets [nobr widget]
-<<widget "time">>
-<<= ("0" + Math.floor($date.time) % 24).slice(-2)>>:<<= ("0" +Math.floor($date.time * 60) % 60).slice(-2)>>
-<</widget>>
-<<widget "day">>
-<<= $date.day.getFullYear()>>/<<= $date.day.getMonth()>>/<<= $date.day.getDay()>>
-<</widget>>

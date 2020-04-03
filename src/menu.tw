@@ -1,24 +1,25 @@
 ::StoryCaption
-Time : <<time>>
-Day : <<day>>
+$dateTime.getDate
+$dateTime.getTime
 <<if $flags.cuff.recieved>>[[CUFF]]<</if>>
 
 ::CUFF [nobr]
+$date.getDay();
 <<if $flags.cuff.init is false>>
-<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
+	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
 <<elseif $flags.cuff.full>>
-[[Chores|playerToDoList]]<br>
-[[appearence]]<br>
-[[skills]]<br>
-[[possesions|inventory]]<br>
-<<if $flags.rules>>
-[[rules]]<br>
-<</if>>
+	[[Chores|playerToDoList]]<br>
+	[[appearence]]<br>
+	[[skills]]<br>
+	[[possesions|inventory]]<br>
+
+	<<if $flags.rules>>
+		[[rules]]<br>
+	<</if>>
 <</if>>
 <<return>>
 
 ::playerToDoList
-TODO: clean up
 General Task
 	[[Laundry]]
 	[[Dishes]]
