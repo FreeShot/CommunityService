@@ -12,7 +12,7 @@ With Yaflow's coding hand
 }
 
 ::StoryInit
-<<set $dateTime to new DateTime(2075, 8, 19, 22, 0)>>
+<<set $dateTime to new DateTime("2075-08-19 12:14:00")>>
 <<set $flags to {
 	"cuff" : {
 		"recieved" : false,
@@ -29,7 +29,7 @@ With Yaflow's coding hand
 <<set $wife to {"name" : "Mrs Sono","color" : "MediumOrchid","title" : "Ma'am"}>>
 <<set $daugther to {"name" : "Adeline",	"color" : "DarkSalmon","title" : "Ms Sono"}>>
 <<set $son to {"name" : "Mr Sono","color" : "LightGreen","title" : "Mr Sono"}>>
-<<set $butler to {"name" : "Mr Benson", "color" : "DarkOliveGreen", "title" : "DarkOliveGreen"}>>
+<<set $butler to {"name" : "Mr Benson", "color" : "#7DA23D", "title" : "DarkOliveGreen"}>>
 <<set $cook to {"name" : "Ivan", "color" : "DarkKhaki"}>>
 <<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
 

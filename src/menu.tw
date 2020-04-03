@@ -1,10 +1,12 @@
 ::StoryCaption
-$dateTime.getDate
-$dateTime.getTime
-<<if $flags.cuff.recieved>>[[CUFF]]<</if>>
+<hr>
+<span class="date">$dateTime.getDate</span>
+<hr>
+<span class="time">$dateTime.getClock</span>
+<hr>
+<<if $flags.cuff.recieved>>[[CUFF]]<hr><</if>>
 
 ::CUFF [nobr]
-$date.getDay();
 <<if $flags.cuff.init is false>>
 	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
 <<elseif $flags.cuff.full>>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
+
 body
 {
   color:  DarkGrey;
@@ -5,4 +7,91 @@ body
 
 span.estateRoom {
   font-size: 30px;
+}
+
+.date {
+	font-size: 30px;
+	font-family: 'Fira Code', monospace;
+}
+
+.time {
+	color: #FF3D3D;
+	font-size: 40px;
+	font-family: 'Squada One', cursive;
+	border: #FF3D3D 2px solid;
+	border-radius: 5px;
+	padding: 2px 7px; 
+}
+
+#story-title {
+	margin-top: 5px;
+	font-size: 40px;
+	font-family: 'Quicksand', sans-serif;
+	line-height: 40px;
+}
+
+#story-author {
+	font-size: 18px;
+	font-family: 'Baloo Thambi 2', cursive;
+}
+
+#ui-bar{
+	background-color: #5F233D;
+	border-color: #3D1627;
+	color: #C9A9B7;
+}
+
+#ui-bar hr {
+	border-color: #C9A9B7;
+}
+
+#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]{
+	border-radius: 14px;
+	border-color: #62022C;
+	background-color: #694957;
+	color: #9A7A88;
+}
+
+#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]:hover {
+	border-radius: 14px;
+	border-color: #62022C;
+	background-color: #5C2C41;
+	color: #9A7A88;
+}
+
+#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]:disabled{
+	border-radius: 14px;
+	border-color: #62022C;
+	background-color: #704B5B;
+	color: #9A7A88;
+}
+
+#ui-bar-toggle:not {
+	border-top-left-radius: 14px;
+	border-bottom-left-radius: 14px;
+	border-color: #62022C;
+	background-color: #694957;
+	color: #9A7A88;
+}
+
+#ui-bar-toggle:hover:not {
+	border-top-left-radius: 14px;
+	border-bottom-left-radius: 14px;
+	border-color: #62022C;
+	background-color: #5C2C41;
+	color: #9A7A88;
+}
+
+#menu ul {
+	border: 0px;
+}
+
+#menu li:not(:first-child) {
+    border-top: 0px;
+    margin-top: 3px;
+}
+
+body {
+	background-color: #2C0A19;
+	color: #E9CBD8;
 }
