@@ -38,7 +38,7 @@ You look up, but the man is already getting into a nearby car and driving away.
 You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]
 
 ::Intro3
-<<= $dateTime.addTime(0, 5, 32)>>\
+<<= $dateTime.addTime(0, 5, 30)>>\
 You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is long. You play with your queue. Half an hour layer, you finally reach the front.
 
 It doesn't take long to reach the airport and get to the security check-in. You hadn't really thought much about the box until you're putting it on the conveyor for the x-ray machine along with the rest of your suff. One of the gard waves at you through the metal detector. While you're waiting at the other end, an old lady in front of you drops her bag so you duck down to pick it.
@@ -86,7 +86,7 @@ The box is still closed.
 @@
 
 ::Intro4
-<<= $dateTime.addTime(14, 0, 0); $dateTime.setTime(15, 10)>>
+<<= $dateTime.addTime(14, 15, 10);>>
 The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
 
 There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You're on your own.
