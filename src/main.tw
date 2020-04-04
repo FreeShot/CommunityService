@@ -24,7 +24,7 @@ With Yaflow's coding hand
 	"wardrobeFirstLook" : false
 }>>
 
-<<set $player to {"name" : "Alex","color" : "DeepSkyBlue"}>>
+<<set $player to {"name" : "Alex","color" : "DeepSkyBlue", "HairC" : "Brown"}>>
 <<set $owner to {"name" : "Mr Sono","color" : "Drown","title" : "sir"}>>
 <<set $wife to {"name" : "Mrs Sono","color" : "MediumOrchid","title" : "Ma'am"}>>
 <<set $daugther to {"name" : "Adeline",	"color" : "DarkSalmon","title" : "Ms Sono"}>>

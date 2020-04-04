@@ -109,13 +109,13 @@ Having anyone being in control of your life doesn't sound great.
 
 ::Intro5
 <<set $dateTime.addTime(0, 0, 15)>>
-The Sentencing Officer does some quick paper work and then pushes foward a thick document title <b>Private Indenture Contract</b>.
+The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled <b>Private Indenture Contract</b>.
 
-<<speak "DarkGoldenRod">>"This is a standard private contract but has a few addendums from your potential owner. If you want this deal you'll need to sign it and then you will become their ward."<</speak>>
+<<speak "DarkGoldenRod">>"This is a standard private contract but has a few addendums from your potential owner. If you want this deal you'll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing."<</speak>>
 
 @@#Intro5Options;
-[[Sign the contract|Intro6]]
-<<link "Read the contract.">>
+[[Sign the contract without reading (default character settings)|Intro6]]
+<<link "Read the contract. (customise your character)">>
     <<replace "#Intro5Options">>
        		You scan through the document making note of the main clauses:
 		
@@ -123,8 +123,14 @@ The Sentencing Officer does some quick paper work and then pushes foward a thick
 				<i>• The State Repayment Plan requires you to meet a weekly quota to repay your debt.</i>
 				<i>• The Owner Protection Clause  allows the value of the work completed to be determined by the Owner.</i>
 				<i>• The Community Protection Act requires you to be restricted to your household at all times unless under Owner supervision or the Owner grants you special permission to leave.</i>
-		
+
 			It goes further into all the laws regulation but the bottom line is if you want this deal you have to sign.
+		
+			The last section shows your personal information.
+
+			Name: <<textbox "$playerName" $playerName "">><br><br>
+
+			Hair colour: <<textbox "$playerHairC" $playerHairC "">><br><br>
 
 [[Sign the contract|Intro6]]
     <</replace>>
