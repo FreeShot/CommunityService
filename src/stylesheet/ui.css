@@ -63,8 +63,9 @@ img {
 
 #ui-bar a.link-internal {
 	color: #FFDEEA;
-	padding: 4px;
-	border: solid 1px #40021C;
+	padding: 5px 30px 5px 30px;
+	margin: 5px 5px 5px 5px;
+	border: solid 1px #FFDEEA;
 	border-radius: 5px;
 	font-size: 50px;
 	font-family: 'Share Tech Mono', monospace;
@@ -72,6 +73,19 @@ img {
 
 #ui-bar a.link-internal:hover {
 	color: #CE7298;
+	border: solid 1px #CE7298;
 	text-decoration: none;
+	padding: 2px 20px 2px 20px;
+	margin: 8px 5px 8px 5px;
 	font-family: 'Share Tech Mono', monospace;
+}
+
+#RuleTitle {
+	font-family: 'Gotu', sans-serif;
+	font-size: 30px;
+}
+
+.rules {
+	font-size: 20px;
+	font-family: 'Roboto Condensed', sans-serif;
 }

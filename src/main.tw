@@ -24,14 +24,15 @@ With Yaflow's coding hand
 	"wardrobeFirstLook" : false
 }>>
 
-<<set $player to {"name" : "Alex","color" : "DeepSkyBlue", "HairC" : "Brown"}>>
-<<set $owner to {"name" : "Mr Sono","color" : "Drown","title" : "sir"}>>
-<<set $wife to {"name" : "Mrs Sono","color" : "MediumOrchid","title" : "Ma'am"}>>
-<<set $daugther to {"name" : "Adeline",	"color" : "DarkSalmon","title" : "Ms Sono"}>>
-<<set $son to {"name" : "Mr Sono","color" : "LightGreen","title" : "Mr Sono"}>>
-<<set $butler to {"name" : "Mr Benson", "color" : "#7DA23D", "title" : "DarkOliveGreen"}>>
-<<set $cook to {"name" : "Ivan", "color" : "DarkKhaki"}>>
-<<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
+<<set $player to new Character({name: "Alex", color: "DarkSlateBlue", title: "Alex"})>>
+
+<<set $owner to new Character({name: "Mr Sono", color: "Brown", title: "sir"})>>
+<<set $wife to new Character({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
+<<set $daughter to new Character({name: "Angeline", color: "DarkSalmon", title: "Ms Sono"})>>
+<<set $son to new Character({name: "Mr Sono", color: "LightGreen", title: "Mr Sono"})>>
+<<set $butler to new Character({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
+<<set $cook to new Character({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
+<<set $gardner to new Character({name: "Juan", color: "Sienna", title: "Juan"})>>
 
 <<set $rooms to {
 	"Foyer" : {
@@ -73,4 +74,4 @@ This game is intended for a mature audience. If you are too young, please <a cla
 
 
 
-[[Start the game|CreateCharacter]]
+[[Start the game|Intro1]]

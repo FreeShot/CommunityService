@@ -2,8 +2,6 @@ setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class DateTime {
-	alarms = [];
-
 	constructor(date) {
 		this.date = new Date(date);
 	}

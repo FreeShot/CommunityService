@@ -1,7 +1,7 @@
 ::EndHomeSweetHome
-<<speak $player.color>>"Sorry, not interested."<</speak>>
+<<= $player.speak("Sorry, not interested.")>>
 
-<<speak "Peru">>"Oh come on just hear me out..."<</speak>>
+<<= Character.speakAnonymous("Oh come on just hear me out...", "Peru")>>
 
 He tries to convince you but you just walk away and get back on the bus.
 

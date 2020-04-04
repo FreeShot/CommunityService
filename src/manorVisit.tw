@@ -2,21 +2,21 @@
 <<= $dateTime.addTime(0, 3, 45)>>
 You're taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
-<<speak "DarkGoldenRod">>"State correction here with your new servant."<</speak>>
+<<= Character.speakAnonymous("State correction here with your new servant.","DarkGoldenRod")>>
 
 The guard shoves you forward.
 
 The man looks you up and down. The appraising stare makes you feel unconfortable, as if you were examined like stock on a farm.
 
-<<speak $butler.color>>"Quite. If you please."<</speak>>
+<<= $butler.speak("Quite. If you please.")>>
 
 The older man gestures to your cuff and the guard grabs it.
 
-<<speak "DarkGoldenRod">>"Welcome to your new home, kid."<</speak>>
+<<= Character.speakAnonymous("Welcome to your new home, kid.","DarkGoldenRod")>>
 
 He uses a hand held device to re-code your tracker to this location. The older man adds a passcode and the guard leaves without another word.
 
-<<speak $butler.color>>"Very well then. Follow me."<</speak>>
+<<= $butler.speak("Very well then. Follow me.")>>
 
 With that, the turns around and walks into the estate proper.
 
@@ -26,11 +26,11 @@ With that, the turns around and walks into the estate proper.
 <<roomHeader "Foyer">><</roomHeader>>
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
-<<speak $butler.color>>"You may call me $butler.name"<</speak>>
+<<= $butler.speak("You may call me $butler.name")>>
 
-<<speak $player.color>>"Hi, my name's..."<</speak>>
+<<= $player.speak("Hi, my name's...")>>
 
-<<speak $butler.color>>"$player.name. Yes, I am well aware. We've been missing a servant for some time now, so $owner.name was quick to aquire your contract. Your predecessor was a valuable and competent asset and we expect the same from you"<</speak>>
+<<= $butler.speak("$player.name. Yes, I am well aware. We've been missing a servant for some time now, so $owner.name was quick to aquire your contract. Your predecessor was a valuable and competent asset and we expect the same from you")>>
 
 He continues walking through the foyer and into the main lounge
 

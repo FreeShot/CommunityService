@@ -100,10 +100,13 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="12" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="11" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Gotu&family=Permanent+Marker&family=Playfair+Display:wght@500&family=Roboto+Condensed:wght@300;400&display=swap');
+
+
 
 body
 {
@@ -174,19 +177,30 @@ div.warning {
 	margin: 10px 0px 10px -15px;
 }
 
-#ui-bar a.link-internal {
-	color: #FFDEEA;
-	padding: 4px;
-	border: solid 1px #40021C;
-	border-radius: 5px;
-	font-size: 50px;
-	font-family: 'Share Tech Mono', monospace;
+#player-customisation-form {
+	background-color: #B76C93;
+	color: #1C030E;
+	border: dashed 3px #8E0248;
+	border-radius: 15px;
+	padding: 10px 10px 10px 10px;
+	margin: 10px;
+	font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
 }
 
-#ui-bar a.link-internal:hover {
-	color: #CE7298;
-	text-decoration: none;
-	font-family: 'Share Tech Mono', monospace;
+#player-customisation-form input {
+	background-color: #B76C93;
+	color: #1C030E;
+	font-family: 'Caveat', cursive;
+	font-size: 30px;
+	border-width: 1px;
+}
+
+#player-customisation-form input:hover {
+	background-color: #B76C93;
+	color: #1C030E;
+	font-family: 'Caveat', cursive;
+	font-size: 30px;
+	border-width: 1px;
 }
 /* twine-user-stylesheet #2: "ui.css" */
 #ui-bar{
@@ -250,7 +264,102 @@ img {
 	object-fit: contain;
 	border-radius: 15px;
 	border: solid 4px #5C2C41; 
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "estateRoom.js" */
+}
+
+#ui-bar a.link-internal {
+	color: #FFDEEA;
+	padding: 5px 30px 5px 30px;
+	margin: 5px 5px 5px 5px;
+	border: solid 1px #FFDEEA;
+	border-radius: 5px;
+	font-size: 50px;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+#ui-bar a.link-internal:hover {
+	color: #CE7298;
+	border: solid 1px #CE7298;
+	text-decoration: none;
+	padding: 2px 20px 2px 20px;
+	margin: 8px 5px 8px 5px;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+#RuleTitle {
+	font-family: 'Gotu', sans-serif;
+	font-size: 30px;
+}
+
+.rules {
+	font-size: 20px;
+	font-family: 'Roboto Condensed', sans-serif;
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
+class Character {
+	constructor(config) {
+        this.name  = '';
+        this.title = '';
+        this.color = '';
+
+        Object.keys(config).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+	}
+
+	speak(text) {
+		return Character.speakAnonymous(text, this.color);
+	}
+
+	static speakAnonymous(text, color) {
+		return String.format(
+			'<span class="speak" style="color:{0};">"{1}"</span>',
+			color,
+			text
+		);
+	}
+
+	clone() {
+        return new Character(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Character($ReviveData$)', ownData);
+    }
+}
+
+class Player extends Character {
+	constructor(config) {
+		config = config || {};
+		config.name = config.name || "Alex";
+		config.color = config.color || "DarkSlateBlue";
+		config.title = config.title || config.name;
+		super(config);
+	}
+
+	clone() {
+        return new Player(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Player($ReviveData$)', ownData);
+    }
+}
+
+Object.defineProperty(window, 'Character', {
+    value : Character
+});
+
+Object.defineProperty(window, 'Player', {
+    value : Player
+});
+/* twine-user-script #2: "estateRoom.js" */
 Macro.add("roomHeader", {
 	tags : null,
 	handler : function () {
@@ -280,7 +389,7 @@ Macro.add("roomHeader", {
 		}
 	}
 });
-/* twine-user-script #2: "speak.js" */
+/* twine-user-script #3: "speak.js" */
 Macro.add("speak", {
 	tags : null,
 	handler : function () {
@@ -306,13 +415,11 @@ Macro.add("think", {
 		);
 	}
 });
-/* twine-user-script #3: "script.js" */
+/* twine-user-script #4: "script.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class DateTime {
-	alarms = [];
-
 	constructor(date) {
 		this.date = new Date(date);
 	}
@@ -360,26 +467,15 @@ class DateTime {
 
 Object.defineProperty(window, 'DateTime', {
     value : DateTime
-});</script><tw-passagedata pid="1" name="CreateCharacter" tags="" position="100,100" size="100,100">Your name is &lt;&lt;textbox &quot;$player.name&quot; $player.name true&gt;&gt;&lt;br&gt;
-[[Start with the introduction|Intro1]] (Recommended for first timers)
-&lt;&lt;link &quot;Skip the introduction&quot; &quot;ManorVisit_1&quot;&gt;&gt;
-&lt;&lt;set $flags.cuff.recieved to true&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Skip the visit of the manor&quot; &quot;playerRoom&quot;&gt;&gt;
-&lt;&lt;set $flags.cuff.recieved to true&gt;&gt;
-&lt;&lt;set $flags.cuff.init to true&gt;&gt;
-&lt;&lt;set $flags.cuff.full to true&gt;&gt;
-&lt;&lt;set $flags.cuff.rules to true&gt;&gt;
-&lt;&lt;set $flags.manorIntro to false&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="EndHomeSweetHome" tags="" position="225,100" size="100,100">&lt;&lt;speak $player.color&gt;&gt;&quot;Sorry, not interested.&quot;&lt;&lt;/speak&gt;&gt;
+});</script><tw-passagedata pid="1" name="EndHomeSweetHome" tags="" position="100,100" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
-&lt;&lt;speak &quot;Peru&quot;&gt;&gt;&quot;Oh come on just hear me out...&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 
 He tries to convince you but you just walk away and get back on the bus.
 
 A few days later you&#39;re back home in your room thinking about the great trip you had and what the future holds.
 
-Your mind wanders back to that shady guy you met before leaving. It was definitely a bad idea given the airport security but you can&#39;t help but wonder what would&#39;ve happened if you wanted to [[Take that package.|Intro2]]</tw-passagedata><tw-passagedata pid="3" name="EndHardLabour" tags="" position="350,100" size="100,100">The Sentencing Officer goes through the formal paper work with you and hands you over to the state.
+Your mind wanders back to that shady guy you met before leaving. It was definitely a bad idea given the airport security but you can&#39;t help but wonder what would&#39;ve happened if you wanted to [[Take that package.|Intro2]]</tw-passagedata><tw-passagedata pid="2" name="EndHardLabour" tags="" position="225,100" size="100,100">The Sentencing Officer goes through the formal paper work with you and hands you over to the state.
 
 It deosn&#39;t take long for you to be stripped of all your belongs and sent to the camp. The conditions are hard and the only news from home is from your academy. You have forfeited your scholarship and been expelled.
 
@@ -387,7 +483,7 @@ The next few years are spent working off your debt. The work is back breaking an
 
 Years later your sentence ends and you are shipped back to your home country without much fuss but you have no one to meet and nowehere to stay. With no money and no prospects the future doesn&#39;t look great.
 
-Maybe I should&#39;ve chosen [[Indentured Servitude|Intro5]] instead?</tw-passagedata><tw-passagedata pid="4" name="Intro1" tags="" position="475,100" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+Maybe I should&#39;ve chosen [[Indentured Servitude|Intro5]] instead?</tw-passagedata><tw-passagedata pid="3" name="Intro1" tags="" position="350,100" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -397,97 +493,94 @@ The driver taking you to your airport lets everyone know that they&#39;ll be tak
 
 You were enjoying your snack when a shady looking man took the seat accross from you.
 
-&lt;&lt;speak &quot;Peru&quot;&gt;&gt;Hey kid, you look like a smart person ready to make some money. I&#39;m wondering if you wouldn&#39;t mind helping me out getting this package to some friend of mine.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Hey kid, you look like a smart person ready to make some money. I&#39;m wondering if you wouldn&#39;t mind helping me out getting this package to some friend of mine.&quot;, &quot;Peru&quot;)&gt;&gt;
 
 He holds out a plane brown box in front of you. It&#39;s clear this person is up to no good.
 
 [img[setup.ImagePath + &quot;brownbox.jpg&quot;]]
 
-&lt;&lt;speak &quot;Peru&quot;&gt;&gt;&quot;The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble.&quot;, &quot;Peru&quot;)&gt;&gt;
 
 The man is rubbing his fingers together with a sly smile.
 
 [[Sounds like a good deal to me.|Intro2]]
-[[Nope. Stranger danger.|EndHomeSweetHome]]</tw-passagedata><tw-passagedata pid="5" name="Intro2" tags="" position="600,100" size="100,100">&lt;&lt;speak $player.color&gt;&gt;&quot;Sure. I can help you out.&quot;&lt;&lt;/speak&gt;&gt;
+[[Nope. Stranger danger.|EndHomeSweetHome]]</tw-passagedata><tw-passagedata pid="4" name="Intro2" tags="" position="475,100" size="100,100">&lt;&lt;= $player.speak(&quot;Sure. I can help you out.&quot;)&gt;&gt;
 
-&lt;&lt;speak &quot;Peru&quot;&gt;&gt;Great ! you&#39;re a life saver. Have a safe trip.&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Great ! you&#39;re a life saver. Have a safe trip.&quot;,&quot;Peru&quot;)&gt;&gt;
 
 With that, the man hands over the package.
 
 The package looks ordinary enough. You give it a shake, but don&#39;t hear anything inside. It&#39;s best to leave it alone since it might be something private.
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;What&#39;s in...&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;What&#39;s in...&quot;)&gt;&gt;
 
 You look up, but the man is already getting into a nearby car and driving away.
 
-You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]</tw-passagedata><tw-passagedata pid="6" name="Intro3" tags="" position="725,100" size="100,100">&lt;&lt;= $dateTime.addTime(0, 5, 30)&gt;&gt;\
+You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]</tw-passagedata><tw-passagedata pid="5" name="Intro3" tags="" position="600,100" size="100,100">&lt;&lt;= $dateTime.addTime(0, 5, 30)&gt;&gt;\
 You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is long. You play with your queue. Half an hour layer, you finally reach the front.
 
 It doesn&#39;t take long to reach the airport and get to the security check-in. You hadn&#39;t really thought much about the box until you&#39;re putting it on the conveyor for the x-ray machine along with the rest of your suff. One of the gard waves at you through the metal detector. While you&#39;re waiting at the other end, an old lady in front of you drops her bag so you duck down to pick it.
 
-&lt;&lt;speak &quot;YellowGreen&quot;&gt;&gt;&quot;Oh why, thank you, young man.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Oh why, thank you, young man.&quot;,&quot;YellowGreen&quot;)&gt;&gt;
 
 She smiles warmly as you hand her the bag and then rejoins her group.
 
 When you turn back to the conveyor, a security guard is standing there holding the brown box you were given earlier in the day.
 
-&lt;&lt;speak &quot;GoldenRod&quot;&gt;&gt;I this package yours son?&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;I this package yours son?&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
 His face is pretty neutral.
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;Um, yes.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Um, yes.&quot;)&gt;&gt;
 
-&lt;&lt;speak &quot;GoldenRod&quot;&gt;&gt;&quot;Please step to the side sir.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Please step to the side sir.&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
 You move to grab your other bag, but another guard picks it up for you. You follow the guards directions and can see now there are two other more nearby, so they are surrounding you. They arren&#39;t particulary close, but it&#39;s clear running wouln&#39;t be a good option.
 
-&lt;&lt;speak &quot;GoldenRod&quot;&gt;&gt;&quot;You know smuggling is illegal, right?&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;You know smuggling is illegal, right?&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;Yes.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Yes.&quot;)&gt;&gt;
 
-&lt;&lt;speak &quot;GoldenRod&quot;&gt;&gt;&quot;Then why where you trying to get this out of the country?&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Then why where you trying to get this out of the country?&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
 The box is still closed.
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;I don&#39;t even know what&#39;s in there. Some guy asked me to deliver it to his friend back home.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;I don&#39;t even know what&#39;s in there. Some guy asked me to deliver it to his friend back home.&quot;)&gt;&gt;
 
-&lt;&lt;speak &quot;GoldenRod&quot;&gt;&gt;What&#39;s his name?&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;What&#39;s his name?&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
-&lt;&lt;nobr&gt;&gt;
-&lt;&lt;think $player.color&gt;&gt;$player.name, you idiot!&lt;&lt;/think&gt;&gt;
-&lt;&lt;speak $player.color&gt;&gt;&quot;He didn&#39;t say.&quot;&lt;&lt;/speak&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;$player.name, you idiot!&lt;/i&gt; He didn&#39;t say.&quot;)&gt;&gt;
 
-&lt;&lt;speak &quot;GoldenRod&quot;&gt;&gt;So you&#39;re in the habit of taking strange packages from people you don&#39;t know? Please follow us son.&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;So you&#39;re in the habit of taking strange packages from people you don&#39;t know? Please follow us son.&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
 @@#Intro3Options;
 [[Follow the guards|Intro4]]
 &lt;&lt;link &quot;Make a run for it&quot;&gt;&gt;&lt;&lt;replace &quot;#Intro3Options&quot;&gt;&gt;You start running and try to make a break for it, but the guards are ready for it. They quickly tackle you to the ground and have you restrained in no time.
 [[Get taken away.|Intro4]]&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-@@</tw-passagedata><tw-passagedata pid="7" name="Intro4" tags="" position="850,100" size="100,100">&lt;&lt;= $dateTime.addTime(14, 15, 10);&gt;&gt;
+@@</tw-passagedata><tw-passagedata pid="6" name="Intro4" tags="" position="725,100" size="100,100">&lt;&lt;= $dateTime.addTime(14, 15, 10);&gt;&gt;
 The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
 
 There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You&#39;re on your own.
 
 You are currently in a meeting room with your Sentencing Officer waiting to find out what they will do with you. A tall dominering man who looks in his fifties. He&#39;s the only one you&#39;re allowed to talk with at this point since the trial is already over.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;You&#39;re in a tight bind here young man. The courts have already assessed your finances and we know you can&#39;t pay your fine.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;You&#39;re in a tight bind here young man. The courts have already assessed your finances and we know you can&#39;t pay your fine.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
 To the mans credit he has been making a sincere effort to help but he can only do so much.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;Given that this is your first offence I&#39;m willing to offer you two options. First, we could ship you off to a labour camp. It&#39;s hard work but you&#39;re guaranteed to pay off you debt in a few years. You&#39;ll answer to the state though so don&#39;t think it will be easy.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Given that this is your first offence I&#39;m willing to offer you two options. First, we could ship you off to a labour camp. It&#39;s hard work but you&#39;re guaranteed to pay off you debt in a few years. You&#39;ll answer to the state though so don&#39;t think it will be easy.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
 One of the reasons this county was isolated from the rest of the world is its policies on slavery and indentured servitude.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;Second you could agree to indentured servitude. You&#39;ll be signed over to an owner and you&#39;ll work for them. You&#39;ll work off your debt eventually but it&#39;s dependant on how well your owner thinks you are doing so you need to make sure they&#39;re happy.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Second you could agree to indentured servitude. You&#39;ll be signed over to an owner and you&#39;ll work for them. You&#39;ll work off your debt eventually but it&#39;s dependant on how well your owner thinks you are doing so you need to make sure they&#39;re happy.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
 Having anyone being in control of your life doesn&#39;t sound great.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;Well. I&#39;ll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?&quot;&lt;&lt;/speak&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="Intro5" tags="" position="975,100" size="100,100">&lt;&lt;set $dateTime.addTime(0, 0, 15)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Well. I&#39;ll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="Intro5" tags="" position="850,100" size="100,100">&lt;&lt;set $dateTime.addTime(0, 0, 15)&gt;&gt;
 The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled &lt;b&gt;Private Indenture Contract&lt;/b&gt;.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;This is a standard private contract but has a few addendums from your potential owner. If you want this deal you&#39;ll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;This is a standard private contract but has a few addendums from your potential owner. If you want this deal you&#39;ll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
 @@#Intro5Options;
 [[Sign the contract without reading (default character settings)|Intro6]]
@@ -504,33 +597,35 @@ The Sentencing Officer does some quick paper work and then pushes foward a table
 		
 			The last section shows your personal information.
 
-			Name: &lt;&lt;textbox &quot;$playerName&quot; $playerName &quot;&quot;&gt;&gt;&lt;br&gt;&lt;br&gt;
+			&lt;div id=&quot;player-customisation-form&quot;&gt;\
+			&lt;h3&gt;Personnal information of the &lt;em&gt;Indured Servant&lt;/em&gt;&lt;/h3&gt;
+			Name: &lt;&lt;textbox &quot;$player.name&quot; $player.name &quot;&quot;&gt;&gt;
 
-			Hair colour: &lt;&lt;textbox &quot;$playerHairC&quot; $playerHairC &quot;&quot;&gt;&gt;&lt;br&gt;&lt;br&gt;
+			&lt;/div&gt;
 
 [[Sign the contract|Intro6]]
     &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-@@</tw-passagedata><tw-passagedata pid="9" name="Intro6" tags="" position="1100,100" size="100,100">&lt;&lt;set $dateTime.addTime(0, 0, 5)&gt;&gt;
+@@</tw-passagedata><tw-passagedata pid="8" name="Intro6" tags="" position="975,100" size="100,100">&lt;&lt;set $dateTime.addTime(0, 0, 5)&gt;&gt;
 &lt;&lt;set $flags.cuff.recieved to true&gt;&gt;\
 You sign your rights away and with that you are now an indentured servant. You know enough to know this basically makes you a slave with a few basic human rights but that&#39;s it.
 
 The Sentencing Officer takes away the contract a woman comes in with a box. She doesn’t saying anything as she sits next to you and pulls you hand over.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;You&#39;ll be tagged with a personal Correction Update and Flagging Flexile.&quot;&lt;&lt;/speak&gt;&gt; 
+&lt;&lt;= Character.speakAnonymous(&quot;You&#39;ll be tagged with a personal Correction Update and Flagging Flexile.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt; 
 
 The Sentencing Officer pulls out a book and slides it over to you with the acronym CUFF on the front. 
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;This has all the information you need to know about the device but basically it lets us or your owner track you and your progress.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;This has all the information you need to know about the device but basically it lets us or your owner track you and your progress.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
 The woman wraps a black band around your wrist and uses a tool to press button which forces the two ends to fuse together.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;It links to your debt account and can be used to withdraw funds. Make sure you use this carefully though and any purchase made while a servant will be added to your debt. A few other features to note are the instant messaging system and scheduler to help you and your owner keep track of any assigned tasks.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;It links to your debt account and can be used to withdraw funds. Make sure you use this carefully though and any purchase made while a servant will be added to your debt. A few other features to note are the instant messaging system and scheduler to help you and your owner keep track of any assigned tasks.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
 With the formalities complete you get taken away so you can be sent to your owners. You ask about your things before leaving and get told they will kept by the state until the debt is paid off. Looks like you&#39;re stuck with only the clothes on your back for now.
 
-[[Be taken to your owner.|ManorVisit_1]]</tw-passagedata><tw-passagedata pid="10" name="StoryAuthor" tags="" position="1225,100" size="100,100">A story by FreeShot
-With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="11" name="StoryInit" tags="" position="100,225" size="100,100">&lt;&lt;set $dateTime to new DateTime(&quot;2075-08-19 12:00:00&quot;)&gt;&gt;
+[[Be taken to your owner.|ManorVisit_1]]</tw-passagedata><tw-passagedata pid="9" name="StoryAuthor" tags="" position="1100,100" size="100,100">A story by FreeShot
+With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="10" name="StoryInit" tags="" position="1225,100" size="100,100">&lt;&lt;set $dateTime to new DateTime(&quot;2075-08-19 12:00:00&quot;)&gt;&gt;
 &lt;&lt;set $flags to {
 	&quot;cuff&quot; : {
 		&quot;recieved&quot; : false,
@@ -542,14 +637,15 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="11" name="Sto
 	&quot;wardrobeFirstLook&quot; : false
 }&gt;&gt;
 
-&lt;&lt;set $player to {&quot;name&quot; : &quot;Alex&quot;,&quot;color&quot; : &quot;DeepSkyBlue&quot;, &quot;HairC&quot; : &quot;Brown&quot;}&gt;&gt;
-&lt;&lt;set $owner to {&quot;name&quot; : &quot;Mr Sono&quot;,&quot;color&quot; : &quot;Drown&quot;,&quot;title&quot; : &quot;sir&quot;}&gt;&gt;
-&lt;&lt;set $wife to {&quot;name&quot; : &quot;Mrs Sono&quot;,&quot;color&quot; : &quot;MediumOrchid&quot;,&quot;title&quot; : &quot;Ma&#39;am&quot;}&gt;&gt;
-&lt;&lt;set $daugther to {&quot;name&quot; : &quot;Adeline&quot;,	&quot;color&quot; : &quot;DarkSalmon&quot;,&quot;title&quot; : &quot;Ms Sono&quot;}&gt;&gt;
-&lt;&lt;set $son to {&quot;name&quot; : &quot;Mr Sono&quot;,&quot;color&quot; : &quot;LightGreen&quot;,&quot;title&quot; : &quot;Mr Sono&quot;}&gt;&gt;
-&lt;&lt;set $butler to {&quot;name&quot; : &quot;Mr Benson&quot;, &quot;color&quot; : &quot;#7DA23D&quot;, &quot;title&quot; : &quot;DarkOliveGreen&quot;}&gt;&gt;
-&lt;&lt;set $cook to {&quot;name&quot; : &quot;Ivan&quot;, &quot;color&quot; : &quot;DarkKhaki&quot;}&gt;&gt;
-&lt;&lt;set $gardner to {&quot;name&quot; : &quot;Juan&quot;, &quot;color&quot; : &quot;Sienna&quot;}&gt;&gt;
+&lt;&lt;set $player to new Character({name: &quot;Alex&quot;, color: &quot;DarkSlateBlue&quot;, title: &quot;Alex&quot;})&gt;&gt;
+
+&lt;&lt;set $owner to new Character({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;sir&quot;})&gt;&gt;
+&lt;&lt;set $wife to new Character({name: &quot;Mrs Sono&quot;, color: &quot;MediumOrchid&quot;, title: &quot;Ma&#39;am&quot;})&gt;&gt;
+&lt;&lt;set $daughter to new Character({name: &quot;Angeline&quot;, color: &quot;DarkSalmon&quot;, title: &quot;Ms Sono&quot;})&gt;&gt;
+&lt;&lt;set $son to new Character({name: &quot;Mr Sono&quot;, color: &quot;LightGreen&quot;, title: &quot;Mr Sono&quot;})&gt;&gt;
+&lt;&lt;set $butler to new Character({name: &quot;Mr Benson&quot;, color: &quot;#7DA231&quot;, title: &quot;Mr Benson&quot;})&gt;&gt;
+&lt;&lt;set $cook to new Character({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;})&gt;&gt;
+&lt;&lt;set $gardner to new Character({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
 
 &lt;&lt;set $rooms to {
 	&quot;Foyer&quot; : {
@@ -578,7 +674,7 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="11" name="Sto
 		&quot;imgNames&quot; : [&quot;Bedroom&quot;, &quot;Bathroom&quot;, &quot;Closet&quot;], &quot;displayName&quot; : &quot;Son bedroom&quot;},
 	&quot;DaughterBdRm&quot; : {
 		&quot;imgNames&quot; : [&quot;Bedroom&quot;, &quot;Bathroom&quot;, &quot;Closet&quot;], &quot;displayName&quot; : &quot;Daughter bedroom&quot;}
-}&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Start" tags="nobr" position="225,225" size="100,100">&lt;div class=gameTitle&gt;
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="Start" tags="nobr" position="100,225" size="100,100">&lt;div class=gameTitle&gt;
 &lt;h1&gt;Community Service&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class=&quot;warning&quot;&gt;
@@ -588,39 +684,39 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 
 
 
-[[Start the game|CreateCharacter]]</tw-passagedata><tw-passagedata pid="13" name="ManorVisit_1" tags="" position="350,225" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
+[[Start the game|Intro1]]</tw-passagedata><tw-passagedata pid="12" name="ManorVisit_1" tags="" position="225,225" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
 You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;State correction here with your new servant.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
 The guard shoves you forward.
 
 The man looks you up and down. The appraising stare makes you feel unconfortable, as if you were examined like stock on a farm.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;Quite. If you please.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Quite. If you please.&quot;)&gt;&gt;
 
 The older man gestures to your cuff and the guard grabs it.
 
-&lt;&lt;speak &quot;DarkGoldenRod&quot;&gt;&gt;&quot;Welcome to your new home, kid.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Welcome to your new home, kid.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
 He uses a hand held device to re-code your tracker to this location. The older man adds a passcode and the guard leaves without another word.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;Very well then. Follow me.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Very well then. Follow me.&quot;)&gt;&gt;
 
 With that, the turns around and walks into the estate proper.
 
-[[Follow|ManorVisit_2]]</tw-passagedata><tw-passagedata pid="14" name="ManorVisit_2" tags="" position="475,225" size="100,100">&lt;&lt;roomHeader &quot;Foyer&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+[[Follow|ManorVisit_2]]</tw-passagedata><tw-passagedata pid="13" name="ManorVisit_2" tags="" position="350,225" size="100,100">&lt;&lt;roomHeader &quot;Foyer&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;You may call me $butler.name&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;You may call me $butler.name&quot;)&gt;&gt;
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;Hi, my name&#39;s...&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Hi, my name&#39;s...&quot;)&gt;&gt;
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;$player.name. Yes, I am well aware. We&#39;ve been missing a servant for some time now, so $owner.name was quick to aquire your contract. Your predecessor was a valuable and competent asset and we expect the same from you&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;$player.name. Yes, I am well aware. We&#39;ve been missing a servant for some time now, so $owner.name was quick to aquire your contract. Your predecessor was a valuable and competent asset and we expect the same from you&quot;)&gt;&gt;
 
 He continues walking through the foyer and into the main lounge
 
-You follow $butler.name to the [[Main Lounge|ManorVisit_3]]</tw-passagedata><tw-passagedata pid="15" name="ManorVisit_3" tags="" position="600,225" size="100,100">&lt;&lt;roomHeader &quot;Lounge&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+You follow $butler.name to the [[Main Lounge|ManorVisit_3]]</tw-passagedata><tw-passagedata pid="14" name="ManorVisit_3" tags="" position="475,225" size="100,100">&lt;&lt;roomHeader &quot;Lounge&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
 
 &lt;&lt;speak $player.color&gt;&gt;&quot;So, what am I supposed to be doing around here?&quot;&lt;&lt;/speak&gt;&gt;
@@ -631,7 +727,7 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 
 &lt;&lt;speak $butler.color&gt;&gt;&quot;Now follow me to the [[Kitchen|ManorVisit_4]]&quot;&lt;&lt;/speak&gt;&gt;
 &lt;&lt;set $flags.cuff.init to true&gt;&gt;
-&lt;&lt;set $flags.cuff.rules to true&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="ManorVisit_4" tags="" position="725,225" size="100,100">&lt;&lt;roomHeader &quot;Kitchen&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+&lt;&lt;set $flags.cuff.rules to true&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="ManorVisit_4" tags="" position="600,225" size="100,100">&lt;&lt;roomHeader &quot;Kitchen&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
 [img[setup.ImagePath + &quot;characters/chesChopping1.jpg&quot;]]
@@ -642,7 +738,7 @@ You enter the large open kitchen. It looks just as lavish as the rest of the roo
 
 The old chef points his knife at you to emphasize his point.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.&quot;&lt;&lt;/speak&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="ManorVisit_5" tags="" position="850,225" size="100,100">&lt;&lt;roomHeader &quot;Garden&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+&lt;&lt;speak $butler.color&gt;&gt;&quot;You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.&quot;&lt;&lt;/speak&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="ManorVisit_5" tags="" position="725,225" size="100,100">&lt;&lt;roomHeader &quot;Garden&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
 There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
@@ -667,7 +763,7 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 
 &lt;&lt;speak $butler.color&gt;&gt;&quot;As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I&#39;ll show you the upstairs rooms.&quot;&lt;&lt;/speak&gt;&gt;
 
-Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]</tw-passagedata><tw-passagedata pid="18" name="ManorVisit_6" tags="" position="975,225" size="100,100">&lt;&lt;roomHeader &quot;Hall&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]</tw-passagedata><tw-passagedata pid="17" name="ManorVisit_6" tags="" position="850,225" size="100,100">&lt;&lt;roomHeader &quot;Hall&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They&#39;re both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
@@ -714,7 +810,7 @@ You stammer. &lt;&lt;speak $player.color&gt;&gt;&quot;Yes $wife.title.&quot;&lt;
 
 &lt;&lt;speak $butler.color&gt;&gt;Of course $wife.title.&lt;&lt;/speak&gt;&gt;
 
-$butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]</tw-passagedata><tw-passagedata pid="19" name="ManorVisit_7" tags="" position="1100,225" size="100,100">&lt;&lt;roomHeader &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+$butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]</tw-passagedata><tw-passagedata pid="18" name="ManorVisit_7" tags="" position="975,225" size="100,100">&lt;&lt;roomHeader &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
 &lt;&lt;speak $butler.color&gt;&gt;This is where you&#39;ll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.&lt;&lt;/speak&gt;&gt;
@@ -725,7 +821,7 @@ At first glance it seems like a nice room. It&#39;s defienitely not large, with 
 
 $butler.name closes the door behind you, leaving you alone.
 
-[[Inspect the room|playerRoom]]</tw-passagedata><tw-passagedata pid="20" name="ManorVisit_8" tags="" position="1225,225" size="100,100">At exactly 7pm, the door to your room opens and $butler.name walks in.
+[[Inspect the room|playerRoom]]</tw-passagedata><tw-passagedata pid="19" name="ManorVisit_8" tags="" position="1100,225" size="100,100">At exactly 7pm, the door to your room opens and $butler.name walks in.
 
 &lt;&lt;speak $butler.color&gt;&gt;&quot;$owner.name is waiting for you in his office.&quot;&lt;&lt;/speak&gt;&gt;
 
@@ -751,68 +847,44 @@ The older man replies &lt;&lt;speak $butler.color&gt;&gt;Yes sir.&lt;&lt;/speak&
 
 &lt;&lt;speak $owner.color&gt;&gt;&quot;That will be all.&quot;&lt;&lt;/speak&gt;&gt;
 
-$butler.name leads you back to your [[small living space|playerRoom]].&lt;&lt;set $flags.manorIntro to false&gt;&gt;&lt;&lt;set $flags.cuff.full to true&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="StoryCaption" tags="" position="100,350" size="100,100">&lt;hr&gt;
+$butler.name leads you back to your [[small living space|playerRoom]].&lt;&lt;set $flags.manorIntro to false&gt;&gt;&lt;&lt;set $flags.cuff.full to true&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="StoryCaption" tags="" position="1225,225" size="100,100">&lt;hr&gt;
 &lt;span class=&quot;date&quot;&gt;$dateTime.getDate&lt;/span&gt;
 &lt;hr&gt;
 &lt;span class=&quot;time&quot;&gt;$dateTime.getClock&lt;/span&gt;\
-&lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;hr&gt;[[CUFF]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="CUFF" tags="nobr" position="225,350" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
+&lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;hr&gt;[[CUFF]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="CUFF" tags="nobr" position="100,350" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;elseif $flags.cuff.full is true&gt;&gt;
 	[[Chores|playerToDoList]]&lt;br&gt;
-	[[appearence]]&lt;br&gt;
-	[[skills]]&lt;br&gt;
-	[[possesions|inventory]]&lt;br&gt;
+	[[Appearence|appearence]]&lt;br&gt;
+	[[Skills|skills]]&lt;br&gt;
+	[[Possesions|inventory]]&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $flags.cuff.rules is true&gt;&gt;
-	[[rules]]&lt;br&gt;
+	[[Rules|rules]]&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="playerToDoList" tags="" position="350,350" size="100,100">General Task
-	[[Laundry]]
-	[[Dishes]]
-	[[Clean Kitchen]]
+&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="playerToDoList" tags="" position="225,350" size="100,100">Todo : Add chores
 
-Estate Ground Floor
-	[[Sweep, mop and dust]]
-	[[Clean windows]]
+&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="appearence" tags="" position="350,350" size="100,100">Todo : Describe player
 
-Estate Upper Floor
-	[[Sweep, mop and dust]]
-	[[Clean windows]]
-	[[Tidy Rec Room]]
-
-Estate Bedrooms
-	[[Make beds]]
-	[[Clean linen]]
-	[[Tidy bathroom]]
-
-[[Back to main menu|CUFF]]
-[[Go back to your room|playerRoom]]</tw-passagedata><tw-passagedata pid="24" name="appearence" tags="" position="475,350" size="100,100">Makeup
-
-Hair
-
-Lips
-
-Skin / Body hairs
-
-Chest
-
-Butt
-
-Waist / hips
-
-Penis
-
-Clothing
-
-Summary
-	boy
-	cute girl
-	hot girl
-
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="skills" tags="" position="600,350" size="100,100">W.I.P.
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="inventory" tags="" position="725,350" size="100,100">W.I.P.
-TODO : List current held items</tw-passagedata><tw-passagedata pid="27" name="ruler" tags="" position="850,350" size="100,100">W.I.P.
-TODO : Add Rules</tw-passagedata><tw-passagedata pid="28" name="playerRoom" tags="" position="975,350" size="100,100">&lt;&lt;roomHeader &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="skills" tags="" position="475,350" size="100,100">Todo : Add skills
+&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="inventory" tags="" position="600,350" size="100,100">W.I.P.
+TODO : List current held items</tw-passagedata><tw-passagedata pid="26" name="rules" tags="" position="725,350" size="100,100">&lt;h1 id=&quot;RuleTitle&quot;&gt;Rules&lt;/h1&gt;\
+&lt;ol class=&quot;rules&quot;&gt;\
+&lt;li&gt;Work week is Thursday to Tuesday. Wednesday is a free day.&lt;/li&gt;
+&lt;li&gt;Must be presentable and in clean clothes at all times.&lt;/li&gt;
+&lt;li&gt;Obey all instructions from other residents of the estate.&lt;/li&gt;
+&lt;li&gt;Offsite excursions are only allowed on approval from Mr or Mrs Sono.&lt;/li&gt;
+&lt;li&gt;There will be a 4 week probation where performance will be assessed on Sunday of each week in Mr Sono&#39;s office between 7pm and 8pm.&lt;/li&gt;
+&lt;li&gt;If the weekly performance quota is not met punishment will be determined by Mr or Mrs Sono.&lt;/li&gt;
+&lt;&lt;nobr&gt;&gt;
+&lt;&lt;if $gymEstateUnlocked is true&gt;&gt;
+&lt;li&gt;Use of any of the facilities on site is permitted between 8am to 10pm.&lt;/li&gt;
+&lt;&lt;else&gt;&gt;
+&lt;li&gt;You are NOT permitted to use any of the onsite facilities outside of you normal chores.&lt;/li&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;\
+&lt;/ol&gt;
+&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="playerRoom" tags="" position="850,350" size="100,100">&lt;&lt;roomHeader &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.
@@ -835,13 +907,13 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	[[Go to bed.|sleep]]
 &lt;&lt;else&gt;&gt;
 	[[Do your chores.|playerToDoList]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="playerRoomShower" tags="" position="1100,350" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="30" name="playerRoomMakup" tags="" position="1225,350" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="31" name="playerRoomMorningRoutine" tags="" position="100,475" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="32" name="playerRoomWardrobe" tags="" position="225,475" size="100,100">Todo: Add clothes
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="playerRoomShower" tags="" position="975,350" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="29" name="playerRoomMakup" tags="" position="1100,350" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="30" name="playerRoomMorningRoutine" tags="" position="1225,350" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="31" name="playerRoomWardrobe" tags="" position="100,475" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="sleep" tags="" position="350,475" size="100,100">You sleep in your bed
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="sleep" tags="" position="225,475" size="100,100">You sleep in your bed
 
-[[wakeUp]]</tw-passagedata><tw-passagedata pid="34" name="wakeUp" tags="" position="475,475" size="100,100">&lt;&lt;goto playerRoom&gt;&gt;</tw-passagedata></tw-storydata>
+[[wakeUp]]</tw-passagedata><tw-passagedata pid="33" name="wakeUp" tags="" position="350,475" size="100,100">&lt;&lt;goto playerRoom&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
 	if(document.documentElement.getAttribute("data-init")==="loading"){!function(window,document,jQuery,undefined){"use strict";function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}var _createClass=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),_slicedToArray=function(){function e(e,t){var r=[],n=!0,a=!1,i=undefined;try{for(var o,s=e[Symbol.iterator]();!(n=(o=s.next()).done)&&(r.push(o.value),!t||r.length!==t);n=!0);}catch(e){a=!0,i=e}finally{try{!n&&s.return&&s.return()}finally{if(a)throw i}}return r}return function(t,r){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,r);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},errorPrologRegExp=/^(?:(?:uncaught\s+(?:exception:\s+)?)?\w*(?:error|exception|_err):\s+)+/i,Alert=function(){function e(e,t,r,n){var a="fatal"===e,i="Apologies! "+(a?"A fatal":"An")+" error has occurred.";i+=a?" Aborting.":" You may be able to continue, but some parts may not work properly.",null==t&&null==r||(i+="\n\nError",null!=t&&(i+=" ["+t+"]"),i+=null!=r?": "+r.replace(errorPrologRegExp,"")+".":": unknown error."),"object"===(void 0===n?"undefined":_typeof(n))&&n.stack&&(i+="\n\nStack Trace:\n"+n.stack),window.alert(i)}function t(t,r,n){e(null,t,r,n)}function r(t,r,n){e("fatal",t,r,n)}return function(e){window.onerror=function(n,a,i,o,s){"complete"===document.readyState?t(null,n,s):(r(null,n,s),window.onerror=e,"function"==typeof window.onerror&&window.onerror.apply(this,arguments))}}(window.onerror),Object.freeze(Object.defineProperties({},{error:{value:t},fatal:{value:r}}))}(),Patterns=function(){var e=function(){var e=new Map([[" ","\\u0020"],["\f","\\f"],["\n","\\n"],["\r","\\r"],["\t","\\t"],["\v","\\v"],[" ","\\u00a0"],[" ","\\u1680"],["᠎","\\u180e"],[" ","\\u2000"],[" ","\\u2001"],[" ","\\u2002"],[" ","\\u2003"],[" ","\\u2004"],[" ","\\u2005"],[" ","\\u2006"],[" ","\\u2007"],[" ","\\u2008"],[" ","\\u2009"],[" ","\\u200a"],["\u2028","\\u2028"],["\u2029","\\u2029"],[" ","\\u202f"],[" ","\\u205f"],["　","\\u3000"],["\ufeff","\\ufeff"]]),t=/^\s$/,r="";return e.forEach(function(e,n){t.test(n)||(r+=e)}),r?"[\\s"+r+"]":"\\s"}(),t="\\s"===e?"\\S":e.replace(/^\[/,"[^"),r="[0-9A-Z_a-z\\-\\u00c0-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff\\u0150\\u0170\\u0151\\u0171]",n=r.replace("\\-",""),a=function(){return"("+r+"+)\\(([^\\)\\|\\n]+)\\):|("+r+"+):([^;\\|\\n]+);|((?:\\."+r+"+)+);|((?:#"+r+"+)+);"}();return Object.freeze({space:e,spaceNoTerminator:"[\\u0020\\f\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]",lineTerminator:"[\\n\\r\\u2028\\u2029]",notSpace:t,anyChar:"(?:.|[\\n\\r\\u2028\\u2029])",anyLetter:r,anyLetterStrict:n,identifierFirstChar:"[$A-Z_a-z]",identifierNextChar:"[$0-9A-Z_a-z]",identifier:"[$A-Z_a-z][$0-9A-Z_a-z]*",variableSigil:"[$_]",variable:"[$_][$A-Z_a-z][$0-9A-Z_a-z]*",macroName:"[A-Za-z][\\w-]*|[=-]",templateName:"[A-Za-z][\\w-]*",cssImage:"\\[[<>]?[Ii][Mm][Gg]\\[(?:\\s|\\S)*?\\]\\]+",inlineCss:a,url:"(?:file|https?|mailto|ftp|javascript|irc|news|data):[^\\s'\"]+"})}();!function(){!function(e){if(e&&e.prototype&&null==e.prototype.firstElementChild){var t=Node.ELEMENT_NODE;Object.defineProperty(e.prototype,"firstElementChild",{get:function(){for(var e=this.childNodes,r=0;r<e.length;++r){var n=e[r];if(n.nodeType===t)return n}return null}})}}(window.Node||window.Element)}(),function(){function e(e,t){var r=Number.parseInt(e,10)||0;if(r<1)return"";var n=void 0===t?"":String(t);for(""===n&&(n=" ");n.length<r;){var a=n.length,i=r-a;n+=a>i?n.slice(0,i):n}return n.length>r&&(n=n.slice(0,r)),n}var t=function(){function e(e,n){var a=String(e);if(!a)return a;switch(n){case"start":return t.test(a)?a.replace(t,""):a;case"end":return r.test(a)?a.replace(r,""):a;default:throw new Error('_trimString called with incorrect where parameter value: "'+n+'"')}}var t=new RegExp("^"+Patterns.space+Patterns.space+"*"),r=new RegExp(""+Patterns.space+Patterns.space+"*$");return e}();Array.prototype.flat||Object.defineProperty(Array.prototype,"flat",{configurable:!0,writable:!0,value:function(){function e(){if(null==this)throw new TypeError("Array.prototype.flat called on null or undefined");var t=0===arguments.length?1:Number(arguments[0])||0;return t<1?Array.prototype.slice.call(this):Array.prototype.reduce.call(this,function(r,n){return n instanceof Array?r.push.apply(r,_toConsumableArray(e.call(n,t-1))):r.push(n),r},[])}return e}()}),Array.prototype.flatMap||Object.defineProperty(Array.prototype,"flatMap",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatMap called on null or undefined");return Array.prototype.map.apply(this,arguments).flat()}}),Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includes called on null or undefined");if(0===arguments.length)return!1;var e=this.length>>>0;if(0===e)return!1;var t=arguments[0],r=Number(arguments[1])||0;for(r<0&&(r=Math.max(0,e+r));r<e;++r){var n=this[r];if(n===t||n!==n&&t!==t)return!0}return!1}}),Object.entries||Object.defineProperty(Object,"entries",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)throw new TypeError("Object.entries object parameter must be an object");return Object.keys(e).map(function(t){return[t,e[t]]})}}),Object.fromEntries||Object.defineProperty(Object,"fromEntries",{configurable:!0,writable:!0,value:function(e){return Array.from(e).reduce(function(e,t){if(Object(t)!==t)throw new TypeError("Object.fromEntries iterable parameter must yield objects");return t[0]in e?Object.defineProperty(e,t[0],{configurable:!0,enumerable:!0,writable:!0,value:t[1]}):e[t[0]]=t[1],e},{})}}),Object.getOwnPropertyDescriptors||Object.defineProperty(Object,"getOwnPropertyDescriptors",{configurable:!0,writable:!0,value:function(e){if(null==e)throw new TypeError("Object.getOwnPropertyDescriptors object parameter is null or undefined");var t=Object(e);return Reflect.ownKeys(t).reduce(function(e,r){var n=Object.getOwnPropertyDescriptor(t,r);return void 0!==n&&(r in e?Object.defineProperty(e,r,{configurable:!0,enumerable:!0,writable:!0,value:n}):e[r]=n),e},{})}}),Object.values||Object.defineProperty(Object,"values",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)throw new TypeError("Object.values object parameter must be an object");return Object.keys(e).map(function(t){return e[t]})}}),String.prototype.padStart||Object.defineProperty(String.prototype,"padStart",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padStart called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:e(i-a,r)+n}}),String.prototype.padEnd||Object.defineProperty(String.prototype,"padEnd",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padEnd called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:n+e(i-a,r)}}),String.prototype.trimStart||Object.defineProperty(String.prototype,"trimStart",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimStart called on null or undefined");return t(this,"start")}}),String.prototype.trimLeft||Object.defineProperty(String.prototype,"trimLeft",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimLeft called on null or undefined");return t(this,"start")}}),String.prototype.trimEnd||Object.defineProperty(String.prototype,"trimEnd",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimEnd called on null or undefined");return t(this,"end")}}),String.prototype.trimRight||Object.defineProperty(String.prototype,"trimRight",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimRight called on null or undefined");return t(this,"end")}})}(),function(){function _random(){var e=void 0,t=void 0;switch(arguments.length){case 0:throw new Error("_random called with insufficient parameters");case 1:e=0,t=arguments[0];break;default:e=arguments[0],t=arguments[1]}if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.floor(_nativeMathRandom()*(t-e+1))+e}function _randomIndex(e,t){var r=void 0,n=void 0;switch(t.length){case 1:r=0,n=e-1;break;case 2:r=0,n=Math.trunc(t[1]);break;default:r=Math.trunc(t[1]),n=Math.trunc(t[2])}return Number.isNaN(r)?r=0:!Number.isFinite(r)||r>=e?r=e-1:r<0&&(r=e+r)<0&&(r=0),Number.isNaN(n)?n=0:!Number.isFinite(n)||n>=e?n=e-1:n<0&&(n=e+n)<0&&(n=e-1),_random(r,n)}function _getCodePointStartAndEnd(e,t){var r=e.charCodeAt(t);if(Number.isNaN(r))return{char:"",start:-1,end:-1};if(r<55296||r>57343)return{char:e.charAt(t),start:t,end:t};if(r>=55296&&r<=56319){var n=t+1;if(n>=e.length)throw new Error("high surrogate without trailing low surrogate");var a=e.charCodeAt(n);if(a<56320||a>57343)throw new Error("high surrogate without trailing low surrogate");return{char:e.charAt(t)+e.charAt(n),start:t,end:n}}if(0===t)throw new Error("low surrogate without leading high surrogate");var i=t-1,o=e.charCodeAt(i);if(o<55296||o>56319)throw new Error("low surrogate without leading high surrogate");return{char:e.charAt(i)+e.charAt(t),start:i,end:t}}var _nativeMathRandom=Math.random;Object.defineProperty(Array,"random",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e||!Object.prototype.hasOwnProperty.call(e,"length"))throw new TypeError("Array.random array parameter must be an array or array-lke object");var t=e.length>>>0;if(0!==t){return e[0===arguments.length?_random(0,t-1):_randomIndex(t,Array.prototype.slice.call(arguments,1))]}}}),Object.defineProperty(Array.prototype,"concatUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.concatUnique called on null or undefined");var e=Array.from(this);if(0===arguments.length)return e;var t=Array.prototype.reduce.call(arguments,function(e,t){return e.concat(t)},[]),r=t.length;if(0===r)return e;for(var n=Array.prototype.indexOf,a=Array.prototype.push,i=0;i<r;++i){var o=t[i];-1===n.call(e,o)&&a.call(e,o)}return e}}),Object.defineProperty(Array.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.count called on null or undefined");for(var e=Array.prototype.indexOf,t=arguments[0],r=Number(arguments[1])||0,n=0;-1!==(r=e.call(this,t,r));)++n,++r;return n}}),Object.defineProperty(Array.prototype,"delete",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.delete called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.concat.apply([],arguments),r=t.length,n=[],a=0;a<e;++a)for(var i=this[a],o=0;o<r;++o){var s=t[o];if(i===s||i!==i&&s!==s){n.push(a);break}}for(var u=[],l=0,c=n.length;l<c;++l)u[l]=this[n[l]];for(var d=Array.prototype.splice,f=n.length-1;f>=0;--f)d.call(this,n[f],1);return u}}),Object.defineProperty(Array.prototype,"deleteAt",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.deleteAt called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.splice,r=[].concat(_toConsumableArray(new Set(Array.prototype.concat.apply([],arguments).map(function(t){return t<0?Math.max(0,e+t):t})).values())),n=[].concat(_toConsumableArray(r)).sort(function(e,t){return t-e}),a=[],i=0,o=r.length;i<o;++i)a[i]=this[r[i]];for(var s=0,u=n.length;s<u;++s)t.call(this,n[s],1);return a}}),Object.defineProperty(Array.prototype,"deleteWith",{configurable:!0,writable:!0,value:function(e,t){if(null==this)throw new TypeError("Array.prototype.deleteWith called on null or undefined");if("function"!=typeof e)throw new Error("Array.prototype.deleteWith predicate parameter must be a function");var r=this.length>>>0;if(0===r)return[];for(var n=Array.prototype.splice,a=[],i=[],o=0;o<r;++o)e.call(t,this[o],o,this)&&(i.push(this[o]),a.push(o));for(var s=a.length-1;s>=0;--s)n.call(this,a[s],1);return i}}),Object.defineProperty(Array.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.first called on null or undefined");if(0!=this.length>>>0)return this[0]}}),Object.defineProperty(Array.prototype,"includesAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAll called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAll.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(!Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!1;return!0}}),Object.defineProperty(Array.prototype,"includesAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAny called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAny.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!0;return!1}}),Object.defineProperty(Array.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.last called on null or undefined");var e=this.length>>>0;if(0!==e)return this[e-1]}}),Object.defineProperty(Array.prototype,"pluck",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pluck called on null or undefined");var e=this.length>>>0;if(0!==e){var t=0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)));return Array.prototype.splice.call(this,t,1)[0]}}}),Object.defineProperty(Array.prototype,"pluckMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.pluckMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.pluckMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=Array.prototype.splice,a=[],i=t-1;do{a.push(n.call(this,_random(0,i--),1)[0])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"pushUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pushUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.push,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Array.prototype,"random",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.random called on null or undefined");var e=this.length>>>0;if(0!==e){return this[0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)))]}}}),Object.defineProperty(Array.prototype,"randomMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.randomMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.randomMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=new Map,a=[],i=t-1;do{var o=void 0;do{o=_random(0,i)}while(n.has(o));n.set(o,!0),a.push(this[o])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"shuffle",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.shuffle called on null or undefined");var e=this.length>>>0;if(0===e)return this;for(var t=e-1;t>0;--t){var r=Math.floor(_nativeMathRandom()*(t+1));if(t!==r){var n=this[t];this[t]=this[r],this[r]=n}}return this}}),Object.defineProperty(Array.prototype,"unshiftUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.unshiftUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.unshift,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Function.prototype,"partial",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Function.prototype.partial called on null or undefined");var e=Array.prototype.slice,t=this,r=e.call(arguments,0);return function(){for(var n=[],a=0,i=0;i<r.length;++i)n.push(r[i]===undefined?arguments[a++]:r[i]);return t.apply(this,n.concat(e.call(arguments,a)))}}}),Object.defineProperty(Math,"clamp",{configurable:!0,writable:!0,value:function(e,t,r){var n=Number(e);return Number.isNaN(n)?NaN:n.clamp(t,r)}}),Object.defineProperty(Math,"easeInOut",{configurable:!0,writable:!0,value:function(e){return 1-(Math.cos(Number(e)*Math.PI)+1)/2}}),Object.defineProperty(Number.prototype,"clamp",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Number.prototype.clamp called on null or undefined");if(2!==arguments.length)throw new Error("Number.prototype.clamp called with an incorrect number of parameters");var e=Number(arguments[0]),t=Number(arguments[1]);if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.min(Math.max(this,e),t)}}),RegExp.escape||function(){var e=/[\\^$*+?.()|[\]{}]/g,t=new RegExp(e.source);Object.defineProperty(RegExp,"escape",{configurable:!0,writable:!0,value:function(r){var n=String(r);return n&&t.test(n)?n.replace(e,"\\$&"):n}})}(),function(){var e=/{(\d+)(?:,([+-]?\d+))?}/g,t=new RegExp(e.source);Object.defineProperty(String,"format",{configurable:!0,writable:!0,value:function(r){function n(e,t,r){if(!t)return e;var n=Math.abs(t)-e.length;if(n<1)return e;var a=String(r).repeat(n);return t<0?e+a:a+e}if(arguments.length<2)return 0===arguments.length?"":r;var a=2===arguments.length&&Array.isArray(arguments[1])?[].concat(_toConsumableArray(arguments[1])):Array.prototype.slice.call(arguments,1);return 0===a.length?r:t.test(r)?(e.lastIndex=0,r.replace(e,function(e,t,r){var i=a[t];if(null==i)return"";for(;"function"==typeof i;)i=i();switch(void 0===i?"undefined":_typeof(i)){case"string":break;case"object":i=JSON.stringify(i);break;default:i=String(i)}return n(i,r?Number.parseInt(r,10):0," ")})):r}})}(),Object.defineProperty(String.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.contains called on null or undefined");return-1!==String.prototype.indexOf.apply(this,arguments)}}),Object.defineProperty(String.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.count called on null or undefined");var e=String(arguments[0]||"");if(""===e)return 0;for(var t=String.prototype.indexOf,r=e.length,n=Number(arguments[1])||0,a=0;-1!==(n=t.call(this,e,n));)++a,n+=r;return a}}),Object.defineProperty(String.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.first called on null or undefined");return _getCodePointStartAndEnd(String(this),0).char}}),Object.defineProperty(String.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.last called on null or undefined");var e=String(this);return _getCodePointStartAndEnd(e,e.length-1).char}}),Object.defineProperty(String.prototype,"splice",{configurable:!0,writable:!0,value:function(e,t,r){if(null==this)throw new TypeError("String.prototype.splice called on null or undefined");var n=this.length>>>0;if(0===n)return"";var a=Number(e);Number.isSafeInteger(a)?a<0&&(a+=n)<0&&(a=0):a=0,a>n&&(a=n);var i=Number(t);(!Number.isSafeInteger(i)||i<0)&&(i=0);var o=this.slice(0,a);return void 0!==r&&(o+=r),a+i<n&&(o+=this.slice(a+i)),o}}),Object.defineProperty(String.prototype,"splitOrEmpty",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.splitOrEmpty called on null or undefined");return""===String(this)?[]:String.prototype.split.apply(this,arguments)}}),Object.defineProperty(String.prototype,"toLocaleUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toLocaleUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toLocaleUpperCase()+e.slice(n+1)}}),Object.defineProperty(String.prototype,"toUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toUpperCase()+e.slice(n+1)}}),Object.defineProperty(Date.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:date)",this.toISOString()]}}),Object.defineProperty(Function.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)","("+this.toString()+")"]}}),Object.defineProperty(Map.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:map)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(RegExp.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)",this.toString()]}}),Object.defineProperty(Set.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:set)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(JSON,"reviveWrapper",{configurable:!0,writable:!0,value:function(e,t){if("string"!=typeof e)throw new TypeError("JSON.reviveWrapper code parameter must be a string");return["(revive:eval)",[e,t]]}}),Object.defineProperty(JSON,"_real_parse",{value:JSON.parse}),Object.defineProperty(JSON,"parse",{configurable:!0,writable:!0,value:function value(text,reviver){return JSON._real_parse(text,function(key,val){var value=val;if(Array.isArray(value)&&2===value.length)switch(value[0]){case"(revive:set)":value=new Set(value[1]);break;case"(revive:map)":value=new Map(value[1]);break;case"(revive:date)":value=new Date(value[1]);break;case"(revive:eval)":try{if(Array.isArray(value[1])){var $ReviveData$=value[1][1];value=eval(value[1][0])}else value=eval(value[1])}catch(e){}}else if("string"==typeof value&&"@@revive@@"===value.slice(0,10))try{value=eval(value.slice(10))}catch(e){}if("function"==typeof reviver)try{value=reviver(key,value)}catch(e){}return value})}}),Object.defineProperty(Array.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.contains called on null or undefined");return Array.prototype.includes.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAll called on null or undefined");return Array.prototype.includesAll.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAny called on null or undefined");return Array.prototype.includesAny.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"flatten",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatten called on null or undefined");return Array.prototype.flat.call(this,1/0)}}),Object.defineProperty(String.prototype,"readBracketedList",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.readBracketedList called on null or undefined");for(var e=new RegExp("(?:\\[\\[((?:\\s|\\S)*?)\\]\\])|([^\"'\\s]\\S*)","gm"),t=[],r=void 0;null!==(r=e.exec(this));)r[1]?t.push(r[1]):r[2]&&t.push(r[2]);return t}})}();var Browser=function(){var e=navigator.userAgent.toLowerCase(),t=e.includes("windows phone"),r=Object.freeze({Android:!t&&e.includes("android"),BlackBerry:/blackberry|bb10/.test(e),iOS:!t&&/ip(?:hone|ad|od)/.test(e),Opera:!t&&("object"===_typeof(window.operamini)||e.includes("opera mini")),Windows:t||/iemobile|wpdesktop/.test(e),any:function(){return r.Android||r.BlackBerry||r.iOS||r.Opera||r.Windows}}),n=!r.Windows&&!/khtml|trident|edge/.test(e)&&e.includes("gecko"),a=!e.includes("opera")&&/msie|trident/.test(e),i=a?function(){var t=/(?:msie\s+|rv:)(\d+\.\d)/.exec(e);return t?Number(t[1]):0}():null,o=e.includes("opera")||e.includes(" opr/"),s=o?function(){var t=new RegExp((/khtml|chrome/.test(e)?"opr":"version")+"\\/(\\d+\\.\\d+)"),r=t.exec(e);return r?Number(r[1]):0}():null,u=e.includes("vivaldi");return Object.freeze({userAgent:e,isMobile:r,isGecko:n,isIE:a,ieVersion:i,isOpera:o,operaVersion:s,isVivaldi:u})}(),Has=function(){var e=function(){try{return"function"==typeof document.createElement("audio").canPlayType}catch(e){}return!1}(),t=e&&function(){try{var e=document.createElement("audio").play();return e.catch(function(){}),e instanceof Promise}catch(e){}return!1}(),r=function(){try{return"Blob"in window&&"File"in window&&"FileList"in window&&"FileReader"in window&&!Browser.isMobile.any()&&(!Browser.isOpera||Browser.operaVersion>=15)}catch(e){}return!1}(),n=function(){try{return"geolocation"in navigator&&"function"==typeof navigator.geolocation.getCurrentPosition&&"function"==typeof navigator.geolocation.watchPosition}catch(e){}return!1}(),a=function(){try{return"MutationObserver"in window&&"function"==typeof window.MutationObserver}catch(e){}return!1}(),i=function(){try{return"performance"in window&&"function"==typeof window.performance.now}catch(e){}return!1}(),o=function(){try{return"ontouchstart"in window||!!window.DocumentTouch&&document instanceof window.DocumentTouch||!!navigator.maxTouchPoints||!!navigator.msMaxTouchPoints}catch(e){}return!1}(),s=function(){try{for(var e=new Map([["transition","transitionend"],["MSTransition","msTransitionEnd"],["WebkitTransition","webkitTransitionEnd"],["MozTransition","transitionend"]]),t=[].concat(_toConsumableArray(e.keys())),r=document.createElement("div"),n=0;n<t.length;++n)if(r.style[t[n]]!==undefined)return e.get(t[n])}catch(e){}return!1}();return Object.freeze({audio:e,audioPromise:t,fileAPI:r,geolocation:n,mutationObserver:a,performance:i,touch:o,transitionEndEvent:s})}(),Visibility=function(){function e(){return Boolean(r&&document[r.hiddenProperty])}function t(){return r&&document[r.stateProperty]||"visible"}var r=function(){try{return Object.freeze([{hiddenProperty:"hidden",stateProperty:"visibilityState",changeEvent:"visibilitychange"},{hiddenProperty:"webkitHidden",stateProperty:"webkitVisibilityState",changeEvent:"webkitvisibilitychange"},{hiddenProperty:"mozHidden",stateProperty:"mozVisibilityState",changeEvent:"mozvisibilitychange"},{hiddenProperty:"msHidden",stateProperty:"msVisibilityState",changeEvent:"msvisibilitychange"}].find(function(e){return e.hiddenProperty in document}))}catch(e){}return null}();return Object.freeze(Object.defineProperties({},{isHidden:{value:e},state:{value:t},hiddenProperty:{value:r.hiddenProperty},stateProperty:{value:r.stateProperty},changeEvent:{value:r.changeEvent}}))}(),_ref3=function(){function e(t){if("object"!==(void 0===t?"undefined":_typeof(t))||null===t)return t;if(t instanceof String)return String(t);if(t instanceof Number)return Number(t);if(t instanceof Boolean)return Boolean(t);if("function"==typeof t.clone)return t.clone(!0);if(t.nodeType&&"function"==typeof t.cloneNode)return t.cloneNode(!0);var r=void 0;return t instanceof Array?r=new Array(t.length):t instanceof Date?r=new Date(t.getTime()):t instanceof Map?(r=new Map,t.forEach(function(t,n){return r.set(n,e(t))})):t instanceof RegExp?r=new RegExp(t):t instanceof Set?(r=new Set,t.forEach(function(t){return r.add(e(t))})):r=Object.create(Object.getPrototypeOf(t)),Object.keys(t).forEach(function(n){return r[n]=e(t[n])}),r}function t(e){for(var t=document.createDocumentFragment(),r=document.createElement("p"),n=void 0;null!==(n=e.firstChild);){if(n.nodeType===Node.ELEMENT_NODE){switch(n.nodeName.toUpperCase()){case"BR":if(null!==n.nextSibling&&n.nextSibling.nodeType===Node.ELEMENT_NODE&&"BR"===n.nextSibling.nodeName.toUpperCase()){e.removeChild(n.nextSibling),e.removeChild(n),t.appendChild(r),r=document.createElement("p");continue}if(!r.hasChildNodes()){e.removeChild(n);continue}break;case"ADDRESS":case"ARTICLE":case"ASIDE":case"BLOCKQUOTE":case"CENTER":case"DIV":case"DL":case"FIGURE":case"FOOTER":case"FORM":case"H1":case"H2":case"H3":case"H4":case"H5":case"H6":case"HEADER":case"HR":case"MAIN":case"NAV":case"OL":case"P":case"PRE":case"SECTION":case"TABLE":case"UL":r.hasChildNodes()&&(t.appendChild(r),r=document.createElement("p")),t.appendChild(n);continue}}r.appendChild(n)}r.hasChildNodes()&&t.appendChild(r),e.appendChild(t)}function r(){try{return document.activeElement||null}catch(e){return null}}function n(e,t,r){var n="object"===(void 0===e?"undefined":_typeof(e))?e:document.getElementById(e);if(null==n)return null;var a=Array.isArray(t)?t:[t];jQuery(n).empty();for(var i=0,o=a.length;i<o;++i)if(Story.has(a[i]))return new Wikifier(n,Story.get(a[i]).processText().trim()),n;if(null!=r){var s=String(r).trim();""!==s&&new Wikifier(n,s)}return n}function a(e,t,r){var n=jQuery(document.createElement("div")),a=jQuery(document.createElement("button")),i=jQuery(document.createElement("pre")),o=L10n.get("errorTitle")+": "+(t||"unknown error");return a.addClass("error-toggle").ariaClick({label:L10n.get("errorToggle")},function(){a.hasClass("enabled")?(a.removeClass("enabled"),i.attr({"aria-hidden":!0,hidden:"hidden"})):(a.addClass("enabled"),i.removeAttr("aria-hidden hidden"))}).appendTo(n),jQuery(document.createElement("span")).addClass("error").text(o).appendTo(n),jQuery(document.createElement("code")).text(r).appendTo(i),i.addClass("error-source").attr({"aria-hidden":!0,hidden:"hidden"}).appendTo(n),n.addClass("error-view").appendTo(e),console.warn(o+"\n\t"+r.replace(/\n/g,"\n\t")),!1}function i(e,t){var r=i;switch(void 0===e?"undefined":_typeof(e)){case"number":if(Number.isNaN(e))return t;break;case"object":if(null===e)return t;if(Array.isArray(e))return e.map(function(e){return r(e,t)}).join(", ");if(e instanceof Set)return[].concat(_toConsumableArray(e)).map(function(e){return r(e,t)}).join(", ");if(e instanceof Map){return"{ "+[].concat(_toConsumableArray(e)).map(function(e){var n=_slicedToArray(e,2),a=n[0],i=n[1];return r(a,t)+" → "+r(i,t)}).join(", ")+" }"}return e instanceof Date?e.toLocaleString():"function"==typeof e.toString?e.toString():Object.prototype.toString.call(e);case"function":case"undefined":return t}return String(e)}return Object.freeze(Object.defineProperties({},{clone:{value:e},convertBreaks:{value:t},safeActiveElement:{value:r},setPageElement:{value:n},throwError:{value:a},toStringOrDefault:{value:i}}))
