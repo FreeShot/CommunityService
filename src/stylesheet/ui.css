@@ -57,6 +57,21 @@
 img {
 	width: 100%;
 	object-fit: contain;
-	border-radius: 10px;
-	border: solid 4px #F4A9CE; 
+	border-radius: 15px;
+	border: solid 4px #5C2C41; 
+}
+
+#ui-bar a.link-internal {
+	color: #FFDEEA;
+	padding: 4px;
+	border: solid 1px #40021C;
+	border-radius: 5px;
+	font-size: 50px;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+#ui-bar a.link-internal:hover {
+	color: #CE7298;
+	text-decoration: none;
+	font-family: 'Share Tech Mono', monospace;
 }

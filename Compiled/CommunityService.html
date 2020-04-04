@@ -103,6 +103,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="12" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
 
 body
 {
@@ -172,6 +173,21 @@ div.warning {
 	padding: 10px;
 	margin: 10px 0px 10px -15px;
 }
+
+#ui-bar a.link-internal {
+	color: #FFDEEA;
+	padding: 4px;
+	border: solid 1px #40021C;
+	border-radius: 5px;
+	font-size: 50px;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+#ui-bar a.link-internal:hover {
+	color: #CE7298;
+	text-decoration: none;
+	font-family: 'Share Tech Mono', monospace;
+}
 /* twine-user-stylesheet #2: "ui.css" */
 #ui-bar{
 	background-color: #2C0C1A;
@@ -232,8 +248,8 @@ div.warning {
 img {
 	width: 100%;
 	object-fit: contain;
-	border-radius: 10px;
-	border: solid 4px #F4A9CE; 
+	border-radius: 15px;
+	border: solid 4px #5C2C41; 
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "estateRoom.js" */
 Macro.add("roomHeader", {
 	tags : null,
@@ -295,6 +311,8 @@ setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class DateTime {
+	alarms = [];
+
 	constructor(date) {
 		this.date = new Date(date);
 	}
@@ -794,7 +812,7 @@ Summary
 &lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="skills" tags="" position="600,350" size="100,100">W.I.P.
 &lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="inventory" tags="" position="725,350" size="100,100">W.I.P.
 TODO : List current held items</tw-passagedata><tw-passagedata pid="27" name="ruler" tags="" position="850,350" size="100,100">W.I.P.
-TODO : Add Rules</tw-passagedata><tw-passagedata pid="28" name="playerRoom" tags="" position="975,350" size="100,100">!Your room
+TODO : Add Rules</tw-passagedata><tw-passagedata pid="28" name="playerRoom" tags="" position="975,350" size="100,100">&lt;&lt;roomHeader &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.
