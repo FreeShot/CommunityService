@@ -1,4 +1,4 @@
-setup.ImagePath = "images/";
+setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class DateTime {
