@@ -23,8 +23,7 @@ With that, the turns around and walks into the estate proper.
 [[Follow|ManorVisit_2]]
 
 ::ManorVisit_2
-<span class="estateRoom">Foyer</span>
-[img[setup.ImagePath + "estate/estateMainFoyer2.jpg"]]
+<<roomHeader "Foyer">><</roomHeader>>
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
 <<speak $butler.color>>"You may call me $butler.name"<</speak>>
@@ -35,11 +34,10 @@ You follow the older man and the main door opens into a wide foyer. The room is 
 
 He continues walking through the foyer and into the main lounge
 
-You follow $bulter.name to the [[Main Lounge|ManorVisit_3]]
+You follow $butler.name to the [[Main Lounge|ManorVisit_3]]
 
 ::ManorVisit_3
-<span class="estateRoom">Main Lounge</span>
-[img[setup.ImagePath + "estate/estateMainLounge1.jpg"]]
+<<roomHeader "Lounge">><</roomHeader>>
 This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
 
 <<speak $player.color>>"So, what am I supposed to be doing around here?"<</speak>>
@@ -52,8 +50,7 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 <<set $flags.cuff.init to true>>
 <<set $flags.cuff.rules to true>>
 ::ManorVisit_4
-<span class="estateRoom">Kitchen</span>
-[img[setup.ImagePath + "estate/estateMainKitchen2.jpg"]]
+<<roomHeader "Kitchen">><</roomHeader>>
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
 [img[setup.ImagePath + "characters/chesChopping1.jpg"]]
@@ -67,8 +64,7 @@ The old chef points his knife at you to emphasize his point.
 <<speak $butler.color>>"You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper."<</speak>>
 
 ::ManorVisit_5
-<span class="estateRoom">Garden</span>
-[img[setup.ImagePath+'estate/estateGarden3.jpg']]
+<<roomHeader "Garden">><</roomHeader>>
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
 There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
@@ -96,7 +92,7 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
 
 ::ManorVisit_6
-<span class="estateRoom">Upper Hall</span>
+<<roomHeader "Hall">><</roomHeader>>
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They're both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
@@ -146,7 +142,7 @@ You stammer. <<speak $player.color>>"Yes $wife.title."<</speak>>
 $butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]
 
 ::ManorVisit_7
-<span class="estateRoom">Your room</span>
+<<roomHeader "PlayerBdRm">><</roomHeader>>
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
 <<speak $butler.color>>This is where you'll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.<</speak>>

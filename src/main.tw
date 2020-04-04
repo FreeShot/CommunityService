@@ -33,6 +33,35 @@ With Yaflow's coding hand
 <<set $cook to {"name" : "Ivan", "color" : "DarkKhaki"}>>
 <<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
 
+<<set $rooms to {
+	"Foyer" : {
+		"imgNames" : ["Foyer"], "displayName" : "Foyer"},
+	"Hall" : {
+		"imgNames" : [], "displayName" : "Hall"},
+	"Garden" : {
+		"imgNames" : ["Garden1", "Garden2", "Garden3"], "displayName" : "Garden"},
+	"Kitchen" : {
+		"imgNames" : ["Kitchen"], "displayName" : "Kitchen"},
+	"Laundry" : {
+		"imgNames" : ["Laundry"], "displayName" : "Laundry"},
+	"Lounge" : {
+		"imgNames" : ["Lounge"], "displayName" : "Lounge"},
+	"Office" : {
+		"imgNames" : ["Office"], "displayName" : "Office"},
+	"MasterBdRm" : {
+		"imgNames" : ["Bedroom", "Bathroom", "Closet1", "Closet2"], "displayName" : "Master bedroom"},
+	"Office" : {
+		"imgNames" : ["MainOffice"], "displayName" : "Office"},
+	"PlayerBdRm" : {
+		"imgNames" : ["Bedroom"], "displayName" : "Your bedroom"},
+	"Pool" : {
+		"imgNames" : ["Pool"], "displayName" : "Pool"},
+	"SonBdRm" : {
+		"imgNames" : ["Bedroom", "Bathroom", "Closet"], "displayName" : "Son bedroom"},
+	"DaughterBdRm" : {
+		"imgNames" : ["Bedroom", "Bathroom", "Closet"], "displayName" : "Daughter bedroom"}
+}>>
+
 ::Start [nobr]
 <div class=gameTitle>
 <h1>Community Service</h1>

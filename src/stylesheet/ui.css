@@ -53,3 +53,10 @@
     border-top: 0px;
     margin-top: 3px;
 }
+
+img {
+	width: 100%;
+	object-fit: contain;
+	border-radius: 10px;
+	border: solid 4px #F4A9CE; 
+}
