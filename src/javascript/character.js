@@ -33,14 +33,35 @@ class Character {
         return JSON.reviveWrapper('new Character($ReviveData$)', ownData);
     }
 }
+Object.defineProperty(window, 'Character', {
+    value : Character
+});
 
 class Player extends Character {
+	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"]
 	constructor(config) {
-		config = config || {};
-		config.name = config.name || "Alex";
-		config.color = config.color || "DarkSlateBlue";
-		config.title = config.title || config.name;
-		super(config);
+		super(Object.assign(
+            {
+                name  : "Alex",
+                title : "Alex",
+                feminity : 0,
+            },
+            config
+        ));
+	}
+
+	feminize(amnt) {
+		this.feminity += amnt;
+		this.feminity = Math.min(this.feminity, this.gradiant.length - 1);
+		console.log(this.getColor);
+	}
+
+	get getColor() {
+		return this.gradiant[Math.min(this.feminity, this.gradiant.length - 1)]
+	}
+
+	speak(text) {
+		return Character.speakAnonymous(text, this.getColor);
 	}
 
 	clone() {
@@ -55,11 +76,6 @@ class Player extends Character {
         return JSON.reviveWrapper('new Player($ReviveData$)', ownData);
     }
 }
-
-Object.defineProperty(window, 'Character', {
-    value : Character
-});
-
 Object.defineProperty(window, 'Player', {
     value : Player
 });

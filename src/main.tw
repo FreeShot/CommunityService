@@ -24,7 +24,7 @@ With Yaflow's coding hand
 	"wardrobeFirstLook" : false
 }>>
 
-<<set $player to new Character({name: "Alex", color: "DarkSlateBlue", title: "Alex"})>>
+<<set $player to new Player()>>
 
 <<set $owner to new Character({name: "Mr Sono", color: "Brown", title: "sir"})>>
 <<set $wife to new Character({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
@@ -70,8 +70,6 @@ With Yaflow's coding hand
 <div class="warning">
 This game is intended for a mature audience. If you are too young, please <a class="link-internal" href="https://www.google.fr">leave.</a>
 </div>
-
-
 
 
 [[Start the game|Intro1]]
