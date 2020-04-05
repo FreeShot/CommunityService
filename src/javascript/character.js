@@ -3,6 +3,8 @@ class Character {
         Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
+
+        this.likesYou = 0
 	}
 
 	speak(text) {
