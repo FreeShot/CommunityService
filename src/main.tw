@@ -24,7 +24,7 @@ With Yaflow's coding hand
 	"wardrobeFirstLook" : false
 }>>
 
-<<set $player to {"name" : "Alex","color" : "DeepSkyBlue", "HairC" : "Brown"}>>
+<<set $player to {"name" : "Alex","color" : "DeepSkyBlue", "hairC" : "Brunette"}>>
 <<set $owner to {"name" : "Mr Sono","color" : "Drown","title" : "sir"}>>
 <<set $wife to {"name" : "Mrs Sono","color" : "MediumOrchid","title" : "Ma'am"}>>
 <<set $daugther to {"name" : "Adeline",	"color" : "DarkSalmon","title" : "Ms Sono"}>>
@@ -32,6 +32,7 @@ With Yaflow's coding hand
 <<set $butler to {"name" : "Mr Benson", "color" : "#7DA23D", "title" : "DarkOliveGreen"}>>
 <<set $cook to {"name" : "Ivan", "color" : "DarkKhaki"}>>
 <<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
+<<set $caterer to {"name" : "$caterer.name", "color" : "Chocolate"}>>
 
 ::Start [nobr]
 <div class=gameTitle>

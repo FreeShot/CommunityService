@@ -1,0 +1,634 @@
+::firstcocktailparty1
+The main foyer is busy with people setting up for the party this evening. The Sono's spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
+ 
+You dodge a few of the workers as they move through with another bouquet. One of the women moving through the room catches your eye. She is wearing a gorgeous maid's outfit that looks like something out of a boutique magazine
+ 
+As you are busy taking in the sight of the cute maid there is a shove from behind as two more people come by with a table. The world teeters for a moment before you stumble down the stairs and run strait into a woman holding a stack of plates. You try to steady yourself but all you manage to do is tangle your feet in hers. Both you and the server crash to the ground and the plates shatter on impact.
+ 
+Everyone in the room turns to you both, lying on the ground and the caterer comes storming out of the kitchen.
+ 
+<<speak $caterer.color>>"What the hell is this!?"<</speak>>
+ 
+The woman tries to pick herself up but stumbles back to ground in pain with a twisted ankle.
+ 
+The caterer grabs some ice in a towel and rushes over to her shouting at you. <<speak $caterer.color>>"You idiot!"<</speak>> The man immediately starts icing her ankle.
+ 
+Everyone else is just watching and enjoying the drama unfold when $wife.name walks into the room.
+ 
+<<speak $wife.color>>"Well, well. What's going on here?"<</speak>>
+ 
+<<speak $caterer.color>>"Your clumsy little fool of a servant injured my best server. That's what!"<</speak>>
+ 
+<<speak $wife.color>>"Oh please $caterer.name. Stop shouting."<</speak>>
+ 
+Some of the other people come a help the woman onto a seat. The sprain is already swelling up and the woman is clearly in pain. $caterer.name stands over you and confronts $wife.name.
+ 
+<<speak $caterer.color>>"This is a problem. It's short notice and I'm without my server."<</speak>> He starts pacing back and forth. <<speak $caterer.color>>"You don't hire me to work in conditions like this. That's it! I'm leaving."<</speak>>
+ 
+$caterer.name starts to walk away but $wife.name runs over and stops him.
+ 
+"Now $caterer.name just calm down. Do you have any idea how hard it will be to get someone to cover this evening? You're the best caterer in the city."<</speak>>
+ 
+<<speak $caterer.color>>"Well do you expect me to serve myself? I need someone to help who knows what they are doing."<</speak>>
+ 
+$wife.name looks down at you and then back to $caterer.name. <<speak $wife.color>>"I'll get you a replacement alright? Just keep doing your usual, brilliant work and I'll be back."<</speak>>
+ 
+$wife.name grabs your arm and pulls you to your feet with startling ease and shoves you out of the room.
+ 
+<<speak $caterer.color>>"It better be fast and they'd better know what they are doing!"<</speak>> $caterer.name shouts down the hall.
+ 
+$wife.name drags you towards the [[Master Bedroom|firstcocktailparty2]]
+
+::firstcocktailparty2
+ 
+<<speak $wife.color>>"I swear $caterer.name is such a handful some times."<</speak>> $wife.name pushes you down onto the bed so you're sitting on the end with her towering over you. "This is a disaster. Do you know how much trouble you've caused with your little stunt?"<</speak>>
+ 
+<<speak $player.color>>"But the workers…"<</speak>>
+ 
+<<speak $wife.color>>"Never mind that. $caterer.name is the best caterer in the city and I will not have sub-standard serving at my party tonight. It's too late to hire someone else who has any real skill and since you caused this mess I'm holding responsible. You're still in under probation so you know what this means? You forfeit the terms of your service and you'll be shipped off to a labour camp."<</speak>>
+ 
+<<speak $player.color>>"But it wasn't me! I got shoved."<</speak>> Your heart is thrumming in your chest at the mention of the camps. From the few stories you've heard about them over the last week they're pretty severe with gangs and cruel guards that treat their charges like cattle.
+ 
+<<speak $wife.color>>"I don't want to hear your weak excuses."<</speak>> You never realised you could feel this small but $wife.name was holding all the cards. <<speak $wife.color>>"The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away but this will have to do. I couldn't have someone in your state around our guests. If you agree and do a good job I'll pretend this whole mess never happened. What do you say? It's either this or I hand you over to the state."<</speak>>
+ 
+[[Agree to serve at the party. It's the only real option you have.|firstcocktailparty3]]
+
+::firstcocktailparty3
+ 
+<<speak $wife.color>>"Excellent. Not that you have much choice though. Who knows, if you like it we might make this part of your normal duties. Now we can't have you dressed like this so stay there while I get you something to wear."<</speak>>
+ 
+$wife.name goes into the closet and you sit wringing your hands nervously. Hopefully you can do well enough that they'll let you stay on at the estate.
+ 
+She comes back out with a bundle of items and starts laying them out on the large master bed. There's some simple silk bra and panties, a nice black and white silk dress…
+
+<<think $player.color>>"What the fuck?"<</think>>
+ 
+<<speak $player.color>>"What the hell? Why are you getting out women's clothes."<</speak>>
+ 
+$wife.name snaps around and stares right at you. <<speak $wife.color>>"Watch your tone."<</speak>>
+ 
+You immediately shrink back realising how that sounded.
+ 
+$wife.name continues putting out the clothes she had gathered. <<speak $wife.color>>"There is a guest coming tonight who is a valued business partner and friend of the family. He is quite vocal in his distaste of keeping male indentured servants. That means if this is going to work you will need to pretend to be a girl for the night. I will ''NOT'' tolerate him finding out you are a boy. It shouldn't be too hard for you to pass as a girl anyway."<</speak>>
+ 
+Then under her breathe you hear her say. <<speak $wife.color>>"Who knows, you might enjoy playing the part."<</speak>>
+ 
+<<speak $wife.color>>"Now you're a more slight than I would like. Strip down and put the underwear on so I can see if they fit."<</speak>>
+ 
+<<speak $player.color>>"Can't I at least wear my own underwear?"<</speak>>
+ 
+<<speak $wife.color>>"Of for goodness sake. If you're going to convince anyone you need to wear everything. If you're that embarrassed by your manhood you can go into the bathroom."<</speak>>
+ 
+[[Go to bathroom|::firstcocktailparty4]]
+
+::firstcocktailparty4
+ 
+You reach out take the black silk panties, half worried they might jump up and bite you. $wife.name bustles you into the large bathroom that ajoins the closet.
+ 
+Once the door is safely closed you. You drop your shirt, pants and boxers onto a nearby counter and hold out the girly panties.
+ 
+<<think $player.color>>"Geez, my heart is pounding."<</think>>
+ 
+You hold the black silk down and then step one foot in and then then other before pulling them up your legs. The feel of the material against your skin is nice and almost tingles. It's a way different feeling from your boring cotton boxers. You snap the waist band over your hips and adjust the edges so they aren't pulling or riding up everywhere and examine the fit.
+ 
+The black silk cups and conceals your manhood but it’s a bit tight since they are clearly made for someone with less down there. They're not really uncomfortable though and the feeling of the silk against your sensitive member is much more acute. You twist slightly and your penis almost pokes out one side of the crotch before slipping back in.
+ 
+As you are twisting and turning the bathroom door suddenly opens and $wife.name comes in with the rest of the lingerie.
+ 
+You rusht o cover yourself. <<speak $player.color>>"I thought you were waiting outside!?"<</speak>>
+ 
+$wife.name puts the items on top of your normal clothes. <<speak $wife.color>>"We need those legs smooth as silk. Sit down."<</speak>> She grabs you by the shoulders again and sits you down on the ornate chaise lounge near the vanity.
+ 
+<<speak $player.color>>"But the stockings aren't even see through."<</speak>>
+
+<<speak $wife.color>>"Shush now."<</speak>>
+
+[[She's settign the terms so you have no choice|firstcocktailparty5]]
+
+::firstcocktailparty5
+ 
+$wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
+ 
+<<speak $wife.color>>"Hmm. It's nice a sparse already. Convenient."<</speak>>
+ 
+She then begins softly running the razor in lines down your thigh. The feel of her hands rubbing oil over your legs and now the razor is definitely having an effect on other parts of your body. You try to shift your seat to make room for your growing arousal.
+ 
+$wife.name stops and then - ''WHACK'' - She gives you a hard slap on your butt.
+ 
+<<speak $player.color>>"Ouch!"<</speak>> Your shout was far less deep than you would've liked.
+ 
+<<speak $wife.color>>"Don't move. I don't want to nick you."<</speak>>
+ 
+You stop shifting as she removes all the hair from first one leg and then the other. She gets you to roll over so she can do the backs and your growing erection is uncomfortably squished against the chaise.
+ 
+<<speak $wife.color>>"All done for the legs. Now roll over and lay down."<</speak>>
+ 
+You roll over and she can repeat the process on the small patch of hair on your chest.
+ 
+<<think $player.color>>"Who will even see my chest?<</think>>
+ 
+<<speak $wife.color>>"At least there's not much on your face. I think we'll leave that for now. Up you get."<</speak>> She gives you another hard slap on the side of your butt and you stand up.
+ 
+<<speak $wife.color>>"Well then, on with the rest."<</speak>> She gestures to the rest of the lingerie.
+ 
+You look at the intimidating pile of silk beforing reaching out to take...
+
+<<nobr>>
+<span id="maiddressing1">
+	<<link "the bra">>
+		<<replace "#maiddressing1">>
+			You reach out and take the bra from the pile. It a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder they are already a bit tangled.<br>
+			<br>
+			<<speak $wife.color>>"Oh for goodness sake. You are hopeless."<</speak>><br>
+			[[She snatches the item from you.|firstcocktailparty6]]
+		<</replace>>
+	<</link>>, 
+	<<link "the stockings">><br>
+		<<replace "#maiddressing1">>
+			You take one of the long stockings and sit down. Aside from being made of nylon it feel like any other sock so you poke your toes in the opening and yank it over you heel. You're immediately hear a ripping sound and can see your toes poking through the tear.<br>
+			<br>
+			<<speak $wife.color>>"Oh for goodness sake. You are hopeless."<</speak>><br>
+			[[She snatches the item from you.|firstcocktailparty6]]
+		<</replace>>
+	<</link>> or
+	<<link "the cincher">>
+		<<replace "#maiddressing1">>
+			You take the bundle of fabric and it unrolls into a long tube of silk. Assuming it's a top of some kind you try to pull it on like a shirt. It is extremely tight and within seconds you manage to pin your arms in an awkward position and can't budge it.<br>
+			<br>
+			<<speak $wife.color>>"Oh for goodness sake. You are hopeless."<</speak>><br>
+			[[She snatches the item from you.|firstcocktailparty6]]
+		<</replace>>
+	<</link>>.
+</span><</nobr>>
+
+::firstcocktailparty6
+
+$wife.name takes one the bigger items.
+
+<<speak $wife.color>>"First the body shaper. Lift your arms up."<</speak>>
+
+You hold your arms above your head as she wraps the black lace around your waist and hips. You feel her tugging it tight as she hooks it together. It's very tight and you can already feel it compress your midsection.
+
+<<speak $wife.color>>"Take a deep breath now."<</speak>>
+
+<<nobr>>
+<span id="maiddressing2">
+	<<link "Why?">>
+		<<replace "#maiddressing2">>
+			<<speak $player.color>>"Isn't it already tight enough?"<</speak>><br>
+ 			<br>
+			<<speak $wife.color>>"The more you complain the less happy I am with your performance. Now take a deep breath."<</speak>><br>
+		<</replace>>
+	<</link>> 
+</span><</nobr>>
+[[Just do as she says.|firstcocktailparty7]]
+
+::firstcocktailparty7
+
+Todo: Add image/gif
+
+You take a deep breathe and $wife.name pulls the shaper even tighter and manages to get the hooks into the last holes.<br>
+
+<<speak $wife.color>>"You can put your arms down now."<</speak>>
+
+You do and can feel the shaper holding your thin waist in tightly. You twist and bend a bit. It doesn't restrict your movement too much, if anything it's making you slouch less and hold yourself straighter. It's just really tight.
+
+<<speak $wife.color>>"Bra next."<</speak>>
+
+[[Continue dressing|firstcocktailparty8]]
+
+::firstcocktailparty8
+
+Todo: Add image/gif
+
+$wife.name holds the shoulder straps for the bra open and you slip your hands through. She pulls it up over your shoulders before adjusting the fit on your chest. Once it's in the right place she hooks it together and walks back in front of you.
+ 
+The cups of the bra sit flat and empty against your chest.
+ 
+<<speak $player.color>>"I don't really need this do I?"<</speak>>
+ 
+<<speak $wife.color>>"Yes."<</speak>> She taps her chin and thinks for a moment. <<speak $wife.color>>"But your curves do need some work. Wait here."<</speak>>
+ 
+$wife.name goes back into the wardrobe leaving you in the bathroom. Your reach between your legs and adjust the black panties to give your growing erection a bit more space to move.
+ 
+<<think $player.color>>"Stupid thing has mind of its own. There's no way this is turning me on."<</think>>
+ 
+It doesn't take long for $wife.name to returns holding two fleshy coloured bag. Without pausing she hold open one cup of the bra and pushed the squishy sack in and then does the same with the other cup. They're both cold against your chest so and they're rubbing against your nipples. You can feel them already starting to perk up and making the rubbing even more noticeable.
+ 
+$wife.name pulls your attention away from the breast forms as she grabs your chin and turns your face to the side.
+ 
+<<speak $wife.color>>"Hmm, not a bad start but we'll need to work on your looks."<</speak>>
+ 
+[[She sits you down on the vanity chair.|firstcocktailparty9]]
+
+::firstcocktailparty9
+ 
+<<speak $wife.color>>"Close your eyes."<</speak>>
+
+Todo: Add image/gif
+ 
+You do and feel her brushing and pushing against your face. It doesn't take a genius to guess that's she applying makeup. It takes a few minutes and $wife.name chides you a few times for moving and spoiling her work. You can't help but feel like a child getting dressed up by their mother. In any other situation there's no way you would be letting this happen.
+ 
+She stops for a moment and you're tempted to open your eyes and risk getting a talking to.
+ 
+<<speak $wife.color>>"Do you prefer blondes, brunettes or red heads?"<</speak>>
+
+<<nobr>>
+<span id="maiddressing3">
+	<<link "Um...">>
+		<<replace "#maiddressing3">>
+			<<set player.hairC to "Brunette">>
+			<<speak $wife.color>>"Brunette then."<</speak>><<br>>
+			<<br>>
+			You feel $wife.name put something on your head.
+			<<br>>
+			<<speak $player.color>>"What's that?"<</speak>>
+			<<br>>
+			<<speak $wife.color>>"Your hair is too scruffy to work with so you'll have to wear a wig instead."<</speak>>
+			<<br>>
+			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the hair back into a ponytail.
+			<<br>>
+			<<speak $wife.color>>"Put your legs out so we can get your stockings on."<</speak>>
+			[[Continue dressing|firstcocktailparty10]]
+		<</replace>>
+	<</link>><br>
+	<<link "Blondes">>
+		<<replace "#maiddressing3">>
+			<<set player.hairC to "Blonde">>
+			<<speak $wife.color>>"Blonde it is. Looks like you're in for some fun."<</speak>><<br>>
+			<<br>>
+			You feel $wife.name put something on your head.
+			<<br>>
+			<<speak $player.color>>"What's that?"<</speak>>
+			<<br>>
+			<<speak $wife.color>>"Your hair is too scruffy to work with so you'll have to wear a wig instead."<</speak>>
+			<<br>>
+			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the hair back into a ponytail.
+			<<br>>
+			<<speak $wife.color>>"Put your legs out so we can get your stockings on."<</speak>>
+			[[Continue dressing|firstcocktailparty10]]
+		<</replace>>
+	<</link>><br>
+	<<link "Brunettes">>
+		<<replace "#maiddressing3">>
+			<<set player.hairC to "Brunette">>
+			<<speak $wife.color>>"Brunette then. Looking to play the friend card eh?"<</speak>><<br>>
+			<<br>>
+			You feel $wife.name put something on your head.
+			<<br>>
+			<<speak $player.color>>"What's that?"<</speak>>
+			<<br>>
+			<<speak $wife.color>>"Your hair is too scruffy to work with so you'll have to wear a wig instead."<</speak>>
+			<<br>>
+			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the hair back into a ponytail.
+			<<br>>
+			<<speak $wife.color>>"Put your legs out so we can get your stockings on."<</speak>>
+			[[Continue dressing|firstcocktailparty10]]
+		<</replace>>
+	<</link>><br>
+	<<link "Red heads">>
+		<<replace "#maiddressing3">>
+			<<set player.hairC to "Auburn">>
+			<<speak $wife.color>>"Hmm you're not really firey but Auburn may suit you."<</speak>><<br>>
+			<<br>>
+			You feel $wife.name put something on your head.
+			<<br>>
+			<<speak $player.color>>"What's that?"<</speak>>
+			<<br>>
+			<<speak $wife.color>>"Your hair is too scruffy to work with so you'll have to wear a wig instead."<</speak>>
+			<<br>>
+			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the long hair at the back into a ponytail.
+			<<br>>
+			<<speak $wife.color>>"Put your legs out so we can get your stockings on."<</speak>>
+			[[Continue dressing|firstcocktailparty10]]
+		<</replace>>
+	<</link>><br>
+</span><</nobr>>
+
+::firstcocktailparty10
+ 
+You open your eyes to the weird feeling of *haircolour* bangs framing your view. $wife.name give you a quick slap on the bottom of your foot when you hold your legs out.
+ 
+<<speak $wife.color>>"Point your toes."<</speak>>
+ 
+You do and she rolls each stockings up your legs one at a time.
+
+Todo: Add image/gif
+ 
+The feeling of the silk against your smooth skin sends a tingle up your thighs and your feel you hard on twitching.
+
+<<think $player.color>>"It's just because a woman is dressing me, that's all"<</think>>
+
+She finishes by clipping them to the stays on the body shaper.
+
+<<speak $wife.color>>"Alright. Up you get. So we can have a look."<</speak>>
+
+Before you move $wife.name pulls you up and turns you around.
+
+<<speak $wife.color>>"I haven't got all day."<</speak>>
+
+[[When you face the mirror your jaw almost hits the floor.|firstcocktailparty11]]
+
+::firstcocktailparty11
+
+Todo: Add image/gif
+
+Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheek a hint of pink on her pale skin. The *hair colour* chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
+ 
+Only problem is, that girl is you.
+ 
+<<speak $player.color>>"Holy shit."<</speak>>
+ 
+<<speak $wife.color>>"Language."<</speak>> $wife.name says sternly. <<speak $wife.color>>"But yes, I think I've outdone myself this time."<</speak>>
+ 
+<<speak $player.color>>"This time…?"<</speak>>
+ 
+You can't finish as staring at your cute reflexion has had the exact reaction you'd expect and your hard on pops out of the top of the elastic of the panties.
+ 
+<<nobr>>
+<span id="maiddressing2">
+	<<link "Why?">>
+		<<replace "#maiddressing2">>
+			<<speak $player.color>>"Isn't it already tight enough?"<</speak>><br>
+ 			<br>
+			<<speak $wife.color>>"The more you complain the less happy I am with your performance. Now take a deep breath."<</speak>><br>
+		<</replace>>
+	<</link>> 
+</span><</nobr>>
+
+>panic
+You cover yourself quickly and your pink cheeks go even redder.
+ 
+>cover it
+You stand like a deer in headlight staring at $wife.name and your cheeks get even redder.
+ 
+<<speak $wife.color>>"Oh, that will not do."<</speak>>
+ 
+$wife.name leaves again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflexion. If that girl wasn't you, you might stomach up the courage to go talk to her.
+ 
+<<speak $player.color>>"Might as well..."<</speak>>
+ 
+Options - can go through all 3
+Touch breasts
+You reach up and cup your "breasts" through the silk bra. The breast forms give a little bit of weight to them but any sort of closer inspection would quickly reveal the truth. You suspect that's why $wife.name chose this bra, to make them feel real but have them hidden. You pull your hands away and...
+ 
+Strike a pose
+With one hand behind your head you put the other on your hips before cocking them to the side. The girl looking back at you in the mirror could almost be a lingerie model. The slight tilt gives her hips even more definition as she smiles cutely at you. You quickly shake your head and drop the pose before...
+ 
+Turn around and look
+Looking back over your shoulder the ponytail flicks out of the way. The pale skim of your back is complemented by the dark lingerie. The modest silk panties cute your butt just enough to show the hint of your cheeks underneath. The shaper and stockings create a sexy little squeeze at their edges to show you at least have a little muscle.
+ 
+If they hit 2 or more $wife.name catches them
+<<speak $wife.color>>"Enjoying the view?"<</speak>>
+ 
+You turn around with a little squeak to find $wife.name watching you. You feel like you shrink down to about half your size at the way she is smiling at you.
+ 
+<<speak $wife.color>>"Don't be embarrassed. You look adorable."<</speak>>
+ 
+$wife.name joins you and drops something on the chaise before kneels down in front of you. Before you can react she pulls the panties down to the top of your stocking and pinches you right in the middle of your balls.
+ 
+<<speak $player.color>>"Ow! What the hell!"<</speak>>
+ 
+$wife.name stands up angrily. <<speak $wife.color>>"Excuse me?"<</speak>>
+ 
+Option
+> keep going
+<<speak $player.color>>"That hurt. Are you crazy?"<</speak>>
+ 
+<<speak $wife.color>>"No, servant, I am not crazy and you'd best watch your tone. You're already walking on thin ice and don't think I haven't noticed you not addressing me as ma'am this entire time."<</speak>>
+ 
+> back off
+<<speak $player.color>>"Sorry. It's just that it really hurt."<</speak>> You shrink back a little and look away from her.
+ 
+<<speak $wife.color>>"That's better. You need to watch yourself. Any more outbursts like that and we'll have a problem. I'll let go of the fact that you haven't said ma'am once today but you'd better make sure your performance tonight works. Now eyes forward. I don't want you getting any ideas."<</speak>>
+ 
+$wife.name kneels back down and take the item from the chaise.
+ 
+<<speak $player.color>>"Why did you do that *title* and why are you, um, down there?"<</speak>>
+ 
+<<speak $wife.color>>"I can't have you tenting your skirt at the party tonight or someone might figure out you're not a pretty little maid."<</speak>>
+ 
+You feel her grab your penis which softens moments after the pinch. She wraps someone cold and hard over it and then wraps it behind your balls.
+ 
+<<speak $wife.color>>"Fortunately one of my smaller chastity cages is just the right size."<</speak>>
+ 
+<<speak $player.color>>"Excuse me ma'am. A chastity what?"<</speak>>
+ 
+You here a little click as the cage locks in place and then she pulls your panties back up.
+ 
+<<speak $wife.color>>"It will stop you from getting hard and making me look bad. You'll keep it on for the remained of the night. You can come see me tomorrow to get it removed if you want to."<</speak>>
+ 
+In head - <<speak $player.color>>"All night? It's still morning though."<</speak>>
+ 
+<<speak $wife.color>>"The only way anyone will find out is if they get handsy. Now, knowing some of our guests that's possible but at least we're reducing the risk so don't let that stop you from lean into any stray hands if you want to."<</speak>>
+ 
+<<speak $player.color>>"Why would I do that ma'am?"<</speak>>
+ 
+$wife.name was already walking back to the bedroom.
+ 
+<<speak $wife.color>>"Come on. Let's wrap this up."<</speak>>
+ 
+> follow
+ 
+You quickly head back into the main bedroom where $wife.name is already waiting with the maid's dress unzipped.
+ 
+> hesitate
+<<speak $wife.color>>"You're trying my patience."<</speak>>
+ 
+You step into the dress and she pulls it up over hips. She help you thread your arms through the sleeves and pulls it over your shoulders. $wife.name zips up the back before tying the laces one the back to pull the whole outfit in against your new curves. The black skirt ends just above your knees and has a ruffle white petti coat underneath it to give a bit of bounce. The dress stops just below your bra but it includes a thin white blouse that covers them high enough to hide your assets but still show some modest cleavage. $wife.name has already tied a white apron over the skirt with a large white bow in the back. The puffy black sleeves go just over your shoulders and end in white lace.
+ 
+There are a pair of black mary janes waiting and $wife.name buckles them up after helping you into them. Lastly she places  a white lace bonnet on your head.
+ 
+<<speak $wife.color>>"Well, not bad work if I do say so myself. We'll stick with a shorter heel this time. What do you think?"<</speak>>
+ 
+You turn and look in one of the full length mirror. The cute girl you saw earlier is still watching you only now in a little maids outfit. Overall the look is quite modest but just sexy enough that you're going to turn some heads. Although you wouldn't be surprised to see the outfit in one of the more high class porno.
+ 
+Option
+> do a spin
+ 
+As you spin around the skirt and apron do a cute little twirl with you. $wife.name seems to appreciate how into the role you are getting.
+ 
+<<speak $wife.color>>"Well? Thoughts? I won't ask for your opinion much so make the most of it."<</speak>>
+ 
+Option
+<<speak $player.color>>"To be honest ma'am, I kind of like it."<</speak>>
+ 
+<<speak $player.color>>"It's fine I guess.. Ma'am."<</speak>>
+ 
+<<speak $player.color>>"If I didn't have to be doing this I wouldn't."<</speak>>
+ 
+<<speak $wife.color>>"Wouldn't... what?"<</speak>>
+ 
+<<speak $player.color>>"Wouldn't ma'am."<</speak>>
+ 
+<<speak $wife.color>>"Oh. One more thing."<</speak>>
+ 
+$wife.name wraps a choker around your neck. It's not too tight but it does the job of hiding your small Adams apple.
+ 
+<<speak $wife.color>>"Here. Drink this."<</speak>> She hands you a small glass bottle. <<speak $wife.color>>"The whole thing."<</speak>>
+ 
+It smells like sour oranges and, knowing there's no way around it you down the entire thing. It burns going down, like a shot of pure alcohol.
+ 
+Female voice change
+ 
+<<speak $player.color>>"What was that?"<</speak>> Your voice is softer and more feminine.
+ 
+Option
+Not good
+"What did you do to me?"<</speak>> You shout, grabbing your throat.
+ 
+Submissively
+You grab mouth and throat in shock just staring.
+ 
+<<speak $wife.color>>"We can't have you sounding like a boy otherwise what's the point in dressing you up."<</speak>>
+ 
+<<speak $player.color>>"But..."<</speak>>
+ 
+<<speak $wife.color>>"Oh stop worrying. The effects are usually temporary."<</speak>>
+ 
+In the PCs head – Usually?
+ 
+ 
+<<speak $wife.color>>"Right then. You'll need a different name to keep up appearances."<</speak>>
+ 
+<<speak $player.color>>"Why can't I just use my name?"<</speak>>
+ 
+<<speak $wife.color>>"I want to avoid confusion. What if someone comes by after the party and meets you when you aren't a girl?"<</speak>>
+ 
+$wife.name gives you a spritz of some nice smelling perfume.
+ 
+Choose a girl's name
+ 
+<<speak $wife.color>>"Now make sure you look after your outfit. I expect everything to be cleaned and returned. If you don't I'll just add the items to your debt, and they weren't cheap, trust me."<</speak>>
+ 
+<<speak $player.color>>"Yes *title*."<</speak>>
+ 
+<<speak $wife.color>>"Right then. Let's get you started with *caterer*."<</speak>>
+ 
+> follow her to the kitchen
+ 
+You have the male and female he/she set up. USE THEM
+ 
+ 
+As you follow after *wife* and out the bedroom door. The shaper isn't uncomfortable but both it and the short heels you're forced to walk with a feminine gait. You have to shift uncomfortably a few times. After checking yourself out in the mirror your penis is already straining against restricting plastic cage.
+ 
+<<speak $wife.color>>"Well *caterer*. This is *fem name*."<</speak>>
+ 
+*caterer* walks over to you and walks around you thoughtfully. You're reminded of when you met *wife* for the first time as he examines you.
+ 
+<<speak $caterer.color>>"What sort of experience do you have?"<</speak>>
+ 
+You're eyes dart to *wife* who is looking at you sternly. <<speak $player.color>>"Some. I have experience with house work and general cleaning."<</speak>>
+ 
+<<speak $caterer.color>>"Well I'm not looking for a kitchen hand."<</speak>> He turns back to *wife*. <<speak $caterer.color>>"She'll do. I'm going to have to switch things up and do standing service instead. That way she won't have to do any formal serving until after I've trained her properly."<</speak>>
+ 
+<<speak $wife.color>>"Whatever you say *caterer*. As long as you're happy."<</speak>>
+ 
+*caterer* goes back to the kitchen to continue his prep work.
+ 
+<<speak $wife.color>>"I'll be basing my decision on how *caterer* feels you performed."<</speak>> *wife* shakes her finger at you. <<speak $wife.color>>"Make sure you follow his instruction as if they were coming from me. Is that understood?"<</speak>>
+ 
+<<speak $player.color>>"Yes *title*."<</speak>>
+ 
+*wife* leaves and starts giving the worker instructions to clear the dining room as *caterer*
+ 
+<<speak $caterer.color>>"Come on girl. We need to get you started."<</speak>>
+ 
+> run down of duties
+ 
+<<speak $caterer.color>>"Alright. I expect that you have no idea what you're doing when it comes to the food prep so just leave all that to me. I'll have to laps of the guests with the serving trays. Have you ever held a serving tray before."<</speak>>
+ 
+<<speak $player.color>>"Only when bring out breakfast."<</speak>>
+ 
+<<speak $caterer.color>>"So that's a no then. Here."<</speak>> *caterer* hands you a round serving tray.
+ 
+> take it with
+one hand
+<<speak $caterer.color>>"Alright. At least you know that much. More than I was expecting to be honest."<</speak>>
+ 
+In head <<speak $player.color>>"What a jerk."<</speak>>
+ 
+<<speak $caterer.color>>"You still need the other hand behind your back though."<</speak>>
+ 
+Two
+<<speak $caterer.color>>"No, no, no."<</speak>> He snatch the tray from you. <<speak $caterer.color>>"You hold the try with One hand only and put the other behind your back."<</speak>>
+ 
+<<speak $caterer.color>>"I'll load you up with something that won't break and you can practice for a while."<</speak>>
+ 
+He loads the tray with some plastic and metal utensils he's not using and then you set about walking back and forth around the open space in the kitchen sitting room. It's a little hard a first and you drop everything a few times. The first time you dropped something you tried to bend down normally but the skirt started to ride up as you spread your knees. Instead you have to keep your legs together and kneel to the side to stop anyone from seeing the silk panties hiding your caged member. You catch a few of the workers stopping to stare when you do this and realise it’s a very delicate and lady like pose. When you stand back up you feel your crotch twitch uncomfortably against its restraints.
+ 
+In head <<speak $player.color>>"It's just my blood pumping from being so nervous."<</speak>>
+ 
+After a while you seem to be getting the hang of it and *caterer* calls you back over.
+ 
+<<speak $caterer.color>>"Alright girl. One of the most important things to know about standing service is to watch the body language of your betters."<</speak>>
+
+<<speak $player.color>>"My name is ... *femname*."<</speak>>
+ 
+<<speak $caterer.color>>"The position of the hands can tell you…"<</speak>> *caterer* continues his in-depth explanation.
+ 
+In head <<speak $player.color>>"Great. He's not even listening to me."<</speak>>
+ 
+As you're watching him explain the ins and outs of body language in relation to food service it clicks that even the voice in your head sounds bit feminine. You wonder what was in that drink *wife* gave you.
+ 
+After the lesson he has you do some basic tidy work while he finishes his prep. It's already starting to get to mid-afternoon. The workers have finished their setup and cleared out.
+ 
+You're busy polishing the silver wear when *daughter* comes into the kitchen already dressed for the party. She's wearing sexy black cocktail dress with back heels.
+ 
+<<speak $daughter.color>>"Wow. Mum wasn't joking. You're giving some of my friends a run for their money. The cute but sexy maid thing really works for you."<</speak>>
+ 
+Option
+"Um, thank you *title*."<</speak>>
+ 
+*daughter* walks up to you and grabs you by the waist to check you out. She leans in to whisper in your ear.
+ 
+<<speak $daughter.color>>"You can call me *name*. Just when it's us girls though. Ok *femname*."<</speak>>
+ 
+You nod meekly.
+ 
+<<speak $player.color>>"I you say so."<</speak>>
+ 
+<<speak $daughter.color>>"Oh. You've dropped the formalities already? You've got some guts for a skinny little servant girl."<</speak>>
+ 
+You start to bristle a bit but it reminds you of your place. *daughter* starts laughing.
+ 
+<<speak $daughter.color>>"It's ok. I kind of like it."<</speak>>
+ 
+*daughter* walks up to you leans in to whisper in your ear.
+ 
+<<speak $daughter.color>>"You can call me *name*. Just when it's us girls though. Ok *femname*."<</speak>>
+ 
+She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly starts straining against its plastic prison.
+ 
+*daughter* gives you a quick pat on the cheek before turning around to *caterer. She walks over and they hug before a quick peck on each cheek.
+ 
+<<speak $caterer.color>>"Good to have you back *daughter*. These gatherings have been getting a bit stale."<</speak>> *caterer*'s attitude is polar shift from when he's been talking to you or *wife*.
+ 
+<<speak $daughter.color>>"I have a feeling things might liven up over the next few weeks."<</speak>> *daughter gives him another quick hug and moves to leave as guests start arriving.
+ 
+<<speak $caterer.color>>"Come on girl. You're up." *caterer pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
+ 
+> initiate game
+ 
+Options to prioritise guests or VIP's
+ 
+VIP guests
+*owner*
+*wife*
+*daughter*
+*suitor*
+*no name 1* - throw away for now. just to bulk out the interactions
+*no name 2*
+ 
+Run the Party Mini Games
+ 
+PC heads back to room and takes off the outfit
+Finds the cage is locked on when they try to go to the toilet
+Option
+Go ask the Wife
+PC is still in the wig and make up but in their regular clothes
+They look like a twin female version of themselves
+When they get to master bedroom the Owner and Wife are having sex so leaves it
+PC has to go to the toilet sitting down
+Still int eh panties but in their normal clothes otherwise
+Takes the wig off, has a shower and goes to bed
