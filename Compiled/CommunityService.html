@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="37" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="37" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
@@ -1542,7 +1542,7 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="36" name="Sto
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Laundry&quot;, id: &quot;Laundry&quot;, img: [&quot;Laundry.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Lounge&quot;, id: &quot;Lounge&quot;, img: [&quot;Lounge.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Master bedroom&quot;, id: &quot;MasterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet1.jpg&quot;, &quot;Closet2.jpg&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Office&quot;, id: &quot;Office&quot;, img: [&quot;MainOffice.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Office&quot;, id: &quot;Office&quot;, img: [&quot;Office.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Your bedroom&quot;, id: &quot;PlayerBdRm&quot;, img: [&quot;Bedroom.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Pool&quot;, id: &quot;Pool&quot;, img: [&quot;Pool.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Son&#39;s bedroom&quot;, id: &quot;SonBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
@@ -1567,9 +1567,7 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	},
 	&quot;manorIntro&quot; : false,
 }&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-
-&lt;&lt;= $mansion.displayChores()&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="ManorVisit_1" tags="" position="975,475" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="ManorVisit_1" tags="" position="975,475" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
 You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
@@ -1730,11 +1728,11 @@ Not wanting to push your luck, you quickly catch up and fall in behind $butler.n
 
 &lt;&lt;= $owner.speak(&quot;$butler.name?&quot;)&gt;&gt;
 
-The older man replies &lt;&lt;= $butler.speak(Yes sir.)&gt;&gt;
+The older man replies &lt;&lt;= $butler.speak(&quot;Yes sir.&quot;)&gt;&gt;
 
 &lt;&lt;= $owner.speak(&quot;See that he understands how to present himself as well. Slouching doesn&#39;t benefit his slight figure.&quot;)&gt;&gt;
 
-&lt;&lt;= $butler.speak(As you wish, sir.)&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;As you wish, sir.&quot;)&gt;&gt;
 
 &lt;&lt;= $owner.speak(&quot;That will be all.&quot;)&gt;&gt;
 

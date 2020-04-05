@@ -180,11 +180,11 @@ Not wanting to push your luck, you quickly catch up and fall in behind $butler.n
 
 <<= $owner.speak("$butler.name?")>>
 
-The older man replies <<= $butler.speak(Yes sir.)>>
+The older man replies <<= $butler.speak("Yes sir.")>>
 
 <<= $owner.speak("See that he understands how to present himself as well. Slouching doesn't benefit his slight figure.")>>
 
-<<= $butler.speak(As you wish, sir.)>>
+<<= $butler.speak("As you wish, sir.")>>
 
 <<= $owner.speak("That will be all.")>>
 

@@ -43,7 +43,7 @@ With Yaflow's coding hand
 <<= $mansion.addRoom(new Room({name: "Laundry", id: "Laundry", img: ["Laundry.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Lounge", id: "Lounge", img: ["Lounge.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Master bedroom", id: "MasterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet1.jpg", "Closet2.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Office", id: "Office", img: ["MainOffice.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Office", id: "Office", img: ["Office.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Your bedroom", id: "PlayerBdRm", img: ["Bedroom.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Pool", id: "Pool", img: ["Pool.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Son's bedroom", id: "SonBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
