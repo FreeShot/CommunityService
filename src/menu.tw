@@ -10,72 +10,48 @@
 	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
 <<elseif $flags.cuff.full is true>>
 	[[Chores|playerToDoList]]<br>
-	[[appearence]]<br>
-	[[skills]]<br>
-	[[possesions|inventory]]<br>
+	[[Appearence|appearence]]<br>
+	[[Skills|skills]]<br>
+	[[Possesions|inventory]]<br>
 <</if>>
 <<if $flags.cuff.rules is true>>
-	[[rules]]<br>
+	[[Rules|rules]]<br>
 <</if>>
-<<return>>
+<<back>>
 
 ::playerToDoList
-General Task
-	[[Laundry]]
-	[[Dishes]]
-	[[Clean Kitchen]]
+Todo : Add chores
 
-Estate Ground Floor
-	[[Sweep, mop and dust]]
-	[[Clean windows]]
-
-Estate Upper Floor
-	[[Sweep, mop and dust]]
-	[[Clean windows]]
-	[[Tidy Rec Room]]
-
-Estate Bedrooms
-	[[Make beds]]
-	[[Clean linen]]
-	[[Tidy bathroom]]
-
-[[Back to main menu|CUFF]]
-[[Go back to your room|playerRoom]]
+<<back>>
 
 ::appearence
-Makeup
+Todo : Describe player
 
-Hair
-
-Lips
-
-Skin / Body hairs
-
-Chest
-
-Butt
-
-Waist / hips
-
-Penis
-
-Clothing
-
-Summary
-	boy
-	cute girl
-	hot girl
-
-<<return>>
+<<back>>
 
 ::skills
-W.I.P.
-<<return>>
+Todo : Add skills
+<<back>>
 
 ::inventory
 W.I.P.
 TODO : List current held items
 
-::ruler
-W.I.P.
-TODO : Add Rules
+::rules
+<h1 id="RuleTitle">Rules</h1>\
+<ol class="rules">\
+<li>Work week is Thursday to Tuesday. Wednesday is a free day.</li>
+<li>Must be presentable and in clean clothes at all times.</li>
+<li>Obey all instructions from other residents of the estate.</li>
+<li>Offsite excursions are only allowed on approval from Mr or Mrs Sono.</li>
+<li>There will be a 4 week probation where performance will be assessed on Sunday of each week in Mr Sono's office between 7pm and 8pm.</li>
+<li>If the weekly performance quota is not met punishment will be determined by Mr or Mrs Sono.</li>
+<<nobr>>
+<<if $gymEstateUnlocked is true>>
+<li>Use of any of the facilities on site is permitted between 8am to 10pm.</li>
+<<else>>
+<li>You are NOT permitted to use any of the onsite facilities outside of you normal chores.</li>
+<</if>>
+<</nobr>>\
+</ol>
+<<back>>

@@ -9,13 +9,13 @@ The driver taking you to your airport lets everyone know that they'll be taking 
 
 You were enjoying your snack when a shady looking man took the seat accross from you.
 
-<<speak "Peru">>Hey kid, you look like a smart person ready to make some money. I'm wondering if you wouldn't mind helping me out getting this package to some friend of mine."<</speak>>
+<<= Character.speakAnonymous("Hey kid, you look like a smart person ready to make some money. I'm wondering if you wouldn't mind helping me out getting this package to some friend of mine.", "Peru")>>
 
 He holds out a plane brown box in front of you. It's clear this person is up to no good.
 
 [img[setup.ImagePath + "\items\general\brownbox.jpg"]]
 
-<<speak "Peru">>"The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble."<</speak>>
+<<= Character.speakAnonymous("The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble.", "Peru")>>
 
 The man is rubbing his fingers together with a sly smile.
 
@@ -23,15 +23,15 @@ The man is rubbing his fingers together with a sly smile.
 [[Nope. Stranger danger.|EndHomeSweetHome]]
 
 ::Intro2
-<<speak $player.color>>"Sure. I can help you out."<</speak>>
+<<= $player.speak("Sure. I can help you out.")>>
 
-<<speak "Peru">>Great ! you're a life saver. Have a safe trip.<</speak>>
+<<= Character.speakAnonymous("Great ! you're a life saver. Have a safe trip.","Peru")>>
 
 With that, the man hands over the package.
 
 The package looks ordinary enough. You give it a shake, but don't hear anything inside. It's best to leave it alone since it might be something private.
 
-<<speak $player.color>>"What's in..."<</speak>>
+<<= $player.speak("What's in...")>>
 
 You look up, but the man is already getting into a nearby car and driving away.
 
@@ -43,40 +43,37 @@ You get to the airport later that day. There have been a lot of visitors since t
 
 It doesn't take long to reach the airport and get to the security check-in. You hadn't really thought much about the box until you're putting it on the conveyor for the x-ray machine along with the rest of your suff. One of the gard waves at you through the metal detector. While you're waiting at the other end, an old lady in front of you drops her bag so you duck down to pick it.
 
-<<speak "YellowGreen">>"Oh why, thank you, young man."<</speak>>
+<<= Character.speakAnonymous("Oh why, thank you, young man.","YellowGreen")>>
 
 She smiles warmly as you hand her the bag and then rejoins her group.
 
 When you turn back to the conveyor, a security guard is standing there holding the brown box you were given earlier in the day.
 
-<<speak "GoldenRod">>I this package yours son?<</speak>>
+<<= Character.speakAnonymous("I this package yours son?", "GoldenRod")>>
 
 His face is pretty neutral.
 
-<<speak $player.color>>"Um, yes."<</speak>>
+<<= $player.speak("Um, yes.")>>
 
-<<speak "GoldenRod">>"Please step to the side sir."<</speak>>
+<<= Character.speakAnonymous("Please step to the side sir.", "GoldenRod")>>
 
 You move to grab your other bag, but another guard picks it up for you. You follow the guards directions and can see now there are two other more nearby, so they are surrounding you. They arren't particulary close, but it's clear running wouln't be a good option.
 
-<<speak "GoldenRod">>"You know smuggling is illegal, right?"<</speak>>
+<<= Character.speakAnonymous("You know smuggling is illegal, right?", "GoldenRod")>>
 
-<<speak $player.color>>"Yes."<</speak>>
+<<= $player.speak("Yes.")>>
 
-<<speak "GoldenRod">>"Then why where you trying to get this out of the country?"<</speak>>
+<<= Character.speakAnonymous("Then why where you trying to get this out of the country?", "GoldenRod")>>
 
 The box is still closed.
 
-<<speak $player.color>>"I don't even know what's in there. Some guy asked me to deliver it to his friend back home."<</speak>>
+<<= $player.speak("I don't even know what's in there. Some guy asked me to deliver it to his friend back home.")>>
 
-<<speak "GoldenRod">>What's his name?<</speak>>
+<<= Character.speakAnonymous("What's his name?", "GoldenRod")>>
 
-<<nobr>>
-<<think $player.color>>$player.name, you idiot!<</think>>
-<<speak $player.color>>"He didn't say."<</speak>>
-<</nobr>>
+<<= $player.speak("<i>$player.name, you idiot!</i> He didn't say.")>>
 
-<<speak "GoldenRod">>So you're in the habit of taking strange packages from people you don't know? Please follow us son.<</speak>>
+<<= Character.speakAnonymous("So you're in the habit of taking strange packages from people you don't know? Please follow us son.", "GoldenRod")>>
 
 @@#Intro3Options;
 [[Follow the guards|Intro4]]
@@ -93,25 +90,25 @@ There is a strict no extradition policy and your home country is hesitant to hel
 
 You are currently in a meeting room with your Sentencing Officer waiting to find out what they will do with you. A tall dominering man who looks in his fifties. He's the only one you're allowed to talk with at this point since the trial is already over.
 
-<<speak "DarkGoldenRod">>"You're in a tight bind here young man. The courts have already assessed your finances and we know you can't pay your fine."<</speak>>
+<<= Character.speakAnonymous("You're in a tight bind here young man. The courts have already assessed your finances and we know you can't pay your fine.", "DarkGoldenRod")>>
 
 To the mans credit he has been making a sincere effort to help but he can only do so much.
 
-<<speak "DarkGoldenRod">>"Given that this is your first offence I'm willing to offer you two options. First, we could ship you off to a labour camp. It's hard work but you're guaranteed to pay off you debt in a few years. You'll answer to the state though so don't think it will be easy."<</speak>>
+<<= Character.speakAnonymous("Given that this is your first offence I'm willing to offer you two options. First, we could ship you off to a labour camp. It's hard work but you're guaranteed to pay off you debt in a few years. You'll answer to the state though so don't think it will be easy.", "DarkGoldenRod")>>
 
 One of the reasons this county was isolated from the rest of the world is its policies on slavery and indentured servitude.
 
-<<speak "DarkGoldenRod">>"Second you could agree to indentured servitude. You'll be signed over to an owner and you'll work for them. You'll work off your debt eventually but it's dependant on how well your owner thinks you are doing so you need to make sure they're happy."<</speak>>
+<<= Character.speakAnonymous("Second you could agree to indentured servitude. You'll be signed over to an owner and you'll work for them. You'll work off your debt eventually but it's dependant on how well your owner thinks you are doing so you need to make sure they're happy.", "DarkGoldenRod")>>
 
 Having anyone being in control of your life doesn't sound great.
 
-<<speak "DarkGoldenRod">>"Well. I'll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?"<</speak>>
+<<= Character.speakAnonymous("Well. I'll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?", "DarkGoldenRod")>>
 
 ::Intro5
 <<set $dateTime.addTime(0, 0, 15)>>
 The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled <b>Private Indenture Contract</b>.
 
-<<speak "DarkGoldenRod">>"This is a standard private contract but has a few addendums from your potential owner. If you want this deal you'll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing."<</speak>>
+<<= Character.speakAnonymous("This is a standard private contract but has a few addendums from your potential owner. If you want this deal you'll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.", "DarkGoldenRod")>>
 
 @@#Intro5Options;
 [[Sign the contract without reading (default character settings)|Intro6]]
@@ -128,9 +125,11 @@ The Sentencing Officer does some quick paper work and then pushes foward a table
 		
 			The last section shows your personal information.
 
-			Name: <<textbox "$playerName" $playerName "">><br><br>
+			<div id="player-customisation-form">\
+			<h3>Personnal information of the <em>Indured Servant</em></h3>
+			Name: <<textbox "$player.name" $player.name "">>
 
-			Hair colour: <<textbox "$playerHairC" $playerHairC "">><br><br>
+			</div>
 
 [[Sign the contract|Intro6]]
     <</replace>>
@@ -144,15 +143,15 @@ You sign your rights away and with that you are now an indentured servant. You k
 
 The Sentencing Officer takes away the contract a woman comes in with a box. She doesn’t saying anything as she sits next to you and pulls you hand over.
 
-<<speak "DarkGoldenRod">>"You'll be tagged with a personal Correction Update and Flagging Flexile."<</speak>> 
+<<= Character.speakAnonymous("You'll be tagged with a personal Correction Update and Flagging Flexile.", "DarkGoldenRod")>> 
 
 The Sentencing Officer pulls out a book and slides it over to you with the acronym CUFF on the front. 
 
-<<speak "DarkGoldenRod">>"This has all the information you need to know about the device but basically it lets us or your owner track you and your progress."<</speak>>
+<<= Character.speakAnonymous("This has all the information you need to know about the device but basically it lets us or your owner track you and your progress.", "DarkGoldenRod")>>
 
 The woman wraps a black band around your wrist and uses a tool to press button which forces the two ends to fuse together.
 
-<<speak "DarkGoldenRod">>"It links to your debt account and can be used to withdraw funds. Make sure you use this carefully though and any purchase made while a servant will be added to your debt. A few other features to note are the instant messaging system and scheduler to help you and your owner keep track of any assigned tasks."<</speak>>
+<<= Character.speakAnonymous("It links to your debt account and can be used to withdraw funds. Make sure you use this carefully though and any purchase made while a servant will be added to your debt. A few other features to note are the instant messaging system and scheduler to help you and your owner keep track of any assigned tasks.", "DarkGoldenRod")>>
 
 With the formalities complete you get taken away so you can be sent to your owners. You ask about your things before leaving and get told they will kept by the state until the debt is paid off. Looks like you're stuck with only the clothes on your back for now.
 

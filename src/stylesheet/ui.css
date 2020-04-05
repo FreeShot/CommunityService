@@ -53,3 +53,39 @@
     border-top: 0px;
     margin-top: 3px;
 }
+
+img {
+	width: 100%;
+	object-fit: contain;
+	border-radius: 15px;
+	border: solid 4px #5C2C41; 
+}
+
+#ui-bar a.link-internal {
+	color: #FFDEEA;
+	padding: 5px 30px 5px 30px;
+	margin: 5px 5px 5px 5px;
+	border: solid 1px #FFDEEA;
+	border-radius: 5px;
+	font-size: 50px;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+#ui-bar a.link-internal:hover {
+	color: #CE7298;
+	border: solid 1px #CE7298;
+	text-decoration: none;
+	padding: 2px 20px 2px 20px;
+	margin: 8px 5px 8px 5px;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+#RuleTitle {
+	font-family: 'Gotu', sans-serif;
+	font-size: 30px;
+}
+
+.rules {
+	font-size: 20px;
+	font-family: 'Roboto Condensed', sans-serif;
+}

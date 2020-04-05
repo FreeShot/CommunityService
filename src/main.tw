@@ -24,6 +24,7 @@ With Yaflow's coding hand
 	"wardrobeFirstLook" : false
 }>>
 
+<<<<<<< HEAD
 <<set $player to {"name" : "Alex","color" : "DeepSkyBlue", "hairC" : "Brunette"}>>
 <<set $owner to {"name" : "Mr Sono","color" : "Drown","title" : "sir"}>>
 <<set $wife to {"name" : "Mrs Sono","color" : "MediumOrchid","title" : "Ma'am"}>>
@@ -33,6 +34,46 @@ With Yaflow's coding hand
 <<set $cook to {"name" : "Ivan", "color" : "DarkKhaki"}>>
 <<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
 <<set $caterer to {"name" : "$caterer.name", "color" : "Chocolate"}>>
+=======
+<<set $player to new Player()>>
+
+<<set $owner to new Character({name: "Mr Sono", color: "Brown", title: "sir"})>>
+<<set $wife to new Character({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
+<<set $daughter to new Character({name: "Angeline", color: "DarkSalmon", title: "Ms Sono"})>>
+<<set $son to new Character({name: "Mr Sono", color: "LightGreen", title: "Mr Sono"})>>
+<<set $butler to new Character({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
+<<set $cook to new Character({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
+<<set $gardner to new Character({name: "Juan", color: "Sienna", title: "Juan"})>>
+
+<<set $rooms to {
+	"Foyer" : {
+		"imgNames" : ["Foyer"], "displayName" : "Foyer"},
+	"Hall" : {
+		"imgNames" : [], "displayName" : "Hall"},
+	"Garden" : {
+		"imgNames" : ["Garden1", "Garden2", "Garden3"], "displayName" : "Garden"},
+	"Kitchen" : {
+		"imgNames" : ["Kitchen"], "displayName" : "Kitchen"},
+	"Laundry" : {
+		"imgNames" : ["Laundry"], "displayName" : "Laundry"},
+	"Lounge" : {
+		"imgNames" : ["Lounge"], "displayName" : "Lounge"},
+	"Office" : {
+		"imgNames" : ["Office"], "displayName" : "Office"},
+	"MasterBdRm" : {
+		"imgNames" : ["Bedroom", "Bathroom", "Closet1", "Closet2"], "displayName" : "Master bedroom"},
+	"Office" : {
+		"imgNames" : ["MainOffice"], "displayName" : "Office"},
+	"PlayerBdRm" : {
+		"imgNames" : ["Bedroom"], "displayName" : "Your bedroom"},
+	"Pool" : {
+		"imgNames" : ["Pool"], "displayName" : "Pool"},
+	"SonBdRm" : {
+		"imgNames" : ["Bedroom", "Bathroom", "Closet"], "displayName" : "Son bedroom"},
+	"DaughterBdRm" : {
+		"imgNames" : ["Bedroom", "Bathroom", "Closet"], "displayName" : "Daughter bedroom"}
+}>>
+>>>>>>> 33573b03d19bfe5210bd019a29a1ef321e9d7ac9
 
 ::Start [nobr]
 <div class=gameTitle>
@@ -43,6 +84,4 @@ This game is intended for a mature audience. If you are too young, please <a cla
 </div>
 
 
-
-
-[[Start the game|CreateCharacter]]
+[[Start the game|Intro1]]
