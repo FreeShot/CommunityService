@@ -50,12 +50,6 @@ class Player extends Character {
         ));
 	}
 
-	feminize(amnt) {
-		this.feminity += amnt;
-		this.feminity = Math.min(this.feminity, this.gradiant.length - 1);
-		console.log(this.getColor);
-	}
-
 	get getColor() {
 		return this.gradiant[Math.min(this.feminity, this.gradiant.length - 1)]
 	}

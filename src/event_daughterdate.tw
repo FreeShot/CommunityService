@@ -1,7 +1,7 @@
 ::event_daughterdate
 As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
  
-<<speak $wife.color>>"That damned girl will be the death of me!"<</speak>>
+<<= $wife.speak("That damned girl will be the death of me!")>>
  
 She abruptly open the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
  
