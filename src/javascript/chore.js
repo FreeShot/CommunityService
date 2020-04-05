@@ -2,7 +2,9 @@ class Chore {
 	constructor (config) {
 		this.name = '';
 		this.duration = {"day" : 0, "hour": 0, "minute": 0};
-		this.passageName = ''; // Do not get this, use this.passage instead
+		this.passages = [
+			{name: '', weight: 1}
+		];
 		this.energyCost  = 0;
 		this.done = false;
 		this.room = '';
@@ -49,8 +51,25 @@ class Chore {
 		return str;
 	}
 
+	addPassage(passage) {
+		this.passages.push();
+	}
+
+	removePassage(passageName) {
+		this.passages.filter(function(pass){pass.name != passageName});
+	}
+
 	get passage() {
-		return this.passageName; // Use instead of this.passageName
+		var sum = 0; for (var i = this.passages.length - 1; i >= 0; i--) {sum += this.passages[i].weight;}
+		var val = random(0, sum - 1);
+		for (var i = 0; i < this.passages.length; i++) {
+			val -= this.passages[i].weight;
+			console.log(this.passages[i].name);
+			if (val < 0) {
+				return this.passages[i].name;
+			}
+		}
+		//return this.passageName; // Use instead of this.passageName
 	}
 
 	clone() {
@@ -109,11 +128,13 @@ class Room {
 	}
 
 	displayChores(displayTitle) {
-		var str = ((displayTitle || true) ? this.name : "") + "<ol>";
-		for (var i = 0; i < this.chores.length; i++) {
-			str += "<li>" + this.chores[i].do() + "</li>";
+		if (this.chores.length > 0) {
+			var str = ((displayTitle || true) ? this.name : "") + "<ol>";
+			for (var i = 0; i < this.chores.length; i++) {
+				str += "<li>" + this.chores[i].do() + "</li>";
+			}
+			return str + "</ol>";
 		}
-		return str + "</ol>";
 	}
 
 	clone() {
@@ -154,7 +175,10 @@ class Mansion {
 	displayChores() {
 		var str = "<ol>";
 		for (var i = 0; i < this.rooms.length; i++) {
-			str += "<li>" + this.rooms[i].displayChores() + "</li>";
+			var roomChores = this.rooms[i].displayChores();
+			if (roomChores != undefined) {
+				str += "<li>" + roomChores  + "</li>";
+			}
 		}
 		return str + "</ol>";
 	}
@@ -163,8 +187,8 @@ class Mansion {
 		this.rooms.push(room);
 	}
 
-	addChore(roomName, chore) {
-		this.findRoom(roomName).addChore(chore);
+	addChore(roomID, chore) {
+		this.findRoom(roomID).addChore(chore.clone());
 	}
 
 	resetChores() {

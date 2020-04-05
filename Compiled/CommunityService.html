@@ -373,7 +373,9 @@ class Chore {
 	constructor (config) {
 		this.name = '';
 		this.duration = {"day" : 0, "hour": 0, "minute": 0};
-		this.passageName = ''; // Do not get this, use this.passage instead
+		this.passages = [
+			{name: '', weight: 1}
+		];
 		this.energyCost  = 0;
 		this.done = false;
 		this.room = '';
@@ -420,8 +422,25 @@ class Chore {
 		return str;
 	}
 
+	addPassage(passage) {
+		this.passages.push();
+	}
+
+	removePassage(passageName) {
+		this.passages.filter(function(pass){pass.name != passageName});
+	}
+
 	get passage() {
-		return this.passageName; // Use instead of this.passageName
+		var sum = 0; for (var i = this.passages.length - 1; i >= 0; i--) {sum += this.passages[i].weight;}
+		var val = random(0, sum - 1);
+		for (var i = 0; i < this.passages.length; i++) {
+			val -= this.passages[i].weight;
+			console.log(this.passages[i].name);
+			if (val < 0) {
+				return this.passages[i].name;
+			}
+		}
+		//return this.passageName; // Use instead of this.passageName
 	}
 
 	clone() {
@@ -480,11 +499,13 @@ class Room {
 	}
 
 	displayChores(displayTitle) {
-		var str = ((displayTitle || true) ? this.name : "") + "<ol>";
-		for (var i = 0; i < this.chores.length; i++) {
-			str += "<li>" + this.chores[i].do() + "</li>";
+		if (this.chores.length > 0) {
+			var str = ((displayTitle || true) ? this.name : "") + "<ol>";
+			for (var i = 0; i < this.chores.length; i++) {
+				str += "<li>" + this.chores[i].do() + "</li>";
+			}
+			return str + "</ol>";
 		}
-		return str + "</ol>";
 	}
 
 	clone() {
@@ -525,7 +546,10 @@ class Mansion {
 	displayChores() {
 		var str = "<ol>";
 		for (var i = 0; i < this.rooms.length; i++) {
-			str += "<li>" + this.rooms[i].displayChores() + "</li>";
+			var roomChores = this.rooms[i].displayChores();
+			if (roomChores != undefined) {
+				str += "<li>" + roomChores  + "</li>";
+			}
 		}
 		return str + "</ol>";
 	}
@@ -534,8 +558,8 @@ class Mansion {
 		this.rooms.push(room);
 	}
 
-	addChore(roomName, chore) {
-		this.findRoom(roomName).addChore(chore);
+	addChore(roomID, chore) {
+		this.findRoom(roomID).addChore(chore.clone());
 	}
 
 	resetChores() {
@@ -1524,7 +1548,7 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="36" name="Sto
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Son&#39;s bedroom&quot;, id: &quot;SonBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Daughter&#39;s bedroom&quot;, id: &quot;DaughterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
 
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore ({name: &quot;Washing dishes&quot;, duration: {day: 0, hour: 1, minute: 15}, passageName: &quot;washDishes&quot;, energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Start" tags="nobr" position="850,475" size="100,100">&lt;div class=gameTitle&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore ({name: &quot;Washing dishes&quot;, duration: {day: 0, hour: 1, minute: 15}, passages:[{name : &quot;washDishes&quot;, weight:1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Start" tags="nobr" position="850,475" size="100,100">&lt;div class=gameTitle&gt;
 &lt;h1&gt;Community Service&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class=&quot;warning&quot;&gt;
@@ -1543,7 +1567,9 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	},
 	&quot;manorIntro&quot; : false,
 }&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="ManorVisit_1" tags="" position="975,475" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;= $mansion.displayChores()&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="ManorVisit_1" tags="" position="975,475" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
 You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
