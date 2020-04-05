@@ -24,17 +24,6 @@ With Yaflow's coding hand
 	"wardrobeFirstLook" : false
 }>>
 
-<<<<<<< HEAD
-<<set $player to {"name" : "Alex","color" : "DeepSkyBlue", "hairC" : "Brunette"}>>
-<<set $owner to {"name" : "Mr Sono","color" : "Drown","title" : "sir"}>>
-<<set $wife to {"name" : "Mrs Sono","color" : "MediumOrchid","title" : "Ma'am"}>>
-<<set $daugther to {"name" : "Adeline",	"color" : "DarkSalmon","title" : "Ms Sono"}>>
-<<set $son to {"name" : "Mr Sono","color" : "LightGreen","title" : "Mr Sono"}>>
-<<set $butler to {"name" : "Mr Benson", "color" : "#7DA23D", "title" : "DarkOliveGreen"}>>
-<<set $cook to {"name" : "Ivan", "color" : "DarkKhaki"}>>
-<<set $gardner to {"name" : "Juan", "color" : "Sienna"}>>
-<<set $caterer to {"name" : "$caterer.name", "color" : "Chocolate"}>>
-=======
 <<set $player to new Player()>>
 
 <<set $owner to new Character({name: "Mr Sono", color: "Brown", title: "sir"})>>
@@ -73,7 +62,6 @@ With Yaflow's coding hand
 	"DaughterBdRm" : {
 		"imgNames" : ["Bedroom", "Bathroom", "Closet"], "displayName" : "Daughter bedroom"}
 }>>
->>>>>>> 33573b03d19bfe5210bd019a29a1ef321e9d7ac9
 
 ::Start [nobr]
 <div class=gameTitle>
