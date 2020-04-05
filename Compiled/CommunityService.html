@@ -290,10 +290,6 @@ img {
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
 class Character {
 	constructor(config) {
-        this.name  = '';
-        this.title = '';
-        this.color = '';
-
         Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
@@ -329,6 +325,7 @@ Object.defineProperty(window, 'Character', {
 
 class Player extends Character {
 	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"]
+
 	constructor(config) {
 		super(Object.assign(
             {
@@ -341,12 +338,12 @@ class Player extends Character {
 	}
 
 	feminize(amnt) {
-		this.feminity = Math.min(this.feminity + amnt, this.gradiant.length - 1);
-		console.log(this.feminity);
+		this.feminize = Math.min(this.feminity + amnt, this.gradiant.length - 1);
 	}
 
 	get getColor() {
-		return this.gradiant[Math.min(this.feminity, this.gradiant.length - 1)]
+		if (this.feminity > this.gradiant.length - 1) {this.feminity = this.gradiant.length - 1;}
+		return this.gradiant[this.feminity];
 	}
 
 	speak(text) {
@@ -1321,7 +1318,19 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 &lt;/div&gt;
 
 
-[[Start the game|Intro1]]</tw-passagedata><tw-passagedata pid="24" name="ManorVisit_1" tags="" position="475,350" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
+[[Start the game|Intro1]]
+&lt;&lt;link &quot;Skip the introduction (Start with the default character)&quot; &quot;playerRoom&quot;&gt;&gt;
+&lt;&lt;set $flags to {
+	&quot;cuff&quot; : {
+		&quot;recieved&quot; : true,
+		&quot;init&quot; : true,
+		&quot;full&quot; : true,
+		&quot;rules&quot; : true
+	},
+	&quot;manorIntro&quot; : false,
+	&quot;wardrobeFirstLook&quot; : false
+}&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="ManorVisit_1" tags="" position="475,350" size="100,100">&lt;&lt;= $dateTime.addTime(0, 3, 45)&gt;&gt;
 You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;

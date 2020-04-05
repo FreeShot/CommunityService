@@ -1,9 +1,5 @@
 class Character {
 	constructor(config) {
-        this.name  = '';
-        this.title = '';
-        this.color = '';
-
         Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
@@ -39,6 +35,7 @@ Object.defineProperty(window, 'Character', {
 
 class Player extends Character {
 	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"]
+
 	constructor(config) {
 		super(Object.assign(
             {
@@ -50,8 +47,13 @@ class Player extends Character {
         ));
 	}
 
+	feminize(amnt) {
+		this.feminize = Math.min(this.feminity + amnt, this.gradiant.length - 1);
+	}
+
 	get getColor() {
-		return this.gradiant[Math.min(this.feminity, this.gradiant.length - 1)]
+		if (this.feminity > this.gradiant.length - 1) {this.feminity = this.gradiant.length - 1;}
+		return this.gradiant[this.feminity];
 	}
 
 	speak(text) {

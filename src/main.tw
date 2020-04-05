@@ -73,3 +73,15 @@ This game is intended for a mature audience. If you are too young, please <a cla
 
 
 [[Start the game|Intro1]]
+<<link "Skip the introduction (Start with the default character)" "playerRoom">>
+<<set $flags to {
+	"cuff" : {
+		"recieved" : true,
+		"init" : true,
+		"full" : true,
+		"rules" : true
+	},
+	"manorIntro" : false,
+	"wardrobeFirstLook" : false
+}>>
+<</link>>
