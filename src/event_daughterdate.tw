@@ -5,36 +5,36 @@ As you are finishing up in the Foyer you hear the buzzer for the main door rings
  
 She abruptly open the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
  
-<<speak $wife.color>>"For goodness sake $daughter.name."<</speak>> $wife.name grabs $daughter.name arm and pulls her inside.
+<<= $wife.speak("For goodness sake $daughter.name.")>> $wife.name grabs $daughter.name arm and pulls her inside.
  
-<<speak $daughter.color>>"Heeeeey. Easy."<</speak>> Her slurred speech pretty much confirms she is drunk.
+<<= $daughter.speak("Heeeeey. Easy.")>> Her slurred speech pretty much confirms she is drunk.
  
-<<speak $wife.color>>"Thank you gentlemen. You're dismissed."<</speak>>
+<<= $wife.speak("Thank you gentlemen. You're dismissed.")>>
  
 $wife.name slams the door shut.
  
-<<speak $wife.color>>"Drunk again? Really?"<</speak>>
+<<= $wife.speak("Drunk again? Really?")>>
  
-<<speak $daughter.color>>"It was just some cocktails with my friends. We didn't do anything."<</speak>>
+<<= $daughter.speak("It was just some cocktails with my friends. We didn't do anything.")>>
  
-<<speak $wife.color>>"You almost set a bar on fire! I had hoped your education would train that out of you but you've gotten strait back into your old habits."<</speak>>
+<<= $wife.speak("You almost set a bar on fire! I had hoped your education would train that out of you but you've gotten strait back into your old habits.")>>
  
-$daughter.name yanks her arm free and stumbles a bit. <<speak $daughter.color>>"I finished my degree. What more do you want? I just wana have fun!"<</speak>>
+$daughter.name yanks her arm free and stumbles a bit. <<= $daughter.speak("I finished my degree. What more do you want? I just wana have fun!")>>
  
-<<speak $wife.color>>"I won't talk to you like this. Go upstairs and sleep it off."<</speak>>
+<<= $wife.speak("I won't talk to you like this. Go upstairs and sleep it off.")>>
 
 $wife.name points to the stairs.
  
-<<speak $daughter.color>>"Aaaaw. But I'm not sleepy."<</speak>> *d* still turns anyway and starts stumbling forwards.
+<<= $daughter.speak("Aaaaw. But I'm not sleepy.")>> *d* still turns anyway and starts stumbling forwards.
  
 She spots you standing nearby.
  
-<<speak $daughter.color>>"Heeeey *fname*. Look at you. All cute and domesticated."<</speak>> She stumbles over and squeezes your cheeks. <<speak $daughter.color>>"I could just gobble you up."<</speak>>
+<<= $daughter.speak("Heeeey *fname*. Look at you. All cute and domesticated.")>> She stumbles over and squeezes your cheeks. <<speak $daughter.speak("I could just gobble you up.")>>
  
-<<speak $wife.color>>"$daughter.name!"<</speak>>
+<<= $wife.speak("$daughter.name!")>>
  
-<<speak $daughter.color>>"Fine."<</speak>> *d* lets go and heads up the stairs.
+<<= $daughter.speak("Fine.")>> *d* lets go and heads up the stairs.
  
-$wife.name starts heading back into the estate. <<speak $wife.color>>"This is the last time."<</speak>> She grumbles to herself.
+$wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
 
 <<goto playerRoom>>
