@@ -33,34 +33,23 @@ With Yaflow's coding hand
 <<set $cook to new Character({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
 <<set $gardner to new Character({name: "Juan", color: "Sienna", title: "Juan"})>>
 
-<<set $rooms to {
-	"Foyer" : {
-		"imgNames" : ["Foyer"], "displayName" : "Foyer"},
-	"Hall" : {
-		"imgNames" : [], "displayName" : "Hall"},
-	"Garden" : {
-		"imgNames" : ["Garden1", "Garden2", "Garden3"], "displayName" : "Garden"},
-	"Kitchen" : {
-		"imgNames" : ["Kitchen"], "displayName" : "Kitchen"},
-	"Laundry" : {
-		"imgNames" : ["Laundry"], "displayName" : "Laundry"},
-	"Lounge" : {
-		"imgNames" : ["Lounge"], "displayName" : "Lounge"},
-	"Office" : {
-		"imgNames" : ["Office"], "displayName" : "Office"},
-	"MasterBdRm" : {
-		"imgNames" : ["Bedroom", "Bathroom", "Closet1", "Closet2"], "displayName" : "Master bedroom"},
-	"Office" : {
-		"imgNames" : ["MainOffice"], "displayName" : "Office"},
-	"PlayerBdRm" : {
-		"imgNames" : ["Bedroom"], "displayName" : "Your bedroom"},
-	"Pool" : {
-		"imgNames" : ["Pool"], "displayName" : "Pool"},
-	"SonBdRm" : {
-		"imgNames" : ["Bedroom", "Bathroom", "Closet"], "displayName" : "Son bedroom"},
-	"DaughterBdRm" : {
-		"imgNames" : ["Bedroom", "Bathroom", "Closet"], "displayName" : "Daughter bedroom"}
-}>>
+
+<<set $mansion to new Mansion({})>>
+
+<<= $mansion.addRoom(new Room({name: "Foyer", id: "Foyer", img: ["Foyer.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Hall", id: "Hall"}))>>
+<<= $mansion.addRoom(new Room({name: "Garden", id: "Garden", img: ["Garden1.jpg", "Garden2.jpg", "Garden3.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Kitchen", id: "Kitchen", img: ["Kitchen.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Laundry", id: "Laundry", img: ["Laundry.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Lounge", id: "Lounge", img: ["Lounge.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Master bedroom", id: "MasterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet1.jpg", "Closet2.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Office", id: "Office", img: ["MainOffice.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Your bedroom", id: "PlayerBdRm", img: ["Bedroom.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Pool", id: "Pool", img: ["Pool.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Son's bedroom", id: "SonBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Daughter's bedroom", id: "DaughterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
+
+<<= $mansion.addChore("Kitchen", new Chore ({name: "Washing dishes", duration: {day: 0, hour: 1, minute: 15}, passageName: "washDishes", energyCost: 1}))>>
 
 ::Start [nobr]
 <div class=gameTitle>

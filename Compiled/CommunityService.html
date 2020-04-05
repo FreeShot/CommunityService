@@ -331,12 +331,17 @@ class Player extends Character {
 	constructor(config) {
 		super(Object.assign(
             {
-                name  : "Alex",
-                title : "Alex",
-                feminity : 0,
-                hairColor: "Brunette"
+                name: "Alex",
+                title: "Alex",
+                feminity: 0,
+                hairColor: "Brunette",
+                energy: {current : 100, max : 100}
             }, config));
 		this.feminize = 0;
+	}
+
+	useEnergy(amnt) {
+		this.energy.current = Math.max(this.energy.current - amnt, 0);
 	}
 
 	get getColor() {
@@ -363,63 +368,198 @@ class Player extends Character {
 Object.defineProperty(window, 'Player', {
     value : Player
 });
-/* twine-user-script #2: "estateRoom.js" */
-Macro.add("roomHeader", {
-	tags : null,
-	handler : function () {
-		var roomId = this.args[0];
-		var displayImage = 0;
-		var display = true;
-		if (this.args.count() > 1) {
-			displayImage = this.args[1];
-			if (this.args.count() > 2) {
-				display = this.args[2];
+/* twine-user-script #2: "chore.js" */
+class Chore {
+	constructor (config) {
+		this.name = '';
+		this.duration = {"day" : 0, "hour": 0, "minute": 0};
+		this.passageName = ''; // Do not get this, use this.passage instead
+		this.energyCost  = 0;
+		this.done = false;
+		this.room = '';
+
+		Object.keys(config).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+	}
+
+	do() {
+		if (this.done) {
+			return String.format(
+				"<span class='ChoreDone'>{0} (Done)</span>",
+				this.name
+			);
+		} else {
+			return String.format(
+				"<<link '{0}' '{1}'>><<set $player.useEnergy({2})>><<= $dateTime.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} energy, takes about {4})",
+				this.name,
+				this.passage,
+				this.energyCost,
+				this.duration,
+				this.getDuration,
+				this.room
+			);
+		}
+	}
+
+	reset() {
+		this.done = false;
+	}
+
+	get getDuration() {
+		// Returns the duration of the Chore in string
+		var timeOrder = ["day", "hour", "minute"];
+		var str = "";
+		for (var i = 0; i < timeOrder.length; i++) {
+			if (this.duration[timeOrder[i]] > 1) {
+				str += this.duration[timeOrder[i]] + " " + timeOrder[i] + "s ";
+			} else if (this.duration[timeOrder[i]] == 1) {
+				str += 1 + " " + timeOrder[i] + " ";
 			}
 		}
+		return str;
+	}
 
-		if (State.variables.rooms[roomId].imgNames[displayImage] != null && display) {
-			$(this.output).wiki(String.format(
-				"<span class='estateRoom'>{0}</span><br>[img[{1}estate/{2}/{3}.jpg]]",
-				State.variables.rooms[roomId].displayName,
-				setup.ImagePath,
-				roomId,
-				State.variables.rooms[roomId].imgNames[displayImage]
-			))
-		} else {
-			$(this.output).wiki(String.format(
-				"<span class='estateRoom'>{0}</span><br>",
-				State.variables.rooms[roomId].displayName
-			))
+	get passage() {
+		return this.passageName; // Use instead of this.passageName
+	}
+
+	clone() {
+        return new Chore(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Chore($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Chore', {
+    value : Chore
+});
+
+class Room {
+	constructor(config) {
+		this.name = '';
+		this.chores = [];
+		this.img = [];
+		this.id = '';
+
+		Object.keys(config).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+	}
+
+	addChore(chore) {
+		chore.room = this.name;
+		this.chores.push(chore);
+	}
+
+	findChore(choreName) {
+		return this.chores.find(element => element.name === choreName);
+	}
+
+	resetChores() {
+		for (var i = 0; i < this.chores.length; i++) {
+			this.chores[i].reset();
 		}
 	}
-});
-/* twine-user-script #3: "speak.js" */
-Macro.add("speak", {
-	tags : null,
-	handler : function () {
-		$(this.output).wiki(
-			String.format(
-				"<span class=\"speak\" style=\"color:{0};\">{1}</span>",
-				this.args[0], 
-				this.payload[0].contents
-			)
-		);
+
+	display(imgIndex) {
+		var imgIndex = imgIndex || 0;
+
+		var str = "<span class='estateRoom'>" + this.name + "</span><br>";
+
+		return str + (imgIndex < this.img.length ? "[img[" + this.getImgPath(imgIndex) + "]]" : "");
 	}
+
+	getImgPath(imgIndex) {
+		return setup.ImagePath + "estate/" + this.id + "/" + this.img[imgIndex]; 
+	}
+
+	displayChores(displayTitle) {
+		var str = ((displayTitle || true) ? this.name : "") + "<ol>";
+		for (var i = 0; i < this.chores.length; i++) {
+			str += "<li>" + this.chores[i].do() + "</li>";
+		}
+		return str + "</ol>";
+	}
+
+	clone() {
+        return new Room(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Room($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Room', {
+    value : Room
 });
 
-Macro.add("think", {
-	tags : null,
-	handler : function () {
-		$(this.output).wiki(
-			String.format(
-				"<span class=\"think\" style=\"color:{0};font-style:italic\">{1}</span>",
-				this.args[0], 
-				this.payload[0].contents
-			)
-		);
+class Mansion {
+	constructor(config) {
+		this.rooms = [];
+
+		if (config != {}) {
+			Object.keys(config).forEach(function (pn) {
+        	    this[pn] = clone(config[pn]);
+        	}, this);
+		}
 	}
+
+	findRoom(roomID) {
+		return this.rooms.find(element => element.id === roomID);
+	}
+
+	display(roomID, imgIndex) {
+		return this.findRoom(roomID).display(imgIndex);
+	}
+
+	displayChores() {
+		var str = "<ol>";
+		for (var i = 0; i < this.rooms.length; i++) {
+			str += "<li>" + this.rooms[i].displayChores() + "</li>";
+		}
+		return str + "</ol>";
+	}
+
+	addRoom(room) {
+		this.rooms.push(room);
+	}
+
+	addChore(roomName, chore) {
+		this.findRoom(roomName).addChore(chore);
+	}
+
+	resetChores() {
+		for (var i = 0; i < this.rooms.length; i++) {
+			this.rooms[i].resetChores();
+		}
+	}
+
+	clone() {
+        return new Mansion(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Mansion($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Mansion', {
+    value : Mansion
 });
-/* twine-user-script #4: "time.js" */
+/* twine-user-script #3: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -428,15 +568,18 @@ class DateTime {
 		this.date = new Date(date);
 	}
 
-	addTime(day, hours, min) {
-		hours += day * 24;
-		min += hours * 60;
+	addTime(duration) {
+		var day = duration.day || 0;
+		var hour = (duration.hour || 0) + day * 24;
+		var min = (duration.minute || 0) + hour * 60;
 		this.date = new Date(this.date.getTime() + min * 60000);
 	}
 
-	setTime(hours, min) {
-		hours = (hours + Math.floor(min / 60)) % 24;
-		min %= 60;
+	setTime(time) {
+		var day = time.day || 0;
+		var hours = time.hour || 0;
+		var min = time.minute || 0;
+		this.date.setDay(day);
 		this.date.setHours(hours);
 		this.date.setMinutes(min)
 	}
@@ -1365,34 +1508,23 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="36" name="Sto
 &lt;&lt;set $cook to new Character({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;})&gt;&gt;
 &lt;&lt;set $gardner to new Character({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
 
-&lt;&lt;set $rooms to {
-	&quot;Foyer&quot; : {
-		&quot;imgNames&quot; : [&quot;Foyer&quot;], &quot;displayName&quot; : &quot;Foyer&quot;},
-	&quot;Hall&quot; : {
-		&quot;imgNames&quot; : [], &quot;displayName&quot; : &quot;Hall&quot;},
-	&quot;Garden&quot; : {
-		&quot;imgNames&quot; : [&quot;Garden1&quot;, &quot;Garden2&quot;, &quot;Garden3&quot;], &quot;displayName&quot; : &quot;Garden&quot;},
-	&quot;Kitchen&quot; : {
-		&quot;imgNames&quot; : [&quot;Kitchen&quot;], &quot;displayName&quot; : &quot;Kitchen&quot;},
-	&quot;Laundry&quot; : {
-		&quot;imgNames&quot; : [&quot;Laundry&quot;], &quot;displayName&quot; : &quot;Laundry&quot;},
-	&quot;Lounge&quot; : {
-		&quot;imgNames&quot; : [&quot;Lounge&quot;], &quot;displayName&quot; : &quot;Lounge&quot;},
-	&quot;Office&quot; : {
-		&quot;imgNames&quot; : [&quot;Office&quot;], &quot;displayName&quot; : &quot;Office&quot;},
-	&quot;MasterBdRm&quot; : {
-		&quot;imgNames&quot; : [&quot;Bedroom&quot;, &quot;Bathroom&quot;, &quot;Closet1&quot;, &quot;Closet2&quot;], &quot;displayName&quot; : &quot;Master bedroom&quot;},
-	&quot;Office&quot; : {
-		&quot;imgNames&quot; : [&quot;MainOffice&quot;], &quot;displayName&quot; : &quot;Office&quot;},
-	&quot;PlayerBdRm&quot; : {
-		&quot;imgNames&quot; : [&quot;Bedroom&quot;], &quot;displayName&quot; : &quot;Your bedroom&quot;},
-	&quot;Pool&quot; : {
-		&quot;imgNames&quot; : [&quot;Pool&quot;], &quot;displayName&quot; : &quot;Pool&quot;},
-	&quot;SonBdRm&quot; : {
-		&quot;imgNames&quot; : [&quot;Bedroom&quot;, &quot;Bathroom&quot;, &quot;Closet&quot;], &quot;displayName&quot; : &quot;Son bedroom&quot;},
-	&quot;DaughterBdRm&quot; : {
-		&quot;imgNames&quot; : [&quot;Bedroom&quot;, &quot;Bathroom&quot;, &quot;Closet&quot;], &quot;displayName&quot; : &quot;Daughter bedroom&quot;}
-}&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Start" tags="nobr" position="850,475" size="100,100">&lt;div class=gameTitle&gt;
+
+&lt;&lt;set $mansion to new Mansion({})&gt;&gt;
+
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Foyer&quot;, id: &quot;Foyer&quot;, img: [&quot;Foyer.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Hall&quot;, id: &quot;Hall&quot;}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Garden&quot;, id: &quot;Garden&quot;, img: [&quot;Garden1.jpg&quot;, &quot;Garden2.jpg&quot;, &quot;Garden3.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Kitchen&quot;, id: &quot;Kitchen&quot;, img: [&quot;Kitchen.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Laundry&quot;, id: &quot;Laundry&quot;, img: [&quot;Laundry.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Lounge&quot;, id: &quot;Lounge&quot;, img: [&quot;Lounge.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Master bedroom&quot;, id: &quot;MasterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet1.jpg&quot;, &quot;Closet2.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Office&quot;, id: &quot;Office&quot;, img: [&quot;MainOffice.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Your bedroom&quot;, id: &quot;PlayerBdRm&quot;, img: [&quot;Bedroom.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Pool&quot;, id: &quot;Pool&quot;, img: [&quot;Pool.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Son&#39;s bedroom&quot;, id: &quot;SonBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Daughter&#39;s bedroom&quot;, id: &quot;DaughterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
+
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore ({name: &quot;Washing dishes&quot;, duration: {day: 0, hour: 1, minute: 15}, passageName: &quot;washDishes&quot;, energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Start" tags="nobr" position="850,475" size="100,100">&lt;div class=gameTitle&gt;
 &lt;h1&gt;Community Service&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class=&quot;warning&quot;&gt;
@@ -1432,7 +1564,8 @@ He uses a hand held device to re-code your tracker to this location. The older m
 
 With that, the turns around and walks into the estate proper.
 
-[[Follow|ManorVisit_2]]</tw-passagedata><tw-passagedata pid="39" name="ManorVisit_2" tags="" position="1100,475" size="100,100">&lt;&lt;roomHeader &quot;Foyer&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+[[Follow|ManorVisit_2]]</tw-passagedata><tw-passagedata pid="39" name="ManorVisit_2" tags="" position="1100,475" size="100,100">&lt;&lt;= $mansion.display(&quot;Foyer&quot;)&gt;&gt;
+
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
 &lt;&lt;= $butler.speak(&quot;You may call me $butler.name&quot;)&gt;&gt;
@@ -1443,136 +1576,141 @@ You follow the older man and the main door opens into a wide foyer. The room is 
 
 He continues walking through the foyer and into the main lounge
 
-You follow $butler.name to the [[Main Lounge|ManorVisit_3]]</tw-passagedata><tw-passagedata pid="40" name="ManorVisit_3" tags="" position="1225,475" size="100,100">&lt;&lt;roomHeader &quot;Lounge&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+You follow $butler.name to the [[Main Lounge|ManorVisit_3]]</tw-passagedata><tw-passagedata pid="40" name="ManorVisit_3" tags="" position="1225,475" size="100,100">&lt;&lt;= $mansion.display(&quot;Lounge&quot;)&gt;&gt;
 This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;So, what am I supposed to be doing around here?&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;So, what am I supposed to be doing around here?&quot;)&gt;&gt;
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;As I was in the process of explaining, you are here to tend all the Sono family&#39;s needs around the household. You will clean, perform maintenance and occasionally cook.&lt;b&gt;AL&lt;/b&gt; should have been updated your CUFF with a full list of the rules. I suggest you familliarise yourself with them as any breach will not be tolerated&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;As I was in the process of explaining, you are here to tend all the Sono family&#39;s needs around the household. You will clean, perform maintenance and occasionally cook.&lt;b&gt;AL&lt;/b&gt; should have been updated your CUFF with a full list of the rules. I suggest you familliarise yourself with them as any breach will not be tolerated&quot;)&gt;&gt;
 
 Your [[CUFF]] beeps and a tiny red light flashes on and off.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;Now follow me to the [[Kitchen|ManorVisit_4]]&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Now follow me to the [[Kitchen|ManorVisit_4]]&quot;)&gt;&gt;
 &lt;&lt;set $flags.cuff.init to true&gt;&gt;
-&lt;&lt;set $flags.cuff.rules to true&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="ManorVisit_4" tags="" position="100,600" size="100,100">&lt;&lt;roomHeader &quot;Kitchen&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+&lt;&lt;set $flags.cuff.rules to true&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="ManorVisit_4" tags="" position="100,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Kitchen&quot;)&gt;&gt;
+
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
-[img[setup.ImagePath + &quot;characters/chesChopping1.jpg&quot;]]
+[img[setup.ImagePath + &quot;character/staff/chef_placeholder1.jpg&quot;]]
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;$cook.name cooks all the meals and caters for any smaller gathering on the estate. He starts later in the day which is why you will be taking over for breakfast.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;$cook.name cooks all the meals and caters for any smaller gathering on the estate. He starts later in the day which is why you will be taking over for breakfast.&quot;)&gt;&gt;
 
-&lt;&lt;speak $cook.color&gt;&gt;&quot;Appreciate the help. Just make sure you leave my kitchen clean.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $cook.speak(&quot;Appreciate the help. Just make sure you leave my kitchen clean.&quot;)&gt;&gt;
 
 The old chef points his knife at you to emphasize his point.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.&quot;&lt;&lt;/speak&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="ManorVisit_5" tags="" position="225,600" size="100,100">&lt;&lt;roomHeader &quot;Garden&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="ManorVisit_5" tags="" position="225,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Garden&quot;)&gt;&gt;
+
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
 There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;Now, before you get any ideas, I will remind you that facility access is by permission only which you will need to earn.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Now, before you get any ideas, I will remind you that facility access is by permission only which you will need to earn.&quot;)&gt;&gt;
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;I wasn&#39;t going to use them...&quot;&lt;&lt;/speak&gt;&gt;, you mumble to yourself.
+&lt;&lt;= $player.speak(&quot;I wasn&#39;t going to use them...&quot;)&gt;&gt;, you mumble to yourself.
 
 Off on one of the far side, you see an elderly man working away.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;That&#39;s $gardner.name. We won&#39;t bother him since he&#39;s busy at the moment but you will be expected to aide him. He&#39;s getting on in yeas so needs a young back to help.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;That&#39;s $gardner.name. We won&#39;t bother him since he&#39;s busy at the moment but you will be expected to aide him. He&#39;s getting on in yeas so needs a young back to help.&quot;)&gt;&gt;
 
 $butler.name glances at your slight frame and then back to Juan.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;But this will have to do.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;But this will have to do.&quot;)&gt;&gt;
 
 You watch as the old gardner drops what he is doing and grabs his back with one arm as if to emphasise the point.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;Now follow me.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Now follow me.&quot;)&gt;&gt;
 
 $butler.name walks back inside, through the kitchen and back to the foyer.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I&#39;ll show you the upstairs rooms.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I&#39;ll show you the upstairs rooms.&quot;)&gt;&gt;
 
-Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]</tw-passagedata><tw-passagedata pid="43" name="ManorVisit_6" tags="" position="350,600" size="100,100">&lt;&lt;roomHeader &quot;Hall&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]</tw-passagedata><tw-passagedata pid="43" name="ManorVisit_6" tags="" position="350,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Hall&quot;)&gt;&gt;
+
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They&#39;re both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
 
 The younger one is talking about a recent holiday which sends a little pang of nervousness given your recent problems.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;Excuse me $wife.title, $daughter.title.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Excuse me $wife.title, $daughter.title.&quot;)&gt;&gt;
 
 $butler.name bows slightly to each woman.
 
-&lt;&lt;speak $wife.color&gt;&gt;&quot;Yes $butler.name ?&quot;&lt;&lt;/speak&gt;&gt;, the older woman answers
+&lt;&lt;= $wife.speak(&quot;Yes $butler.name ?&quot;)&gt;&gt;, the older woman answers
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;I would like to introduce $player.name. This is the new servant for the contract $owner.title acquired recently.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;I would like to introduce $player.name. This is the new servant for the contract $owner.title acquired recently.&quot;)&gt;&gt;
 
-&lt;&lt;speak $daughter.color&gt;&gt;&quot;Well, well. What a cutie.&quot;&lt;&lt;/speak&gt;&gt; The younger daughter grins and winks as whe looks at you up and down.
+&lt;&lt;= $daughter.speak(&quot;Well, well. What a cutie.&quot;)&gt;&gt; The younger daughter grins and winks as whe looks at you up and down.
 
 $wife.name walks towards you. You hold out your hand, but she ignores it and walks around and examines you. You shift nervously.
 
-&lt;&lt;think $player.color&gt;&gt;&quot;It feels like she&#39;s checking out a piece of meat.&quot;&lt;&lt;/think&gt;&gt; You think to yourself.
+&lt;&lt;$player.speak(&quot;&lt;i&gt;It feels like she&#39;s checking out a piece of meat.&lt;/i&gt;&quot;)&gt;&gt; You think to yourself.
 
-&lt;&lt;speak $wife.color&gt;&gt;&quot;He&#39;s a bit unkempt, but he&#39;ll do.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;He&#39;s a bit unkempt, but he&#39;ll do.&quot;)&gt;&gt;
 
 $wife.name stops in front of you.
 
-&lt;&lt;speak $wife.color&gt;&gt;&quot;I expect you to keep things up to the standard we&#39;ve become accustomed to. I don&#39;t need to waste time training another maid.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;I expect you to keep things up to the standard we&#39;ve become accustomed to. I don&#39;t need to waste time training another maid.&quot;)&gt;&gt;
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;I&#39;ll do my best.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;I&#39;ll do my best.&quot;)&gt;&gt;
 
 A stern look crosses over $wife.name&#39;s face.
 
-&lt;&lt;speak $wife.color&gt;&gt;&quot;You will address me as $wife.title at all times and my husband as $owner.title. Is that understood ?&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;You will address me as $wife.title at all times and my husband as $owner.title. Is that understood ?&quot;)&gt;&gt;
 
-You stammer. &lt;&lt;speak $player.color&gt;&gt;&quot;Yes $wife.title.&quot;&lt;&lt;/speak&gt;&gt;
+You stammer. &lt;&lt;= $player.speak(&quot;Yes $wife.title.&quot;)&gt;&gt;
 
-&lt;&lt;speak $wife.color&gt;&gt;&quot;Good. You&#39;ll also refer to my daughter as $daughter.title and my son as $son.title&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;Good. You&#39;ll also refer to my daughter as $daughter.title and my son as $son.title&quot;)&gt;&gt;
 
-&lt;&lt;speak $daughter.color&gt;&gt;&quot;Geez Mum, you&#39;re making him nervous.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $daughter.speak(&quot;Geez Mum, you&#39;re making him nervous.&quot;)&gt;&gt;
 
-&lt;&lt;speak $wife.color&gt;&gt;&quot;They need a firm hand to get the best out of them.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;They need a firm hand to get the best out of them.&quot;)&gt;&gt;
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;If you please $wife.title. I need to get $player.name acquainted with the rest of the estate.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;If you please $wife.title. I need to get $player.name acquainted with the rest of the estate.&quot;)&gt;&gt;
 
-&lt;&lt;speak $wife.color&gt;&gt;Of course $butler.name. Make sure to come straight at me if he gives you any trouble.&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;Of course $butler.name. Make sure to come straight at me if he gives you any trouble.&quot;)&gt;&gt;
 
-&lt;&lt;speak $butler.color&gt;&gt;Of course $wife.title.&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Of course $wife.title.&quot;)&gt;&gt;
 
-$butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]</tw-passagedata><tw-passagedata pid="44" name="ManorVisit_7" tags="" position="475,600" size="100,100">&lt;&lt;roomHeader &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+$butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]</tw-passagedata><tw-passagedata pid="44" name="ManorVisit_7" tags="" position="475,600" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
-&lt;&lt;speak $butler.color&gt;&gt;This is where you&#39;ll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;This is where you&#39;ll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.&quot;)&gt;&gt;
 
 At first glance it seems like a nice room. It&#39;s defienitely not large, with just enough room to move and not at all the like the prison cell you were expecting.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;You can stay there for now. I will come and collect you when $owner.name is ready to meet you.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;You can stay there for now. I will come and collect you when $owner.name is ready to meet you.&quot;)&gt;&gt;
 
 $butler.name closes the door behind you, leaving you alone.
 
-[[Inspect the room|playerRoom]]</tw-passagedata><tw-passagedata pid="45" name="ManorVisit_8" tags="" position="600,600" size="100,100">At exactly 7pm, the door to your room opens and $butler.name walks in.
+[[Inspect the room|playerRoom]]</tw-passagedata><tw-passagedata pid="45" name="ManorVisit_8" tags="" position="600,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Office&quot;)&gt;&gt;
+At exactly 7pm, the door to your room opens and $butler.name walks in.
 
-&lt;&lt;speak $butler.color&gt;&gt;&quot;$owner.name is waiting for you in his office.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;$owner.name is waiting for you in his office.&quot;)&gt;&gt;
 
 He turns around and starts walking expecting you to follow.
 
 Not wanting to push your luck, you quickly catch up and fall in behind $butler.name. He takes you back to the study and you see $owner.name sitting behing his desk, working at his computer.
 
-&lt;&lt;speak $owner.color&gt;&gt;&quot;I expect $butler.name has already gone over the rules and updated your CUFF accordingly ?&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $owner.speak(&quot;I expect $butler.name has already gone over the rules and updated your CUFF accordingly ?&quot;)&gt;&gt;
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;Yes sir.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Yes sir.&quot;)&gt;&gt;
 
-&lt;&lt;speak $owner.color&gt;&gt;&quot;Very good. You will answer to $butler.name after myself and my wife at all time. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he&#39;s not impressed, I&#39;m not impressed. Is that understood?&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $owner.speak(&quot;Very good. You will answer to $butler.name after myself and my wife at all time. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he&#39;s not impressed, I&#39;m not impressed. Is that understood?&quot;)&gt;&gt;
 
-&lt;&lt;speak $player.color&gt;&gt;&quot;Yes sir.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Yes sir.&quot;)&gt;&gt;
 
-&lt;&lt;speak $owner.color&gt;&gt;&quot;$butler.name?&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $owner.speak(&quot;$butler.name?&quot;)&gt;&gt;
 
-The older man replies &lt;&lt;speak $butler.color&gt;&gt;Yes sir.&lt;&lt;/speak&gt;&gt;
+The older man replies &lt;&lt;= $butler.speak(Yes sir.)&gt;&gt;
 
-&lt;&lt;speak $owner.color&gt;&gt;&quot;See that he understands how to present himself as well. Slouching doesn&#39;t benefit his slight figure.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $owner.speak(&quot;See that he understands how to present himself as well. Slouching doesn&#39;t benefit his slight figure.&quot;)&gt;&gt;
 
-&lt;&lt;speak $butler.color&gt;&gt;As you wish, sir.&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $butler.speak(As you wish, sir.)&gt;&gt;
 
-&lt;&lt;speak $owner.color&gt;&gt;&quot;That will be all.&quot;&lt;&lt;/speak&gt;&gt;
+&lt;&lt;= $owner.speak(&quot;That will be all.&quot;)&gt;&gt;
 
 $butler.name leads you back to your [[small living space|playerRoom]].&lt;&lt;set $flags.manorIntro to false&gt;&gt;&lt;&lt;set $flags.cuff.full to true&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="StoryCaption" tags="" position="725,600" size="100,100">&lt;hr&gt;
 &lt;span class=&quot;date&quot;&gt;$dateTime.getDate&lt;/span&gt;
@@ -1611,7 +1749,7 @@ TODO : List current held items</tw-passagedata><tw-passagedata pid="52" name="ru
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="playerRoom" tags="" position="350,725" size="100,100">&lt;&lt;roomHeader &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;/roomHeader&gt;&gt;
+&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="playerRoom" tags="" position="350,725" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.

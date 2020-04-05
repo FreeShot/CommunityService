@@ -1,5 +1,5 @@
 ::playerRoom
-<<roomHeader "PlayerBdRm">><</roomHeader>>
+<<= $mansion.display("PlayerBdRm")>>
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.

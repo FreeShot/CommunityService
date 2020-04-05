@@ -6,15 +6,18 @@ class DateTime {
 		this.date = new Date(date);
 	}
 
-	addTime(day, hours, min) {
-		hours += day * 24;
-		min += hours * 60;
+	addTime(duration) {
+		var day = duration.day || 0;
+		var hour = (duration.hour || 0) + day * 24;
+		var min = (duration.minute || 0) + hour * 60;
 		this.date = new Date(this.date.getTime() + min * 60000);
 	}
 
-	setTime(hours, min) {
-		hours = (hours + Math.floor(min / 60)) % 24;
-		min %= 60;
+	setTime(time) {
+		var day = time.day || 0;
+		var hours = time.hour || 0;
+		var min = time.minute || 0;
+		this.date.setDay(day);
 		this.date.setHours(hours);
 		this.date.setMinutes(min)
 	}

@@ -41,12 +41,17 @@ class Player extends Character {
 	constructor(config) {
 		super(Object.assign(
             {
-                name  : "Alex",
-                title : "Alex",
-                feminity : 0,
-                hairColor: "Brunette"
+                name: "Alex",
+                title: "Alex",
+                feminity: 0,
+                hairColor: "Brunette",
+                energy: {current : 100, max : 100}
             }, config));
 		this.feminize = 0;
+	}
+
+	useEnergy(amnt) {
+		this.energy.current = Math.max(this.energy.current - amnt, 0);
 	}
 
 	get getColor() {
