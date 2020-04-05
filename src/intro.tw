@@ -13,7 +13,7 @@ You were enjoying your snack when a shady looking man took the seat accross from
 
 He holds out a plane brown box in front of you. It's clear this person is up to no good.
 
-[img[setup.ImagePath + "\items\general\brownbox.jpg"]]
+[img[setup.ImagePath + "items/general/brownbox.jpg"]]
 
 <<= Character.speakAnonymous("The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble.", "Peru")>>
 

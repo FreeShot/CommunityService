@@ -4,7 +4,7 @@ class Character {
             this[pn] = clone(config[pn]);
         }, this);
 
-        this.likesYou = 0
+        this.likesYou = 0;
 	}
 
 	speak(text) {
@@ -36,7 +36,7 @@ Object.defineProperty(window, 'Character', {
 });
 
 class Player extends Character {
-	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"]
+	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"];
 
 	constructor(config) {
 		super(Object.assign(
@@ -44,13 +44,9 @@ class Player extends Character {
                 name  : "Alex",
                 title : "Alex",
                 feminity : 0,
-            },
-            config
-        ));
-	}
-
-	feminize(amnt) {
-		this.feminize = Math.min(this.feminity + amnt, this.gradiant.length - 1);
+                hairColor: "Brunette"
+            }, config));
+		this.feminize = 0;
 	}
 
 	get getColor() {
