@@ -603,7 +603,7 @@ class DateTime {
 		var day = time.day || 0;
 		var hours = time.hour || 0;
 		var min = time.minute || 0;
-		this.date.setDay(day);
+		this.date.setDate(day);
 		this.date.setHours(hours);
 		this.date.setMinutes(min)
 	}
@@ -1548,7 +1548,9 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="36" name="Sto
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Son&#39;s bedroom&quot;, id: &quot;SonBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Daughter&#39;s bedroom&quot;, id: &quot;DaughterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
 
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore ({name: &quot;Washing dishes&quot;, duration: {day: 0, hour: 1, minute: 15}, passages:[{name : &quot;washDishes&quot;, weight:1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Start" tags="nobr" position="850,475" size="100,100">&lt;div class=gameTitle&gt;
+&lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({name: &quot;Laundry&quot;, duration: {hour: 1}, passages:[{name: &quot;Laundry&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Dishes&quot;, duration: {minutes: 30}, passages: [{name: &quot;Dishes&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Clean Kitchen&quot;, duration: {hour: 2}, passages:[{name: &quot;CleanKitchen&quot;, weight: 1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Start" tags="nobr" position="850,475" size="100,100">&lt;div class=gameTitle&gt;
 &lt;h1&gt;Community Service&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class=&quot;warning&quot;&gt;
@@ -1589,7 +1591,7 @@ He uses a hand held device to re-code your tracker to this location. The older m
 With that, the turns around and walks into the estate proper.
 
 [[Follow|ManorVisit_2]]</tw-passagedata><tw-passagedata pid="39" name="ManorVisit_2" tags="" position="1100,475" size="100,100">&lt;&lt;= $mansion.display(&quot;Foyer&quot;)&gt;&gt;
-
+&lt;&lt;= $dateTime.addTime(0, 0, 10)&gt;&gt;
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
 &lt;&lt;= $butler.speak(&quot;You may call me $butler.name&quot;)&gt;&gt;
@@ -1601,6 +1603,7 @@ You follow the older man and the main door opens into a wide foyer. The room is 
 He continues walking through the foyer and into the main lounge
 
 You follow $butler.name to the [[Main Lounge|ManorVisit_3]]</tw-passagedata><tw-passagedata pid="40" name="ManorVisit_3" tags="" position="1225,475" size="100,100">&lt;&lt;= $mansion.display(&quot;Lounge&quot;)&gt;&gt;
+&lt;&lt;= $dateTime.addTime(0, 0, 10)&gt;&gt;
 This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
 
 &lt;&lt;= $player.speak(&quot;So, what am I supposed to be doing around here?&quot;)&gt;&gt;
@@ -1612,7 +1615,7 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 &lt;&lt;= $butler.speak(&quot;Now follow me to the [[Kitchen|ManorVisit_4]]&quot;)&gt;&gt;
 &lt;&lt;set $flags.cuff.init to true&gt;&gt;
 &lt;&lt;set $flags.cuff.rules to true&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="ManorVisit_4" tags="" position="100,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Kitchen&quot;)&gt;&gt;
-
+&lt;&lt;= $dateTime.addTime(0, 0, 10)&gt;&gt;
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
 [img[setup.ImagePath + &quot;character/staff/chef_placeholder1.jpg&quot;]]
@@ -1624,7 +1627,7 @@ You enter the large open kitchen. It looks just as lavish as the rest of the roo
 The old chef points his knife at you to emphasize his point.
 
 &lt;&lt;= $butler.speak(&quot;You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="ManorVisit_5" tags="" position="225,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Garden&quot;)&gt;&gt;
-
+&lt;&lt;= $dateTime.addTime(0, 0, 10)&gt;&gt;
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
 There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
@@ -1650,7 +1653,7 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 &lt;&lt;= $butler.speak(&quot;As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I&#39;ll show you the upstairs rooms.&quot;)&gt;&gt;
 
 Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]</tw-passagedata><tw-passagedata pid="43" name="ManorVisit_6" tags="" position="350,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Hall&quot;)&gt;&gt;
-
+&lt;&lt;= $dateTime.addTime(0, 0, 10)&gt;&gt;
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They&#39;re both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
@@ -1698,7 +1701,7 @@ You stammer. &lt;&lt;= $player.speak(&quot;Yes $wife.title.&quot;)&gt;&gt;
 &lt;&lt;= $butler.speak(&quot;Of course $wife.title.&quot;)&gt;&gt;
 
 $butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]</tw-passagedata><tw-passagedata pid="44" name="ManorVisit_7" tags="" position="475,600" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
-
+&lt;&lt;= $dateTime.addTime(0, 0, 10)&gt;&gt;
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
 &lt;&lt;= $butler.speak(&quot;This is where you&#39;ll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.&quot;)&gt;&gt;
@@ -1710,6 +1713,7 @@ At first glance it seems like a nice room. It&#39;s defienitely not large, with 
 $butler.name closes the door behind you, leaving you alone.
 
 [[Inspect the room|playerRoom]]</tw-passagedata><tw-passagedata pid="45" name="ManorVisit_8" tags="" position="600,600" size="100,100">&lt;&lt;= $mansion.display(&quot;Office&quot;)&gt;&gt;
+&lt;&lt;= $dateTime.setTime({hour: 7, minute:0})&gt;&gt;
 At exactly 7pm, the door to your room opens and $butler.name walks in.
 
 &lt;&lt;= $butler.speak(&quot;$owner.name is waiting for you in his office.&quot;)&gt;&gt;

@@ -49,7 +49,11 @@ With Yaflow's coding hand
 <<= $mansion.addRoom(new Room({name: "Son's bedroom", id: "SonBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Daughter's bedroom", id: "DaughterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
 
-<<= $mansion.addChore("Kitchen", new Chore ({name: "Washing dishes", duration: {day: 0, hour: 1, minute: 15}, passages:[{name : "washDishes", weight:1}], energyCost: 1}))>>
+<<= $mansion.addChore("Laundry", new Chore({name: "Laundry", duration: {hour: 1}, passages:[{name: "Laundry", weight: 1}], energyCost: 1}))>>
+<<= $mansion.addChore("Kitchen", new Chore({name: "Dishes", duration: {minutes: 30}, passages: [{name: "Dishes", weight: 1}], energyCost: 1}))>>
+<<= $mansion.addChore("Kitchen", new Chore({name: "Clean Kitchen", duration: {hour: 2}, passages:[{name: "CleanKitchen", weight: 1}], energyCost: 1}))>>
+
+
 
 ::Start [nobr]
 <div class=gameTitle>

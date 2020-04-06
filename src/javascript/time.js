@@ -17,7 +17,7 @@ class DateTime {
 		var day = time.day || 0;
 		var hours = time.hour || 0;
 		var min = time.minute || 0;
-		this.date.setDay(day);
+		this.date.setDate(day);
 		this.date.setHours(hours);
 		this.date.setMinutes(min)
 	}
