@@ -290,11 +290,15 @@ img {
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
 class Character {
 	constructor(config) {
+		this.name = '';
+		this.title = '';
+		this.currentRoom = '';
+		this.acceptance = 0;
+		this.color = '';
+
         Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
-
-        this.likesYou = 0;
 	}
 
 	speak(text) {
@@ -472,7 +476,7 @@ class Room {
 	}
 
 	addChore(chore) {
-		chore.room = this.name;
+		chore.room = this.id;
 		this.chores.push(chore);
 	}
 
@@ -583,7 +587,61 @@ class Mansion {
 Object.defineProperty(window, 'Mansion', {
     value : Mansion
 });
-/* twine-user-script #3: "time.js" */
+/* twine-user-script #3: "clothes.js" */
+class Item {
+	constructor(config) {
+		this.name = '';
+		this.describe = '';
+		this.img = '';
+		this.needAcceptance = 0; // How high must be the player's acceptance before accepting to get the item
+		this.price = 0; // If the item has a price, this will be its price
+
+		this.specialUse = undefined; // Function for special items
+
+		Object.keys(config).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+	}
+
+	clone() {
+        return new Item(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Item($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Item', {
+    value : Item
+});
+
+class Clothes extends Item {
+	constructor(config) {
+		this.slot = "";
+
+		super(config);
+	}
+
+	clone() {
+        return new Clothes(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Clothes($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Clothes', {
+    value : Clothes
+});
+/* twine-user-script #4: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -1548,10 +1606,14 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="39" name="Sto
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Son&#39;s bedroom&quot;, id: &quot;SonBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Daughter&#39;s bedroom&quot;, id: &quot;DaughterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;]}))&gt;&gt;
 
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Master bathroom&quot;, id: &quot;MasterBathRm&quot;, img: [&quot;Bathroom.jpg&quot;]}))&gt;&gt;
+
+
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({name: &quot;Laundry&quot;, duration: {hour: 1}, passages:[{name: &quot;Laundry&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Dishes&quot;, duration: {minutes: 30}, passages: [{name: &quot;Kitchen_Dishes&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Clean&quot;, duration: {hour: 2}, passages:[{name: &quot;Kitchen_Clean&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Sweep and Mop&quot;, duration: {hour: 2}, passages:[{name: &quot;Kitchen_SweepMop&quot;, weight: 1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Start" tags="nobr" position="1225,475" size="100,100">&lt;div class=gameTitle&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Dishes&quot;, duration: {minute: 30}, passages: [{name: &quot;Dishes&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Clean Kitchen&quot;, duration: {hour: 2}, passages:[{name: &quot;CleanKitchen&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
+
+&lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({name: &quot;Sweep and Mop&quot;, duration: {hour: 2}, passages:[{name: &quot;MasterBathRm_SweepMop&quot;, weight: 1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Start" tags="nobr" position="1225,475" size="100,100">&lt;div class=gameTitle&gt;
 &lt;h1&gt;Community Service&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class=&quot;warning&quot;&gt;

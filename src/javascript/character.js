@@ -1,10 +1,14 @@
 class Character {
 	constructor(config) {
+		this.name = '';
+		this.title = '';
+		this.currentRoom = '';
+		this.acceptance = 0;
+		this.color = '';
+
         Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
-
-        this.likesYou = 0;
 	}
 
 	speak(text) {

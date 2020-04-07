@@ -116,7 +116,7 @@ class Room {
 	}
 
 	addChore(chore) {
-		chore.room = this.name;
+		chore.room = this.id;
 		this.chores.push(chore);
 	}
 
