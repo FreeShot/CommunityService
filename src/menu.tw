@@ -3,6 +3,9 @@
 <span class="date">$dateTime.getDate</span>
 <hr>
 <span class="time">$dateTime.getClock</span>\
+<hr>
+Energy: <<= $player.getEnergyBar()>>
+<hr>
 <<if $flags.cuff.recieved>><hr>[[CUFF]]<</if>>
 
 ::CUFF [nobr]
@@ -17,21 +20,21 @@
 <<if $flags.cuff.rules is true>>
 	[[Rules|rules]]<br>
 <</if>>
-<<back>>
+[[CUFF]]
 
 ::playerToDoList
 <<= $mansion.displayChores()>>
 
-<<back>>
+[[CUFF]]
 
 ::appearence
 Todo : Describe player
 
-<<back>>
+[[CUFF]]
 
 ::skills
 Todo : Add skills
-<<back>>
+[[CUFF]]
 
 ::inventory
 W.I.P.
@@ -54,4 +57,4 @@ TODO : List current held items
 <</if>>
 <</nobr>>\
 </ol>
-<<back>>
+[[CUFF]]

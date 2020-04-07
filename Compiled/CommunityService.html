@@ -339,9 +339,28 @@ class Player extends Character {
                 title: "Alex",
                 feminity: 0,
                 hairColor: "Brunette",
-                energy: {current : 100, max : 100}
+                energy: {current : 10, max : 10}
             }, config));
 		this.feminize = 0;
+	}
+
+	getEnergyBar() {
+		var str = "";
+		for(var i = 0; i < this.energy.current; i++) {
+			str += "█";
+		}
+		for(var i = this.energy.current; i < this.energy.max; i++) {
+			str += "░";
+		}
+		return str
+	}
+
+	hasEnoughEnergy(cost) {
+		return this.energy.current >= cost;
+	}
+
+	rest() {
+		this.energy.current = this.energy.max;
 	}
 
 	useEnergy(amnt) {
@@ -395,6 +414,11 @@ class Chore {
 		if (this.done) {
 			return String.format(
 				"<span class='ChoreDone'>{0} (Done)</span>",
+				this.name
+			);
+		} else if (!State.variables.player.hasEnoughEnergy(this.energyCost)) {
+			return String.format(
+				"<span class='ChoreDone'>{0} (Not enough energy)</span>",
 				this.name
 			);
 		} else {
@@ -477,7 +501,121 @@ class Chore {
 Object.defineProperty(window, 'Chore', {
     value : Chore
 });
+/* twine-user-script #3: "clothes.js" */
+class Item {
+	constructor(config) {
+		this.name = '';
+		this.describe = '';
+		this.img = '';
+		this.needAcceptance = 0; // How high must be the player's acceptance before accepting to get the item
+		this.price = 0; // If the item has a price, this will be its price
 
+		this.specialUse = undefined; // Function for special items
+
+		Object.keys(config).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+	}
+
+	clone() {
+        return new Item(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Item($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Item', {
+    value : Item
+});
+
+class Clothes extends Item {
+	constructor(config) {
+		this.slot = "";
+
+		super(config);
+	}
+
+	clone() {
+        return new Clothes(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Clothes($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Clothes', {
+    value : Clothes
+});
+/* twine-user-script #4: "mansion.js" */
+class Mansion {
+	constructor(config) {
+		this.rooms = [];
+
+		if (config != {}) {
+			Object.keys(config).forEach(function (pn) {
+        	    this[pn] = clone(config[pn]);
+        	}, this);
+		}
+	}
+
+	findRoom(roomID) {
+		return this.rooms.find(element => element.id === roomID);
+	}
+
+	display(roomID, imgIndex) {
+		return this.findRoom(roomID).display(imgIndex);
+	}
+
+	displayChores() {
+		var str = "<ol>";
+		for (var i = 0; i < this.rooms.length; i++) {
+			var roomChores = this.rooms[i].displayChores();
+			if (roomChores != undefined) {
+				str += "<li>" + roomChores  + "</li>";
+			}
+		}
+		return str + "</ol>";
+	}
+
+	addRoom(room) {
+		this.rooms.push(room);
+	}
+
+	addChore(roomID, chore) {
+		this.findRoom(roomID).addChore(chore.clone());
+	}
+
+	resetChores() {
+		for (var i = 0; i < this.rooms.length; i++) {
+			this.rooms[i].resetChores();
+		}
+	}
+
+	clone() {
+        return new Mansion(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Mansion($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Mansion', {
+    value : Mansion
+});
+/* twine-user-script #5: "rooms.js" */
 class Room {
 	constructor(config) {
 		this.name = '';
@@ -542,121 +680,7 @@ class Room {
 Object.defineProperty(window, 'Room', {
     value : Room
 });
-
-class Mansion {
-	constructor(config) {
-		this.rooms = [];
-
-		if (config != {}) {
-			Object.keys(config).forEach(function (pn) {
-        	    this[pn] = clone(config[pn]);
-        	}, this);
-		}
-	}
-
-	findRoom(roomID) {
-		return this.rooms.find(element => element.id === roomID);
-	}
-
-	display(roomID, imgIndex) {
-		return this.findRoom(roomID).display(imgIndex);
-	}
-
-	displayChores() {
-		var str = "<ol>";
-		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores();
-			if (roomChores != undefined) {
-				str += "<li>" + roomChores  + "</li>";
-			}
-		}
-		return str + "</ol>";
-	}
-
-	addRoom(room) {
-		this.rooms.push(room);
-	}
-
-	addChore(roomID, chore) {
-		this.findRoom(roomID).addChore(chore.clone());
-	}
-
-	resetChores() {
-		for (var i = 0; i < this.rooms.length; i++) {
-			this.rooms[i].resetChores();
-		}
-	}
-
-	clone() {
-        return new Mansion(this);
-    }
-
-	toJSON() {
-        var ownData = {};
-        Object.keys(this).forEach(function (pn) {
-            ownData[pn] = clone(this[pn]);
-        }, this);
-        return JSON.reviveWrapper('new Mansion($ReviveData$)', ownData);
-	}
-}
-Object.defineProperty(window, 'Mansion', {
-    value : Mansion
-});
-/* twine-user-script #3: "clothes.js" */
-class Item {
-	constructor(config) {
-		this.name = '';
-		this.describe = '';
-		this.img = '';
-		this.needAcceptance = 0; // How high must be the player's acceptance before accepting to get the item
-		this.price = 0; // If the item has a price, this will be its price
-
-		this.specialUse = undefined; // Function for special items
-
-		Object.keys(config).forEach(function (pn) {
-            this[pn] = clone(config[pn]);
-        }, this);
-	}
-
-	clone() {
-        return new Item(this);
-    }
-
-	toJSON() {
-        var ownData = {};
-        Object.keys(this).forEach(function (pn) {
-            ownData[pn] = clone(this[pn]);
-        }, this);
-        return JSON.reviveWrapper('new Item($ReviveData$)', ownData);
-    }
-}
-Object.defineProperty(window, 'Item', {
-    value : Item
-});
-
-class Clothes extends Item {
-	constructor(config) {
-		this.slot = "";
-
-		super(config);
-	}
-
-	clone() {
-        return new Clothes(this);
-    }
-
-	toJSON() {
-        var ownData = {};
-        Object.keys(this).forEach(function (pn) {
-            ownData[pn] = clone(this[pn]);
-        }, this);
-        return JSON.reviveWrapper('new Clothes($ReviveData$)', ownData);
-    }
-}
-Object.defineProperty(window, 'Clothes', {
-    value : Clothes
-});
-/* twine-user-script #4: "time.js" */
+/* twine-user-script #6: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -1895,6 +1919,9 @@ $butler.name leads you back to your [[small living space|playerRoom]].&lt;&lt;se
 &lt;span class=&quot;date&quot;&gt;$dateTime.getDate&lt;/span&gt;
 &lt;hr&gt;
 &lt;span class=&quot;time&quot;&gt;$dateTime.getClock&lt;/span&gt;\
+&lt;hr&gt;
+Energy: &lt;&lt;= $player.getEnergyBar()&gt;&gt;
+&lt;hr&gt;
 &lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;hr&gt;[[CUFF]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="CUFF" tags="nobr" position="350,975" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;elseif $flags.cuff.full is true&gt;&gt;
@@ -1906,12 +1933,12 @@ $butler.name leads you back to your [[small living space|playerRoom]].&lt;&lt;se
 &lt;&lt;if $flags.cuff.rules is true&gt;&gt;
 	[[Rules|rules]]&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="playerToDoList" tags="" position="475,975" size="100,100">&lt;&lt;= $mansion.displayChores()&gt;&gt;
+[[CUFF]]</tw-passagedata><tw-passagedata pid="74" name="playerToDoList" tags="" position="475,975" size="100,100">&lt;&lt;= $mansion.displayChores()&gt;&gt;
 
-&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="appearence" tags="" position="600,975" size="100,100">Todo : Describe player
+[[CUFF]]</tw-passagedata><tw-passagedata pid="75" name="appearence" tags="" position="600,975" size="100,100">Todo : Describe player
 
-&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="skills" tags="" position="725,975" size="100,100">Todo : Add skills
-&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="inventory" tags="" position="850,975" size="100,100">W.I.P.
+[[CUFF]]</tw-passagedata><tw-passagedata pid="76" name="skills" tags="" position="725,975" size="100,100">Todo : Add skills
+[[CUFF]]</tw-passagedata><tw-passagedata pid="77" name="inventory" tags="" position="850,975" size="100,100">W.I.P.
 TODO : List current held items</tw-passagedata><tw-passagedata pid="78" name="rules" tags="" position="975,975" size="100,100">&lt;h1 id=&quot;RuleTitle&quot;&gt;Rules&lt;/h1&gt;\
 &lt;ol class=&quot;rules&quot;&gt;\
 &lt;li&gt;Work week is Thursday to Tuesday. Wednesday is a free day.&lt;/li&gt;
@@ -1928,7 +1955,7 @@ TODO : List current held items</tw-passagedata><tw-passagedata pid="78" name="ru
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="playerRoom" tags="" position="1100,975" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+[[CUFF]]</tw-passagedata><tw-passagedata pid="79" name="playerRoom" tags="" position="1100,975" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.

@@ -49,9 +49,28 @@ class Player extends Character {
                 title: "Alex",
                 feminity: 0,
                 hairColor: "Brunette",
-                energy: {current : 100, max : 100}
+                energy: {current : 10, max : 10}
             }, config));
 		this.feminize = 0;
+	}
+
+	getEnergyBar() {
+		var str = "";
+		for(var i = 0; i < this.energy.current; i++) {
+			str += "█";
+		}
+		for(var i = this.energy.current; i < this.energy.max; i++) {
+			str += "░";
+		}
+		return str
+	}
+
+	hasEnoughEnergy(cost) {
+		return this.energy.current >= cost;
+	}
+
+	rest() {
+		this.energy.current = this.energy.max;
 	}
 
 	useEnergy(amnt) {

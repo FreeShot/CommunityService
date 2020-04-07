@@ -22,6 +22,11 @@ class Chore {
 				"<span class='ChoreDone'>{0} (Done)</span>",
 				this.name
 			);
+		} else if (!State.variables.player.hasEnoughEnergy(this.energyCost)) {
+			return String.format(
+				"<span class='ChoreDone'>{0} (Not enough energy)</span>",
+				this.name
+			);
 		} else {
 			return String.format(
 				"<<link '{0}' '{1}'>><<set $player.useEnergy({2})>><<= $dateTime.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} energy, takes about {4})",
