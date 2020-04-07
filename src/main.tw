@@ -41,19 +41,20 @@ With Yaflow's coding hand
 <<= $mansion.addRoom(new Room({name: "Kitchen", id: "Kitchen", img: ["Kitchen.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Laundry", id: "Laundry", img: ["Laundry.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Lounge", id: "Lounge", img: ["Lounge.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Master bedroom", id: "MasterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet1.jpg", "Closet2.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Master bedroom", id: "MasterBdRm", img: ["Bedroom.jpg", "Closet1.jpg", "Closet2.jpg"]}))>>
+<<= $mansion.addRoom(new Room({name: "Master bathroom", id: "MasterBathRm", img: ["Bathroom.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Office", id: "Office", img: ["Office.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Your bedroom", id: "PlayerBdRm", img: ["Bedroom.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Pool", id: "Pool", img: ["Pool.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Son's bedroom", id: "SonBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
 <<= $mansion.addRoom(new Room({name: "Daughter's bedroom", id: "DaughterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
 
-<<= $mansion.addChore("Laundry", new Chore({name: "Laundry", duration: {hour: 1}, passages:[{name: "Laundry", weight: 1}], energyCost: 1}))>>
-<<= $mansion.addChore("Kitchen", new Chore({name: "Dishes", id: "general_dishes", duration: {minutes: 30}, passages: [{name: "Kitchen_Dishes", weight: 1}], img: ["normal/wash_dishes_1.jpg"], energyCost: 1}))>>
+<<= $mansion.addChore("Laundry", new Chore({name: "Wash Linen", duration: {hour: 1}, passages:[{name: "Laundry_Linen", weight: 1}], energyCost: 1}))>>
+<<= $mansion.addChore("Laundry", new Chore({name: "Wash Clothes", duration: {hour: 1}, passages:[{name: "Laundry_Clothes", weight: 1}], energyCost: 1}))>>
+<<= $mansion.addChore("Kitchen", new Chore({name: "Dishes", id: "general_dishes", duration: {minutes: 30}, passages: [{name: "Kitchen_Dishes", weight: 1}], img: ["dishes_1.jpg"], energyCost: 1}))>>
 <<= $mansion.addChore("Kitchen", new Chore({name: "Clean", duration: {hour: 2}, passages:[{name: "Kitchen_Clean", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("Kitchen", new Chore({name: "Sweep and Mop", duration: {hour: 2}, passages:[{name: "Kitchen_SweepMop", weight: 1}], energyCost: 1}))>>
-
-
+<<= $mansion.addChore("MasterBathRm", new Chore({name: "Sweep and Mop", duration: {hour: 2}, passages:[{name: "MasterBathRm_SweepMop", weight: 1}], energyCost: 1}))>>
 
 ::Start [nobr]
 <div class=gameTitle>
