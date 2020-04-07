@@ -476,7 +476,7 @@ class Room {
 	}
 
 	addChore(chore) {
-		chore.room = this.name;
+		chore.room = this.id;
 		this.chores.push(chore);
 	}
 
@@ -1613,7 +1613,7 @@ With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="39" name="Sto
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Dishes&quot;, duration: {minute: 30}, passages: [{name: &quot;Dishes&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Clean Kitchen&quot;, duration: {hour: 2}, passages:[{name: &quot;CleanKitchen&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
 
-&lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({name: &quot;Sweep and Mop&quot;, duration: {hour: 2}, passages:[{name: &quot;MasterBathRm_SweepMop&quot;, weight: 1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Start" tags="nobr" position="850,475" size="100,100">&lt;div class=gameTitle&gt;
+&lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({name: &quot;Sweep and Mop&quot;, duration: {hour: 2}, passages:[{name: &quot;MasterBathRm_SweepMop&quot;, weight: 1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Start" tags="nobr" position="1225,475" size="100,100">&lt;div class=gameTitle&gt;
 &lt;h1&gt;Community Service&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class=&quot;warning&quot;&gt;
