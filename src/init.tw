@@ -23,19 +23,21 @@
 
 <<set $mansion to new Mansion({})>>
 
-<<= $mansion.addRoom(new Room({name: "Foyer", id: "Foyer", img: ["Foyer.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Hall", id: "Hall"}))>>
-<<= $mansion.addRoom(new Room({name: "Garden", id: "Garden", img: ["Garden1.jpg", "Garden2.jpg", "Garden3.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Kitchen", id: "Kitchen", img: ["Kitchen.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Laundry", id: "Laundry", img: ["Laundry.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Lounge", id: "Lounge", img: ["Lounge.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Master bedroom", id: "MasterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet1.jpg", "Closet2.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Master bathroom", id: "MasterBathRm", img: ["Bathroom.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Office", id: "Office", img: ["Office.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Your bedroom", id: "PlayerBdRm", img: ["Bedroom.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Pool", id: "Pool", img: ["Pool.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Son's bedroom", id: "SonBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
-<<= $mansion.addRoom(new Room({name: "Daughter's bedroom", id: "DaughterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
+<<= $mansion.addRoom(new Room({
+	name: "Foyer", id: "Foyer", img: ["Foyer.jpg"], adjacentRooms: []
+}))>>
+<<= $mansion.addRoom(new Room({name: "Hall", id: "Hall", adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Garden", id: "Garden", img: ["Garden1.jpg", "Garden2.jpg", "Garden3.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Kitchen", id: "Kitchen", img: ["Kitchen.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Laundry", id: "Laundry", img: ["Laundry.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Lounge", id: "Lounge", img: ["Lounge.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Master bedroom", id: "MasterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet1.jpg", "Closet2.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Master bathroom", id: "MasterBathRm", img: ["Bathroom.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Office", id: "Office", img: ["Office.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Your bedroom", id: "PlayerBdRm", img: ["Bedroom.jpg"], adjacentRooms: ["Hall"]}))>>
+<<= $mansion.addRoom(new Room({name: "Pool", id: "Pool", img: ["Pool.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Son's bedroom", id: "SonBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"], adjacentRooms: []}))>>
+<<= $mansion.addRoom(new Room({name: "Daughter's bedroom", id: "DaughterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"], adjacentRooms: []}))>>
 
 <<= $mansion.addChore("Foyer", new Chore({name: "Dust Ornaments", duration: {hour: 1}, passages:[{name: "Foyer_Dusting", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("Foyer", new Chore({name: "Sweep and Mop Floors", duration: {hour: 1}, passages:[{name: "Foyer_SweepMop", weight: 1}], energyCost: 1}))>>

@@ -1,4 +1,4 @@
-::playerRoom
+::PlayerBdRm
 <<= $mansion.display("PlayerBdRm")>>
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
@@ -23,6 +23,8 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 <<else>>
 	[[Do your chores.|playerToDoList]]
 <</if>>
+
+<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 
 ::playerRoomShower
 Todo: Add shower event

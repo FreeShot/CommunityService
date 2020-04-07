@@ -45,17 +45,18 @@ class Room {
 		str += this.displayChores(false);
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
+		return str;
 	}
 
 	getAdjacentRooms() {
 		if (this.adjacentRooms.length > 0) {
 			var str = "<ol>";
 			for (var i = 0; i < this.adjacentRooms.length; i++) {
-				str += "<li>" + this.adjacentRooms[i].getPassage() + "</li>";
+				str += "<li>" + State.variables.mansion.findRoom(this.adjacentRooms[i]).getPassage() + "</li>";
 			}
 			return str + "</ol>";
 		} else {
-			"[[Go to your room|PlayerBdRm]]";
+			return "[[Go to your room|PlayerBdRm]]";
 		}
 	}
 
@@ -63,7 +64,7 @@ class Room {
 		if (Story.has(this.id)) {
 			return "<<link '" + this.name + "' '" + this.id + "'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
 		} else {
-			return "<<link '" + this.name + "'RoomDescription'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
+			return "<<link '" + this.name + "' 'RoomDescription'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
 		}
 	}
 

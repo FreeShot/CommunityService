@@ -21,7 +21,7 @@ This game is intended for a mature audience. If you are too young, please <a cla
 
 
 [[Start the game|Intro1]]
-<<link "Skip the introduction (Start with the default character)" "playerRoom">>
+<<link "Skip the introduction (Start with the default character)" "PlayerBdRm">>
 <<set $flags to {
 	"cuff" : {
 		"recieved" : true,
@@ -32,5 +32,3 @@ This game is intended for a mature audience. If you are too young, please <a cla
 	"manorIntro" : false,
 }>>
 <</link>>
-
-[[DescribeRoom]]

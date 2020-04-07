@@ -159,7 +159,7 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 $butler.name closes the door behind you, leaving you alone.
 
-[[Inspect the room|playerRoom]]
+[[Inspect the room|PlayerBdRm]]
 
 ::ManorVisit_8
 <<= $mansion.display("Office")>>
@@ -190,4 +190,4 @@ The older man replies <<= $butler.speak("Yes sir.")>>
 
 <<= $owner.speak("That will be all.")>>
 
-$butler.name leads you back to your [[small living space|playerRoom]].<<set $flags.manorIntro to false>><<set $flags.cuff.full to true>>
+$butler.name leads you back to your [[small living space|PlayerBdRm]].<<set $flags.manorIntro to false>><<set $flags.cuff.full to true>>
