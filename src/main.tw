@@ -33,7 +33,6 @@ With Yaflow's coding hand
 <<set $cook to new Character({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
 <<set $gardner to new Character({name: "Juan", color: "Sienna", title: "Juan"})>>
 
-
 <<set $mansion to new Mansion({})>>
 
 <<= $mansion.addRoom(new Room({name: "Foyer", id: "Foyer", img: ["Foyer.jpg"]}))>>
@@ -50,7 +49,7 @@ With Yaflow's coding hand
 <<= $mansion.addRoom(new Room({name: "Daughter's bedroom", id: "DaughterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"]}))>>
 
 <<= $mansion.addChore("Laundry", new Chore({name: "Laundry", duration: {hour: 1}, passages:[{name: "Laundry", weight: 1}], energyCost: 1}))>>
-<<= $mansion.addChore("Kitchen", new Chore({name: "Dishes", duration: {minutes: 30}, passages: [{name: "Kitchen_Dishes", weight: 1}], energyCost: 1}))>>
+<<= $mansion.addChore("Kitchen", new Chore({name: "Dishes", id: "general_dishes", duration: {minutes: 30}, passages: [{name: "Kitchen_Dishes", weight: 1}], img: ["normal/wash_dishes_1.jpg"], energyCost: 1}))>>
 <<= $mansion.addChore("Kitchen", new Chore({name: "Clean", duration: {hour: 2}, passages:[{name: "Kitchen_Clean", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("Kitchen", new Chore({name: "Sweep and Mop", duration: {hour: 2}, passages:[{name: "Kitchen_SweepMop", weight: 1}], energyCost: 1}))>>
 

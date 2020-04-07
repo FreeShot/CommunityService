@@ -5,9 +5,11 @@ class Chore {
 		this.passages = [
 			{name: '', weight: 1}
 		];
+		this.img = [];
 		this.energyCost  = 0;
 		this.done = false;
 		this.room = '';
+		this.id = '';
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -83,6 +85,19 @@ class Chore {
         }, this);
         return JSON.reviveWrapper('new Chore($ReviveData$)', ownData);
 	}
+
+	display(imgIndex) {
+		var imgIndex = imgIndex || 0;
+
+		var str = "<span class='estateChore'>" + this.name + "</span><br>";
+
+		return str + (imgIndex < this.img.length ? "[img[" + this.getImgPath(imgIndex) + "]]" : "");
+	}
+
+	getImgPath(imgIndex) {
+		return setup.ImagePath + "events/chores/" + this.id + "/" + this.img[imgIndex]; 
+	}
+
 }
 Object.defineProperty(window, 'Chore', {
     value : Chore
