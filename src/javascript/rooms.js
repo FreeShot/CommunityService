@@ -4,6 +4,7 @@ class Room {
 		this.chores = [];
 		this.img = [];
 		this.id = '';
+		this.adjacentRooms = [];
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -25,6 +26,10 @@ class Room {
 		}
 	}
 
+	getImgPath(imgIndex) {
+		return setup.ImagePath + "estate/" + this.id + "/" + this.img[imgIndex]; 
+	}
+
 	display(imgIndex) {
 		var imgIndex = imgIndex || 0;
 
@@ -33,8 +38,8 @@ class Room {
 		return str + (imgIndex < this.img.length ? "[img[" + this.getImgPath(imgIndex) + "]]" : "");
 	}
 
-	getImgPath(imgIndex) {
-		return setup.ImagePath + "estate/" + this.id + "/" + this.img[imgIndex]; 
+	generatePassage() {
+		var str = this.display(0);
 	}
 
 	displayChores(displayTitle) {

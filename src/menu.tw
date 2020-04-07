@@ -8,7 +8,7 @@ Energy: <<= $player.getEnergyBar()>>
 <hr>
 <<if $flags.cuff.recieved>><hr>[[CUFF]]<</if>>
 
-::CUFF [nobr]
+::CUFF [nobr mainMenu]
 <<if $flags.cuff.init is false>>
 	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
 <<elseif $flags.cuff.full is true>>
@@ -20,27 +20,29 @@ Energy: <<= $player.getEnergyBar()>>
 <<if $flags.cuff.rules is true>>
 	[[Rules|rules]]<br>
 <</if>>
-[[CUFF]]
+[[Return|$exitMenu]]
 
-::playerToDoList
+::playerToDoList [noreturn]
 <<= $mansion.displayChores()>>
 
-[[CUFF]]
+[[Return|$return]]
 
-::appearence
+::appearence [noreturn]
 Todo : Describe player
 
-[[CUFF]]
+[[Return|$return]]
 
-::skills
+::skills [noreturn]
 Todo : Add skills
-[[CUFF]]
+[[Return|$return]]
 
-::inventory
+::inventory [noreturn]
 W.I.P.
 TODO : List current held items
 
-::rules
+[[Return|$return]]
+
+::rules [noreturn]
 <h1 id="RuleTitle">Rules</h1>\
 <ol class="rules">\
 <li>Work week is Thursday to Tuesday. Wednesday is a free day.</li>
@@ -57,4 +59,4 @@ TODO : List current held items
 <</if>>
 <</nobr>>\
 </ol>
-[[CUFF]]
+[[Return|$return]]
