@@ -39,7 +39,32 @@ class Room {
 	}
 
 	generatePassage() {
-		var str = this.display(0);
+		var str = "";
+		str += this.display(0);
+		str += "<br>Chores: ";
+		str += this.displayChores(false);
+		str += "<br>From here, you can go to: ";
+		str += this.getAdjacentRooms();
+	}
+
+	getAdjacentRooms() {
+		if (this.adjacentRooms.length > 0) {
+			var str = "<ol>";
+			for (var i = 0; i < this.adjacentRooms.length; i++) {
+				str += "<li>" + this.adjacentRooms[i].getPassage() + "</li>";
+			}
+			return str + "</ol>";
+		} else {
+			"[[Go to your room|PlayerBdRm]]";
+		}
+	}
+
+	getPassage() {
+		if (Story.has(this.id)) {
+			return "<<link '" + this.name + "' '" + this.id + "'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
+		} else {
+			return "<<link '" + this.name + "'RoomDescription'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
+		}
 	}
 
 	displayChores(displayTitle) {
@@ -49,6 +74,8 @@ class Room {
 				str += "<li>" + this.chores[i].do() + "</li>";
 			}
 			return str + "</ol>";
+		} else {
+			return "You don't have any chores to do in this room";
 		}
 	}
 

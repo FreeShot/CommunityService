@@ -17,6 +17,10 @@ class Mansion {
 		return this.findRoom(roomID).display(imgIndex);
 	}
 
+	describeRoom(roomID) {
+		return this.findRoom(roomID).generatePassage();
+	}
+
 	displayChores() {
 		var str = "<ol>";
 		for (var i = 0; i < this.rooms.length; i++) {

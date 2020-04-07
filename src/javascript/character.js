@@ -49,7 +49,8 @@ class Player extends Character {
                 title: "Alex",
                 feminity: 0,
                 hairColor: "Brunette",
-                energy: {current : 10, max : 10}
+                energy: {current : 10, max : 10},
+                currentRoom: "PlayerBdRm"
             }, config));
 		this.feminize = 0;
 	}

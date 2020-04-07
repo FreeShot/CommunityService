@@ -1,0 +1,5 @@
+::RoomDescription
+ 
+TODO: Generate room description
+
+<<= $mansion.describeRoom($player.currentRoom)>>
