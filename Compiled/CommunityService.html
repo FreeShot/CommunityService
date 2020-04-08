@@ -2033,19 +2033,19 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	[[Go to bed.|sleep]]
 &lt;&lt;else&gt;&gt;
 	[[Do your chores.|playerToDoList]]
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="playerRoomShower" tags="" position="1225,975" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="81" name="playerRoomMakup" tags="" position="100,1100" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="82" name="playerRoomMorningRoutine" tags="" position="225,1100" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="83" name="playerRoomWardrobe" tags="" position="350,1100" size="100,100">Todo: Add clothes
+	
+	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="playerRoomShower" tags="" position="1225,975" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="81" name="playerRoomMakup" tags="" position="100,1100" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="82" name="playerRoomMorningRoutine" tags="" position="225,1100" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="83" name="playerRoomWardrobe" tags="" position="350,1100" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="RoomDescription" tags="" position="475,1100" size="100,100">TODO: Generate room description
 
-&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="sleep" tags="" position="600,1100" size="100,100">You turn in for the night and try to get some rest. It&#39;s been a long day
+&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="sleep" tags="" position="600,1100" size="100,100">You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep. 
 
 [[wakeUp]]
 
-&lt;&lt;set $flags.firstNight to false&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="wakeUp" tags="" position="725,1100" size="100,100">TO DO: sleep descriptions
+&lt;&lt;set $flags.firstNight to false&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="wakeUp" tags="" position="725,1100" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
 
 [[PlayerBdRm]]</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
