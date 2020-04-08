@@ -1,7 +1,7 @@
 class Chore {
 	constructor (config) {
 		this.name = '';
-		this.duration = {"day" : 0, "hour": 0, "minute": 0};
+		this.duration = {day: 0, hour: 0, minute: 0};
 		this.passages = [
 			{name: '', weight: 1}
 		];
@@ -29,7 +29,7 @@ class Chore {
 			);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $player.useEnergy({2})>><<= $dateTime.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} energy, takes about {4})",
+				"<<link '{0}' '{1}'>><<set $player.useEnergy({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} energy, takes about {4})",
 				this.name,
 				this.passage,
 				this.energyCost,

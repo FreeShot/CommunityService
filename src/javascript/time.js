@@ -1,68 +1,52 @@
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
-class DateTime {
-	constructor(date) {
-		this.date = new Date(date);
-		this.sleepTime = 19;
+class Timer {
+	constructor (config) {
+		this.time = {hour : 0, minute : 0};
+		this.day = 0;
+
+		Object.keys(config).forEach(function (pn) {
+			this[pn] = clone(config[pn]);
+		}, this);
 	}
 
-	addTime(duration) {
-		var day = duration.day || 0;
-		var hour = (duration.hour || 0) + day * 24;
-		var min = (duration.minute || 0) + hour * 60;
-		this.date = new Date(this.date.getTime() + min * 60000);
+	setDate(time) {
+		this.day = time.day || this.day;
+		this.time.hour = time.hour || this.time.hour;
+		this.time.minute = time.minute || this.time.minute;
 	}
 
-	setTime(time) {
-		var day = time.day || 0;
-		var hours = time.hour || 0;
-		var min = time.minute || 0;
-		this.date.setDate(day);
-		this.date.setHours(hours);
-		this.date.setMinutes(min)
+	addTime(time) {
+		console.log(time);
+
+		this.time.minute += (time.minute || 0);
+		this.time.hour += (time.hour || 0) + Math.floor(this.time.minute / 60);
+		this.time.minute %= 60;
+		this.day += (time.day || 0) + Math.floor(this.time.hour / 24);
+		this.time.hour %= 24;
 	}
 
-	timeToSleep() {
-		return this.hour + (this.minute / 60) > this.sleepTime;
-	}
-
-	get getDate() {
-		return String.format(
-			"{0}/{1}/{2}",
-			this.date.getFullYear(),
-			("0" + (this.date.getMonth() + 1)).slice(-2),
-			("0" + this.date.getDate()).slice(-2)
-		);
-	}
-
-	get hour() {
-		return this.date.getHours();
-	}
-
-	get minute() {
-		return this.date.getMinutes();
-	}
-
-	get getClock() {
+	getClock() {
 		return String.format(
 			"{0}:{1}",
-			("0" + this.date.getHours()).slice(-2),
-			("0" + this.date.getMinutes()).slice(-2)
+			("0" + this.time.hour).slice(-2),
+			("0" + this.time.minute).slice(-2)
 		);
 	}
 
 	clone() {
-        return new DateTime(this.date.getTime());
+        return new Timer(this);
     }
-    
-    toJSON() {
-        return JSON.reviveWrapper(
-        	'new DateTime($ReviveData$)', 
-        	this.date.getTime());
-    }
-}
 
-Object.defineProperty(window, 'DateTime', {
-    value : DateTime
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Timer($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Timer', {
+    value : Timer
 });

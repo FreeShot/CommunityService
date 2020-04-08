@@ -1,5 +1,4 @@
 ::ManorVisit_1
-<<= $dateTime.addTime(0, 3, 45)>>
 You're taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 <<= Character.speakAnonymous("State correction here with your new servant.","DarkGoldenRod")>>
@@ -24,7 +23,6 @@ With that, the turns around and walks into the estate proper.
 
 ::ManorVisit_2
 <<= $mansion.display("Foyer")>>
-<<= $dateTime.addTime(0, 0, 10)>>
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
 <<= $butler.speak("You may call me $butler.name")>>
@@ -39,7 +37,6 @@ You follow $butler.name to the [[Main Lounge|ManorVisit_3]]
 
 ::ManorVisit_3
 <<= $mansion.display("Lounge")>>
-<<= $dateTime.addTime(0, 0, 10)>>
 This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
 
 <<= $player.speak("So, what am I supposed to be doing around here?")>>
@@ -53,7 +50,6 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 <<set $flags.cuff.rules to true>>
 ::ManorVisit_4
 <<= $mansion.display("Kitchen")>>
-<<= $dateTime.addTime(0, 0, 10)>>
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
 [img[setup.ImagePath + "character/staff/chef_placeholder1.jpg"]]
@@ -68,7 +64,6 @@ The old chef points his knife at you to emphasize his point.
 
 ::ManorVisit_5
 <<= $mansion.display("Garden")>>
-<<= $dateTime.addTime(0, 0, 10)>>
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
 There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
@@ -97,7 +92,6 @@ Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
 
 ::ManorVisit_6
 <<= $mansion.display("Hall")>>
-<<= $dateTime.addTime(0, 0, 10)>>
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They're both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
@@ -148,7 +142,6 @@ $butler.name bows slightly and then continues [[showing you around the manor.|Ma
 
 ::ManorVisit_7
 <<= $mansion.display("PlayerBdRm")>>
-<<= $dateTime.addTime(0, 0, 10)>>
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
 <<= $butler.speak("This is where you'll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.")>>
@@ -163,7 +156,6 @@ $butler.name closes the door behind you, leaving you alone.
 
 ::ManorVisit_8
 <<= $mansion.display("Office")>>
-<<= $dateTime.setTime({hour: 19, minute:0})>>
 At exactly 7pm, the door to your room opens and $butler.name walks in.
 
 <<= $butler.speak("$owner.name is waiting for you in his office.")>>

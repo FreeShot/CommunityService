@@ -1,5 +1,5 @@
 ::StoryInit
-<<set $dateTime to new DateTime("2075-08-19 12:00:00")>>
+<<set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})>>
 <<set $flags to {
 	"cuff" : {
 		"recieved" : false,

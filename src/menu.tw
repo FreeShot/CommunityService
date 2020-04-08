@@ -1,8 +1,8 @@
 ::StoryCaption
 <hr>
-<span class="date">$dateTime.getDate</span>
+<span class="date">Day $time.day</span>
 <hr>
-<span class="time">$dateTime.getClock</span>\
+<span class="time"><<= $time.getClock()>></span>\
 <hr>
 Energy: <<= $player.getEnergyBar()>>
 <hr>

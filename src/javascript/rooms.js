@@ -62,9 +62,9 @@ class Room {
 
 	getPassage() {
 		if (Story.has(this.id)) {
-			return "<<link '" + this.name + "' '" + this.id + "'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
+			return "<<link \"" + this.name + "\" \"" + this.id + "\">><<set $player.currentRoom to '" + this.id + "'>><</link>>";
 		} else {
-			return "<<link '" + this.name + "' 'RoomDescription'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
+			return "<<link \"" + this.name + "\" 'RoomDescription'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
 		}
 	}
 
