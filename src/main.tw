@@ -30,5 +30,6 @@ This game is intended for a mature audience. If you are too young, please <a cla
 		"rules" : true
 	},
 	"manorIntro" : false,
+	"firstNight" : true,
 }>>
 <</link>>
