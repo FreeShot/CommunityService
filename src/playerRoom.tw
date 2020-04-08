@@ -18,15 +18,13 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 
 <<if $flags.manorIntro is true>>
 	[[Wait to meet the master of the house|ManorVisit_8]]
-<<else>>
-<<if $dateTime.timeToSleep()>>
+<<elseif $flags.firstNight is true or $time >= 22>>
 	[[Go to bed.|sleep]]
+<<else>>
+	[[Do your chores.|playerToDoList]]
+	
+	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 <</if>>
-[[Do your chores.|playerToDoList]]
-<</if>>
-
-Travel: 
-<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 
 ::playerRoomShower
 Todo: Add shower event

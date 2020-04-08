@@ -116,7 +116,7 @@ $butler.name bows slightly to each woman.
 
 $wife.name walks towards you. You hold out your hand, but she ignores it and walks around and examines you. You shift nervously.
 
-<<$player.speak("<i>It feels like she's checking out a piece of meat.</i>")>> You think to yourself.
+<<= $player.speak("<i>It feels like she's checking out a piece of meat.</i>")>> You think to yourself.
 
 <<= $wife.speak("He's a bit unkempt, but he'll do.")>>
 
@@ -163,7 +163,7 @@ $butler.name closes the door behind you, leaving you alone.
 
 ::ManorVisit_8
 <<= $mansion.display("Office")>>
-<<= $dateTime.setTime({hour: 7, minute:0})>>
+<<= $dateTime.setTime({hour: 19, minute:0})>>
 At exactly 7pm, the door to your room opens and $butler.name walks in.
 
 <<= $butler.speak("$owner.name is waiting for you in his office.")>>
