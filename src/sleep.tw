@@ -1,8 +1,4 @@
 ::sleep
-You sleep in your bed.
+You sleep in your bed. <<= $player.rest()>>
 
-[[wakeUp]]
-
-::wakeUp
-
-<<goto playerRoom>>
+[[Wake up|PlayerBdRm]]

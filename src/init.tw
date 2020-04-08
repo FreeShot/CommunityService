@@ -49,7 +49,7 @@
 <<= $mansion.addChore("Laundry", new Chore({name: "Wash Linen", duration: {hour: 1}, passages:[{name: "Laundry_Linen", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("Laundry", new Chore({name: "Wash Clothes", duration: {hour: 1}, passages:[{name: "Laundry_Clothes", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("Lounge", new Chore({name: "Dusting Chairs and Shelves", duration: {hour: 1}, passages:[{name: "Lounge_Dusting", weight: 1}], energyCost: 1}))>>
-<<= $mansion.addChore("Lounge", new Chore({name: "Sweep and Mop Floors", duration: {hour: 1}, passages:[{name: "Lounge_SweepMop", weight: 1}], energyCost: 1}))>>
+<<= $mansion.addChore("Lounge", new Chore({name: "Sweep and Mop Floors", duration: {hadjacentRoomsadjacentRoomsour: 1}, passages:[{name: "Lounge_SweepMop", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("Lounge", new Chore({name: "Clean Windows", duration: {hour: 1}, passages:[{name: "Lounge_Windows", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("MasterBdRm", new Chore({name: "Dust Side Tables, Bed Frame and Chaise", duration: {hour: 2}, passages:[{name: "MasterBdRm_Dusting", weight: 1}], energyCost: 1}))>>
 <<= $mansion.addChore("MasterBdRm", new Chore({name: "Vacuum Carpet", duration: {hour: 2}, passages:[{name: "MasterBdRm_Vacuum", weight: 1}], energyCost: 1}))>>

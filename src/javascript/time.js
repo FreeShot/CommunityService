@@ -4,6 +4,7 @@ setup.SoundPath = "sound/";
 class DateTime {
 	constructor(date) {
 		this.date = new Date(date);
+		this.sleepTime = 19;
 	}
 
 	addTime(duration) {
@@ -22,6 +23,10 @@ class DateTime {
 		this.date.setMinutes(min)
 	}
 
+	timeToSleep() {
+		return this.hour + (this.minute / 60) > this.sleepTime;
+	}
+
 	get getDate() {
 		return String.format(
 			"{0}/{1}/{2}",
@@ -29,6 +34,14 @@ class DateTime {
 			("0" + (this.date.getMonth() + 1)).slice(-2),
 			("0" + this.date.getDate()).slice(-2)
 		);
+	}
+
+	get hour() {
+		return this.date.getHours();
+	}
+
+	get minute() {
+		return this.date.getMinutes();
 	}
 
 	get getClock() {
