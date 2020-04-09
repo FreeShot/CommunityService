@@ -20,7 +20,7 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 <<if $flags.manorIntro is true>>
 	[[Wait to meet the master of the house|ManorVisit_8]]
 	<<= $time.setDate({day:1, hour: 19, minute:0})>>
-<<elseif $time.getClock() >= $bedtime.getClock()>>
+<<elseif $time.clock >= $bedtime.clock>>
 	[[Go to bed.|sleep]]
 <<else>>
 	[[Do your chores.|playerToDoList]]
