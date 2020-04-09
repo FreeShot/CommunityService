@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="63" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="63" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
@@ -536,7 +536,7 @@ Object.defineProperty(window, 'Item', {
 
 class Clothes extends Item {
 	constructor(config) {
-		this.slot = "";
+		// this.slot = "";
 
 		super(config);
 	}
@@ -737,6 +737,8 @@ class Timer {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
 
+		this.wakupTime = {default: {hour: 6, minute: 0}};
+
 		Object.keys(config).forEach(function (pn) {
 			this[pn] = clone(config[pn]);
 		}, this);
@@ -749,8 +751,6 @@ class Timer {
 	}
 
 	addTime(time) {
-		console.log(time);
-
 		this.time.minute += (time.minute || 0);
 		this.time.hour += (time.hour || 0) + Math.floor(this.time.minute / 60);
 		this.time.minute %= 60;
@@ -758,7 +758,11 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
-	getClock() {
+	get weekDay() {
+		return this.day % 7;
+	}
+
+	get clock() {
 		return String.format(
 			"{0}:{1}",
 			("0" + this.time.hour).slice(-2),
@@ -1565,7 +1569,7 @@ She spots you standing nearby.
  
 $wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This is the last time.&quot;)&gt;&gt; She grumbles to herself.
 
-&lt;&lt;goto playerRoom&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="StoryInit" tags="" position="600,725" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})&gt;&gt;
+&lt;&lt;goto playerRoom&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="StoryInit" tags="" position="600,725" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 21, minute: 0}})&gt;&gt;
 &lt;&lt;set $flags to {
 	&quot;cuff&quot; : {
 		&quot;recieved&quot; : false,
@@ -1576,6 +1580,9 @@ $wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This
 	&quot;manorIntro&quot; : true,
 	&quot;firstNight&quot; : true,
 }&gt;&gt;
+
+&lt;&lt;set $mbriefs to new Clothes({name: &quot;Men&#39;s Briefs&quot;, slot: &quot;panties&quot;, describe: &quot;Plain White Men&#39;s Underwear&quot;, img:&quot;mbriefs_01.JPG&quot;, needAcceptance: &quot;0&quot;, price: &quot;0&quot;, specialUse: &quot;none&quot;})&gt;&gt;
+
 
 &lt;&lt;set $player to new Player()&gt;&gt;
 
@@ -1956,7 +1963,7 @@ The older man replies &lt;&lt;= $butler.speak(&quot;Yes sir.&quot;)&gt;&gt;
 $butler.name leads you back to your [[small living space|PlayerBdRm]].&lt;&lt;set $flags.manorIntro to false&gt;&gt;&lt;&lt;set $flags.cuff.full to true&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="StoryCaption" tags="" position="225,975" size="100,100">&lt;hr&gt;
 &lt;span class=&quot;date&quot;&gt;Day $time.day&lt;/span&gt;
 &lt;hr&gt;
-&lt;span class=&quot;time&quot;&gt;&lt;&lt;= $time.getClock()&gt;&gt;&lt;/span&gt;\
+&lt;span class=&quot;time&quot;&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/span&gt;\
 &lt;hr&gt;
 Energy: &lt;&lt;= $player.getEnergyBar()&gt;&gt;
 &lt;hr&gt;
