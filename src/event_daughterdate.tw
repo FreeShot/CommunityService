@@ -1,4 +1,4 @@
-::event_daughterdate
+::event_daughterdate1
 As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
  
 <<= $wife.speak("That damned girl will be the death of me!")>>
@@ -17,7 +17,7 @@ $wife.name slams the door shut.
  
 <<= $daughter.speak("It was just some cocktails with my friends. We didn't do anything.")>>
  
-<<= $wife.speak("You almost set a bar on fire! I had hoped your education would train that out of you but you've gotten strait back into your old habits.")>>
+<<= $wife.speak("You almost set a bar on fire! I had hoped your education would train you out of that kind of behaviour but you've go strait back into your old habits.")>>
  
 $daughter.name yanks her arm free and stumbles a bit. <<= $daughter.speak("I finished my degree. What more do you want? I just wana have fun!")>>
  
@@ -25,7 +25,7 @@ $daughter.name yanks her arm free and stumbles a bit. <<= $daughter.speak("I fin
 
 $wife.name points to the stairs.
  
-<<= $daughter.speak("Aaaaw. But I'm not sleepy.")>> *d* still turns anyway and starts stumbling forwards.
+<<= $daughter.speak("Aaaaw. But I'm not sleepy.")>> $daughter.name still turns anyway and starts stumbling forwards.
  
 She spots you standing nearby.
  
@@ -33,7 +33,7 @@ She spots you standing nearby.
  
 <<= $wife.speak("$daughter.name!")>>
  
-<<= $daughter.speak("Fine.")>> *d* lets go and heads up the stairs.
+<<= $daughter.speak("Fine.")>> $daughter.name lets go and heads up the stairs.
  
 $wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
 
