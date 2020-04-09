@@ -1,6 +1,6 @@
 ::PlayerBdRm
 <<= $mansion.display("PlayerBdRm")>>
-<<= $bedtime.setDate({day:0, hour: 22, minute:0})>>
+
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.
