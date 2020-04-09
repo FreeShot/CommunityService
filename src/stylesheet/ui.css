@@ -55,7 +55,8 @@
 }
 
 img {
-	width: 100%;
+	max-width: 50%;
+	max-height: 300px;
 	object-fit: contain;
 	border-radius: 15px;
 	border: solid 4px #5C2C41; 

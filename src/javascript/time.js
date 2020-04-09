@@ -6,7 +6,7 @@ class Timer {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
 
-		this.wakupTime = {default: {hour: 6, minute: 0}};
+		this.wakeupTime = {default: {hour: 6, minute: 0}};
 
 		Object.keys(config).forEach(function (pn) {
 			this[pn] = clone(config[pn]);
