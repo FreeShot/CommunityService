@@ -196,6 +196,11 @@ div.warning {
 	font-size: 30px;
 	border-width: 1px;
 }
+
+
+.hidden .NSFW{
+	display: none;
+}
 /* twine-user-stylesheet #2: "ui.css" */
 #ui-bar{
 	background-color: #2C0C1A;
@@ -720,6 +725,16 @@ Object.defineProperty(window, 'Room', {
     value : Room
 });
 /* twine-user-script #6: "script.js" */
+$(document).on(':passageinit', function (ev) {
+	if (settings.nsfw) {
+		console.log("NSFW ON");
+		$("html").removeClass("hidden");	
+	} else {
+		console.log("NSFW OFF");
+		$("html").addClass("hidden");	
+	}
+})
+
 $(document).on(':passagestart', function (ev) {
 	if (!ev.passage.tags.includes('noreturn')) {
 		State.variables.return = ev.passage.title;
@@ -728,6 +743,11 @@ $(document).on(':passagestart', function (ev) {
 	else if (!ev.passage.tags.includes('mainMenu')) {
 		State.variables.exitMenu = ev.passage.title;
 	}
+});
+
+Setting.addToggle("nsfw", {
+	label    : "Displays NSFW images",
+	default  : true
 });
 /* twine-user-script #7: "time.js" */
 setup.ImagePath = "img/";
@@ -1657,7 +1677,7 @@ You were enjoying your snack when a shady looking man took the seat accross from
 
 He holds out a plane brown box in front of you. It&#39;s clear this person is up to no good.
 
-[img[setup.ImagePath + &quot;items/general/brownbox.jpg&quot;]]
+&lt;span class=&quot;NSFW&quot;&gt;[img[setup.ImagePath + &quot;items/general/brownbox.jpg&quot;]]&lt;/span&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble.&quot;, &quot;Peru&quot;)&gt;&gt;
 

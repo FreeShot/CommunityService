@@ -93,3 +93,8 @@ div.warning {
 	font-size: 30px;
 	border-width: 1px;
 }
+
+
+.hidden .NSFW{
+	display: none;
+}
