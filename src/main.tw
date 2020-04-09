@@ -32,4 +32,5 @@ This game is intended for a mature audience. If you are too young, please <a cla
 	"manorIntro" : false,
 	"firstNight" : false,
 }>>
+<<= $time.setDate({day:1, hour: 22})>>
 <</link>>

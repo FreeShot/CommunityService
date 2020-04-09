@@ -1,5 +1,8 @@
 ::StoryInit
 <<set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})>>
+<<set $bedtime to new Timer({day: 0, time: {hour: 0, minute: 0}})>>
+<<= $bedtime.setDate({day:0, hour: 22, minute:0})>>
+
 <<set $flags to {
 	"cuff" : {
 		"recieved" : false,

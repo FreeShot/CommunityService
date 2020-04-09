@@ -21,6 +21,8 @@ With that, the turns around and walks into the estate proper.
 
 [[Follow|ManorVisit_2]]
 
+<<set $time.addTime({day:1, hour: 12, minute:0})>>
+
 ::ManorVisit_2
 <<= $mansion.display("Foyer")>>
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
@@ -48,6 +50,8 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 <<= $butler.speak("Now follow me to the [[Kitchen|ManorVisit_4]]")>>
 <<set $flags.cuff.init to true>>
 <<set $flags.cuff.rules to true>>
+<<set $time.addTime({day:0, hour:0, minute:10})>>
+
 ::ManorVisit_4
 <<= $mansion.display("Kitchen")>>
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
@@ -61,6 +65,8 @@ You enter the large open kitchen. It looks just as lavish as the rest of the roo
 The old chef points his knife at you to emphasize his point.
 
 <<= $butler.speak("You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.")>>
+
+<<set $time.addTime({day:0, hour:0, minute:20})>>
 
 ::ManorVisit_5
 <<= $mansion.display("Garden")>>
@@ -89,6 +95,8 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 <<= $butler.speak("As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I'll show you the upstairs rooms.")>>
 
 Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
+
+<<set $time.addTime({day:0, hour:0, minute:10})>>
 
 ::ManorVisit_6
 <<= $mansion.display("Hall")>>
@@ -140,6 +148,8 @@ You stammer. <<= $player.speak("Yes $wife.title.")>>
 
 $butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]
 
+<<set $time.addTime({day:0, hour:2, minute:10})>>
+
 ::ManorVisit_7
 <<= $mansion.display("PlayerBdRm")>>
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
@@ -182,4 +192,8 @@ The older man replies <<= $butler.speak("Yes sir.")>>
 
 <<= $owner.speak("That will be all.")>>
 
-$butler.name leads you back to your [[small living space|PlayerBdRm]].<<set $flags.manorIntro to false>><<set $flags.cuff.full to true>>
+$butler.name leads you back to your [[small living space|PlayerBdRm]].
+
+<<set $flags.manorIntro to false>>
+<<set $flags.cuff.full to true>>
+<<= $time.setDate({hour: 22})>>

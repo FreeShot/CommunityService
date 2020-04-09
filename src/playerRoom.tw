@@ -1,5 +1,6 @@
 ::PlayerBdRm
 <<= $mansion.display("PlayerBdRm")>>
+<<= $bedtime.setDate({day:0, hour: 22, minute:0})>>
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.
@@ -18,7 +19,8 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 
 <<if $flags.manorIntro is true>>
 	[[Wait to meet the master of the house|ManorVisit_8]]
-<<elseif $flags.firstNight is true or $time >= 22>>
+	<<= $time.setDate({day:1, hour: 19, minute:0})>>
+<<elseif $time.getClock() >= $bedtime.getClock()>>
 	[[Go to bed.|sleep]]
 <<else>>
 	[[Do your chores.|playerToDoList]]
