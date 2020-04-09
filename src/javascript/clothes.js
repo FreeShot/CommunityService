@@ -31,7 +31,7 @@ Object.defineProperty(window, 'Item', {
 
 class Clothes extends Item {
 	constructor(config) {
-		this.slot = "";
+		// this.slot = "";
 
 		super(config);
 	}

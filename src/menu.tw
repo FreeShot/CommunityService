@@ -2,7 +2,7 @@
 <hr>
 <span class="date">Day $time.day</span>
 <hr>
-<span class="time"><<= $time.getClock()>></span>\
+<span class="time"><<= $time.clock>></span>\
 <hr>
 Energy: <<= $player.getEnergyBar()>>
 <hr>

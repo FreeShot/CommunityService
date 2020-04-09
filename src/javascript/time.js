@@ -6,6 +6,8 @@ class Timer {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
 
+		this.wakupTime = {default: {hour: 6, minute: 0}};
+
 		Object.keys(config).forEach(function (pn) {
 			this[pn] = clone(config[pn]);
 		}, this);
@@ -18,8 +20,6 @@ class Timer {
 	}
 
 	addTime(time) {
-		console.log(time);
-
 		this.time.minute += (time.minute || 0);
 		this.time.hour += (time.hour || 0) + Math.floor(this.time.minute / 60);
 		this.time.minute %= 60;
@@ -27,7 +27,11 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
-	getClock() {
+	get weekDay() {
+		return this.day % 7;
+	}
+
+	get clock() {
 		return String.format(
 			"{0}:{1}",
 			("0" + this.time.hour).slice(-2),

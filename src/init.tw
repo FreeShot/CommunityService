@@ -14,6 +14,9 @@
 	"firstNight" : true,
 }>>
 
+<<set $mbriefs to new Clothes({name: "Men's Briefs", slot: "panties", describe: "Plain White Men's Underwear", img:"mbriefs_01.JPG", needAcceptance: "0", price: "0", specialUse: "none"})>>
+
+
 <<set $player to new Player()>>
 
 <<set $owner to new Character({name: "Mr Sono", color: "Brown", title: "sir"})>>
