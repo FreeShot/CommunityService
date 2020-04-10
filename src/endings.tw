@@ -1,4 +1,4 @@
-::EndHomeSweetHome
+::EndHomeSweetHome [ending]
 <<= $player.speak("Sorry, not interested.")>>
 
 <<= Character.speakAnonymous("Oh come on just hear me out...", "Peru")>>
@@ -9,7 +9,7 @@ A few days later you're back home in your room thinking about the great trip you
 
 Your mind wanders back to that shady guy you met before leaving. It was definitely a bad idea given the airport security but you can't help but wonder what would've happened if you wanted to [[Take that package.|Intro2]]
 
-::EndHardLabour
+::EndHardLabour [ending]
 The Sentencing Officer goes through the formal paper work with you and hands you over to the state.
 
 It deosn't take long for you to be stripped of all your belongs and sent to the camp. The conditions are hard and the only news from home is from your academy. You have forfeited your scholarship and been expelled.

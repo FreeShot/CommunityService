@@ -1,4 +1,4 @@
-::PlayerBdRm
+::PlayerBdRm [playerRoom room]
 <<= $mansion.display("PlayerBdRm")>>
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
@@ -31,16 +31,16 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 <</if>>
 
-::playerRoomShower
+::playerRoomShower [playerRoom]
 Todo: Add shower event
 
-::playerRoomMakup
+::playerRoomMakup [playerRoom]
 Todo: Add makeup event
 
-::playerRoomMorningRoutine
+::playerRoomMorningRoutine [playerRoom]
 Todo: Add routine
 
-::playerRoomWardrobe
+::playerRoomWardrobe [playerRoom]
 Todo: Add clothes
 <<if $flags.wardrobeFirstLook is true>>
 <<set $flags.wardrobeFirstLook to false>>

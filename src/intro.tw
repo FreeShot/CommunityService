@@ -1,4 +1,4 @@
-::Intro1
+::Intro1 [intro tutorial]
 As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn't have any other relatives, so you were raised in foster care. It wasn't a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you've been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
@@ -22,7 +22,7 @@ The man is rubbing his fingers together with a sly smile.
 [[Sounds like a good deal to me.|Intro2]]
 [[Nope. Stranger danger.|EndHomeSweetHome]]
 
-::Intro2
+::Intro2 [intro tutorial]
 <<= $player.speak("Sure. I can help you out.")>>
 
 <<= Character.speakAnonymous("Great ! you're a life saver. Have a safe trip.","Peru")>>
@@ -37,7 +37,7 @@ You look up, but the man is already getting into a nearby car and driving away.
 
 You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]
 
-::Intro3
+::Intro3 [intro tutorial]
 You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is long. You play with your queue. Half an hour layer, you finally reach the front.
 
 It doesn't take long to reach the airport and get to the security check-in. You hadn't really thought much about the box until you're putting it on the conveyor for the x-ray machine along with the rest of your suff. One of the gard waves at you through the metal detector. While you're waiting at the other end, an old lady in front of you drops her bag so you duck down to pick it.
@@ -81,7 +81,7 @@ The box is still closed.
 <</link>>
 @@
 
-::Intro4
+::Intro4 [intro tutorial]
 The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
 
 There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You're on your own.
@@ -102,7 +102,7 @@ Having anyone being in control of your life doesn't sound great.
 
 <<= Character.speakAnonymous("Well. I'll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?", "DarkGoldenRod")>>
 
-::Intro5
+::Intro5 [intro tutorial]
 The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled <b>Private Indenture Contract</b>.
 
 <<= Character.speakAnonymous("This is a standard private contract but has a few addendums from your potential owner. If you want this deal you'll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.", "DarkGoldenRod")>>
@@ -133,7 +133,7 @@ The Sentencing Officer does some quick paper work and then pushes foward a table
 <</link>>
 @@
 
-::Intro6
+::Intro6 [intro tutorial]
 <<set $flags.cuff.recieved to true>>\
 You sign your rights away and with that you are now an indentured servant. You know enough to know this basically makes you a slave with a few basic human rights but that's it.
 

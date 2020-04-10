@@ -11,7 +11,7 @@ With Yaflow's coding hand
 	"start" : "Start"
 }
 
-::Start [nobr]
+::Start [nobr startPassage]
 <div class=gameTitle>
 <h1>Community Service</h1>
 </div>

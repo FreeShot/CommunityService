@@ -22,27 +22,27 @@ Energy: <<= $player.getEnergyBar()>>
 <</if>>
 [[Return|$exitMenu]]
 
-::playerToDoList [noreturn]
+::playerToDoList [noreturn menu]
 <<= $mansion.displayChores()>>
 
 [[Return|$return]]
 
-::appearence [noreturn]
+::appearence [noreturn menu]
 Todo : Describe player
 
 [[Return|$return]]
 
-::skills [noreturn]
+::skills [noreturn menu]
 Todo : Add skills
 [[Return|$return]]
 
-::inventory [noreturn]
+::inventory [noreturn menu]
 W.I.P.
 TODO : List current held items
 
 [[Return|$return]]
 
-::rules [noreturn]
+::rules [noreturn menu]
 <h1 id="RuleTitle">Rules</h1>\
 <ol class="rules">\
 <li>Work week is Thursday to Tuesday. Wednesday is a free day.</li>

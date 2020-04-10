@@ -1,100 +1,100 @@
-::Foyer_Dusting [noreturn]
+::Foyer_Dusting [noreturn chore]
 
 You take the duster from your collection of cleaning supplies and start going over the room. There are a lot of delicate items so it takes a fair amount of time. Some of the higher areas are a bit hard to get to so you have to get up on your tips toes.
 
 [[Return|$return]]
 
-:: Foyer_SweepMop [noreturn]
+:: Foyer_SweepMop [noreturn chore]
 
 You sweep the floor carefully, making sure to get into all the nooks and crannies while being careful not to knock any of the displays over. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the room with a pleasant aroma.
 
 [[Return|$return]]
 
-:: Hall_Dusting [noreturn]
+:: Hall_Dusting [noreturn chore]
 
 You take the duster from your collection of cleaning supplies and start going over the hall. Once the tables and other surface are done you carefully run the duster over the paintings lining the walls. You use a cloth to clean the gaps in the moulded frames as well.
 
 [[Return|$return]]
 
-:: Hall_SweepMop [noreturn]
+:: Hall_SweepMop [noreturn chore]
 
 You sweep the floor carefully, making sure to get into all the nooks and crannies. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the hall with a pleasant aroma.
 
 [[Return|$return]]
 
-:: Kitchen_Dishes [noreturn]
+:: Kitchen_Dishes [noreturn chore]
 
 You run the water until it's piping hot and then add dish soap to get a good amount of suds. After you rinse each dish you then scrub with a rough sponge until there is no residue. You rinse both sides again with more hot water then put each item on the dish rack. A little while later the rack is full of sparkling clean tableware, cookware and utensils. When you're done washing, you dry everything with a fresh dish towel and then put it all away in its proper place.
 
 [[Return|$return]]
 
-:: Kitchen_Clean [noreturn]
+:: Kitchen_Clean [noreturn chore]
 
 You get some heavy duty cleaner and give the whole sink area a good scrub down, then polish the petal parts so they really shine. The stove top and oven need the most attention and you have to a hard bristle brush to clean it off. You finish up by neatly arranging the sink area and kitchen utensils. You're quite tired by the time it's all done, but everything is left gleaming. You also empty the trash into the garbage chute.
 
 [[Return|$return]]
 
-:: Kitchen_SweepMop [noreturn]
+:: Kitchen_SweepMop [noreturn chore]
 
 You sweep the floor carefully, making sure to get into the counter corners and into the gap beside the fridge. You’re also careful that no food debris gets left behind. Once that is done you fill the mop bucket up with water and some cleaning solution. You use a rag to take care of any tough stains, it’s hard work but you’re confident it gets the job done. You go over the surface with some floor wax, leaving the floor shiny and filling the room with a pleasant smell.
 
 [[Return|$return]]
 
-:: Laundry_Linen [noreturn]
+:: Laundry_Linen [noreturn chore]
 
 You go through each room, stripping the beds, pillows and quilts and take it all to the laundry. You throw it all into one of the machines along with detergent and heavy duty stain remover before starting the cycle. While it is all washing you take fresh linen and remake all the beds. Once each load is clean and dried you fold and store it all in the nearby cupboards.
 
 [[Return|$return]]
 
-:: Laundry_Clothes [noreturn]
+:: Laundry_Clothes [noreturn chore]
 
 With a heavy sigh, you spend time going through each room, taking the clothes discarded to hampers. Once you have everything you take it all back to the large laundry. You separate the items so you are washing the correct things together. Fortunately dry cleaning gets taken off site so you don’t have to learn that skill. Once it’s all ready you put each load into one of the machines with some laundry detergent, and then start the washing cycle. Once each cycle is done you put everything in the dryer before repeating the process. Once each load is done you have to fold everything neatly and sort it all into piles before putting it away.
 
 [[Return|$return]]
 
-:: Lounge_Dusting [noreturn]
+:: Lounge_Dusting [noreturn chore]
 
 You take the duster from your collection of cleaning supplies and start going over the room making sure to get ever chair frames and table. The lamp shades and curtains require a softer touch. You have to sepnd a little extra time going around the fire place to clean out any soot as well.
 
 [[Return|$return]]
 
-:: Lounge_SweepMop [noreturn]
+:: Lounge_SweepMop [noreturn chore]
 
 Before you can start you move the furniture out of the way and then sweep the floor in sections, making sure to go around the legs of the furnitre to pick up any gathered debris. You have to move funiture sveral times so it is a slow process. Once that is done you fill the mop bucket up with water and some cleaning solution and repeat the process again. You use a rag to take care of any tough stains, it’s hard work but you’re confident it gets the job done. Fortunately the ornate rugs cover most of the floor so you don't have to was it.
 
 [[Return|$return]]
 
-:: Lounge_Windows [noreturn]
+:: Lounge_Windows [noreturn chore]
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
 [[Return|$return]]
 
-:: MasterBdRm_Dusting [noreturn]
+:: MasterBdRm_Dusting [noreturn chore]
 
 You take the duster from your collection of cleaning supplies and start going over the room making sure to get ever chair frames and table. The lamp shades and curtains require a softer touch.
 
 [[Return|$return]]
 
-:: MasterBdRm_Vacuum [noreturn]
+:: MasterBdRm_Vacuum [noreturn chore]
 
 You take out your vacuum and go over the entire room. You make sure to fluff and clean chaise cushions and then go over the curtains.
 
 [[Return|$return]]
 
-:: MasterBdRm_Windows [noreturn]
+:: MasterBdRm_Windows [noreturn chore]
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
 [[Return|$return]]
 
-:: MasterBathRm_SweepMop [noreturn]
+:: MasterBathRm_SweepMop [noreturn chore]
 
 You sweep the floor carefully, making sure to get into all the nooks and crannies. Then with some floor cleaner you start washing the tiles. The harsher stains are more difficult to remove and need some hard scrubbing to get them out of the seams. By the time you are finished the chemicals have dried out your fingers but you've cleaned every tile and line of grout in the flooring.
 
 [[Return|$return]]
 
-:: MasterBathRm_Sink [noreturn]
+:: MasterBathRm_Sink [noreturn chore]
 
 You put some extra attention into the sink. It gets used more than anything else so you have to scrub away dried toothpaste and leftover cosmetics, collect strands of hair. Goodness knows what else was there but the ceramic is left perfectly white. You polish the metal trim on the mirror and sink, until it practically sparkles.
 	
@@ -102,55 +102,55 @@ You spray down the mirror with some glass cleaner and start polishing the surfac
 
 [[Return|$return]]
 
-:: MasterBathRm_Toilet [noreturn]
+:: MasterBathRm_Toilet [noreturn chore]
 
 You're on your hands and knees scrubbing around the toilet for longer than any person should ever be. You don't even want to think about where some of the stains came from. You pour medical grade cleaner around the bowl and use your toilet brush to remove whatever clings to the inside before flushing it clean again.
 
 [[Return|$return]]
 
-:: MasterBathRm_Shower [noreturn]
+:: MasterBathRm_Shower [noreturn chore]
 
 You wash the entire inside of the shower with some nasty-smelling mildew remover that makes you feel dizzy, then run the shower before drying everything again with a towel. You spend a considerable amount of time clearing the cobwebs and dust for the corners of the room.
 
 [[Return|$return]]
 
-:: MasterBathRm_Bath [noreturn]
+:: MasterBathRm_Bath [noreturn chore]
 
 You get into the bathtub and scrub down the rings staining the inside. It takes a good deal more time to remove the grime across the divide between the floor, walls and tub.
 
 [[Return|$return]]
 
-:: Office_Dusting [noreturn]
+:: Office_Dusting [noreturn chore]
 
 You take the duster from your collection of cleaning supplies and start going over the room making sure to get ever chair frames and table. The lamp shades and curtains require a softer touch.
 
 [[Return|$return]]
 
-:: Office_Vacuum [noreturn]
+:: Office_Vacuum [noreturn chore]
 
 You take out your vacuum and go over the entire room. You make sure to fluff and clean lounge cushions and are careful not to disturb anything on the desk.
 
 [[Return|$return]]
 
-:: Office_Windows [noreturn]
+:: Office_Windows [noreturn chore]
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
 [[Return|$return]]
 
-:: DaughterBdRm_Dusting [noreturn]
+:: DaughterBdRm_Dusting [noreturn chore]
 
 You take the duster from your collection of cleaning supplies and start going over the room making sure do all the surface you can get to. The lamp shades and curtains require a softer touch, even more so around the computer desk.
 
 [[Return|$return]]
 
-:: DaughterBdRm_Vacuum [noreturn]
+:: DaughterBdRm_Vacuum [noreturn chore]
 
 You take out your vacuum and go over the entire room. You make sure to get into every nook and canny and are careful not to disturb anything on the desk.
 
 [[Return|$return]]
 
-:: DaughterBdRm_Windows [noreturn]
+:: DaughterBdRm_Windows [noreturn chore]
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 

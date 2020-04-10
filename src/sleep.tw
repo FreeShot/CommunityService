@@ -1,9 +1,9 @@
-::sleep
+::sleep [sleep]
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep. 
 
 [[wakeUp]]
 
-::wakeUp
+::wakeUp [sleep]
 
 The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
 

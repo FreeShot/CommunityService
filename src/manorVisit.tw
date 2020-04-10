@@ -1,4 +1,4 @@
-::ManorVisit_1
+::ManorVisit_1 [tutorial]
 You're taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 <<= Character.speakAnonymous("State correction here with your new servant.","DarkGoldenRod")>>
@@ -23,7 +23,7 @@ With that, the turns around and walks into the estate proper.
 
 <<set $time.addTime({day:1, hour: 12, minute:0})>>
 
-::ManorVisit_2
+::ManorVisit_2 [tutorial]
 <<= $mansion.display("Foyer")>>
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
@@ -37,7 +37,7 @@ He continues walking through the foyer and into the main lounge
 
 You follow $butler.name to the [[Main Lounge|ManorVisit_3]]
 
-::ManorVisit_3
+::ManorVisit_3 [tutorial]
 <<= $mansion.display("Lounge")>>
 This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
 
@@ -52,7 +52,7 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 <<set $flags.cuff.rules to true>>
 <<set $time.addTime({day:0, hour:0, minute:10})>>
 
-::ManorVisit_4
+::ManorVisit_4 [tutorial]
 <<= $mansion.display("Kitchen")>>
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
@@ -68,7 +68,7 @@ The old chef points his knife at you to emphasize his point.
 
 <<set $time.addTime({day:0, hour:0, minute:20})>>
 
-::ManorVisit_5
+::ManorVisit_5 [tutorial]
 <<= $mansion.display("Garden")>>
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
@@ -98,7 +98,7 @@ Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
 
 <<set $time.addTime({day:0, hour:0, minute:10})>>
 
-::ManorVisit_6
+::ManorVisit_6 [tutorial]
 <<= $mansion.display("Hall")>>
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
@@ -150,7 +150,7 @@ $butler.name bows slightly and then continues [[showing you around the manor.|Ma
 
 <<set $time.addTime({day:0, hour:2, minute:10})>>
 
-::ManorVisit_7
+::ManorVisit_7 [tutorial]
 <<= $mansion.display("PlayerBdRm")>>
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
@@ -164,7 +164,7 @@ $butler.name closes the door behind you, leaving you alone.
 
 [[Inspect the room|PlayerBdRm]]
 
-::ManorVisit_8
+::ManorVisit_8 [tutorial]
 <<= $mansion.display("Office")>>
 At exactly 7pm, the door to your room opens and $butler.name walks in.
 
