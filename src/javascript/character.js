@@ -49,33 +49,36 @@ class Player extends Character {
                 title: "Alex",
                 feminity: 0,
                 hairColor: "Brunette",
-                energy: {current : 10, max : 10},
-                currentRoom: "PlayerBdRm"
+                stamina: {current : 10, max : 10},
+                currentRoom: "PlayerBdRm",
+                arrousal : 0,
+                submission : 0,
+                feminity : 0,
+                appearance : 0,
             }, config));
-		this.feminize = 0;
 	}
 
-	getEnergyBar() {
+	getStaminaBar() {
 		var str = "";
-		for(var i = 0; i < this.energy.current; i++) {
+		for(var i = 0; i < this.stamina.current; i++) {
 			str += "█";
 		}
-		for(var i = this.energy.current; i < this.energy.max; i++) {
+		for(var i = this.stamina.current; i < this.stamina.max; i++) {
 			str += "░";
 		}
 		return str
 	}
 
-	hasEnoughEnergy(cost) {
-		return this.energy.current >= cost;
+	hasEnoughStamina(cost) {
+		return this.stamina.current >= cost;
 	}
 
 	rest() {
-		this.energy.current = this.energy.max;
+		this.stamina.current = this.stamina.max;
 	}
 
-	useEnergy(amnt) {
-		this.energy.current = Math.max(this.energy.current - amnt, 0);
+	useStamina(amnt) {
+		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
 	}
 
 	get getColor() {
