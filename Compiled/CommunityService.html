@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="63" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="63" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
@@ -1677,7 +1677,7 @@ You were enjoying your snack when a shady looking man took the seat accross from
 
 He holds out a plane brown box in front of you. It&#39;s clear this person is up to no good.
 
-&lt;span class=&quot;NSFW&quot;&gt;[img[setup.ImagePath + &quot;items/general/brownbox.jpg&quot;]]&lt;/span&gt;
+[img[setup.ImagePath + &quot;items/general/brownbox.jpg&quot;]]
 
 &lt;&lt;= Character.speakAnonymous(&quot;The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble.&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -2065,7 +2065,10 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	[[Go to bed.|sleep]]
 &lt;&lt;else&gt;&gt;
 	[[Do your chores.|playerToDoList]]
-	
+	&lt;&lt;click &quot;Rest 1 Hour&quot;&gt;&gt;
+	&lt;&lt;set $time.addTime({day:0, hour:1, minute:0})&gt;&gt;
+	&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/click&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="playerRoomShower" tags="" position="100,1100" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="82" name="playerRoomMakup" tags="" position="225,1100" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="83" name="playerRoomMorningRoutine" tags="" position="350,1100" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="84" name="playerRoomWardrobe" tags="" position="475,1100" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;

@@ -24,7 +24,10 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	[[Go to bed.|sleep]]
 <<else>>
 	[[Do your chores.|playerToDoList]]
-	
+	<<click "Rest 1 Hour">>
+	<<set $time.addTime({day:0, hour:1, minute:0})>>
+	<<goto `passage()`>>
+	<</click>>	
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 <</if>>
 
