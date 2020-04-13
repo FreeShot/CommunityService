@@ -92,15 +92,15 @@ The black silk cups and conceals your manhood but it’s a bit tight since they 
  
 As you are twisting and turning the bathroom door suddenly opens and $wife.name comes in with the rest of the lingerie.
  
-You rusht o cover yourself. <<= $player.speak("I thought you were waiting outside!?")>>
- 
+You rush to cover yourself. <<= $player.speak("I thought you were waiting outside!?")>>
+
 $wife.name puts the items on top of your normal clothes. <<= $wife.speak("We need those legs smooth as silk. Sit down.")>> She grabs you by the shoulders again and sits you down on the ornate chaise lounge near the vanity.
  
 <<= $player.speak("But the stockings aren't even see through.")>>
 
 <<= $wife.speak("Shush now.")>>
 
-[[She's settign the terms so you have no choice|firstcocktailparty5]]
+[[She's setting the terms so you have no choice|firstcocktailparty5]]
 
 ::firstcocktailparty5 [event] 
 $wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
@@ -133,7 +133,7 @@ You look at the intimidating pile of silk beforing reaching out to take...
 <span id="maiddressing1">
 	<<link "the bra">>
 		<<replace "#maiddressing1">>
-			You reach out and take the bra from the pile. It a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder they are already a bit tangled.<br>
+			You reach out and take the bra from the pile. It's a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder they are already a bit tangled.<br>
 			<br>
 			<<= $wife.speak("Oh for goodness sake. You are hopeless.")>><br>
 			[[She snatches the item from you.|firstcocktailparty6]]
@@ -251,7 +251,7 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 	<</link>><br>
 	<<link "Blondes">>
 		<<replace "#maiddressing3">>
-			<<set player.hairColor to "Blonde">>
+			<<set $player.hairColor to "Blonde">>
 			<<= $player.speak("Blonde, I think...")>>
 			<br><br>
 			<<= $wife.speak("Blonde it is. Looks like you're in for some fun.")>>
@@ -270,7 +270,7 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 	<</link>><br>
 	<<link "Brunettes">>
 		<<replace "#maiddressing3">>
-			<<set player.hairColor to "Brunette">>
+			<<set $player.hairColor to "Brunette">>
 			<<= $player.speak("Brunette, I think...")>>
 			<br><br>
 			<<= $wife.speak("Brunette then. Looking to play the friend card eh?")>>
@@ -289,8 +289,8 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 	<</link>><br>
 	<<link "Red heads">>
 		<<replace "#maiddressing3">>
-			<<set player.hairColor to "Auburn">>
-			<<= $player.speak("Aubrun, I think...")>>
+			<<set $player.hairColor to "Auburn">>
+			<<= $player.speak("I kind of like red heads I guess...")>>
 			<br><br>
 			<<= $wife.speak("Hmm you're not really firey but Auburn may suit you.")>>
 			<br><br>
@@ -335,7 +335,7 @@ Before you move $wife.name pulls you up and turns you around.
 ::firstcocktailparty11[event]
 Todo: Add image/gif
 
-Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheek a hint of pink on her pale skin. The *hair colour* chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
+Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The $player.hairColor chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
  
 Only problem is, that girl is you.
  
@@ -463,18 +463,15 @@ $wife.name kneels back down and take the item from the chaise.
 <<= $player.speak("Why did you do that $wife.title and why are you, um, down there?")>>
  
 <<= $wife.speak("I can't have you tenting your skirt at the party tonight or someone might figure out you're not a pretty little maid.")>>
-<<= $wife.speak("I can't have you tenting your skirt at the party tonight or someone might figure out you're not a pretty little maid.")>>
  
 You feel her grab your penis which softened moments after the pinch. She wraps something cold and hard over it and then wraps it behind your balls.
  
-<<= $wife.speak("Fortunately one of my smaller chastity cages is just the right size.")>>
 <<= $wife.speak("Fortunately one of my smaller chastity cages is just the right size.")>>
  
 <<= $player.speak("Excuse me $wife.title. A chastity what?")>>
  
 You here a little click as the cage locks in place and then she pulls your panties back up.
  
-<<= $wife.speak("It will stop you from getting hard and making me look bad. You'll keep it on for the remained of the night. You can come see me tomorrow to get it removed if you want to.")>>
 <<= $wife.speak("It will stop you from getting hard and making me look bad. You'll keep it on for the remained of the night. You can come see me tomorrow to get it removed if you want to.")>>
  
 <<= $player.speak("<i>All night? It's still morning though.</i>")>>
@@ -496,8 +493,9 @@ You step into the dress and she pulls it up over your hips. She helps you thread
  
 There is a pair of black mary janes waiting and $wife.name buckles them up after helping you into them. Lastly she places a white lace bonnet on your head.
  
- 
 You turn and look in one of the full length mirror. The cute girl you saw earlier is still watching you only now in a little maids outfit. Overall the look is quite modest but just sexy enough that you're going to turn some heads. The appeal is there though and you wouldn't be surprised to see the outfit in a high class porno.
+
+To do: add image
  
 <<nobr>>
 <span id="maiddressing6">
@@ -516,18 +514,18 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 <span id="maiddressing7">
 	<<link "It could be worse.">>
 		<<replace "#maiddressing7">>
-			<<= $player.speak("It's fine I guess.. $wife.title.")>>)>><br>
+			<<= $player.speak("It's fine I guess.. $wife.title.")>><br>
 			<br>
-			She seem happy with that response. [["Oh. One more thing."|firstcocktailparty16]]
+			She seems happy with that response. [["Oh. One more thing."|firstcocktailparty16]]
 		<</replace>>
-	<</link>>
+	<</link>><br>
 	<<link "Get me out of this stuff.">>
 		<<replace "#maiddressing7">>
 			<<= $player.speak("If I didn't have to be doing this I wouldn't.")>><br>
 			<br>
 			<<= $wife.speak("Wouldn't... what?")>><br>
  			<br>
-			<<= $player.speak("Wouldn't ma'am.")>><br>
+			<<= $player.speak("Wouldn't $wife.title.")>><br>
 			[["Better. Oh. One more thing."|firstcocktailparty16]]
 		<</replace>>
 	<</link>>
@@ -536,6 +534,8 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 Todo: Change player pronoun
 
 ::firstcocktailparty16 [event] 
+Todo: voice change
+
 $wife.name wraps a choker around your neck. It's not too tight but it does the job of hiding your small Adams apple.
  
 <<= $wife.speak("Here. Drink this.")>> She hands you a small glass bottle. <<= $wife.speak("The whole thing.")>>
@@ -564,7 +564,7 @@ Todo: Add image/gif
 			<br>
 			[[What about your name?|firstcocktailparty17]]
 		<</replace>>
-	<</link>>
+	<</link>><br>
 	<<link "Submissively.">>
 		<<replace "#maiddressing8">>
 			You grab mouth and throat in shock just staring.<br>
@@ -584,9 +584,11 @@ Todo: Add image/gif
 
 <<= $wife.speak("I want to avoid confusion. What if someone comes by after the party and meets you when you aren't a girl?")>>
 
-Choose your girl name: <<textbox "$player.name" $player.femname "">>
+Choose your girl name: <<textbox "$player.femName" "" "firstcocktailparty18">>
 
-<<= $wife.speak("Yes, that one suits you.")>>
+::firstcocktailparty18 [event]
+
+<<= $wife.speak("Yes, $player.femName suits you.")>>
 
 $wife.name gives you a spritz of some nice smelling perfume.
 
@@ -598,15 +600,15 @@ Todo: Add image/gif
 
 <<= $wife.speak("Right then. Let's get you started with $caterer.name.")>>
 
-[[Introduce everyone to $player.femname|firstcocktailparty18]]
+[[Introduce everyone to the new maid.|firstcocktailparty19]]
 
-::firstcocktailparty18 [event]
+::firstcocktailparty19 [event]
 
 Todo: Add image/gif
 
-As you follow after $wife.name and out the bedroom door. The shaper isn't uncomfortable but both it and the short heels are forcing you walk with a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You figet with your hands as the long ponytail tickles between your shoulders. Before you come into view of anyone else you reach down and shift uncomfortably a few times. After checking yourself out in the mirror your tapped member is already straining against it's restricting plastic prison.
+You follow after $wife.name and try to get used to the changes in your wardrobe. The shaper isn't uncomfortable but both it and the short heels are forcing you walk with a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You figet with your hands as the long ponytail tickles between your shoulders. Before you come into view of anyone else you reach down and shift uncomfortably a few times. After checking yourself out in the mirror your tapped member is already straining against it's restricting plastic prison.
  
-<<= $wife.speak("Well $caterer.name. This is $player.femname.")>>
+<<= $wife.speak("Well $caterer.name. This is $player.femName.")>>
  
 $caterer.name walks over to you and walks around you thoughtfully. You're reminded of when you met $wife.name for the first time as he examines you.
  
@@ -628,9 +630,9 @@ $caterer.name goes back to the kitchen to continue his prep work.
  
 <<= $caterer.speak("Come on girl. We need to get you started.")>>
  
-[[Mason walks you through your duties|firstcocktailparty19]]
+[[Mason walks you through your duties|firstcocktailparty20]]
 
-::firstcocktailparty19 [event] 
+::firstcocktailparty20 [event] 
 <<= $caterer.speak("Alright. I expect that you have no idea what you're doing when it comes to the food prep so just leave all that to me. I'll have to laps of the guests with the serving trays. Have you ever held a serving tray before.")>>
  
 <<= $player.speak("Only when bring out breakfast.")>>
@@ -639,7 +641,18 @@ $caterer.name goes back to the kitchen to continue his prep work.
 
 <<nobr>>
 <span id="partytraining1">
-	<<link "Not good">>
+	<<link "You don't want to risk dropping it, hold it with two hands.">>
+		<<replace "#partytraining1">>
+			<<= $caterer.speak("No, no, no.")>> He snatches the tray from you. <<= $caterer.speak("You hold the tray with one hand only and put the other behind your back. Like this.")>><br>
+			<br>
+			He demonstrates for you and then hands the tray back. You hold it with one hand this time.<br>
+			<br>
+			<<= $caterer.speak("Better. But you still need some work")>><br>
+			<br>
+			[[Continue praticing|firstcocktailparty20]]
+		<</replace>>
+	<</link>><br>
+	<<link "Take the tray with one hand.">>
 		<<replace "#partytraining1">>
 			<<= $caterer.speak("Alright. At least you know that much. More than I was expecting to be honest.")>><br>
 			<br>
@@ -647,19 +660,12 @@ $caterer.name goes back to the kitchen to continue his prep work.
 			<br>
 			<<= $caterer.speak("You still need the other hand behind your back though.")>><br>
 			<br>
-			[[What about your name?|firstcocktailparty20]]
-		<</replace>>
-	<</link>>
-	<<link "Submissively.">>
-		<<replace "#partytraining1">>
-			<<= $caterer.speak("No, no, no.")>> He snatches the tray from you. <<= $caterer.speak("You hold the tray with one hand only and put the other behind your back.")>><br>
-			<br>
-			[[What about your name?|firstcocktailparty20]]
+			[[Continue praticing|firstcocktailparty20]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::firstcocktailparty20 [event]
+::firstcocktailparty21 [event]
 
 <<= $caterer.speak("I'll load you up with something that won't break and you can practice for a while.")>>
 
@@ -673,7 +679,7 @@ After a while you seem to be getting the hang of it and $caterer.name calls you 
  
 <<= $caterer.speak("Alright girl. One of the most important things to know about standing service is to watch the body language of your betters.")>>
 
-<<= $player.speak("My name is ... $player.femname.")>>
+<<= $player.speak("My name is ... $player.femName.")>>
  
 <<= $caterer.speak("The position of the hands can tell you…")>> $caterer.name continues his in-depth explanation.
  
@@ -689,23 +695,25 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 
 <<nobr>>
 <span id="partytraining2">
-	<<link "Thank her,">>
+	<<link "Thank her.">>
 		<<replace "#partytraining2">>
 			<<= $player.speak("Um, thank you $daughter.title.")>><br>
 			<br>
 			$daughter.name walks up to you and grabs you by the waist to check you out. She leans in to whisper in your ear.<br>
 			<br>
-			<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femname.")>><br>
+			<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName.")>><br>
 			<br>
 			You nod meekly.<br>
 			<br>
 			<<= $player.speak("If you say so.")>><br>
 			<br>
-			[[Continue|firstcocktailparty21]]
+			[[Continue|firstcocktailparty22]]
 		<</replace>>
-	<</link>>
-	<<link "Submissively.">>
+	<</link>><br>
+	<<link "Get snarky.">>
 		<<replace "#partytraining2">>
+			<<= $player.speak("Oh please, if I didn't have to do this I wouldn't be.")>><br>
+			<br>
 			<<= $daughter.speak("Oh. You've dropped the formalities already? You've got some guts for a skinny little servant girl.")>><br>
 			<br>
 			You start to bristle a bit but it reminds you of your place. $daughter.name starts laughing.<br>
@@ -714,14 +722,14 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 			<br>
 			$daughter.name walks up to you leans in to whisper in your ear.<br>
 			<br>
-			<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femname.")>><br>
+			<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName.")>><br>
 			<br>
-			[[Continue|firstcocktailparty21]]
+			[[Continue|firstcocktailparty22]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::firstcocktailparty21 [event]
+::firstcocktailparty22 [event]
 
 She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly starts straining against its plastic prison.
 
@@ -729,9 +737,8 @@ $daughter.name gives you a quick pat on the cheek before turning around to $cate
 
 <<= $caterer.speak("Good to have you back $daughter.name. These gatherings have been getting a bit stale.")>> $caterer.name's attitude is polar shift from when he's been talking to you or $wife.name.
 
-<<= $daughter.speak("I have a feeling things might liven up over the next few weeks.")>> *daughter gives him another quick hug and moves to leave as guests start arriving.
+<<= $daughter.speak("I have a feeling things might liven up over the next few weeks.")>> $daughter.name gives him another quick hug and moves to leave as guests start arriving.
 
-
-<<= $caterer.speak("Come on girl. You're up." $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
+<<= $caterer.speak("Come on girl. You're up.")>> $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
 
 [[Begin serving|cocktailparty_start]]

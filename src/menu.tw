@@ -45,12 +45,12 @@ TODO : List current held items
 ::rules [noreturn menu]
 <h1 id="RuleTitle">Rules</h1>\
 <ol class="rules">\
-<li>Work week is Thursday to Tuesday. Wednesday is a free day.</li>
+<li>You will be required to be available 24/7 but unless otherwise stated every you will have a free day every 7th day.</li>
 <li>Must be presentable and in clean clothes at all times.</li>
 <li>Obey all instructions from other residents of the estate.</li>
 <li>Offsite excursions are only allowed on approval from Mr or Mrs Sono.</li>
-<li>There will be a 4 week probation where performance will be assessed on Sunday of each week in Mr Sono's office between 7pm and 8pm.</li>
-<li>If the weekly performance quota is not met punishment will be determined by Mr or Mrs Sono.</li>
+<li>Performance will be assessed regularly at the the discretion of Mr and Mrs Sono.</li>
+<li>Punishment for not meeting the requirements of your duties will be at the discretion of Mr and Mrs Sono.</li>
 <<nobr>>
 <<if $gymEstateUnlocked is true>>
 <li>Use of any of the facilities on site is permitted between 8am to 10pm.</li>

@@ -629,7 +629,350 @@ class Mansion {
 Object.defineProperty(window, 'Mansion', {
     value : Mansion
 });
-/* twine-user-script #5: "rooms.js" */
+/* twine-user-script #5: "pronouns.js" */
+// Chapel's pronouns template
+
+(function () {
+    'use strict';
+    // v1.0.0; by Chapel, for SugarCube 2 (>= v2.29.0)
+
+    if (!Template || !Template.add || typeof Template.add !== 'function') {
+        alert('Warning, this version of SugarCube does not include the Template API. Please upgrade to v2.29.0 or higher.');
+        return;
+    }
+
+    // CONFIGURATION
+
+    var config = {
+        name : 'gender',
+        showSetting : true,
+        label : 'Gender',
+        desc : '',
+        storyVar : '%%gender',
+        default : 'female' // female, male, or other
+    };
+
+    // DATA
+
+    // the point-replace id
+    var settingID = '#setting-control-' + config.name;
+
+    // preset pornoun map
+    var genderMap = {
+        subjective : ['she', 'he', 'they'],
+        objective : ['her', 'him', 'them'],
+        possessive : ['hers', 'his', 'theirs'],
+        determiner : ['her', 'his', 'their'],
+        reflexive : ['herself', 'himself', 'themself'],
+        noun : ['woman', 'man', 'person']
+    };
+
+    // INTERNAL FUNCTIONS
+
+    // custom dialog function
+    function createDialog (name, element, classes) {
+        var reopen = false;
+        if (Dialog.isOpen() && $('#ui-dialog-body').hasClass('settings')) {
+            reopen = true;
+        }
+        Dialog.close();
+        Dialog.setup(name, (reopen) ? classes + ' reopen' : classes);
+        Dialog.append(element);
+        Dialog.open();
+    }
+
+    function genderForm () { // create a form for users to configure their pronouns
+        var $wrapper = $(document.createElement('div'));
+
+        function createInput (label, name, def) { // create text inputs
+            return $(document.createElement('label'))
+                .append(label)
+                .css('display', 'block')
+                .append($(document.createElement('input'))
+                    .attr({
+                        type : 'text',
+                        name : name
+                    })
+                    .css({
+                        float : 'right',
+                        'margin-left' : '0.2em'
+                    })
+                    .val(def)
+                );
+        }
+
+        function createDropdown (label, name, list) { // create dropdowns
+            var $select = $(document.createElement('select'))
+                .attr('name', name)
+                .css('float', 'right');
+            list.forEach( function (opt, idx) {
+                console.log(idx);
+                $(document.createElement('option'))
+                    .attr('value', String(idx))
+                    .append(opt)
+                    .appendTo($select);
+            });
+            return $(document.createElement('label')).css('display', 'block').append(label, $select);
+        }
+
+        var $inputs = Object.keys(genderMap).map( function (key) {
+            // create an input for each type of pronoun
+            var idx = 2;
+            if (config.default === 'male') {
+                idx = 1;
+            } else if (config.default === 'female') {
+                idx = 0;
+            }
+            var sv = State.variables;
+            var def = genderMap[key][idx];
+            if (sv[config.storyVar] && sv[config.storyVar][key]) {
+                def = sv[config.storyVar][key];
+            }
+            return createInput(key.toUpperFirst() + ': ', 'gender-' + key, def);
+        });
+
+        var $presets = createDropdown('Presets: ', 'gender-preset', ['She/Her', 'He/Him', 'They/Them'])
+            .on('change', function () {
+                // auto-fill text inputs when the preset is changed
+                var value = Number($(this).find('select').val());
+                if (!Number.isNaN(value)) {
+                    $inputs.forEach( function ($input) {
+                        var $text = $input.find('input');
+                        var type = $text.attr('name').split('-')[1];
+                        $text.val(genderMap[type][value]);
+                    });
+                }
+            });
+
+        var $select = $presets.find('select');
+        if (!State.variables[config.storyVar]) {
+            // set defaults
+            if (config.default === 'male') {
+                $select.val('1');
+            } else if (config.default === 'female') {
+                $select.val('0');
+            } else {
+                $select.val('2');
+            }
+        } else {
+            $select.val(''); // custom config, no preset
+        }
+        
+        var $confirm = $(document.createElement('button'))
+            .wiki('Confirm')
+            .addClass('gender-confirm')
+            .ariaClick({ label : 'Confirm pronoun selection.' }, function () {
+                // this button saves the pronoun config settings
+                var sv = State.variables;
+                sv[config.storyVar] = {};
+                $inputs.forEach( function ($input) {
+                    var $text = $input.find('input');
+                    var type = $text.attr('name').split('-')[1];
+                    sv[config.storyVar][type] = $text.val().trim().toLowerCase();
+                });
+                // reopen the settings modal or close the modal
+                if ($('#ui-dialog-body').hasClass('reopen')) {
+                    UI.settings();
+                }
+                Dialog.close();
+            });
+
+        var $form = (function () {
+            // add some line breaks to the generated form
+            var $els = [$presets, '<br>'];
+            $inputs.forEach( function ($input) {
+                $els.push($input);
+                $els.push('<br>');
+            });
+            $els.push($confirm);
+            return $els;
+        }());
+
+        return $wrapper.append($form);
+
+    }
+
+    // CORE FUNCTIONS
+
+    function handleGender () {
+        // this function opens the custom modal
+        createDialog('Customize Gender', genderForm(), 'custom-gender');
+    }
+
+    function getGender () {
+        // get the player's gender (custom or grab the default)
+        // custom
+        if (State.variables[config.storyVar] && State.variables[config.storyVar].subjective) {
+            return State.variables[config.storyVar];
+        }
+        // default
+        var idx = 2;
+        if (config.default === 'male') {
+            idx = 1;
+        } else if (config.default === 'female') {
+            idx = 0;
+        }
+        var ret = {};
+        Object.keys(genderMap).forEach( function (key) {
+            ret[key] = genderMap[key][idx];
+        });
+        return ret;
+    }
+
+    // SETTINGS API
+
+    if (config.showSetting) {
+        Setting.addToggle(config.name, {
+            label : config.label,
+            desc : (config.desc && typeof config.desc === 'string' && config.desc.trim()) ? 
+                config.desc.trim() : undefined
+        });
+
+        $(document).on(':dialogopen :dialogopened', function () {
+            if ($('#ui-dialog-body').hasClass('settings')) {
+                $(settingID).parent('div').empty().append( $(document.createElement('button'))
+                    .append('Configure...')
+                    .ariaClick( function () {
+                        handleGender();
+                    })
+                );
+            }
+        });
+    }
+
+    // TEMPLATES
+
+    function isUpper (name, string) {
+        // is name is uppercase, return uppercased string
+        if (name.first() === name.first().toUpperCase()) {
+            return string.toUpperFirst();
+        }
+        return string;
+    }
+    
+    Template.add(['he', 'she', 'they', 'He', 'She', 'They'], function () {
+        return isUpper(this.name, getGender().subjective);
+    });
+    Template.add(['him', 'her', 'them', 'Him', 'Her', 'Them'], function () {
+        return isUpper(this.name, getGender().objective);
+    });
+    Template.add(['his', 'hers', 'theirs', 'His', 'Hers', 'Theirs'], function () {
+        return isUpper(this.name, getGender().possessive);
+    });
+    Template.add(['his_', 'her_', 'their', 'His_', 'Her_', 'Their'], function () {
+        return isUpper(this.name, getGender().determiner);
+    });
+    Template.add(['himself', 'herself', 'themself', 'Himself', 'Herself', 'Themself'], function () {
+        return isUpper(this.name, getGender().reflexive);
+    });
+    Template.add(['man', 'woman', 'person', 'Man', 'Woman', 'Person'], function () {
+        return isUpper(this.name, getGender().noun);
+    });
+
+    // singular endings
+    var replaceWith_are = /^is$/i; // is
+    var replaceWith_were = /^was$/i; // was
+    var replaceWith_o = /oes$/i; // does, goes
+    var replaceWith_ie = /^[dl]ies$/i; // dies
+    var replaceWith_y = /ies$/i; // dries
+    var remove_es = /sses$/i; // posesses
+    var remove_es2 = /hes$/i; // catches
+    var remove_s = /s$/i; // surpises, plays
+    // the above are tested in order; if none apply, return singular form (e.g: ran -> ran)
+
+    // test for 'they' pronoun
+    var hasThey = /they/i;
+
+    function makePlural (singular) {
+        if (!singular || typeof singular !== 'string') {
+            return singular;
+        }
+        singular = singular.trim();
+        if (replaceWith_are.test(singular)) {
+            return singular.replace(replaceWith_are, 'are');
+        }
+        if (replaceWith_were.test(singular)) {
+            return singular.replace(replaceWith_were, 'were');
+        }
+        if (replaceWith_o.test(singular)) {
+            return singular.replace(replaceWith_o, 'o');
+        }
+        if (replaceWith_ie.test(singular)) {
+            // need to use replaceWith_y regex here.
+            return singular.replace(replaceWith_y, 'ie');
+        }
+        if (replaceWith_y.test(singular)) {
+            return singular.replace(replaceWith_y, 'y');
+        }
+        if (remove_es.test(singular)) {
+            return singular.replace(remove_es, 'ss');
+        }
+        if (remove_es2.test(singular)) {
+            return singular.replace(remove_es2, 'h');
+        }
+        if (remove_s.test(singular)) {
+            return singular.replace(remove_s, '');
+        }
+        return singular;
+    }
+
+    function _getPronounsArePlural () {
+        return hasThey.test(getGender().subjective.trim());
+    }
+
+    // usage: pluralize('dries', null, true) -> dry; pluralize('supresses', 'supress') -> supresses
+    function pluralize (singular, plural, forcePlural) {
+        if (!forcePlural) {
+            return singular;
+        }
+        if (plural && typeof plural === 'string') {
+            return plural;
+        }
+        return makePlural(singular);
+    }
+
+    // MACRO
+
+    // `<<pronouns>>` -> opens the modal for pronoun configuration, probably best paired with a link
+    Macro.add('pronouns', {
+        skipArgs : true,
+        handler : function () {
+            handleGender();
+        }
+    });
+
+    // <<verb singular [plural] [makePlural]>>
+    Macro.add('verb', {
+        handler: function () {
+            var pl = _getPronounsArePlural();
+
+            if (this.args.length < 1) {
+                return this.error('Please pass at least a singular third person pronoun to this macro.');
+            }
+
+            if (this.args.includes('plural')) {
+                pl = true;
+            }
+
+            this.output.append(pluralize(String(this.args[0]), (this.args[1]) ? String(this.args[1]) : null, !!pl));
+        }
+    });
+
+    // JAVASCRIPT API
+
+    setup.gender = {
+        // get the pronoun object; `setup.gender.pronouns().subjective` -> get `he`, `she`, etc
+        pronouns : getGender,
+        // open the pronoun config modal from JS; `setup.gender.dialog()`
+        dialog : handleGender,
+        // pluralizer function
+        pluralize : makePlural
+    };
+
+    window.gender = window.gender || setup.gender;
+
+}());
+/* twine-user-script #6: "rooms.js" */
 class Room {
 	constructor(config) {
 		this.name = '';
@@ -727,7 +1070,7 @@ class Room {
 Object.defineProperty(window, 'Room', {
     value : Room
 });
-/* twine-user-script #6: "script.js" */
+/* twine-user-script #7: "script.js" */
 $(document).on(':passageinit', function (ev) {
 	if (settings.nsfw) {
 		console.log("NSFW ON");
@@ -752,7 +1095,7 @@ Setting.addToggle("nsfw", {
 	label    : "Displays NSFW images",
 	default  : true
 });
-/* twine-user-script #7: "time.js" */
+/* twine-user-script #8: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -962,15 +1305,15 @@ The black silk cups and conceals your manhood but it’s a bit tight since they 
  
 As you are twisting and turning the bathroom door suddenly opens and $wife.name comes in with the rest of the lingerie.
  
-You rusht o cover yourself. &lt;&lt;= $player.speak(&quot;I thought you were waiting outside!?&quot;)&gt;&gt;
- 
+You rush to cover yourself. &lt;&lt;= $player.speak(&quot;I thought you were waiting outside!?&quot;)&gt;&gt;
+
 $wife.name puts the items on top of your normal clothes. &lt;&lt;= $wife.speak(&quot;We need those legs smooth as silk. Sit down.&quot;)&gt;&gt; She grabs you by the shoulders again and sits you down on the ornate chaise lounge near the vanity.
  
 &lt;&lt;= $player.speak(&quot;But the stockings aren&#39;t even see through.&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Shush now.&quot;)&gt;&gt;
 
-[[She&#39;s settign the terms so you have no choice|firstcocktailparty5]]</tw-passagedata><tw-passagedata pid="33" name="firstcocktailparty5" tags="event" position="350,475" size="100,100">$wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
+[[She&#39;s setting the terms so you have no choice|firstcocktailparty5]]</tw-passagedata><tw-passagedata pid="33" name="firstcocktailparty5" tags="event" position="350,475" size="100,100">$wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
  
 &lt;&lt;= $wife.speak(&quot;Hmm. It&#39;s nice a sparse already. Convenient.&quot;)&gt;&gt;
  
@@ -1000,7 +1343,7 @@ You look at the intimidating pile of silk beforing reaching out to take...
 &lt;span id=&quot;maiddressing1&quot;&gt;
 	&lt;&lt;link &quot;the bra&quot;&gt;&gt;
 		&lt;&lt;replace &quot;#maiddressing1&quot;&gt;&gt;
-			You reach out and take the bra from the pile. It a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder they are already a bit tangled.&lt;br&gt;
+			You reach out and take the bra from the pile. It&#39;s a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder they are already a bit tangled.&lt;br&gt;
 			&lt;br&gt;
 			&lt;&lt;= $wife.speak(&quot;Oh for goodness sake. You are hopeless.&quot;)&gt;&gt;&lt;br&gt;
 			[[She snatches the item from you.|firstcocktailparty6]]
@@ -1103,7 +1446,7 @@ She stops for a moment and you&#39;re tempted to open your eyes and risk getting
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
 	&lt;&lt;link &quot;Blondes&quot;&gt;&gt;
 		&lt;&lt;replace &quot;#maiddressing3&quot;&gt;&gt;
-			&lt;&lt;set player.hairColor to &quot;Blonde&quot;&gt;&gt;
+			&lt;&lt;set $player.hairColor to &quot;Blonde&quot;&gt;&gt;
 			&lt;&lt;= $player.speak(&quot;Blonde, I think...&quot;)&gt;&gt;
 			&lt;br&gt;&lt;br&gt;
 			&lt;&lt;= $wife.speak(&quot;Blonde it is. Looks like you&#39;re in for some fun.&quot;)&gt;&gt;
@@ -1122,7 +1465,7 @@ She stops for a moment and you&#39;re tempted to open your eyes and risk getting
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
 	&lt;&lt;link &quot;Brunettes&quot;&gt;&gt;
 		&lt;&lt;replace &quot;#maiddressing3&quot;&gt;&gt;
-			&lt;&lt;set player.hairColor to &quot;Brunette&quot;&gt;&gt;
+			&lt;&lt;set $player.hairColor to &quot;Brunette&quot;&gt;&gt;
 			&lt;&lt;= $player.speak(&quot;Brunette, I think...&quot;)&gt;&gt;
 			&lt;br&gt;&lt;br&gt;
 			&lt;&lt;= $wife.speak(&quot;Brunette then. Looking to play the friend card eh?&quot;)&gt;&gt;
@@ -1141,8 +1484,8 @@ She stops for a moment and you&#39;re tempted to open your eyes and risk getting
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
 	&lt;&lt;link &quot;Red heads&quot;&gt;&gt;
 		&lt;&lt;replace &quot;#maiddressing3&quot;&gt;&gt;
-			&lt;&lt;set player.hairColor to &quot;Auburn&quot;&gt;&gt;
-			&lt;&lt;= $player.speak(&quot;Aubrun, I think...&quot;)&gt;&gt;
+			&lt;&lt;set $player.hairColor to &quot;Auburn&quot;&gt;&gt;
+			&lt;&lt;= $player.speak(&quot;I kind of like red heads I guess...&quot;)&gt;&gt;
 			&lt;br&gt;&lt;br&gt;
 			&lt;&lt;= $wife.speak(&quot;Hmm you&#39;re not really firey but Auburn may suit you.&quot;)&gt;&gt;
 			&lt;br&gt;&lt;br&gt;
@@ -1180,7 +1523,7 @@ Before you move $wife.name pulls you up and turns you around.
 
 [[When you face the mirror your jaw almost hits the floor.|firstcocktailparty11]]</tw-passagedata><tw-passagedata pid="39" name="firstcocktailparty11" tags="event" position="1100,475" size="100,100">Todo: Add image/gif
 
-Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you&#39;ve ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheek a hint of pink on her pale skin. The *hair colour* chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
+Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you&#39;ve ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The $player.hairColor chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
  
 Only problem is, that girl is you.
  
@@ -1288,18 +1631,15 @@ $wife.name kneels back down and take the item from the chaise.
 &lt;&lt;= $player.speak(&quot;Why did you do that $wife.title and why are you, um, down there?&quot;)&gt;&gt;
  
 &lt;&lt;= $wife.speak(&quot;I can&#39;t have you tenting your skirt at the party tonight or someone might figure out you&#39;re not a pretty little maid.&quot;)&gt;&gt;
-&lt;&lt;= $wife.speak(&quot;I can&#39;t have you tenting your skirt at the party tonight or someone might figure out you&#39;re not a pretty little maid.&quot;)&gt;&gt;
  
 You feel her grab your penis which softened moments after the pinch. She wraps something cold and hard over it and then wraps it behind your balls.
  
-&lt;&lt;= $wife.speak(&quot;Fortunately one of my smaller chastity cages is just the right size.&quot;)&gt;&gt;
 &lt;&lt;= $wife.speak(&quot;Fortunately one of my smaller chastity cages is just the right size.&quot;)&gt;&gt;
  
 &lt;&lt;= $player.speak(&quot;Excuse me $wife.title. A chastity what?&quot;)&gt;&gt;
  
 You here a little click as the cage locks in place and then she pulls your panties back up.
  
-&lt;&lt;= $wife.speak(&quot;It will stop you from getting hard and making me look bad. You&#39;ll keep it on for the remained of the night. You can come see me tomorrow to get it removed if you want to.&quot;)&gt;&gt;
 &lt;&lt;= $wife.speak(&quot;It will stop you from getting hard and making me look bad. You&#39;ll keep it on for the remained of the night. You can come see me tomorrow to get it removed if you want to.&quot;)&gt;&gt;
  
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;All night? It&#39;s still morning though.&lt;/i&gt;&quot;)&gt;&gt;
@@ -1318,8 +1658,9 @@ You step into the dress and she pulls it up over your hips. She helps you thread
  
 There is a pair of black mary janes waiting and $wife.name buckles them up after helping you into them. Lastly she places a white lace bonnet on your head.
  
- 
 You turn and look in one of the full length mirror. The cute girl you saw earlier is still watching you only now in a little maids outfit. Overall the look is quite modest but just sexy enough that you&#39;re going to turn some heads. The appeal is there though and you wouldn&#39;t be surprised to see the outfit in a high class porno.
+
+To do: add image
  
 &lt;&lt;nobr&gt;&gt;
 &lt;span id=&quot;maiddressing6&quot;&gt;
@@ -1338,7 +1679,7 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 &lt;span id=&quot;maiddressing7&quot;&gt;
 	&lt;&lt;link &quot;It could be worse.&quot;&gt;&gt;
 		&lt;&lt;replace &quot;#maiddressing7&quot;&gt;&gt;
-			&lt;&lt;= $player.speak(&quot;It&#39;s fine I guess.. $wife.title.&quot;)&gt;&gt;)&gt;&gt;&lt;br&gt;
+			&lt;&lt;= $player.speak(&quot;It&#39;s fine I guess.. $wife.title.&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
 			She seem happy with that response. [[&quot;Oh. One more thing.&quot;|firstcocktailparty16]]
 		&lt;&lt;/replace&gt;&gt;
@@ -1355,7 +1696,9 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 	&lt;&lt;/link&gt;&gt;
 &lt;/span&gt;&lt;&lt;/nobr&gt;&gt;
 
-Todo: Change player pronoun</tw-passagedata><tw-passagedata pid="47" name="firstcocktailparty16" tags="event" position="850,600" size="100,100">$wife.name wraps a choker around your neck. It&#39;s not too tight but it does the job of hiding your small Adams apple.
+Todo: Change player pronoun</tw-passagedata><tw-passagedata pid="47" name="firstcocktailparty16" tags="event" position="850,600" size="100,100">Todo: voice change
+
+$wife.name wraps a choker around your neck. It&#39;s not too tight but it does the job of hiding your small Adams apple.
  
 &lt;&lt;= $wife.speak(&quot;Here. Drink this.&quot;)&gt;&gt; She hands you a small glass bottle. &lt;&lt;= $wife.speak(&quot;The whole thing.&quot;)&gt;&gt;
 
@@ -1399,9 +1742,7 @@ Todo: Add image/gif
 
 &lt;&lt;= $wife.speak(&quot;I want to avoid confusion. What if someone comes by after the party and meets you when you aren&#39;t a girl?&quot;)&gt;&gt;
 
-Choose your girl name: &lt;&lt;textbox &quot;$player.name&quot; $player.femname &quot;&quot;&gt;&gt;
-
-&lt;&lt;= $wife.speak(&quot;Yes, that one suits you.&quot;)&gt;&gt;
+Choose your girl name: &lt;&lt;textbox &quot;$player.femName&quot; &quot;&quot; &quot;firstcocktailparty18&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="firstcocktailparty18" tags="event" position="1100,600" size="100,100">&lt;&lt;= $wife.speak(&quot;Yes, $player.femName suits you.&quot;)&gt;&gt;
 
 $wife.name gives you a spritz of some nice smelling perfume.
 
@@ -1413,33 +1754,7 @@ Todo: Add image/gif
 
 &lt;&lt;= $wife.speak(&quot;Right then. Let&#39;s get you started with $caterer.name.&quot;)&gt;&gt;
 
-[[Introduce everyone to $player.femname|firstcocktailparty18]]</tw-passagedata><tw-passagedata pid="49" name="firstcocktailparty18" tags="event" position="1100,600" size="100,100">Todo: Add image/gif
-
-As you follow after $wife.name and out the bedroom door. The shaper isn&#39;t uncomfortable but both it and the short heels are forcing you walk with a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You figet with your hands as the long ponytail tickles between your shoulders. Before you come into view of anyone else you reach down and shift uncomfortably a few times. After checking yourself out in the mirror your tapped member is already straining against it&#39;s restricting plastic prison.
- 
-&lt;&lt;= $wife.speak(&quot;Well $caterer.name. This is $player.femname.&quot;)&gt;&gt;
- 
-$caterer.name walks over to you and walks around you thoughtfully. You&#39;re reminded of when you met $wife.name for the first time as he examines you.
- 
-&lt;&lt;= $caterer.speak(&quot;What sort of experience do you have?&quot;)&gt;&gt;
- 
-You&#39;re eyes dart to $wife.name who is looking at you sternly. &lt;&lt;= $player.speak(&quot;Some. I have experience with house work and general cleaning.&quot;)&gt;&gt;
- 
-&lt;&lt;= $caterer.speak(&quot;Well I&#39;m not looking for a kitchen hand.&quot;)&gt;&gt; He turns back to $wife.name. &lt;&lt;= $caterer.speak(&quot;She&#39;ll do. I&#39;m going to have to switch things up and do standing service instead. That way she won&#39;t have to do any formal serving until after I&#39;ve trained her properly.&quot;)&gt;&gt;
- 
-&lt;&lt;= $wife.speak(&quot;Whatever you say $caterer.name. As long as you&#39;re happy.&quot;)&gt;&gt;
- 
-$caterer.name goes back to the kitchen to continue his prep work.
- 
-&lt;&lt;= $wife.speak(&quot;I&#39;ll be basing my decision on how $caterer.name feels you performed.&quot;)&gt;&gt; $wife.name shakes her finger at you. &lt;&lt;= $wife.speak(&quot;Make sure you follow his instruction as if they were coming from me. Is that understood?&quot;)&gt;&gt;
- 
-&lt;&lt;= $player.speak(&quot;Yes $wife.title.&quot;)&gt;&gt;
- 
-*wife* leaves and starts giving the worker instructions to clear the dining room as $caterer.name
- 
-&lt;&lt;= $caterer.speak(&quot;Come on girl. We need to get you started.&quot;)&gt;&gt;
- 
-[[Mason walks you through your duties|firstcocktailparty19]]</tw-passagedata><tw-passagedata pid="50" name="firstcocktailparty19" tags="event" position="1225,600" size="100,100">&lt;&lt;= $caterer.speak(&quot;Alright. I expect that you have no idea what you&#39;re doing when it comes to the food prep so just leave all that to me. I&#39;ll have to laps of the guests with the serving trays. Have you ever held a serving tray before.&quot;)&gt;&gt;
+[[Introduce everyone to the new maid.|firstcocktailparty19]]</tw-passagedata><tw-passagedata pid="50" name="firstcocktailparty19" tags="event" position="1225,600" size="100,100">&lt;&lt;= $caterer.speak(&quot;Alright. I expect that you have no idea what you&#39;re doing when it comes to the food prep so just leave all that to me. I&#39;ll have to laps of the guests with the serving trays. Have you ever held a serving tray before.&quot;)&gt;&gt;
  
 &lt;&lt;= $player.speak(&quot;Only when bring out breakfast.&quot;)&gt;&gt;
  
@@ -1477,7 +1792,7 @@ After a while you seem to be getting the hang of it and $caterer.name calls you 
  
 &lt;&lt;= $caterer.speak(&quot;Alright girl. One of the most important things to know about standing service is to watch the body language of your betters.&quot;)&gt;&gt;
 
-&lt;&lt;= $player.speak(&quot;My name is ... $player.femname.&quot;)&gt;&gt;
+&lt;&lt;= $player.speak(&quot;My name is ... $player.femName.&quot;)&gt;&gt;
  
 &lt;&lt;= $caterer.speak(&quot;The position of the hands can tell you…&quot;)&gt;&gt; $caterer.name continues his in-depth explanation.
  
@@ -1499,7 +1814,7 @@ You&#39;re busy polishing the silver wear when $daughter.name comes into the kit
 			&lt;br&gt;
 			$daughter.name walks up to you and grabs you by the waist to check you out. She leans in to whisper in your ear.&lt;br&gt;
 			&lt;br&gt;
-			&lt;&lt;= $daughter.speak(&quot;You can call me $daughter.name. Just when it&#39;s us girls though. Ok $player.femname.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;&lt;= $daughter.speak(&quot;You can call me $daughter.name. Just when it&#39;s us girls though. Ok $player.femName.&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
 			You nod meekly.&lt;br&gt;
 			&lt;br&gt;
@@ -1518,7 +1833,7 @@ You&#39;re busy polishing the silver wear when $daughter.name comes into the kit
 			&lt;br&gt;
 			$daughter.name walks up to you leans in to whisper in your ear.&lt;br&gt;
 			&lt;br&gt;
-			&lt;&lt;= $daughter.speak(&quot;You can call me $daughter.name. Just when it&#39;s us girls though. Ok $player.femname.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;&lt;= $daughter.speak(&quot;You can call me $daughter.name. Just when it&#39;s us girls though. Ok $player.femName.&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
 			[[Continue|firstcocktailparty21]]
 		&lt;&lt;/replace&gt;&gt;
@@ -1620,6 +1935,7 @@ $wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This
 &lt;&lt;set $butler to new Character({name: &quot;Mr Benson&quot;, color: &quot;#7DA231&quot;, title: &quot;Mr Benson&quot;})&gt;&gt;
 &lt;&lt;set $cook to new Character({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;})&gt;&gt;
 &lt;&lt;set $gardner to new Character({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
+&lt;&lt;set $caterer to new Character({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
 
 &lt;&lt;set $mansion to new Mansion({})&gt;&gt;
 
@@ -2029,12 +2345,12 @@ TODO : List current held items
 
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="78" name="rules" tags="noreturn menu" position="975,975" size="100,100">&lt;h1 id=&quot;RuleTitle&quot;&gt;Rules&lt;/h1&gt;\
 &lt;ol class=&quot;rules&quot;&gt;\
-&lt;li&gt;Work week is Thursday to Tuesday. Wednesday is a free day.&lt;/li&gt;
+&lt;li&gt;You will be required to be available 24/7 but unless otherwise stated every you will have a free day every 7th day.&lt;/li&gt;
 &lt;li&gt;Must be presentable and in clean clothes at all times.&lt;/li&gt;
 &lt;li&gt;Obey all instructions from other residents of the estate.&lt;/li&gt;
 &lt;li&gt;Offsite excursions are only allowed on approval from Mr or Mrs Sono.&lt;/li&gt;
-&lt;li&gt;There will be a 4 week probation where performance will be assessed on Sunday of each week in Mr Sono&#39;s office between 7pm and 8pm.&lt;/li&gt;
-&lt;li&gt;If the weekly performance quota is not met punishment will be determined by Mr or Mrs Sono.&lt;/li&gt;
+&lt;li&gt;Performance will be assessed regularly at the the discretion of Mr and Mrs Sono.&lt;/li&gt;
+&lt;li&gt;Punishment for not meeting the requirements of your duties will be at the discretion of Mr and Mrs Sono.&lt;/li&gt;
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $gymEstateUnlocked is true&gt;&gt;
 &lt;li&gt;Use of any of the facilities on site is permitted between 8am to 10pm.&lt;/li&gt;
@@ -2063,17 +2379,22 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 
 &lt;&lt;if $flags.manorIntro is true&gt;&gt;
 	[[Wait to meet the master of the house|ManorVisit_8]]
-	&lt;&lt;= $time.setDate({day:1, hour: 19, minute:0})&gt;&gt;
+	&lt;&lt;= $time.setDate({day:1, hour: 19, minute: 0})&gt;&gt;
 &lt;&lt;elseif $time.clock &gt;= $bedtime.clock&gt;&gt;
 	[[Go to bed.|sleep]]
 &lt;&lt;else&gt;&gt;
 	[[Do your chores.|playerToDoList]]
 	&lt;&lt;click &quot;Rest 1 Hour&quot;&gt;&gt;
-	&lt;&lt;set $time.addTime({day:0, hour:1, minute:0})&gt;&gt;
+	&lt;&lt;set $time.addTime({day:0, hour:1, minute: 0})&gt;&gt;
 	&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/click&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="playerRoomShower" tags="playerRoom" position="100,1100" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="82" name="playerRoomMakup" tags="playerRoom" position="225,1100" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="83" name="playerRoomMorningRoutine" tags="playerRoom" position="350,1100" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="84" name="playerRoomWardrobe" tags="playerRoom" position="475,1100" size="100,100">Todo: Add clothes
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
+	&lt;&lt;set $time.addTime({day: 1, hour: 0, minute: 0})&gt;&gt;
+	&lt;&lt;goto `passage()`&gt;&gt;
+&lt;&lt;/click&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="playerRoomShower" tags="playerRoom" position="100,1100" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="82" name="playerRoomMakup" tags="playerRoom" position="225,1100" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="83" name="playerRoomMorningRoutine" tags="playerRoom" position="350,1100" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="84" name="playerRoomWardrobe" tags="playerRoom" position="475,1100" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
@@ -2081,7 +2402,13 @@ Inside, you fine some items left by the last person who stayed here. Unfortunate
 
 [[wakeUp]]</tw-passagedata><tw-passagedata pid="87" name="wakeUp" tags="sleep" position="850,1100" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
 
-[[PlayerBdRm]]
+&lt;&lt;if $time.day &gt;= 9 &gt;&gt;
+	You don&#39;t know why but you feel like today will be a good day.
+
+	[[Get yourself ready and get things started.|firstcocktailparty1]]
+&lt;&lt;else&gt;&gt;
+	[[PlayerBdRm]]
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;set $time.addTime({day:1})&gt;&gt;
 &lt;&lt;= $time.setDate({day:0, hour: 6, minute:0})&gt;&gt;</tw-passagedata></tw-storydata>

@@ -26,6 +26,7 @@
 <<set $butler to new Character({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
 <<set $cook to new Character({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
 <<set $gardner to new Character({name: "Juan", color: "Sienna", title: "Juan"})>>
+<<set $caterer to new Character({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
 
 <<set $mansion to new Mansion({})>>
 

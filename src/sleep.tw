@@ -7,7 +7,13 @@ You turn in for the night and try to get some rest. You shut the lights off and 
 
 The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
 
-[[PlayerBdRm]]
+<<if $time.day >= 9 >>
+	You don't know why but you feel like today will be a good day.
+
+	[[Get yourself ready and get things started.|firstcocktailparty1]]
+<<else>>
+	[[PlayerBdRm]]
+<</if>>
 
 <<set $time.addTime({day:1})>>
 <<= $time.setDate({day:0, hour: 6, minute:0})>>

@@ -19,17 +19,22 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 
 <<if $flags.manorIntro is true>>
 	[[Wait to meet the master of the house|ManorVisit_8]]
-	<<= $time.setDate({day:1, hour: 19, minute:0})>>
+	<<= $time.setDate({day:1, hour: 19, minute: 0})>>
 <<elseif $time.clock >= $bedtime.clock>>
 	[[Go to bed.|sleep]]
 <<else>>
 	[[Do your chores.|playerToDoList]]
 	<<click "Rest 1 Hour">>
-	<<set $time.addTime({day:0, hour:1, minute:0})>>
+	<<set $time.addTime({day:0, hour:1, minute: 0})>>
 	<<goto `passage()`>>
 	<</click>>	
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 <</if>>
+
+<<click "Debug Skip Day">>
+	<<set $time.addTime({day: 1, hour: 0, minute: 0})>>
+	<<goto `passage()`>>
+<</click>>
 
 ::playerRoomShower [playerRoom]
 Todo: Add shower event
