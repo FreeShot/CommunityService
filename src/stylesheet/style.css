@@ -3,6 +3,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Gotu&family=Permanent+Marker&family=Playfair+Display:wght@500&family=Roboto+Condensed:wght@300;400&display=swap');
 
+:root {
+	size: 16px;
+	--background: #1C030E;
+	--color: #EBD8E2;
+	--t8n-delay: .1s;
+}
+
+#ui-bar {
+	position: fixed;
+	left: -15.5rem;
+	transition-delay: var(--t8n-delay);
+}
+
+#ui-bar:hover, #ui-bar.active {
+	left: 0rem;
+}
+
+#ui-bar-body {
+	visibility: visible;
+}
+
+#ui-bar-history {
+	height: 32px;
+}
+
+#ui-bar-history > input[id|="history"]:not(:first-child) {
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	transform: scale(2);
+
+	margin-top: 8px;
+}
+
+#ui-bar-history [id|="history"] {
+	position: relative;
+	height: 32px;
+	width: 32px;
+}
+
+/*
+Removes the space between the back buttons
+#ui-bar-history [id|="history"]:not(:first-child) {
+	margin: 0rem;
+}
+*/
+
+#ui-bar-history #history-pin {
+	background-color: #111111;
+}
+
+#ui-bar-history #history-pin.active {
+	background-color: #484848;
+}
+
+#story {
+	margin: 0rem;
+}
+
+/*
 
 .estateRoom{
 	font-size: 30px;
@@ -94,7 +155,4 @@ div.warning {
 	border-width: 1px;
 }
 
-
-.hidden .NSFW{
-	display: none;
-}
+*/

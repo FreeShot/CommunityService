@@ -100,12 +100,77 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="76" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="76" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "body.css" */
+.hidden .NSFW{
+	display: none;
+}
+/* twine-user-stylesheet #2: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Gotu&family=Permanent+Marker&family=Playfair+Display:wght@500&family=Roboto+Condensed:wght@300;400&display=swap');
 
+:root {
+	size: 16px;
+	--background: #1C030E;
+	--color: #EBD8E2;
+	--t8n-delay: .1s;
+}
+
+#ui-bar {
+	position: fixed;
+	left: -15.5rem;
+	transition-delay: var(--t8n-delay);
+}
+
+#ui-bar:hover, #ui-bar.active {
+	left: 0rem;
+}
+
+#ui-bar-body {
+	visibility: visible;
+}
+
+#ui-bar-history {
+	height: 32px;
+}
+
+#ui-bar-history > input[id|="history"]:not(:first-child) {
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	transform: scale(2);
+
+	margin-top: 8px;
+}
+
+#ui-bar-history [id|="history"] {
+	position: relative;
+	height: 32px;
+	width: 32px;
+}
+
+/*
+Removes the space between the back buttons
+#ui-bar-history [id|="history"]:not(:first-child) {
+	margin: 0rem;
+}
+*/
+
+#ui-bar-history #history-pin {
+	background-color: #111111;
+}
+
+#ui-bar-history #history-pin.active {
+	background-color: #484848;
+}
+
+#story {
+	margin: 0rem;
+}
+
+/*
 
 .estateRoom{
 	font-size: 30px;
@@ -197,11 +262,9 @@ div.warning {
 	border-width: 1px;
 }
 
-
-.hidden .NSFW{
-	display: none;
-}
-/* twine-user-stylesheet #2: "ui.css" */
+*/
+/* twine-user-stylesheet #3: "ui.css" */
+/*
 #ui-bar{
 	background-color: #2C0C1A;
 	border-color: #3D1627;
@@ -293,7 +356,9 @@ img {
 .rules {
 	font-size: 20px;
 	font-family: 'Roboto Condensed', sans-serif;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
+}
+
+*/</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
 class Character {
 	constructor(config) {
 		this.name = '';
@@ -1077,6 +1142,19 @@ Object.defineProperty(window, 'Room', {
     value : Room
 });
 /* twine-user-script #7: "script.js" */
+importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
+
+Config.ui.stowBarInitially = false;
+
+$('#ui-bar-history>#history-forward').before("<button id=\"history-pin\"><i class=\"fas fa-thumbtack\"></i></button>"); // adds lock button
+$('#ui-bar-toggle').remove();
+
+$("#history-pin").click(function() {
+	$("#ui-bar").toggleClass("active");
+	$("#history-pin").toggleClass("active");
+});
+
+
 $(document).on(':passageinit', function (ev) {
 	if (settings.nsfw) {
 		console.log("NSFW ON");
@@ -1085,7 +1163,7 @@ $(document).on(':passageinit', function (ev) {
 		console.log("NSFW OFF");
 		$("html").addClass("hidden");	
 	}
-})
+});
 
 $(document).on(':passagestart', function (ev) {
 	if (!ev.passage.tags.includes('noreturn')) {
