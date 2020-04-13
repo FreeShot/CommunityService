@@ -17,7 +17,6 @@
 
 <<set $mbriefs to new Clothes({name: "Men's Briefs", slot: "panties", describe: "Plain White Men's Underwear", img:"mbriefs_01.JPG", needAcceptance: "0", price: "0", specialUse: "none"})>>
 
-
 <<set $player to new Player()>>
 
 <<set $owner to new Character({name: "Mr Sono", color: "Brown", title: "sir"})>>
@@ -31,7 +30,7 @@
 
 <<set $mansion to new Mansion({})>>
 
-<<= $mansion.addRoom(new Room({	name: "Foyer", id: "Foyer", img: ["Foyer.jpg"], adjacentRooms: ["Lounge", "Kitchen", "Dining", "UpperHall", "Hall"]}))>>
+<<= $mansion.addRoom(new Room({name: "Foyer", id: "Foyer", img: ["Foyer.jpg"], adjacentRooms: ["Lounge", "Kitchen", "Dining", "UpperHall", "Hall"]}))>>
 <<= $mansion.addRoom(new Room({name: "Hall", id: "Hall", adjacentRooms: ["Foyer", "MasterBdRm", "Office", "PlayerBdRm", "Laundry", "Kitchen", "Dining", "Garden",]}))>>
 <<= $mansion.addRoom(new Room({name: "Garden", id: "Garden", img: ["Garden1.jpg", "Garden2.jpg", "Garden3.jpg"], adjacentRooms: ["Lounge", "Pool", "Dining", "Kitchen", "Laundry"]}))>>
 <<= $mansion.addRoom(new Room({name: "Kitchen", id: "Kitchen", img: ["Kitchen.jpg"], adjacentRooms: ["Lounge", "Dining", "Foyer", "Hall"]}))>>

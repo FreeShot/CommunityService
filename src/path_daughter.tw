@@ -1,4 +1,4 @@
-::event_daughterdate1 [event]
+::event_daughterpath01 [event]
 As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
  
 <<= $wife.speak("That damned girl will be the death of me!")>>

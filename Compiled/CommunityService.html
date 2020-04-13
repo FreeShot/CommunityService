@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="71" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="76" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
@@ -1934,7 +1934,8 @@ You wipe the cage clean with some tissue and then remove the wig and make up. Yo
 You can see $owner.title lying asleep face down, clearly naked, and quickly follow $wife.title into the wardrobe.
 
 [[Performance review|cocktailparty_review]]
-&lt;&lt;set $flags.firstCocktailParty to false&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="cocktailparty_start" tags="event" position="1100,725" size="100,100">&lt;&lt;set $cocktailparty_start to true&gt;&gt;
+&lt;&lt;set $flags.firstCocktailParty to false&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="cocktailparty_start" tags="event" position="1100,725" size="100,100">&lt;&lt;= $time.setDate({day:0, hour: 16, minute:0})&gt;&gt;
+&lt;&lt;set $cocktailparty_start to true&gt;&gt;
 
 Options to prioritise guests or VIP&#39;s
  
@@ -1948,17 +1949,19 @@ VIP guests
 
 Run the Party Mini Games
 
-[[cocktailparty_finish]]</tw-passagedata><tw-passagedata pid="60" name="cocktailparty_finish" tags="" position="1225,725" size="100,100">&lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
+[[cocktailparty_finish]]</tw-passagedata><tw-passagedata pid="60" name="cocktailparty_finish" tags="event" position="1225,725" size="100,100">Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It&#39;s very late and after the nights work you are definitely ready for bed.
+&lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
 	[[firstcocktailparty23]]
 &lt;&lt;else&gt;&gt;
 	[[Head to your room and go to bed|sleep]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="cocktailparty_review" tags="event" position="100,850" size="100,100">Good
+&lt;&lt;/if&gt;&gt;
+ &lt;&lt;= $time.setDate({day:0, hour: 1, minute:30})&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="cocktailparty_review" tags="event" position="100,850" size="100,100">Good
 &lt;&lt;= $wife.speak(&quot;You worked so hard last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
 
 Bad
 &lt;&lt;= $wife.speak(&quot;Given your poor performance last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
 
-$wife.title pulls out a key and starts twirling it on her finger.
+$wife.name pulls out a key and starts twirling it on her finger.
 
 &lt;&lt;= $wife.speak(&quot;What do you think?&quot;)&gt;&gt;
 
@@ -1976,47 +1979,77 @@ She closes the door and you quickly unlock the cage and remove it. The relief is
  
 You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
 &lt;&lt;set $eventCount_cocktailparty to 0&gt;&gt;
-&lt;&lt;set $cocktailparty_start to false&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="event_daughterdate1" tags="event" position="225,850" size="100,100">As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
- 
-&lt;&lt;= $wife.speak(&quot;That damned girl will be the death of me!&quot;)&gt;&gt;
- 
-She abruptly open the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
- 
-&lt;&lt;= $wife.speak(&quot;For goodness sake $daughter.name.&quot;)&gt;&gt; $wife.name grabs $daughter.name arm and pulls her inside.
- 
-&lt;&lt;= $daughter.speak(&quot;Heeeeey. Easy.&quot;)&gt;&gt; Her slurred speech pretty much confirms she is drunk.
- 
-&lt;&lt;= $wife.speak(&quot;Thank you gentlemen. You&#39;re dismissed.&quot;)&gt;&gt;
- 
-$wife.name slams the door shut.
- 
-&lt;&lt;= $wife.speak(&quot;Drunk again? Really?&quot;)&gt;&gt;
- 
-&lt;&lt;= $daughter.speak(&quot;It was just some cocktails with my friends. We didn&#39;t do anything.&quot;)&gt;&gt;
- 
-&lt;&lt;= $wife.speak(&quot;You almost set a bar on fire! I had hoped your education would train you out of that kind of behaviour but you&#39;ve go strait back into your old habits.&quot;)&gt;&gt;
- 
-$daughter.name yanks her arm free and stumbles a bit. &lt;&lt;= $daughter.speak(&quot;I finished my degree. What more do you want? I just wana have fun!&quot;)&gt;&gt;
- 
-&lt;&lt;= $wife.speak(&quot;I won&#39;t talk to you like this. Go upstairs and sleep it off.&quot;)&gt;&gt;
+&lt;&lt;set $cocktailparty_start to false&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="cocktailparty_praise01" tags="event" position="225,850" size="100,100">As you&#39;re heading back to the bar you over hear $owner.name chatting with another guest.
 
-$wife.name points to the stairs.
- 
-&lt;&lt;= $daughter.speak(&quot;Aaaaw. But I&#39;m not sleepy.&quot;)&gt;&gt; $daughter.name still turns anyway and starts stumbling forwards.
- 
-She spots you standing nearby.
- 
-&lt;&lt;= $daughter.speak(&quot;Heeeey *fname*. Look at you. All cute and domesticated.&quot;)&gt;&gt; She stumbles over and squeezes your cheeks. &lt;&lt;speak $daughter.speak(&quot;I could just gobble you up.&quot;)&gt;&gt;
- 
-&lt;&lt;= $wife.speak(&quot;$daughter.name!&quot;)&gt;&gt;
- 
-&lt;&lt;= $daughter.speak(&quot;Fine.&quot;)&gt;&gt; $daughter.name lets go and heads up the stairs.
- 
-$wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This is the last time.&quot;)&gt;&gt; She grumbles to herself.
+&lt;&lt;= Character.speakAnonymous(&quot;She&#39;s a fine young girl you&#39;ve taken in. You&#39;ve really out done yourself.&quot;)&gt;&gt;
 
-[[Avoid catching their attention until you get back to your room|PlayerBdRm]]
+You look over your shoulder and can see $owner.name and another man looking you up and down. His gaze lingers on your bouncing skirt and apron.
 
-&lt;&lt;set $eventCount_daughterdate to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="StoryInit" tags="" position="350,850" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})&gt;&gt;
+Performance good
+&lt;&lt;= $owner.speak(&quot;Yes, she was quite the catch.&quot;)&gt;&gt;
+
+Performance bad
+&lt;&lt;= $owner.speak(&quot;She needs some improvement but I think we&#39;ll get there.&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="cocktailparty_Staring01" tags="event" position="350,850" size="100,100">While moving about you get stopped by one of the groups who happily clear the rest of the finger food from your tray. You catch one of them looking strait at your chest. You&#39;re a little flushed from all the walking so it has a nice pink hue just above the blouse. His eyes meet yours and he smiles warmly and tips his glass to you.
+
+You quickly move away to escape his gaze.</tw-passagedata><tw-passagedata pid="64" name="cocktailparty_Staring02" tags="event" position="475,850" size="100,100">You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
+
+&lt;&lt;= Character.speakAnonymous(&quot;Thank you so much. You must tell me how you keep your skin so soft.&quot;)&gt;&gt; She caresses your arm for a few seconds longer. &lt;&lt;= Character.speakAnonymous(&quot;It&#39;s like touching silk.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;Um, thank you.&quot;)&gt;&gt;
+
+You politely pull away and hurry back to the bar to pick up some more drinks.</tw-passagedata><tw-passagedata pid="65" name="cocktailparty_Groping01" tags="event" position="600,850" size="100,100">As you turn away to retrieve the man&#39;s drink you feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
+
+&lt;&lt;nobr&gt;&gt;
+&lt;span id=&quot;groping01&quot;&gt;
+	&lt;&lt;link &quot;Defend yourself.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#groping01&quot;&gt;&gt;
+			&lt;&lt;= $player.speak(&quot;Ow, hands to yourself.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			The man looks surprised at your reaction as you slap his hand away. Some of the guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else.&lt;br&gt;
+			&lt;br&gt;
+			The man is staring at you with the barest hint of alarm.&lt;br&gt;
+			&lt;br&gt;
+			&lt;span id=&quot;groping01a&quot;&gt;
+				&lt;&lt;link &quot;Apologise.&quot;&gt;&gt;
+					&lt;&lt;replace &quot;#groping01a&quot;&gt;&gt;
+						You swallow and say. &lt;&lt;= $player.speak(&quot;Sorry sir. You startled me is all.&quot;)&gt;&gt;&lt;br&gt;
+						&lt;br&gt;
+						&lt;&lt;= Character.speakAnonymous(&quot;Not a problem.&quot;)&gt;&gt; The man smiles smugly. &lt;&lt;= Character.speakAnonymous(&quot;Now fetch my drink like a good girl.&quot;)&gt;&gt; He gives you another quick slap on the butt and sends you on your way.
+					&lt;&lt;/replace&gt;&gt;
+				&lt;&lt;/link&gt;&gt;&lt;br&gt;
+				&lt;&lt;link &quot;No way you&#39;re apologising.&quot;&gt;&gt;
+					&lt;&lt;replace &quot;#groping01a&quot;&gt;&gt;
+							You stare at $wife.name for a moment and then simply turn around and walk away. You still retrieve the man&#39;s drink but you&#39;ll be damned if you&#39;re apologising to the groper.
+					&lt;&lt;/replace&gt;&gt;
+				&lt;&lt;/link&gt;&gt;
+			&lt;/span&gt;
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="cocktailparty_Cage01" tags="event" position="725,850" size="100,100">$caterer.name pushes forward a fresh tray for you to collect.
+
+&lt;&lt;= $caterer.speak(&quot;Come on girl.&quot;)&gt;&gt;
+
+You lean forward to grab it and your hips bump against the counter. You gasp as the plastic cage is pushed into your crotch reminding you of your current situation down there. It gets shifted into an uncomfortable position.
+
+&lt;&lt;nobr&gt;&gt;
+&lt;span id=&quot;maiddressing4&quot;&gt;
+	&lt;&lt;link &quot;Reach down to adjust yourself.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#maiddressing4&quot;&gt;&gt;
+			&lt;&lt;= $caterer.speak(&quot;What the hell are you doing?&quot;)&gt;&gt; Caterer flicks out his arm and slaps your hand with a utensil and then hisses in a low voice. &lt;&lt;= $caterer.speak(&quot;Guests don&#39;t want to see you playing with yourself before taking out their food.&quot;)&gt;&gt;
+
+			You take the tray and walk out of the kitchen. Your restrain member twitches in the cage as it twist and pokes in an uncomfortable position. You&#39;ll just have to deal with it for now.
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;br&gt;
+	&lt;&lt;link &quot;Try and ignore it.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#maiddressing4&quot;&gt;&gt;
+			You take a moment to collect yourself, your twitching member straining against its plastic prison.
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="cocktailparty_Cage02" tags="event" position="850,850" size="100,100">You&#39;re on your way back to the kitchen to refill your tray. As you pass between two guests one of them laughs loudly and tilts back forcing you to dodge them. Unfortunately you bump into the other guest. Worse still your hips press up against theirs and you feel the hard plastic of your chastity cage pressing against their thigh.
+
+You pull back and fix you skirt before apologising. The person just looks down to your skirt and then back up before giving you a knowing wink.
+
+You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before excusing yourself.</tw-passagedata><tw-passagedata pid="68" name="StoryInit" tags="" position="975,850" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime to new Timer({day: 0, time: {hour: 22, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime.setDate({hour: 22, minute: 0})&gt;&gt;
 
@@ -2034,7 +2067,6 @@ $wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This
 
 &lt;&lt;set $mbriefs to new Clothes({name: &quot;Men&#39;s Briefs&quot;, slot: &quot;panties&quot;, describe: &quot;Plain White Men&#39;s Underwear&quot;, img:&quot;mbriefs_01.JPG&quot;, needAcceptance: &quot;0&quot;, price: &quot;0&quot;, specialUse: &quot;none&quot;})&gt;&gt;
 
-
 &lt;&lt;set $player to new Player()&gt;&gt;
 
 &lt;&lt;set $owner to new Character({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;sir&quot;})&gt;&gt;
@@ -2048,7 +2080,7 @@ $wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This
 
 &lt;&lt;set $mansion to new Mansion({})&gt;&gt;
 
-&lt;&lt;= $mansion.addRoom(new Room({	name: &quot;Foyer&quot;, id: &quot;Foyer&quot;, img: [&quot;Foyer.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Kitchen&quot;, &quot;Dining&quot;, &quot;UpperHall&quot;, &quot;Hall&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Foyer&quot;, id: &quot;Foyer&quot;, img: [&quot;Foyer.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Kitchen&quot;, &quot;Dining&quot;, &quot;UpperHall&quot;, &quot;Hall&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Hall&quot;, id: &quot;Hall&quot;, adjacentRooms: [&quot;Foyer&quot;, &quot;MasterBdRm&quot;, &quot;Office&quot;, &quot;PlayerBdRm&quot;, &quot;Laundry&quot;, &quot;Kitchen&quot;, &quot;Dining&quot;, &quot;Garden&quot;,]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Garden&quot;, id: &quot;Garden&quot;, img: [&quot;Garden1.jpg&quot;, &quot;Garden2.jpg&quot;, &quot;Garden3.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Pool&quot;, &quot;Dining&quot;, &quot;Kitchen&quot;, &quot;Laundry&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Kitchen&quot;, id: &quot;Kitchen&quot;, img: [&quot;Kitchen.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Dining&quot;, &quot;Foyer&quot;, &quot;Hall&quot;]}))&gt;&gt;
@@ -2091,7 +2123,7 @@ $wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This
 &lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 2}, passages:[{name: &quot;Office_Windows&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Dust Desk and Side Tables&quot;, duration: {hour: 2}, passages:[{name: &quot;DaughterBdRm_Dusting&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Vacuum Carpet and Upholstery&quot;, duration: {hour: 2}, passages:[{name: &quot;DaughterBdRm_Vacuum&quot;, weight: 1}], energyCost: 1}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 2}, passages:[{name: &quot;DaughterBdRm_Windows&quot;, weight: 1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Intro1" tags="intro tutorial" position="475,850" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 2}, passages:[{name: &quot;DaughterBdRm_Windows&quot;, weight: 1}], energyCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Intro1" tags="intro tutorial" position="1100,850" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -2112,7 +2144,7 @@ He holds out a plane brown box in front of you. It&#39;s clear this person is up
 The man is rubbing his fingers together with a sly smile.
 
 [[Sounds like a good deal to me.|Intro2]]
-[[Nope. Stranger danger.|EndHomeSweetHome]]</tw-passagedata><tw-passagedata pid="65" name="Intro2" tags="intro tutorial" position="600,850" size="100,100">&lt;&lt;= $player.speak(&quot;Sure. I can help you out.&quot;)&gt;&gt;
+[[Nope. Stranger danger.|EndHomeSweetHome]]</tw-passagedata><tw-passagedata pid="70" name="Intro2" tags="intro tutorial" position="1225,850" size="100,100">&lt;&lt;= $player.speak(&quot;Sure. I can help you out.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Great ! you&#39;re a life saver. Have a safe trip.&quot;,&quot;Peru&quot;)&gt;&gt;
 
@@ -2124,7 +2156,7 @@ The package looks ordinary enough. You give it a shake, but don&#39;t hear anyth
 
 You look up, but the man is already getting into a nearby car and driving away.
 
-You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]</tw-passagedata><tw-passagedata pid="66" name="Intro3" tags="intro tutorial" position="725,850" size="100,100">You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is long. You play with your queue. Half an hour layer, you finally reach the front.
+You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]</tw-passagedata><tw-passagedata pid="71" name="Intro3" tags="intro tutorial" position="100,975" size="100,100">You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is long. You play with your queue. Half an hour layer, you finally reach the front.
 
 It doesn&#39;t take long to reach the airport and get to the security check-in. You hadn&#39;t really thought much about the box until you&#39;re putting it on the conveyor for the x-ray machine along with the rest of your suff. One of the gard waves at you through the metal detector. While you&#39;re waiting at the other end, an old lady in front of you drops her bag so you duck down to pick it.
 
@@ -2165,7 +2197,7 @@ The box is still closed.
 &lt;&lt;link &quot;Make a run for it&quot;&gt;&gt;&lt;&lt;replace &quot;#Intro3Options&quot;&gt;&gt;You start running and try to make a break for it, but the guards are ready for it. They quickly tackle you to the ground and have you restrained in no time.
 [[Get taken away.|Intro4]]&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-@@</tw-passagedata><tw-passagedata pid="67" name="Intro4" tags="intro tutorial" position="850,850" size="100,100">The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
+@@</tw-passagedata><tw-passagedata pid="72" name="Intro4" tags="intro tutorial" position="225,975" size="100,100">The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
 
 There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You&#39;re on your own.
 
@@ -2183,7 +2215,7 @@ One of the reasons this county was isolated from the rest of the world is its po
 
 Having anyone being in control of your life doesn&#39;t sound great.
 
-&lt;&lt;= Character.speakAnonymous(&quot;Well. I&#39;ll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Intro5" tags="intro tutorial" position="975,850" size="100,100">The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled &lt;b&gt;Private Indenture Contract&lt;/b&gt;.
+&lt;&lt;= Character.speakAnonymous(&quot;Well. I&#39;ll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="Intro5" tags="intro tutorial" position="350,975" size="100,100">The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled &lt;b&gt;Private Indenture Contract&lt;/b&gt;.
 
 &lt;&lt;= Character.speakAnonymous(&quot;This is a standard private contract but has a few addendums from your potential owner. If you want this deal you&#39;ll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
@@ -2211,7 +2243,7 @@ Having anyone being in control of your life doesn&#39;t sound great.
 [[Sign the contract|Intro6]]
     &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-@@</tw-passagedata><tw-passagedata pid="69" name="Intro6" tags="intro tutorial" position="1100,850" size="100,100">&lt;&lt;set $flags.cuff.recieved to true&gt;&gt;\
+@@</tw-passagedata><tw-passagedata pid="74" name="Intro6" tags="intro tutorial" position="475,975" size="100,100">&lt;&lt;set $flags.cuff.recieved to true&gt;&gt;\
 You sign your rights away and with that you are now an indentured servant. You know enough to know this basically makes you a slave with a few basic human rights but that&#39;s it.
 
 The Sentencing Officer takes away the contract a woman comes in with a box. She doesn’t saying anything as she sits next to you and pulls you hand over.
@@ -2228,8 +2260,8 @@ The woman wraps a black band around your wrist and uses a tool to press button w
 
 With the formalities complete you get taken away so you can be sent to your owners. You ask about your things before leaving and get told they will kept by the state until the debt is paid off. Looks like you&#39;re stuck with only the clothes on your back for now.
 
-[[Be taken to your owner.|ManorVisit_1]]</tw-passagedata><tw-passagedata pid="70" name="StoryAuthor" tags="" position="1225,850" size="100,100">A story by FreeShot
-With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="71" name="Start" tags="nobr startPassage" position="100,975" size="100,100">&lt;div class=gameTitle&gt;
+[[Be taken to your owner.|ManorVisit_1]]</tw-passagedata><tw-passagedata pid="75" name="StoryAuthor" tags="" position="600,975" size="100,100">A story by FreeShot
+With Yaflow&#39;s coding hand</tw-passagedata><tw-passagedata pid="76" name="Start" tags="nobr startPassage" position="725,975" size="100,100">&lt;div class=gameTitle&gt;
 &lt;h1&gt;Community Service&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class=&quot;warning&quot;&gt;
@@ -2250,7 +2282,7 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	&quot;firstNight&quot; : false,
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day:1, hour: 22})&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="ManorVisit_1" tags="tutorial" position="225,975" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="ManorVisit_1" tags="tutorial" position="850,975" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
@@ -2272,7 +2304,7 @@ With that, the turns around and walks into the estate proper.
 
 [[Follow|ManorVisit_2]]
 
-&lt;&lt;set $time.addTime({day:1, hour: 12, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="ManorVisit_2" tags="tutorial" position="350,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Foyer&quot;)&gt;&gt;
+&lt;&lt;set $time.addTime({day:1, hour: 12, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="ManorVisit_2" tags="tutorial" position="975,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Foyer&quot;)&gt;&gt;
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
 &lt;&lt;= $butler.speak(&quot;You may call me $butler.name&quot;)&gt;&gt;
@@ -2283,7 +2315,7 @@ You follow the older man and the main door opens into a wide foyer. The room is 
 
 He continues walking through the foyer and into the main lounge
 
-You follow $butler.name to the [[Main Lounge|ManorVisit_3]]</tw-passagedata><tw-passagedata pid="74" name="ManorVisit_3" tags="tutorial" position="475,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Lounge&quot;)&gt;&gt;
+You follow $butler.name to the [[Main Lounge|ManorVisit_3]]</tw-passagedata><tw-passagedata pid="79" name="ManorVisit_3" tags="tutorial" position="1100,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Lounge&quot;)&gt;&gt;
 This is the main sitting room and is central to the rest of the building. It has a few lounges as well as a large tv and fireplace.
 
 &lt;&lt;= $player.speak(&quot;So, what am I supposed to be doing around here?&quot;)&gt;&gt;
@@ -2295,7 +2327,7 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 &lt;&lt;= $butler.speak(&quot;Now follow me to the [[Kitchen|ManorVisit_4]]&quot;)&gt;&gt;
 &lt;&lt;set $flags.cuff.init to true&gt;&gt;
 &lt;&lt;set $flags.cuff.rules to true&gt;&gt;
-&lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="ManorVisit_4" tags="tutorial" position="600,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Kitchen&quot;)&gt;&gt;
+&lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="ManorVisit_4" tags="tutorial" position="1225,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Kitchen&quot;)&gt;&gt;
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
 [img[setup.ImagePath + &quot;character/staff/chef_placeholder1.jpg&quot;]]
@@ -2308,7 +2340,7 @@ The old chef points his knife at you to emphasize his point.
 
 &lt;&lt;= $butler.speak(&quot;You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.&quot;)&gt;&gt;
 
-&lt;&lt;set $time.addTime({day:0, hour:0, minute:20})&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="ManorVisit_5" tags="tutorial" position="725,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Garden&quot;)&gt;&gt;
+&lt;&lt;set $time.addTime({day:0, hour:0, minute:20})&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="ManorVisit_5" tags="tutorial" position="100,1100" size="100,100">&lt;&lt;= $mansion.display(&quot;Garden&quot;)&gt;&gt;
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
 There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
@@ -2335,7 +2367,7 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 
 Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
 
-&lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="ManorVisit_6" tags="tutorial" position="850,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Hall&quot;)&gt;&gt;
+&lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="ManorVisit_6" tags="tutorial" position="225,1100" size="100,100">&lt;&lt;= $mansion.display(&quot;Hall&quot;)&gt;&gt;
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They&#39;re both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
@@ -2384,7 +2416,7 @@ You stammer. &lt;&lt;= $player.speak(&quot;Yes $wife.title.&quot;)&gt;&gt;
 
 $butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]
 
-&lt;&lt;set $time.addTime({day:0, hour:2, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="ManorVisit_7" tags="tutorial" position="975,975" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+&lt;&lt;set $time.addTime({day:0, hour:2, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="ManorVisit_7" tags="tutorial" position="350,1100" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
 &lt;&lt;= $butler.speak(&quot;This is where you&#39;ll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.&quot;)&gt;&gt;
@@ -2395,7 +2427,7 @@ At first glance it seems like a nice room. It&#39;s defienitely not large, with 
 
 $butler.name closes the door behind you, leaving you alone.
 
-[[Inspect the room|PlayerBdRm]]</tw-passagedata><tw-passagedata pid="79" name="ManorVisit_8" tags="tutorial" position="1100,975" size="100,100">&lt;&lt;= $mansion.display(&quot;Office&quot;)&gt;&gt;
+[[Inspect the room|PlayerBdRm]]</tw-passagedata><tw-passagedata pid="84" name="ManorVisit_8" tags="tutorial" position="475,1100" size="100,100">&lt;&lt;= $mansion.display(&quot;Office&quot;)&gt;&gt;
 At exactly 7pm, the door to your room opens and $butler.name walks in.
 
 &lt;&lt;= $butler.speak(&quot;$owner.name is waiting for you in his office.&quot;)&gt;&gt;
@@ -2426,14 +2458,14 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 
 &lt;&lt;set $flags.manorIntro to false&gt;&gt;
 &lt;&lt;set $flags.cuff.full to true&gt;&gt;
-&lt;&lt;= $time.setDate({hour: 22})&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="StoryCaption" tags="" position="1225,975" size="100,100">&lt;hr&gt;
+&lt;&lt;= $time.setDate({hour: 22})&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="StoryCaption" tags="" position="600,1100" size="100,100">&lt;hr&gt;
 &lt;span class=&quot;date&quot;&gt;Day $time.day&lt;/span&gt;
 &lt;hr&gt;
 &lt;span class=&quot;time&quot;&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/span&gt;\
 &lt;hr&gt;
 Energy: &lt;&lt;= $player.getEnergyBar()&gt;&gt;
 &lt;hr&gt;
-&lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;hr&gt;[[CUFF]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="CUFF" tags="nobr mainMenu" position="100,1100" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
+&lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;hr&gt;[[CUFF]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="CUFF" tags="nobr mainMenu" position="725,1100" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;elseif $flags.cuff.full is true&gt;&gt;
 	[[Chores|playerToDoList]]&lt;br&gt;
@@ -2444,15 +2476,15 @@ Energy: &lt;&lt;= $player.getEnergyBar()&gt;&gt;
 &lt;&lt;if $flags.cuff.rules is true&gt;&gt;
 	[[Rules|rules]]&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-[[Return|$exitMenu]]</tw-passagedata><tw-passagedata pid="82" name="playerToDoList" tags="noreturn menu" position="225,1100" size="100,100">&lt;&lt;= $mansion.displayChores()&gt;&gt;
+[[Return|$exitMenu]]</tw-passagedata><tw-passagedata pid="87" name="playerToDoList" tags="noreturn menu" position="850,1100" size="100,100">&lt;&lt;= $mansion.displayChores()&gt;&gt;
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="83" name="appearence" tags="noreturn menu" position="350,1100" size="100,100">Todo : Describe player
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="88" name="appearence" tags="noreturn menu" position="975,1100" size="100,100">Todo : Describe player
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="84" name="skills" tags="noreturn menu" position="475,1100" size="100,100">Todo : Add skills
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="85" name="inventory" tags="noreturn menu" position="600,1100" size="100,100">W.I.P.
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="89" name="skills" tags="noreturn menu" position="1100,1100" size="100,100">Todo : Add skills
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="90" name="inventory" tags="noreturn menu" position="1225,1100" size="100,100">W.I.P.
 TODO : List current held items
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="86" name="rules" tags="noreturn menu" position="725,1100" size="100,100">&lt;h1 id=&quot;RuleTitle&quot;&gt;Rules&lt;/h1&gt;\
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="91" name="rules" tags="noreturn menu" position="100,1225" size="100,100">&lt;h1 id=&quot;RuleTitle&quot;&gt;Rules&lt;/h1&gt;\
 &lt;ol class=&quot;rules&quot;&gt;\
 &lt;li&gt;You will be required to be available 24/7 but unless otherwise stated every you will have a free day every 7th day.&lt;/li&gt;
 &lt;li&gt;Must be presentable and in clean clothes at all times.&lt;/li&gt;
@@ -2468,7 +2500,236 @@ TODO : List current held items
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="87" name="PassageDone" tags="" position="850,1100" size="100,100"></tw-passagedata><tw-passagedata pid="88" name="PlayerBdRm" tags="playerRoom room" position="975,1100" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="92" name="PassageDone" tags="" position="225,1225" size="100,100"></tw-passagedata><tw-passagedata pid="93" name="event_daughterpath01" tags="event" position="350,1225" size="100,100">As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
+ 
+&lt;&lt;= $wife.speak(&quot;That damned girl will be the death of me!&quot;)&gt;&gt;
+ 
+She abruptly open the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
+ 
+&lt;&lt;= $wife.speak(&quot;For goodness sake $daughter.name.&quot;)&gt;&gt; $wife.name grabs $daughter.name arm and pulls her inside.
+ 
+&lt;&lt;= $daughter.speak(&quot;Heeeeey. Easy.&quot;)&gt;&gt; Her slurred speech pretty much confirms she is drunk.
+ 
+&lt;&lt;= $wife.speak(&quot;Thank you gentlemen. You&#39;re dismissed.&quot;)&gt;&gt;
+ 
+$wife.name slams the door shut.
+ 
+&lt;&lt;= $wife.speak(&quot;Drunk again? Really?&quot;)&gt;&gt;
+ 
+&lt;&lt;= $daughter.speak(&quot;It was just some cocktails with my friends. We didn&#39;t do anything.&quot;)&gt;&gt;
+ 
+&lt;&lt;= $wife.speak(&quot;You almost set a bar on fire! I had hoped your education would train you out of that kind of behaviour but you&#39;ve go strait back into your old habits.&quot;)&gt;&gt;
+ 
+$daughter.name yanks her arm free and stumbles a bit. &lt;&lt;= $daughter.speak(&quot;I finished my degree. What more do you want? I just wana have fun!&quot;)&gt;&gt;
+ 
+&lt;&lt;= $wife.speak(&quot;I won&#39;t talk to you like this. Go upstairs and sleep it off.&quot;)&gt;&gt;
+
+$wife.name points to the stairs.
+ 
+&lt;&lt;= $daughter.speak(&quot;Aaaaw. But I&#39;m not sleepy.&quot;)&gt;&gt; $daughter.name still turns anyway and starts stumbling forwards.
+ 
+She spots you standing nearby.
+ 
+&lt;&lt;= $daughter.speak(&quot;Heeeey *fname*. Look at you. All cute and domesticated.&quot;)&gt;&gt; She stumbles over and squeezes your cheeks. &lt;&lt;speak $daughter.speak(&quot;I could just gobble you up.&quot;)&gt;&gt;
+ 
+&lt;&lt;= $wife.speak(&quot;$daughter.name!&quot;)&gt;&gt;
+ 
+&lt;&lt;= $daughter.speak(&quot;Fine.&quot;)&gt;&gt; $daughter.name lets go and heads up the stairs.
+ 
+$wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This is the last time.&quot;)&gt;&gt; She grumbles to herself.
+
+[[Avoid catching their attention until you get back to your room|PlayerBdRm]]
+
+&lt;&lt;set $eventCount_daughterdate to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="suitorPath_01" tags="" position="475,1225" size="100,100">After taking  moment to catch your breath you start heading back to the kitchen. As you round a corner you bump into one of the guests. You know he&#39;s been drinking all night since you&#39;ve been serving his drinks and dodging his groping hands.
+ 
+&quot;Well, well.&quot; You can smell the whisky on his breath. &quot;Fancy bumping into you here cutie.&quot;
+ 
+Every word has a slur to as he gets way to close to your personal space. You start backing away uncomfortably but he grabs you by the waist and pulls you towards him. His other hand reaches around and grabs you butt through. You can feel your chastity cage dangerously close to his leg.
+ 
+Option.
+Object
+&quot;Hey let go of me!&quot;
+ 
+&quot;I&#39;ve always wondered how *owner* keeps finding fine fillies like you. Maye I should ask him to loan you to me for a weekend away. You&#39;d enjoy that, right gorgeous?&quot;
+ 
+Option
+Object
+&quot;I don&#39;t think so.&quot;
+ 
+&quot;Aw, don&#39;t be like that.&quot;
+ 
+Meek
+You try to pull yourself out of his grasp but his groping hands keep a hold of you.
+ 
+One of his hands is slowly inching your skirt up your legs until you can feel his fingers on the bare skin of your thigh.
+ 
+&quot;Come on sweetie. Give us a kiss.&quot;
+ 
+His breath is gross as he leans forward with his lips pursed. You try pull away again but he&#39;s backed you up against the wall.
+ 
+&quot;I don&#39;t think she&#39;s enjoying that.&quot;
+ 
+The man turns and you can see *suitor* standing not far away with arms crossed.
+ 
+&quot;We&#39;re having fun here.&quot; The man pulls you closer and you feel his thigh jostle your caged member.
+ 
+&quot;One of you is.&quot; *suitor* starts walking closer. He&#39;s moving with such confidence the other man loosens his grip a little, not enough for you to get free though. &quot;*femname* you had some questions about my work earlier and I&#39;ve convinced *wife* to let me pull you aside for a while. Shall we?&quot;
+ 
+*suitor* holds out his hand but you&#39;re too busy wrestling with the drunk to take it.
+ 
+&quot;We were having a moment here. Why don&#39;t you leave us alone. You can have her after.&quot;
+ 
+&quot;You&#39;re going to let her go now.&quot;
+ 
+&quot;Or what?&quot;
+ 
+*suitor* grabs the man&#39;s shoulder and leans forward to whisper something in his ear. Despite being close you can&#39;t quite catch what is being said but the drunks eyes widen. He pulls his hands away from your ass as if they were burned
+ 
+&quot;Ok, ok. No need to get personal. It&#39;s a party after all.&quot;
+ 
+Without taking his hand off the man&#39;s shoulder *suitor* guides him away and then gives him a quick shove.
+ 
+Option
+Stand nervously
+You quickly pull you skirt back down lest it reveal you trapped penis underneath and then stand with your back still against the wall catching you breath.
+ 
+Say thank you
+You quickly pull you skirt back down lest it reveal you trapped penis underneath.
+ 
+&quot;Thank you. I really wasn&#39;t having a good time.&quot;
+ 
+&quot;Let&#39;s go get a drink.&quot; *suitor* gently puts his hand on your shoulder to get you to follow him.
+ 
+&quot;But *wife*…&quot;
+ 
+&quot;I did actually speak to her. You seemed curious about what I do.&quot; He keeps talking as you walk into the study.
+ 
+&gt; study
+ 
+*suitor* gestures for you to sit down as walks over to the small bar *owner* keeps stocked.
+ 
+Option
+Stand
+You stand there, unsure what to do. *suitor* turns around with two drinks in his hand.
+ 
+&quot;Come on. You&#39;ve been working hard on your feet all night. You&#39;ve earned a little break.&quot;
+ 
+Almost at the mention of your feet you feel them throbbing in the heels *wife* put you in. You take a seat on one of the lounges, making sure to straighten your skirt out to keep it from riding up too high.
+ 
+Sit
+You take a seat on one of the lounges, making sure to straighten your skirt out to keep it from riding up too high. *suitor* turns around with two drinks in his hand.
+ 
+ 
+*suitor* takes the spot next to you. You half expected him to be all over you already but there&#39;s a nice, respectable gap between you. He hands you your drink and clinks the glasses in cheers.
+ 
+Option
+Down it, it&#39;s been a long night.
+Your down the drink in one go and *suitor* chuckles.
+ 
+&quot;A woman after my own heart.&quot; He follows suit and downs his drink before getting up to make another.
+ 
+Sip the drink, savour this moment of peace.
+*Suitor* gives a half smile and just downs his before getting up to make another.
+ 
+&quot;So you were curious about my work?&quot;
+ 
+You sit quietly for a moment and looks at the door that&#39;s now closed leaving you two alone. *suitor* turns back around and see&#39;s you sitting nervously.
+ 
+&quot;Don&#39;t worry. I just didn&#39;t want the noise cutting into our conversation.&quot; He re-joins you on the lounge. &quot;Most people at these things are just here for the drinks and gossip. I never get to talk about what I do. Did you have some questions.&quot;
+ 
+You spend the next little while chatting with *suitor* about what he does. It&#39;s all very fascinating and you tell he&#39;s enjoying the conversation by how animated he gets when responding to a good question. The friendly conversation along with the liquor has you feeling relaxed for the first time in a while. He tells one particularly good joke that has you laughing, your hand instinctually grabs his arm as you both enjoy the humour.
+ 
+After some time there&#39;s a knock at the door and you hear *daughters* voice.
+ 
+&quot;Sorry *suitor*. We need *femname* or *caterer* is going to have kittens.&quot;
+ 
+&quot;Well then. Back to it I suppose.&quot; *suitors stand up and holds his hand out to help you out of the seat.
+ 
+You take it, it wouldn&#39;t be polite to refuse. You barely notice his hand on your lower back as you both head to the door. *daughter* is still waiting with a smile on her face.
+ 
+&quot;What have you two been doing in there all alone.&quot;
+ 
+Your cheeks flush as you realise the implication.
+ 
+&quot;Um, we were just…&quot;
+ 
+*suitor* hand holds onto your shoulder. &quot;Talking business. *femname* has a keen mind I wanted to get away from all the idle chatter for a bit. Don&#39;t go spreading any rumours.&quot;
+ 
+&quot;Sure. Whatever you say.&quot; *daughter*, still grinning at you, takes *suitors other hand. &quot;Back to *caterer* *femname* before he storms out in protest.&quot;
+ 
+The two of them start chatting as you head back to the kitchen.
+ 
+Suitor 2 - end of the night
+ 
+As evening winds down you&#39;re mostly stuck in the kitchen cleaning up with *caterer*. People have been leaving for a while now leaving the estate mostly empty.
+ 
+You&#39;re elbow deep in water when *wife and *suitor* walk in. *wife* is laughing at something she found funny while hanging off of *suitors* arm but you barely notice them.
+ 
+&quot;Well. It&#39;s late so I think it&#39;s time for me to head off.&quot; *suitor* says.
+ 
+&quot;Yes, well it was lovely having you over again. You must visit more often.&quot;
+ 
+You pick up a stack of dishes and put them in the cupboard. As you look up *suitor* is giving you a side look.
+ 
+&quot;It might do just that. We&#39;ll see how busy my schedule is.&quot;
+ 
+The look doesn&#39;t go unnoticed by *wife* who follows his eyes to you.
+ 
+&quot;I look forward to it.&quot; *wife* gives him a hug and a quick peck on the cheek before turning back to you. &quot;*femname*. See my guest to the door. After that you can finish up for the night.&quot;
+ 
+*wife* heads off to the master bedroom to join *owner* leaving you alone with *suitor*.
+ 
+&quot;Um, this way sir.&quot;
+ 
+Suitor falls in next to you as you head to the main entrance.
+ 
+Option
+Engage
+&quot;So did you have a good night *suitor*?&quot;
+ 
+&quot;Some parts were better than others. A particularly engaging conversation with a lovely young woman was probably the highlight.&quot;
+ 
+&quot;Lucky girl.&quot; you think to yourself sarcastically.
+ 
+Walk in silence.
+ 
+You both reach the door.
+ 
+&quot;Well goodnight *suitor*.&quot;
+ 
+You turn to leave when *suitor* stops you with an out held hand. Turning back to face him.
+ 
+&quot;Yes sir?&quot;
+ 
+*suitor* gently places a hand on your shoulder.
+ 
+Option
+Back away
+You take a step back but he follow and you find yourself against the main doors.
+ 
+Don&#39;t panic
+Your heart thumps in your chest hoping this is just a hug.
+ 
+*suitor* pulls you towards him before bringing his lips to yours. It takes a moment to register the firm yet gentle kiss and then another beat before it clicks you are dressed as a girl being kissed by a man.
+ 
+Option
+Nope. This isn&#39;t happening.
+Unsure how to respond you lock up as *suitor* continues the kiss. He holds you against him and you can feel the pressure of his firm chest squishing your &quot;breasts&quot;. Your heart is pounding underneath.
+ 
+Struggle ineffectively.
+You try to wiggle free but his hold is firm and you have nowhere to go. He mistakes the struggle for enthusiasm and you feel his tongue push between your lips and explore your mouth.
+ 
+Eventually *suitor* pulls back and cups your face cheek with his hand.
+ 
+&quot;Until next time.&quot;
+ 
+With that he lets himself out, leaving you alone in the foyer.
+ 
+Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He must&#39;ve thought you being friendly was you returning the affection. Which is wasn&#39;t.
+ 
+You shift your hips again as your caged member was brought to life by the kiss. It&#39;s already pressing against the hard plastic.
+ 
+You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="95" name="PlayerBdRm" tags="playerRoom room" position="600,1225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 &lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;set $time.addTime({day: 1, hour: 0, minute: 0})&gt;&gt;
 	&lt;&lt;goto `passage()`&gt;&gt;
@@ -2514,11 +2775,11 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	&lt;&lt;/click&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="playerRoomShower" tags="playerRoom" position="1100,1100" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="90" name="playerRoomMakup" tags="playerRoom" position="1225,1100" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="91" name="playerRoomMorningRoutine" tags="playerRoom" position="100,1225" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="92" name="playerRoomWardrobe" tags="playerRoom" position="225,1225" size="100,100">Todo: Add clothes
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="playerRoomShower" tags="playerRoom" position="725,1225" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="97" name="playerRoomMakup" tags="playerRoom" position="850,1225" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="98" name="playerRoomMorningRoutine" tags="playerRoom" position="975,1225" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="99" name="playerRoomWardrobe" tags="playerRoom" position="1100,1225" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="RoomDescription" tags="room" position="350,1225" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="sleep" tags="sleep" position="475,1225" size="100,100">You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="RoomDescription" tags="room" position="1225,1225" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="sleep" tags="sleep" position="100,1350" size="100,100">You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 
 &lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;&gt;&gt;
 cocktail party first night dream
@@ -2529,7 +2790,7 @@ First nights rest will be fitful because of the cage
 Wake up will be very uncomfortable due to morning wood
 &lt;&lt;/if&gt;&gt;
 
-[[Start the next day|wakeUp]]</tw-passagedata><tw-passagedata pid="95" name="wakeUp" tags="sleep" position="600,1225" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
+[[Start the next day|wakeUp]]</tw-passagedata><tw-passagedata pid="102" name="wakeUp" tags="sleep" position="225,1350" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $time.day == 9&gt;&gt;
