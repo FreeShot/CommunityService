@@ -8,7 +8,12 @@
 	<<set $time.setDate({day:0, hour:22, minute: 0})>>
 	<<goto `passage()`>>
 <</click>>
-
+<<nobr>>
+<<if $eventCount_cocktailparty >= 13>>
+	$wife.name is hosting a party tonight.<br>
+	[[Volunteer to serve at the cocktail party|cocktailparty_start]]<br>
+<</if>>
+<</nobr>>
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
 Its furnishing are plain with no decorations.

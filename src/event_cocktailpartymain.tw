@@ -11,13 +11,17 @@ VIP guests
 *suitor*
 *no name 1* - throw away for now. just to bulk out the interactions
 *no name 2*
- 
+
 Run the Party Mini Games
+
+[[cocktailparty_finish]]
+
+::cocktailparty_finish
 
 <<if $flags.firstCocktailParty is true>>
 	[[firstcocktailparty23]]
 <<else>>
-	[[cocktailparty_review]]
+	[[Head to your room and go to bed|sleep]]
 <</if>>
  
 ::cocktailparty_review [event]

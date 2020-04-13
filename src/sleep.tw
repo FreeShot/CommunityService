@@ -41,3 +41,6 @@ The CUFF alarm goes off and you quickly set it to snooze. It's not long before t
 <</nobr>>
 
 <<set $time.addTime({day:1})>>
+<<if $eventCount_cocktailparty >= 14>>
+	<<set $eventCount_cocktailparty to 0>>
+<</if>>
