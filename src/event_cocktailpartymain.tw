@@ -1,5 +1,7 @@
 ::cocktailparty_start [event]
 
+<<set $cocktailparty_start to true>>
+
 Options to prioritise guests or VIP's
  
 VIP guests
@@ -11,14 +13,37 @@ VIP guests
 *no name 2*
  
 Run the Party Mini Games
+
+<<if $flags.firstCocktailParty is true>>
+	[[firstcocktailparty23]]
+<<else>>
+	[[cocktailparty_review]]
+<</if>>
  
-PC heads back to room and takes off the outfit
-Finds the cage is locked on when they try to go to the toilet
-Option
-Go ask the Wife
-PC is still in the wig and make up but in their regular clothes
-They look like a twin female version of themselves
-When they get to master bedroom the Owner and Wife are having sex so leaves it
-PC has to go to the toilet sitting down
-Still int eh panties but in their normal clothes otherwise
-Takes the wig off, has a shower and goes to bed
+::cocktailparty_review [event]
+
+Good
+<<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
+
+Bad
+<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>>
+
+$wife.title pulls out a key and starts twirling it on her finger.
+
+<<= $wife.speak("What do you think?")>>
+
+<<= $player.speak("Please $wife.title. I would like it off.")>>
+
+She waits for an uncomfortable minute just teasing you with the key you’re your trapped penis spinning in front of you.
+ 
+<<= $wife.speak("Oh fine.")>> She flicks you the key and heads to the bathroom. <<= $wife.speak("It's a shame. A lot of people commented on having a beauty like you under our care.")>>
+ 
+<<= $player.speak("<i>Care, yeah right.</i>")>>
+ 
+<<= $wife.speak("Just leave them on one of the cushions before you leave. You never know when I might need it again.")>>
+ 
+She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can't help and think how pathetic your small member looks after being compressed by the cage for so long.
+ 
+You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
+<<set $eventCount_cocktailparty to 0>>
+<<set $cocktailparty_start to false>>

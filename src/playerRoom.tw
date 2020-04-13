@@ -1,5 +1,13 @@
 ::PlayerBdRm [playerRoom room]
 <<= $mansion.display("PlayerBdRm")>>
+<<click "Debug Skip Day">>
+	<<set $time.addTime({day: 1, hour: 0, minute: 0})>>
+	<<goto `passage()`>>
+<</click>>
+<<click "Skip to end of day">>
+	<<set $time.setDate({day:0, hour:22, minute: 0})>>
+	<<goto `passage()`>>
+<</click>>
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
@@ -8,33 +16,31 @@ Its furnishing are plain with no decorations.
 Desk
 	There is nothing here at the moment
 
-Got to the bathroom and:
-	[[Shower|playerRoomShower]]
+<<nobr>>
+Got to the bathroom and:<br>
+	[[Shower|playerRoomShower]]<br>
 <<if $player.acceptance > 0>>
-	[[Do make-up|playerRoomMakup]]
-	[[Morning Routine|playerRoomMorningRoutine]]
+	[[Do make-up|playerRoomMakup]]<br>
+	[[Morning Routine|playerRoomMorningRoutine]]<br>
 <</if>>
-
+<</nobr>>
 Check the [[Wardrobe|playerRoomWardrobe]]
 
+<<nobr>>
 <<if $flags.manorIntro is true>>
 	[[Wait to meet the master of the house|ManorVisit_8]]
 	<<= $time.setDate({day:1, hour: 19, minute: 0})>>
 <<elseif $time.clock >= $bedtime.clock>>
 	[[Go to bed.|sleep]]
 <<else>>
-	[[Do your chores.|playerToDoList]]
+	[[Do your chores.|playerToDoList]]<br>
 	<<click "Rest 1 Hour">>
 	<<set $time.addTime({day:0, hour:1, minute: 0})>>
 	<<goto `passage()`>>
 	<</click>>	
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 <</if>>
-
-<<click "Debug Skip Day">>
-	<<set $time.addTime({day: 1, hour: 0, minute: 0})>>
-	<<goto `passage()`>>
-<</click>>
+<</nobr>>
 
 ::playerRoomShower [playerRoom]
 Todo: Add shower event

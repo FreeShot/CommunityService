@@ -1,19 +1,43 @@
 ::sleep [sleep]
-You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep. 
+You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
 
-[[wakeUp]]
+<<if $flags.firstCocktailParty is true>>>>
+cocktail party first night dream
+
+Generic sex fantasy but they are the girl
+
+First nights rest will be fitful because of the cage
+Wake up will be very uncomfortable due to morning wood
+<</if>>
+
+[[Start the next day|wakeUp]]
 
 ::wakeUp [sleep]
 
 The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
 
-<<if $time.day >= 9 >>
-	You don't know why but you feel like today will be a good day.
-
-	[[Get yourself ready and get things started.|firstcocktailparty1]]
+<<nobr>>
+<<if $time.day == 9>>
+	As you roll out of bed you can't help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards you decide to ride the wave and end up relaxing in your room for the rest of the morning instead of getting your chores done.<br>
+	<br>
+	It's nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.<br>
+	<br>
+	[[Get started.|firstcocktailparty1]]
+	<<= $time.setDate({day:0, hour: 12, minute:0})>>
+<<elseif $cocktailparty_start is true>>
+	After a fitful nights sleep you wake up and immediately feel pressure of the locked chastity cage against your growing morning wood. You rolled onto your stomach in the night as well so it's wedged right againsts you. You roll over and then shift around to try and get comfortable but it's no good. You'll need to go see $wife.name.<br>
+	<br>
+	<<if $flags.firstCocktailParty is true>>
+		[[Get up and go get the key.|firstcocktailparty27]]
+	<<else>>
+		[[Performance review|cocktailparty_review]]
+	<</if>>
+	<<= $time.setDate({day:0, hour: 6, minute:0})>>
 <<else>>
-	[[PlayerBdRm]]
+	[[Roll out of bed|PlayerBdRm]]
+	<<= $time.setDate({day:0, hour: 6, minute:0})>>
+	<<set $eventCount_cocktailparty ++>>
 <</if>>
+<</nobr>>
 
 <<set $time.addTime({day:1})>>
-<<= $time.setDate({day:0, hour: 6, minute:0})>>

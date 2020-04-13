@@ -37,4 +37,6 @@ She spots you standing nearby.
  
 $wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
 
-<<goto playerRoom>>
+[[Avoid catching their attention until you get back to your room|PlayerBdRm]]
+
+<<set $eventCount_daughterdate to 0>>

@@ -12,6 +12,7 @@
 	},
 	"manorIntro" : true,
 	"firstNight" : true,
+	"firstCocktailParty" : false,
 }>>
 
 <<set $mbriefs to new Clothes({name: "Men's Briefs", slot: "panties", describe: "Plain White Men's Underwear", img:"mbriefs_01.JPG", needAcceptance: "0", price: "0", specialUse: "none"})>>
