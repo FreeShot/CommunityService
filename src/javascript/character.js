@@ -53,7 +53,6 @@ class Player extends Character {
                 currentRoom: "PlayerBdRm",
                 arrousal : 0,
                 submission : 0,
-                feminity : 0,
                 appearance : 0,
             }, config));
 	}
@@ -79,6 +78,13 @@ class Player extends Character {
 
 	useStamina(amnt) {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
+	}
+
+	get gender() {
+		if (this.feminity > 50) {
+			return "female";
+		}
+		return "male";
 	}
 
 	get getColor() {

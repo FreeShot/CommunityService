@@ -13,11 +13,11 @@
 
     var config = {
         name : 'gender',
-        showSetting : true,
+        showSetting : false,
         label : 'Gender',
         desc : '',
-        storyVar : '%%gender',
-        default : 'female' // female, male, or other
+        storyVar : '$player.gender',
+        default : 'male' // female, male, or other
     };
 
     // DATA

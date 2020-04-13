@@ -4,7 +4,7 @@
 <hr>
 <span class="time"><<= $time.clock>></span>\
 <hr>
-Energy: <<= $player.getEnergyBar()>>
+Energy: <<= $player.getStaminaBar()>>
 <hr>
 <<if $flags.cuff.recieved>><hr>[[CUFF]]<</if>>
 
