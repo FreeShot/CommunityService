@@ -393,7 +393,7 @@ You reach up and cup your "breasts" through the silk bra. The breast forms give 
 <<if $cocktailPartyChckBack is false>>[[Turn around|firstcocktailparty_turn]]<</if>>
 [[Wait|firstcocktailparty13]]
 
-<<set $cocktailPartyCheckSelf to ++>>
+<<set $cocktailPartyCheckSelf ++>>
 <<set $cocktailPartyChckBra to true>>
 
 ::firstcocktailparty_pose [event]
@@ -405,7 +405,7 @@ With one hand behind your head you put the other on your hips before cocking the
 <<if $cocktailPartyChckBack is false>>[[Turn around|firstcocktailparty_turn]]<</if>>
 [[Wait|firstcocktailparty13]]
 
-<<set $cocktailPartyCheckSelf to ++>>
+<<set $cocktailPartyCheckSelf ++>>
 <<set $cocktailPartyPose to true>>
 
 ::firstcocktailparty_turn [event]
@@ -516,7 +516,9 @@ To do: add image
 		<<replace "#maiddressing7">>
 			<<= $player.speak("It's fine I guess.. $wife.title.")>><br>
 			<br>
-			She seems happy with that response. [["Oh. One more thing."|firstcocktailparty16]]
+			She seems happy with that response.<br>
+			<br>
+			[["Oh. One more thing."|firstcocktailparty16]]
 		<</replace>>
 	<</link>><br>
 	<<link "Get me out of this stuff.">>
@@ -526,6 +528,7 @@ To do: add image
 			<<= $wife.speak("Wouldn't... what?")>><br>
  			<br>
 			<<= $player.speak("Wouldn't $wife.title.")>><br>
+			<br>
 			[["Better. Oh. One more thing."|firstcocktailparty16]]
 		<</replace>>
 	<</link>>
@@ -626,7 +629,7 @@ $caterer.name goes back to the kitchen to continue his prep work.
  
 <<= $player.speak("Yes $wife.title.")>>
  
-*wife* leaves and starts giving the worker instructions to clear the dining room as $caterer.name
+$wife.title leaves and starts giving the worker instructions to clear the dining room as $caterer.name
  
 <<= $caterer.speak("Come on girl. We need to get you started.")>>
  
@@ -649,7 +652,7 @@ $caterer.name goes back to the kitchen to continue his prep work.
 			<br>
 			<<= $caterer.speak("Better. But you still need some work")>><br>
 			<br>
-			[[Continue praticing|firstcocktailparty20]]
+			[[Continue praticing|firstcocktailparty21]]
 		<</replace>>
 	<</link>><br>
 	<<link "Take the tray with one hand.">>
@@ -660,7 +663,7 @@ $caterer.name goes back to the kitchen to continue his prep work.
 			<br>
 			<<= $caterer.speak("You still need the other hand behind your back though.")>><br>
 			<br>
-			[[Continue praticing|firstcocktailparty20]]
+			[[Continue praticing|firstcocktailparty21]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
