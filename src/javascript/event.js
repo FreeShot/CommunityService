@@ -4,6 +4,7 @@ class Event {
 		this.passage = ''; // Passage in which it starts
 		this.inline = false; // If true, will be included in the current passage
 		this.available = function() {return false;}; // Condition for it to appear
+		this.repeats = false;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -13,9 +14,16 @@ class Event {
 	playEvent(debug) {
 		if(this.available()) {
 			if (this.inline) {
+				if (!this.repeats) {
+					State.variables.mansion.removeEvent(this.name);
+				}
 				return "<<include '" + this.passage + "'>>";
 			} else {
-				return "<<link '" + this.name + "' '" + this.passage + "'>></link>>";
+				if (!this.repeats) {
+					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.name + "')</link>>";
+				} else {
+					return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
+				}
 			}
 		} else {
 			if (debug) {return "No event but picked " + this.name;}
