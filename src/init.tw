@@ -19,14 +19,14 @@
 
 <<set $player to new Player()>>
 
-<<set $owner to new Character({name: "Mr Sono", color: "Brown", title: "sir"})>>
-<<set $wife to new Character({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
-<<set $daughter to new Character({name: "Angeline", color: "DarkSalmon", title: "Ms Sono"})>>
-<<set $son to new Character({name: "Mr Sono", color: "LightGreen", title: "Mr Sono"})>>
-<<set $butler to new Character({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
-<<set $cook to new Character({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
-<<set $gardner to new Character({name: "Juan", color: "Sienna", title: "Juan"})>>
-<<set $caterer to new Character({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
+<<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "sir"})>>
+<<set $wife to new NPC({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
+<<set $daughter to new NPC({name: "Angeline", color: "DarkSalmon", title: "Ms Sono"})>>
+<<set $son to new NPC({name: "Mr Sono", color: "LightGreen", title: "Mr Sono"})>>
+<<set $butler to new NPC({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
+<<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
+<<set $gardner to new NPC({name: "Juan", color: "Sienna", title: "Juan"})>>
+<<set $caterer to new NPC({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
 
 <<set $mansion to new Mansion({})>>
 

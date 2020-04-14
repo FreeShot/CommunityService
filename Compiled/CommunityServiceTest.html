@@ -1174,7 +1174,7 @@ class Room {
 			}
 			return str + "</ol>";
 		} else {
-			return "You don't have any chores to do in this room";
+			return ((displayTitle || true) ? this.name : "You don't have any chores in here.");
 		}
 	}
 

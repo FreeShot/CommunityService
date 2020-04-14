@@ -3,7 +3,6 @@ class Character {
 		this.name = '';
 		this.title = '';
 		this.currentRoom = '';
-		this.acceptance = 0;
 		this.color = '';
 
         Object.keys(config).forEach(function (pn) {
@@ -38,6 +37,32 @@ class Character {
 Object.defineProperty(window, 'Character', {
     value : Character
 });
+
+class NPC extends Character {
+	constructor(config) {
+		super(Object.assign(
+            {
+                schedule : "",
+                acceptance : 0
+            }, config));
+	}
+
+	clone() {
+        return new Character(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Character($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Character', {
+    value : Character
+});
+
 
 class Player extends Character {
 	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"];
