@@ -6,7 +6,7 @@ class Chore {
 			{name: '', weight: 1}
 		];
 		this.img = [];
-		this.energyCost  = 0;
+		this.staminaCost  = 0;
 		this.done = false;
 		this.room = '';
 		this.id = '';
@@ -22,17 +22,17 @@ class Chore {
 				"<span class='ChoreDone'>{0} (Done)</span>",
 				this.name
 			);
-		} else if (!State.variables.player.hasEnoughEnergy(this.energyCost)) {
+		} else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) {
 			return String.format(
-				"<span class='ChoreDone'>{0} (Not enough energy)</span>",
+				"<span class='ChoreDone'>{0} (Not enough stamina)</span>",
 				this.name
 			);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $player.useEnergy({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} energy, takes about {4})",
+				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4})",
 				this.name,
 				this.passage,
-				this.energyCost,
+				this.staminaCost,
 				this.duration,
 				this.getDuration,
 				this.room
