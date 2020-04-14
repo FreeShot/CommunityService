@@ -14,3 +14,7 @@
 .estateRoom {
 	font-size: 4rem;
 }
+
+input[type="text"] {
+	min-width: 0px;
+}

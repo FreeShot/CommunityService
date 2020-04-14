@@ -124,7 +124,7 @@ The Sentencing Officer does some quick paper work and then pushes foward a table
 
 			<div id="player-customisation-form">\
 			<h3>Personnal information of the <em>Indured Servant</em></h3>
-			Name: <<textbox "$player.name" $player.name "">>
+			Name: <<textbox "$player.name" $player.name "Intro6" true>>
 
 			</div>
 

@@ -1,5 +1,6 @@
 // Adds Icons
 importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
+importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
 // Stops the bar from being hidden
 Config.ui.stowBarInitially = false;

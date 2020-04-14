@@ -117,6 +117,10 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 .estateRoom {
 	font-size: 4rem;
 }
+
+input[type="text"] {
+	min-width: 0px;
+}
 /* twine-user-stylesheet #2: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -727,6 +731,7 @@ class Event {
 		this.passage = ''; // Passage in which it starts
 		this.inline = false; // If true, will be included in the current passage
 		this.available = function() {return false;}; // Condition for it to appear
+		this.repeats = false;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -736,9 +741,16 @@ class Event {
 	playEvent(debug) {
 		if(this.available()) {
 			if (this.inline) {
+				if (!this.repeats) {
+					State.variables.mansion.removeEvent(this.name);
+				}
 				return "<<include '" + this.passage + "'>>";
 			} else {
-				return "<<link '" + this.name + "' '" + this.passage + "'>></link>>";
+				if (!this.repeats) {
+					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.name + "')</link>>";
+				} else {
+					return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
+				}
 			}
 		} else {
 			if (debug) {return "No event but picked " + this.name;}
@@ -1291,6 +1303,7 @@ Object.defineProperty(window, 'Room', {
 /* twine-user-script #8: "script.js" */
 // Adds Icons
 importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
+importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
 // Stops the bar from being hidden
 Config.ui.stowBarInitially = false;
@@ -2412,11 +2425,7 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 &lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 1}, passages:[{name: &quot;Office_Windows&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Dust Desk and Side Tables&quot;, duration: {minute: 30}, passages:[{name: &quot;DaughterBdRm_Dusting&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Vacuum Carpet and Upholstery&quot;, duration: {minute: 30}, passages:[{name: &quot;DaughterBdRm_Vacuum&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 1}, passages:[{name: &quot;DaughterBdRm_Windows&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
-
-
-&lt;&lt;= $mansion.addEvent(new Event({name: &quot;TestEvent&quot;, passage: &quot;debug&quot;, inline: true}))&gt;&gt;
-&lt;&lt;= $mansion.addEventCondition(&quot;TestEvent&quot;, function() {console.log(&quot;TestPassed&quot;);return true})&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Intro1" tags="intro tutorial" position="1100,850" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 1}, passages:[{name: &quot;DaughterBdRm_Windows&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Intro1" tags="intro tutorial" position="1100,850" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -2529,7 +2538,7 @@ Having anyone being in control of your life doesn&#39;t sound great.
 
 			&lt;div id=&quot;player-customisation-form&quot;&gt;\
 			&lt;h3&gt;Personnal information of the &lt;em&gt;Indured Servant&lt;/em&gt;&lt;/h3&gt;
-			Name: &lt;&lt;textbox &quot;$player.name&quot; $player.name &quot;&quot;&gt;&gt;
+			Name: &lt;&lt;textbox &quot;$player.name&quot; $player.name &quot;Intro6&quot; true&gt;&gt;
 
 			&lt;/div&gt;
 

@@ -117,6 +117,10 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 .estateRoom {
 	font-size: 4rem;
 }
+
+input[type="text"] {
+	min-width: 0px;
+}
 /* twine-user-stylesheet #2: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -562,6 +566,8 @@ class Chore {
 		this.done = false;
 		this.room = '';
 		this.id = '';
+		this.days = [0, 1, 2, 3, 4, 5, 6]; // Days active
+		this.timeLeft = 0;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -581,19 +587,24 @@ class Chore {
 			);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4})",
+				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6}",
 				this.name,
 				this.passage,
 				this.staminaCost,
 				this.duration,
 				this.getDuration,
-				this.room
+				this.room,
+				this.getLastDay
 			);
 		}
 	}
 
 	reset() {
 		this.done = false;
+	}
+
+	get getLastDay() {
+		var days = ["monday", "tuesday", "wedsnday"]
 	}
 
 	get getDuration() {
@@ -713,10 +724,64 @@ class Clothes extends Item {
 Object.defineProperty(window, 'Clothes', {
     value : Clothes
 });
-/* twine-user-script #4: "mansion.js" */
+/* twine-user-script #4: "event.js" */
+class Event {
+	constructor(config) {
+		this.name = ''; // Not used, just for us to remeber it
+		this.passage = ''; // Passage in which it starts
+		this.inline = false; // If true, will be included in the current passage
+		this.available = function() {return false;}; // Condition for it to appear
+		this.repeats = false;
+
+		Object.keys(config).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+	}
+
+	playEvent(debug) {
+		if(this.available()) {
+			if (this.inline) {
+				if (!this.repeats) {
+					State.variables.mansion.removeEvent(this.name);
+				}
+				return "<<include '" + this.passage + "'>>";
+			} else {
+				if (!this.repeats) {
+					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.name + "')</link>>";
+				} else {
+					return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
+				}
+			}
+		} else {
+			if (debug) {return "No event but picked " + this.name;}
+			return "";
+		}
+	}
+
+	setCondition(fun) {
+		this.available = fun;
+	}
+
+	clone() {
+        return new Event(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Event($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Event', {
+    value : Event
+});
+/* twine-user-script #5: "mansion.js" */
 class Mansion {
 	constructor(config) {
 		this.rooms = [];
+		this.events = [];
 
 		if (config != {}) {
 			Object.keys(config).forEach(function (pn) {
@@ -756,10 +821,27 @@ class Mansion {
 		this.findRoom(roomID).addChore(chore.clone());
 	}
 
+	addEvent(event) {
+		this.events.push(event);
+	}
+
+	addEventCondition(event, fun) {
+		this.events.find(function(em) {return em.name == event}).setCondition(fun);
+	}
+
+	removeEvent(eventName) {
+		this.events.filter(function(em) {return em.name != eventName});
+	}
+
 	resetChores() {
 		for (var i = 0; i < this.rooms.length; i++) {
 			this.rooms[i].resetChores();
 		}
+	}
+
+	getEvent(debug) {
+		var event = this.events[Math.floor(Math.random()*this.events.length)]
+		return event.playEvent(debug);
 	}
 
 	clone() {
@@ -777,7 +859,7 @@ class Mansion {
 Object.defineProperty(window, 'Mansion', {
     value : Mansion
 });
-/* twine-user-script #5: "pronouns.js" */
+/* twine-user-script #6: "pronouns.js" */
 // Chapel's pronouns template
 
 (function () {
@@ -1120,7 +1202,7 @@ Object.defineProperty(window, 'Mansion', {
     window.gender = window.gender || setup.gender;
 
 }());
-/* twine-user-script #6: "rooms.js" */
+/* twine-user-script #7: "rooms.js" */
 class Room {
 	constructor(config) {
 		this.name = '';
@@ -1218,9 +1300,10 @@ class Room {
 Object.defineProperty(window, 'Room', {
     value : Room
 });
-/* twine-user-script #7: "script.js" */
+/* twine-user-script #8: "script.js" */
 // Adds Icons
 importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
+importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
 // Stops the bar from being hidden
 Config.ui.stowBarInitially = false;
@@ -1260,7 +1343,7 @@ Setting.addToggle("nsfw", {
 	label    : "Displays NSFW images",
 	default  : true
 });
-/* twine-user-script #8: "time.js" */
+/* twine-user-script #9: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -2455,7 +2538,7 @@ Having anyone being in control of your life doesn&#39;t sound great.
 
 			&lt;div id=&quot;player-customisation-form&quot;&gt;\
 			&lt;h3&gt;Personnal information of the &lt;em&gt;Indured Servant&lt;/em&gt;&lt;/h3&gt;
-			Name: &lt;&lt;textbox &quot;$player.name&quot; $player.name &quot;&quot;&gt;&gt;
+			Name: &lt;&lt;textbox &quot;$player.name&quot; $player.name &quot;Intro6&quot; true&gt;&gt;
 
 			&lt;/div&gt;
 
@@ -2501,7 +2584,9 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	&quot;firstNight&quot; : false,
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day:1, hour: 22})&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="ManorVisit_1" tags="tutorial" position="850,975" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;= $mansion.getEvent(true)&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="ManorVisit_1" tags="tutorial" position="850,975" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
