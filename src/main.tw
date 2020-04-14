@@ -34,3 +34,5 @@ This game is intended for a mature audience. If you are too young, please <a cla
 }>>
 <<= $time.setDate({day:1, hour: 22})>>
 <</link>>
+
+<<= $mansion.getEvent(true)>>

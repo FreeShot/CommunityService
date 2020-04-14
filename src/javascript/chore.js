@@ -10,6 +10,8 @@ class Chore {
 		this.done = false;
 		this.room = '';
 		this.id = '';
+		this.days = [0, 1, 2, 3, 4, 5, 6]; // Days active
+		this.timeLeft = 0;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -29,19 +31,24 @@ class Chore {
 			);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4})",
+				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6}",
 				this.name,
 				this.passage,
 				this.staminaCost,
 				this.duration,
 				this.getDuration,
-				this.room
+				this.room,
+				this.getLastDay
 			);
 		}
 	}
 
 	reset() {
 		this.done = false;
+	}
+
+	get getLastDay() {
+		var days = ["monday", "tuesday", "wedsnday"]
 	}
 
 	get getDuration() {
