@@ -196,4 +196,4 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 
 <<set $flags.manorIntro to false>>
 <<set $flags.cuff.full to true>>
-<<= $time.setDate({hour: 22})>>
+<<= $time.setDate({hour: 22, minute:0})>>

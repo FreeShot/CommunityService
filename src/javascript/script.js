@@ -1,9 +1,13 @@
+// Adds Icons
 importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 
+// Stops the bar from being hidden
 Config.ui.stowBarInitially = false;
 
-$('#ui-bar-history>#history-forward').before("<button id=\"history-pin\"><i class=\"fas fa-thumbtack\"></i></button>"); // adds lock button
+// Adds the pin button and removes the button to stow
+$('#ui-bar-history>#history-forward').before("<button id=\"history-pin\" class=\"active\"><i class=\"fas fa-thumbtack\"></i></button>"); // adds lock button
 $('#ui-bar-toggle').remove();
+$('#ui-bar').addClass("active");
 
 $("#history-pin").click(function() {
 	$("#ui-bar").toggleClass("active");

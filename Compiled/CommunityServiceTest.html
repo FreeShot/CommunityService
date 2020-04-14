@@ -104,6 +104,19 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 .hidden .NSFW{
 	display: none;
 }
+
+#menu ul {
+	border: 0px;
+}
+
+#menu li:not(:first-child) {
+    border-top: 0px;
+    margin-top: 3px;
+}
+
+.estateRoom {
+	font-size: 4rem;
+}
 /* twine-user-stylesheet #2: "style.css" */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -112,101 +125,35 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 
 :root {
 	size: 16px;
+	--ui-background: #1C030E;
+	--ui-color: #F4A9CE;
 	--background: #1C030E;
 	--color: #EBD8E2;
 	--t8n-delay: .1s;
 }
 
-#ui-bar {
-	position: fixed;
-	left: -15.5rem;
-	transition-delay: var(--t8n-delay);
-}
-
-#ui-bar:hover, #ui-bar.active {
-	left: 0rem;
-}
-
-#ui-bar-body {
-	visibility: visible;
-}
-
-#ui-bar-history {
-	height: 32px;
-}
-
-#ui-bar-history > input[id|="history"]:not(:first-child) {
-	-ms-transform: scale(2); /* IE */
-	-moz-transform: scale(2); /* FF */
-	-webkit-transform: scale(2); /* Safari and Chrome */
-	-o-transform: scale(2); /* Opera */
-	transform: scale(2);
-
-	margin-top: 8px;
-}
-
-#ui-bar-history [id|="history"] {
-	position: relative;
-	height: 32px;
-	width: 32px;
-}
-
-/*
-Removes the space between the back buttons
-#ui-bar-history [id|="history"]:not(:first-child) {
-	margin: 0rem;
-}
-*/
-
-#ui-bar-history #history-pin {
-	background-color: #111111;
-}
-
-#ui-bar-history #history-pin.active {
-	background-color: #484848;
-}
-
 #story {
-	margin: 0rem;
-}
-
-/*
-
-.estateRoom{
-	font-size: 30px;
-	font-family: 'Gotu', sans-serif;
-}
-
-.date {
-	font-size: 30px;
-	font-family: 'Fira Code', monospace;
-}
-
-.time {
-	color: #FF3D3D;
-	font-size: 40px;
-	font-family: 'Squada One', cursive;
-	border: #FF3D3D 2px solid;
-	border-radius: 5px;
-	padding: 2px 7px; 
-	background-color: #4A1111;
-}
-
-#story-title {
-	margin-top: 5px;
-	font-size: 40px;
-	font-family: 'Quicksand', sans-serif;
-	line-height: 40px;
-}
-
-#story-author {
-	font-size: 18px;
-	font-family: 'Baloo Thambi 2', cursive;
+	margin: 2rem 0rem;
+	color: var(--color);
 }
 
 body {
-	background-color: #1C030E;
-	color: #EBD8E2;
+	background-color: var(--background);
+}
+
+img {
+	max-width: 50%;
+	max-height: 300px;
+	object-fit: contain;
+	border-radius: 15px;
+	border: solid 4px #5C2C41; 
+}
+
+.gameTitle {
+	position: center;
+	font-size: 200%;
+	font-family: 'Quicksand', sans-serif;
+	width: auto;
 }
 
 a.link-internal {
@@ -219,13 +166,6 @@ a.link-internal {
 a.link-internal:hover {
 	color: #8F003C;
 	text-decoration: underline;
-}
-
-.gameTitle {
-	position: center;
-	font-size: 200%;
-	font-family: 'Quicksand', sans-serif;
-	width: auto;
 }
 
 div.warning {
@@ -262,8 +202,120 @@ div.warning {
 	border-width: 1px;
 }
 
-*/
+#RuleTitle {
+	font-family: 'Gotu', sans-serif;
+	font-size: 30px;
+}
+
+.rules {
+	font-size: 20px;
+	font-family: 'Roboto Condensed', sans-serif;
+}
 /* twine-user-stylesheet #3: "ui.css" */
+#ui-bar {
+	position: fixed;
+	left: -15.5rem;
+	transition-delay: var(--t8n-delay);
+	background-color: var(--ui-background);
+	color: var(--ui-color);
+}
+
+#ui-bar:hover, #ui-bar.active {
+	left: 0rem;
+}
+
+#ui-bar-body {
+	visibility: visible;
+}
+
+#ui-bar-history {
+	margin-top: .5em;
+	height: 32px;
+}
+
+#ui-bar-history > input[id|="history"]:not(:first-child) {
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	transform: scale(2);
+
+	margin-top: 8px;
+}
+
+#ui-bar-history [id|="history"] {
+	position: relative;
+	height: 32px;
+	width: 32px;
+
+	border-radius: 4px;
+	border-color: #62022C;
+}
+
+/*
+Removes the space between the back buttons
+#ui-bar-history [id|="history"]:not(:first-child) {
+	margin: 0rem;
+}
+*/
+
+#ui-bar-history #history-pin {
+	background-color: #111111;
+}
+
+#ui-bar-history #history-pin.active {
+	background-color: #484848;
+}
+
+#story-title {
+	font-size: 2.5rem;
+	font-family: 'Quicksand', sans-serif;
+}
+
+#story-author {
+	font-weight: 400;
+	font-size: 1.15rem;
+	font-family: 'Baloo Thambi 2', cursive;
+}
+
+#ui-bar hr {
+	border-color: #F4A9CE;
+}
+
+.date {
+	font-size: 2rem;
+	font-family: 'Fira Code', monospace;
+}
+
+.time {
+	background-color: #4A1111;
+	color: #FF3D3D;
+	border: #FF3D3D 2px solid;
+
+	font-size: 3rem;
+	font-family: 'Squada One', cursive;
+	
+	border-radius: 5px;
+	padding: 2px 7px; 
+}
+
+#ui-bar a.link-internal {
+	color: #FFDEEA;
+	padding: 5px 30px 5px;
+	margin: 5px 5px 5px;
+	border: solid 1px #FFDEEA;
+	border-radius: 5px;
+	font-size: 50px;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+#ui-bar a.link-internal:hover {
+	border: solid 1px #CE7298;
+	text-decoration: none;
+	padding: 2px 20px 2px;
+	margin: 8px 5px 8px;
+}
+
 /*
 #ui-bar{
 	background-color: #2C0C1A;
@@ -1142,12 +1194,16 @@ Object.defineProperty(window, 'Room', {
     value : Room
 });
 /* twine-user-script #7: "script.js" */
+// Adds Icons
 importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 
+// Stops the bar from being hidden
 Config.ui.stowBarInitially = false;
 
-$('#ui-bar-history>#history-forward').before("<button id=\"history-pin\"><i class=\"fas fa-thumbtack\"></i></button>"); // adds lock button
+// Adds the pin button and removes the button to stow
+$('#ui-bar-history>#history-forward').before("<button id=\"history-pin\" class=\"active\"><i class=\"fas fa-thumbtack\"></i></button>"); // adds lock button
 $('#ui-bar-toggle').remove();
+$('#ui-bar').addClass("active");
 
 $("#history-pin").click(function() {
 	$("#ui-bar").toggleClass("active");
@@ -2542,14 +2598,14 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 
 &lt;&lt;set $flags.manorIntro to false&gt;&gt;
 &lt;&lt;set $flags.cuff.full to true&gt;&gt;
-&lt;&lt;= $time.setDate({hour: 22})&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="StoryCaption" tags="" position="600,1100" size="100,100">&lt;hr&gt;
+&lt;&lt;= $time.setDate({hour: 22, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="StoryCaption" tags="" position="600,1100" size="100,100">&lt;hr&gt;
 &lt;span class=&quot;date&quot;&gt;Day $time.day&lt;/span&gt;
 &lt;hr&gt;
 &lt;span class=&quot;time&quot;&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/span&gt;\
 &lt;hr&gt;
-Energy: &lt;&lt;= $player.getStaminaBar()&gt;&gt;
+&lt;span class=&quot;Stamina&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/span&gt;
 &lt;hr&gt;
-&lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;hr&gt;[[CUFF]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="CUFF" tags="nobr mainMenu" position="725,1100" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
+&lt;&lt;if $flags.cuff.recieved&gt;&gt;[[CUFF]]&lt;hr&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="CUFF" tags="nobr mainMenu" position="725,1100" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;elseif $flags.cuff.full is true&gt;&gt;
 	[[Chores|playerToDoList]]&lt;br&gt;
