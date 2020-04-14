@@ -416,7 +416,6 @@ class Character {
 		this.name = '';
 		this.title = '';
 		this.currentRoom = '';
-		this.acceptance = 0;
 		this.color = '';
 
         Object.keys(config).forEach(function (pn) {
@@ -451,6 +450,32 @@ class Character {
 Object.defineProperty(window, 'Character', {
     value : Character
 });
+
+class NPC extends Character {
+	constructor(config) {
+		super(Object.assign(
+            {
+                schedule : "",
+                acceptance : 0
+            }, config));
+	}
+
+	clone() {
+        return new NPC(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new NPC($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'NPC', {
+    value : NPC
+});
+
 
 class Player extends Character {
 	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"];
@@ -1224,7 +1249,7 @@ $(document).on(':passageinit', function (ev) {
 $(document).on(':passagestart', function (ev) {
 	if (!ev.passage.tags.includes('noreturn')) {
 		State.variables.return = ev.passage.title;
-		State.variables.exitMenu = ev.passage.title;
+		//State.variables.exitMenu = ev.passage.title;
 	}
 	else if (!ev.passage.tags.includes('mainMenu')) {
 		State.variables.exitMenu = ev.passage.title;
@@ -2261,14 +2286,14 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 
 &lt;&lt;set $player to new Player()&gt;&gt;
 
-&lt;&lt;set $owner to new Character({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;sir&quot;})&gt;&gt;
-&lt;&lt;set $wife to new Character({name: &quot;Mrs Sono&quot;, color: &quot;MediumOrchid&quot;, title: &quot;Ma&#39;am&quot;})&gt;&gt;
-&lt;&lt;set $daughter to new Character({name: &quot;Angeline&quot;, color: &quot;DarkSalmon&quot;, title: &quot;Ms Sono&quot;})&gt;&gt;
-&lt;&lt;set $son to new Character({name: &quot;Mr Sono&quot;, color: &quot;LightGreen&quot;, title: &quot;Mr Sono&quot;})&gt;&gt;
-&lt;&lt;set $butler to new Character({name: &quot;Mr Benson&quot;, color: &quot;#7DA231&quot;, title: &quot;Mr Benson&quot;})&gt;&gt;
-&lt;&lt;set $cook to new Character({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;})&gt;&gt;
-&lt;&lt;set $gardner to new Character({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
-&lt;&lt;set $caterer to new Character({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
+&lt;&lt;set $owner to new NPC({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;sir&quot;})&gt;&gt;
+&lt;&lt;set $wife to new NPC({name: &quot;Mrs Sono&quot;, color: &quot;MediumOrchid&quot;, title: &quot;Ma&#39;am&quot;})&gt;&gt;
+&lt;&lt;set $daughter to new NPC({name: &quot;Angeline&quot;, color: &quot;DarkSalmon&quot;, title: &quot;Ms Sono&quot;})&gt;&gt;
+&lt;&lt;set $son to new NPC({name: &quot;Mr Sono&quot;, color: &quot;LightGreen&quot;, title: &quot;Mr Sono&quot;})&gt;&gt;
+&lt;&lt;set $butler to new NPC({name: &quot;Mr Benson&quot;, color: &quot;#7DA231&quot;, title: &quot;Mr Benson&quot;})&gt;&gt;
+&lt;&lt;set $cook to new NPC({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;})&gt;&gt;
+&lt;&lt;set $gardner to new NPC({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
+&lt;&lt;set $caterer to new NPC({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
 
 &lt;&lt;set $mansion to new Mansion({})&gt;&gt;
 

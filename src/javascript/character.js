@@ -48,7 +48,7 @@ class NPC extends Character {
 	}
 
 	clone() {
-        return new Character(this);
+        return new NPC(this);
     }
 
 	toJSON() {
@@ -56,11 +56,11 @@ class NPC extends Character {
         Object.keys(this).forEach(function (pn) {
             ownData[pn] = clone(this[pn]);
         }, this);
-        return JSON.reviveWrapper('new Character($ReviveData$)', ownData);
+        return JSON.reviveWrapper('new NPC($ReviveData$)', ownData);
     }
 }
-Object.defineProperty(window, 'Character', {
-    value : Character
+Object.defineProperty(window, 'NPC', {
+    value : NPC
 });
 
 
