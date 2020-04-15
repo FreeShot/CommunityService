@@ -55,7 +55,9 @@ class NPC extends Character {
 	}
 
 	get getLocation() {
-		return this.schedule.find(function(ev) {return ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end)}).location;
+		var schedule = this.schedule.find(function(ev) {return ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end)});
+		if (schedule) {return schedule.location}
+		return "";
 	}
 
 	clone() {

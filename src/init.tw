@@ -48,13 +48,40 @@
 		end: {hour: 18, minute: 0}
 	}
 ]})>>
-<<set $son to new NPC({name: "Mr Sono", color: "LightGreen", title: "Mr Sono"})>>
+<<set $son to new NPC({name: "Mr Sono", color: "LightGreen", title: "Mr Sono", schedule: [
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "SonBdRm", 
+		start: {hour: 0, minute: 0}, 
+		end: {hour: 24, minute: 0}
+	}
+]})>>
 
 <<set $butler to new NPC({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
 
-<<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
+<<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Ivan", schedule: [
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Kitchen", 
+		start: {hour: 12, minute: 0}, 
+		end: {hour: 20, minute: 0}
+	}
+]})>>
 
-<<set $gardner to new NPC({name: "Juan", color: "Sienna", title: "Juan"})>>
+<<set $gardner to new NPC({name: "Juan", color: "Sienna", title: "Juan", schedule: [
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Garden", 
+		start: {hour: 6, minute: 0}, 
+		end: {hour: 12, minute: 0}
+	},
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+		location: "Pool",
+		start: {hour: 12, minute: 0},
+		end: {hour: 15, minute: 0}
+	}
+]})>>
 
 <<set $caterer to new NPC({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
 

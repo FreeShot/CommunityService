@@ -17,8 +17,8 @@ class Timer {
 
 	setDate(time) {
 		this.day = time.day || this.day;
-		this.time.hour = time.hour || this.time.hour;
-		this.time.minute = time.minute || this.time.minute;
+		this.time.hour = time.hour;
+		this.time.minute = time.minute;
 	}
 
 	addTime(time) {
