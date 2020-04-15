@@ -54,7 +54,7 @@ class NPC extends Character {
 	}
 
 	getLocation(time) {
-
+		return this.schedule.find(function(ev) {return State.variables.time.inInterval(start, end)}).location;
 	}
 
 	clone() {
