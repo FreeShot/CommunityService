@@ -471,7 +471,7 @@ class NPC extends Character {
 	}
 
 	getLocation(time) {
-
+		return this.schedule.find(function(ev) {return State.variables.time.inInterval(start, end)}).location;
 	}
 
 	clone() {
@@ -506,6 +506,7 @@ class Player extends Character {
                 arrousal : 0,
                 submission : 0,
                 appearance : 0,
+                choresLate : 0
             }, config));
 	}
 
@@ -576,7 +577,8 @@ class Chore {
 		this.done = false;
 		this.room = '';
 		this.id = '';
-		this.days = [0, 1, 2, 3, 4, 5, 6]; // Days active
+		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
+		this.daysLeft = 1;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -609,7 +611,28 @@ class Chore {
 	}
 
 	reset(day) {
-		this.done = false;
+		this.dayLeft--;
+		if(this.dayLeft < 0) {
+			if (!this.done){
+				State.variables.player.choresLate++;
+			}
+			if (this.choreFrequency === "D") {
+				this.dayLeft = 1;
+			} else if (this.choreFrequency === "B") {
+				if (this.day < 3) {
+					this.dayLeft = 3;
+				} else {
+					this.dayLeft = 2;
+				}
+			} else if (this.choreFrequency === "W") {
+				this.dayLeft = 7;
+			}
+		}
+	}
+
+	get getLastDay() {
+		var strLastDay = ["today", "tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"];
+		return strLastDay[this.dayLeft];
 	}
 
 	get getDuration() {
@@ -737,6 +760,7 @@ class Event {
 		this.inline = false; // If true, will be included in the current passage
 		this.available = function() {return false;}; // Condition for it to appear
 		this.repeats = false;
+		this.room = "";
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -747,12 +771,12 @@ class Event {
 		if(this.available()) {
 			if (this.inline) {
 				if (!this.repeats) {
-					State.variables.mansion.removeEvent(this.name);
+					State.variables.mansion.removeEvent(this.room, this.name);
 				}
 				return "<<include '" + this.passage + "'>>";
 			} else {
 				if (!this.repeats) {
-					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.name + "')</link>>";
+					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.room + "','" + this.name + "')</link>>";
 				} else {
 					return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
 				}
@@ -786,7 +810,6 @@ Object.defineProperty(window, 'Event', {
 class Mansion {
 	constructor(config) {
 		this.rooms = [];
-		this.events = [];
 
 		if (config != {}) {
 			Object.keys(config).forEach(function (pn) {
@@ -826,16 +849,16 @@ class Mansion {
 		this.findRoom(roomID).addChore(chore.clone());
 	}
 
-	addEvent(event) {
-		this.events.push(event);
+	addEvent(roomID, event) {
+		this.findRoom(roomID).addEvent(event.clone());
 	}
 
-	addEventCondition(event, fun) {
-		this.events.find(function(em) {return em.name == event}).setCondition(fun);
+	addEventCondition(roomID, event, fun) {
+		this.findRoom(roomID).addEventCondition(event, fun);
 	}
 
 	removeEvent(eventName) {
-		this.events.filter(function(em) {return em.name != eventName});
+		this.findRoom(roomID).events.filter(function(em) {return em.name != eventName});
 	}
 
 	resetChores() {
@@ -1212,6 +1235,7 @@ class Room {
 	constructor(config) {
 		this.name = '';
 		this.chores = [];
+		this.events = [];
 		this.img = [];
 		this.id = '';
 		this.adjacentRooms = [];
@@ -1224,6 +1248,23 @@ class Room {
 	addChore(chore) {
 		chore.room = this.id;
 		this.chores.push(chore);
+	}
+
+	addEvent(event) {
+		event.room = this.name;
+		this.events.push(event);
+	}
+
+	getEvent() {
+		if (this.events.length > 0) {
+			return  this.events[Math.floor(Math.random() * this.events.length)].playEvent(true);
+		} else {
+			return "";
+		}
+	}
+
+	addEventCondition(event, fun) {
+		this.events.find(function(em) {return em.name == event}).setCondition(fun)
 	}
 
 	findChore(choreName) {
@@ -1250,9 +1291,10 @@ class Room {
 
 	generatePassage() {
 		var str = "";
-		str += this.display(0);
+		str += this.display(0) + "<br>";
+		str += this.getEvent();
 		str += "<br>Chores: ";
-		str += this.displayChores(false);
+		str += this.displayChores();
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
 		return str;
@@ -2470,6 +2512,8 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 &lt;&lt;set $gardner to new NPC({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
 &lt;&lt;set $caterer to new NPC({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
 
+&lt;&lt;set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer]&gt;&gt;
+
 &lt;&lt;set $mansion to new Mansion({})&gt;&gt;
 
 &lt;&lt;= $mansion.addRoom(new Room({name: &quot;Foyer&quot;, id: &quot;Foyer&quot;, img: [&quot;Foyer.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Kitchen&quot;, &quot;Dining&quot;, &quot;UpperHall&quot;, &quot;Hall&quot;]}))&gt;&gt;
@@ -2532,13 +2576,13 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Vacuum Carpet and Upholstery&quot;, duration: {minute: 30}, passages:[{name: &quot;GuestRm_Vacuum&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 1}, passages:[{name: &quot;GuestRm_Windows&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
 
-&lt;&lt;= $mansion.addEvent(new Event({name: &quot;DaughterSquats01&quot;, passage: &quot;choreEvent_DaughterSquats01&quot;, inline: true, repeats:true}))&gt;&gt;
-&lt;&lt;= $mansion.addEvent(new Event({name: &quot;DaughterDumbell01&quot;, passage: &quot;choreEvent_DaughterDumbell01&quot;, inline: true, repeats:true}))&gt;&gt;
-&lt;&lt;= $mansion.addEvent(new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterSquats01&quot;, passage: &quot;choreEvent_DaughterSquats01&quot;, inline: true, repeats:true}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterDumbell01&quot;, passage: &quot;choreEvent_DaughterDumbell01&quot;, inline: true, repeats:true}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true}))&gt;&gt;
 
-&lt;&lt;= $mansion.addEventCondition(&quot;DaughterSquats01&quot;, function() {return true})&gt;&gt;
-&lt;&lt;= $mansion.addEventCondition(&quot;DaughterDumbell01&quot;, function() {return true})&gt;&gt;
-&lt;&lt;= $mansion.addEventCondition(&quot;DaughterChinup01&quot;, function() {return true})&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Intro1" tags="intro tutorial" position="600,1100" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;= $mansion.addEventCondition(&quot;Gym&quot;, &quot;DaughterSquats01&quot;, function() {return true})&gt;&gt;
+&lt;&lt;= $mansion.addEventCondition(&quot;Gym&quot;, &quot;DaughterDumbell01&quot;, function() {return true})&gt;&gt;
+&lt;&lt;= $mansion.addEventCondition(&quot;Gym&quot;, &quot;DaughterChinup01&quot;, function() {return true})&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Intro1" tags="intro tutorial" position="600,1100" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -2697,9 +2741,7 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	&quot;firstNight&quot; : false,
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day:1, hour: 22})&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-
-&lt;&lt;= $mansion.getEvent(true)&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="ManorVisit_1" tags="tutorial" position="350,1225" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="ManorVisit_1" tags="tutorial" position="350,1225" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
@@ -3194,9 +3236,7 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	&lt;&lt;/click&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;
-
-&lt;&lt;= $time.inInterval({hour: 1, minute: 0})&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="playerRoomShower" tags="playerRoom" position="225,1475" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="113" name="playerRoomMakup" tags="playerRoom" position="350,1475" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="114" name="playerRoomMorningRoutine" tags="playerRoom" position="475,1475" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="115" name="playerRoomWardrobe" tags="playerRoom" position="600,1475" size="100,100">Todo: Add clothes
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="playerRoomShower" tags="playerRoom" position="225,1475" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="113" name="playerRoomMakup" tags="playerRoom" position="350,1475" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="114" name="playerRoomMorningRoutine" tags="playerRoom" position="475,1475" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="115" name="playerRoomWardrobe" tags="playerRoom" position="600,1475" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.

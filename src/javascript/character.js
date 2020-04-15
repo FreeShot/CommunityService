@@ -89,6 +89,7 @@ class Player extends Character {
                 arrousal : 0,
                 submission : 0,
                 appearance : 0,
+                choresLate : 0
             }, config));
 	}
 

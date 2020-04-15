@@ -1,7 +1,6 @@
 class Mansion {
 	constructor(config) {
 		this.rooms = [];
-		this.events = [];
 
 		if (config != {}) {
 			Object.keys(config).forEach(function (pn) {
@@ -41,16 +40,16 @@ class Mansion {
 		this.findRoom(roomID).addChore(chore.clone());
 	}
 
-	addEvent(event) {
-		this.events.push(event);
+	addEvent(roomID, event) {
+		this.findRoom(roomID).addEvent(event.clone());
 	}
 
-	addEventCondition(event, fun) {
-		this.events.find(function(em) {return em.name == event}).setCondition(fun);
+	addEventCondition(roomID, event, fun) {
+		this.findRoom(roomID).addEventCondition(event, fun);
 	}
 
 	removeEvent(eventName) {
-		this.events.filter(function(em) {return em.name != eventName});
+		this.findRoom(roomID).events.filter(function(em) {return em.name != eventName});
 	}
 
 	resetChores() {

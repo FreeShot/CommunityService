@@ -5,6 +5,7 @@ class Event {
 		this.inline = false; // If true, will be included in the current passage
 		this.available = function() {return false;}; // Condition for it to appear
 		this.repeats = false;
+		this.room = "";
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -15,12 +16,12 @@ class Event {
 		if(this.available()) {
 			if (this.inline) {
 				if (!this.repeats) {
-					State.variables.mansion.removeEvent(this.name);
+					State.variables.mansion.removeEvent(this.room, this.name);
 				}
 				return "<<include '" + this.passage + "'>>";
 			} else {
 				if (!this.repeats) {
-					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.name + "')</link>>";
+					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.room + "','" + this.name + "')</link>>";
 				} else {
 					return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
 				}
