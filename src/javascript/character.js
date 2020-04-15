@@ -44,6 +44,7 @@ class NPC extends Character {
             {
                 schedule : [
                 	{
+                		days : ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
                 		location : "",
                 		start : {hour: 0, minute: 0},
                 		end : {hour: 24, minute: 0}
@@ -54,7 +55,7 @@ class NPC extends Character {
 	}
 
 	get getLocation() {
-		return this.schedule.find(function(ev) {return State.variables.time.inInterval(ev.start, ev.end)}).location;
+		return this.schedule.find(function(ev) {return ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end)}).location;
 	}
 
 	clone() {
