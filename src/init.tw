@@ -94,8 +94,11 @@
 <<= $mansion.addEvent(new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true}))>>
 <<= $mansion.addEvent(new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true}))>>
 
-<<= $mansion.addEventCondition("DaughterSquats01", function(<<= $time.clock>>) {
-	
+<<set $gymTime to new Timer({day: 0, time: {hour: 0, minute: 0}})>>
+<<set $gymTime.setDate({hour: 9})>>
+
+<<= $mansion.addEventCondition("DaughterSquats01", function() {
+		if ($time.getDate >= $gymTime.getDate){
+		return true;
+	}
 })>>
-<<= $mansion.addEventCondition("DaughterDumbell01", function() {return true})>>
-<<= $mansion.addEventCondition("DaughterChinup01", function() {return true})>>
