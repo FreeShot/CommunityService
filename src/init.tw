@@ -22,13 +22,44 @@
 <!--  NPC  -->
 
 <<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "sir"})>>
+
 <<set $wife to new NPC({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
-<<set $daughter to new NPC({name: "Angeline", color: "DarkSalmon", title: "Ms Sono"})>>
+
+<<set $daughter to new NPC({name: "Angeline", color: "DarkSalmon", title: "Ms Sono", schedule: [
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Gym", 
+		start: {hour: 9, minute: 0}, 
+		end: {hour: 11, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Pool", 
+		start: {hour: 11, minute: 0}, 
+		end: {hour: 12, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Garden", 
+		start: {hour: 12, minute: 0}, 
+		end: {hour: 14, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "DaughterBdRm", 
+		start: {hour: 14, minute: 0}, 
+		end: {hour: 18, minute: 0}
+	}
+]})>>
 <<set $son to new NPC({name: "Mr Sono", color: "LightGreen", title: "Mr Sono"})>>
+
 <<set $butler to new NPC({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
+
 <<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
+
 <<set $gardner to new NPC({name: "Juan", color: "Sienna", title: "Juan"})>>
+
 <<set $caterer to new NPC({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
+
+
+
 <<set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer]>>
 
 <!--  Mansion  -->

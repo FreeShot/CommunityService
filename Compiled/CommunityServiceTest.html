@@ -2601,13 +2601,44 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 &lt;!--  NPC  --&gt;
 
 &lt;&lt;set $owner to new NPC({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;sir&quot;})&gt;&gt;
+
 &lt;&lt;set $wife to new NPC({name: &quot;Mrs Sono&quot;, color: &quot;MediumOrchid&quot;, title: &quot;Ma&#39;am&quot;})&gt;&gt;
-&lt;&lt;set $daughter to new NPC({name: &quot;Angeline&quot;, color: &quot;DarkSalmon&quot;, title: &quot;Ms Sono&quot;})&gt;&gt;
+
+&lt;&lt;set $daughter to new NPC({name: &quot;Angeline&quot;, color: &quot;DarkSalmon&quot;, title: &quot;Ms Sono&quot;, schedule: [
+	{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
+		location: &quot;Gym&quot;, 
+		start: {hour: 9, minute: 0}, 
+		end: {hour: 11, minute: 0}
+	},{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
+		location: &quot;Pool&quot;, 
+		start: {hour: 11, minute: 0}, 
+		end: {hour: 12, minute: 0}
+	},{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
+		location: &quot;Garden&quot;, 
+		start: {hour: 12, minute: 0}, 
+		end: {hour: 14, minute: 0}
+	},{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
+		location: &quot;DaughterBdRm&quot;, 
+		start: {hour: 14, minute: 0}, 
+		end: {hour: 18, minute: 0}
+	}
+]})&gt;&gt;
 &lt;&lt;set $son to new NPC({name: &quot;Mr Sono&quot;, color: &quot;LightGreen&quot;, title: &quot;Mr Sono&quot;})&gt;&gt;
+
 &lt;&lt;set $butler to new NPC({name: &quot;Mr Benson&quot;, color: &quot;#7DA231&quot;, title: &quot;Mr Benson&quot;})&gt;&gt;
+
 &lt;&lt;set $cook to new NPC({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;})&gt;&gt;
+
 &lt;&lt;set $gardner to new NPC({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
+
 &lt;&lt;set $caterer to new NPC({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
+
+
+
 &lt;&lt;set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer]&gt;&gt;
 
 &lt;!--  Mansion  --&gt;
