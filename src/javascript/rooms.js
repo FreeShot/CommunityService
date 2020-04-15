@@ -20,11 +20,30 @@ class Room {
 	addEvent(event) {
 		event.room = this.name;
 		this.events.push(event);
+		this.events.sort(function(a, b) {
+			if (a.priority > b.priority) return -1;
+			else if (a.priority === b.priority) return 0;
+			else return 1;
+		});
 	}
 
 	getEvent() {
-		if (this.events.length > 0) {
-			return  this.events[Math.floor(Math.random() * this.events.length)].playEvent(true);
+		var activeEvents = Array.from(this.events);
+		activeEvents.filter(function(el) {
+			return el.active(); // filters events with an active tag
+		});
+		if (activeEvents.length > 0) {
+			console.log(activeEvents);
+			var totalWeight = 0;
+			activeEvents.forEach(function(el) {
+				totalWeight += 1 << el.priority;
+			});
+
+			var i = 0;
+			for (var eventPicked = Math.floor(Math.random() * totalWeight); eventPicked > 0; eventPicked -= 1 << activeEvents[i].priority) {
+				i++;
+			}
+			return activeEvents[i].playEvent(true);
 		} else {
 			return "";
 		}

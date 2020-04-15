@@ -46,15 +46,15 @@ class NPC extends Character {
                 	{
                 		location : "",
                 		start : {hour: 0, minute: 0},
-                		end : {hour: 0, minute: 0}
+                		end : {hour: 24, minute: 0}
                 	}
                 ],
                 acceptance : 0
             }, config));
 	}
 
-	getLocation(time) {
-		return this.schedule.find(function(ev) {return State.variables.time.inInterval(start, end)}).location;
+	get getLocation() {
+		return this.schedule.find(function(ev) {return State.variables.time.inInterval(ev.start, ev.end)}).location;
 	}
 
 	clone() {

@@ -58,11 +58,6 @@ class Mansion {
 		}
 	}
 
-	getEvent(debug) {
-		var event = this.events[Math.floor(Math.random()*this.events.length)]
-		return event.playEvent(debug);
-	}
-
 	clone() {
         return new Mansion(this);
     }

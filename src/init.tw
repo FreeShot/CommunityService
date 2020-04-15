@@ -19,6 +19,8 @@
 
 <<set $player to new Player()>>
 
+<!--  NPC  -->
+
 <<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "sir"})>>
 <<set $wife to new NPC({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
 <<set $daughter to new NPC({name: "Angeline", color: "DarkSalmon", title: "Ms Sono"})>>
@@ -27,10 +29,13 @@
 <<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Ivan"})>>
 <<set $gardner to new NPC({name: "Juan", color: "Sienna", title: "Juan"})>>
 <<set $caterer to new NPC({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
-
 <<set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer]>>
 
+<!--  Mansion  -->
+
 <<set $mansion to new Mansion({})>>
+
+<!--  Rooms  -->
 
 <<= $mansion.addRoom(new Room({name: "Foyer", id: "Foyer", img: ["Foyer.jpg"], adjacentRooms: ["Lounge", "Kitchen", "Dining", "UpperHall", "Hall"]}))>>
 <<= $mansion.addRoom(new Room({name: "Hall", id: "Hall", adjacentRooms: ["Foyer", "MasterBdRm", "Office", "PlayerBdRm", "Laundry", "Kitchen", "Dining", "Garden",]}))>>
@@ -49,6 +54,8 @@
 <<= $mansion.addRoom(new Room({name: "Mystery room", id: "SonBdRm", img: ["Locked.jpg", "Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"], adjacentRooms: ["UpperHall"]}))>>
 <<= $mansion.addRoom(new Room({name: "Daughter's bedroom", id: "DaughterBdRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"], adjacentRooms: ["UpperHall"]}))>>
 <<= $mansion.addRoom(new Room({name: "Guest room", id: "GuestRm", img: ["Bedroom.jpg", "Bathroom.jpg", "Closet.jpg"], adjacentRooms: ["UpperHall"]}))>>
+
+<!--  Chores  -->
 
 <<= $mansion.addChore("Foyer", new Chore({name: "Dust Ornaments", duration: {minute: 30}, passages:[{name: "Foyer_Dusting", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("Foyer", new Chore({name: "Sweep and Mop Floors", duration: {hour: 1}, passages:[{name: "Foyer_SweepMop", weight: 1}], staminaCost: 1}))>>
@@ -92,10 +99,16 @@
 <<= $mansion.addChore("GuestRm", new Chore({name: "Vacuum Carpet and Upholstery", duration: {minute: 30}, passages:[{name: "GuestRm_Vacuum", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("GuestRm", new Chore({name: "Clean Windows", duration: {hour: 1}, passages:[{name: "GuestRm_Windows", weight: 1}], staminaCost: 1}))>>
 
-<<= $mansion.addEvent("Gym", new Event({name: "DaughterSquats01", passage: "choreEvent_DaughterSquats01", inline: true, repeats:true}))>>
-<<= $mansion.addEvent("Gym", new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true}))>>
-<<= $mansion.addEvent("Gym", new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true}))>>
+<!--  Events  -->
 
-<<= $mansion.addEventCondition("Gym", "DaughterSquats01", function() {return true})>>
-<<= $mansion.addEventCondition("Gym", "DaughterDumbell01", function() {return true})>>
-<<= $mansion.addEventCondition("Gym", "DaughterChinup01", function() {return true})>>
+<<= $mansion.addEvent("Gym", new Event({name: "DaughterSquats01", passage: "choreEvent_DaughterSquats01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Gym", new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Gym", new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+
+<!--  Tags  -->
+
+<<set $tags to {
+	"needDaughter" : function() {
+		return State.variables.player.currentRoom === State.variables.daughter.getLocation;
+	}
+}>>

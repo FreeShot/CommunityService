@@ -3,9 +3,10 @@ class Event {
 		this.name = ''; // Not used, just for us to remeber it
 		this.passage = ''; // Passage in which it starts
 		this.inline = false; // If true, will be included in the current passage
-		this.available = function() {return false;}; // Condition for it to appear
 		this.repeats = false;
 		this.room = "";
+		this.tags = [] // add Tags here
+		this.priority = 0;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -13,27 +14,28 @@ class Event {
 	}
 
 	playEvent(debug) {
-		if(this.available()) {
-			if (this.inline) {
-				if (!this.repeats) {
-					State.variables.mansion.removeEvent(this.room, this.name);
-				}
-				return "<<include '" + this.passage + "'>>";
-			} else {
-				if (!this.repeats) {
-					return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.room + "','" + this.name + "')</link>>";
-				} else {
-					return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
-				}
+		if (this.inline) {
+			if (!this.repeats) {
+				State.variables.mansion.removeEvent(this.room, this.name);
 			}
+			return "<<include '" + this.passage + "'>>";
 		} else {
-			if (debug) {return "No event but picked " + this.name;}
-			return "";
+			if (!this.repeats) {
+				return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.room + "','" + this.name + "')</link>>";
+			} else {
+			return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
+			}
 		}
 	}
 
-	setCondition(fun) {
-		this.available = fun;
+	active() {
+		for (var i = 0; i < this.tags.length; i++) {
+			console.log("Tags");
+			if (State.variables.tags[this.tags[i]]() === false) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	clone() {
