@@ -54,6 +54,7 @@ class Mansion {
 
 	resetChores() {
 		for (var i = 0; i < this.rooms.length; i++) {
+			console.log("resetting Room " + i);
 			this.rooms[i].resetChores();
 		}
 	}

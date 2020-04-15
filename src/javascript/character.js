@@ -86,14 +86,16 @@ class Player extends Character {
                 name: "Alex",
                 title: "Alex",
                 feminity: 0,
-                hairColor: "Brunette",
+                looks: {
+                	hair: {color: "Brunette", length: 0}
+                },
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 arrousal : 0,
                 submission : 0,
                 appearance : 0,
                 choresLate : 0
-            }, config));
+        }, config));
 	}
 
 	getStaminaBar() {

@@ -59,6 +59,7 @@ class Room {
 
 	resetChores() {
 		for (var i = 0; i < this.chores.length; i++) {
+			console.log("resetting chore " + i);
 			this.chores[i].reset();
 		}
 	}

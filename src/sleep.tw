@@ -34,7 +34,6 @@ The CUFF alarm goes off and you quickly set it to snooze. It's not long before t
 	<<else>>
 		[[Performance review|cocktailparty_review]]
 	<</if>>
-	<<= $time.setDate({day:0, hour: 6, minute:0})>>
 <<else>>
 	[[Roll out of bed|PlayerBdRm]]
 	<<= $time.setDate({day:0, hour: 6, minute:0})>>
@@ -46,3 +45,5 @@ The CUFF alarm goes off and you quickly set it to snooze. It's not long before t
 <<if $eventCount_cocktailparty >= 14>>
 	<<set $eventCount_cocktailparty to 0>>
 <</if>>
+
+<<= $mansion.resetChores()>>

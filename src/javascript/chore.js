@@ -7,7 +7,7 @@ class Chore {
 		];
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = true;
+		this.done = false;
 		this.room = '';
 		this.id = '';
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
@@ -43,16 +43,17 @@ class Chore {
 		}
 	}
 
-	reset(day) {
+	reset() {
 		this.dayLeft--;
 		if(this.dayLeft < 0) {
 			if (!this.done){
+				console.log("Missing chores is bad");
 				State.variables.player.choresLate++;
 			}
 			if (this.choreFrequency === "D") {
 				this.dayLeft = 1;
 			} else if (this.choreFrequency === "B") {
-				if (this.day < 3) {
+				if (State.variables.time.day < 3) {
 					this.dayLeft = 3;
 				} else {
 					this.dayLeft = 2;
@@ -60,6 +61,7 @@ class Chore {
 			} else if (this.choreFrequency === "W") {
 				this.dayLeft = 7;
 			}
+			this.done = false;
 		}
 	}
 
