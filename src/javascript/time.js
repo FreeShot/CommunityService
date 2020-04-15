@@ -49,7 +49,9 @@ class Timer {
 	}
 
 	get weekDay() {
-		return this.day % 7;
+		var day = this.day;
+		while (day < 0) {day += 7}
+		return day % 7;
 	}
 
 	get weekDayFormat() {

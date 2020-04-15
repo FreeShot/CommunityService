@@ -575,7 +575,7 @@ class Chore {
 		];
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = false;
+		this.done = true;
 		this.room = '';
 		this.id = '';
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
@@ -1396,10 +1396,10 @@ $(document).on(':passageinit', function (ev) {
 $(document).on(':passagestart', function (ev) {
 	if (!ev.passage.tags.includes('noreturn')) {
 		State.variables.return = ev.passage.title;
+		if (!ev.passage.tags.includes('mainMenu')) {
+			State.variables.exitMenu = ev.passage.title;
+		}
 		//State.variables.exitMenu = ev.passage.title;
-	}
-	else if (!ev.passage.tags.includes('mainMenu')) {
-		State.variables.exitMenu = ev.passage.title;
 	}
 });
 
@@ -1460,7 +1460,9 @@ class Timer {
 	}
 
 	get weekDay() {
-		return this.day % 7;
+		var day = this.day;
+		while (day < 0) {day += 7}
+		return day % 7;
 	}
 
 	get weekDayFormat() {
@@ -2576,7 +2578,7 @@ You lean forward to grab it and your hips bump against the counter. You gasp as 
 
 You pull back and fix you skirt before apologising. The person just looks down to your skirt and then back up before giving you a knowing wink.
 
-You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before excusing yourself.</tw-passagedata><tw-passagedata pid="88" name="StoryInit" tags="" position="975,1100" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})&gt;&gt;
+You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before excusing yourself.</tw-passagedata><tw-passagedata pid="88" name="StoryInit" tags="" position="975,1100" size="100,100">&lt;&lt;set $time to new Timer({day: -1, time: {hour: 0, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime to new Timer({day: 0, time: {hour: 22, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime.setDate({hour: 22, minute: 0})&gt;&gt;
 

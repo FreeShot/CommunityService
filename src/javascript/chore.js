@@ -7,7 +7,7 @@ class Chore {
 		];
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = false;
+		this.done = true;
 		this.room = '';
 		this.id = '';
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
