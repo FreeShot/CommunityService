@@ -11,7 +11,6 @@ class Chore {
 		this.room = '';
 		this.id = '';
 		this.days = [0, 1, 2, 3, 4, 5, 6]; // Days active
-		this.timeLeft = 0;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -43,12 +42,8 @@ class Chore {
 		}
 	}
 
-	reset() {
+	reset(day) {
 		this.done = false;
-	}
-
-	get getLastDay() {
-		var days = ["monday", "tuesday", "wedsnday"]
 	}
 
 	get getDuration() {

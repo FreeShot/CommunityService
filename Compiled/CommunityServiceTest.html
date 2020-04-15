@@ -567,7 +567,6 @@ class Chore {
 		this.room = '';
 		this.id = '';
 		this.days = [0, 1, 2, 3, 4, 5, 6]; // Days active
-		this.timeLeft = 0;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -599,12 +598,8 @@ class Chore {
 		}
 	}
 
-	reset() {
+	reset(day) {
 		this.done = false;
-	}
-
-	get getLastDay() {
-		var days = ["monday", "tuesday", "wedsnday"]
 	}
 
 	get getDuration() {
@@ -1348,6 +1343,8 @@ setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class Timer {
+	days = ["monday", "tuesday", "wednesday", "thursday", "firday", "saturday", "sunday"];
+
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
@@ -1375,6 +1372,10 @@ class Timer {
 
 	get weekDay() {
 		return this.day % 7;
+	}
+
+	get weekDayFormat() {
+		return this.days[this.weekDay].charAt(0).toUpperCase() + this.days[this.weekDay].slice(1);
 	}
 
 	get clock() {
@@ -2763,7 +2764,8 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 &lt;&lt;set $flags.manorIntro to false&gt;&gt;
 &lt;&lt;set $flags.cuff.full to true&gt;&gt;
 &lt;&lt;= $time.setDate({hour: 22, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="StoryCaption" tags="" position="600,1100" size="100,100">&lt;hr&gt;
-&lt;span class=&quot;date&quot;&gt;Day $time.day&lt;/span&gt;
+&lt;span class=&quot;date&quot;&gt;$time.weekDayFormat
+Day $time.day&lt;/span&gt;
 &lt;hr&gt;
 &lt;span class=&quot;time&quot;&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/span&gt;\
 &lt;hr&gt;

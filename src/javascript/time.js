@@ -2,6 +2,8 @@ setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class Timer {
+	days = ["monday", "tuesday", "wednesday", "thursday", "firday", "saturday", "sunday"];
+
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
@@ -29,6 +31,10 @@ class Timer {
 
 	get weekDay() {
 		return this.day % 7;
+	}
+
+	get weekDayFormat() {
+		return this.days[this.weekDay].charAt(0).toUpperCase() + this.days[this.weekDay].slice(1);
 	}
 
 	get clock() {
