@@ -42,9 +42,19 @@ class NPC extends Character {
 	constructor(config) {
 		super(Object.assign(
             {
-                schedule : "",
+                schedule : [
+                	{
+                		location : "",
+                		start : {hour: 0, minute: 0},
+                		end : {hour: 0, minute: 0}
+                	}
+                ],
                 acceptance : 0
             }, config));
+	}
+
+	getLocation(time) {
+
 	}
 
 	clone() {

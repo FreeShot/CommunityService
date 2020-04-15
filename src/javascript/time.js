@@ -29,6 +29,25 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
+	compareTime(time) {
+		var minuteTime = this.time.hour * 60 + this.time.minute;
+		var timeDif = minuteTime - (time.hour * 60 + time.minute);
+		if (timeDif == 0) {
+			return 0;
+		} else if (timeDif > 0) {
+			console.log("Before");
+			return 1;
+		} else {
+			console.log("After");
+			return -1;
+		}
+	}
+
+	inInterval(timeStart, timeEnd) {
+		timeEnd = timeEnd || {hour : 24, minute : 0};
+		return this.compareTime(timeStart) == 1 && this.compareTime(timeEnd) == -1;
+	}
+
 	get weekDay() {
 		return this.day % 7;
 	}

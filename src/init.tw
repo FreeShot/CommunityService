@@ -94,8 +94,6 @@
 <<= $mansion.addEvent(new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true}))>>
 <<= $mansion.addEvent(new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true}))>>
 
-<<= $mansion.addEventCondition("DaughterSquats01", function(<<= $time.clock>>) {
-	
-})>>
+<<= $mansion.addEventCondition("DaughterSquats01", function() {return true})>>
 <<= $mansion.addEventCondition("DaughterDumbell01", function() {return true})>>
 <<= $mansion.addEventCondition("DaughterChinup01", function() {return true})>>

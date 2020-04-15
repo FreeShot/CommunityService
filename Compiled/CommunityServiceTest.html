@@ -459,9 +459,19 @@ class NPC extends Character {
 	constructor(config) {
 		super(Object.assign(
             {
-                schedule : "",
+                schedule : [
+                	{
+                		location : "",
+                		start : {hour: 0, minute: 0},
+                		end : {hour: 0, minute: 0}
+                	}
+                ],
                 acceptance : 0
             }, config));
+	}
+
+	getLocation(time) {
+
 	}
 
 	clone() {
@@ -1368,6 +1378,25 @@ class Timer {
 		this.time.minute %= 60;
 		this.day += (time.day || 0) + Math.floor(this.time.hour / 24);
 		this.time.hour %= 24;
+	}
+
+	compareTime(time) {
+		var minuteTime = this.time.hour * 60 + this.time.minute;
+		var timeDif = minuteTime - (time.hour * 60 + time.minute);
+		if (timeDif == 0) {
+			return 0;
+		} else if (timeDif > 0) {
+			console.log("Before");
+			return 1;
+		} else {
+			console.log("After");
+			return -1;
+		}
+	}
+
+	inInterval(timeStart, timeEnd) {
+		timeEnd = timeEnd || {hour : 24, minute : 0};
+		return this.compareTime(timeStart) == 1 && this.compareTime(timeEnd) == -1;
 	}
 
 	get weekDay() {
@@ -2846,7 +2875,7 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 
 &lt;&lt;set $flags.manorIntro to false&gt;&gt;
 &lt;&lt;set $flags.cuff.full to true&gt;&gt;
-&lt;&lt;= $time.setDate({hour: 22, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="StoryCaption" tags="" position="600,1100" size="100,100">&lt;hr&gt;
+&lt;&lt;= $time.setDate({hour: 22, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="StoryCaption" tags="" position="100,1350" size="100,100">&lt;hr&gt;
 &lt;span class=&quot;date&quot;&gt;$time.weekDayFormat
 Day $time.day&lt;/span&gt;
 &lt;hr&gt;
@@ -3165,7 +3194,9 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	&lt;&lt;/click&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="playerRoomShower" tags="playerRoom" position="225,1475" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="113" name="playerRoomMakup" tags="playerRoom" position="350,1475" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="114" name="playerRoomMorningRoutine" tags="playerRoom" position="475,1475" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="115" name="playerRoomWardrobe" tags="playerRoom" position="600,1475" size="100,100">Todo: Add clothes
+&lt;&lt;/nobr&gt;&gt;
+
+&lt;&lt;= $time.inInterval({hour: 1, minute: 0})&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="playerRoomShower" tags="playerRoom" position="225,1475" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="113" name="playerRoomMakup" tags="playerRoom" position="350,1475" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="114" name="playerRoomMorningRoutine" tags="playerRoom" position="475,1475" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="115" name="playerRoomWardrobe" tags="playerRoom" position="600,1475" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
