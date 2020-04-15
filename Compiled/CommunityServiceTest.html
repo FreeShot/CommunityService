@@ -2629,13 +2629,40 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 		end: {hour: 18, minute: 0}
 	}
 ]})&gt;&gt;
-&lt;&lt;set $son to new NPC({name: &quot;Mr Sono&quot;, color: &quot;LightGreen&quot;, title: &quot;Mr Sono&quot;})&gt;&gt;
+&lt;&lt;set $son to new NPC({name: &quot;Mr Sono&quot;, color: &quot;LightGreen&quot;, title: &quot;Mr Sono&quot;, schedule: [
+	{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
+		location: &quot;SonBdRm&quot;, 
+		start: {hour: 0, minute: 0}, 
+		end: {hour: 24, minute: 0}
+	}
+]})&gt;&gt;
 
 &lt;&lt;set $butler to new NPC({name: &quot;Mr Benson&quot;, color: &quot;#7DA231&quot;, title: &quot;Mr Benson&quot;})&gt;&gt;
 
-&lt;&lt;set $cook to new NPC({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;})&gt;&gt;
+&lt;&lt;set $cook to new NPC({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;, schedule: [
+	{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
+		location: &quot;Kitchen&quot;, 
+		start: {hour: 12, minute: 0}, 
+		end: {hour: 20, minute: 0}
+	}
+]})&gt;&gt;
 
-&lt;&lt;set $gardner to new NPC({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;})&gt;&gt;
+&lt;&lt;set $gardner to new NPC({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;, schedule: [
+	{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
+		location: &quot;Garden&quot;, 
+		start: {hour: 6, minute: 0}, 
+		end: {hour: 12, minute: 0}
+	},
+	{
+		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;],
+		location: &quot;Pool&quot;,
+		start: {hour: 12, minute: 0},
+		end: {hour: 15, minute: 0}
+	}
+]})&gt;&gt;
 
 &lt;&lt;set $caterer to new NPC({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
 
