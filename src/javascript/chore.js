@@ -10,8 +10,8 @@ class Chore {
 		this.done = false;
 		this.room = '';
 		this.id = '';
-		this.days = [0, 1, 2, 3, 4, 5, 6]; // Days active
-		this.timeLeft = 0;
+		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
+		this.daysLeft = 1;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -43,12 +43,29 @@ class Chore {
 		}
 	}
 
-	reset() {
-		this.done = false;
+	reset(day) {
+		this.dayLeft--;
+		if(this.dayLeft < 0) {
+			if (!this.done){
+				State.variables.player.choresLate++;
+			}
+			if (this.choreFrequency === "D") {
+				this.dayLeft = 1;
+			} else if (this.choreFrequency === "B") {
+				if (this.day < 3) {
+					this.dayLeft = 3;
+				} else {
+					this.dayLeft = 2;
+				}
+			} else if (this.choreFrequency === "W") {
+				this.dayLeft = 7;
+			}
+		}
 	}
 
 	get getLastDay() {
-		var days = ["monday", "tuesday", "wedsnday"]
+		var strLastDay = ["today", "tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"];
+		return strLastDay[this.dayLeft];
 	}
 
 	get getDuration() {

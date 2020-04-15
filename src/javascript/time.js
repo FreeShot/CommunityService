@@ -2,6 +2,8 @@ setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class Timer {
+	days = ["monday", "tuesday", "wednesday", "thursday", "firday", "saturday", "sunday"];
+
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
@@ -27,8 +29,31 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
+	compareTime(time) {
+		var minuteTime = this.time.hour * 60 + this.time.minute;
+		var timeDif = minuteTime - (time.hour * 60 + time.minute);
+		if (timeDif == 0) {
+			return 0;
+		} else if (timeDif > 0) {
+			console.log("Before");
+			return 1;
+		} else {
+			console.log("After");
+			return -1;
+		}
+	}
+
+	inInterval(timeStart, timeEnd) {
+		timeEnd = timeEnd || {hour : 24, minute : 0};
+		return this.compareTime(timeStart) == 1 && this.compareTime(timeEnd) == -1;
+	}
+
 	get weekDay() {
 		return this.day % 7;
+	}
+
+	get weekDayFormat() {
+		return this.days[this.weekDay].charAt(0).toUpperCase() + this.days[this.weekDay].slice(1);
 	}
 
 	get clock() {

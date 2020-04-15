@@ -1,6 +1,7 @@
 ::StoryCaption
 <hr>
-<span class="date">Day $time.day</span>
+<span class="date">$time.weekDayFormat
+Day $time.day</span>
 <hr>
 <span class="time"><<= $time.clock>></span>\
 <hr>

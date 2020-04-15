@@ -42,9 +42,19 @@ class NPC extends Character {
 	constructor(config) {
 		super(Object.assign(
             {
-                schedule : "",
+                schedule : [
+                	{
+                		location : "",
+                		start : {hour: 0, minute: 0},
+                		end : {hour: 0, minute: 0}
+                	}
+                ],
                 acceptance : 0
             }, config));
+	}
+
+	getLocation(time) {
+		return this.schedule.find(function(ev) {return State.variables.time.inInterval(start, end)}).location;
 	}
 
 	clone() {
@@ -79,6 +89,7 @@ class Player extends Character {
                 arrousal : 0,
                 submission : 0,
                 appearance : 0,
+                choresLate : 0
             }, config));
 	}
 

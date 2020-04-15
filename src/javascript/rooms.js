@@ -2,6 +2,7 @@ class Room {
 	constructor(config) {
 		this.name = '';
 		this.chores = [];
+		this.events = [];
 		this.img = [];
 		this.id = '';
 		this.adjacentRooms = [];
@@ -14,6 +15,23 @@ class Room {
 	addChore(chore) {
 		chore.room = this.id;
 		this.chores.push(chore);
+	}
+
+	addEvent(event) {
+		event.room = this.name;
+		this.events.push(event);
+	}
+
+	getEvent() {
+		if (this.events.length > 0) {
+			return  this.events[Math.floor(Math.random() * this.events.length)].playEvent(true);
+		} else {
+			return "";
+		}
+	}
+
+	addEventCondition(event, fun) {
+		this.events.find(function(em) {return em.name == event}).setCondition(fun)
 	}
 
 	findChore(choreName) {
@@ -40,9 +58,10 @@ class Room {
 
 	generatePassage() {
 		var str = "";
-		str += this.display(0);
+		str += this.display(0) + "<br>";
+		str += this.getEvent();
 		str += "<br>Chores: ";
-		str += this.displayChores(false);
+		str += this.displayChores();
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
 		return str;
