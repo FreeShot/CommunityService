@@ -73,6 +73,17 @@
 <<= $mansion.addChore("Office", new Chore({name: "Dust Desk and Book Shelves", duration: {minute: 30}, passages:[{name: "Office_Dusting", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("Office", new Chore({name: "Vacuum Floors and Furniture", duration: {minute: 30}, passages:[{name: "Office_Vacuum", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("Office", new Chore({name: "Clean Windows", duration: {hour: 1}, passages:[{name: "Office_Windows", weight: 1}], staminaCost: 1}))>>
-<<= $mansion.addChore("DaughterBdRm", new Chore({name: "Dust Desk and Side Tables", duration: {minute: 30}, passages:[{name: "DaughterBdRm_Dusting", weight: 1}], staminaCost: 1}))>>
+<<= $mansion.addChore("Gym", new Chore({name: "Dust Desk and Book Shelves", duration: {minute: 30}, passages:[{name: "Office_Dusting", weight: 1}], staminaCost: 1}))>>
+<<= $mansion.addChore("Gym", new Chore({name: "Sweep and Mop Floors", duration: {hour: 2}, passages:[{name: "Gym_SweepMop", weight: 1}], staminaCost: 1}))>>
+<<= $mansion.addChore("Gym", new Chore({name: "Clean Windows", duration: {hour: 1}, passages:[{name: "Gym_Windows", weight: 1}], staminaCost: 1}))>>
+<<= $mansion.addChore("DaughterBdRm", new Chore({name: "Dust Desk and Side Tables", duration: {minute: 30}, passages:[{name: "Gym_Dusting", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("DaughterBdRm", new Chore({name: "Vacuum Carpet and Upholstery", duration: {minute: 30}, passages:[{name: "DaughterBdRm_Vacuum", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("DaughterBdRm", new Chore({name: "Clean Windows", duration: {hour: 1}, passages:[{name: "DaughterBdRm_Windows", weight: 1}], staminaCost: 1}))>>
+
+<<= $mansion.addEvent(new Event({name: "DaughterSquats01", passage: "choreEvent_DaughterSquats01", inline: true, repeats:true}))>>
+<<= $mansion.addEvent(new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true}))>>
+<<= $mansion.addEvent(new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true}))>>
+
+<<= $mansion.addEventCondition("DaughterSquats01", function() {return true})>>
+<<= $mansion.addEventCondition("DaughterDumbell01", function() {return true})>>
+<<= $mansion.addEventCondition("DaughterChinup01", function() {return true})>>

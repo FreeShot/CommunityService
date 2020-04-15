@@ -184,6 +184,30 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
+:: Gym_Dusting [noreturn chore]
+
+[img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
+
+You take the duster from your collection of cleaning supplies and start going over the room making sure to go obver the skirting boards and windows frames. Each piece of equipment gets wiped down with disinfectant after you finish dusting it.
+
+[[Return|$return]]
+
+:: Gym_SweepMop [noreturn chore]
+
+[img[setup.ImagePath + "events/chores/general_sweeping/sweeping_1.jpg"]]
+
+You pick the rubber mats and other loose gear. Embarassingly, some of the equipment is too heavy for you to move so you have to go around it instead, still making sure to pick up any gathered debris. Once that is done you fill the mop bucket up with water and some cleaning solution and repeat the process again. You use a rag to take care of any tough stains, it’s hard work but you’re confident it gets the job done.
+
+[[Return|$return]]
+
+:: Gym_Windows [noreturn chore]
+
+[img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
+
+Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
+
+[[Return|$return]]
+
 :: DaughterBdRm_Dusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
@@ -207,3 +231,31 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
 [[Return|$return]]
+
+:: choreEvent_DaughterSquats01
+
+condition: daughter in the gym
+
+You hear loud grunting as you enter the room and can see $daughter.name in the middle of her workout. She's currently in the middle of a set of squats with heavy weights on her shoulders. It's a little embarassing seeing her lifting weights that you would probably struggle with. She spots you in the mirror and gives you a wink without missing a rep.
+
+[img[setup.ImagePath + "character/daughter/gym_barbellsquat01.gif"]]
+
+:: choreEvent_DaughterDumbell01
+
+condition: daughter in the gym
+
+As you enter the room you see $daughter.name in the middle of her workout. She's lying on one of the benches lifting a barbell behind her head. You're a bit jealous seeing her do excercises that you doubt you could ever even attempt. From this angle you can see right down her top and the light sheen of sweat on her breasts.
+
+[img[setup.ImagePath + "character/daughter/gym_overheadcurl01.gif"]]
+
+You so distracted that you miss a step. There's a loud crash as one of your bucket goes tumbling over. $daughter.name looks at you from her position ont he bench. You wait for her to call you out for being a perve but she just smiles devilishly and goes back to finishing her set.
+
+:: choreEvent_DaughterChinup01
+
+condition: daughter in the gym
+
+You back into the gym with you cleaning equipment and turn to see $daughter.name. She has her back to you and is currenlty halfway through a set of chin up. Her skin is gleaming with sweat and her well defined shoulder muscles are straining with the effort. 
+
+[img[setup.ImagePath + "character/daughter/gym_chinups01.gif"]]
+
+You look down at your thin arms and wonder if you could even compelte one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she's taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.
