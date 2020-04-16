@@ -1,0 +1,30 @@
+::StoryInterface
+<div id="interface">
+	<div id="ui-top">
+		<!-- Floaty top goes here -->
+		<div id="ui-top-left">
+			<div id="story-title">TITLE</div>
+			<div id="story-author">AUTHOR</div>
+		</div>
+		<div id="ui-top-right">
+			<div id="hour">00:00</div>
+			<div id="day">Day: 0</div>
+		</div>
+	</div>
+
+	<div id="passages"><!-- Story will go here --></div>
+
+	<div id="ui-bottom">
+		<!-- Floaty bottom goes here -->
+		<div id="ui-bottom-left">
+			
+			<ul>
+				<li id="menu-item-saves"><a tabindex="0">Saves</a></li>
+				<li id="menu-item-restart"><a tabindex="0">Restart</a></li>
+			</ul>
+		</div>
+		<div id="ui-bottom-right">
+			<div id="ui-cuff">CUFF</div>
+		</div>
+	</div>
+</div>

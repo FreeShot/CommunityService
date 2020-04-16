@@ -2,8 +2,7 @@
 Community Service
 
 ::StoryAuthor
-A story by FreeShot
-With Yaflow's coding hand
+By FreeShot and Yaflow
 
 ::StoryData
 {
@@ -12,9 +11,6 @@ With Yaflow's coding hand
 }
 
 ::Start [nobr startPassage]
-<div class=gameTitle>
-<h1>Community Service</h1>
-</div>
 <div class="warning">
 This game is intended for a mature audience. If you are too young, please <a class="link-internal" href="https://www.google.fr">leave.</a>
 </div>

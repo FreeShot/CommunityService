@@ -1,0 +1,47 @@
+:root {
+	size: 16px; 
+}
+
+div {
+	/* border: solid 1px red; */
+}
+
+#ui-top-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1em;
+    border-bottom: solid 5px #CB6EF9;
+    border-bottom-right-radius: 30px;
+    border-right: solid 5px #CB6EF9;
+    background-color: #2B0228;
+    color: #CB6EF9;
+}
+
+#ui-top-right {
+	position: fixed;
+	top: 0;
+	right: 0;
+	padding: 1em;
+	border-bottom: solid 5px #FF4646;
+	border-bottom-left-radius: 30px;
+	border-left: solid 5px #FF4646;
+	background-color: maroon;
+	color: #F00;
+}
+
+#ui-bottom-left {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+
+#ui-bottom-right {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+#passages {
+	margin: 3rem 30rem 2rem;
+}
