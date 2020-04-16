@@ -1,4 +1,4 @@
-#ui-bar {
+/*#ui-bar {
 	position: fixed;
 	left: -15.5rem;
 	transition-delay: var(--t8n-delay);
@@ -12,7 +12,7 @@
 
 #ui-bar-body {
 	visibility: visible;
-}
+}	
 
 #ui-bar-history {
 	margin-top: .5em;
@@ -20,10 +20,10 @@
 }
 
 #ui-bar-history > input[id|="history"]:not(:first-child) {
-	-ms-transform: scale(2); /* IE */
-	-moz-transform: scale(2); /* FF */
-	-webkit-transform: scale(2); /* Safari and Chrome */
-	-o-transform: scale(2); /* Opera */
+	-ms-transform: scale(2);
+	-moz-transform: scale(2);
+	-webkit-transform: scale(2);
+	-o-transform: scale(2);
 	transform: scale(2);
 
 	margin-top: 8px;
@@ -37,13 +37,6 @@
 	border-radius: 4px;
 	border-color: #62022C;
 }
-
-/*
-Removes the space between the back buttons
-#ui-bar-history [id|="history"]:not(:first-child) {
-	margin: 0rem;
-}
-*/
 
 #ui-bar-history #history-pin {
 	background-color: #111111;
