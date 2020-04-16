@@ -54,7 +54,7 @@ class Mansion {
 
 	removeEvent(roomID, eventName) {
 		if (roomID === "specialEvent") {
-			this.events.filter(function(em) {return em.name != eventName});
+			this.events = this.events.filter(function(em) {return em.name != eventName});
 		} else {
 			this.findRoom(roomID).events.filter(function(em) {return em.name != eventName});
 		}
