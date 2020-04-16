@@ -117,3 +117,51 @@ $wife.name is standing at the entrance watching you.
 <</if>>
 
 With that she turns and leaves the room.
+
+:: choreEvent_PlayerNudityD
+
+Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+
+It doesn't take too long so you busy yourself folding the washing that's already clean.
+
+You bend down to put some of the linen away when the door to the laundry open.
+
+<<= $player.speak("<i>The lock you idiot!</i>")>>
+
+You spin around and see $daughter.name standing there, trying to use her hand to cover her large smile as she snickers.
+
+<<= $daughter.speak("Um, I just wanted to stop in and say hi.")>>
+
+<<= $player.speak("Aaah... Um.")>>
+
+<<= $daughter.speak("Do you maybe want to cover up?")>>
+
+You snatch up one of the nearby towels and quickly cover yourself.
+
+<<= $daughter.speak("You know what? That's ok. You look busy.")>>
+
+$daughter.name leaves and you hear her burst into laughter as soon as she's out of sight.
+
+:: choreEvent_PlayerNudityW
+
+Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+
+It doesn't take too long so you busy yourself folding the washing that's already clean.
+
+You bend down to put some of the linen away when the door to the laundry open.
+
+<<= $player.speak("<i>The lock you idiot!</i>")>>
+
+You spin around and see $wife.name standing there, arms crossed and a furious look on her.
+
+<<= $wife.speak("I come to check on you and find you like this?")>>
+
+You snatch up one of the nearby towels and quickly cover yourself.
+
+<<= $wife.speak("It's a bit late for that isn't it?")>>
+
+<<= $player.speak("But, my clothes...")>>
+
+<<= $wife.speak("I don't have time for this. Make yourself presentable and get to work!")>>
+
+$wife.name leaves the room. You clearly lost some credibility with that slip up.

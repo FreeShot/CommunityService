@@ -192,7 +192,7 @@
 
 <!--  Chores  -->
 
-<<= $mansion.addChore("Foyer", new Chore({name: "Dust Ornaments", duration: {minute: 30}, passages:[{name: "Foyer_Dusting", weight: 1}], staminaCost: 1}))>>
+<<= $mansion.addChore("Foyer", new Chore({name: "Dust Ornaments", duration: {minute: 30}, passages:[{name: "Foyer_Dusting", weight: 1}], staminaCost: 1, choreFrequency: W}))>>
 <<= $mansion.addChore("Foyer", new Chore({name: "Sweep and Mop Floors", duration: {hour: 1}, passages:[{name: "Foyer_SweepMop", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("Hall", new Chore({name: "Dust Sitting Area and Paintings", duration: {minute: 30}, passages:[{name: "Hall_Dusting", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("Hall", new Chore({name: "Sweep and Mop Floors", duration: {hour: 1}, passages:[{name: "Hall_SweepMop", weight: 1}], staminaCost: 1}))>>
@@ -245,11 +245,5 @@
 <<set $tags to {
 	"needDaughter" : function() {
 		return State.variables.player.currentRoom === State.variables.daughter.getLocation;
-	}
-}>>
-
-<<set $tags to {
-	"needWife" : function() {
-		return State.variables.player.currentRoom === State.variables.wife.getLocation;
 	}
 }>>
