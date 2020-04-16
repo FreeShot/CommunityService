@@ -56,20 +56,21 @@ $daughter.name give your shoulder a squeeze <<= $daughter.speak("So what have yo
 
 :: choreEvent_DaughterTease01 [noreturn chore]
 
+todo: trigger should be if the daughter acceptance is above a certain amount
+
 It takes a bit of time to collect everything from all the hampers but now you're ready to get the washing started. You're in the middle of separating all the various loads when $daughter.name comes in wearing her gym equipment.
 
-<<if $daughter.acceptance >= 3>>
-	<<= $daughter.speak("Whew. Just in time.")>>
+<<= $daughter.speak("Whew. Just in time.")>>
 
-	You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her gloves, socks and shorts. She does not wear anything underneath them, at all.
+You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her gloves, socks and shorts. She does not wear anything underneath them, at all.
 
-	<<= $daughter.speak("Throw these in with the rest will you.")>>
+<<= $daughter.speak("Throw these in with the rest will you.")>>
 
-	You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you're too busy watching $daughter.name as you spins around and bounces out of the room and back into the main house.
+You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you're too busy watching $daughter.name as she spins around and bounces out of the room.
 
-	<<= $player.speak("What the hell just happened?")>>
+<<= $player.speak("What the hell just happened?")>>
 
-	todo: add cage conditions, arousal, etc
+todo: add cage conditions, arousal, etc
 
 :: choreEvent_WifeBossy01 [noreturn chore]
 
@@ -89,7 +90,7 @@ You jolt to a start and begin going about your tasks.
 
 When you are finished $wife.name tells you to stay put while she inspects your work.
 <<set $time.addTime({day:0, hour: 0, minute:15})>>
-She nods. <<= $wife.speak("This is satisfactory. See that you try and get things done more quickly though. The longer you take the harderit will be for me to present a clean house to our guests")>>
+She nods. <<= $wife.speak("This is satisfactory. See that you try and get things done more quickly though. The longer you take the harder it will be for me to present a clean house to our guests")>>
 
 With that $wife.name turns around and leave you to your duties.
 
@@ -107,8 +108,6 @@ $wife.name is standing at the entrance watching you.
 
 <<= $wife.speak("Maybe. I don't see a need for something like that though. Shoes with a taller heel would suffice.")>>
 
-<<= $player.speak("<i>Of course. I walked right in to that one.</i>")>>
-
 <<if player.feminity >= 40>>
 	<<= $player.speak("I guess that could help $wife.title")>>
 <<else>>
@@ -116,3 +115,5 @@ $wife.name is standing at the entrance watching you.
 
 	<<= $wife.speak("See that you do or the decision will be made for you.")>>
 <</if>>
+
+With that she turns and leaves the room.
