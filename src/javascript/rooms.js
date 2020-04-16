@@ -27,9 +27,13 @@ class Room {
 		});
 	}
 
+	removeEvent(eventName) {
+		this.events = this.events.filter(function(em) {return em.name != eventName});
+	}
+
 	getEvent() {
 		var activeEvents = Array.from(this.events);
-		activeEvents.filter(function(el) {
+		activeEvents = activeEvents.filter(function(el) {
 			return el.active(); // filters events with an active tag
 		});
 		if (activeEvents.length > 0) {
