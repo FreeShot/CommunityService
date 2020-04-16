@@ -302,16 +302,80 @@ div {
     background-color: transparent;
     border-color: #444;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
-class Character {
+class Inventory {
 	constructor(config) {
-		this.name = '';
-		this.title = '';
-		this.currentRoom = '';
-		this.color = '';
+		this.inventory = {items : [], count : []};
+		this.unlimitedSupplies = false;
 
-        Object.keys(config).forEach(function (pn) {
+		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
+	}
+
+	addItem(item, amount) {
+		var i = this.inventory.items.findIndex(function(ev) {ev.name == item.name});
+		if (i !== -1 && !this.unlimitedSupplies) {
+			this.inventory.count[i] += amount || 1;
+		} else if (i === -1) {
+			this.inventory.items.push(item);
+			this.unlimitedSupplies ? this.inventory.count.push(Infinity) : this.inventory.count.push(amount || 1);
+		}
+	}
+
+	removeItem(item, amount) {
+		var i = this.inventory.items.findIndex(function(ev) {ev.name == item.name});
+		if (i !== -1 && this.inventory.count[i] >= amount) {
+			this.inventory.count[i] -= amount;
+			if (this.inventory.count[i] === 0) {
+				delete this.inventory.count[i];
+				delete this.inventory.items[i];
+			}
+			return amount;
+		} else {
+			return -1;
+		}
+	}
+
+	displayInv() {
+		var str = "INVENTORY : \n" 
+		var inv = this.inventory;
+		console.log(inv);
+		if(this.inventory.items.length === 0) {return "No items"} 
+		for (var i = 0; i < this.inventory.items.length; i++) {
+			str += this.inventory.items[i].name + ": " + this.inventory.count[i] + "<br>";
+		}
+		return str;
+	}
+
+	invGetCount(item) {
+		return this.inventory[item];
+	}
+
+	clone() {
+        return new Inventory(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Inventory($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Inventory', {
+    value : Inventory
+});
+
+class Character extends Inventory {
+	constructor(config) {
+		super(Object.assign(
+			{
+				name: '',
+				title: '',
+				currentRoom: '',
+				color: ''
+			},config));
 	}
 
 	speak(text) {
@@ -3475,7 +3539,7 @@ Wake up will be very uncomfortable due to morning wood
 	It&#39;s nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.&lt;br&gt;
 	&lt;br&gt;
 	[[Get started.|firstcocktailparty1]]
-	&lt;&lt;= $time.setDate({day:0, hour: 12, minute:0})&gt;&gt;
+	&lt;&lt;= $time.setDate({hour: 12, minute:0})&gt;&gt;
 &lt;&lt;elseif $cocktailparty_start is true&gt;&gt;
 	After a fitful nights sleep you wake up and immediately feel pressure of the locked chastity cage against your growing morning wood. You rolled onto your stomach in the night as well so it&#39;s wedged right againsts you. You roll over and then shift around to try and get comfortable but it&#39;s no good. You&#39;ll need to go see $wife.name.&lt;br&gt;
 	&lt;br&gt;
@@ -3486,7 +3550,7 @@ Wake up will be very uncomfortable due to morning wood
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
 	[[Roll out of bed|PlayerBdRm]]
-	&lt;&lt;= $time.setDate({day:0, hour: 6, minute:0})&gt;&gt;
+	&lt;&lt;= $time.setDate({hour: 6, minute:0})&gt;&gt;
 	&lt;&lt;set $eventCount_cocktailparty ++&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;

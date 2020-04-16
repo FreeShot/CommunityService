@@ -408,16 +408,80 @@ img {
 }
 
 */</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
-class Character {
+class Inventory {
 	constructor(config) {
-		this.name = '';
-		this.title = '';
-		this.currentRoom = '';
-		this.color = '';
+		this.inventory = {items : [], count : []};
+		this.unlimitedSupplies = false;
 
-        Object.keys(config).forEach(function (pn) {
+		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
+	}
+
+	addItem(item, amount) {
+		var i = this.inventory.items.findIndex(function(ev) {ev.name == item.name});
+		if (i !== -1 && !this.unlimitedSupplies) {
+			this.inventory.count[i] += amount || 1;
+		} else if (i === -1) {
+			this.inventory.items.push(item);
+			this.unlimitedSupplies ? this.inventory.count.push(Infinity) : this.inventory.count.push(amount || 1);
+		}
+	}
+
+	removeItem(item, amount) {
+		var i = this.inventory.items.findIndex(function(ev) {ev.name == item.name});
+		if (i !== -1 && this.inventory.count[i] >= amount) {
+			this.inventory.count[i] -= amount;
+			if (this.inventory.count[i] === 0) {
+				delete this.inventory.count[i];
+				delete this.inventory.items[i];
+			}
+			return amount;
+		} else {
+			return -1;
+		}
+	}
+
+	displayInv() {
+		var str = "INVENTORY : \n" 
+		var inv = this.inventory;
+		console.log(inv);
+		if(this.inventory.items.length === 0) {return "No items"} 
+		for (var i = 0; i < this.inventory.items.length; i++) {
+			str += this.inventory.items[i].name + ": " + this.inventory.count[i] + "<br>";
+		}
+		return str;
+	}
+
+	invGetCount(item) {
+		return this.inventory[item];
+	}
+
+	clone() {
+        return new Inventory(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Inventory($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Inventory', {
+    value : Inventory
+});
+
+class Character extends Inventory {
+	constructor(config) {
+		super(Object.assign(
+			{
+				name: '',
+				title: '',
+				currentRoom: '',
+				color: ''
+			},config));
 	}
 
 	speak(text) {
