@@ -1,0 +1,6 @@
+::eventInit [event]
+<<= $mansion.addEvent("Gym", new Event({name: "DaughterSquats01", passage: "choreEvent_DaughterSquats01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Gym", new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Gym", new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+
+<<= $mansion.addEvent("specialEvent", new Event({name: "firstcocktailparty", passage: "firstcocktailparty", inline:true, repeats:false, tags: ["weekEven", "Saturday"]}))>>

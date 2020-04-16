@@ -1,0 +1,16 @@
+::tagsInit [init]
+
+<!--  Tags  -->
+
+<<set $tags to {
+	"needDaughter" : function() {return State.variables.player.currentRoom === State.variables.daughter.getLocation;},
+	"weekEven" : function() {return (State.variables.time.day % 14) >= 7;},
+	"weekOdd" : function() {return (State.variables.time.day % 14) < 7;},
+	"Monday" : function() {return (State.variables.time.weekDayFormat == "Monday");},
+	"Tuesday" : function() {return (State.variables.time.weekDayFormat == "Tuesday");},
+	"Wednesday" : function() {return (State.variable.times.weekDayFormat == "Wednesday");},
+	"Thursday" : function() {return (State.variables.time.weekDayFormat == "Thursday");},
+	"Friday" : function() {return (State.variables.time.weekDayFormat == "Friday");},
+	"Saturday" : function() {return (State.variables.time.weekDayFormat == "Saturday");},
+	"Sunday" : function() {return (State.variables.time.weekDayFormat == "Sunday");}
+}>>
