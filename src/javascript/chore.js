@@ -11,7 +11,7 @@ class Chore {
 		this.room = '';
 		this.id = '';
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
-		this.daysLeft = 1;
+		this.dayLeft = 0;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -19,7 +19,9 @@ class Chore {
 	}
 
 	do() {
-		if (this.done) {
+		if (this.dayLeft < 0) {
+			return "";
+		} else if (this.done) {
 			return String.format(
 				"<span class='ChoreDone'>{0} (Done)</span>",
 				this.name
@@ -31,7 +33,7 @@ class Chore {
 			);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6}",
+				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
 				this.name,
 				this.passage,
 				this.staminaCost,
@@ -44,6 +46,7 @@ class Chore {
 	}
 
 	reset() {
+		var days = State.variables.time.day %= 7;
 		this.dayLeft--;
 		if(this.dayLeft < 0) {
 			if (!this.done){
@@ -51,22 +54,23 @@ class Chore {
 				State.variables.player.choresLate++;
 			}
 			if (this.choreFrequency === "D") {
-				this.dayLeft = 1;
+				this.dayLeft = 0;
 			} else if (this.choreFrequency === "B") {
-				if (State.variables.time.day < 3) {
-					this.dayLeft = 3;
-				} else {
+				if (days === 2) {
+					this.dayLeft = 1;
+				} else if (days === 0) {
 					this.dayLeft = 2;
 				}
-			} else if (this.choreFrequency === "W") {
-				this.dayLeft = 7;
+			} else if (this.choreFrequency === "W" && days === 0) {
+				this.dayLeft = 6;
 			}
 			this.done = false;
 		}
 	}
 
 	get getLastDay() {
-		var strLastDay = ["today", "tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"];
+		var strLastDay = ["tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"];
+		console.log(this.dayLeft);
 		return strLastDay[this.dayLeft];
 	}
 

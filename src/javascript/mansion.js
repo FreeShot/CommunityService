@@ -25,7 +25,7 @@ class Mansion {
 		var str = "<ol>";
 		for (var i = 0; i < this.rooms.length; i++) {
 			var roomChores = this.rooms[i].displayChores();
-			if (roomChores != undefined) {
+			if (roomChores != undefined && roomChores !== "") {
 				str += "<li>" + roomChores  + "</li>";
 			}
 		}

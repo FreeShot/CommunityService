@@ -109,13 +109,18 @@ class Room {
 
 	displayChores(displayTitle) {
 		if (this.chores.length > 0) {
-			var str = ((displayTitle || true) ? this.name : "") + "<ol>";
+			var title = ((displayTitle || true) ? this.name : "") + "<ol>";
+			var str = "";
 			for (var i = 0; i < this.chores.length; i++) {
-				str += "<li>" + this.chores[i].do() + "</li>";
+				var chore = this.chores[i].do();
+				if (chore != "") {
+					str += "<li>" + chore + "</li>";
+				}
 			}
-			return str + "</ol>";
+			if (str === "") {return str;}
+			return title + str + "</ol>";
 		} else {
-			return ((displayTitle || true) ? this.name : "You don't have any chores in here.");
+			return "";
 		}
 	}
 
