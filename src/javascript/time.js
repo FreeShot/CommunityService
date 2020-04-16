@@ -3,12 +3,12 @@ setup.SoundPath = "sound/";
 
 class Timer {
 	days = ["monday", "tuesday", "wednesday", "thursday", "firday", "saturday", "sunday"];
-
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
 
-		this.wakeupTime = {default: {hour: 6, minute: 0}};
+		this.wakeup = {hour: 6, minute: 0};
+		this.sleep = {hour: 22, minute: 0};
 
 		Object.keys(config).forEach(function (pn) {
 			this[pn] = clone(config[pn]);
@@ -16,12 +16,18 @@ class Timer {
 	}
 
 	setDate(time) {
+		if (typeof time === "string") {
+			time = this[time];
+		}
 		this.day = time.day || this.day;
 		this.time.hour = time.hour;
 		this.time.minute = time.minute;
 	}
 
 	addTime(time) {
+		if (typeof time === "string") {
+			time = this[time];
+		}
 		this.time.minute += (time.minute || 0);
 		this.time.hour += (time.hour || 0) + Math.floor(this.time.minute / 60);
 		this.time.minute %= 60;
@@ -29,12 +35,17 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
-	compareTime(time) {
-		var minuteTime = this.time.hour * 60 + this.time.minute;
-		var timeDif = minuteTime - (time.hour * 60 + time.minute);
+	compareTime(time, time2) {
+		if (typeof time === "string") {
+			time = this[time];
+		}
+		time2 = time2 || this.time;
+		var minuteTime = time.hour * 60 + time.minute;
+		var minuteTime2 = time2.hour * 60 + time2.minute;
+		var timeDif = minuteTime - minuteTime2;
 		if (timeDif == 0) {
 			return 0;
-		} else if (timeDif > 0) {
+		} else if (timeDif < 0) {
 			return 1;
 		} else {
 			return -1;
@@ -42,8 +53,18 @@ class Timer {
 	}
 
 	inInterval(timeStart, timeEnd) {
+		if (typeof timeStart === "string") {
+			timeStart = this[timeStart];
+		}
+		if (typeof timeEnd === "string") {
+			timeEnd = this[timeEnd];
+		}
 		timeEnd = timeEnd || {hour : 24, minute : 0};
-		return this.compareTime(timeStart) == 1 && this.compareTime(timeEnd) == -1;
+		if (this.compareTime(timeEnd, timeStart) < 0) {
+			return this.compareTime(timeStart) > -1 && this.compareTime(timeEnd) === -1;
+		} else {
+			return this.compareTime(timeStart) > -1 || this.compareTime(timeEnd) === -1;
+		}
 	}
 
 	get weekDay() {

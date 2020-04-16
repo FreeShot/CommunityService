@@ -151,7 +151,16 @@ class Player extends Character {
                 title: "Alex",
                 feminity: 0,
                 looks: {
-                	hair: {color: "Brunette", length: 0}
+                	hairColor: 0,
+                	hairLength: 0,
+                	face: 0,
+                	lips: 0,
+                	skin: 0,
+                	chest: 0,
+                	butt: 0,
+                	hips: 0,
+                	crotch: 0,
+                	legs: 0
                 },
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
@@ -183,6 +192,10 @@ class Player extends Character {
 
 	useStamina(amnt) {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
+	}
+
+	getLook(bodyPart) {
+		return State.variables[bodyPart](this.looks[bodyPart]);
 	}
 
 	get gender() {

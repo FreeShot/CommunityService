@@ -39,7 +39,7 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 <<if $flags.manorIntro is true>>
 	[[Wait to meet the master of the house|ManorVisit_8]]
 	<<= $time.setDate({day:1, hour: 19, minute: 0})>>
-<<elseif $time.clock >= $bedtime.clock>>
+<<elseif $time.inInterval("sleep", "wakeup")>>
 	[[Go to bed.|sleep]]
 <<else>>
 	[[Do your chores.|playerToDoList]]<br>
@@ -67,3 +67,5 @@ Todo: Add clothes
 <<set $flags.wardrobeFirstLook to false>>
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It's a little disheartening that such a small shirt looks like it would fit you.
 <</if>>
+
+<<= $time.inInterval("sleep", "wakeup")>>

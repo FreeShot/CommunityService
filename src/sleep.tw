@@ -19,7 +19,7 @@ Wake up will be very uncomfortable due to morning wood
 The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
 
 <<nobr>>
-<<= $time.addTime({day:1}); $time.setDate({hour: 6, minute:0})>>
+<<= $time.addTime({day:1}); $time.setDate("wakeup")>>
 <<set _event to $mansion.checkSpecialEvents()>>
 <<if _event != "">>
 	<<= _event>>

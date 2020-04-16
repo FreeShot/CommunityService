@@ -561,7 +561,16 @@ class Player extends Character {
                 title: "Alex",
                 feminity: 0,
                 looks: {
-                	hair: {color: "Brunette", length: 0}
+                	hairColor: 0,
+                	hairLength: 0,
+                	face: 0,
+                	lips: 0,
+                	skin: 0,
+                	chest: 0,
+                	butt: 0,
+                	hips: 0,
+                	crotch: 0,
+                	legs: 0
                 },
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
@@ -593,6 +602,10 @@ class Player extends Character {
 
 	useStamina(amnt) {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
+	}
+
+	getLook(bodyPart) {
+		return State.variables[bodyPart](this.looks[bodyPart]);
 	}
 
 	get gender() {
@@ -851,8 +864,6 @@ class Event {
 
 	active() {
 		for (var i = 0; i < this.tags.length; i++) {
-			console.log("testing " + this.tags[i]);
-			console.log(State.variables.tags[this.tags[i]]());
 			if (State.variables.tags[this.tags[i]]() === false) {
 				return false;
 			}
@@ -1337,9 +1348,13 @@ class Room {
 		});
 	}
 
+	removeEvent(eventName) {
+		this.events = this.events.filter(function(em) {return em.name != eventName});
+	}
+
 	getEvent() {
 		var activeEvents = Array.from(this.events);
-		activeEvents.filter(function(el) {
+		activeEvents = activeEvents.filter(function(el) {
 			return el.active(); // filters events with an active tag
 		});
 		if (activeEvents.length > 0) {
@@ -1480,12 +1495,12 @@ setup.SoundPath = "sound/";
 
 class Timer {
 	days = ["monday", "tuesday", "wednesday", "thursday", "firday", "saturday", "sunday"];
-
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
 
-		this.wakeupTime = {default: {hour: 6, minute: 0}};
+		this.wakeup = {hour: 6, minute: 0};
+		this.sleep = {hour: 22, minute: 0};
 
 		Object.keys(config).forEach(function (pn) {
 			this[pn] = clone(config[pn]);
@@ -1493,12 +1508,18 @@ class Timer {
 	}
 
 	setDate(time) {
+		if (typeof time === "string") {
+			time = this[time];
+		}
 		this.day = time.day || this.day;
 		this.time.hour = time.hour;
 		this.time.minute = time.minute;
 	}
 
 	addTime(time) {
+		if (typeof time === "string") {
+			time = this[time];
+		}
 		this.time.minute += (time.minute || 0);
 		this.time.hour += (time.hour || 0) + Math.floor(this.time.minute / 60);
 		this.time.minute %= 60;
@@ -1506,12 +1527,17 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
-	compareTime(time) {
-		var minuteTime = this.time.hour * 60 + this.time.minute;
-		var timeDif = minuteTime - (time.hour * 60 + time.minute);
+	compareTime(time, time2) {
+		if (typeof time === "string") {
+			time = this[time];
+		}
+		time2 = time2 || this.time;
+		var minuteTime = time.hour * 60 + time.minute;
+		var minuteTime2 = time2.hour * 60 + time2.minute;
+		var timeDif = minuteTime - minuteTime2;
 		if (timeDif == 0) {
 			return 0;
-		} else if (timeDif > 0) {
+		} else if (timeDif < 0) {
 			return 1;
 		} else {
 			return -1;
@@ -1519,8 +1545,18 @@ class Timer {
 	}
 
 	inInterval(timeStart, timeEnd) {
+		if (typeof timeStart === "string") {
+			timeStart = this[timeStart];
+		}
+		if (typeof timeEnd === "string") {
+			timeEnd = this[timeEnd];
+		}
 		timeEnd = timeEnd || {hour : 24, minute : 0};
-		return this.compareTime(timeStart) == 1 && this.compareTime(timeEnd) == -1;
+		if (this.compareTime(timeEnd, timeStart) < 0) {
+			return this.compareTime(timeStart) > -1 && this.compareTime(timeEnd) === -1;
+		} else {
+			return this.compareTime(timeStart) > -1 || this.compareTime(timeEnd) === -1;
+		}
 	}
 
 	get weekDay() {
@@ -2688,8 +2724,6 @@ You snatch up one of the nearby towels and quickly cover yourself.
 &lt;&lt;= $wife.speak(&quot;I don&#39;t have time for this. Make yourself presentable and get to work!&quot;)&gt;&gt;
 
 $wife.name leaves the room. You clearly lost some credibility with that slip up.</tw-passagedata><tw-passagedata pid="91" name="StoryInit" tags="" position="100,1225" size="100,100">&lt;&lt;set $time to new Timer({day: -1, time: {hour: 22, minute: 0}})&gt;&gt;
-&lt;&lt;set $bedtime to new Timer({day: 0, time: {hour: 22, minute: 0}})&gt;&gt;
-&lt;&lt;set $bedtime.setDate({hour: 22, minute: 0})&gt;&gt;
 
 &lt;&lt;set $flags to {
 	&quot;cuff&quot; : {
@@ -3547,7 +3581,17 @@ Your brain is scrambled as you try to reign in your thoughts and process what ju
  
 You shift your hips again as your caged member was brought to life by the kiss. It&#39;s already pressing against the hard plastic.
  
-You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="118" name="PlayerBdRm" tags="playerRoom room" position="975,1475" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="118" name="playerDescription" tags="" position="975,1475" size="100,100">Your name is NAME.
+You &lt;&lt;if HAS_WIG&gt;&gt;are wearing a WIG_COLOR wig, hiding your&lt;&lt;else&gt;&gt;have &lt;&lt;/if&gt;&gt;HAIR_LENGTH HAIR_COLOR hair.
+FACE_DESCRIPTION
+LIPS_DESCRIPTION
+SKIN_DESCRIPTION
+CHEST_DESCRIPTION
+BUTT_DESCRIPTION
+HIPS_DESCRIPTION
+CROTCH_DESCRIPTION
+LEGS_DESCRIPTION
+FOOT_WEAR</tw-passagedata><tw-passagedata pid="119" name="PlayerBdRm" tags="playerRoom room" position="1100,1475" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 &lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;silently&gt;&gt;
 		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
@@ -3587,7 +3631,7 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 &lt;&lt;if $flags.manorIntro is true&gt;&gt;
 	[[Wait to meet the master of the house|ManorVisit_8]]
 	&lt;&lt;= $time.setDate({day:1, hour: 19, minute: 0})&gt;&gt;
-&lt;&lt;elseif $time.clock &gt;= $bedtime.clock&gt;&gt;
+&lt;&lt;elseif $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
 	[[Go to bed.|sleep]]
 &lt;&lt;else&gt;&gt;
 	[[Do your chores.|playerToDoList]]&lt;br&gt;
@@ -3598,11 +3642,13 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	&lt;&lt;/click&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="playerRoomShower" tags="playerRoom" position="1100,1475" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="120" name="playerRoomMakup" tags="playerRoom" position="1225,1475" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="121" name="playerRoomMorningRoutine" tags="playerRoom" position="100,1600" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="122" name="playerRoomWardrobe" tags="playerRoom" position="225,1600" size="100,100">Todo: Add clothes
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="playerRoomShower" tags="playerRoom" position="1225,1475" size="100,100">Todo: Add shower event</tw-passagedata><tw-passagedata pid="121" name="playerRoomMakup" tags="playerRoom" position="100,1600" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="122" name="playerRoomMorningRoutine" tags="playerRoom" position="225,1600" size="100,100">Todo: Add routine</tw-passagedata><tw-passagedata pid="123" name="playerRoomWardrobe" tags="playerRoom" position="350,1600" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="RoomDescription" tags="room" position="350,1600" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="sleep" tags="sleep" position="475,1600" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="RoomDescription" tags="room" position="475,1600" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="sleep" tags="sleep" position="600,1600" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 
@@ -3615,10 +3661,10 @@ First nights rest will be fitful because of the cage
 Wake up will be very uncomfortable due to morning wood
 &lt;&lt;/if&gt;&gt;
 
-[[Start the next day|wakeUp]]</tw-passagedata><tw-passagedata pid="125" name="wakeUp" tags="sleep" position="600,1600" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
+[[Start the next day|wakeUp]]</tw-passagedata><tw-passagedata pid="126" name="wakeUp" tags="sleep" position="725,1600" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
 
 &lt;&lt;nobr&gt;&gt;
-&lt;&lt;= $time.addTime({day:1}); $time.setDate({hour: 6, minute:0})&gt;&gt;
+&lt;&lt;= $time.addTime({day:1}); $time.setDate(&quot;wakeup&quot;)&gt;&gt;
 &lt;&lt;set _event to $mansion.checkSpecialEvents()&gt;&gt;
 &lt;&lt;if _event != &quot;&quot;&gt;&gt;
 	&lt;&lt;= _event&gt;&gt;
@@ -3627,7 +3673,7 @@ Wake up will be very uncomfortable due to morning wood
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;= $mansion.resetChores()&gt;&gt;
 
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="commented" tags="" position="725,1600" size="100,100">&lt;&lt;if $time.day == 9&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="commented" tags="" position="850,1600" size="100,100">&lt;&lt;if $time.day == 9&gt;&gt;
 	As you roll out of bed you can&#39;t help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards you decide to ride the wave and end up relaxing in your room for the rest of the morning instead of getting your chores done.&lt;br&gt;
 	&lt;br&gt;
 	It&#39;s nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.&lt;br&gt;
