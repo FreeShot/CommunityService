@@ -443,12 +443,23 @@ class Inventory {
 	}
 
 	displayInv() {
-		var str = "INVENTORY : \n" 
+		//TODO rework
+		var str = "INVENTORY : \n";
 		var inv = this.inventory;
-		console.log(inv);
 		if(this.inventory.items.length === 0) {return "No items"} 
 		for (var i = 0; i < this.inventory.items.length; i++) {
-			str += this.inventory.items[i].name + ": " + this.inventory.count[i] + "<br>";
+			str += this.inventory.items[i].display() + "<br>";
+		}
+		return str;
+	}
+
+	displayClothes() {
+		var str = "CLOTHES : \n";
+		var inv = this.inventory;
+		inv = inv.items.filter(function(el) {return el instanceof Clothes});
+		if(inv.length === 0) {return "No items"}
+		for (var i = 0; i < inv.length; i++) {
+			str += inv[i].display() + "<br>";
 		}
 		return str;
 	}
@@ -572,6 +583,22 @@ class Player extends Character {
                 	crotch: 0,
                 	legs: 0
                 },
+                clothes: [],
+                slots: [
+                	{name: "wig", equipped: null},
+                	{name: "chest", equipped: null},
+                	{name: "bra", equipped: null},
+                	{name: "underwear", equipped: null},
+                	{name: "hoistery", equipped: null},
+                	{name: "legs", equipped: null},
+                	{name: "feet", equipped: null},
+                	{name: "accessory-hair", equipped: null},
+                	{name: "accessory-neck", equipped: null},
+                	{name: "accessory-ear", equipped: null},
+                	{name: "accessory-eye", equipped: null},
+                	{name: "toy-front", equipped: null},
+                	{name: "toy-back", equipped: null}
+                ],
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 arrousal : 0,
@@ -606,6 +633,10 @@ class Player extends Character {
 
 	getLook(bodyPart) {
 		return State.variables[bodyPart](this.looks[bodyPart]);
+	}
+
+	getSlot(slot) {
+		return this.slot.find(function(el) {return el.name == slot});
 	}
 
 	get gender() {
@@ -786,7 +817,7 @@ class Item {
 		this.needAcceptance = 0; // How high must be the player's acceptance before accepting to get the item
 		this.price = 0; // If the item has a price, this will be its price
 
-		this.specialUse = undefined; // Function for special items
+		this.use = undefined; // Function for special items
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -811,10 +842,38 @@ Object.defineProperty(window, 'Item', {
 
 class Clothes extends Item {
 	constructor(config) {
-		// this.slot = "";
-
-		super(config);
+		super(Object.assign({
+            slots: [],
+            equipped: false
+        },config));
 	}
+
+    equip(char) {
+        this.slots.forEach(function (el) {
+            var slot = char.getSlot(el);
+            if (slot !== undefined) {
+                slot.equipped.unequip();
+            }
+            slot.equipped = this;
+        }, this);
+
+        this.equipped = true;
+    }
+
+    unequip() {
+        this.equipped = false;
+    }
+
+    display() {
+        var str = String.format(
+            "{0} : {1} [{2}]",
+            this.name,
+            this.describe,
+            this.slots.join(",")
+        );
+        if (this.equipped) {str += "(equipped)"}
+        return str;
+    }
 
 	clone() {
         return new Clothes(this);
@@ -2723,7 +2782,35 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 &lt;&lt;= $wife.speak(&quot;I don&#39;t have time for this. Make yourself presentable and get to work!&quot;)&gt;&gt;
 
-$wife.name leaves the room. You clearly lost some credibility with that slip up.</tw-passagedata><tw-passagedata pid="91" name="bodyPartInit" tags="init" position="100,1225" size="100,100"></tw-passagedata><tw-passagedata pid="92" name="characterInit" tags="init" position="225,1225" size="100,100">&lt;&lt;set $player to new Player()&gt;&gt;
+$wife.name leaves the room. You clearly lost some credibility with that slip up.</tw-passagedata><tw-passagedata pid="91" name="bodyPartInit" tags="init" position="100,1225" size="100,100">&lt;&lt;set $hairColor to function(val) {
+	var options = [&quot;brown&quot;, &quot;black&quot;, &quot;blonde&quot;];
+	return options[val];
+}&gt;&gt;
+&lt;&lt;set $hairLength to function(val) {
+	var options = [&quot;short&quot;, &quot;medium&quot;, &quot;long&quot;];
+	return options[val];
+}&gt;&gt;
+&lt;&lt;set $face to function(val) {
+	return &quot;TO BE ADDED&quot;;
+}&gt;&gt;
+&lt;&lt;set $lips to function(val) {
+	return &quot;TO BE ADDED&quot;;
+}&gt;&gt;
+&lt;&lt;set $skin to function(val) {
+	return &quot;TO BE ADDED&quot;;
+}&gt;&gt;
+&lt;&lt;set $chest to function(val) {
+	return &quot;TO BE ADDED&quot;;
+}&gt;&gt;
+&lt;&lt;set $butt to function(val) {
+	return &quot;TO BE ADDED&quot;;
+}&gt;&gt;
+&lt;&lt;set $crotch to function(val) {
+	return &quot;TO BE ADDED&quot;;
+}&gt;&gt;
+&lt;&lt;set $legs to function(val) {
+	return &quot;TO BE ADDED&quot;;
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="characterInit" tags="init" position="225,1225" size="100,100">&lt;&lt;set $player to new Player()&gt;&gt;
 
 &lt;!--  NPC  --&gt;
 
@@ -2912,7 +2999,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 1}, passages:[{name: &quot;DaughterBdRm_Windows&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Dust Desk and Side Tables&quot;, duration: {minute: 30}, passages:[{name: &quot;GuestRm_Dusting&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Vacuum Carpet and Upholstery&quot;, duration: {minute: 30}, passages:[{name: &quot;GuestRm_Vacuum&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 1}, passages:[{name: &quot;GuestRm_Windows&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="clothesInit" tags="init" position="475,1225" size="100,100">&lt;&lt;set $mbriefs to new Clothes({name: &quot;Men&#39;s Briefs&quot;, slot: &quot;panties&quot;, describe: &quot;Plain White Men&#39;s Underwear&quot;, img:&quot;mbriefs_01.JPG&quot;, needAcceptance: &quot;0&quot;, price: &quot;0&quot;, specialUse: &quot;none&quot;})&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="eventInit" tags="event" position="600,1225" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterSquats01&quot;, passage: &quot;choreEvent_DaughterSquats01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean Windows&quot;, duration: {hour: 1}, passages:[{name: &quot;GuestRm_Windows&quot;, weight: 1}], staminaCost: 1}))&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="clothesInit" tags="init" position="475,1225" size="100,100">&lt;&lt;set $mbriefs to new Clothes({name: &quot;Men&#39;s Briefs&quot;, describe: &quot;Plain White Men&#39;s Underwear&quot;, img:&quot;mbriefs_01.JPG&quot;, slots: [&quot;underwear&quot;]})&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="eventInit" tags="event" position="600,1225" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterSquats01&quot;, passage: &quot;choreEvent_DaughterSquats01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterDumbell01&quot;, passage: &quot;choreEvent_DaughterDumbell01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 
@@ -3125,7 +3212,9 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	&quot;manorIntro&quot; : false,
 	&quot;firstNight&quot; : false,
 }&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="ManorVisit_1" tags="tutorial" position="850,1350" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+&lt;&lt;/link&gt;&gt;
+
+[[playerDescription]]</tw-passagedata><tw-passagedata pid="107" name="ManorVisit_1" tags="tutorial" position="850,1350" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
@@ -3575,17 +3664,13 @@ Your brain is scrambled as you try to reign in your thoughts and process what ju
  
 You shift your hips again as your caged member was brought to life by the kiss. It&#39;s already pressing against the hard plastic.
  
-You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="125" name="playerDescription" tags="" position="600,1600" size="100,100">Your name is NAME.
-You &lt;&lt;if HAS_WIG&gt;&gt;are wearing a WIG_COLOR wig, hiding your&lt;&lt;else&gt;&gt;have &lt;&lt;/if&gt;&gt;HAIR_LENGTH HAIR_COLOR hair.
-FACE_DESCRIPTION
-LIPS_DESCRIPTION
-SKIN_DESCRIPTION
-CHEST_DESCRIPTION
-BUTT_DESCRIPTION
-HIPS_DESCRIPTION
-CROTCH_DESCRIPTION
-LEGS_DESCRIPTION
-FOOT_WEAR</tw-passagedata><tw-passagedata pid="126" name="PlayerBdRm" tags="playerRoom room" position="725,1600" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="125" name="playerDescription" tags="" position="600,1600" size="100,100">Your name is &lt;&lt;= $player.name&gt;&gt;.
+You have &lt;&lt;= $player.getLook(&quot;hairLength&quot;)&gt;&gt; &lt;&lt;= $player.getLook(&quot;hairColor&quot;)&gt;&gt; hair.
+
+
+&lt;&lt;= $player.addItem($mbriefs, 1)&gt;&gt;
+
+&lt;&lt;= $player.displayClothes()&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="PlayerBdRm" tags="playerRoom room" position="725,1600" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 &lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;silently&gt;&gt;
 		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;

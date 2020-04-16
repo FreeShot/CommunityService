@@ -33,12 +33,23 @@ class Inventory {
 	}
 
 	displayInv() {
-		var str = "INVENTORY : \n" 
+		//TODO rework
+		var str = "INVENTORY : \n";
 		var inv = this.inventory;
-		console.log(inv);
 		if(this.inventory.items.length === 0) {return "No items"} 
 		for (var i = 0; i < this.inventory.items.length; i++) {
-			str += this.inventory.items[i].name + ": " + this.inventory.count[i] + "<br>";
+			str += this.inventory.items[i].display() + "<br>";
+		}
+		return str;
+	}
+
+	displayClothes() {
+		var str = "CLOTHES : \n";
+		var inv = this.inventory;
+		inv = inv.items.filter(function(el) {return el instanceof Clothes});
+		if(inv.length === 0) {return "No items"}
+		for (var i = 0; i < inv.length; i++) {
+			str += inv[i].display() + "<br>";
 		}
 		return str;
 	}
@@ -162,6 +173,22 @@ class Player extends Character {
                 	crotch: 0,
                 	legs: 0
                 },
+                clothes: [],
+                slots: [
+                	{name: "wig", equipped: null},
+                	{name: "chest", equipped: null},
+                	{name: "bra", equipped: null},
+                	{name: "underwear", equipped: null},
+                	{name: "hoistery", equipped: null},
+                	{name: "legs", equipped: null},
+                	{name: "feet", equipped: null},
+                	{name: "accessory-hair", equipped: null},
+                	{name: "accessory-neck", equipped: null},
+                	{name: "accessory-ear", equipped: null},
+                	{name: "accessory-eye", equipped: null},
+                	{name: "toy-front", equipped: null},
+                	{name: "toy-back", equipped: null}
+                ],
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 arrousal : 0,
@@ -196,6 +223,10 @@ class Player extends Character {
 
 	getLook(bodyPart) {
 		return State.variables[bodyPart](this.looks[bodyPart]);
+	}
+
+	getSlot(slot) {
+		return this.slot.find(function(el) {return el.name == slot});
 	}
 
 	get gender() {

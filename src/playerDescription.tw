@@ -1,13 +1,9 @@
 ::playerDescription
 
-Your name is NAME.
-You <<if HAS_WIG>>are wearing a WIG_COLOR wig, hiding your<<else>>have <</if>>HAIR_LENGTH HAIR_COLOR hair.
-FACE_DESCRIPTION
-LIPS_DESCRIPTION
-SKIN_DESCRIPTION
-CHEST_DESCRIPTION
-BUTT_DESCRIPTION
-HIPS_DESCRIPTION
-CROTCH_DESCRIPTION
-LEGS_DESCRIPTION
-FOOT_WEAR
+Your name is <<= $player.name>>.
+You have <<= $player.getLook("hairLength")>> <<= $player.getLook("hairColor")>> hair.
+
+
+<<= $player.addItem($mbriefs, 1)>>
+
+<<= $player.displayClothes()>>

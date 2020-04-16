@@ -1,1 +1,31 @@
 ::bodyPartInit [init]
+
+<<set $hairColor to function(val) {
+	var options = ["brown", "black", "blonde"];
+	return options[val];
+}>>
+<<set $hairLength to function(val) {
+	var options = ["short", "medium", "long"];
+	return options[val];
+}>>
+<<set $face to function(val) {
+	return "TO BE ADDED";
+}>>
+<<set $lips to function(val) {
+	return "TO BE ADDED";
+}>>
+<<set $skin to function(val) {
+	return "TO BE ADDED";
+}>>
+<<set $chest to function(val) {
+	return "TO BE ADDED";
+}>>
+<<set $butt to function(val) {
+	return "TO BE ADDED";
+}>>
+<<set $crotch to function(val) {
+	return "TO BE ADDED";
+}>>
+<<set $legs to function(val) {
+	return "TO BE ADDED";
+}>>
