@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="grid-element" id="grid-middle-left">
-		<div id="player-stat">PLAYER STATS</div>
+		<div id="player-stats">PLAYER STATS</div>
 	</div>
 	<div class="grid-element" id="grid-middle-center">
 		<div id="passages"></div>
