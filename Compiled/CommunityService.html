@@ -838,10 +838,12 @@ class Mansion {
 
 	displayChores() {
 		var str = "<ol>";
+		var hasChores = false;
 		for (var i = 0; i < this.rooms.length; i++) {
 			var roomChores = this.rooms[i].displayChores();
 			if (roomChores != undefined && roomChores !== "") {
 				str += "<li>" + roomChores  + "</li>";
+				hasChores = true;
 			}
 		}
 		return str + "</ol>";
@@ -2615,7 +2617,7 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 &lt;&lt;= $wife.speak(&quot;I don&#39;t have time for this. Make yourself presentable and get to work!&quot;)&gt;&gt;
 
-$wife.name leaves the room. You clearly lost some credibility with that slip up.</tw-passagedata><tw-passagedata pid="90" name="StoryInit" tags="" position="1225,1100" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})&gt;&gt;
+$wife.name leaves the room. You clearly lost some credibility with that slip up.</tw-passagedata><tw-passagedata pid="90" name="StoryInit" tags="" position="1225,1100" size="100,100">&lt;&lt;set $time to new Timer({day: -1, time: {hour: 22, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime to new Timer({day: 0, time: {hour: 22, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime.setDate({hour: 22, minute: 0})&gt;&gt;
 
@@ -3016,7 +3018,6 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	&quot;manorIntro&quot; : false,
 	&quot;firstNight&quot; : false,
 }&gt;&gt;
-&lt;&lt;= $time.setDate({day:1, hour: 22, minute:0})&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="ManorVisit_1" tags="tutorial" position="1100,1225" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
@@ -3039,7 +3040,7 @@ With that, the turns around and walks into the estate proper.
 
 [[Follow|ManorVisit_2]]
 
-&lt;&lt;set $time.addTime({day:1, hour: 12, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="ManorVisit_2" tags="tutorial" position="1225,1225" size="100,100">&lt;&lt;= $mansion.display(&quot;Foyer&quot;)&gt;&gt;
+&lt;!-- &lt;&lt;set $time.addTime({day:1, hour: 12, minute:0})&gt;&gt; --&gt;</tw-passagedata><tw-passagedata pid="100" name="ManorVisit_2" tags="tutorial" position="1225,1225" size="100,100">&lt;&lt;= $mansion.display(&quot;Foyer&quot;)&gt;&gt;
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
 
 &lt;&lt;= $butler.speak(&quot;You may call me $butler.name&quot;)&gt;&gt;
@@ -3062,7 +3063,7 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 &lt;&lt;= $butler.speak(&quot;Now follow me to the [[Kitchen|ManorVisit_4]]&quot;)&gt;&gt;
 &lt;&lt;set $flags.cuff.init to true&gt;&gt;
 &lt;&lt;set $flags.cuff.rules to true&gt;&gt;
-&lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="ManorVisit_4" tags="tutorial" position="225,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;Kitchen&quot;)&gt;&gt;
+&lt;!-- &lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt; --&gt;</tw-passagedata><tw-passagedata pid="102" name="ManorVisit_4" tags="tutorial" position="225,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;Kitchen&quot;)&gt;&gt;
 You enter the large open kitchen. It looks just as lavish as the rest of the rooms so far. There are enough appliances and cooking ustencils for a small army of cooks. The only person there though is an older man going about his buisness.
 
 [img[setup.ImagePath + &quot;character/staff/chef_placeholder1.jpg&quot;]]
@@ -3075,7 +3076,7 @@ The old chef points his knife at you to emphasize his point.
 
 &lt;&lt;= $butler.speak(&quot;You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.&quot;)&gt;&gt;
 
-&lt;&lt;set $time.addTime({day:0, hour:0, minute:20})&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="ManorVisit_5" tags="tutorial" position="350,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;Garden&quot;)&gt;&gt;
+&lt;!-- &lt;&lt;set $time.addTime({day:0, hour:0, minute:20})&gt;&gt; --&gt;</tw-passagedata><tw-passagedata pid="103" name="ManorVisit_5" tags="tutorial" position="350,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;Garden&quot;)&gt;&gt;
 You follow $butler.name outside. You expected to be looking out over the city but instead a large yard surrounded by trees hides the city outside. There are fountains, flower beds and even a little gazebo.
 
 There is also a fenced off pool to the side with a pool house that looks like it might have some gym equipment inside.
@@ -3102,7 +3103,7 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 
 Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
 
-&lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="ManorVisit_6" tags="tutorial" position="475,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;Hall&quot;)&gt;&gt;
+&lt;!-- &lt;&lt;set $time.addTime({day:0, hour:0, minute:10})&gt;&gt; --&gt;</tw-passagedata><tw-passagedata pid="104" name="ManorVisit_6" tags="tutorial" position="475,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;Hall&quot;)&gt;&gt;
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
 
 Both look similar, but one is clearly younger than the other. They&#39;re both quite beatiful as well and carry themselves like they know it but with enough grace not to be showing it off.
@@ -3151,7 +3152,7 @@ You stammer. &lt;&lt;= $player.speak(&quot;Yes $wife.title.&quot;)&gt;&gt;
 
 $butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]
 
-&lt;&lt;set $time.addTime({day:0, hour:2, minute:10})&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="ManorVisit_7" tags="tutorial" position="600,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+&lt;!-- &lt;&lt;set $time.addTime({day:0, hour:2, minute:10})&gt;&gt; --&gt;</tw-passagedata><tw-passagedata pid="105" name="ManorVisit_7" tags="tutorial" position="600,1350" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
 
 &lt;&lt;= $butler.speak(&quot;This is where you&#39;ll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.&quot;)&gt;&gt;
@@ -3193,11 +3194,13 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 
 &lt;&lt;set $flags.manorIntro to false&gt;&gt;
 &lt;&lt;set $flags.cuff.full to true&gt;&gt;
-&lt;&lt;= $time.setDate({hour: 22, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="StoryCaption" tags="" position="850,1350" size="100,100">&lt;hr&gt;
+&lt;!-- &lt;&lt;= $time.setDate({hour: 22, minute:0})&gt;&gt; --&gt;</tw-passagedata><tw-passagedata pid="107" name="StoryCaption" tags="" position="850,1350" size="100,100">&lt;hr&gt;
+&lt;&lt;if $time.day &gt;= 0&gt;&gt;
 &lt;span class=&quot;date&quot;&gt;$time.weekDayFormat
 Day $time.day&lt;/span&gt;
 &lt;hr&gt;
 &lt;span class=&quot;time&quot;&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/span&gt;\
+&lt;&lt;/if&gt;&gt;
 &lt;hr&gt;
 &lt;span class=&quot;Stamina&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/span&gt;
 &lt;hr&gt;
@@ -3538,7 +3541,7 @@ Wake up will be very uncomfortable due to morning wood
 	It&#39;s nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.&lt;br&gt;
 	&lt;br&gt;
 	[[Get started.|firstcocktailparty1]]
-	&lt;&lt;= $time.setDate({day:0, hour: 12, minute:0})&gt;&gt;
+	&lt;&lt;= $time.setDate({hour: 12, minute:0})&gt;&gt;
 &lt;&lt;elseif $cocktailparty_start is true&gt;&gt;
 	After a fitful nights sleep you wake up and immediately feel pressure of the locked chastity cage against your growing morning wood. You rolled onto your stomach in the night as well so it&#39;s wedged right againsts you. You roll over and then shift around to try and get comfortable but it&#39;s no good. You&#39;ll need to go see $wife.name.&lt;br&gt;
 	&lt;br&gt;
@@ -3549,7 +3552,7 @@ Wake up will be very uncomfortable due to morning wood
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
 	[[Roll out of bed|PlayerBdRm]]
-	&lt;&lt;= $time.setDate({day:0, hour: 6, minute:0})&gt;&gt;
+	&lt;&lt;= $time.setDate({hour: 6, minute:0})&gt;&gt;
 	&lt;&lt;set $eventCount_cocktailparty ++&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;

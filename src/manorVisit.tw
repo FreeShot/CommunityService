@@ -21,7 +21,7 @@ With that, the turns around and walks into the estate proper.
 
 [[Follow|ManorVisit_2]]
 
-<<set $time.addTime({day:1, hour: 12, minute:0})>>
+<!-- <<set $time.addTime({day:1, hour: 12, minute:0})>> -->
 
 ::ManorVisit_2 [tutorial]
 <<= $mansion.display("Foyer")>>
@@ -50,7 +50,7 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 <<= $butler.speak("Now follow me to the [[Kitchen|ManorVisit_4]]")>>
 <<set $flags.cuff.init to true>>
 <<set $flags.cuff.rules to true>>
-<<set $time.addTime({day:0, hour:0, minute:10})>>
+<!-- <<set $time.addTime({day:0, hour:0, minute:10})>> -->
 
 ::ManorVisit_4 [tutorial]
 <<= $mansion.display("Kitchen")>>
@@ -66,7 +66,7 @@ The old chef points his knife at you to emphasize his point.
 
 <<= $butler.speak("You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|ManorVisit_5]] and I will introduce you to the grounds keeper.")>>
 
-<<set $time.addTime({day:0, hour:0, minute:20})>>
+<!-- <<set $time.addTime({day:0, hour:0, minute:20})>> -->
 
 ::ManorVisit_5 [tutorial]
 <<= $mansion.display("Garden")>>
@@ -96,7 +96,7 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 
 Follow $butler.name up the stairs to the [[Hall|ManorVisit_6]]
 
-<<set $time.addTime({day:0, hour:0, minute:10})>>
+<!-- <<set $time.addTime({day:0, hour:0, minute:10})>> -->
 
 ::ManorVisit_6 [tutorial]
 <<= $mansion.display("Hall")>>
@@ -148,7 +148,7 @@ You stammer. <<= $player.speak("Yes $wife.title.")>>
 
 $butler.name bows slightly and then continues [[showing you around the manor.|ManorVisit_7]]
 
-<<set $time.addTime({day:0, hour:2, minute:10})>>
+<!-- <<set $time.addTime({day:0, hour:2, minute:10})>> -->
 
 ::ManorVisit_7 [tutorial]
 <<= $mansion.display("PlayerBdRm")>>
@@ -196,4 +196,4 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 
 <<set $flags.manorIntro to false>>
 <<set $flags.cuff.full to true>>
-<<= $time.setDate({hour: 22, minute:0})>>
+<!-- <<= $time.setDate({hour: 22, minute:0})>> -->

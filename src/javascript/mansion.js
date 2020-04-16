@@ -23,10 +23,12 @@ class Mansion {
 
 	displayChores() {
 		var str = "<ol>";
+		var hasChores = false;
 		for (var i = 0; i < this.rooms.length; i++) {
 			var roomChores = this.rooms[i].displayChores();
 			if (roomChores != undefined && roomChores !== "") {
 				str += "<li>" + roomChores  + "</li>";
+				hasChores = true;
 			}
 		}
 		return str + "</ol>";
