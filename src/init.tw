@@ -21,12 +21,76 @@
 
 <!--  NPC  -->
 
-<<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "sir"})>>
+<<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "sir", schedule: [
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "MasterBdRm", 
+		start: {hour: 0, minute: 0}, 
+		end: {hour: 7, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Dining", 
+		start: {hour: 7, minute: 0}, 
+		end: {hour: 8, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Office", 
+		start: {hour: 18, minute: 0}, 
+		end: {hour: 20, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Lounge", 
+		start: {hour: 10, minute: 0}, 
+		end: {hour: 22, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "MasterBdRm", 
+		start: {hour: 22, minute: 0}, 
+		end: {hour: 24, minute: 0}
+	}
+]})>>
 
-<<set $wife to new NPC({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am"})>>
+<<set $wife to new NPC({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am", schedule: [
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "MasterBdRm", 
+		start: {hour: 0, minute: 0}, 
+		end: {hour: 7, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Dining", 
+		start: {hour: 7, minute: 0}, 
+		end: {hour: 8, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Gym", 
+		start: {hour: 17, minute: 0}, 
+		end: {hour: 19, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Lounge", 
+		start: {hour: 19, minute: 0}, 
+		end: {hour: 22, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "MasterBdRm", 
+		start: {hour: 22, minute: 0}, 
+		end: {hour: 24, minute: 0}
+	}
+]})>>
 
 <<set $daughter to new NPC({name: "Angeline", color: "DarkSalmon", title: "Ms Sono", schedule: [
 	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "DaughterBdRm", 
+		start: {hour: 0, minute: 0}, 
+		end: {hour: 7, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Dining", 
+		start: {hour: 7, minute: 0}, 
+		end: {hour: 8, minute: 0}
+	},{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Gym", 
 		start: {hour: 9, minute: 0}, 
@@ -48,6 +112,7 @@
 		end: {hour: 18, minute: 0}
 	}
 ]})>>
+
 <<set $son to new NPC({name: "Mr Sono", color: "LightGreen", title: "Mr Sono", schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
@@ -57,7 +122,19 @@
 	}
 ]})>>
 
-<<set $butler to new NPC({name: "Mr Benson", color: "#7DA231", title: "Mr Benson"})>>
+<<set $butler to new NPC({name: "Mr Benson", color: "#7DA231", title: "Mr Benson", schedule: [
+	{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Kitchen", 
+		start: {hour: 7, minute: 0}, 
+		end: {hour: 8, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Office", 
+		start: {hour: 18, minute: 0}, 
+		end: {hour: 22, minute: 0}
+	}
+]})>>
 
 <<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Ivan", schedule: [
 	{
@@ -115,7 +192,7 @@
 
 <!--  Chores  -->
 
-<<= $mansion.addChore("Foyer", new Chore({name: "Dust Ornaments", duration: {minute: 30}, passages:[{name: "Foyer_Dusting", weight: 1}], staminaCost: 1}))>>
+<<= $mansion.addChore("Foyer", new Chore({name: "Dust Ornaments", duration: {minute: 30}, passages:[{name: "Foyer_Dusting", weight: 1}], staminaCost: 1, choreFrequency: W}))>>
 <<= $mansion.addChore("Foyer", new Chore({name: "Sweep and Mop Floors", duration: {hour: 1}, passages:[{name: "Foyer_SweepMop", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("Hall", new Chore({name: "Dust Sitting Area and Paintings", duration: {minute: 30}, passages:[{name: "Hall_Dusting", weight: 1}], staminaCost: 1}))>>
 <<= $mansion.addChore("Hall", new Chore({name: "Sweep and Mop Floors", duration: {hour: 1}, passages:[{name: "Hall_SweepMop", weight: 1}], staminaCost: 1}))>>

@@ -56,20 +56,21 @@ $daughter.name give your shoulder a squeeze <<= $daughter.speak("So what have yo
 
 :: choreEvent_DaughterTease01 [noreturn chore]
 
+todo: trigger should be if the daughter acceptance is above a certain amount
+
 It takes a bit of time to collect everything from all the hampers but now you're ready to get the washing started. You're in the middle of separating all the various loads when $daughter.name comes in wearing her gym equipment.
 
-<<if $daughter.acceptance >= 3>>
-	<<= $daughter.speak("Whew. Just in time.")>>
+<<= $daughter.speak("Whew. Just in time.")>>
 
-	You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her gloves, socks and shorts. She does not wear anything underneath them, at all.
+You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her gloves, socks and shorts. She does not wear anything underneath them, at all.
 
-	<<= $daughter.speak("Throw these in with the rest will you.")>>
+<<= $daughter.speak("Throw these in with the rest will you.")>>
 
-	You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you're too busy watching $daughter.name as you spins around and bounces out of the room and back into the main house.
+You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you're too busy watching $daughter.name as she spins around and bounces out of the room.
 
-	<<= $player.speak("What the hell just happened?")>>
+<<= $player.speak("What the hell just happened?")>>
 
-	todo: add cage conditions, arousal, etc
+todo: add cage conditions, arousal, etc
 
 :: choreEvent_WifeBossy01 [noreturn chore]
 
@@ -89,7 +90,7 @@ You jolt to a start and begin going about your tasks.
 
 When you are finished $wife.name tells you to stay put while she inspects your work.
 <<set $time.addTime({day:0, hour: 0, minute:15})>>
-She nods. <<= $wife.speak("This is satisfactory. See that you try and get things done more quickly though. The longer you take the harderit will be for me to present a clean house to our guests")>>
+She nods. <<= $wife.speak("This is satisfactory. See that you try and get things done more quickly though. The longer you take the harder it will be for me to present a clean house to our guests")>>
 
 With that $wife.name turns around and leave you to your duties.
 
@@ -107,8 +108,6 @@ $wife.name is standing at the entrance watching you.
 
 <<= $wife.speak("Maybe. I don't see a need for something like that though. Shoes with a taller heel would suffice.")>>
 
-<<= $player.speak("<i>Of course. I walked right in to that one.</i>")>>
-
 <<if player.feminity >= 40>>
 	<<= $player.speak("I guess that could help $wife.title")>>
 <<else>>
@@ -116,3 +115,53 @@ $wife.name is standing at the entrance watching you.
 
 	<<= $wife.speak("See that you do or the decision will be made for you.")>>
 <</if>>
+
+With that she turns and leaves the room.
+
+:: choreEvent_PlayerNudityD
+
+Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+
+It doesn't take too long so you busy yourself folding the washing that's already clean.
+
+You bend down to put some of the linen away when the door to the laundry open.
+
+<<= $player.speak("<i>The lock you idiot!</i>")>>
+
+You spin around and see $daughter.name standing there, trying to use her hand to cover her large smile as she snickers.
+
+<<= $daughter.speak("Um, I just wanted to stop in and say hi.")>>
+
+<<= $player.speak("Aaah... Um.")>>
+
+<<= $daughter.speak("Do you maybe want to cover up?")>>
+
+You snatch up one of the nearby towels and quickly cover yourself.
+
+<<= $daughter.speak("You know what? That's ok. You look busy.")>>
+
+$daughter.name leaves and you hear her burst into laughter as soon as she's out of sight.
+
+:: choreEvent_PlayerNudityW
+
+Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+
+It doesn't take too long so you busy yourself folding the washing that's already clean.
+
+You bend down to put some of the linen away when the door to the laundry open.
+
+<<= $player.speak("<i>The lock you idiot!</i>")>>
+
+You spin around and see $wife.name standing there, arms crossed and a furious look on her.
+
+<<= $wife.speak("I come to check on you and find you like this?")>>
+
+You snatch up one of the nearby towels and quickly cover yourself.
+
+<<= $wife.speak("It's a bit late for that isn't it?")>>
+
+<<= $player.speak("But, my clothes...")>>
+
+<<= $wife.speak("I don't have time for this. Make yourself presentable and get to work!")>>
+
+$wife.name leaves the room. You clearly lost some credibility with that slip up.
