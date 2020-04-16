@@ -240,10 +240,39 @@
 <<= $mansion.addEvent("Gym", new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
 <<= $mansion.addEvent("Gym", new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
 
+<<= $mansion.addEvent("specialEvent", new Event({name: "firstcocktailparty", passage: "firstcocktailparty", inline:true, repeats:false, tags: ["weekEven", "daySat"]}))>>
+
 <!--  Tags  -->
 
 <<set $tags to {
 	"needDaughter" : function() {
 		return State.variables.player.currentRoom === State.variables.daughter.getLocation;
+	},
+	"weekEven" : function() {
+		return (State.variables.time.day % 14) >= 7;
+	},
+	"weekOdd" : function() {
+		return (State.variables.time.day % 14) < 7; 
+	},
+	"dayMon" : function() {
+		return (State.variables.time.weekDayFormat == "Mo");
+	},
+	"dayTue" : function() {
+		return (State.variables.time.weekDayFormat == "Tu");
+	},
+	"dayWed" : function() {
+		return (State.variable.times.weekDayFormat == "We");
+	},
+	"dayThu" : function() {
+		return (State.variables.time.weekDayFormat == "Th");
+	},
+	"dayFri" : function() {
+		return (State.variables.time.weekDayFormat == "Fr");
+	},
+	"daySat" : function() {
+		return (State.variables.time.weekDayFormat == "Sa");
+	},
+	"daySun" : function() {
+		return (State.variables.time.weekDayFormat == "Su");
 	}
 }>>

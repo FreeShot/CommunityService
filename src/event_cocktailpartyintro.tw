@@ -1,3 +1,10 @@
+::firstcocktailparty
+As you roll out of bed you can't help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards you decide to ride the wave and end up relaxing in your room for the rest of the morning instead of getting your chores done.
+
+It's nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.
+[[Get started.|firstcocktailparty1]]
+<<= $time.setDate({hour: 12, minute:0})>>
+
 ::firstcocktailparty1 [event]
  The main foyer is busy with people setting up for the party this evening. The Sono's spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
  

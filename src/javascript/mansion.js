@@ -1,6 +1,7 @@
 class Mansion {
 	constructor(config) {
 		this.rooms = [];
+		this.events = []; // Special Events
 
 		if (config != {}) {
 			Object.keys(config).forEach(function (pn) {
@@ -43,15 +44,25 @@ class Mansion {
 	}
 
 	addEvent(roomID, event) {
-		this.findRoom(roomID).addEvent(event.clone());
+		if (roomID === "specialEvent") {
+			this.events.push(event);
+		} else {
+			this.findRoom(roomID).addEvent(event.clone());
+		}
 	}
 
-	addEventCondition(roomID, event, fun) {
-		this.findRoom(roomID).addEventCondition(event, fun);
+	removeEvent(roomID, eventName) {
+		if (roomID === "specialEvent") {
+			this.events.filter(function(em) {return em.name != eventName});
+		} else {
+			this.findRoom(roomID).events.filter(function(em) {return em.name != eventName});
+		}
 	}
 
-	removeEvent(eventName) {
-		this.findRoom(roomID).events.filter(function(em) {return em.name != eventName});
+	checkSpecialEvents() {
+		var str = "";
+		this.events.forEach(function (ev) {if (ev.active()) {;str += ev.playEvent()}});
+		return str;
 	}
 
 	resetChores() {
