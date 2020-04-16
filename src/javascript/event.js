@@ -30,7 +30,8 @@ class Event {
 
 	active() {
 		for (var i = 0; i < this.tags.length; i++) {
-			console.log("Tags");
+			console.log("testing " + this.tags[i]);
+			console.log(State.variables.tags[this.tags[i]]());
 			if (State.variables.tags[this.tags[i]]() === false) {
 				return false;
 			}

@@ -45,6 +45,7 @@ class Mansion {
 
 	addEvent(roomID, event) {
 		if (roomID === "specialEvent") {
+			event.room = roomID;
 			this.events.push(event);
 		} else {
 			this.findRoom(roomID).addEvent(event.clone());
@@ -67,7 +68,6 @@ class Mansion {
 
 	resetChores() {
 		for (var i = 0; i < this.rooms.length; i++) {
-			console.log("resetting Room " + i);
 			this.rooms[i].resetChores();
 		}
 	}

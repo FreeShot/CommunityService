@@ -46,7 +46,7 @@ class Chore {
 	}
 
 	reset() {
-		var days = State.variables.time.day %= 7;
+		var days = State.variables.time.day % 7;
 		this.dayLeft--;
 		if(this.dayLeft < 0) {
 			if (!this.done){
@@ -70,7 +70,6 @@ class Chore {
 
 	get getLastDay() {
 		var strLastDay = ["tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"];
-		console.log(this.dayLeft);
 		return strLastDay[this.dayLeft];
 	}
 
@@ -101,7 +100,6 @@ class Chore {
 		var val = random(0, sum - 1);
 		for (var i = 0; i < this.passages.length; i++) {
 			val -= this.passages[i].weight;
-			console.log(this.passages[i].name);
 			if (val < 0) {
 				return this.passages[i].name;
 			}

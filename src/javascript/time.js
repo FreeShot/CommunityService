@@ -35,10 +35,8 @@ class Timer {
 		if (timeDif == 0) {
 			return 0;
 		} else if (timeDif > 0) {
-			console.log("Before");
 			return 1;
 		} else {
-			console.log("After");
 			return -1;
 		}
 	}

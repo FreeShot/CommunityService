@@ -33,7 +33,6 @@ class Room {
 			return el.active(); // filters events with an active tag
 		});
 		if (activeEvents.length > 0) {
-			console.log(activeEvents);
 			var totalWeight = 0;
 			activeEvents.forEach(function(el) {
 				totalWeight += 1 << el.priority;
@@ -59,7 +58,6 @@ class Room {
 
 	resetChores() {
 		for (var i = 0; i < this.chores.length; i++) {
-			console.log("resetting chore " + i);
 			this.chores[i].reset();
 		}
 	}

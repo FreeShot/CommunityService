@@ -675,7 +675,7 @@ class Chore {
 	}
 
 	reset() {
-		var days = State.variables.time.day %= 7;
+		var days = State.variables.time.day % 7;
 		this.dayLeft--;
 		if(this.dayLeft < 0) {
 			if (!this.done){
@@ -699,7 +699,6 @@ class Chore {
 
 	get getLastDay() {
 		var strLastDay = ["tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"];
-		console.log(this.dayLeft);
 		return strLastDay[this.dayLeft];
 	}
 
@@ -730,7 +729,6 @@ class Chore {
 		var val = random(0, sum - 1);
 		for (var i = 0; i < this.passages.length; i++) {
 			val -= this.passages[i].weight;
-			console.log(this.passages[i].name);
 			if (val < 0) {
 				return this.passages[i].name;
 			}
@@ -853,7 +851,8 @@ class Event {
 
 	active() {
 		for (var i = 0; i < this.tags.length; i++) {
-			console.log("Tags");
+			console.log("testing " + this.tags[i]);
+			console.log(State.variables.tags[this.tags[i]]());
 			if (State.variables.tags[this.tags[i]]() === false) {
 				return false;
 			}
@@ -924,6 +923,7 @@ class Mansion {
 
 	addEvent(roomID, event) {
 		if (roomID === "specialEvent") {
+			event.room = roomID;
 			this.events.push(event);
 		} else {
 			this.findRoom(roomID).addEvent(event.clone());
@@ -946,7 +946,6 @@ class Mansion {
 
 	resetChores() {
 		for (var i = 0; i < this.rooms.length; i++) {
-			console.log("resetting Room " + i);
 			this.rooms[i].resetChores();
 		}
 	}
@@ -1043,7 +1042,6 @@ Object.defineProperty(window, 'Mansion', {
                 .attr('name', name)
                 .css('float', 'right');
             list.forEach( function (opt, idx) {
-                console.log(idx);
                 $(document.createElement('option'))
                     .attr('value', String(idx))
                     .append(opt)
@@ -1345,7 +1343,6 @@ class Room {
 			return el.active(); // filters events with an active tag
 		});
 		if (activeEvents.length > 0) {
-			console.log(activeEvents);
 			var totalWeight = 0;
 			activeEvents.forEach(function(el) {
 				totalWeight += 1 << el.priority;
@@ -1371,7 +1368,6 @@ class Room {
 
 	resetChores() {
 		for (var i = 0; i < this.chores.length; i++) {
-			console.log("resetting chore " + i);
 			this.chores[i].reset();
 		}
 	}
@@ -1458,10 +1454,8 @@ importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
 $(document).on(':passageinit', function (ev) {
 	if (settings.nsfw) {
-		console.log("NSFW ON");
 		$("html").removeClass("hidden");	
 	} else {
-		console.log("NSFW OFF");
 		$("html").addClass("hidden");	
 	}
 });
@@ -1480,8 +1474,7 @@ Setting.addToggle("nsfw", {
 	label    : "Displays NSFW images",
 	default  : true
 });
-/* twine-user-script #9: "tags.js" */
-/* twine-user-script #10: "time.js" */
+/* twine-user-script #9: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -1519,10 +1512,8 @@ class Timer {
 		if (timeDif == 0) {
 			return 0;
 		} else if (timeDif > 0) {
-			console.log("Before");
 			return 1;
 		} else {
-			console.log("After");
 			return -1;
 		}
 	}
@@ -2937,41 +2928,21 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterDumbell01&quot;, passage: &quot;choreEvent_DaughterDumbell01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;firstcocktailparty&quot;, passage: &quot;firstcocktailparty&quot;, inline:true, repeats:false, tags: [&quot;weekEven&quot;, &quot;daySat&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;firstcocktailparty&quot;, passage: &quot;firstcocktailparty&quot;, inline:true, repeats:false, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;]}))&gt;&gt;
 
 &lt;!--  Tags  --&gt;
 
 &lt;&lt;set $tags to {
-	&quot;needDaughter&quot; : function() {
-		return State.variables.player.currentRoom === State.variables.daughter.getLocation;
-	},
-	&quot;weekEven&quot; : function() {
-		return (State.variables.time.day % 14) &gt;= 7;
-	},
-	&quot;weekOdd&quot; : function() {
-		return (State.variables.time.day % 14) &lt; 7; 
-	},
-	&quot;dayMon&quot; : function() {
-		return (State.variables.time.weekDayFormat == &quot;Mo&quot;);
-	},
-	&quot;dayTue&quot; : function() {
-		return (State.variables.time.weekDayFormat == &quot;Tu&quot;);
-	},
-	&quot;dayWed&quot; : function() {
-		return (State.variable.times.weekDayFormat == &quot;We&quot;);
-	},
-	&quot;dayThu&quot; : function() {
-		return (State.variables.time.weekDayFormat == &quot;Th&quot;);
-	},
-	&quot;dayFri&quot; : function() {
-		return (State.variables.time.weekDayFormat == &quot;Fr&quot;);
-	},
-	&quot;daySat&quot; : function() {
-		return (State.variables.time.weekDayFormat == &quot;Sa&quot;);
-	},
-	&quot;daySun&quot; : function() {
-		return (State.variables.time.weekDayFormat == &quot;Su&quot;);
-	}
+	&quot;needDaughter&quot; : function() {return State.variables.player.currentRoom === State.variables.daughter.getLocation;},
+	&quot;weekEven&quot; : function() {return (State.variables.time.day % 14) &gt;= 7;},
+	&quot;weekOdd&quot; : function() {return (State.variables.time.day % 14) &lt; 7;},
+	&quot;Monday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Monday&quot;);},
+	&quot;Tuesday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Tuesday&quot;);},
+	&quot;Wednesday&quot; : function() {return (State.variable.times.weekDayFormat == &quot;Wednesday&quot;);},
+	&quot;Thursday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Thursday&quot;);},
+	&quot;Friday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Friday&quot;);},
+	&quot;Saturday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Saturday&quot;);},
+	&quot;Sunday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Sunday&quot;);}
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="Intro1" tags="intro tutorial" position="225,1225" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.

@@ -74,7 +74,6 @@
                 .attr('name', name)
                 .css('float', 'right');
             list.forEach( function (opt, idx) {
-                console.log(idx);
                 $(document.createElement('option'))
                     .attr('value', String(idx))
                     .append(opt)

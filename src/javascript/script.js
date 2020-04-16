@@ -4,10 +4,8 @@ importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
 $(document).on(':passageinit', function (ev) {
 	if (settings.nsfw) {
-		console.log("NSFW ON");
 		$("html").removeClass("hidden");	
 	} else {
-		console.log("NSFW OFF");
 		$("html").addClass("hidden");	
 	}
 });
