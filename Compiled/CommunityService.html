@@ -1370,20 +1370,6 @@ Object.defineProperty(window, 'Room', {
 importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
-// Stops the bar from being hidden
-Config.ui.stowBarInitially = false;
-
-// Adds the pin button and removes the button to stow
-$('#ui-bar-history>#history-forward').before("<button id=\"history-pin\" class=\"active\"><i class=\"fas fa-thumbtack\"></i></button>"); // adds lock button
-$('#ui-bar-toggle').remove();
-$('#ui-bar').addClass("active");
-
-$("#history-pin").click(function() {
-	$("#ui-bar").toggleClass("active");
-	$("#history-pin").toggleClass("active");
-});
-
-
 $(document).on(':passageinit', function (ev) {
 	if (settings.nsfw) {
 		console.log("NSFW ON");
@@ -1644,98 +1630,7 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="40" name="choreEvent_DaughterSquats01" tags="noreturn chore" position="1225,475" size="100,100">You hear loud grunting as you enter the room and can see $daughter.name in the middle of her workout. She&#39;s currently in the middle of a set of squats with heavy weights on her shoulders. It&#39;s a little embarassing seeing her lifting weights that you would probably struggle with. She spots you in the mirror and gives you a wink without missing a rep.
-
-[img[setup.ImagePath + &quot;character/daughter/gym_barbellsquat01.gif&quot;]]</tw-passagedata><tw-passagedata pid="41" name="choreEvent_DaughterDumbell01" tags="noreturn chore" position="100,600" size="100,100">As you enter the room you see $daughter.name in the middle of her workout. She&#39;s lying on one of the benches lifting a barbell behind her head. You&#39;re a bit jealous seeing her do excercises that you doubt you could ever even attempt. From this angle you can see right down her top and the light sheen of sweat on her breasts.
-
-[img[setup.ImagePath + &quot;character/daughter/gym_overheadcurl01.gif&quot;]]
-
-You so distracted that you miss a step. There&#39;s a loud crash as one of your bucket goes tumbling over. $daughter.name looks at you from her position ont he bench. You wait for her to call you out for being a perve but she just smiles devilishly and goes back to finishing her set.</tw-passagedata><tw-passagedata pid="42" name="choreEvent_DaughterChinup01" tags="noreturn chore" position="225,600" size="100,100">You back into the gym with you cleaning equipment and turn to see $daughter.name. She has her back to you and is currenlty halfway through a set of chin up. Her skin is gleaming with sweat and her well defined shoulder muscles are straining with the effort. 
-
-[img[setup.ImagePath + &quot;character/daughter/gym_chinups01.gif&quot;]]
-
-You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she&#39;s taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.</tw-passagedata><tw-passagedata pid="43" name="choreEvent_DaughterChat01" tags="noreturn chore" position="350,600" size="100,100">As you are moving into the room $daughter.name arrives at the same time.
-
-She smiles at you and says. &lt;&lt;= $daughter.speak(&quot;Hey $player.name.&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;Hi $daughter.title.&quot;)&gt;&gt;
-
-&lt;&lt;= $daughter.speak(&quot;Come on $player.name, just call me $daughter.name.&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;Ok, $daughter.name&quot;)&gt;&gt;
-
-$daughter.name give your shoulder a squeeze &lt;&lt;= $daughter.speak(&quot;So what have you been up to?&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;&lt;i&gt;I know she&#39;s being nice but come on.&lt;/i&gt;&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;Just cleaning, same as always.&quot;)&gt;&gt;
-
-&lt;&lt;= $daughter.speak(&quot;It must be boring.&quot;)&gt;&gt; $daughter.name looks you up and down. &lt;&lt;= $daughter.speak(&quot;You should really get into the gym every once in a while. You&#39;re all skin and bones.&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;I&#39;m in there plenty. Only to clean though.&quot;)&gt;&gt;
-
-&lt;&lt;if $daughter.acceptance &gt;= 2&gt;&gt;
-	&lt;&lt;= $daughter.speak(&quot;I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.&quot;)&gt;&gt;
-
-	You stammer for a moment at the opportunity for something new to do. &lt;&lt;= $player.speak(&quot;Uh... I mean... If you want. I would like that.&quot;)&gt;&gt; Never mind being close to $daughter.name in her gym clothes while you both work out.
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;= $daughter.speak(&quot;Oh well. Chin up. I&#39;m sure things will get better for you eventually.&quot;)&gt;&gt;
-
-	&lt;&lt;= $player.speak(&quot;Yeah. Sure.&quot;)&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;= $daughter.speak(&quot;Well. I&#39;ll talk to you later then.&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="choreEvent_DaughterTease01" tags="noreturn chore" position="475,600" size="100,100">It takes a bit of time to collect everything from all the hampers but now you&#39;re ready to get the washing started. You&#39;re in the middle of separating all the various loads when $daughter.name comes in wearing her gym equipment.
-
-&lt;&lt;if $daughter.acceptance &gt;= 3&gt;&gt;
-	&lt;&lt;= $daughter.speak(&quot;Whew. Just in time.&quot;)&gt;&gt;
-
-	You&#39;re about ask what for when $daughter.name takes her top off. The top is quickly followed by her gloves, socks and shorts. She does not wear anything underneath them, at all.
-
-	&lt;&lt;= $daughter.speak(&quot;Throw these in with the rest will you.&quot;)&gt;&gt;
-
-	You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you&#39;re too busy watching $daughter.name as you spins around and bounces out of the room and back into the main house.
-
-	&lt;&lt;= $player.speak(&quot;What the hell just happened?&quot;)&gt;&gt;
-
-	todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="45" name="choreEvent_WifeBossy01" tags="noreturn chore" position="600,600" size="100,100">You about to get started when $wife.name walks into the room. You pasue for a moment waiting for her to react.
-
-&lt;&lt;= $wife.speak(&quot;Well? Come on. Get to it.&quot;)&gt;&gt;
-
-You jolt to a start and begin going about your tasks.
-
-&lt;&lt;= $wife.speak(&quot;That&#39;s it. Make sure you put your shoulder into this time.&quot;)&gt;&gt;
-
-&lt;&lt;if player.submission &gt;= 20&gt;&gt;
-	&lt;&lt;= $player.speak(&quot;Yes $wife.title&quot;)&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	You roll your eyes and keep at your current task.
-&lt;&lt;/if&gt;&gt;
-
-When you are finished $wife.name tells you to stay put while she inspects your work.
-&lt;&lt;set $time.addTime({day:0, hour: 0, minute:15})&gt;&gt;
-She nods. &lt;&lt;= $wife.speak(&quot;This is satisfactory. See that you try and get things done more quickly though. The longer you take the harderit will be for me to present a clean house to our guests&quot;)&gt;&gt;
-
-With that $wife.name turns around and leave you to your duties.</tw-passagedata><tw-passagedata pid="46" name="choreEvent_WifeBossy02" tags="noreturn chore" position="725,600" size="100,100">Every now and then you have some diffuclty getting to get some of the high up areas. You&#39;re on you tip toes right now trying to get to one of these trouble spot when you hear a cough behind you.
-
-$wife.name is standing at the entrance watching you.
-
-&lt;&lt;= $wife.speak(&quot;If you&#39;re stuggling because of your small stature we could always find something to assist.&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;&lt;i&gt;Wow, she&#39;s actually suggesting soemthing to help.&lt;/i&gt;&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;A step ladder stool would be nice $wife.title.&quot;)&gt;&gt;
-
-&lt;&lt;= $wife.speak(&quot;Maybe. I don&#39;t see a need for something like that though. Shoes with a taller heel would suffice.&quot;)&gt;&gt;
-
-&lt;&lt;= $player.speak(&quot;&lt;i&gt;Of course. I walked right in to that one.&lt;/i&gt;&quot;)&gt;&gt;
-
-&lt;&lt;if player.feminity &gt;= 40&gt;&gt;
-	&lt;&lt;= $player.speak(&quot;I guess that could help $wife.title&quot;)&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;= $player.speak(&quot;Thank you $wife.title. But I think I can manage.&quot;)&gt;&gt;
-
-	&lt;&lt;= $wife.speak(&quot;See that you do or the decision will be made for you.&quot;)&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="EndHomeSweetHome" tags="ending" position="850,600" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="40" name="EndHomeSweetHome" tags="ending" position="1225,475" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -1743,7 +1638,7 @@ He tries to convince you but you just walk away and get back on the bus.
 
 A few days later you&#39;re back home in your room thinking about the great trip you had and what the future holds.
 
-Your mind wanders back to that shady guy you met before leaving. It was definitely a bad idea given the airport security but you can&#39;t help but wonder what would&#39;ve happened if you wanted to [[Take that package.|Intro2]]</tw-passagedata><tw-passagedata pid="48" name="EndHardLabour" tags="ending" position="975,600" size="100,100">The Sentencing Officer goes through the formal paper work with you and hands you over to the state.
+Your mind wanders back to that shady guy you met before leaving. It was definitely a bad idea given the airport security but you can&#39;t help but wonder what would&#39;ve happened if you wanted to [[Take that package.|Intro2]]</tw-passagedata><tw-passagedata pid="41" name="EndHardLabour" tags="ending" position="100,600" size="100,100">The Sentencing Officer goes through the formal paper work with you and hands you over to the state.
 
 It deosn&#39;t take long for you to be stripped of all your belongs and sent to the camp. The conditions are hard and the only news from home is from your academy. You have forfeited your scholarship and been expelled.
 
@@ -1751,7 +1646,7 @@ The next few years are spent working off your debt. The work is back breaking an
 
 Years later your sentence ends and you are shipped back to your home country without much fuss but you have no one to meet and nowehere to stay. With no money and no prospects the future doesn&#39;t look great.
 
-Maybe I should&#39;ve chosen [[Indentured Servitude|Intro5]] instead?</tw-passagedata><tw-passagedata pid="49" name="firstcocktailparty1" tags="event" position="1100,600" size="100,100">The main foyer is busy with people setting up for the party this evening. The Sono&#39;s spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
+Maybe I should&#39;ve chosen [[Indentured Servitude|Intro5]] instead?</tw-passagedata><tw-passagedata pid="42" name="firstcocktailparty1" tags="event" position="225,600" size="100,100">The main foyer is busy with people setting up for the party this evening. The Sono&#39;s spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
  
 You dodge a few of the workers as they move through with another bouquet. One of the women moving through the room catches your eye. She is wearing a gorgeous maid&#39;s outfit that looks like something out of a boutique magazine
  
@@ -1790,7 +1685,7 @@ $wife.name grabs your arm and pulls you to your feet with startling ease and sho
 &lt;&lt;= $caterer.speak(&quot;It better be fast and they&#39;d better know what they are doing!&quot;)&gt;&gt; $caterer.name shouts down the hall.
  
 $wife.name drags you towards the [[Master Bedroom|firstcocktailparty2]]
-&lt;&lt;set $flags.firstCocktailParty to true&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="firstcocktailparty2" tags="event" position="1225,600" size="100,100">&lt;&lt;= $wife.speak(&quot;I swear $caterer.name is such a handful some times.&quot;)&gt;&gt; $wife.name pushes you down onto the bed so you&#39;re sitting on the end with her towering over you. &quot;This is a disaster. Do you know how much trouble you&#39;ve caused with your little stunt?&quot;)&gt;&gt;
+&lt;&lt;set $flags.firstCocktailParty to true&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="firstcocktailparty2" tags="event" position="350,600" size="100,100">&lt;&lt;= $wife.speak(&quot;I swear $caterer.name is such a handful some times.&quot;)&gt;&gt; $wife.name pushes you down onto the bed so you&#39;re sitting on the end with her towering over you. &quot;This is a disaster. Do you know how much trouble you&#39;ve caused with your little stunt?&quot;)&gt;&gt;
  
 &lt;&lt;= $player.speak(&quot;But the workers…&quot;)&gt;&gt;
  
@@ -1800,7 +1695,7 @@ $wife.name drags you towards the [[Master Bedroom|firstcocktailparty2]]
  
 &lt;&lt;= $wife.speak(&quot;I don&#39;t want to hear your weak excuses.&quot;)&gt;&gt; You never realised you could feel this small but $wife.name was holding all the cards. &lt;&lt;= $wife.speak(&quot;The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away but this will have to do. I couldn&#39;t have someone in your state around our guests. If you agree and do a good job I&#39;ll pretend this whole mess never happened. What do you say? It&#39;s either this or I hand you over to the state.&quot;)&gt;&gt;
  
-[[Agree to serve at the party. It&#39;s the only real option you have.|firstcocktailparty3]]</tw-passagedata><tw-passagedata pid="51" name="firstcocktailparty3" tags="event" position="100,725" size="100,100">&lt;&lt;= $wife.speak(&quot;Excellent. Not that you have much choice though. Who knows, if you like it we might make this part of your normal duties. Now we can&#39;t have you dressed like this so stay there while I get you something to wear.&quot;)&gt;&gt;
+[[Agree to serve at the party. It&#39;s the only real option you have.|firstcocktailparty3]]</tw-passagedata><tw-passagedata pid="44" name="firstcocktailparty3" tags="event" position="475,600" size="100,100">&lt;&lt;= $wife.speak(&quot;Excellent. Not that you have much choice though. Who knows, if you like it we might make this part of your normal duties. Now we can&#39;t have you dressed like this so stay there while I get you something to wear.&quot;)&gt;&gt;
  
 $wife.name goes into the closet and you sit wringing your hands nervously. Hopefully you can do well enough that they&#39;ll let you stay on at the estate.
  
@@ -1824,7 +1719,7 @@ Then under her breathe you hear her say. &lt;&lt;= $wife.speak(&quot;Who knows, 
  
 &lt;&lt;= $wife.speak(&quot;Of for goodness sake. If you&#39;re going to convince anyone you need to wear everything. If you&#39;re that embarrassed by your manhood you can go into the bathroom.&quot;)&gt;&gt;
  
-[[Go to bathroom|firstcocktailparty4]]</tw-passagedata><tw-passagedata pid="52" name="firstcocktailparty4" tags="event" position="225,725" size="100,100">You reach out take the black silk panties, half worried they might jump up and bite you. $wife.name bustles you into the large bathroom that ajoins the closet.
+[[Go to bathroom|firstcocktailparty4]]</tw-passagedata><tw-passagedata pid="45" name="firstcocktailparty4" tags="event" position="600,600" size="100,100">You reach out take the black silk panties, half worried they might jump up and bite you. $wife.name bustles you into the large bathroom that ajoins the closet.
  
 Once the door is safely closed you. You drop your shirt, pants and boxers onto a nearby counter and hold out the girly panties.
  
@@ -1844,7 +1739,7 @@ $wife.name puts the items on top of your normal clothes. &lt;&lt;= $wife.speak(&
 
 &lt;&lt;= $wife.speak(&quot;Shush now.&quot;)&gt;&gt;
 
-[[She&#39;s setting the terms so you have no choice|firstcocktailparty5]]</tw-passagedata><tw-passagedata pid="53" name="firstcocktailparty5" tags="event" position="350,725" size="100,100">$wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
+[[She&#39;s setting the terms so you have no choice|firstcocktailparty5]]</tw-passagedata><tw-passagedata pid="46" name="firstcocktailparty5" tags="event" position="725,600" size="100,100">$wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
  
 &lt;&lt;= $wife.speak(&quot;Hmm. It&#39;s nice a sparse already. Convenient.&quot;)&gt;&gt;
  
@@ -1896,7 +1791,7 @@ You look at the intimidating pile of silk beforing reaching out to take...
 			[[She snatches the item from you.|firstcocktailparty6]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;.
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="firstcocktailparty6" tags="event" position="475,725" size="100,100">$wife.name takes one the bigger items.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="firstcocktailparty6" tags="event" position="850,600" size="100,100">$wife.name takes one the bigger items.
 
 &lt;&lt;= $wife.speak(&quot;First the body shaper. Lift your arms up.&quot;)&gt;&gt;
 
@@ -1914,7 +1809,7 @@ You hold your arms above your head as she wraps the black lace around your waist
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt; 
 &lt;/span&gt;&lt;&lt;/nobr&gt;&gt;
-[[Just do as she says.|firstcocktailparty7]]</tw-passagedata><tw-passagedata pid="55" name="firstcocktailparty7" tags="event" position="600,725" size="100,100">Todo: Add image/gif
+[[Just do as she says.|firstcocktailparty7]]</tw-passagedata><tw-passagedata pid="48" name="firstcocktailparty7" tags="event" position="975,600" size="100,100">Todo: Add image/gif
 
 You take a deep breathe and $wife.name pulls the shaper even tighter and manages to get the hooks into the last holes.&lt;br&gt;
 
@@ -1924,7 +1819,7 @@ You do and can feel the shaper holding your thin waist in tightly. You twist and
 
 &lt;&lt;= $wife.speak(&quot;Bra next.&quot;)&gt;&gt;
 
-[[Continue dressing|firstcocktailparty8]]</tw-passagedata><tw-passagedata pid="56" name="firstcocktailparty8" tags="event" position="725,725" size="100,100">Todo: Add image/gif
+[[Continue dressing|firstcocktailparty8]]</tw-passagedata><tw-passagedata pid="49" name="firstcocktailparty8" tags="event" position="1100,600" size="100,100">Todo: Add image/gif
 
 $wife.name holds the shoulder straps for the bra open and you slip your hands through. She pulls it up over your shoulders before adjusting the fit on your chest. Once it&#39;s in the right place she hooks it together and walks back in front of you.
  
@@ -1944,7 +1839,7 @@ $wife.name pulls your attention away from the breast forms as she grabs your chi
  
 &lt;&lt;= $wife.speak(&quot;Hmm, not a bad start but we&#39;ll need to work on your looks.&quot;)&gt;&gt;
  
-[[She sits you down on the vanity chair.|firstcocktailparty9]]</tw-passagedata><tw-passagedata pid="57" name="firstcocktailparty9" tags="event" position="850,725" size="100,100">&lt;&lt;= $wife.speak(&quot;Close your eyes.&quot;)&gt;&gt;
+[[She sits you down on the vanity chair.|firstcocktailparty9]]</tw-passagedata><tw-passagedata pid="50" name="firstcocktailparty9" tags="event" position="1225,600" size="100,100">&lt;&lt;= $wife.speak(&quot;Close your eyes.&quot;)&gt;&gt;
 
 Todo: Add image/gif
  
@@ -2032,7 +1927,7 @@ She stops for a moment and you&#39;re tempted to open your eyes and risk getting
 			[[Continue dressing|firstcocktailparty10]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="firstcocktailparty10" tags="event" position="975,725" size="100,100">You open your eyes to the weird feeling of $player.hairColor bangs framing your view. $wife.name give you a quick slap on the bottom of your foot when you hold your legs out.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="firstcocktailparty10" tags="event" position="100,725" size="100,100">You open your eyes to the weird feeling of $player.hairColor bangs framing your view. $wife.name give you a quick slap on the bottom of your foot when you hold your legs out.
  
 &lt;&lt;= $wife.speak(&quot;Point your toes.&quot;)&gt;&gt;
  
@@ -2052,7 +1947,7 @@ Before you move $wife.name pulls you up and turns you around.
 
 &lt;&lt;= $wife.speak(&quot;I haven&#39;t got all day.&quot;)&gt;&gt;
 
-[[When you face the mirror your jaw almost hits the floor.|firstcocktailparty11]]</tw-passagedata><tw-passagedata pid="59" name="firstcocktailparty11" tags="event" position="1100,725" size="100,100">Todo: Add image/gif
+[[When you face the mirror your jaw almost hits the floor.|firstcocktailparty11]]</tw-passagedata><tw-passagedata pid="52" name="firstcocktailparty11" tags="event" position="225,725" size="100,100">Todo: Add image/gif
 
 Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you&#39;ve ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The $player.hairColor chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
  
@@ -2086,7 +1981,7 @@ You can&#39;t finish as staring at your cute reflexion has had the exact reactio
 			[[Hide your hard on|firstcocktailparty12]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="firstcocktailparty12" tags="event" position="1225,725" size="100,100">$wife.name leaves again and you hastily tuck your penis back into the silk panties. You&#39;re alone and staring at your cute reflexion. If that girl wasn&#39;t you, you might stomach up the courage to go talk to her.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="firstcocktailparty12" tags="event" position="350,725" size="100,100">$wife.name leaves again and you hastily tuck your penis back into the silk panties. You&#39;re alone and staring at your cute reflexion. If that girl wasn&#39;t you, you might stomach up the courage to go talk to her.
 
 &lt;&lt;= $player.speak(&quot;Might as well...&quot;)&gt;&gt;
  
@@ -2098,7 +1993,7 @@ You can&#39;t finish as staring at your cute reflexion has had the exact reactio
 &lt;&lt;set $cocktailPartyChckBra to false&gt;&gt;
 &lt;&lt;set $cocktailPartyPose to false&gt;&gt;
 &lt;&lt;set $cocktailPartyChckBack to false&gt;&gt;
-&lt;&lt;set $cocktailPartyCheckSelf = 0&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="firstcocktailparty_touchbreasts" tags="event" position="100,850" size="100,100">Todo: Add image/gif
+&lt;&lt;set $cocktailPartyCheckSelf = 0&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="firstcocktailparty_touchbreasts" tags="event" position="475,725" size="100,100">Todo: Add image/gif
 
 You reach up and cup your &quot;breasts&quot; through the silk bra. The breast forms give a little bit of weight to them but any sort of closer inspection would quickly reveal the truth. You suspect that&#39;s why $wife.name chose this bra, to make them feel real but have them hidden. As your knead teh faux breasts your nipples tingle as the texture gently pulls and twists them around. You pull your hands away and...
 
@@ -2107,7 +2002,7 @@ You reach up and cup your &quot;breasts&quot; through the silk bra. The breast f
 [[Wait|firstcocktailparty13]]
 
 &lt;&lt;set $cocktailPartyCheckSelf ++&gt;&gt;
-&lt;&lt;set $cocktailPartyChckBra to true&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="firstcocktailparty_pose" tags="event" position="225,850" size="100,100">Todo: Add image/gif
+&lt;&lt;set $cocktailPartyChckBra to true&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="firstcocktailparty_pose" tags="event" position="600,725" size="100,100">Todo: Add image/gif
 
 With one hand behind your head you put the other on your hips before cocking them to the side. The girl looking back at you in the mirror could almost be a lingerie model. The slight tilt gives her hips even more definition as she smiles cutely at you. You quickly shake your head and drop the pose before...
 
@@ -2116,7 +2011,7 @@ With one hand behind your head you put the other on your hips before cocking the
 [[Wait|firstcocktailparty13]]
 
 &lt;&lt;set $cocktailPartyCheckSelf ++&gt;&gt;
-&lt;&lt;set $cocktailPartyPose to true&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="firstcocktailparty_turn" tags="event" position="350,850" size="100,100">Yodo: Add image/gif
+&lt;&lt;set $cocktailPartyPose to true&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="firstcocktailparty_turn" tags="event" position="725,725" size="100,100">Yodo: Add image/gif
 
 Looking back over your shoulder the ponytail flicks out of the way. The pale skim of your back is complemented by the dark lingerie. The modest silk panties cover your butt just enough but still show the hint of your cheeks underneath. The shaper and stockings create a sexy little squeeze at their edges to show you at least have a little muscle.
 
@@ -2125,7 +2020,7 @@ Looking back over your shoulder the ponytail flicks out of the way. The pale ski
 [[Wait|firstcocktailparty13]]
 
 &lt;&lt;set $cocktailPartyCheckSelf ++&gt;&gt;
-&lt;&lt;set $cocktailPartyChckBack to true&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="firstcocktailparty13" tags="event" position="475,850" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $cocktailPartyChckBack to true&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="firstcocktailparty13" tags="event" position="850,725" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $cocktailPartyCheckSelf &gt; 1&gt;&gt;
 	&lt;&lt;= $wife.speak(&quot;Enjoying the view?&quot;)&gt;&gt;&lt;br&gt;
  	&lt;br&gt;
@@ -2153,7 +2048,7 @@ $wife.name stands up angrily. &lt;&lt;= $wife.speak(&quot;Excuse me?&quot;)&gt;&
 			[[back off|firstcocktailparty14]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt; or [[back off|firstcocktailparty14]]
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="firstcocktailparty14" tags="event" position="600,850" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry. It&#39;s just that it really hurt.&quot;)&gt;&gt; You shrink back a little and look away from her.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="firstcocktailparty14" tags="event" position="975,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry. It&#39;s just that it really hurt.&quot;)&gt;&gt; You shrink back a little and look away from her.
  
 &lt;&lt;= $wife.speak(&quot;That&#39;s better. You need to watch yourself. Any more outbursts like that and we&#39;ll have a problem. I&#39;ll let go of the fact that you haven&#39;t said $wife.title once today but you&#39;d better make sure your performance tonight works. Now eyes forward. I don&#39;t want you getting any ideas.&quot;)&gt;&gt;
  
@@ -2183,7 +2078,7 @@ $wife.name was already walking back to the dressing room.
  
 &lt;&lt;= $wife.speak(&quot;Come on. Let&#39;s wrap this up.&quot;)&gt;&gt;
 
-[[Follow|firstcocktailparty15]]</tw-passagedata><tw-passagedata pid="66" name="firstcocktailparty15" tags="event" position="725,850" size="100,100">You quickly head back into the main bedroom where $wife.name is already waiting with the maid&#39;s dress unzipped.
+[[Follow|firstcocktailparty15]]</tw-passagedata><tw-passagedata pid="59" name="firstcocktailparty15" tags="event" position="1100,725" size="100,100">You quickly head back into the main bedroom where $wife.name is already waiting with the maid&#39;s dress unzipped.
  
 You step into the dress and she pulls it up over your hips. She helps you thread your arms through the sleeves and pulls it over your shoulders. $wife.name zips up the back before tying the laces on the back to pull the whole outfit tight in against your new curves. The black skirt ends just above your knees and has a ruffled white petti coat underneath it to give a bit of bounce. The dress stops just below your bra but it includes a thin white blouse that covers them high enough to hide your assets. The effect enhances your new bust while still mostly hiding it from view. $wife.name has already tied a white apron over the skirt with a large white bow in the back. The puffy black sleeves go just over your shoulders and end in white lace.
  
@@ -2230,7 +2125,7 @@ To do: add image
 	&lt;&lt;/link&gt;&gt;
 &lt;/span&gt;&lt;&lt;/nobr&gt;&gt;
 
-Todo: Change player pronoun</tw-passagedata><tw-passagedata pid="67" name="firstcocktailparty16" tags="event" position="850,850" size="100,100">Todo: voice change
+Todo: Change player pronoun</tw-passagedata><tw-passagedata pid="60" name="firstcocktailparty16" tags="event" position="1225,725" size="100,100">Todo: voice change
 
 $wife.name wraps a choker around your neck. It&#39;s not too tight but it does the job of hiding your small Adams apple.
  
@@ -2270,13 +2165,13 @@ Todo: Add image/gif
 			[[What about your name?|firstcocktailparty17]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="firstcocktailparty17" tags="event" position="975,850" size="100,100">&lt;&lt;= $wife.speak(&quot;You&#39;ll need a different name to keep up appearances.&quot;)&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="firstcocktailparty17" tags="event" position="100,850" size="100,100">&lt;&lt;= $wife.speak(&quot;You&#39;ll need a different name to keep up appearances.&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;Why can&#39;t I just use my name?&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;I want to avoid confusion. What if someone comes by after the party and meets you when you aren&#39;t a girl?&quot;)&gt;&gt;
 
-Choose your girl name: &lt;&lt;textbox &quot;$player.femName&quot; &quot;&quot; &quot;firstcocktailparty18&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="firstcocktailparty18" tags="event" position="1100,850" size="100,100">&lt;&lt;= $wife.speak(&quot;Yes, $player.femName suits you.&quot;)&gt;&gt;
+Choose your girl name: &lt;&lt;textbox &quot;$player.femName&quot; &quot;&quot; &quot;firstcocktailparty18&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="firstcocktailparty18" tags="event" position="225,850" size="100,100">&lt;&lt;= $wife.speak(&quot;Yes, $player.femName suits you.&quot;)&gt;&gt;
 
 $wife.name gives you a spritz of some nice smelling perfume.
 
@@ -2288,7 +2183,7 @@ Todo: Add image/gif
 
 &lt;&lt;= $wife.speak(&quot;Right then. Let&#39;s get you started with $caterer.name.&quot;)&gt;&gt;
 
-[[Introduce everyone to the new maid.|firstcocktailparty19]]</tw-passagedata><tw-passagedata pid="70" name="firstcocktailparty19" tags="event" position="1225,850" size="100,100">Todo: Add image/gif
+[[Introduce everyone to the new maid.|firstcocktailparty19]]</tw-passagedata><tw-passagedata pid="63" name="firstcocktailparty19" tags="event" position="350,850" size="100,100">Todo: Add image/gif
 
 You follow after $wife.name and try to get used to the changes in your wardrobe. The shaper isn&#39;t uncomfortable but both it and the short heels are forcing you walk with a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You figet with your hands as the long ponytail tickles between your shoulders. Before you come into view of anyone else you reach down and shift uncomfortably a few times. After checking yourself out in the mirror your tapped member is already straining against it&#39;s restricting plastic prison.
  
@@ -2314,7 +2209,7 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
  
 &lt;&lt;= $caterer.speak(&quot;Come on girl. We need to get you started.&quot;)&gt;&gt;
  
-[[Mason walks you through your duties|firstcocktailparty20]]</tw-passagedata><tw-passagedata pid="71" name="firstcocktailparty20" tags="event" position="100,975" size="100,100">&lt;&lt;= $caterer.speak(&quot;Alright. I expect that you have no idea what you&#39;re doing when it comes to the food prep so just leave all that to me. I&#39;ll have to laps of the guests with the serving trays. Have you ever held a serving tray before.&quot;)&gt;&gt;
+[[Mason walks you through your duties|firstcocktailparty20]]</tw-passagedata><tw-passagedata pid="64" name="firstcocktailparty20" tags="event" position="475,850" size="100,100">&lt;&lt;= $caterer.speak(&quot;Alright. I expect that you have no idea what you&#39;re doing when it comes to the food prep so just leave all that to me. I&#39;ll have to laps of the guests with the serving trays. Have you ever held a serving tray before.&quot;)&gt;&gt;
  
 &lt;&lt;= $player.speak(&quot;Only when bring out breakfast.&quot;)&gt;&gt;
  
@@ -2344,7 +2239,7 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
 			[[Continue praticing|firstcocktailparty21]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="firstcocktailparty21" tags="event" position="225,975" size="100,100">&lt;&lt;= $caterer.speak(&quot;I&#39;ll load you up with something that won&#39;t break and you can practice for a while.&quot;)&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="firstcocktailparty21" tags="event" position="600,850" size="100,100">&lt;&lt;= $caterer.speak(&quot;I&#39;ll load you up with something that won&#39;t break and you can practice for a while.&quot;)&gt;&gt;
 
 Todo: Add image/gif
 
@@ -2404,7 +2299,7 @@ You&#39;re busy polishing the silver wear when $daughter.name comes into the kit
 			[[Continue|firstcocktailparty22]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="firstcocktailparty22" tags="event" position="350,975" size="100,100">She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly starts straining against its plastic prison.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="firstcocktailparty22" tags="event" position="725,850" size="100,100">She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly starts straining against its plastic prison.
 
 $daughter.name gives you a quick pat on the cheek before turning around to $caterer.name. She walks over and they hug before a quick peck on each cheek.
 
@@ -2414,13 +2309,13 @@ $daughter.name gives you a quick pat on the cheek before turning around to $cate
 
 &lt;&lt;= $caterer.speak(&quot;Come on girl. You&#39;re up.&quot;)&gt;&gt; $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
 
-[[Begin serving|cocktailparty_start]]</tw-passagedata><tw-passagedata pid="74" name="firstcocktailparty23" tags="event" position="475,975" size="100,100">Exhausted from the busy night your only thoughts are bathroom then bed. &lt;&lt;if $suitorPath is true&gt;&gt;Although the kiss still lingers on your mind.&lt;&lt;/if&gt;&gt;
+[[Begin serving|cocktailparty_start]]</tw-passagedata><tw-passagedata pid="67" name="firstcocktailparty23" tags="event" position="850,850" size="100,100">Exhausted from the busy night your only thoughts are bathroom then bed. &lt;&lt;if $suitorPath is true&gt;&gt;Although the kiss still lingers on your mind.&lt;&lt;/if&gt;&gt;
 
 You head to the bathroom and quickly do a double take at the attractive maid looking at you before once again realising that you are the maid.
 
 &lt;&lt;= $player.speak(&quot;What have I gotten myself into?&quot;)&gt;&gt; The cute girl says to you.
  
-[[Undress|firstcocktailparty24]]</tw-passagedata><tw-passagedata pid="75" name="firstcocktailparty24" tags="event" position="600,975" size="100,100">You reach around to unzip the dress. It&#39;s a bit difficult since the zipper is fairly high but eventually, and after a lot of stretching and curses, you manage to grab a hold of it and pull the dress down off your shoulder and down to your ankles.
+[[Undress|firstcocktailparty24]]</tw-passagedata><tw-passagedata pid="68" name="firstcocktailparty24" tags="event" position="975,850" size="100,100">You reach around to unzip the dress. It&#39;s a bit difficult since the zipper is fairly high but eventually, and after a lot of stretching and curses, you manage to grab a hold of it and pull the dress down off your shoulder and down to your ankles.
 
 Following the reverse of what $wife.name did you remove the rest of the items, making sure to pile them neatly after her warning when you were getting dressed.
 
@@ -2437,15 +2332,15 @@ You try to release the device but quickly find a small padlock holding the clasp
 You tug and pull but only manage to make your urgent need to pee even worse.
 
 [[Go ask for it to be unlocked.|firstcocktailparty25]]
-[[It&#39;s late so you should wait until tomorrow.|firstcocktailparty26]]</tw-passagedata><tw-passagedata pid="76" name="firstcocktailparty25" tags="event" position="725,975" size="100,100">You head back through the halls of the estate. Compared to a few hours ago it&#39;s is practically dead. You reach the master bedroom but before knock on the door you hear noise from inside. You listen for a moment and it&#39;s clear $wife.title is preoccupied with her pending orgasm. You think better of it and head back to your room, resigned to spend the night in chastity.
+[[It&#39;s late so you should wait until tomorrow.|firstcocktailparty26]]</tw-passagedata><tw-passagedata pid="69" name="firstcocktailparty25" tags="event" position="1100,850" size="100,100">You head back through the halls of the estate. Compared to a few hours ago it&#39;s is practically dead. You reach the master bedroom but before knock on the door you hear noise from inside. You listen for a moment and it&#39;s clear $wife.title is preoccupied with her pending orgasm. You think better of it and head back to your room, resigned to spend the night in chastity.
 
-[[Head back to your your bathroom.|firstcocktailparty26]]</tw-passagedata><tw-passagedata pid="77" name="firstcocktailparty26" tags="event" position="850,975" size="100,100">Resigning yourself to the situation you try to position yourself over the toilet to relieve yourself. It&#39;s a tight squeeze in the small room and you can&#39;t quite get your trapped member in the right spot. With a grumble you put the toilet seat down and turn around before planting your butt. You let go with a sigh of relief.
+[[Head back to your your bathroom.|firstcocktailparty26]]</tw-passagedata><tw-passagedata pid="70" name="firstcocktailparty26" tags="event" position="1225,850" size="100,100">Resigning yourself to the situation you try to position yourself over the toilet to relieve yourself. It&#39;s a tight squeeze in the small room and you can&#39;t quite get your trapped member in the right spot. With a grumble you put the toilet seat down and turn around before planting your butt. You let go with a sigh of relief.
 
 After a moment you catch sight of the cute $player.hairColor sitting on the loo in front of you. Your cheeks flush with embarrassment as you realise that if anyone saw this they would just think it was a flat chested girl peeing right now.
 
 You wipe the cage clean with some tissue and then remove the wig and make up. You put the maid&#39;s clothes in the laundry to clean overnight before rolling in to bed to try and get some sleep.
 
-[[sleep]]</tw-passagedata><tw-passagedata pid="78" name="firstcocktailparty27" tags="event" position="975,975" size="100,100">You look at the time and hope $wife.title is awake. You put on your normal clothes, grab the maid&#39;s uniform and head the master bedroom. After listening for the sound of any... morning activities you think it&#39;s clear so knock and wait for a moment and $wife.title eventually open the door.
+[[sleep]]</tw-passagedata><tw-passagedata pid="71" name="firstcocktailparty27" tags="event" position="100,975" size="100,100">You look at the time and hope $wife.title is awake. You put on your normal clothes, grab the maid&#39;s uniform and head the master bedroom. After listening for the sound of any... morning activities you think it&#39;s clear so knock and wait for a moment and $wife.title eventually open the door.
 
 &lt;&lt;= $wife.speak(&quot;What is it?&quot;)&gt;&gt; She seems awake enough so you think you timed it right.
 
@@ -2464,7 +2359,7 @@ You wipe the cage clean with some tissue and then remove the wig and make up. Yo
 You can see $owner.title lying asleep face down, clearly naked, and quickly follow $wife.title into the wardrobe.
 
 [[Performance review|cocktailparty_review]]
-&lt;&lt;set $flags.firstCocktailParty to false&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="cocktailparty_start" tags="event" position="1100,975" size="100,100">&lt;&lt;= $time.setDate({day:0, hour: 16, minute:0})&gt;&gt;
+&lt;&lt;set $flags.firstCocktailParty to false&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="cocktailparty_start" tags="event" position="225,975" size="100,100">&lt;&lt;= $time.setDate({day:0, hour: 16, minute:0})&gt;&gt;
 &lt;&lt;set $cocktailparty_start to true&gt;&gt;
 
 Options to prioritise guests or VIP&#39;s
@@ -2479,13 +2374,13 @@ VIP guests
 
 Run the Party Mini Games
 
-[[cocktailparty_finish]]</tw-passagedata><tw-passagedata pid="80" name="cocktailparty_finish" tags="event" position="1225,975" size="100,100">Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It&#39;s very late and after the nights work you are definitely ready for bed.
+[[cocktailparty_finish]]</tw-passagedata><tw-passagedata pid="73" name="cocktailparty_finish" tags="event" position="350,975" size="100,100">Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It&#39;s very late and after the nights work you are definitely ready for bed.
 &lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
 	[[firstcocktailparty23]]
 &lt;&lt;else&gt;&gt;
 	[[Head to your room and go to bed|sleep]]
 &lt;&lt;/if&gt;&gt;
- &lt;&lt;= $time.setDate({day:0, hour: 1, minute:30})&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="cocktailparty_review" tags="event" position="100,1100" size="100,100">Good
+ &lt;&lt;= $time.setDate({day:0, hour: 1, minute:30})&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="cocktailparty_review" tags="event" position="475,975" size="100,100">Good
 &lt;&lt;= $wife.speak(&quot;You worked so hard last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
 
 Bad
@@ -2509,7 +2404,7 @@ She closes the door and you quickly unlock the cage and remove it. The relief is
  
 You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
 &lt;&lt;set $eventCount_cocktailparty to 0&gt;&gt;
-&lt;&lt;set $cocktailparty_start to false&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="cocktailparty_praise01" tags="event" position="225,1100" size="100,100">As you&#39;re heading back to the bar you over hear $owner.name chatting with another guest.
+&lt;&lt;set $cocktailparty_start to false&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="cocktailparty_praise01" tags="event" position="600,975" size="100,100">As you&#39;re heading back to the bar you over hear $owner.name chatting with another guest.
 
 &lt;&lt;= Character.speakAnonymous(&quot;She&#39;s a fine young girl you&#39;ve taken in. You&#39;ve really out done yourself.&quot;)&gt;&gt;
 
@@ -2519,15 +2414,15 @@ Performance good
 &lt;&lt;= $owner.speak(&quot;Yes, she was quite the catch.&quot;)&gt;&gt;
 
 Performance bad
-&lt;&lt;= $owner.speak(&quot;She needs some improvement but I think we&#39;ll get there.&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="cocktailparty_Staring01" tags="event" position="350,1100" size="100,100">While moving about you get stopped by one of the groups who happily clear the rest of the finger food from your tray. You catch one of them looking strait at your chest. You&#39;re a little flushed from all the walking so it has a nice pink hue just above the blouse. His eyes meet yours and he smiles warmly and tips his glass to you.
+&lt;&lt;= $owner.speak(&quot;She needs some improvement but I think we&#39;ll get there.&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="cocktailparty_Staring01" tags="event" position="725,975" size="100,100">While moving about you get stopped by one of the groups who happily clear the rest of the finger food from your tray. You catch one of them looking strait at your chest. You&#39;re a little flushed from all the walking so it has a nice pink hue just above the blouse. His eyes meet yours and he smiles warmly and tips his glass to you.
 
-You quickly move away to escape his gaze.</tw-passagedata><tw-passagedata pid="84" name="cocktailparty_Staring02" tags="event" position="475,1100" size="100,100">You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
+You quickly move away to escape his gaze.</tw-passagedata><tw-passagedata pid="77" name="cocktailparty_Staring02" tags="event" position="850,975" size="100,100">You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
 
 &lt;&lt;= Character.speakAnonymous(&quot;Thank you so much. You must tell me how you keep your skin so soft.&quot;)&gt;&gt; She caresses your arm for a few seconds longer. &lt;&lt;= Character.speakAnonymous(&quot;It&#39;s like touching silk.&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;Um, thank you.&quot;)&gt;&gt;
 
-You politely pull away and hurry back to the bar to pick up some more drinks.</tw-passagedata><tw-passagedata pid="85" name="cocktailparty_Groping01" tags="event" position="600,1100" size="100,100">As you turn away to retrieve the man&#39;s drink you feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
+You politely pull away and hurry back to the bar to pick up some more drinks.</tw-passagedata><tw-passagedata pid="78" name="cocktailparty_Groping01" tags="event" position="975,975" size="100,100">As you turn away to retrieve the man&#39;s drink you feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
 
 &lt;&lt;nobr&gt;&gt;
 &lt;span id=&quot;groping01&quot;&gt;
@@ -2555,7 +2450,7 @@ You politely pull away and hurry back to the bar to pick up some more drinks.</t
 			&lt;/span&gt;
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="cocktailparty_Cage01" tags="event" position="725,1100" size="100,100">$caterer.name pushes forward a fresh tray for you to collect.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="cocktailparty_Cage01" tags="event" position="1100,975" size="100,100">$caterer.name pushes forward a fresh tray for you to collect.
 
 &lt;&lt;= $caterer.speak(&quot;Come on girl.&quot;)&gt;&gt;
 
@@ -2575,11 +2470,102 @@ You lean forward to grab it and your hips bump against the counter. You gasp as 
 			You take a moment to collect yourself, your twitching member straining against its plastic prison.
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="cocktailparty_Cage02" tags="event" position="850,1100" size="100,100">You&#39;re on your way back to the kitchen to refill your tray. As you pass between two guests one of them laughs loudly and tilts back forcing you to dodge them. Unfortunately you bump into the other guest. Worse still your hips press up against theirs and you feel the hard plastic of your chastity cage pressing against their thigh.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="cocktailparty_Cage02" tags="event" position="1225,975" size="100,100">You&#39;re on your way back to the kitchen to refill your tray. As you pass between two guests one of them laughs loudly and tilts back forcing you to dodge them. Unfortunately you bump into the other guest. Worse still your hips press up against theirs and you feel the hard plastic of your chastity cage pressing against their thigh.
 
 You pull back and fix you skirt before apologising. The person just looks down to your skirt and then back up before giving you a knowing wink.
 
-You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before excusing yourself.</tw-passagedata><tw-passagedata pid="88" name="StoryInit" tags="" position="975,1100" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})&gt;&gt;
+You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before excusing yourself.</tw-passagedata><tw-passagedata pid="81" name="choreEvent_DaughterSquats01" tags="noreturn chore" position="100,1100" size="100,100">You hear loud grunting as you enter the room and can see $daughter.name in the middle of her workout. She&#39;s currently in the middle of a set of squats with heavy weights on her shoulders. It&#39;s a little embarassing seeing her lifting weights that you would probably struggle with. She spots you in the mirror and gives you a wink without missing a rep.
+
+[img[setup.ImagePath + &quot;character/daughter/gym_barbellsquat01.gif&quot;]]</tw-passagedata><tw-passagedata pid="82" name="choreEvent_DaughterDumbell01" tags="noreturn chore" position="225,1100" size="100,100">As you enter the room you see $daughter.name in the middle of her workout. She&#39;s lying on one of the benches lifting a barbell behind her head. You&#39;re a bit jealous seeing her do excercises that you doubt you could ever even attempt. From this angle you can see right down her top and the light sheen of sweat on her breasts.
+
+[img[setup.ImagePath + &quot;character/daughter/gym_overheadcurl01.gif&quot;]]
+
+You so distracted that you miss a step. There&#39;s a loud crash as one of your bucket goes tumbling over. $daughter.name looks at you from her position ont he bench. You wait for her to call you out for being a perve but she just smiles devilishly and goes back to finishing her set.</tw-passagedata><tw-passagedata pid="83" name="choreEvent_DaughterChinup01" tags="noreturn chore" position="350,1100" size="100,100">You back into the gym with you cleaning equipment and turn to see $daughter.name. She has her back to you and is currenlty halfway through a set of chin up. Her skin is gleaming with sweat and her well defined shoulder muscles are straining with the effort. 
+
+[img[setup.ImagePath + &quot;character/daughter/gym_chinups01.gif&quot;]]
+
+You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she&#39;s taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.</tw-passagedata><tw-passagedata pid="84" name="choreEvent_DaughterChat01" tags="noreturn chore" position="475,1100" size="100,100">As you are moving into the room $daughter.name arrives at the same time.
+
+She smiles at you and says. &lt;&lt;= $daughter.speak(&quot;Hey $player.name.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;Hi $daughter.title.&quot;)&gt;&gt;
+
+&lt;&lt;= $daughter.speak(&quot;Come on $player.name, just call me $daughter.name.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;Ok, $daughter.name&quot;)&gt;&gt;
+
+$daughter.name give your shoulder a squeeze &lt;&lt;= $daughter.speak(&quot;So what have you been up to?&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;I know she&#39;s being nice but come on.&lt;/i&gt;&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;Just cleaning, same as always.&quot;)&gt;&gt;
+
+&lt;&lt;= $daughter.speak(&quot;It must be boring.&quot;)&gt;&gt; $daughter.name looks you up and down. &lt;&lt;= $daughter.speak(&quot;You should really get into the gym every once in a while. You&#39;re all skin and bones.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;I&#39;m in there plenty. Only to clean though.&quot;)&gt;&gt;
+
+&lt;&lt;if $daughter.acceptance &gt;= 2&gt;&gt;
+	&lt;&lt;= $daughter.speak(&quot;I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.&quot;)&gt;&gt;
+
+	You stammer for a moment at the opportunity for something new to do. &lt;&lt;= $player.speak(&quot;Uh... I mean... If you want. I would like that.&quot;)&gt;&gt; Never mind being close to $daughter.name in her gym clothes while you both work out.
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;= $daughter.speak(&quot;Oh well. Chin up. I&#39;m sure things will get better for you eventually.&quot;)&gt;&gt;
+
+	&lt;&lt;= $player.speak(&quot;Yeah. Sure.&quot;)&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;= $daughter.speak(&quot;Well. I&#39;ll talk to you later then.&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="choreEvent_DaughterTease01" tags="noreturn chore" position="600,1100" size="100,100">It takes a bit of time to collect everything from all the hampers but now you&#39;re ready to get the washing started. You&#39;re in the middle of separating all the various loads when $daughter.name comes in wearing her gym equipment.
+
+&lt;&lt;if $daughter.acceptance &gt;= 3&gt;&gt;
+	&lt;&lt;= $daughter.speak(&quot;Whew. Just in time.&quot;)&gt;&gt;
+
+	You&#39;re about ask what for when $daughter.name takes her top off. The top is quickly followed by her gloves, socks and shorts. She does not wear anything underneath them, at all.
+
+	&lt;&lt;= $daughter.speak(&quot;Throw these in with the rest will you.&quot;)&gt;&gt;
+
+	You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you&#39;re too busy watching $daughter.name as you spins around and bounces out of the room and back into the main house.
+
+	&lt;&lt;= $player.speak(&quot;What the hell just happened?&quot;)&gt;&gt;
+
+	todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="86" name="choreEvent_WifeBossy01" tags="noreturn chore" position="725,1100" size="100,100">You about to get started when $wife.name walks into the room. You pasue for a moment waiting for her to react.
+
+&lt;&lt;= $wife.speak(&quot;Well? Come on. Get to it.&quot;)&gt;&gt;
+
+You jolt to a start and begin going about your tasks.
+
+&lt;&lt;= $wife.speak(&quot;That&#39;s it. Make sure you put your shoulder into this time.&quot;)&gt;&gt;
+
+&lt;&lt;if player.submission &gt;= 20&gt;&gt;
+	&lt;&lt;= $player.speak(&quot;Yes $wife.title&quot;)&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	You roll your eyes and keep at your current task.
+&lt;&lt;/if&gt;&gt;
+
+When you are finished $wife.name tells you to stay put while she inspects your work.
+&lt;&lt;set $time.addTime({day:0, hour: 0, minute:15})&gt;&gt;
+She nods. &lt;&lt;= $wife.speak(&quot;This is satisfactory. See that you try and get things done more quickly though. The longer you take the harderit will be for me to present a clean house to our guests&quot;)&gt;&gt;
+
+With that $wife.name turns around and leave you to your duties.</tw-passagedata><tw-passagedata pid="87" name="choreEvent_WifeBossy02" tags="noreturn chore" position="850,1100" size="100,100">Every now and then you have some diffuclty getting to get some of the high up areas. You&#39;re on you tip toes right now trying to get to one of these trouble spot when you hear a cough behind you.
+
+$wife.name is standing at the entrance watching you.
+
+&lt;&lt;= $wife.speak(&quot;If you&#39;re stuggling because of your small stature we could always find something to assist.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;Wow, she&#39;s actually suggesting soemthing to help.&lt;/i&gt;&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;A step ladder stool would be nice $wife.title.&quot;)&gt;&gt;
+
+&lt;&lt;= $wife.speak(&quot;Maybe. I don&#39;t see a need for something like that though. Shoes with a taller heel would suffice.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;Of course. I walked right in to that one.&lt;/i&gt;&quot;)&gt;&gt;
+
+&lt;&lt;if player.feminity &gt;= 40&gt;&gt;
+	&lt;&lt;= $player.speak(&quot;I guess that could help $wife.title&quot;)&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;= $player.speak(&quot;Thank you $wife.title. But I think I can manage.&quot;)&gt;&gt;
+
+	&lt;&lt;= $wife.speak(&quot;See that you do or the decision will be made for you.&quot;)&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="StoryInit" tags="" position="975,1100" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 0, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime to new Timer({day: 0, time: {hour: 22, minute: 0}})&gt;&gt;
 &lt;&lt;set $bedtime.setDate({hour: 22, minute: 0})&gt;&gt;
 

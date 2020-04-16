@@ -20,7 +20,7 @@
 body {
 	background-color: var(--background);
 }
-
+*/
 img {
 	max-width: 50%;
 	max-height: 300px;
@@ -28,7 +28,7 @@ img {
 	border-radius: 15px;
 	border: solid 4px #5C2C41; 
 }
-
+/*
 .gameTitle {
 	position: center;
 	font-size: 200%;
