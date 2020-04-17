@@ -1,3 +1,8 @@
+::Foyer_cleaning
+<<include "Foyer_Dusting">>
+
+<<include "Foyer_SweepMop">>
+
 ::Foyer_Dusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
@@ -14,6 +19,12 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 [[Return|$return]]
 
+:: Hall_cleaning
+
+<<include "Hall_Dusting">>
+
+<<include "Hall_SweepMop">>
+
 :: Hall_Dusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
@@ -27,6 +38,18 @@ You take the duster from your collection of cleaning supplies and start going ov
 [img[setup.ImagePath + "events/chores/general_mopping/mopping_2.jpg"]]
 
 You sweep the floor carefully, making sure to get into all the nooks and crannies. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the hall with a pleasant aroma.
+
+[[Return|$return]]
+
+:: Garden_cleaning
+
+<<include "Garden_Sweep">>
+
+:: Garden_Sweep [noreturn chore]
+
+[img[setup.ImagePath + "events/chores/general_sweeping/sweeping_2.jpg"]]
+
+$gardner.name doesn't like you messing with the plants so all you can do here is sweep any debris off the paths and sitting areas.
 
 [[Return|$return]]
 
@@ -70,6 +93,14 @@ With a heavy sigh, you spend time going through each room, taking the clothes di
 
 [[Return|$return]]
 
+:: Lounge_cleaning
+
+<<include "Lounge_Dusting">>
+
+<<include "Lounge_SweepMop">>
+
+<<include "Lounge_Windows">>
+
 :: Lounge_Dusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
@@ -93,6 +124,14 @@ Before you can start you move the furniture out of the way and then sweep the fl
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
 [[Return|$return]]
+
+:: Dining_cleaning
+
+<<include "Dining_Dusting">>
+
+<<include "Dining_SweepMop">>
+
+<<include "Dining_Windows">>
 
 :: Dining_Dusting [noreturn chore]
 
@@ -118,6 +157,14 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
+:: MasterBdRm_cleaning
+
+<<include "MasterBdRm_Dusting">>
+
+<<include "MasterBdRm_Vacuum">>
+
+<<include "MasterBdRm_Windows">>
+
 :: MasterBdRm_Dusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
@@ -141,6 +188,18 @@ You take out your vacuum and go over the entire room. You make sure to fluff and
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
 [[Return|$return]]
+
+:: MasterBathRm_cleaning
+
+<<include "MasterBathRm_SweepMop">>
+
+<<include "MasterBathRm_Sink">>
+
+<<include "MasterBathRm_Toilet">>
+
+<<include "MasterBathRm_Shower">>
+
+<<include "MasterBathRm_Bath">>
 
 :: MasterBathRm_SweepMop [noreturn chore]
 
@@ -184,6 +243,14 @@ You get into the bathtub and scrub down the rings staining the inside. It takes 
 
 [[Return|$return]]
 
+:: Office_cleaning
+
+<<include "Office_Dusting">>
+
+<<include "Office_Vacuum">>
+
+<<include "Office_Windows">>
+
 :: Office_Dusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
@@ -207,6 +274,12 @@ You take out your vacuum and go over the entire room. You make sure to fluff and
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
 [[Return|$return]]
+
+:: Gym_cleaning
+
+<<include "Gym_Dusting">>
+
+<<include "Gym_SweepMop">>
 
 :: Gym_Dusting [noreturn chore]
 
@@ -232,17 +305,53 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
+:: SonBdRm_cleaning
+
+<<include "Son_Locked">>
+
+:: Son_Locked [noreturn chore]
+
+[img[setup.ImagePath + "estate/SonBdRm/Locked.jpg"]]
+
+The door to this room is locked. Someone did mention something about not going into this room. Better leave it alone for now.
+
+[[Return|$return]]
+
+:: PlayerBdRm_cleaning
+
+<<include "PlayerBdRm_Clean">>
+
+:: PlayerBdRm_Clean
+
+Thers isn't a lot of room to work with so clewaning up is as simple as putting everything where it's supposed to be and giving everything and quick dust and wipe.
+
+[[Return|$return]]
+
+:: Pool_cleaning
+
+<<include "Pool_Sweep">>
+
+:: Pool_Sweep [noreturn chore]
+
+[img[setup.ImagePath + "events/chores/general_sweeping/sweeping_2.jpg"]]
+
+$gardner.name takes care of most of the pool maintenance so you just sweep the sitting area and make sure it is tidy.
+
+[[Return|$return]]
+
+:: DaughterBdRm_cleaning
+
+<<include "DaughterBdRm_Dusting">>
+
+<<include "DaughterBdRm_Vacuum">>
+
+<<include "DaughterBdRm_Windows">>
+
 :: DaughterBdRm_Dusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
 You take the duster from your collection of cleaning supplies and start going over the room making sure do all the surfaces you can get to. The lamp shades and curtains require a softer touch, even more so around the computer desk.
-
-[[Return|$return]]
-
-:: PlayerBdRm_Clean
-
-Thers isn't a lot of room to work with so clewaning up is as simple as putting everything where it's supposed to be and giving everything and quick dust and wipe.
 
 [[Return|$return]]
 
@@ -262,29 +371,13 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: Pool_Sweep [noreturn chore]
+:: GuestRm_cleaning
 
-[img[setup.ImagePath + "events/chores/general_sweeping/sweeping_2.jpg"]]
+<<include "GuestRm_Dusting">>
 
-$gardener.name takes care of most of the pool maintenance so you just sweep the sitting area and make sure it is tidy.
+<<include "GuestRm_Vacuum">>
 
-[[Return|$return]]
-
-:: Garden_Sweep [noreturn chore]
-
-[img[setup.ImagePath + "events/chores/general_sweeping/sweeping_2.jpg"]]
-
-$gardener.name doesn't like you messing with the plants so all you can do here is sweep any debris off the paths and sitting areas.
-
-[[Return|$return]]
-
-:: Son_Locked [noreturn chore]
-
-[img[setup.ImagePath + "estate/SonBdRm/Locked.jpg"]]
-
-The door to this room is locked. $butler.name did mention something about not going into this room. Better leave it alone for now.
-
-[[Return|$return]]
+<<include "GuestRm_Windows">>
 
 :: GuestRm_Dusting [noreturn chore]
 
@@ -304,7 +397,7 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 
 :: GuestRm_Windows [noreturn chore]
 
-[img[setup.ImagePath + "estate/SonBdRm/Locked.jpg"]]
+[img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
