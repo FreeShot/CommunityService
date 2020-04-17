@@ -244,6 +244,8 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 Thers isn't a lot of room to work with so clewaning up is as simple as putting everything where it's supposed to be and giving everything and quick dust and wipe.
 
+[[Return|$return]]
+
 :: DaughterBdRm_Vacuum [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_vacuum/vacuum_1.jpg"]]
@@ -289,6 +291,8 @@ The door to this room is locked. $butler.name did mention something about not go
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
 You take the duster from your collection of cleaning supplies and start going over the room making sure do all the surfaces you can get to. The lamp shades and curtains require a softer touch. You also go through all the drawers and clear out anything in there so they are clean in case a guest needs to stay here at the last minute.
+
+[[Return|$return]]
 
 :: GuestRm_Vacuum [noreturn chore]
 
