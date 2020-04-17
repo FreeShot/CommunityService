@@ -1,7 +1,17 @@
 ::clothesInit [init]
 
-<<set $clothesTypeSlots to {
-	"wig" : ["wig"]
+<<set $clothesType to {
+	"wig" : {
+		slots : ["wig"],
+		description : function(clothes, character) {
+			return String.format(
+				"Your {0} hides your {1} {2} hairs",
+				clothes.name, 
+				character.getLook("hairLength"),
+				character.getLook("hairColor")
+			);
+		} 
+	}
 }>>
 
 <<set $clothes to new Inventory({canSell: true})>>

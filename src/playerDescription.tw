@@ -1,7 +1,11 @@
-::playerDescription
+::playerDescription [nobr]
 <<silently>>
 <<= $playerInv.buy($clothes, "wigBlonde")>>
-<<= $player = $playerInv.equip("wigBlonde")>>
+<!--<<= $player = $playerInv.equip("wigBlonde")>>-->
 <</silently>>
-You are <<= $player.name>>.
-You have <<if $player.hasEquipped("wig")>>a <<= $player.getSlot("wig").equipped.name>> hiding your <</if>><<= $player.getLook("hairLength")>> <<= $player.getLook("hairColor")>> hairs.
+You are <<= $player.name>>. <br>
+<<if $player.tryDescribe("wig") === "">>
+You have <<=$player.getLook("hairLength")>> <<=$player.getLook("hairColor") hairs.>>
+<<else>>
+<<= $player.tryDescribe("wig")>>
+<</if>>

@@ -146,6 +146,11 @@ class Player extends Character {
 		return State.variables[bodyPart][this.looks[bodyPart]];
 	}
 
+    tryDescribe(slot) {
+        var s = this.getSlot(slot);
+        s.equipped !== null ? s.equipped.describe(this) : "";
+    }
+
 	getSlot(slot) {
 		return this.slots.find(function(el) {return el.name == slot});
 	}

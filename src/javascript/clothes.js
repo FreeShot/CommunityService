@@ -36,7 +36,7 @@ class Clothes extends Item {
 	}
 
     equip(char) {
-        State.variables.clothesTypeSlots[this.clothesType].forEach(function (el) {
+        State.variables.clothesType[this.clothesType].slots.forEach(function (el) {
             var slot = char.getSlot(el);
             if (slot.equipped !== null) {
                 slot.equipped.unequip();
@@ -47,13 +47,17 @@ class Clothes extends Item {
     }
 
     unequip() {
-        State.variables.clothesTypeSlots[this.clothesType].forEach(function (el) {
+        State.variables.clothesType[this.clothesType].slots.forEach(function (el) {
             var slot = char.getSlot(el);
             if (slot.equipped.id === this.id){
                 char.equipped(el, null);
             }
         }, this)
         this.equipped = false;
+    }
+
+    describe(char) {
+        return State.variables.clothesType[this.clothesType].description(this, char);
     }
 
 	clone() {
