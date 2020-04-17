@@ -1,3 +1,12 @@
 ::clothesInit [init]
 
-<<set $mbriefs to new Clothes({name: "Men's Briefs", describe: "Plain White Men's Underwear", img:"mbriefs_01.JPG", slots: ["underwear"]})>>
+<<set $clothesTypeSlots to {
+	"wig" : ["wig"]
+}>>
+
+<<set $clothes to new Inventory({canSell: true})>>
+<<= $clothes.addItem(new Clothes({
+	id: "wigBlonde",
+	name: "blonde wig",
+	clothesType: "wig"
+}))>>

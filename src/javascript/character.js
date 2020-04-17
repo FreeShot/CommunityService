@@ -1,88 +1,13 @@
-class Inventory {
+class Character {
 	constructor(config) {
-		this.inventory = {items : [], count : []};
-		this.unlimitedSupplies = false;
+		this.name = '';
+		this.title = '';
+		this.currentRoom = '';
+		this.color = '';
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
-	}
-
-	addItem(item, amount) {
-		var i = this.inventory.items.findIndex(function(ev) {ev.name == item.name});
-		if (i !== -1 && !this.unlimitedSupplies) {
-			this.inventory.count[i] += amount || 1;
-		} else if (i === -1) {
-			this.inventory.items.push(item);
-			this.unlimitedSupplies ? this.inventory.count.push(Infinity) : this.inventory.count.push(amount || 1);
-		}
-	}
-
-	removeItem(item, amount) {
-		var i = this.inventory.items.findIndex(function(ev) {ev.name == item.name});
-		if (i !== -1 && this.inventory.count[i] >= amount) {
-			this.inventory.count[i] -= amount;
-			if (this.inventory.count[i] === 0) {
-				delete this.inventory.count[i];
-				delete this.inventory.items[i];
-			}
-			return amount;
-		} else {
-			return -1;
-		}
-	}
-
-	displayInv() {
-		//TODO rework
-		var str = "INVENTORY : \n";
-		var inv = this.inventory;
-		if(this.inventory.items.length === 0) {return "No items"} 
-		for (var i = 0; i < this.inventory.items.length; i++) {
-			str += this.inventory.items[i].display() + "<br>";
-		}
-		return str;
-	}
-
-	displayClothes() {
-		var str = "CLOTHES : \n";
-		var inv = this.inventory;
-		inv = inv.items.filter(function(el) {return el instanceof Clothes});
-		if(inv.length === 0) {return "No items"}
-		for (var i = 0; i < inv.length; i++) {
-			str += inv[i].display() + "<br>";
-		}
-		return str;
-	}
-
-	invGetCount(item) {
-		return this.inventory[item];
-	}
-
-	clone() {
-        return new Inventory(this);
-    }
-
-	toJSON() {
-        var ownData = {};
-        Object.keys(this).forEach(function (pn) {
-            ownData[pn] = clone(this[pn]);
-        }, this);
-        return JSON.reviveWrapper('new Inventory($ReviveData$)', ownData);
-    }
-}
-Object.defineProperty(window, 'Inventory', {
-    value : Inventory
-});
-
-class Character extends Inventory {
-	constructor(config) {
-		super(Object.assign(
-			{
-				name: '',
-				title: '',
-				currentRoom: '',
-				color: ''
-			},config));
 	}
 
 	speak(text) {
@@ -173,7 +98,6 @@ class Player extends Character {
                 	crotch: 0,
                 	legs: 0
                 },
-                clothes: [],
                 slots: [
                 	{name: "wig", equipped: null},
                 	{name: "chest", equipped: null},
@@ -191,9 +115,6 @@ class Player extends Character {
                 ],
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
-                arrousal : 0,
-                submission : 0,
-                appearance : 0,
                 choresLate : 0
         }, config));
 	}
@@ -222,12 +143,24 @@ class Player extends Character {
 	}
 
 	getLook(bodyPart) {
-		return State.variables[bodyPart](this.looks[bodyPart]);
+		return State.variables[bodyPart][this.looks[bodyPart]];
 	}
 
 	getSlot(slot) {
-		return this.slot.find(function(el) {return el.name == slot});
+		return this.slots.find(function(el) {return el.name == slot});
 	}
+
+    hasEquipped(slot) {
+        return this.getSlot(slot).equipped != null;
+    }
+
+    equipped(slot, item) {
+        this.slots.forEach(function (el) {
+            if (el.name == slot) {
+                el.equipped = item
+            }
+        });
+    }
 
 	get gender() {
 		if (this.feminity > 50) {

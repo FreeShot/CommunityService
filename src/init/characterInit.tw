@@ -1,6 +1,7 @@
 ::characterInit [init]
 
-<<set $player to new Player()>>
+<<set $player to new Player({})>>
+<<set $playerInv to new Inventory({owner: $player})>>
 
 <!--  NPC  -->
 

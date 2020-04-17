@@ -1,9 +1,7 @@
 ::playerDescription
-
-Your name is <<= $player.name>>.
-You have <<= $player.getLook("hairLength")>> <<= $player.getLook("hairColor")>> hair.
-
-
-<<= $player.addItem($mbriefs, 1)>>
-
-<<= $player.displayClothes()>>
+<<silently>>
+<<= $playerInv.buy($clothes, "wigBlonde")>>
+<<= $player = $playerInv.equip("wigBlonde")>>
+<</silently>>
+You are <<= $player.name>>.
+You have <<if $player.hasEquipped("wig")>>a <<= $player.getSlot("wig").equipped.name>> hiding your <</if>><<= $player.getLook("hairLength")>> <<= $player.getLook("hairColor")>> hairs.

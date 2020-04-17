@@ -1,13 +1,10 @@
 class Item {
 	constructor(config) {
-		this.name = '';
-		this.describe = '';
-		this.img = '';
-		this.needAcceptance = 0; // How high must be the player's acceptance before accepting to get the item
-		this.price = 0; // If the item has a price, this will be its price
-
-		this.use = undefined; // Function for special items
-
+		this.id = '';
+        this.name = '';
+        this.type = 'genericItem';
+        this.price = 0;
+		
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
@@ -32,36 +29,31 @@ Object.defineProperty(window, 'Item', {
 class Clothes extends Item {
 	constructor(config) {
 		super(Object.assign({
-            slots: [],
+            type: "clothes",
+            clothesType: "",
             equipped: false
         },config));
 	}
 
     equip(char) {
-        this.slots.forEach(function (el) {
+        State.variables.clothesTypeSlots[this.clothesType].forEach(function (el) {
             var slot = char.getSlot(el);
-            if (slot !== undefined) {
+            if (slot.equipped !== null) {
                 slot.equipped.unequip();
             }
-            slot.equipped = this;
+            char.equipped(el, this);
         }, this);
-
         this.equipped = true;
     }
 
     unequip() {
+        State.variables.clothesTypeSlots[this.clothesType].forEach(function (el) {
+            var slot = char.getSlot(el);
+            if (slot.equipped.id === this.id){
+                char.equipped(el, null);
+            }
+        }, this)
         this.equipped = false;
-    }
-
-    display() {
-        var str = String.format(
-            "{0} : {1} [{2}]",
-            this.name,
-            this.describe,
-            this.slots.join(",")
-        );
-        if (this.equipped) {str += "(equipped)"}
-        return str;
     }
 
 	clone() {
