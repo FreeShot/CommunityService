@@ -14,9 +14,9 @@
 	}
 }>>
 
-<<set $clothes to new Inventory({canSell: true})>>
-<<= $clothes.addItem(new Clothes({
-	id: "wigBlonde",
-	name: "blonde wig",
-	clothesType: "wig"
+<<set $playerInv to new Inventory({owner: $player})>>
+<<= $playerInv.addItem(new Clothes({
+	id: "defalutT-shirt",
+	name: "a plain old white t-shirt",
+	clothesType: "top"
 }))>>

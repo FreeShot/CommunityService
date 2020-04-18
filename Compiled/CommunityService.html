@@ -558,7 +558,7 @@ class Player extends Character {
 
     tryDescribe(slot) {
         var s = this.getSlot(slot);
-        s.equipped !== null ? s.equipped.describe(this) : "";
+        return s.equipped !== null ? s.equipped.describe(this) : "";
     }
 
 	getSlot(slot) {
@@ -575,6 +575,32 @@ class Player extends Character {
                 el.equipped = item
             }
         });
+    }
+
+    describe() {
+        var str = String.format(
+            "Your name is {0}. <br> {1} <br> {2} <br> {3}",
+            this.name,
+            this.descFace(),
+            this.descBody()
+        );
+        return str;
+    }
+
+    descHair() {
+        var wig = this.getSlot("wig").equipped;
+        wig = wig === null ? "" : wig.describe();
+        return wig === "" ? String.format("You have {0} {1} hairs", this.getLook("hairLength"), this.getLook("hairColor")) : wig; 
+    }
+
+    descFace() {
+        var str = "";
+        str += this.descHair();
+        return str;
+    }
+
+    descBody() {
+        return "Description of the body";
     }
 
 	get gender() {
@@ -884,8 +910,6 @@ class Inventory {
 	constructor(config) {
 		this.items = [];
 		this.clothes = [];
-		this.canBuy = true;
-		this.canSell = false;
 		this.money = 0;
 		this.owner = null;
 
@@ -915,16 +939,14 @@ class Inventory {
 	}
 
 	buy(shop, item) {
-		if (this.canBuy && shop.canSellItem(item)) {
+		if (shop.canSellItem(item)) {
 			this.addItem(shop.removeItem(item));
 		}
 	}
 
 	canSellItem(item) {
-		return this.canSell && (
-				this.clothes.some(function(el) {return el.id == item}) ||
-				this.items.some(function(el) {return el.id == item})
-			);
+		return this.clothes.some(function(el) {return el.id == item}) ||
+			this.items.some(function(el) {return el.id == item});
 	}
 
 	equip(item) {
@@ -2788,7 +2810,7 @@ $wife.name is standing at the entrance watching you.
 	&lt;&lt;= $wife.speak(&quot;See that you do or the decision will be made for you.&quot;)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-With that she turns and leaves the room.</tw-passagedata><tw-passagedata pid="103" name="choreEvent_PlayerNudityD" tags="" position="350,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+With that she turns and leaves the room.</tw-passagedata><tw-passagedata pid="103" name="choreEvent_PlayerNudityD" tags="noreturn chore" position="350,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
 It doesn&#39;t take too long so you busy yourself folding the washing that&#39;s already clean.
 
@@ -2808,7 +2830,7 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 &lt;&lt;= $daughter.speak(&quot;You know what? That&#39;s ok. You look busy.&quot;)&gt;&gt;
 
-$daughter.name leaves and you hear her burst into laughter as soon as she&#39;s out of sight.</tw-passagedata><tw-passagedata pid="104" name="choreEvent_PlayerNudityW" tags="" position="475,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+$daughter.name leaves and you hear her burst into laughter as soon as she&#39;s out of sight.</tw-passagedata><tw-passagedata pid="104" name="choreEvent_PlayerNudityW" tags="noreturn chore" position="475,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
 It doesn&#39;t take too long so you busy yourself folding the washing that&#39;s already clean.
 
@@ -2848,7 +2870,6 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;set $crotch to [&quot;&quot;]&gt;&gt;
 
 &lt;&lt;set $legs to [&quot;&quot;]&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="characterInit" tags="init" position="725,1350" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
-&lt;&lt;set $playerInv to new Inventory({owner: $player})&gt;&gt;
 
 &lt;!--  NPC  --&gt;
 
@@ -3016,15 +3037,25 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({name: &quot;Check the door&quot;, duration: {minute: 5}, passages:[{name: &quot;SonBdRm_cleaning&quot;, weight:2}, {name: &quot;Son_Locked&quot;, weight: 1}], staminaCost: 0, choreFrequency: &quot;W&quot;}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({name: &quot;Tidy your room&quot;, duration: {hour: 1}, passages:[{name: &quot;PlayerBdRm_cleaning&quot;, weight:2}, {name: &quot;PlayerBdRm_Clean&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean the bedroom&quot;, duration: {hour: 1}, passages:[{name: &quot;DaughterBdRm_cleaning&quot;, weight:2}, {name: &quot;DaughterBdRm_Dusting&quot;, weight: 10}, {name: &quot;DaughterBdRm_Vacuum&quot;, weight: 11}, {name: &quot;DaughterBdRm_Windows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean the guest room&quot;, duration: {hour: 1}, passages:[{name: &quot;GuestRm_cleaning&quot;, weight:2}, {name: &quot;GuestRm_Dusting&quot;, weight: 10}, {name: &quot;GuestRm_Vacuum&quot;, weight: 11}, {name: &quot;GuestRm_Windows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="clothesInit" tags="init" position="975,1350" size="100,100">&lt;&lt;set $clothesTypeSlots to {
-	&quot;wig&quot; : [&quot;wig&quot;]
+&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean the guest room&quot;, duration: {hour: 1}, passages:[{name: &quot;GuestRm_cleaning&quot;, weight:2}, {name: &quot;GuestRm_Dusting&quot;, weight: 10}, {name: &quot;GuestRm_Vacuum&quot;, weight: 11}, {name: &quot;GuestRm_Windows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="clothesInit" tags="init" position="975,1350" size="100,100">&lt;&lt;set $clothesType to {
+	&quot;wig&quot; : {
+		slots : [&quot;wig&quot;],
+		description : function(clothes, character) {
+			return String.format(
+				&quot;Your {0} hides your {1} {2} hairs&quot;,
+				clothes.name, 
+				character.getLook(&quot;hairLength&quot;),
+				character.getLook(&quot;hairColor&quot;)
+			);
+		} 
+	}
 }&gt;&gt;
 
-&lt;&lt;set $clothes to new Inventory({canSell: true})&gt;&gt;
-&lt;&lt;= $clothes.addItem(new Clothes({
-	id: &quot;wigBlonde&quot;,
-	name: &quot;blonde wig&quot;,
-	clothesType: &quot;wig&quot;
+&lt;&lt;set $playerInv to new Inventory({owner: $player})&gt;&gt;
+&lt;&lt;= $playerInv.addItem(new Clothes({
+	id: &quot;defalutT-shirt&quot;,
+	name: &quot;a plain old white t-shirt&quot;,
+	clothesType: &quot;top&quot;
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="eventInit" tags="event" position="1100,1350" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterSquats01&quot;, passage: &quot;choreEvent_DaughterSquats01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterDumbell01&quot;, passage: &quot;choreEvent_DaughterDumbell01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
@@ -3690,12 +3721,11 @@ Your brain is scrambled as you try to reign in your thoughts and process what ju
  
 You shift your hips again as your caged member was brought to life by the kiss. It&#39;s already pressing against the hard plastic.
  
-You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="139" name="playerDescription" tags="" position="1100,1725" size="100,100">&lt;&lt;silently&gt;&gt;
-&lt;&lt;= $playerInv.buy($clothes, &quot;wigBlonde&quot;)&gt;&gt;
-&lt;!--&lt;&lt;= $player = $playerInv.equip(&quot;wigBlonde&quot;)&gt;&gt;--&gt;
+You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="139" name="playerDescription" tags="nobr" position="1100,1725" size="100,100">&lt;&lt;silently&gt;&gt;
+
 &lt;&lt;/silently&gt;&gt;
-You are &lt;&lt;= $player.name&gt;&gt;.
-You have &lt;&lt;if $player.hasEquipped(&quot;wig&quot;)&gt;&gt;a &lt;&lt;= $player.getSlot(&quot;wig&quot;).equipped.name&gt;&gt; hiding your &lt;&lt;/if&gt;&gt;&lt;&lt;= $player.getLook(&quot;hairLength&quot;)&gt;&gt; &lt;&lt;= $player.getLook(&quot;hairColor&quot;)&gt;&gt; hairs.</tw-passagedata><tw-passagedata pid="140" name="PlayerBdRm" tags="playerRoom room" position="1225,1725" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+
+&lt;&lt;= $player.describe()&gt;&gt;</tw-passagedata><tw-passagedata pid="140" name="PlayerBdRm" tags="playerRoom room" position="1225,1725" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 &lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;silently&gt;&gt;
 		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;

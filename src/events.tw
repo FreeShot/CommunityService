@@ -118,7 +118,7 @@ $wife.name is standing at the entrance watching you.
 
 With that she turns and leaves the room.
 
-:: choreEvent_PlayerNudityD
+:: choreEvent_PlayerNudityD [noreturn chore]
 
 Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
@@ -142,7 +142,7 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 $daughter.name leaves and you hear her burst into laughter as soon as she's out of sight.
 
-:: choreEvent_PlayerNudityW
+:: choreEvent_PlayerNudityW [noreturn chore]
 
 Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 

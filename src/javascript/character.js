@@ -89,6 +89,7 @@ class Player extends Character {
                 looks: {
                 	hairColor: 0,
                 	hairLength: 0,
+                    eyeColor: 0,
                 	face: 0,
                 	lips: 0,
                 	skin: 0,
@@ -148,7 +149,7 @@ class Player extends Character {
 
     tryDescribe(slot) {
         var s = this.getSlot(slot);
-        s.equipped !== null ? s.equipped.describe(this) : "";
+        return s.equipped !== null ? s.equipped.describe(this) : "";
     }
 
 	getSlot(slot) {
@@ -165,6 +166,38 @@ class Player extends Character {
                 el.equipped = item
             }
         });
+    }
+
+    describe() {
+        var str = String.format(
+            "Your name is {0}. <br> {1} <br> {2} <br> {3}",
+            this.name,
+            this.descFace(),
+            this.descBody()
+        );
+        return str;
+    }
+
+    descHair() {
+        var wig = this.getSlot("wig").equipped;
+        wig = wig === null ? "" : wig.describe();
+        return wig === "" ? String.format("You have {0} {1} hairs", this.getLook("hairLength"), this.getLook("hairColor")) : wig; 
+    }
+
+    desc
+
+    descEye() {
+        var eye = this.getSlot("accessory-eye")
+    }
+
+    descFace() {
+        var str = "";
+        str += this.descHair();
+        return str;
+    }
+
+    descBody() {
+        return "Description of the body";
     }
 
 	get gender() {

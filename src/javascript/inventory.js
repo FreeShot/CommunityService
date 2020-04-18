@@ -2,8 +2,6 @@ class Inventory {
 	constructor(config) {
 		this.items = [];
 		this.clothes = [];
-		this.canBuy = true;
-		this.canSell = false;
 		this.money = 0;
 		this.owner = null;
 
@@ -33,16 +31,14 @@ class Inventory {
 	}
 
 	buy(shop, item) {
-		if (this.canBuy && shop.canSellItem(item)) {
+		if (shop.canSellItem(item)) {
 			this.addItem(shop.removeItem(item));
 		}
 	}
 
 	canSellItem(item) {
-		return this.canSell && (
-				this.clothes.some(function(el) {return el.id == item}) ||
-				this.items.some(function(el) {return el.id == item})
-			);
+		return this.clothes.some(function(el) {return el.id == item}) ||
+			this.items.some(function(el) {return el.id == item});
 	}
 
 	equip(item) {
