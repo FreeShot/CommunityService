@@ -11,7 +11,19 @@ Day $time.day</span>
 <hr>
 <<if $flags.cuff.recieved>>[[CUFF]]<hr><</if>>
 <hr>
-
+<<click "Debug Skip Day">>
+	<<silently>>
+		<<include "wakeUp">>
+		<<goto `passage()`>>
+	<</silently>>
+<</click>>
+<<click "Skip to end of day">>
+	<<silently>>
+		<<= $time.setDate({hour:22, minute:0})>>
+		<<goto `passage()`>>
+	<</silently>>
+<</click>>
+[[Skip party intro|cocktailparty_start][$player.femName to "Alexis"]]
 
 ::CUFF [nobr mainMenu]
 <<if $flags.cuff.init is false>>

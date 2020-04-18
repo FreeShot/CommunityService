@@ -2,7 +2,7 @@ setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class Timer {
-	days = ["monday", "tuesday", "wednesday", "thursday", "firday", "saturday", "sunday"];
+	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;

@@ -1,17 +1,5 @@
 ::PlayerBdRm [playerRoom room]
 <<= $mansion.display("PlayerBdRm")>>
-<<click "Debug Skip Day">>
-	<<silently>>
-		<<include "wakeUp">>
-		<<goto `passage()`>>
-	<</silently>>
-<</click>>
-<<click "Skip to end of day">>
-	<<silently>>
-		<<= $time.setDate({hour:22, minute:0})>>
-		<<goto `passage()`>>
-	<</silently>>
-<</click>>
 <<nobr>>
 <<if $eventCount_cocktailparty >= 13>>
 	$wife.name is hosting a party tonight.<br>
