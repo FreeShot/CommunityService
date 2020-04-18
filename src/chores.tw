@@ -1,4 +1,4 @@
-::Foyer_cleaning
+::Foyer_cleaning [noreturn chore]
 <<include "Foyer_Dusting">>
 
 <<include "Foyer_SweepMop">>
@@ -19,7 +19,7 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 [[Return|$return]]
 
-:: Hall_cleaning
+:: Hall_cleaning [noreturn chore]
 
 <<include "Hall_Dusting">>
 
@@ -41,7 +41,7 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 [[Return|$return]]
 
-:: Garden_cleaning
+:: Garden_cleaning [noreturn chore]
 
 <<include "Garden_Sweep">>
 
@@ -93,7 +93,7 @@ With a heavy sigh, you spend time going through each room, taking the clothes di
 
 [[Return|$return]]
 
-:: Lounge_cleaning
+:: Lounge_cleaning [noreturn chore]
 
 <<include "Lounge_Dusting">>
 
@@ -125,7 +125,7 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: Dining_cleaning
+:: Dining_cleaning [noreturn chore]
 
 <<include "Dining_Dusting">>
 
@@ -157,7 +157,7 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: MasterBdRm_cleaning
+:: MasterBdRm_cleaning [noreturn chore]
 
 <<include "MasterBdRm_Dusting">>
 
@@ -189,7 +189,7 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: MasterBathRm_cleaning
+:: MasterBathRm_cleaning [noreturn chore]
 
 <<include "MasterBathRm_SweepMop">>
 
@@ -243,7 +243,7 @@ You get into the bathtub and scrub down the rings staining the inside. It takes 
 
 [[Return|$return]]
 
-:: Office_cleaning
+:: Office_cleaning [noreturn chore]
 
 <<include "Office_Dusting">>
 
@@ -275,7 +275,7 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: Gym_cleaning
+:: Gym_cleaning [noreturn chore]
 
 <<include "Gym_Dusting">>
 
@@ -305,7 +305,7 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: SonBdRm_cleaning
+:: SonBdRm_cleaning [noreturn chore]
 
 <<include "Son_Locked">>
 
@@ -317,17 +317,17 @@ The door to this room is locked. Someone did mention something about not going i
 
 [[Return|$return]]
 
-:: PlayerBdRm_cleaning
+:: PlayerBdRm_cleaning [noreturn chore]
 
 <<include "PlayerBdRm_Clean">>
 
-:: PlayerBdRm_Clean
+:: PlayerBdRm_Clean [noreturn chore]
 
 Thers isn't a lot of room to work with so clewaning up is as simple as putting everything where it's supposed to be and giving everything and quick dust and wipe.
 
 [[Return|$return]]
 
-:: Pool_cleaning
+:: Pool_cleaning [noreturn chore]
 
 <<include "Pool_Sweep">>
 
@@ -339,7 +339,7 @@ $gardner.name takes care of most of the pool maintenance so you just sweep the s
 
 [[Return|$return]]
 
-:: DaughterBdRm_cleaning
+:: DaughterBdRm_cleaning [noreturn chore]
 
 <<include "DaughterBdRm_Dusting">>
 
@@ -371,7 +371,7 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: GuestRm_cleaning
+:: GuestRm_cleaning [noreturn chore]
 
 <<include "GuestRm_Dusting">>
 

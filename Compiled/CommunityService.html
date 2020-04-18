@@ -499,6 +499,7 @@ class Player extends Character {
                 looks: {
                 	hairColor: 0,
                 	hairLength: 0,
+                    eyeColor: 0,
                 	face: 0,
                 	lips: 0,
                 	skin: 0,
@@ -591,6 +592,12 @@ class Player extends Character {
         var wig = this.getSlot("wig").equipped;
         wig = wig === null ? "" : wig.describe();
         return wig === "" ? String.format("You have {0} {1} hairs", this.getLook("hairLength"), this.getLook("hairColor")) : wig; 
+    }
+
+    desc
+
+    descEye() {
+        var eye = this.getSlot("accessory-eye")
     }
 
     descFace() {
@@ -1579,7 +1586,7 @@ setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
 class Timer {
-	days = ["monday", "tuesday", "wednesday", "thursday", "firday", "saturday", "sunday"];
+	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
 		this.day = 0;
@@ -1676,7 +1683,7 @@ class Timer {
 }
 Object.defineProperty(window, 'Timer', {
     value : Timer
-});</script><tw-passagedata pid="1" name="Foyer_cleaning" tags="" position="100,100" size="100,100">&lt;&lt;include &quot;Foyer_Dusting&quot;&gt;&gt;
+});</script><tw-passagedata pid="1" name="Foyer_cleaning" tags="noreturn chore" position="100,100" size="100,100">&lt;&lt;include &quot;Foyer_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;Foyer_SweepMop&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Foyer_Dusting" tags="noreturn chore" position="225,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
@@ -1686,7 +1693,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 You sweep the floor carefully, making sure to get into all the nooks and crannies while being careful not to knock any of the displays over. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the room with a pleasant aroma.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="4" name="Hall_cleaning" tags="" position="475,100" size="100,100">&lt;&lt;include &quot;Hall_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="4" name="Hall_cleaning" tags="noreturn chore" position="475,100" size="100,100">&lt;&lt;include &quot;Hall_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;Hall_SweepMop&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Hall_Dusting" tags="noreturn chore" position="600,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
@@ -1696,7 +1703,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 You sweep the floor carefully, making sure to get into all the nooks and crannies. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the hall with a pleasant aroma.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="7" name="Garden_cleaning" tags="" position="850,100" size="100,100">&lt;&lt;include &quot;Garden_Sweep&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="Garden_Sweep" tags="noreturn chore" position="975,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sweeping/sweeping_2.jpg&quot;]]
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="7" name="Garden_cleaning" tags="noreturn chore" position="850,100" size="100,100">&lt;&lt;include &quot;Garden_Sweep&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="Garden_Sweep" tags="noreturn chore" position="975,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sweeping/sweeping_2.jpg&quot;]]
 
 $gardner.name doesn&#39;t like you messing with the plants so all you can do here is sweep any debris off the paths and sitting areas.
 
@@ -1720,7 +1727,7 @@ You go through each room, stripping the beds, pillows and quilts and take it all
 
 With a heavy sigh, you spend time going through each room, taking the clothes discarded to hampers. Once you have everything you take it all back to the large laundry. You separate the items so you are washing the correct things together. Fortunately dry cleaning gets taken off site so you don’t have to learn that skill. Once it’s all ready you put each load into one of the machines with some laundry detergent, and then start the washing cycle. Once each cycle is done you put everything in the dryer before repeating the process. Once each load is done you have to fold everything neatly and sort it all into piles before putting it away.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="14" name="Lounge_cleaning" tags="" position="475,225" size="100,100">&lt;&lt;include &quot;Lounge_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="14" name="Lounge_cleaning" tags="noreturn chore" position="475,225" size="100,100">&lt;&lt;include &quot;Lounge_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;Lounge_SweepMop&quot;&gt;&gt;
 
@@ -1736,7 +1743,7 @@ Before you can start you move the furniture out of the way and then sweep the fl
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="18" name="Dining_cleaning" tags="" position="975,225" size="100,100">&lt;&lt;include &quot;Dining_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="18" name="Dining_cleaning" tags="noreturn chore" position="975,225" size="100,100">&lt;&lt;include &quot;Dining_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;Dining_SweepMop&quot;&gt;&gt;
 
@@ -1752,7 +1759,7 @@ Before you can start you move the furniture out of the way and then sweep the fl
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="22" name="MasterBdRm_cleaning" tags="" position="225,350" size="100,100">&lt;&lt;include &quot;MasterBdRm_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="22" name="MasterBdRm_cleaning" tags="noreturn chore" position="225,350" size="100,100">&lt;&lt;include &quot;MasterBdRm_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;MasterBdRm_Vacuum&quot;&gt;&gt;
 
@@ -1768,7 +1775,7 @@ You take out your vacuum and go over the entire room. You make sure to fluff and
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="26" name="MasterBathRm_cleaning" tags="" position="725,350" size="100,100">&lt;&lt;include &quot;MasterBathRm_SweepMop&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="26" name="MasterBathRm_cleaning" tags="noreturn chore" position="725,350" size="100,100">&lt;&lt;include &quot;MasterBathRm_SweepMop&quot;&gt;&gt;
 
 &lt;&lt;include &quot;MasterBathRm_Sink&quot;&gt;&gt;
 
@@ -1798,7 +1805,7 @@ You wash the entire inside of the shower with some nasty-smelling mildew remover
 
 You get into the bathtub and scrub down the rings staining the inside. It takes a good deal more time to remove the grime across the divide between the floor, walls and tub.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="32" name="Office_cleaning" tags="" position="225,475" size="100,100">&lt;&lt;include &quot;Office_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="32" name="Office_cleaning" tags="noreturn chore" position="225,475" size="100,100">&lt;&lt;include &quot;Office_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;Office_Vacuum&quot;&gt;&gt;
 
@@ -1814,7 +1821,7 @@ You take out your vacuum and go over the entire room. You make sure to fluff and
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="36" name="Gym_cleaning" tags="" position="725,475" size="100,100">&lt;&lt;include &quot;Gym_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="36" name="Gym_cleaning" tags="noreturn chore" position="725,475" size="100,100">&lt;&lt;include &quot;Gym_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;Gym_SweepMop&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Gym_Dusting" tags="noreturn chore" position="850,475" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
@@ -1828,17 +1835,17 @@ You pick the rubber mats and other loose gear. Embarassingly, some of the equipm
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="40" name="SonBdRm_cleaning" tags="" position="1225,475" size="100,100">&lt;&lt;include &quot;Son_Locked&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="Son_Locked" tags="noreturn chore" position="100,600" size="100,100">[img[setup.ImagePath + &quot;estate/SonBdRm/Locked.jpg&quot;]]
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="40" name="SonBdRm_cleaning" tags="noreturn chore" position="1225,475" size="100,100">&lt;&lt;include &quot;Son_Locked&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="Son_Locked" tags="noreturn chore" position="100,600" size="100,100">[img[setup.ImagePath + &quot;estate/SonBdRm/Locked.jpg&quot;]]
 
 The door to this room is locked. Someone did mention something about not going into this room. Better leave it alone for now.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="42" name="PlayerBdRm_cleaning" tags="" position="225,600" size="100,100">&lt;&lt;include &quot;PlayerBdRm_Clean&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="PlayerBdRm_Clean" tags="" position="350,600" size="100,100">Thers isn&#39;t a lot of room to work with so clewaning up is as simple as putting everything where it&#39;s supposed to be and giving everything and quick dust and wipe.
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="42" name="PlayerBdRm_cleaning" tags="noreturn chore" position="225,600" size="100,100">&lt;&lt;include &quot;PlayerBdRm_Clean&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="PlayerBdRm_Clean" tags="noreturn chore" position="350,600" size="100,100">Thers isn&#39;t a lot of room to work with so clewaning up is as simple as putting everything where it&#39;s supposed to be and giving everything and quick dust and wipe.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="44" name="Pool_cleaning" tags="" position="475,600" size="100,100">&lt;&lt;include &quot;Pool_Sweep&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="Pool_Sweep" tags="noreturn chore" position="600,600" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sweeping/sweeping_2.jpg&quot;]]
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="44" name="Pool_cleaning" tags="noreturn chore" position="475,600" size="100,100">&lt;&lt;include &quot;Pool_Sweep&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="Pool_Sweep" tags="noreturn chore" position="600,600" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sweeping/sweeping_2.jpg&quot;]]
 
 $gardner.name takes care of most of the pool maintenance so you just sweep the sitting area and make sure it is tidy.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="46" name="DaughterBdRm_cleaning" tags="" position="725,600" size="100,100">&lt;&lt;include &quot;DaughterBdRm_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="46" name="DaughterBdRm_cleaning" tags="noreturn chore" position="725,600" size="100,100">&lt;&lt;include &quot;DaughterBdRm_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;DaughterBdRm_Vacuum&quot;&gt;&gt;
 
@@ -1854,7 +1861,7 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="50" name="GuestRm_cleaning" tags="" position="1225,600" size="100,100">&lt;&lt;include &quot;GuestRm_Dusting&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="50" name="GuestRm_cleaning" tags="noreturn chore" position="1225,600" size="100,100">&lt;&lt;include &quot;GuestRm_Dusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;GuestRm_Vacuum&quot;&gt;&gt;
 
@@ -2839,7 +2846,7 @@ $wife.name is standing at the entrance watching you.
 	&lt;&lt;= $wife.speak(&quot;See that you do or the decision will be made for you.&quot;)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-With that she turns and leaves the room.</tw-passagedata><tw-passagedata pid="104" name="choreEvent_PlayerNudityD" tags="" position="475,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+With that she turns and leaves the room.</tw-passagedata><tw-passagedata pid="104" name="choreEvent_PlayerNudityD" tags="noreturn chore" position="475,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
 It doesn&#39;t take too long so you busy yourself folding the washing that&#39;s already clean.
 
@@ -2859,7 +2866,7 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 &lt;&lt;= $daughter.speak(&quot;You know what? That&#39;s ok. You look busy.&quot;)&gt;&gt;
 
-$daughter.name leaves and you hear her burst into laughter as soon as she&#39;s out of sight.</tw-passagedata><tw-passagedata pid="105" name="choreEvent_PlayerNudityW" tags="" position="600,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+$daughter.name leaves and you hear her burst into laughter as soon as she&#39;s out of sight.</tw-passagedata><tw-passagedata pid="105" name="choreEvent_PlayerNudityW" tags="noreturn chore" position="600,1350" size="100,100">Since you don&#39;t have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
 It doesn&#39;t take too long so you busy yourself folding the washing that&#39;s already clean.
 
@@ -2899,7 +2906,6 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;set $crotch to [&quot;&quot;]&gt;&gt;
 
 &lt;&lt;set $legs to [&quot;&quot;]&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="characterInit" tags="init" position="850,1350" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
-&lt;&lt;set $playerInv to new Inventory({owner: $player})&gt;&gt;
 
 &lt;!--  NPC  --&gt;
 
@@ -3081,11 +3087,11 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 	}
 }&gt;&gt;
 
-&lt;&lt;set $clothes to new Inventory({canSell: true})&gt;&gt;
-&lt;&lt;= $clothes.addItem(new Clothes({
-	id: &quot;wigBlonde&quot;,
-	name: &quot;blonde wig&quot;,
-	clothesType: &quot;wig&quot;
+&lt;&lt;set $playerInv to new Inventory({owner: $player})&gt;&gt;
+&lt;&lt;= $playerInv.addItem(new Clothes({
+	id: &quot;defalutT-shirt&quot;,
+	name: &quot;a plain old white t-shirt&quot;,
+	clothesType: &quot;top&quot;
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="eventInit" tags="event" position="1225,1350" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterSquats01&quot;, passage: &quot;choreEvent_DaughterSquats01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterDumbell01&quot;, passage: &quot;choreEvent_DaughterDumbell01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
@@ -3495,7 +3501,20 @@ Day $time.day&lt;/span&gt;
 &lt;span class=&quot;Stamina&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/span&gt;
 &lt;hr&gt;
 &lt;&lt;if $flags.cuff.recieved&gt;&gt;[[CUFF]]&lt;hr&gt;&lt;&lt;/if&gt;&gt;
-&lt;hr&gt;</tw-passagedata><tw-passagedata pid="131" name="CUFF" tags="nobr mainMenu" position="100,1725" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
+&lt;hr&gt;
+&lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
+	&lt;&lt;silently&gt;&gt;
+		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/click&gt;&gt;
+&lt;&lt;click &quot;Skip to end of day&quot;&gt;&gt;
+	&lt;&lt;silently&gt;&gt;
+		&lt;&lt;= $time.setDate({hour:22, minute:0})&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/click&gt;&gt;
+[[Skip party intro|cocktailparty_start][$player.femName to &quot;Alexis&quot;]]</tw-passagedata><tw-passagedata pid="131" name="CUFF" tags="nobr mainMenu" position="100,1725" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;elseif $flags.cuff.full is true&gt;&gt;
 	[[Chores|playerToDoList]]&lt;br&gt;
@@ -3760,27 +3779,42 @@ Your brain is scrambled as you try to reign in your thoughts and process what ju
 You shift your hips again as your caged member was brought to life by the kiss. It&#39;s already pressing against the hard plastic.
  
 You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="140" name="playerDescription" tags="nobr" position="1225,1725" size="100,100">&lt;&lt;silently&gt;&gt;
-&lt;&lt;= $playerInv.buy($clothes, &quot;wigBlonde&quot;)&gt;&gt;
-&lt;!--&lt;&lt;= $player = $playerInv.equip(&quot;wigBlonde&quot;)&gt;&gt;--&gt;
+
 &lt;&lt;/silently&gt;&gt;
-You are &lt;&lt;= $player.name&gt;&gt;. &lt;br&gt;
-&lt;&lt;if $player.tryDescribe(&quot;wig&quot;) === &quot;&quot;&gt;&gt;
-You have &lt;&lt;=$player.getLook(&quot;hairLength&quot;)&gt;&gt; &lt;&lt;=$player.getLook(&quot;hairColor&quot;) hairs.&gt;&gt;
-&lt;&lt;else&gt;&gt;
-&lt;&lt;= $player.tryDescribe(&quot;wig&quot;)&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="141" name="PlayerBdRm" tags="playerRoom room" position="100,1850" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
-&lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
-	&lt;&lt;silently&gt;&gt;
-		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
-		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/silently&gt;&gt;
-&lt;&lt;/click&gt;&gt;
-&lt;&lt;click &quot;Skip to end of day&quot;&gt;&gt;
-	&lt;&lt;silently&gt;&gt;
-		&lt;&lt;= $time.setDate({hour:22, minute:0})&gt;&gt;
-		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/silently&gt;&gt;
-&lt;&lt;/click&gt;&gt;
+
+&lt;&lt;= $player.describe()&gt;&gt;
+
+&lt;!--
+
+looks: {
+	hairColor: 0,
+    hairLength: 0,
+    eyeColor: 0,
+    face: 0,
+    lips: 0,
+    skin: 0,
+    chest: 0,
+    butt: 0,
+    hips: 0,
+    crotch: 0,
+    legs: 0
+},
+slots: [
+   	{name: &quot;wig&quot;, equipped: null},
+   	{name: &quot;chest&quot;, equipped: null},
+  	{name: &quot;bra&quot;, equipped: null},
+  	{name: &quot;underwear&quot;, equipped: null},
+   	{name: &quot;hoistery&quot;, equipped: null},
+  	{name: &quot;legs&quot;, equipped: null},
+  	{name: &quot;feet&quot;, equipped: null},
+   	{name: &quot;accessory-hair&quot;, equipped: null},
+  	{name: &quot;accessory-neck&quot;, equipped: null},
+  	{name: &quot;accessory-ear&quot;, equipped: null},
+  	{name: &quot;accessory-eye&quot;, equipped: null},
+   	{name: &quot;toy-front&quot;, equipped: null},
+   	{name: &quot;toy-back&quot;, equipped: null}
+],
+ --&gt;</tw-passagedata><tw-passagedata pid="141" name="PlayerBdRm" tags="playerRoom room" position="100,1850" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $eventCount_cocktailparty &gt;= 13&gt;&gt;
 	$wife.name is hosting a party tonight.&lt;br&gt;
