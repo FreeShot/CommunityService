@@ -10,6 +10,7 @@ Generic sex fantasy but they are the girl
 
 First nights rest will be fitful because of the cage
 Wake up will be very uncomfortable due to morning wood
+<<set $flags.cocktailIntroComplete to true>>
 <</if>>
 
 [[Start the next day|wakeUp]]

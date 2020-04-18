@@ -10,6 +10,8 @@ Day $time.day</span>
 <span class="Stamina">Stamina: <<= $player.getStaminaBar()>></span>
 <hr>
 <<if $flags.cuff.recieved>>[[CUFF]]<hr><</if>>
+<hr>
+
 
 ::CUFF [nobr mainMenu]
 <<if $flags.cuff.init is false>>

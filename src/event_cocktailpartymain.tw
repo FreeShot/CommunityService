@@ -20,11 +20,44 @@ Run the Party Mini Games
 
 Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It's very late and after the nights work you are definitely ready for bed.
 <<if $flags.firstCocktailParty is true>>
-	[[firstcocktailparty23]]
+	[[Head to your room|firstcocktailparty23]]
 <<else>>
 	[[Head to your room and go to bed|sleep]]
 <</if>>
  <<= $time.setDate({day:0, hour: 1, minute:30})>>
+
+::cocktailpartyMorning [event]
+
+<<if $flags.firstCocktailParty is true>>>>
+You look at the time and hope $wife.name is awake. You put on your normal clothes, grab the maid's uniform and head the master bedroom. After listening for the sound of any... morning activities you think it's clear so knock and wait for a moment and $wife.title eventually open the door.
+
+<<= $wife.speak("What is it?")>> She seems awake enough so you think you timed it right.
+
+<<= $player.speak("The uniform $wife.title.")>> You hold out the black and white bundle.
+
+<<= $wife.speak("Of course.")>> She takes it and starts closing the door.
+
+<<= $player.speak("Um, $wife.title.")>>
+
+<<= $wife.speak("What?")>> She stops and is now a little frustrated.
+
+<<= $player.speak("Would you mind, um, unlocking me.")>> Your eyes dart down to your crotch.
+
+<<= $wife.speak("Oh, I suppose. We'll need to discuss your performance last night first.")>> She opens the door all the way and let you into her room.
+
+You can see $owner.name lying asleep face down, clearly naked, and quickly follow $wife.name into the wardrobe.<<set $flags.firstCocktailParty to false>>
+<<else>>
+You get up, grab the maid's uniform and head the master bedroom so $wife.name
+
+<<= $wife.speak("What is it?")>> She seems awake enough so you think you timed it right.
+
+<<= $player.speak("The uniform $wife.title.")>> You hold out the black and white bundle.
+
+<<= $wife.speak("Of course. Come in and lets discuss your performance.")>>
+
+You follow $wife.name into the wardrobe.
+<</if>>
+[[Performance review|cocktailparty_review]]
 
 ::cocktailparty_review [event]
 
