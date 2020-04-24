@@ -2,15 +2,21 @@
 As you roll out of bed you can't help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards you decide to ride the wave and end up relaxing in your room for the rest of the morning instead of getting your chores done.
 
 It's nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.
-[[Get started.|firstcocktailparty1]]
+[[Get started.|firstcocktailparty1a]]
 <<= $time.setDate({hour: 12, minute:0})>>
 
-::firstcocktailparty1 [event]
+::firstcocktailparty1a [event]
  The main foyer is busy with people setting up for the party this evening. The Sono's spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
  
 You dodge a few of the workers as they move through with another bouquet. One of the women moving through the room catches your eye. She is wearing a gorgeous maid's outfit that looks like something out of a boutique magazine
  
-As you are busy taking in the sight of the cute maid there is a shove from behind as two more people come by with a table. The world teeters for a moment before you stumble down the stairs and run strait into a woman holding a stack of plates. You try to steady yourself but all you manage to do is tangle your feet in hers. Both you and the server crash to the ground and the plates shatter on impact.
+As you are busy taking in the sight of the cute maid when you get a shove from behind from two more people moving a table. The world teeters for a moment before you stumble down the stairs and run strait into a woman holding a stack of plates. You try to steady yourself but all you manage to do is tangle your feet in hers. Both you and the server crash to the ground and the plates shatter on impact.
+
+[img[setup.ImagePath + "events/cocktailparty/broken_plates.jpg"]]
+
+[[This won't be good.|firstcocktailparty1b]]
+
+::firstcocktailparty1b [event]
  
 Everyone in the room turns to you both, lying on the ground and the caterer comes storming out of the kitchen.
  
@@ -34,7 +40,7 @@ Some of the other people come a help the woman onto a seat. The sprain is alread
  
 $caterer.name starts to walk away but $wife.name runs over and stops him.
  
-"Now $caterer.name just calm down. Do you have any idea how hard it will be to get someone to cover this evening? You're the best caterer in the city.")>>
+<<= $wife.speak("Now $caterer.name just calm down. Do you have any idea how hard it will be to get someone to cover this evening? You're the best caterer in the city.")>>
  
 <<= $caterer.speak("Well do you expect me to serve myself? I need someone to help who knows what they are doing.")>>
  
@@ -58,14 +64,16 @@ $wife.name drags you towards the [[Master Bedroom|firstcocktailparty2]]
  
 <<= $wife.speak("I don't want to hear your weak excuses.")>> You never realised you could feel this small but $wife.name was holding all the cards. <<= $wife.speak("The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away but this will have to do. I couldn't have someone in your state around our guests. If you agree and do a good job I'll pretend this whole mess never happened. What do you say? It's either this or I hand you over to the state.")>>
  
-[[Agree to serve at the party. It's the only real option you have.|firstcocktailparty3]]
+[[Agree to serve at the party. It's the only real option you have.|firstcocktailparty3a]]
 
-::firstcocktailparty3 [event] 
+::firstcocktailparty3a [event] 
 <<= $wife.speak("Excellent. Not that you have much choice though. Who knows, if you like it we might make this part of your normal duties. Now we can't have you dressed like this so stay there while I get you something to wear.")>>
  
 $wife.name goes into the closet and you sit wringing your hands nervously. Hopefully you can do well enough that they'll let you stay on at the estate.
  
 She comes back out with a bundle of items and starts laying them out on the large master bed. There's some simple silk bra and panties, a nice black and white silk dress…
+
+[img[setup.ImagePath + "events/cocktailparty/clothes01.jpg"]]
 
 <<= $player.speak("<i>What the fuck?</i>")>>
  
@@ -73,7 +81,9 @@ She comes back out with a bundle of items and starts laying them out on the larg
  
 $wife.name snaps around and stares right at you. <<= $wife.speak("Watch your tone.")>>
  
-You immediately shrink back realising how that sounded.
+You immediately shrink back realising how that sounded and she [[continues.|firstcocktailparty3b]]
+
+::firstcocktailparty3b [event]
  
 $wife.name continues putting out the clothes she had gathered. <<= $wife.speak("There is a guest coming tonight who is a valued business partner and friend of the family. He is quite vocal in his distaste of keeping male indentured servants. That means if this is going to work you will need to pretend to be a girl for the night. I will ''NOT'' tolerate him finding out you are a boy. It shouldn't be too hard for you to pass as a girl anyway.")>>
  
@@ -83,7 +93,7 @@ Then under her breathe you hear her say. <<= $wife.speak("Who knows, you might e
  
 <<= $player.speak("Can't I at least wear my own underwear?")>>
  
-<<= $wife.speak("Of for goodness sake. If you're going to convince anyone you need to wear everything. If you're that embarrassed by your manhood you can go into the bathroom.")>>
+<<= $wife.speak("Oh for goodness sake. If you're going to convince anyone you need to wear everything. If you're that embarrassed by your manhood you can go into the bathroom.")>>
  
 [[Go to bathroom|firstcocktailparty4]]
 
@@ -94,7 +104,11 @@ Once the door is safely closed you. You drop your shirt, pants and boxers onto a
  
 <<= $player.speak("<i>Geez, my heart is pounding.</i>")>>
  
-You hold the black silk down and then step one foot in and then then other before pulling them up your legs. The feel of the material against your skin is nice and almost tingles. It's a way different feeling from your boring cotton boxers. You snap the waist band over your hips and adjust the edges so they aren't pulling or riding up everywhere and examine the fit.
+You hold the black silk down and then step one foot in and then then other before pulling them up your legs.
+
+[img[setup.ImagePath + "events/cocktailparty/pantiesup.jpg"]]
+
+The feel of the material against your skin is nice and almost tingles. It's a way different feeling from your boring cotton boxers. You snap the waist band over your hips and adjust the edges so they aren't pulling or riding up everywhere and examine the fit.
  
 The black silk cups and conceals your manhood but it’s a bit tight since they are clearly made for someone with less down there. They're not really uncomfortable though and the feeling of the silk against your sensitive member is much more acute. You twist slightly and your penis almost pokes out one side of the crotch before slipping back in.
  
@@ -108,9 +122,9 @@ $wife.name puts the items on top of your normal clothes. <<= $wife.speak("We nee
 
 <<= $wife.speak("Shush now.")>>
 
-[[She's setting the terms so you have no choice|firstcocktailparty5]]
+[[She's setting the terms so you have no choice|firstcocktailparty5a]]
 
-::firstcocktailparty5 [event] 
+::firstcocktailparty5a [event] 
 $wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
  
 <<= $wife.speak("Hmm. It's nice a sparse already. Convenient.")>>
@@ -125,13 +139,22 @@ $wife.name stops and then - ''WHACK'' - She gives you a hard slap on your butt.
  
 You stop shifting as she removes all the hair from first one leg and then the other. She gets you to roll over so she can do the backs and your growing erection is uncomfortably squished against the chaise.
  
-<<= $wife.speak("All done for the legs. Now roll over and lay down.")>>
- 
-You roll over and she can repeat the process on the small patch of hair on your chest.
+<<= $wife.speak("All done for the legs.")>>
+
+[img[setup.ImagePath + "player/legs/legs_smooth_02.jpg"]]
+
+<<= $wife.speak("Now roll over and lay down.")>>
+
+[[Roll over.|firstcocktailparty5b]]
+
+:: firstcocktailparty5b [event] 
+You roll over and she repeats the process on the thin patch of hair on your chest.
  
 <<= $player.speak("<i>Who will even see my chest?</i>")>>
  
-<<= $wife.speak("At least there's not much on your face. I think we'll leave that for now. Up you get.")>> She gives you another hard slap on the side of your butt and you stand up.
+[img[setup.ImagePath + "player/chest/chest_flat_02.jpg"]]
+
+<<= $wife.speak("At least there's not much on your face. I think we'll leave that for now. Up you get.")>> She gives you another hard slap on the side of your butt and gets you to stand up.
  
 <<= $wife.speak("Well then, on with the rest.")>> She gestures to the rest of the lingerie.
  
@@ -189,8 +212,6 @@ You hold your arms above your head as she wraps the black lace around your waist
 
 ::firstcocktailparty7 [event]
 
-Todo: Add image/gif
-
 You take a deep breathe and $wife.name pulls the shaper even tighter and manages to get the hooks into the last holes.<br>
 
 <<= $wife.speak("You can put your arms down now.")>>
@@ -202,8 +223,6 @@ You do and can feel the shaper holding your thin waist in tightly. You twist and
 [[Continue dressing|firstcocktailparty8]]
 
 ::firstcocktailparty8 [event]
-
-Todo: Add image/gif
 
 $wife.name holds the shoulder straps for the bra open and you slip your hands through. She pulls it up over your shoulders before adjusting the fit on your chest. Once it's in the right place she hooks it together and walks back in front of you.
  
@@ -217,7 +236,7 @@ $wife.name goes back into the wardrobe leaving you in the bathroom. Your reach b
  
 <<= $player.speak("<i>Stupid thing has mind of its own. There's no way this is turning me on.</i>")>>
  
-It doesn't take long for $wife.name to returns holding two fleshy coloured bag. Without pausing she hold open one cup of the bra and pushed the squishy sack in and then does the same with the other cup. They're both cold against your chest so and they're rubbing against your nipples. You can feel them already starting to perk up and making the rubbing even more noticeable.
+It doesn't take long for $wife.name to returns holding two fleshy coloured bags. Without pausing she holds open one cup of the bra and pushes the squishy sack in and then does the same with the other cup. They're both cold against your chest and they're rubbing against your nipples. You can feel them already starting to perk up and making the rubbing even more noticeable.
  
 $wife.name pulls your attention away from the breast forms as she grabs your chin and turns your face to the side.
  
@@ -228,9 +247,13 @@ $wife.name pulls your attention away from the breast forms as she grabs your chi
 ::firstcocktailparty9 [event] 
 <<= $wife.speak("Close your eyes.")>>
 
-Todo: Add image/gif
- 
-You do and feel her brushing and pushing against your face. It doesn't take a genius to guess that's she applying makeup. It takes a few minutes and $wife.name chides you a few times for moving and spoiling her work. You can't help but feel like a child getting dressed up by their mother. In any other situation there's no way you would be letting this happen.
+You do and feel her brushing and pushing against your face. It doesn't take a genius to guess that's she applying makeup.
+
+[img[setup.ImagePath + "events/bath_routine/makeup_eyes01.gif"]]
+
+It takes a few minutes and $wife.name chides you a few times for moving and spoiling her work. You can't help but feel like a child getting dressed up by their mother. In any other situation there's no way you would be letting this happen.
+
+[img[setup.ImagePath + "events/bath_routine/makeup_lips01.gif"]]
  
 She stops for a moment and you're tempted to open your eyes and risk getting a talking to.
  
@@ -324,7 +347,7 @@ You open your eyes to the weird feeling of $player.hairColor bangs framing your 
  
 You do and she rolls each stockings up your legs one at a time.
 
-Todo: Add image/gif
+[img[setup.ImagePath + "events/cocktailparty/stockings1.gif"]]
  
 The feeling of the silk against your smooth skin sends a tingle up your thighs and your feel you hard on twitching.
 
@@ -341,7 +364,7 @@ Before you move $wife.name pulls you up and turns you around.
 [[When you face the mirror your jaw almost hits the floor.|firstcocktailparty11]]
 
 ::firstcocktailparty11[event]
-Todo: Add image/gif
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_firstlook.jpg"]]
 
 Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The $player.hairColor chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
  
@@ -393,7 +416,7 @@ $wife.name leaves again and you hastily tuck your penis back into the silk panti
 <<set $cocktailPartyCheckSelf = 0>>
 
 ::firstcocktailparty_touchbreasts [event]
-Todo: Add image/gif
+[img[setup.ImagePath + "events/cocktailparty/coktailparty_boobs.jpg"]]
 
 You reach up and cup your "breasts" through the silk bra. The breast forms give a little bit of weight to them but any sort of closer inspection would quickly reveal the truth. You suspect that's why $wife.name chose this bra, to make them feel real but have them hidden. As your knead teh faux breasts your nipples tingle as the texture gently pulls and twists them around. You pull your hands away and...
 
@@ -405,7 +428,7 @@ You reach up and cup your "breasts" through the silk bra. The breast forms give 
 <<set $cocktailPartyChckBra to true>>
 
 ::firstcocktailparty_pose [event]
-Todo: Add image/gif
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_pose.jpg"]]
 
 With one hand behind your head you put the other on your hips before cocking them to the side. The girl looking back at you in the mirror could almost be a lingerie model. The slight tilt gives her hips even more definition as she smiles cutely at you. You quickly shake your head and drop the pose before...
 
@@ -417,7 +440,7 @@ With one hand behind your head you put the other on your hips before cocking the
 <<set $cocktailPartyPose to true>>
 
 ::firstcocktailparty_turn [event]
-Yodo: Add image/gif
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_turn.jpg"]]
 
 Looking back over your shoulder the ponytail flicks out of the way. The pale skim of your back is complemented by the dark lingerie. The modest silk panties cover your butt just enough but still show the hint of your cheeks underneath. The shaper and stockings create a sexy little squeeze at their edges to show you at least have a little muscle.
 
@@ -440,8 +463,6 @@ Looking back over your shoulder the ponytail flicks out of the way. The pale ski
 <</if>><</nobr>>
 
 $wife.name joins you and drops something on the chaise before she kneels down in front of you. Before you can react she pulls the panties down to the top of your stocking and pinches you right in the middle of your balls.
-
-Todo: Add image/gif
  
 <<= $player.speak("Ow! What the hell!")>>
  
@@ -503,13 +524,13 @@ There is a pair of black mary janes waiting and $wife.name buckles them up after
  
 You turn and look in one of the full length mirror. The cute girl you saw earlier is still watching you only now in a little maids outfit. Overall the look is quite modest but just sexy enough that you're going to turn some heads. The appeal is there though and you wouldn't be surprised to see the outfit in a high class porno.
 
-To do: add image
+[img[setup.ImagePath + "events/cocktailparty/maid_firstlook.jpg"]]
  
 <<nobr>>
 <span id="maiddressing6">
 	<<link "Do a spin">>
 		<<replace "#maiddressing6">>
-			Todo: Add image/gif
+			[img[setup.ImagePath + "items/wearables/dress/maid_twirl.gif"]]
 			<br><br>
 			As you spin around the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
 		<</replace>>
@@ -527,6 +548,7 @@ To do: add image
 			She seems happy with that response.<br>
 			<br>
 			[["Oh. One more thing."|firstcocktailparty16]]
+			<<set $player.femininity to 100>>
 		<</replace>>
 	<</link>><br>
 	<<link "Get me out of this stuff.">>
@@ -538,22 +560,17 @@ To do: add image
 			<<= $player.speak("Wouldn't $wife.title.")>><br>
 			<br>
 			[["Better. Oh. One more thing."|firstcocktailparty16]]
+			<<set $player.femininity to 100>>
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-Todo: Change player pronoun
-
 ::firstcocktailparty16 [event] 
-Todo: voice change
-
 $wife.name wraps a choker around your neck. It's not too tight but it does the job of hiding your small Adams apple.
  
 <<= $wife.speak("Here. Drink this.")>> She hands you a small glass bottle. <<= $wife.speak("The whole thing.")>>
 
 It smells like sour oranges and, knowing there's no way around it you down the entire thing. It burns going down, like a shot of pure alcohol.
-
-Todo: Add image/gif
  
 <<= $player.speak("What was that?")>> Your voice is softer and more feminine.
  
@@ -603,21 +620,35 @@ Choose your girl name: <<textbox "$player.femName" "" "firstcocktailparty18">>
 
 $wife.name gives you a spritz of some nice smelling perfume.
 
-Todo: Add image/gif
+[img[setup.ImagePath + "events/bath_routine/perfume01.gif"]]
 
 <<= $wife.speak("Now make sure you look after your outfit. I expect everything to be cleaned and returned. If you don't I'll just add the items to your debt, and they weren't cheap, trust me.")>>
 
 <<= $player.speak("Yes $wife.title.")>>
 
-<<= $wife.speak("Right then. Let's get you started with $caterer.name.")>>
+There is a knock on the door and $butler.name comes in nad gives a quick bow.
+
+<<= $butler.speak("$wife.title. $owner.title sent me ahead to make sure everything was prepared for this evening.")>>
+
+<<= $wife.speak("Right then. This is $player.femName. She will be assisting $caterer.name this evening. Please update AL with some new rules accordingly.")>>
+
+<<= $butler.speak("Of course $wife.title.")>>
+
+$wife.name walks past $butler.name back to the main house.
+
+$butler.name pauses for a moment and looks you up and down. There's littel to no chance he hasn't already seen through the outfit and make-up.
+
+<<= $butler.speak("AL, please update $player.femName's CUFF with the hostess protocols.")>> He looks you in the eye and you wan't to shrink back into yourself. <<= $butler.speak("Come with me $player.femName.")>>
 
 [[Introduce everyone to the new maid.|firstcocktailparty19]]
 
 ::firstcocktailparty19 [event]
 
-Todo: Add image/gif
+[img[setup.ImagePath + "events/cocktailparty/maid_debut.gif"]]
 
-You follow after $wife.name and try to get used to the changes in your wardrobe. The shaper isn't uncomfortable but both it and the short heels are forcing you walk with a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You figet with your hands as the long ponytail tickles between your shoulders. Before you come into view of anyone else you reach down and shift uncomfortably a few times. After checking yourself out in the mirror your tapped member is already straining against it's restricting plastic prison.
+You follow after $butler.name and try to get used to the changes in your wardrobe. The shaper isn't uncomfortable but both it and the short heels are forcing you walk with a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You figet with your hands as the long ponytail tickles between your shoulders. Before you come into view of anyone else you reach down and shift uncomfortably a few times. After checking yourself out in the mirror your tapped member is already straining against it's restricting plastic prison.
+
+$wife.name is already back in the kitchen with $caterer.name
  
 <<= $wife.speak("Well $caterer.name. This is $player.femName.")>>
  
@@ -627,7 +658,7 @@ $caterer.name walks over to you and walks around you thoughtfully. You're remind
  
 You're eyes dart to $wife.name who is looking at you sternly. <<= $player.speak("Some. I have experience with house work and general cleaning.")>>
  
-<<= $caterer.speak("Well I'm not looking for a kitchen hand.")>> He turns back to $wife.name. <<= $caterer.speak("She'll do. I'm going to have to switch things up and do standing service instead. That way she won't have to do any formal serving until after I've trained her properly.")>>
+<<= $caterer.speak("Well I'm not looking for a kitchen hand.")>> He turns back to $wife.name who raises an eyebrow at him. <<= $caterer.speak("She'll do. I'm going to have to switch things up and do standing service instead. That way she won't have to do any formal serving until after I've trained her properly.")>>
  
 <<= $wife.speak("Whatever you say $caterer.name. As long as you're happy.")>>
  
@@ -646,7 +677,7 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
 ::firstcocktailparty20 [event] 
 <<= $caterer.speak("Alright. I expect that you have no idea what you're doing when it comes to the food prep so just leave all that to me. I'll have to laps of the guests with the serving trays. Have you ever held a serving tray before.")>>
  
-<<= $player.speak("Only when bring out breakfast.")>>
+<<= $player.speak("Only when I bring out breakfast.")>>
  
 <<= $caterer.speak("So that's a no then. Here.")>> $caterer.name hands you a round serving tray.
 
@@ -671,16 +702,16 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
 			<br>
 			<<= $caterer.speak("You still need the other hand behind your back though.")>><br>
 			<br>
-			[[Continue praticing|firstcocktailparty21]]
+			[[Continue praticing|firstcocktailparty21a]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::firstcocktailparty21 [event]
+::firstcocktailparty21a [event]
 
 <<= $caterer.speak("I'll load you up with something that won't break and you can practice for a while.")>>
 
-Todo: Add image/gif
+[img[setup.ImagePath + "events/cocktailparty/serving_tray01.jpg"]]
 
 He loads the tray with some plastic and metal utensils he's not using and then you set about walking back and forth around the open space in the kitchen sitting room. It's a little hard a first and you drop everything a few times. The first time you dropped something you tried to bend down normally but the skirt started to ride up as you spread your knees. Instead you have to keep your legs together and kneel to the side to stop anyone from seeing the silk panties hiding your caged member. You catch a few of the workers stopping to stare when you do this and realise it’s a very delicate and lady like pose. When you stand back up you feel your crotch twitch uncomfortably against its restraints.
  
@@ -699,6 +730,10 @@ After a while you seem to be getting the hang of it and $caterer.name calls you 
 As you're watching him explain the ins and outs of body language in relation to food service it clicks that even the voice in your head sounds bit feminine. You wonder what was in that drink $wife.name gave you.
  
 After the lesson he has you do some basic tidy work while he finishes his prep. It's already starting to get to mid-afternoon. The workers have finished their setup and cleared out.
+
+[[Your work continues into the afternoon.|firstcocktailparty21b]]
+
+::firstcocktailparty21b
  
 You're busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She's wearing sexy black cocktail dress with back heels.
  
@@ -772,7 +807,7 @@ Following the reverse of what $wife.name did you remove the rest of the items, m
 
 As you do you realise you haven't been to the bathroom all night and starting to feel the pressure on your bladder. You hurriedly pull down the panties and for first time see your penis trapped in the pink chastity cage.
 
-Todo: image
+[img[setup.ImagePath + "items/wearables/toys/cage_01.jpg"]]
 
 <<= $player.speak("Pink. Really?")>>
 

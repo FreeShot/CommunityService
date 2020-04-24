@@ -85,7 +85,7 @@ class Player extends Character {
             {
                 name: "Alex",
                 title: "Alex",
-                feminity: 0,
+                femininity: 0,
                 looks: {
                 	hairColor: 0,
                 	hairLength: 0,
@@ -201,15 +201,15 @@ class Player extends Character {
     }
 
 	get gender() {
-		if (this.feminity > 50) {
+		if (this.femininity > 50) {
 			return "female";
 		}
 		return "male";
 	}
 
 	get getColor() {
-		if (this.feminity > this.gradiant.length - 1) {this.feminity = this.gradiant.length - 1;}
-		return this.gradiant[this.feminity];
+		if (this.femininity > this.gradiant.length - 1) {this.femininity = this.gradiant.length - 1;}
+		return this.gradiant[this.femininity];
 	}
 
 	speak(text) {

@@ -4,7 +4,7 @@
 
 <!--  NPC  -->
 
-<<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "sir", schedule: [
+<<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "Sir", schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "MasterBdRm", 
