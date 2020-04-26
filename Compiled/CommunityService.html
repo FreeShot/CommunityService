@@ -411,6 +411,7 @@ img {
 class Character {
 	constructor(config) {
 		this.name = '';
+        this.givenName = '';
 		this.title = '';
 		this.currentRoom = '';
 		this.color = '';
@@ -2532,7 +2533,7 @@ As you&#39;re watching him explain the ins and outs of body language in relation
  
 After the lesson he has you do some basic tidy work while he finishes his prep. It&#39;s already starting to get to mid-afternoon. The workers have finished their setup and cleared out.
 
-[[Your work continues intot he afternoon.|firstcocktailparty21b]]</tw-passagedata><tw-passagedata pid="84" name="firstcocktailparty21b" tags="" position="475,1100" size="100,100">You&#39;re busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She&#39;s wearing sexy black cocktail dress with back heels.
+[[Your work continues into the afternoon.|firstcocktailparty21b]]</tw-passagedata><tw-passagedata pid="84" name="firstcocktailparty21b" tags="" position="475,1100" size="100,100">You&#39;re busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She&#39;s wearing sexy black cocktail dress with back heels.
  
 &lt;&lt;= $daughter.speak(&quot;Wow. Mum wasn&#39;t joking. You&#39;re giving some of my friends a run for their money. The cute but sexy maid thing really works for you.&quot;)&gt;&gt;
 
@@ -2639,7 +2640,13 @@ VIP guests
 *owner*
 *wife*
 *daughter*
-*suitor*
+
+*suitor* -
+	[[suitorPath_intro01]]
+	&lt;&lt;if $suitor.acceptance &gt;= 1&gt;&gt;[[suitorPath_intro02]]
+	[[suitorPath_intro08]]&lt;&lt;/if&gt;&gt;
+
+
 *no name 1* - throw away for now. just to bulk out the interactions
 *no name 2*
 
@@ -2958,7 +2965,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $wife to new NPC({name: &quot;Mrs Sono&quot;, color: &quot;MediumOrchid&quot;, title: &quot;Ma&#39;am&quot;, schedule: [
+&lt;&lt;set $wife to new NPC({name: &quot;Mrs Sono&quot;, givenName: &quot;Maria&quot;, color: &quot;MediumOrchid&quot;, title: &quot;Ma&#39;am&quot;, schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;MasterBdRm&quot;, 
@@ -3044,7 +3051,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $cook to new NPC({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Ivan&quot;, schedule: [
+&lt;&lt;set $cook to new NPC({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Cook&quot;, schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;Kitchen&quot;, 
@@ -3070,9 +3077,9 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 
 &lt;&lt;set $caterer to new NPC({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
 
+&lt;&lt;set $suitor to new NPC({name: &quot;Rick&quot;, color: &quot;#708090&quot;, title: &quot;Mr Stone&quot;})&gt;&gt;
 
-
-&lt;&lt;set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer]&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="choresInit" tags="init" position="225,1475" size="100,100">&lt;!--  Chores  --&gt;
+&lt;&lt;set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer, $suitor]&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="choresInit" tags="init" position="225,1475" size="100,100">&lt;!--  Chores  --&gt;
 
 &lt;&lt;= $mansion.addChore(&quot;Foyer&quot;, new Chore({name: &quot;Clean Foyer&quot;, duration: {hour: 1}, passages:[{name: &quot;Foyer_cleaning&quot;, weight:2}, {name: &quot;Foyer_SweepMop&quot;, weight: 10}, {name: &quot;Foyer_Dusting&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Hall&quot;, new Chore({name: &quot;Clean Hall&quot;, duration: {hour: 1}, passages:[{name: &quot;Hall_cleaning&quot;, weight:2}, {name: &quot;Hall_Dusting&quot;, weight: 10}, {name: &quot;Hall_SweepMop&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
@@ -3534,7 +3541,7 @@ Day $time.day&lt;/span&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/silently&gt;&gt;
 &lt;&lt;/click&gt;&gt;
-[[Skip party intro|cocktailparty_start][$player.femName to &quot;Alexis&quot;]]</tw-passagedata><tw-passagedata pid="135" name="CUFF" tags="nobr mainMenu" position="600,1725" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
+[[Skip party intro|cocktailparty_start][$player.femName to &quot;Alexis&quot;; $player.femininity to 100]]</tw-passagedata><tw-passagedata pid="135" name="CUFF" tags="nobr mainMenu" position="600,1725" size="100,100">&lt;&lt;if $flags.cuff.init is false&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;elseif $flags.cuff.full is true&gt;&gt;
 	[[Chores|playerToDoList]]&lt;br&gt;
@@ -3609,196 +3616,286 @@ $wife.name starts heading back into the estate. &lt;&lt;= $wife.speak(&quot;This
 
 [[Avoid catching their attention until you get back to your room|PlayerBdRm]]
 
-&lt;&lt;set $eventCount_daughterdate to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="143" name="suitorPath_01" tags="" position="350,1850" size="100,100">After taking  moment to catch your breath you start heading back to the kitchen. As you round a corner you bump into one of the guests. You know he&#39;s been drinking all night since you&#39;ve been serving his drinks and dodging his groping hands.
- 
-&quot;Well, well.&quot; You can smell the whisky on his breath. &quot;Fancy bumping into you here cutie.&quot;
- 
-Every word has a slur to as he gets way to close to your personal space. You start backing away uncomfortably but he grabs you by the waist and pulls you towards him. His other hand reaches around and grabs you butt through. You can feel your chastity cage dangerously close to his leg.
- 
-Option.
-Object
-&quot;Hey let go of me!&quot;
- 
-&quot;I&#39;ve always wondered how *owner* keeps finding fine fillies like you. Maye I should ask him to loan you to me for a weekend away. You&#39;d enjoy that, right gorgeous?&quot;
- 
-Option
-Object
-&quot;I don&#39;t think so.&quot;
- 
-&quot;Aw, don&#39;t be like that.&quot;
- 
-Meek
-You try to pull yourself out of his grasp but his groping hands keep a hold of you.
- 
-One of his hands is slowly inching your skirt up your legs until you can feel his fingers on the bare skin of your thigh.
- 
-&quot;Come on sweetie. Give us a kiss.&quot;
- 
-His breath is gross as he leans forward with his lips pursed. You try pull away again but he&#39;s backed you up against the wall.
- 
-&quot;I don&#39;t think she&#39;s enjoying that.&quot;
- 
-The man turns and you can see *suitor* standing not far away with arms crossed.
- 
-&quot;We&#39;re having fun here.&quot; The man pulls you closer and you feel his thigh jostle your caged member.
- 
-&quot;One of you is.&quot; *suitor* starts walking closer. He&#39;s moving with such confidence the other man loosens his grip a little, not enough for you to get free though. &quot;*femname* you had some questions about my work earlier and I&#39;ve convinced *wife* to let me pull you aside for a while. Shall we?&quot;
- 
-*suitor* holds out his hand but you&#39;re too busy wrestling with the drunk to take it.
- 
-&quot;We were having a moment here. Why don&#39;t you leave us alone. You can have her after.&quot;
- 
-&quot;You&#39;re going to let her go now.&quot;
- 
-&quot;Or what?&quot;
- 
-*suitor* grabs the man&#39;s shoulder and leans forward to whisper something in his ear. Despite being close you can&#39;t quite catch what is being said but the drunks eyes widen. He pulls his hands away from your ass as if they were burned
- 
-&quot;Ok, ok. No need to get personal. It&#39;s a party after all.&quot;
- 
-Without taking his hand off the man&#39;s shoulder *suitor* guides him away and then gives him a quick shove.
- 
-Option
-Stand nervously
-You quickly pull you skirt back down lest it reveal you trapped penis underneath and then stand with your back still against the wall catching you breath.
- 
-Say thank you
-You quickly pull you skirt back down lest it reveal you trapped penis underneath.
- 
-&quot;Thank you. I really wasn&#39;t having a good time.&quot;
- 
-&quot;Let&#39;s go get a drink.&quot; *suitor* gently puts his hand on your shoulder to get you to follow him.
- 
-&quot;But *wife*…&quot;
- 
-&quot;I did actually speak to her. You seemed curious about what I do.&quot; He keeps talking as you walk into the study.
- 
-&gt; study
- 
-*suitor* gestures for you to sit down as walks over to the small bar *owner* keeps stocked.
- 
-Option
-Stand
-You stand there, unsure what to do. *suitor* turns around with two drinks in his hand.
- 
-&quot;Come on. You&#39;ve been working hard on your feet all night. You&#39;ve earned a little break.&quot;
- 
-Almost at the mention of your feet you feel them throbbing in the heels *wife* put you in. You take a seat on one of the lounges, making sure to straighten your skirt out to keep it from riding up too high.
- 
-Sit
-You take a seat on one of the lounges, making sure to straighten your skirt out to keep it from riding up too high. *suitor* turns around with two drinks in his hand.
- 
- 
-*suitor* takes the spot next to you. You half expected him to be all over you already but there&#39;s a nice, respectable gap between you. He hands you your drink and clinks the glasses in cheers.
- 
-Option
-Down it, it&#39;s been a long night.
-Your down the drink in one go and *suitor* chuckles.
- 
-&quot;A woman after my own heart.&quot; He follows suit and downs his drink before getting up to make another.
- 
-Sip the drink, savour this moment of peace.
-*Suitor* gives a half smile and just downs his before getting up to make another.
- 
-&quot;So you were curious about my work?&quot;
- 
-You sit quietly for a moment and looks at the door that&#39;s now closed leaving you two alone. *suitor* turns back around and see&#39;s you sitting nervously.
- 
-&quot;Don&#39;t worry. I just didn&#39;t want the noise cutting into our conversation.&quot; He re-joins you on the lounge. &quot;Most people at these things are just here for the drinks and gossip. I never get to talk about what I do. Did you have some questions.&quot;
- 
-You spend the next little while chatting with *suitor* about what he does. It&#39;s all very fascinating and you tell he&#39;s enjoying the conversation by how animated he gets when responding to a good question. The friendly conversation along with the liquor has you feeling relaxed for the first time in a while. He tells one particularly good joke that has you laughing, your hand instinctually grabs his arm as you both enjoy the humour.
- 
-After some time there&#39;s a knock at the door and you hear *daughters* voice.
- 
-&quot;Sorry *suitor*. We need *femname* or *caterer* is going to have kittens.&quot;
- 
-&quot;Well then. Back to it I suppose.&quot; *suitors stand up and holds his hand out to help you out of the seat.
- 
-You take it, it wouldn&#39;t be polite to refuse. You barely notice his hand on your lower back as you both head to the door. *daughter* is still waiting with a smile on her face.
- 
-&quot;What have you two been doing in there all alone.&quot;
- 
+&lt;&lt;set $eventCount_daughterdate to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="143" name="suitorPath_intro01" tags="" position="350,1850" size="100,100">$wife.name gestures for you to come over with your tray. She&#39;s standing with $owner.name and another man who stands out a bit as he isn&#39;t as dressed up as everyone else. He&#39;s wearing stylish jeans with plain shoes and nice t-shirt. There is a design on the shirt but it&#39;s half covered by his casual business jacket. He&#39;s staring right into your eyes as you walk over.
+
+&lt;&lt;= $wife.speak(&quot;$suitor.name what can we get you to start off?&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;A glass of bourbon. $caterer.name knows the bottle.&quot;)&gt;&gt; He doesn&#39;t stop looking and you nervously break eye contact with him.
+
+&lt;&lt;= $wife.speak(&quot;You heard the man. Off you go.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;Yes $wife.title.&quot;)&gt;&gt;
+
+You leave and come back with the drink a few moments later.
+
+&lt;&lt;= $suitor.speak(&quot;I&#39;d heard you had wrangled a new contract. You&#39;ve done well for yourselves once again.&quot;)&gt;&gt;
+
+&lt;&lt;= $owner.speak(&quot;She&#39;s performing *performance stats*. $player.femName, this is $suitor.title.&quot;)&gt;&gt;
+
+&lt;&lt;= $wife.speak(&quot;Yes, he&#39;s one of our most important business partners so make sure you look after him tonight.&quot;)&gt;&gt; you catch $wife.name touches $suitor.title back low enough to be an obvious flirt.
+
+&lt;&lt;= $owner.speak(&quot;He&#39;s one of the driving forces between opening up trade with outside nations. He&#39;s also the man behind most of our renewable energy technology.&quot;)&gt;&gt;
+
+&lt;&lt;= $wife.speak(&quot;Although he&#39;s a bit behind the times when it comes to our indenture policies.&quot;)&gt;&gt; $wife.name gives him a playful tap on the chest with the back of her hand. &lt;&lt;= $wife.speak(&quot;When will you finally bite the bullet and stop objecting to male servitude. They&#39;re just as culpable as women when it comes to crime.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;This guy is the reason I&#39;m stuck dressed like a girl.&lt;/i&gt;&quot;)&gt;&gt;
+
+&lt;&lt;nobr&gt;&gt;
+&lt;span id=&quot;suitorinterest&quot;&gt;
+	&lt;&lt;link &quot;Show an interest in his work to score some points with $wife.name.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#suitorinterest&quot;&gt;&gt;
+			&lt;&lt;= $player.speak(&quot;I didn&#39;t know one person was responsible for keeping all the lights running here. I would like to hear about…&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $wife.speak(&quot;Some other time. $suitor.title has his drink and there are other guests. That will be all for now $player.femName.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $suitor.speak(&quot;Maybe I can stop by some other time when you&#39;re not in such high demand?&quot;)&gt;&gt; He&#39;s still looking at you but now with a slight smile. Unlike some other people, his eyes stay on yours. It seems like he&#39;s just being nice but given your current attire it&#39;s a little unnerving.&lt;br&gt;
+ 			&lt;br&gt;
+			&lt;&lt;= $wife.speak(&quot;You&#39;re always welcome $suitor.name. We love having you over.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			You bow your head and [[Get back to work.|cocktailparty_start]]
+			&lt;&lt;set $suitor.acceptance to 1&gt;&gt;
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;br&gt;
+	&lt;&lt;link &quot;I don&#39;t want to talk to this guy.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#suitorinterest&quot;&gt;&gt;
+			&lt;&lt;= $player.speak(&quot;Well if you&#39;ll excuse me. I need to keep doing the rounds.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $wife.speak(&quot;Of course $player.femName. Off you go.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			You bow your head and [[Get back to work.|cocktailparty_start]]
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="144" name="suitorPath_intro02" tags="" position="475,1850" size="100,100">After taking  moment to catch your breath you start heading back to the kitchen. As you round a corner you bump into one of the guests. You know he&#39;s been drinking all night since you&#39;ve been serving his drinks and dodging his groping hands.
+
+&lt;&lt;= Character.speakAnonymous(&quot;Well, well.&quot;, &quot;Peru&quot;)&gt;&gt; You can smell the whisky on his breath. &lt;&lt;= Character.speakAnonymous(&quot;Fancy bumping into you here cutie.&quot;, &quot;Peru&quot;)&gt;&gt;
+
+Every word has a slur to it as he gets way too far inside your personal space. You start backing away uncomfortably but he grabs you by the waist and pulls you towards him. His other hand reaches around and grabs your butt through the maid skirt. You can feel your chastity cage dangerously close to his leg.
+
+[img[setup.ImagePath + &quot;character/suitor/suitor_intro_assgrab.gif&quot;]]
+
+&lt;&lt;nobr&gt;&gt;
+&lt;span id=&quot;suitorRescue01&quot;&gt;
+	&lt;&lt;link &quot;No fucking way!&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#suitorRescue01&quot;&gt;&gt;
+			&lt;&lt;= $player.speak(&quot;Hey let go of me!&quot;)&gt;&gt; You struggle against his grip but his hands keep worming their way around you.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= Character.speakAnonymous(&quot;I&#39;ve always wondered how *owner* keeps finding fine fillies like you. Maybe I should ask him to loan you to me for a weekend away. You&#39;d enjoy that, right gorgeous?&quot;, &quot;Peru&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $player.speak(&quot;I don&#39;t think so.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= Character.speakAnonymous(&quot;Aw, don&#39;t be like that.&quot;, &quot;Peru&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			One of his hands is slowly inching your skirt up your legs until you can feel his fingers brush past your stockings and rub the bare skin of your thigh.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= Character.speakAnonymous(&quot;Come on sweetie. Give us a kiss.&quot;, &quot;Peru&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			His breath is gross as he leans forward with his lips pursed. You try pull away again but he&#39;s backed you up against the wall.&lt;br&gt;
+			&lt;br&gt;
+			Your heart is thumping hard when [[you here a voice nearby.|suitorPath_intro03]]
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;br&gt;
+	&lt;&lt;link &quot;Hope for him stop.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#suitorRescue01&quot;&gt;&gt;
+			You try to pull yourself out of his grasp but his groping hands keep a hold of you.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= Character.speakAnonymous(&quot;I&#39;ve always wondered how $owner.name keeps finding fine fillies like you. Maybe I should ask him to loan you to me for a weekend away. You&#39;d enjoy that, right gorgeous?&quot;, &quot;Peru&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			You try to turn away from him but his hands are eveywhere. One of them is slowly inching your skirt up your legs until you can feel his fingers brush past your stockings and rub the bare skin of your thigh.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= Character.speakAnonymous(&quot;Come on sweetie. Give us a kiss.&quot;, &quot;Peru&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			His breath is gross as he leans forward with his lips pursed. You shrink back against the wall behind you, knowing there&#39;s no way for you to stop him.&lt;br&gt;
+			&lt;br&gt;
+			Your heart is thumping hard when [[you here a voice nearby.|suitorPath_intro03]]
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="145" name="suitorPath_intro03" tags="" position="600,1850" size="100,100">&lt;&lt;= $suitor.speak(&quot;I don&#39;t think she&#39;s enjoying that.&quot;)&gt;&gt;
+
+The man turns and you can see $suitor.title standing not far away with arms crossed.
+
+&lt;&lt;= Character.speakAnonymous(&quot;We&#39;re having fun.&quot;, &quot;Peru&quot;)&gt;&gt; The man pulls you closer and you feel his thigh jostle your caged member.
+
+&lt;&lt;= $suitor.speak(&quot;One of you is.&quot;)&gt;&gt; $suitor.title starts walking closer. He&#39;s moving with such confidence the other man loosens his grip a little, not enough for you to get free though. &lt;&lt;= $suitor.speak(&quot;$player.femName you had some questions about my work earlier and I&#39;ve convinced $wife.givenName to let me pull you aside for a while. Shall we?&quot;)&gt;&gt;
+
+$suitor.title holds out his hand but you&#39;re too busy wrestling with the drunk to take it.
+
+&lt;&lt;= Character.speakAnonymous(&quot;We were having a moment here. Why don&#39;t you leave us alone. You can have her after.&quot;, &quot;Peru&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;You&#39;re going to let her go now.&quot;)&gt;&gt;
+
+&lt;&lt;= Character.speakAnonymous(&quot;Or what?&quot;, &quot;Peru&quot;)&gt;&gt;
+
+$suitor.title grabs the man&#39;s shoulder and leans forward to whisper something in his ear. Despite being close you can&#39;t quite catch what is being said but the drunks eyes widen. He pulls his hands away from your ass as if they had been burned.
+
+&lt;&lt;= Character.speakAnonymous(&quot;Ok, ok. No need to get personal. It&#39;s a party after all.&quot;, &quot;Peru&quot;)&gt;&gt;
+
+Without taking his hand off the man&#39;s shoulder $suitor.title guides him away and then gives him a soft shove. You quickly pull you skirt back down lest it reveal you trapped penis underneath.
+
+&lt;&lt;= $player.speak(&quot;Thank you. I really wasn&#39;t having a good time.&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;Let&#39;s go get a drink.&quot;)&gt;&gt; $suitor.title gently puts his hand on your shoulder to get you to follow him.
+
+&lt;&lt;= $player.speak(&quot;But $wife.name...&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;I did actually speak to her. You seemed curious about what I do.&quot;)&gt;&gt;
+
+[[Follow him to the study.|suitorPath_intro04]]
+[[Don&#39;t encourage this further.|suitorPath_introEnd]]</tw-passagedata><tw-passagedata pid="146" name="suitorPath_introEnd" tags="" position="725,1850" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry $suitor.title but I reallyshould be getting back to work.&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;But I thought you had a interest in my work.&quot;)&gt;&gt; He looks genuinely confusded. 
+
+&lt;&lt;= $player.speak(&quot;Well.. um, sort of. But I&#39;m here to work for $owner.name. You understand right?&quot;)&gt;&gt;
+
+His demeanour quickly changes. &lt;&lt;= $suitor.speak(&quot;Very well. I guess you&#39;re just another flirty slave then.&quot;)&gt;&gt;
+
+He turns and heads to the foyer. You can even hear the door slam over the din of the party.
+
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;Shit. That&#39;s going to have consequences.&lt;/i&gt;&quot;)&gt;&gt;
+
+[[Get back to the party.|cocktailparty_start]]
+
+&lt;&lt;set $suitor.acceptance to 0&gt;&gt;
+To do: minus points for leading him on then rejecting him
+	comment when being assessed</tw-passagedata><tw-passagedata pid="147" name="suitorPath_intro04" tags="" position="850,1850" size="100,100">$suitor.title gestures for you to sit down as he walks over to the small bar $owner.name keeps stocked.
+
+&lt;&lt;nobr&gt;&gt;
+&lt;span id=&quot;suitorRescue02&quot;&gt;
+	&lt;&lt;link &quot;Hesitate.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#suitorRescue02&quot;&gt;&gt;
+			You stand there, unsure what to do. $suitor.title turns around with two drinks in his hand.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $suitor.speak(&quot;Come on. You&#39;ve been working hard on your feet all night. You&#39;ve earned a little break.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			Almost at the mention of your feet you feel them throbbing in the heels $wife.name put you in.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;nobr&gt;&gt;
+			&lt;span id=&quot;suitorRescue03&quot;&gt;
+				&lt;&lt;link &quot;Sit.&quot;&gt;&gt;
+					&lt;&lt;replace &quot;#suitorRescue03&quot;&gt;&gt;
+						You take a seat on one of the lounges, making sure to straighten your skirt out to keep it from riding up too high.&lt;br&gt;
+						&lt;br&gt;
+						$suitor.title takes the spot next to you. You half expected him to be all over you already but there&#39;s a nice, respectable gap between you. He hands you your drink.&lt;br&gt;
+						&lt;br&gt;
+						[[Thank him.|suitorPath_intro05]]
+					&lt;&lt;/replace&gt;&gt;
+				&lt;&lt;/link&gt;&gt;&lt;br&gt;
+			&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="148" name="suitorPath_intro05" tags="" position="975,1850" size="100,100">&lt;&lt;= $player.speak(&quot;Thank you $suitor.title.&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;Just $suitor.name. I don&#39;t like it when people call be $suitor.title. Make sure you don&#39;t regardless of who we&#39;re around.&quot;)&gt;&gt;
+
+For moment his tone became very commanding. It was subtle, the same as $owner.name when he gives you an order and reminds you that $suitor.title... no $suitor.name is basically is charge here.
+
+He holds out his glass and clinks it against yours.
+
+[img[setup.ImagePath + &quot;character/suitor/suitor_intro_clink.gif&quot;]]
+
+&lt;&lt;= $suitor.speak(&quot;Cheers.&quot;)&gt;&gt;
+
+&lt;&lt;nobr&gt;&gt;
+&lt;span id=&quot;suitorRescue04&quot;&gt;
+	&lt;&lt;link &quot;Down it, it&#39;s been a long night.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#suitorRescue04&quot;&gt;&gt;
+			Your down the drink in one go and $suitor.name chuckles.&lt;br&gt;
+ 			&lt;br&gt;
+			&lt;&lt;= $suitor.speak(&quot;A woman after my own heart.&quot;)&gt;&gt; He follows suit and downs his drink before getting up to make [[another.|suitorPath_intro06]]
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;br&gt;
+	&lt;&lt;link &quot;Sip the drink and savour this moment of peace.&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#suitorRescue04&quot;&gt;&gt;
+			$suitor.name gives a half smile and just downs his before getting up to make [[another.|suitorPath_intro06]]
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="149" name="suitorPath_intro06" tags="" position="1100,1850" size="100,100">&lt;&lt;= $suitor.speak(&quot;So you were curious about my work?&quot;)&gt;&gt;
+
+You sit quietly for a moment and look at the door that&#39;s now closed leaving you two alone. $suitor.name turns back around and see&#39;s you sitting nervously.
+
+&lt;&lt;= $suitor.speak(&quot;Don&#39;t worry. I just didn&#39;t want the noise cutting into our conversation.&quot;)&gt;&gt; He re-joins you on the lounge. &lt;&lt;= $suitor.speak(&quot;Most people at these things are just here for the drinks and gossip. I never get to talk about what I do. Did you have some questions?&quot;)&gt;&gt;
+
+You spend the next little while chatting with $suitor.name about what he does. It&#39;s all very fascinating and you tell he&#39;s enjoying the conversation by how animated he gets when responding to a good question. The friendly conversation along with the liquor has you feeling relaxed for the first time in a while.
+
+[[Relax and enjoy the company.|suitorPath_intro07]]</tw-passagedata><tw-passagedata pid="150" name="suitorPath_intro07" tags="" position="1225,1850" size="100,100">You lose track of time in the conversation. He tells one particularly good joke that has you laughing, you absentmindedly grab his arm as you both enjoy the humour. You feel a touch on your leg and see $suitor.name has placed his hand on it. Before you can react there&#39;s a knock at the door and $daughter.name comes in.
+
+&lt;&lt;= $daughter.speak(&quot;Sorry $suitor.name. We need $player.femName or $caterer.name is going to have kittens.&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;Well then. Back to it I suppose.&quot;)&gt;&gt; $suitor.name stand up and holds his hand out to help you out of the seat.
+
+You take it, it wouldn&#39;t be polite to refuse. He hands you his glass so you can take it to the kitchen. &lt;&lt;= $player.speak(&quot;&lt;i&gt;When did he get me a cocktail?&lt;/i&gt;&quot;)&gt;&gt; You take it and barely notice his hand on your lower back as you both head to the door. $daughter.name is still waiting with a smile on her face.
+
+&lt;&lt;= $daughter.speak(&quot;What have you two been doing in there all alone.&quot;)&gt;&gt;
+
 Your cheeks flush as you realise the implication.
- 
-&quot;Um, we were just…&quot;
- 
-*suitor* hand holds onto your shoulder. &quot;Talking business. *femname* has a keen mind I wanted to get away from all the idle chatter for a bit. Don&#39;t go spreading any rumours.&quot;
- 
-&quot;Sure. Whatever you say.&quot; *daughter*, still grinning at you, takes *suitors other hand. &quot;Back to *caterer* *femname* before he storms out in protest.&quot;
- 
-The two of them start chatting as you head back to the kitchen.
- 
-Suitor 2 - end of the night
- 
-As evening winds down you&#39;re mostly stuck in the kitchen cleaning up with *caterer*. People have been leaving for a while now leaving the estate mostly empty.
- 
-You&#39;re elbow deep in water when *wife and *suitor* walk in. *wife* is laughing at something she found funny while hanging off of *suitors* arm but you barely notice them.
- 
-&quot;Well. It&#39;s late so I think it&#39;s time for me to head off.&quot; *suitor* says.
- 
-&quot;Yes, well it was lovely having you over again. You must visit more often.&quot;
- 
-You pick up a stack of dishes and put them in the cupboard. As you look up *suitor* is giving you a side look.
- 
-&quot;It might do just that. We&#39;ll see how busy my schedule is.&quot;
- 
-The look doesn&#39;t go unnoticed by *wife* who follows his eyes to you.
- 
-&quot;I look forward to it.&quot; *wife* gives him a hug and a quick peck on the cheek before turning back to you. &quot;*femname*. See my guest to the door. After that you can finish up for the night.&quot;
- 
-*wife* heads off to the master bedroom to join *owner* leaving you alone with *suitor*.
- 
-&quot;Um, this way sir.&quot;
- 
-Suitor falls in next to you as you head to the main entrance.
- 
-Option
-Engage
-&quot;So did you have a good night *suitor*?&quot;
- 
-&quot;Some parts were better than others. A particularly engaging conversation with a lovely young woman was probably the highlight.&quot;
- 
-&quot;Lucky girl.&quot; you think to yourself sarcastically.
- 
-Walk in silence.
- 
-You both reach the door.
- 
-&quot;Well goodnight *suitor*.&quot;
- 
-You turn to leave when *suitor* stops you with an out held hand. Turning back to face him.
- 
-&quot;Yes sir?&quot;
- 
-*suitor* gently places a hand on your shoulder.
- 
-Option
-Back away
-You take a step back but he follow and you find yourself against the main doors.
- 
-Don&#39;t panic
-Your heart thumps in your chest hoping this is just a hug.
- 
-*suitor* pulls you towards him before bringing his lips to yours. It takes a moment to register the firm yet gentle kiss and then another beat before it clicks you are dressed as a girl being kissed by a man.
- 
-Option
-Nope. This isn&#39;t happening.
-Unsure how to respond you lock up as *suitor* continues the kiss. He holds you against him and you can feel the pressure of his firm chest squishing your &quot;breasts&quot;. Your heart is pounding underneath.
- 
-Struggle ineffectively.
+
+&lt;&lt;= $player.speak(&quot;Um, we were just...&quot;)&gt;&gt;
+
+You start to pull away but $suitor.name holds onto your shoulder. &lt;&lt;= $suitor.speak(&quot;Talking business. $player.femName has a keen mind I wanted to get away from all the idle chatter for a bit. Don&#39;t go spreading any rumours.&quot;)&gt;&gt;
+
+&lt;&lt;= $daughter.speak(&quot;Sure. Whatever you say.&quot;)&gt;&gt; $daughter.name, still grinning at you, takes $suitor.names other hand. &lt;&lt;= $daughter.speak(&quot;Back to $caterer.name $player.femName, before he storms out in protest.&quot;)&gt;&gt;
+
+The two of them start chatting as you head [[back to the kitchen.|cocktailparty_start]]</tw-passagedata><tw-passagedata pid="151" name="suitorPath_intro08" tags="" position="100,1975" size="100,100">As evening winds down you&#39;re mostly stuck in the kitchen cleaning up with $caterer.name. People have been leaving for a while now and the estate is mostly empty.
+
+You&#39;re elbow deep in water when $wife.name and $suitor.name walk in. $wife.name is laughing at something she found funny while hanging off of $suitor.names arm but you barely notice them.
+
+&lt;&lt;= $suitor.speak(&quot;Well. It&#39;s late so I think it&#39;s time for me to head off.&quot;)&gt;&gt; $suitor.name says.
+
+&lt;&lt;= $wife.speak(&quot;Yes, well it was lovely having you over again. You must visit more often.&quot;)&gt;&gt;
+
+You pick up a stack of dishes and put them in the cupboard. As you look up $suitor.name is giving you a side look.
+
+&lt;&lt;= $suitor.speak(&quot;I might do just that. We&#39;ll see how busy my schedule is.&quot;)&gt;&gt;
+
+The look doesn&#39;t go unnoticed by $wife.name who follows his eyes to you.
+
+&lt;&lt;= $wife.speak(&quot;I look forward to it.&quot;)&gt;&gt; $wife.name gives him a hug and a quick peck on the cheek before turning back to you. &lt;&lt;= $wife.speak(&quot;$player.femName. See my guest to the door. After that you can finish up for the night.&quot;)&gt;&gt;
+
+$wife.name heads off to the master bedroom to join $owner.name leaving you alone with $suitor.name.
+
+&lt;&lt;= $player.speak(&quot;Um, this way sir.&quot;)&gt;&gt;
+
+$suitor.name falls in next to you as you head to the [[main entrance.|suitorPath_intro09]]</tw-passagedata><tw-passagedata pid="152" name="suitorPath_intro09" tags="" position="225,1975" size="100,100">&lt;&lt;= $player.speak(&quot;So did you have a good night $suitor.name?&quot;)&gt;&gt;
+
+&lt;&lt;= $suitor.speak(&quot;Some parts were better than others. A particularly engaging conversation with a lovely young woman was probably the highlight.&quot;)&gt;&gt;
+
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;Lucky girl.&lt;/i&gt;&quot;)&gt;&gt; You think to yourself sarcastically.
+
+You both reach the door and you bw your head slightly.
+
+&lt;&lt;= $player.speak(&quot;Well goodnight $suitor.name.&quot;)&gt;&gt;
+
+You turn to leave when $suitor.name stops you with an out held hand. You turn back to face him.
+
+&lt;&lt;= $player.speak(&quot;Yes sir?&quot;)&gt;&gt;
+
+$suitor.name gently places a hand on your shoulder and start leaning towards you.
+
+[[Panic!|suitorPath_intro10][$suitorIntroPanic to true]]
+[[Stay calm.|suitorPath_intro10][$suitorIntroPanic to false]]</tw-passagedata><tw-passagedata pid="153" name="suitorPath_intro10" tags="" position="350,1975" size="100,100">&lt;&lt;if $suitorIntroPanic is true&gt;&gt;
+	You quickly take a step back but he follows and you find yourself pinned between $suitor.name and the main doors.
+&lt;&lt;else&gt;&gt;
+	Your heart thumps in your chest hoping this is just a hug.
+&lt;&lt;/if&gt;&gt;
+
+[img[setup.ImagePath + &quot;character/suitor/suitor_intro_kiss.gif&quot;]]
+
+$suitor.name pulls you towards him before bringing his lips to yours. It takes a moment to register the firm yet gentle kiss and then another beat before it clicks you are dressed as a girl being kissed by a man.
+
+Unsure how to respond you lock up as $suitor.name continues the kiss. He holds you against him and you can feel the pressure of his firm chest squishing your &quot;breasts&quot;. Your heart is pounding underneath.
+
 You try to wiggle free but his hold is firm and you have nowhere to go. He mistakes the struggle for enthusiasm and you feel his tongue push between your lips and explore your mouth.
- 
-Eventually *suitor* pulls back and cups your face cheek with his hand.
- 
-&quot;Until next time.&quot;
- 
-With that he lets himself out, leaving you alone in the foyer.
- 
-Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He must&#39;ve thought you being friendly was you returning the affection. Which is wasn&#39;t.
- 
-You shift your hips again as your caged member was brought to life by the kiss. It&#39;s already pressing against the hard plastic.
- 
-You definitely weren&#39;t flirting back…</tw-passagedata><tw-passagedata pid="144" name="playerDescription" tags="nobr" position="475,1850" size="100,100">&lt;&lt;silently&gt;&gt;
+
+Eventually $suitor.name pulls back and cups your face with his hand.
+
+&lt;&lt;= $suitor.speak(&quot;Until next time.&quot;)&gt;&gt;
+
+With that he lets himself out, [[leaving you alone in the foyer.|suitorPath_intro11]]</tw-passagedata><tw-passagedata pid="154" name="suitorPath_intro11" tags="" position="475,1975" size="100,100">Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He must&#39;ve thought you being friendly was you returning the affection. Which it wasn&#39;t.
+
+You shift your hips again as you realise your caged member is pressing against the hard plastic after being brought to life by the kiss.
+
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;I definitely wasn&#39;t flirting back...&lt;/i&gt;&quot;)&gt;&gt;
+
+[[Finish cleaning up.|cocktailparty_finish]]</tw-passagedata><tw-passagedata pid="155" name="playerDescription" tags="nobr" position="600,1975" size="100,100">&lt;&lt;silently&gt;&gt;
 
 &lt;&lt;/silently&gt;&gt;
 
@@ -3834,7 +3931,7 @@ slots: [
    	{name: &quot;toy-front&quot;, equipped: null},
    	{name: &quot;toy-back&quot;, equipped: null}
 ],
- --&gt;</tw-passagedata><tw-passagedata pid="145" name="PlayerBdRm" tags="playerRoom room" position="600,1850" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+ --&gt;</tw-passagedata><tw-passagedata pid="156" name="PlayerBdRm" tags="playerRoom room" position="725,1975" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $eventCount_cocktailparty &gt;= 13&gt;&gt;
 	$wife.name is hosting a party tonight.&lt;br&gt;
@@ -3873,16 +3970,16 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 	&lt;&lt;/click&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="playerRoomShower" tags="playerRoom" position="725,1850" size="100,100">[img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="157" name="playerRoomShower" tags="playerRoom" position="850,1975" size="100,100">[img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]
 
 You turn on the warm stream of water and step into the shower. You soap up and wash yourself clean. This moment of relaxation feels great, almost as if your worreis are washing away with the water.
-&lt;&lt;set $time.addTime({day:0, hour:0, minute: 15})&gt;&gt;</tw-passagedata><tw-passagedata pid="147" name="playerRoomMakup" tags="playerRoom" position="850,1850" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="148" name="playerRoomMorningRoutine" tags="playerRoom" position="975,1850" size="100,100">Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.</tw-passagedata><tw-passagedata pid="149" name="playerRoomWardrobe" tags="playerRoom" position="1100,1850" size="100,100">Todo: Add clothes
+&lt;&lt;set $time.addTime({day:0, hour:0, minute: 15})&gt;&gt;</tw-passagedata><tw-passagedata pid="158" name="playerRoomMakup" tags="playerRoom" position="975,1975" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="159" name="playerRoomMorningRoutine" tags="playerRoom" position="1100,1975" size="100,100">Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.</tw-passagedata><tw-passagedata pid="160" name="playerRoomWardrobe" tags="playerRoom" position="1225,1975" size="100,100">Todo: Add clothes
 &lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="RoomDescription" tags="room" position="1225,1850" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="151" name="sleep" tags="sleep" position="100,1975" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
+&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="161" name="RoomDescription" tags="room" position="100,2100" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="162" name="sleep" tags="sleep" position="225,2100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 
@@ -3896,7 +3993,7 @@ Wake up will be very uncomfortable due to morning wood
 &lt;&lt;set $flags.cocktailIntroComplete to true&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-[[Start the next day|wakeUp]]</tw-passagedata><tw-passagedata pid="152" name="wakeUp" tags="sleep" position="225,1975" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
+[[Start the next day|wakeUp]]</tw-passagedata><tw-passagedata pid="163" name="wakeUp" tags="sleep" position="350,2100" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;= $time.addTime({day:1}); $time.setDate(&quot;wakeup&quot;)&gt;&gt;
@@ -3908,7 +4005,7 @@ Wake up will be very uncomfortable due to morning wood
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;= $mansion.resetChores()&gt;&gt;
 
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="153" name="commented" tags="" position="350,1975" size="100,100">&lt;&lt;if $time.day == 9&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="164" name="commented" tags="" position="475,2100" size="100,100">&lt;&lt;if $time.day == 9&gt;&gt;
 	As you roll out of bed you can&#39;t help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards you decide to ride the wave and end up relaxing in your room for the rest of the morning instead of getting your chores done.&lt;br&gt;
 	&lt;br&gt;
 	It&#39;s nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.&lt;br&gt;

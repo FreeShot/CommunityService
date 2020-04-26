@@ -33,7 +33,7 @@
 	}
 ]})>>
 
-<<set $wife to new NPC({name: "Mrs Sono", color: "MediumOrchid", title: "Ma'am", schedule: [
+<<set $wife to new NPC({name: "Mrs Sono", givenName: "Maria", color: "MediumOrchid", title: "Ma'am", schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "MasterBdRm", 
@@ -119,7 +119,7 @@
 	}
 ]})>>
 
-<<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Ivan", schedule: [
+<<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Cook", schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Kitchen", 
@@ -145,6 +145,6 @@
 
 <<set $caterer to new NPC({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
 
+<<set $suitor to new NPC({name: "Rick", color: "#708090", title: "Mr Stone"})>>
 
-
-<<set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer]>>
+<<set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer, $suitor]>>

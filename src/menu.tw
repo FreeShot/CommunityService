@@ -23,7 +23,7 @@ Day $time.day</span>
 		<<goto `passage()`>>
 	<</silently>>
 <</click>>
-[[Skip party intro|cocktailparty_start][$player.femName to "Alexis"]]
+[[Skip party intro|cocktailparty_start][$player.femName to "Alexis"; $player.femininity to 100]]
 
 ::CUFF [nobr mainMenu]
 <<if $flags.cuff.init is false>>

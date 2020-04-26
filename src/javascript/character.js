@@ -1,6 +1,7 @@
 class Character {
 	constructor(config) {
 		this.name = '';
+        this.givenName = '';
 		this.title = '';
 		this.currentRoom = '';
 		this.color = '';

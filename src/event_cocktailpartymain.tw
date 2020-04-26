@@ -8,7 +8,13 @@ VIP guests
 *owner*
 *wife*
 *daughter*
-*suitor*
+
+*suitor* -
+	[[suitorPath_intro01]]
+	<<if $suitor.acceptance >= 1>>[[suitorPath_intro02]]
+	[[suitorPath_intro08]]<</if>>
+
+
 *no name 1* - throw away for now. just to bulk out the interactions
 *no name 2*
 
