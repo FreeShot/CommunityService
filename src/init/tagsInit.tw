@@ -15,5 +15,5 @@
 	"Sunday" : function() {return (State.variables.time.weekDayFormat == "Sunday");},
 	"daughterAcceptance2" : function() {return (State.variables.daughter.acceptance >= 2);},
 	"playerLaundry" : function() {return (State.variables.player.currentRoom === "Laundry");},
-	"cocktailPartyPrep" : function() {return ($flags.cocktailIntroComplete != true);}
+	"cocktailPartyPrep" : function() {return ($flags.cocktailIntroComplete == true);}
 }>>

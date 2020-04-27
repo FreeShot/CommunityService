@@ -1,6 +1,20 @@
-::cocktailparty_start [event]
+::cocktailparty_setup01 [event]
 <<= $time.setDate({day:0, hour: 16, minute:0})>>
 <<set $cocktailparty_start to true>>
+<<set $voiceSpray to true>>
+<<if $flags.firstCocktailParty is false>>
+
+	To do: add truncated description of the player getting ready
+
+	<<set $previousFemininity to ($player.femininity += 1)>>
+	<<set $player.femininity to 100>>
+<</if>>
+
+previousFemininity = $previousFemininity
+
+[[cocktailparty_serving01]]
+
+::cocktailparty_serving01 [event]
 
 Options to prioritise guests or VIP's
  
@@ -32,7 +46,7 @@ Eventually the last guests leave and you help $caterer.name clean up. By the tim
 <</if>>
  <<= $time.setDate({day:0, hour: 1, minute:30})>>
 
-::cocktailpartyMorning [event]
+::cocktailparty_Morning [event]
 
 <<if $flags.firstCocktailParty is true>>>>
 You look at the time and hope $wife.name is awake. You put on your normal clothes, grab the maid's uniform and head the master bedroom. After listening for the sound of any... morning activities you think it's clear so knock and wait for a moment and $wife.title eventually open the door.
@@ -53,7 +67,7 @@ You look at the time and hope $wife.name is awake. You put on your normal clothe
 
 You can see $owner.name lying asleep face down, clearly naked, and quickly follow $wife.name into the wardrobe.<<set $flags.firstCocktailParty to false>>
 <<else>>
-You get up, grab the maid's uniform and head the master bedroom so $wife.name
+You get up, grab the maid's uniform and head to the master bedroom so $wife.name
 
 <<= $wife.speak("What is it?")>> She seems awake enough so you think you timed it right.
 
@@ -97,7 +111,7 @@ You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
 
 As you're heading back to the bar you over hear $owner.name chatting with another guest.
 
-<<= Character.speakAnonymous("She's a fine young girl you've taken in. You've really out done yourself.")>>
+<<= Character.speakAnonymous("She's a fine young girl you've taken in. You've really out done yourself.", "YellowGreen")>>
 
 You look over your shoulder and can see $owner.name and another man looking you up and down. His gaze lingers on your bouncing skirt and apron.
 
@@ -131,7 +145,7 @@ As you turn away to retrieve the man's drink you feel a hard pinch on your rear 
 <span id="groping01">
 	<<link "Defend yourself.">>
 		<<replace "#groping01">>
-			<<= $player.speak("Ow, hands to yourself.")>><br>
+			<<= $player.speak("Ow! Hands to yourself.")>><br>
 			<br>
 			The man looks surprised at your reaction as you slap his hand away. Some of the guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else.<br>
 			<br>

@@ -36,7 +36,7 @@ You leave and come back with the drink a few moments later.
  			<br>
 			<<= $wife.speak("You're always welcome $suitor.name. We love having you over.")>><br>
 			<br>
-			You bow your head and [[Get back to work.|cocktailparty_start]]
+			You bow your head and [[Get back to work.|cocktailparty_serving01]]
 			<<set $suitor.acceptance to 1>>
 		<</replace>>
 	<</link>><br>
@@ -46,7 +46,7 @@ You leave and come back with the drink a few moments later.
 			<br>
 			<<= $wife.speak("Of course $player.femName. Off you go.")>><br>
 			<br>
-			You bow your head and [[Get back to work.|cocktailparty_start]]
+			You bow your head and [[Get back to work.|cocktailparty_serving01]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
@@ -148,7 +148,7 @@ He turns and heads to the foyer. You can even hear the door slam over the din of
 
 <<= $player.speak("<i>Shit. That's going to have consequences.</i>")>>
 
-[[Get back to the party.|cocktailparty_start]]
+[[Get back to the party.|cocktailparty_serving01]]
 
 <<set $suitor.acceptance to 0>>
 To do: minus points for leading him on then rejecting him
@@ -246,7 +246,7 @@ You start to pull away but $suitor.name holds onto your shoulder. <<= $suitor.sp
 
 <<= $daughter.speak("Sure. Whatever you say.")>> $daughter.name, still grinning at you, takes $suitor.names other hand. <<= $daughter.speak("Back to $caterer.name $player.femName, before he storms out in protest.")>>
 
-The two of them start chatting as you head [[back to the kitchen.|cocktailparty_start]]
+The two of them start chatting as you head [[back to the kitchen.|cocktailparty_serving01]]
 
 ::suitorPath_intro08
 

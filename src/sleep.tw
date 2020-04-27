@@ -3,7 +3,7 @@
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
 
-<<if $flags.firstCocktailParty is true>>>>
+<<if $flags.firstCocktailParty is true>>
 cocktail party first night dream
 
 Generic sex fantasy but they are the girl
@@ -15,9 +15,15 @@ Wake up will be very uncomfortable due to morning wood
 
 [[Start the next day|wakeUp]]
 
+<<if $voiceSpray is true>>
+	 <<set $player.femininity to $previousFemininity>>
+<</if>>
+
 ::wakeUp [sleep]
 
 The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
+
+player.femininity = $player.femininity
 
 <<nobr>>
 <<= $time.addTime({day:1}); $time.setDate("wakeup")>>

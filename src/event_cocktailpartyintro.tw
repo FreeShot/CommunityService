@@ -548,7 +548,9 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 			She seems happy with that response.<br>
 			<br>
 			[["Oh. One more thing."|firstcocktailparty16]]
+			<<set $previousFemininity to ($player.femininity += 1)>>
 			<<set $player.femininity to 100>>
+			<<set $voiceTonic to true>>
 		<</replace>>
 	<</link>><br>
 	<<link "Get me out of this stuff.">>
@@ -560,6 +562,8 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 			<<= $player.speak("Wouldn't $wife.title.")>><br>
 			<br>
 			[["Better. Oh. One more thing."|firstcocktailparty16]]
+			<<set $previousFemininity to ($player.femininity += 1)>>
+			<<set $voiceTonic to true>>
 			<<set $player.femininity to 100>>
 		<</replace>>
 	<</link>>
@@ -775,6 +779,8 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 	<</link>>
 </span><</nobr>>
 
+<<= $time.setDate({day:0, hour: 16, minute:0})>>
+
 ::firstcocktailparty22 [event]
 
 She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly starts straining against its plastic prison.
@@ -787,7 +793,9 @@ $daughter.name gives you a quick pat on the cheek before turning around to $cate
 
 <<= $caterer.speak("Come on girl. You're up.")>> $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
 
-[[Begin serving|cocktailparty_start]]
+[[Begin serving|cocktailparty_setup01]]
+
+<<set $cocktailparty_start to true>>
 
 ::firstcocktailparty23 [event]
 
@@ -830,6 +838,8 @@ You head back through the halls of the estate. Compared to a few hours ago it's 
 
 Resigning yourself to the situation you try to position yourself over the toilet to relieve yourself. It's a tight squeeze in the small room and you can't quite get your trapped member in the right spot. With a grumble you put the toilet seat down and turn around before planting your butt. You let go with a sigh of relief.
 
+[img[setup.ImagePath + "events/cocktailparty/sittingonthetoilet.jpg"]]
+
 After a moment you catch sight of the cute $player.hairColor sitting on the loo in front of you. Your cheeks flush with embarrassment as you realise that if anyone saw this they would just think it was a flat chested girl peeing right now.
 
 You wipe the cage clean with some tissue and then remove the wig and make up. You put the maid's clothes in the laundry to clean overnight before rolling in to bed to try and get some sleep.
@@ -850,7 +860,7 @@ You look at the time and hope $wife.title is awake. You put on your normal cloth
 
 <<= $wife.speak("What?")>> She stops and is now a little frustrated.
 
-<<= $player.speak("Would you mind, um, unlocking me.")>> Your eyes dart down to your crotch.
+<<= $player.speak("Would you mind unlocking me?")>> Your eyes dart down to your crotch.
 
 <<= $wife.speak("Oh, I suppose. We'll need to discuss your performance last night first.")>> She opens the door all the way and let you into her room.
 
