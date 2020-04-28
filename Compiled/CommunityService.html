@@ -3144,8 +3144,8 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;firstcocktailparty&quot;, passage: &quot;firstcocktailparty&quot;, inline:true, repeats:false, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailpartySetup&quot;, passage: &quot;cocktailparty_setup01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;,&quot;cocktailPartyPrep&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailparty_Morning&quot;, passage: &quot;cocktailparty_Morning&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Sunday&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailpartySetup&quot;, passage: &quot;cocktailparty_setup01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;,&quot;cocktailPartyPrep&quot;, &quot;playerLaundry&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailparty_Morning&quot;, passage: &quot;cocktailparty_Morning&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Sunday&quot;, &quot;cocktailPartyInProgress&quot; ]}))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;Laundry&quot;, new Event({name: &quot;daughterTease&quot;, passage: &quot;choreEvent_DaughterTease01&quot;, inline:true, repeats:false, tags: [&quot;playerLaundry&quot;, &quot;daughterAcceptance2&quot;]}))&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="roomInit" tags="init" position="725,1475" size="100,100">&lt;!--  Mansion  --&gt;
 
@@ -3175,6 +3175,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 	&quot;needDaughter&quot; : function() {return State.variables.player.currentRoom === State.variables.daughter.getLocation;},
 	&quot;weekEven&quot; : function() {return (State.variables.time.day % 14) &gt;= 7;},
 	&quot;weekOdd&quot; : function() {return (State.variables.time.day % 14) &lt; 7;},
+	&quot;dayLate&quot; : function() {return State.variables.time.hour &gt;= 21;},
 	&quot;Monday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Monday&quot;);},
 	&quot;Tuesday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Tuesday&quot;);},
 	&quot;Wednesday&quot; : function() {return (State.variable.times.weekDayFormat == &quot;Wednesday&quot;);},
@@ -3184,7 +3185,9 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 	&quot;Sunday&quot; : function() {return (State.variables.time.weekDayFormat == &quot;Sunday&quot;);},
 	&quot;daughterAcceptance2&quot; : function() {return (State.variables.daughter.acceptance &gt;= 2);},
 	&quot;playerLaundry&quot; : function() {return (State.variables.player.currentRoom === &quot;Laundry&quot;);},
-	&quot;cocktailPartyPrep&quot; : function() {return ($flags.cocktailIntroComplete == true);}
+	&quot;playerBedroom&quot; : function() {return (State.variables.player.currentRoom === &quot;PlayerBdRm&quot;);},
+	&quot;cocktailPartyPrep&quot; : function() {return ($flags.cocktailIntroComplete == true);},
+	&quot;cocktailPartyInProgress&quot; : function() {return ($cocktailparty_start == true);}
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="StoryInit" tags="" position="975,1475" size="100,100">&lt;&lt;set $time to new Timer({day: -1, time: {hour: 22, minute: 0}})&gt;&gt;
 
 &lt;&lt;set $flags to {
@@ -3953,9 +3956,9 @@ slots: [
 ],
  --&gt;</tw-passagedata><tw-passagedata pid="157" name="PlayerBdRm" tags="playerRoom room" position="850,1975" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 &lt;&lt;nobr&gt;&gt;
-&lt;&lt;if $eventCount_cocktailparty &gt;= 13&gt;&gt;
-	$wife.name is hosting a party tonight.&lt;br&gt;
-	[[Volunteer to serve at the cocktail party|cocktailparty_start]]&lt;br&gt;
+&lt;&lt;set _event to $mansion.checkSpecialEvents()&gt;&gt;
+&lt;&lt;if _event != &quot;&quot;&gt;&gt;
+	&lt;&lt;= _event&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
@@ -4002,14 +4005,18 @@ Inside, you fine some items left by the last person who stayed here. Unfortunate
 &lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="162" name="RoomDescription" tags="room" position="225,2100" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="163" name="sleep" tags="sleep" position="350,2100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
-
 &lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
-cocktail party first night dream
+There&#39;s a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
 
-Generic sex fantasy but they are the girl
+&lt;&lt;= $daughter.speak(&quot;Come on. I have a surprise for you.&quot;)&gt;&gt;
 
-First nights rest will be fitful because of the cage
-Wake up will be very uncomfortable due to morning wood
+You glance down and see she is in a thin night dress and your mind races at the possibilities. $daughter.name takes you hand and leads you through the mansion. You&#39;re too busy watching her nightie bounce up and down to pay much attention to where you are going. She leads you through a door and turns to close it behind you. The room is dark and you can hardly see the details.
+
+Before you can speak $daughter.name shoves you down to the ground. You roll onto your back and see her shadowy form reach down towards you. Fingers slip into the waist of your panties and start pulling them over your svelt thighs, past your ankles before tossing them to the side. The hands start spreading your knees as the figure leans over the top of you.
+
+&lt;&lt;= $suitor.speak(&quot;I can&#39;t wait to be inside of you.&quot;)&gt;&gt;
+
+You feel something warm and firm press against the your womanhood before the figure thrusts forwards and...
 &lt;&lt;set $flags.cocktailIntroComplete to true&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -4017,9 +4024,16 @@ Wake up will be very uncomfortable due to morning wood
 
 &lt;&lt;if $voiceSpray is true&gt;&gt;
 	 &lt;&lt;set $player.femininity to $previousFemininity&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="164" name="wakeUp" tags="sleep" position="475,2100" size="100,100">The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="164" name="wakeUp" tags="sleep" position="475,2100" size="100,100">&lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
+You wake up with a jolt. The early morning light is only barely visible through your window so you only have the dim light of your lamp but with thankfully there is no one looming over the top of you. You pull off your sheets and see your member is still there, still locked in the pink cage.
 
-player.femininity = $player.femininity
+&lt;&lt;= $player.speak(&quot;Just a dream.&quot;)&gt;&gt;
+
+The sound of your normal voice is a relief. You pull the sheet bakc up and lie down can&#39;t get comfortable. Something feels wet around you waist. You reach down and touch and wet sticky spot on the sheets before turning the light on. Now you can see the pink cage has fresh pre-cum on it.
+
+You quickly go to the bathroom and dry your self off with some tissue before getting back in bed, all the while doing your best to pretend none of that happened. Your sleep is ruined so all your really do is toss and turn for a while.
+&lt;&lt;/if&gt;&gt;
+The CUFF alarm goes off and you quickly set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;= $time.addTime({day:1}); $time.setDate(&quot;wakeup&quot;)&gt;&gt;

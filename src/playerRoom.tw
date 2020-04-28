@@ -1,9 +1,9 @@
 ::PlayerBdRm [playerRoom room]
 <<= $mansion.display("PlayerBdRm")>>
 <<nobr>>
-<<if $eventCount_cocktailparty >= 13>>
-	$wife.name is hosting a party tonight.<br>
-	[[Volunteer to serve at the cocktail party|cocktailparty_start]]<br>
+<<set _event to $mansion.checkSpecialEvents()>>
+<<if _event != "">>
+	<<= _event>>
 <</if>>
 <</nobr>>
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.

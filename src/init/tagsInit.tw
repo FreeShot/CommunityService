@@ -6,6 +6,7 @@
 	"needDaughter" : function() {return State.variables.player.currentRoom === State.variables.daughter.getLocation;},
 	"weekEven" : function() {return (State.variables.time.day % 14) >= 7;},
 	"weekOdd" : function() {return (State.variables.time.day % 14) < 7;},
+	"dayLate" : function() {return State.variables.time.hour >= 21;},
 	"Monday" : function() {return (State.variables.time.weekDayFormat == "Monday");},
 	"Tuesday" : function() {return (State.variables.time.weekDayFormat == "Tuesday");},
 	"Wednesday" : function() {return (State.variable.times.weekDayFormat == "Wednesday");},
@@ -15,5 +16,7 @@
 	"Sunday" : function() {return (State.variables.time.weekDayFormat == "Sunday");},
 	"daughterAcceptance2" : function() {return (State.variables.daughter.acceptance >= 2);},
 	"playerLaundry" : function() {return (State.variables.player.currentRoom === "Laundry");},
-	"cocktailPartyPrep" : function() {return ($flags.cocktailIntroComplete == true);}
+	"playerBedroom" : function() {return (State.variables.player.currentRoom === "PlayerBdRm");},
+	"cocktailPartyPrep" : function() {return ($flags.cocktailIntroComplete == true);},
+	"cocktailPartyInProgress" : function() {return ($cocktailparty_start == true);}
 }>>

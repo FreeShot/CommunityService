@@ -2,14 +2,18 @@
 [img[setup.ImagePath + "events/sleep/sleep1.jpg"]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
-
 <<if $flags.firstCocktailParty is true>>
-cocktail party first night dream
+There's a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
 
-Generic sex fantasy but they are the girl
+<<= $daughter.speak("Come on. I have a surprise for you.")>>
 
-First nights rest will be fitful because of the cage
-Wake up will be very uncomfortable due to morning wood
+You glance down and see she is in a thin night dress and your mind races at the possibilities. $daughter.name takes you hand and leads you through the mansion. You're too busy watching her nightie bounce up and down to pay much attention to where you are going. She leads you through a door and turns to close it behind you. The room is dark and you can hardly see the details.
+
+Before you can speak $daughter.name shoves you down to the ground. You roll onto your back and see her shadowy form reach down towards you. Fingers slip into the waist of your panties and start pulling them over your svelt thighs, past your ankles before tossing them to the side. The hands start spreading your knees as the figure leans over the top of you.
+
+<<= $suitor.speak("I can't wait to be inside of you.")>>
+
+You feel something warm and firm press against the your womanhood before the figure thrusts forwards and...
 <<set $flags.cocktailIntroComplete to true>>
 <</if>>
 
@@ -21,9 +25,16 @@ Wake up will be very uncomfortable due to morning wood
 
 ::wakeUp [sleep]
 
-The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
+<<if $flags.firstCocktailParty is true>>
+You wake up with a jolt. The early morning light is only barely visible through your window so you only have the dim light of your lamp but with thankfully there is no one looming over the top of you. You pull off your sheets and see your member is still there, still locked in the pink cage.
 
-player.femininity = $player.femininity
+<<= $player.speak("Just a dream.")>>
+
+The sound of your normal voice is a relief. You pull the sheet bakc up and lie down can't get comfortable. Something feels wet around you waist. You reach down and touch and wet sticky spot on the sheets before turning the light on. Now you can see the pink cage has fresh pre-cum on it.
+
+You quickly go to the bathroom and dry your self off with some tissue before getting back in bed, all the while doing your best to pretend none of that happened. Your sleep is ruined so all your really do is toss and turn for a while.
+<</if>>
+The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
 
 <<nobr>>
 <<= $time.addTime({day:1}); $time.setDate("wakeup")>>
