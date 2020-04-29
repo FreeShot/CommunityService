@@ -20,7 +20,27 @@ You back into the gym with you cleaning equipment and turn to see $daughter.name
 
 You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she's taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.
 
-:: choreEvent_DaughterChat01 [noreturn chore]
+:: choreEvent_DaughterChat02 [noreturn chore]
+
+Trigger: she's in the garden after being brought home by security
+
+As you are passing through the garden you spot $daughter.name resting under some shade reading a book. She's wearing a simple white dress and has her hair down over her shoulders. There's small platter of fruit and cheeses on her blanket along a with a few more books stacked nearby.
+
+[img[setup.ImagePath + "character/daughter/garden_reading_01.gif"]]
+
+You look around and see there is no one else nearby so you walk over.
+
+<<= $player.speak("Hi $daughter.name.")>>
+
+$daughter.name looks up at you through her glasses and her face brightens.
+
+
+
+<<set $daughter.acceptance to 1>>
+
+:: choreEvent_DaughterChat02 [noreturn chore]
+
+Trigger: after she gets brought home by security
 
 As you are moving into the room $daughter.name arrives at the same time.
 
@@ -32,7 +52,7 @@ She smiles at you and says. <<= $daughter.speak("Hey $player.name.")>>
 
 <<= $player.speak("Ok, $daughter.name")>>
 
-$daughter.name give your shoulder a squeeze <<= $daughter.speak("So what have you been up to?")>>
+$daughter.name gives your shoulder a reassuring squeeze. <<= $daughter.speak("So what have you been up to?")>>
 
 <<= $player.speak("<i>I know she's being nice but come on.</i>")>>
 
@@ -56,13 +76,13 @@ $daughter.name give your shoulder a squeeze <<= $daughter.speak("So what have yo
 
 :: choreEvent_DaughterTease01 [noreturn chore]
 
-todo: trigger should be if the daughter acceptance is above a certain amount
+todo: trigger should be if the daughter acceptance is above a certain amount. Just after/at the end of when she's been in the gym
 
-It takes a bit of time to collect everything from all the hampers but now you're ready to get the washing started. You're in the middle of separating all the various loads when $daughter.name comes in wearing her gym equipment.
+It takes a bit of time to collect everything from all the hampers but now you're ready to get the washing started. You're in the middle of separating all the various loads when $daughter.name comes in wearing her sweaty gym equipment.
 
 <<= $daughter.speak("Whew. Just in time.")>>
 
-You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her gloves, socks and shorts. She does not wear anything underneath them, at all.
+You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her shoes, socks and shorts. She does not wear anything underneath them, at all.
 
 <<= $daughter.speak("Throw these in with the rest will you.")>>
 

@@ -1,7 +1,7 @@
 ::cocktailparty_setup01 [event]
 <<= $time.setDate({day:0, hour: 16, minute:0})>>
 <<set $cocktailparty_start to true>>
-<<set $voiceSpray to true>>
+<<set $voiceTonic to true>>
 <<if $flags.firstCocktailParty is false>>
 
 	To do: add truncated description of the player getting ready

@@ -550,7 +550,6 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 			[["Oh. One more thing."|firstcocktailparty16]]
 			<<set $previousFemininity to ($player.femininity += 1)>>
 			<<set $player.femininity to 100>>
-			<<set $voiceTonic to true>>
 		<</replace>>
 	<</link>><br>
 	<<link "Get me out of this stuff.">>
@@ -563,7 +562,6 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 			<br>
 			[["Better. Oh. One more thing."|firstcocktailparty16]]
 			<<set $previousFemininity to ($player.femininity += 1)>>
-			<<set $voiceTonic to true>>
 			<<set $player.femininity to 100>>
 		<</replace>>
 	<</link>>
@@ -779,8 +777,6 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 	<</link>>
 </span><</nobr>>
 
-<<= $time.setDate({day:0, hour: 16, minute:0})>>
-
 ::firstcocktailparty22 [event]
 
 She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly starts straining against its plastic prison.
@@ -794,8 +790,6 @@ $daughter.name gives you a quick pat on the cheek before turning around to $cate
 <<= $caterer.speak("Come on girl. You're up.")>> $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
 
 [[Begin serving|cocktailparty_setup01]]
-
-<<set $cocktailparty_start to true>>
 
 ::firstcocktailparty23 [event]
 
