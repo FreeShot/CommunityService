@@ -19,7 +19,7 @@ You feel something warm and firm press against the your womanhood before the fig
 
 [[Start the next day|wakeUp]]
 
-<<if $voiceSpray is true>>
+<<if $voiceTonic is true>>
 	 <<set $player.femininity to $previousFemininity>>
 <</if>>
 

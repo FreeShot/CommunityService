@@ -7,4 +7,7 @@
 <<= $mansion.addEvent("specialEvent", new Event({name: "cocktailpartySetup", passage: "cocktailparty_setup01", inline:true, repeats:true, tags: ["weekEven", "Saturday","cocktailPartyPrep", "playerBedroom"]}))>>
 <<= $mansion.addEvent("specialEvent", new Event({name: "cocktailparty_Morning", passage: "cocktailparty_Morning", inline:true, repeats:true, tags: ["weekEven", "Sunday", "cocktailPartyInProgress" ]}))>>
 
-<<= $mansion.addEvent("Laundry", new Event({name: "daughterTease", passage: "choreEvent_DaughterTease01", inline:true, repeats:false, tags: ["playerLaundry", "daughterAcceptance2"]}))>>
+<<= $mansion.addEvent("Garden", new Event({name: "gardenChat01", passage: "daughterGardenSweepChat01a", inline:true, repeats:false, tags: ["needDaughter", "daughterAcceptance1"]}))>>
+
+
+<!--  <<= $mansion.addEvent("Laundry", new Event({name: "daughterTease", passage: "choreEvent_DaughterTease01", inline:true, repeats:false, tags: ["playerLaundry", "daughterAcceptance2"]}))>>  -->

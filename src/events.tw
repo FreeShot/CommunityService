@@ -14,65 +14,11 @@ You so distracted that you miss a step. There's a loud crash as one of your buck
 
 :: choreEvent_DaughterChinup01 [noreturn chore]
 
-You back into the gym with you cleaning equipment and turn to see $daughter.name. She has her back to you and is currenlty halfway through a set of chin up. Her skin is gleaming with sweat and her well defined shoulder muscles are straining with the effort. 
+You back into the gym with you cleaning equipment and turn to see $daughter.name. She has her back to you and is currenlty halfway through a set of chin ups. Her skin is gleaming with sweat and her well defined shoulder muscles are straining with the effort. 
 
 [img[setup.ImagePath + "character/daughter/gym_chinups01.gif"]]
 
 You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she's taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.
-
-:: choreEvent_DaughterChat02 [noreturn chore]
-
-Trigger: she's in the garden after being brought home by security
-
-As you are passing through the garden you spot $daughter.name resting under some shade reading a book. She's wearing a simple white dress and has her hair down over her shoulders. There's small platter of fruit and cheeses on her blanket along a with a few more books stacked nearby.
-
-[img[setup.ImagePath + "character/daughter/garden_reading_01.gif"]]
-
-You look around and see there is no one else nearby so you walk over.
-
-<<= $player.speak("Hi $daughter.name.")>>
-
-$daughter.name looks up at you through her glasses and her face brightens.
-
-
-
-<<set $daughter.acceptance to 1>>
-
-:: choreEvent_DaughterChat02 [noreturn chore]
-
-Trigger: after she gets brought home by security
-
-As you are moving into the room $daughter.name arrives at the same time.
-
-She smiles at you and says. <<= $daughter.speak("Hey $player.name.")>>
-
-<<= $player.speak("Hi $daughter.title.")>>
-
-<<= $daughter.speak("Come on $player.name, just call me $daughter.name.")>>
-
-<<= $player.speak("Ok, $daughter.name")>>
-
-$daughter.name gives your shoulder a reassuring squeeze. <<= $daughter.speak("So what have you been up to?")>>
-
-<<= $player.speak("<i>I know she's being nice but come on.</i>")>>
-
-<<= $player.speak("Just cleaning, same as always.")>>
-
-<<= $daughter.speak("It must be boring.")>> $daughter.name looks you up and down. <<= $daughter.speak("You should really get into the gym every once in a while. You're all skin and bones.")>>
-
-<<= $player.speak("I'm in there plenty. Only to clean though.")>>
-
-<<if $daughter.acceptance >= 2>>
-	<<= $daughter.speak("I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.")>>
-
-	You stammer for a moment at the opportunity for something new to do. <<= $player.speak("Uh... I mean... If you want. I would like that.")>> Never mind being close to $daughter.name in her gym clothes while you both work out.
-<<else>>
-	<<= $daughter.speak("Oh well. Chin up. I'm sure things will get better for you eventually.")>>
-
-	<<= $player.speak("Yeah. Sure.")>>
-<</if>>
-
-<<= $daughter.speak("Well. I'll talk to you later then.")>>
 
 :: choreEvent_DaughterTease01 [noreturn chore]
 
@@ -140,7 +86,7 @@ With that she turns and leaves the room.
 
 :: choreEvent_PlayerNudityD [noreturn chore]
 
-Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+Since you don't have any spare clothes that means you need to keep the one's you normally wear clean. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
 It doesn't take too long so you busy yourself folding the washing that's already clean.
 
@@ -164,7 +110,7 @@ $daughter.name leaves and you hear her burst into laughter as soon as she's out 
 
 :: choreEvent_PlayerNudityW [noreturn chore]
 
-Since you don't have any spare clothes so that means you needs to the one you normally wear. You strip down and throw the few items you have in the wash and put it on a fast cycle.
+Since you don't have any spare clothes that means you need to keep the one's you normally wear clean. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
 It doesn't take too long so you busy yourself folding the washing that's already clean.
 
