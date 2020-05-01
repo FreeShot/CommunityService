@@ -664,6 +664,7 @@ class Chore {
 	}
 
 	do() {
+		console.log(State.variables.time.endsAfter("sleep", this.duration));
 		if (this.dayLeft < 0) {
 			return "";
 		} else if (this.done) {
@@ -676,6 +677,11 @@ class Chore {
 				"<span class='ChoreDone'>{0} (Not enough stamina)</span>",
 				this.name
 			);
+		} else if (State.variables.time.endsAfter("sleep", this.duration)) {
+			return String.format(
+				"<span class='ChoreDone'>{0} (Too late)</span>",
+				this.name
+				);
 		} else {
 			return String.format(
 				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
@@ -1660,6 +1666,18 @@ class Timer {
 		} else {
 			return -1;
 		}
+	}
+
+	endsAfter(endTime, duration) {
+		if (typeof endTime === "string") {
+			endTime = this[endTime];
+		}
+		let time = Object.assign({}, this.time);
+		time.minute += (duration.minute || 0);
+		time.hour += (duration.hour || 0) + Math.floor((duration.minute || 0) / 60);
+		time.minute %= 60;
+		console.log(time);
+		return this.compareTime(endTime, time) != -1;
 	}
 
 	inInterval(timeStart, timeEnd) {
@@ -2682,9 +2700,9 @@ VIP guests
 	[[daughterPath02ServeA]]
 
 *suitor* -
-	[[suitorPath_intro01]]
-	&lt;&lt;if $suitor.acceptance &gt;= 1&gt;&gt;[[suitorPath_intro02]]
-	[[suitorPath_intro08]]&lt;&lt;/if&gt;&gt;
+	[[suitorPathIntro01]]
+	&lt;&lt;if $suitor.acceptance &gt;= 1&gt;&gt;[[suitorPathIntro02]]
+	[[suitorPathIntro08]]&lt;&lt;/if&gt;&gt;
 
 
 *no name 1* - throw away for now. just to bulk out the interactions
@@ -3101,9 +3119,9 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymArms01&quot;, passage: &quot;daughterGymArms01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymChinup01&quot;, passage: &quot;daughterGymChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;firstcocktailparty&quot;, passage: &quot;firstcocktailparty&quot;, inline:true, repeats:false, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailpartySetup&quot;, passage: &quot;cocktailparty_setup01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;,&quot;cocktailPartyPrep&quot;, &quot;playerBedroom&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailparty_Morning&quot;, passage: &quot;cocktailparty_Morning&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Sunday&quot;, &quot;cocktailPartyInProgress&quot; ]}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;mansionCParty01&quot;, passage: &quot;mansionCParty01&quot;, inline:true, repeats:false, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;mansionCPartySetup01&quot;, passage: &quot;mansionCPartySetup01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;,&quot;cocktailPartyPrep&quot;, &quot;playerBedroom&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;mansionCPartyMorning01&quot;, passage: &quot;mansionCPartyMorning01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Sunday&quot;, &quot;cocktailPartyInProgress&quot; ]}))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;Garden&quot;, new Event({name: &quot;daughterPath03GardenChatA&quot;, passage: &quot;daughterPath03GardenChatA&quot;, inline:true, repeats:false, tags: [&quot;needDaughter&quot;, &quot;daughterAcceptance1&quot;]}))&gt;&gt;
 
@@ -3161,7 +3179,6 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 	},
 	&quot;manorIntro&quot; : true,
 	&quot;firstNight&quot; : true,
-	&quot;firstCocktailParty&quot; : true,
 }&gt;&gt;
 
 &lt;&lt;include &quot;clothesInit&quot;&gt;&gt;
@@ -3172,7 +3189,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;include &quot;tagsInit&quot;&gt;&gt;
 &lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;
 
-&lt;&lt;set $shopTest to new Shop()&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Intro1" tags="intro tutorial" position="1100,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;!--&lt;&lt;set $shopTest to new Shop({})&gt;&gt;--&gt;</tw-passagedata><tw-passagedata pid="116" name="Intro1" tags="intro tutorial" position="725,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -3798,7 +3815,7 @@ You stand stock still as she throws them to you. Some of the items land on your 
 
 &lt;&lt;= $player.speak(&quot;What the hell just happened?&quot;)&gt;&gt;
 
-todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="148" name="suitorPath_intro01" tags="" position="975,1850" size="100,100">$wife.name gestures for you to come over with your tray. She&#39;s standing with $owner.name and another man who stands out a bit as he isn&#39;t as dressed up as everyone else. He&#39;s wearing stylish jeans with plain shoes and nice t-shirt. There is a design on the shirt but it&#39;s half covered by his casual business jacket. He&#39;s staring right into your eyes as you walk over.
+todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="148" name="suitorPathIntro01" tags="" position="975,1850" size="100,100">$wife.name gestures for you to come over with your tray. She&#39;s standing with $owner.name and another man who stands out a bit as he isn&#39;t as dressed up as everyone else. He&#39;s wearing stylish jeans with plain shoes and nice t-shirt. There is a design on the shirt but it&#39;s half covered by his casual business jacket. He&#39;s staring right into your eyes as you walk over.
 
 &lt;&lt;= $wife.speak(&quot;$suitor.name what can we get you to start off?&quot;)&gt;&gt;
 
@@ -3834,7 +3851,7 @@ You leave and come back with the drink a few moments later.
  			&lt;br&gt;
 			&lt;&lt;= $wife.speak(&quot;You&#39;re always welcome $suitor.name. We love having you over.&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
-			You bow your head and [[Get back to work.|cocktailparty_serving01]]
+			You bow your head and [[Get back to work.|mansionCPartyServing01]]
 			&lt;&lt;set $suitor.acceptance += 1&gt;&gt;
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
@@ -3844,10 +3861,10 @@ You leave and come back with the drink a few moments later.
 			&lt;br&gt;
 			&lt;&lt;= $wife.speak(&quot;Of course $player.femName. Off you go.&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
-			You bow your head and [[Get back to work.|cocktailparty_serving01]]
+			You bow your head and [[Get back to work.|mansionCPartyServing01]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="149" name="suitorPath_intro02" tags="" position="1100,1850" size="100,100">After taking  moment to catch your breath you start heading back to the kitchen. As you round a corner you bump into one of the guests. You know he&#39;s been drinking all night since you&#39;ve been serving his drinks and dodging his groping hands.
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="149" name="suitorPathIntro02" tags="" position="1100,1850" size="100,100">After taking  moment to catch your breath you start heading back to the kitchen. As you round a corner you bump into one of the guests. You know he&#39;s been drinking all night since you&#39;ve been serving his drinks and dodging his groping hands.
 
 &lt;&lt;= Character.speakAnonymous(&quot;Well, well.&quot;, &quot;Peru&quot;)&gt;&gt; You can smell the whisky on his breath. &lt;&lt;= Character.speakAnonymous(&quot;Fancy bumping into you here cutie.&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -3873,7 +3890,7 @@ Every word has a slur to it as he gets way too far inside your personal space. Y
 			&lt;br&gt;
 			His breath is gross as he leans forward with his lips pursed. You try pull away again but he&#39;s backed you up against the wall.&lt;br&gt;
 			&lt;br&gt;
-			Your heart is thumping hard when [[you here a voice nearby.|suitorPath_intro03]]
+			Your heart is thumping hard when [[you here a voice nearby.|suitorPathIntro03]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
 	&lt;&lt;link &quot;Hope for him stop.&quot;&gt;&gt;
@@ -3888,10 +3905,10 @@ Every word has a slur to it as he gets way too far inside your personal space. Y
 			&lt;br&gt;
 			His breath is gross as he leans forward with his lips pursed. You shrink back against the wall behind you, knowing there&#39;s no way for you to stop him.&lt;br&gt;
 			&lt;br&gt;
-			Your heart is thumping hard when [[you here a voice nearby.|suitorPath_intro03]]
+			Your heart is thumping hard when [[you here a voice nearby.|suitorPathIntro03]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="suitorPath_intro03" tags="" position="1225,1850" size="100,100">&lt;&lt;= $suitor.speak(&quot;I don&#39;t think she&#39;s enjoying that.&quot;)&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="suitorPathIntro03" tags="" position="1225,1850" size="100,100">&lt;&lt;= $suitor.speak(&quot;I don&#39;t think she&#39;s enjoying that.&quot;)&gt;&gt;
 
 The man turns and you can see $suitor.title standing not far away with arms crossed.
 
@@ -3921,8 +3938,8 @@ Without taking his hand off the man&#39;s shoulder $suitor.title guides him away
 
 &lt;&lt;= $suitor.speak(&quot;I did actually speak to her. You seemed curious about what I do.&quot;)&gt;&gt;
 
-[[Follow him to the study.|suitorPath_intro04]]
-[[Don&#39;t encourage this further.|suitorPath_introEnd]]</tw-passagedata><tw-passagedata pid="151" name="suitorPath_introEnd" tags="" position="100,1975" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry $suitor.title but I reallyshould be getting back to work.&quot;)&gt;&gt;
+[[Follow him to the study.|suitorPathIntro04]]
+[[Don&#39;t encourage this further.|suitorPathIntroEnd1]]</tw-passagedata><tw-passagedata pid="151" name="suitorPathIntroEnd1" tags="" position="100,1975" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry $suitor.title but I reallyshould be getting back to work.&quot;)&gt;&gt;
 
 &lt;&lt;= $suitor.speak(&quot;But I thought you had a interest in my work.&quot;)&gt;&gt; He looks genuinely confusded. 
 
@@ -3934,11 +3951,11 @@ He turns and heads to the foyer. You can even hear the door slam over the din of
 
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;Shit. That&#39;s going to have consequences.&lt;/i&gt;&quot;)&gt;&gt;
 
-[[Get back to the party.|cocktailparty_serving01]]
+[[Get back to the party.|mansionCPartyServing01]]
 
 &lt;&lt;set $suitor.acceptance -= 1&gt;&gt;
 To do: minus points for leading him on then rejecting him
-	comment when being assessed</tw-passagedata><tw-passagedata pid="152" name="suitorPath_intro04" tags="" position="225,1975" size="100,100">$suitor.title gestures for you to sit down as he walks over to the small bar $owner.name keeps stocked.
+	comment when being assessed</tw-passagedata><tw-passagedata pid="152" name="suitorPathIntro04" tags="" position="225,1975" size="100,100">$suitor.title gestures for you to sit down as he walks over to the small bar $owner.name keeps stocked.
 
 &lt;&lt;nobr&gt;&gt;
 &lt;span id=&quot;suitorRescue02&quot;&gt;
@@ -3958,13 +3975,13 @@ To do: minus points for leading him on then rejecting him
 						&lt;br&gt;
 						$suitor.title takes the spot next to you. You half expected him to be all over you already but there&#39;s a nice, respectable gap between you. He hands you your drink.&lt;br&gt;
 						&lt;br&gt;
-						[[Thank him.|suitorPath_intro05]]
+						[[Thank him.|suitorPathIntro05]]
 					&lt;&lt;/replace&gt;&gt;
 				&lt;&lt;/link&gt;&gt;&lt;br&gt;
 			&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="153" name="suitorPath_intro05" tags="" position="350,1975" size="100,100">&lt;&lt;= $player.speak(&quot;Thank you $suitor.title.&quot;)&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="153" name="suitorPathIntro05" tags="" position="350,1975" size="100,100">&lt;&lt;= $player.speak(&quot;Thank you $suitor.title.&quot;)&gt;&gt;
 
 &lt;&lt;= $suitor.speak(&quot;Just $suitor.name. I don&#39;t like it when people call be $suitor.title. Make sure you don&#39;t regardless of who we&#39;re around.&quot;)&gt;&gt;
 
@@ -3982,15 +3999,15 @@ He holds out his glass and clinks it against yours.
 		&lt;&lt;replace &quot;#suitorRescue04&quot;&gt;&gt;
 			Your down the drink in one go and $suitor.name chuckles.&lt;br&gt;
  			&lt;br&gt;
-			&lt;&lt;= $suitor.speak(&quot;A woman after my own heart.&quot;)&gt;&gt; He follows suit and downs his drink before getting up to make [[another.|suitorPath_intro06]]
+			&lt;&lt;= $suitor.speak(&quot;A woman after my own heart.&quot;)&gt;&gt; He follows suit and downs his drink before getting up to make [[another.|suitorPathIntro06]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
 	&lt;&lt;link &quot;Sip the drink and savour this moment of peace.&quot;&gt;&gt;
 		&lt;&lt;replace &quot;#suitorRescue04&quot;&gt;&gt;
-			$suitor.name gives a half smile and just downs his before getting up to make [[another.|suitorPath_intro06]]
+			$suitor.name gives a half smile and just downs his before getting up to make [[another.|suitorPathIntro06]]
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="154" name="suitorPath_intro06" tags="" position="475,1975" size="100,100">&lt;&lt;= $suitor.speak(&quot;So you were curious about my work?&quot;)&gt;&gt;
+&lt;/span&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="154" name="suitorPathIntro06" tags="" position="475,1975" size="100,100">&lt;&lt;= $suitor.speak(&quot;So you were curious about my work?&quot;)&gt;&gt;
 
 You sit quietly for a moment and look at the door that&#39;s now closed leaving you two alone. $suitor.name turns back around and see&#39;s you sitting nervously.
 
@@ -3998,7 +4015,7 @@ You sit quietly for a moment and look at the door that&#39;s now closed leaving 
 
 You spend the next little while chatting with $suitor.name about what he does. It&#39;s all very fascinating and you tell he&#39;s enjoying the conversation by how animated he gets when responding to a good question. The friendly conversation along with the liquor has you feeling relaxed for the first time in a while.
 
-[[Relax and enjoy the company.|suitorPath_intro07]]</tw-passagedata><tw-passagedata pid="155" name="suitorPath_intro07" tags="" position="600,1975" size="100,100">You lose track of time in the conversation. He tells one particularly good joke that has you laughing, you absentmindedly grab his arm as you both enjoy the humour. You feel a touch on your leg and see $suitor.name has placed his hand on it. Before you can react there&#39;s a knock at the door and $daughter.name comes in.
+[[Relax and enjoy the company.|suitorPathIntro07]]</tw-passagedata><tw-passagedata pid="155" name="suitorPathIntro07" tags="" position="600,1975" size="100,100">You lose track of time in the conversation. He tells one particularly good joke that has you laughing, you absentmindedly grab his arm as you both enjoy the humour. You feel a touch on your leg and see $suitor.name has placed his hand on it. Before you can react there&#39;s a knock at the door and $daughter.name comes in.
 
 &lt;&lt;= $daughter.speak(&quot;Sorry $suitor.name. We need $player.femName or $caterer.name is going to have kittens.&quot;)&gt;&gt;
 
@@ -4016,7 +4033,7 @@ You start to pull away but $suitor.name holds onto your shoulder. &lt;&lt;= $sui
 
 &lt;&lt;= $daughter.speak(&quot;Sure. Whatever you say.&quot;)&gt;&gt; $daughter.name, still grinning at you, takes $suitor.names other hand. &lt;&lt;= $daughter.speak(&quot;Back to $caterer.name $player.femName, before he storms out in protest.&quot;)&gt;&gt;
 
-The two of them start chatting as you head [[back to the kitchen.|cocktailparty_serving01]]</tw-passagedata><tw-passagedata pid="156" name="suitorPath_intro08" tags="" position="725,1975" size="100,100">As evening winds down you&#39;re mostly stuck in the kitchen cleaning up with $caterer.name. People have been leaving for a while now and the estate is mostly empty.
+The two of them start chatting as you head [[back to the kitchen.|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="156" name="suitorPathIntro08" tags="" position="725,1975" size="100,100">As evening winds down you&#39;re mostly stuck in the kitchen cleaning up with $caterer.name. People have been leaving for a while now and the estate is mostly empty.
 
 You&#39;re elbow deep in water when $wife.name and $suitor.name walk in. $wife.name is laughing at something she found funny while hanging off of $suitor.names arm but you barely notice them.
 
@@ -4036,7 +4053,7 @@ $wife.name heads off to the master bedroom to join $owner.name leaving you alone
 
 &lt;&lt;= $player.speak(&quot;Um, this way sir.&quot;)&gt;&gt;
 
-$suitor.name falls in next to you as you head to the [[main entrance.|suitorPath_intro09]]</tw-passagedata><tw-passagedata pid="157" name="suitorPath_intro09" tags="" position="850,1975" size="100,100">&lt;&lt;= $player.speak(&quot;So did you have a good night $suitor.name?&quot;)&gt;&gt;
+$suitor.name falls in next to you as you head to the [[main entrance.|suitorPathIntro09]]</tw-passagedata><tw-passagedata pid="157" name="suitorPathIntro09" tags="" position="850,1975" size="100,100">&lt;&lt;= $player.speak(&quot;So did you have a good night $suitor.name?&quot;)&gt;&gt;
 
 &lt;&lt;= $suitor.speak(&quot;Some parts were better than others. A particularly engaging conversation with a lovely young woman was probably the highlight.&quot;)&gt;&gt;
 
@@ -4052,8 +4069,8 @@ You turn to leave when $suitor.name stops you with an out held hand. You turn ba
 
 $suitor.name gently places a hand on your shoulder and starts leaning towards you.
 
-[[Panic!|suitorPath_intro10][$suitorIntroPanic to true]]
-[[Stay calm.|suitorPath_intro10][$suitorIntroPanic to false]]</tw-passagedata><tw-passagedata pid="158" name="suitorPath_intro10" tags="" position="975,1975" size="100,100">&lt;&lt;if $suitorIntroPanic is true&gt;&gt;
+[[Panic!|suitorPathIntro10][$suitorIntroPanic to true]]
+[[Stay calm.|suitorPathIntro10][$suitorIntroPanic to false]]</tw-passagedata><tw-passagedata pid="158" name="suitorPathIntro10" tags="" position="975,1975" size="100,100">&lt;&lt;if $suitorIntroPanic is true&gt;&gt;
 	You quickly take a step back but he follows and you find yourself pinned between $suitor.name and the main doors.
 &lt;&lt;else&gt;&gt;
 	Your heart thumps in your chest hoping this is just a hug.
@@ -4071,13 +4088,13 @@ Eventually $suitor.name pulls back and cups your face with his hand.
 
 &lt;&lt;= $suitor.speak(&quot;Until next time.&quot;)&gt;&gt;
 
-With that he lets himself out, [[leaving you alone in the foyer.|suitorPath_intro11]]</tw-passagedata><tw-passagedata pid="159" name="suitorPath_intro11" tags="" position="1100,1975" size="100,100">Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He must&#39;ve thought you being friendly was you returning the affection. Which it wasn&#39;t.
+With that he lets himself out, [[leaving you alone in the foyer.|suitorPathIntro11]]</tw-passagedata><tw-passagedata pid="159" name="suitorPathIntro11" tags="" position="1100,1975" size="100,100">Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He must&#39;ve thought you being friendly was you returning the affection. Which it wasn&#39;t.
 
 You shift your hips again as you realise your caged member is pressing against the hard plastic after being brought to life by the kiss.
 
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;I definitely wasn&#39;t flirting back...&lt;/i&gt;&quot;)&gt;&gt;
 
-[[Finish cleaning up.|cocktailparty_finish]]</tw-passagedata><tw-passagedata pid="160" name="playerDescription" tags="nobr" position="1225,1975" size="100,100">&lt;&lt;silently&gt;&gt;
+[[Finish cleaning up.|mansionCPartyFinish01]]</tw-passagedata><tw-passagedata pid="160" name="playerDescription" tags="nobr" position="1225,1975" size="100,100">&lt;&lt;silently&gt;&gt;
 
 &lt;&lt;/silently&gt;&gt;
 

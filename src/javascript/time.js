@@ -52,6 +52,18 @@ class Timer {
 		}
 	}
 
+	endsAfter(endTime, duration) {
+		if (typeof endTime === "string") {
+			endTime = this[endTime];
+		}
+		let time = Object.assign({}, this.time);
+		time.minute += (duration.minute || 0);
+		time.hour += (duration.hour || 0) + Math.floor((duration.minute || 0) / 60);
+		time.minute %= 60;
+		console.log(time);
+		return this.compareTime(endTime, time) != -1;
+	}
+
 	inInterval(timeStart, timeEnd) {
 		if (typeof timeStart === "string") {
 			timeStart = this[timeStart];

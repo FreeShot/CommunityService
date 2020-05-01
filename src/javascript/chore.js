@@ -19,6 +19,7 @@ class Chore {
 	}
 
 	do() {
+		console.log(State.variables.time.endsAfter("sleep", this.duration));
 		if (this.dayLeft < 0) {
 			return "";
 		} else if (this.done) {
@@ -31,6 +32,11 @@ class Chore {
 				"<span class='ChoreDone'>{0} (Not enough stamina)</span>",
 				this.name
 			);
+		} else if (State.variables.time.endsAfter("sleep", this.duration)) {
+			return String.format(
+				"<span class='ChoreDone'>{0} (Too late)</span>",
+				this.name
+				);
 		} else {
 			return String.format(
 				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
