@@ -1,12 +1,12 @@
-::firstcocktailparty
+::mansionCPartyIntro01
 As you roll out of bed you can't help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards you decide to ride the wave and end up relaxing in your room for the rest of the morning instead of getting your chores done.
 
 It's nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.
-[[Get started.|firstcocktailparty1a]]
+[[Get started.|mansionCPartyIntro02]]
 <<= $time.setDate({hour: 12, minute:0})>>
 
-::firstcocktailparty1a [event]
- The main foyer is busy with people setting up for the party this evening. The Sono's spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
+::mansionCPartyIntro02 [event]
+The main foyer is busy with people setting up for the party this evening. The Sono's spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
  
 You dodge a few of the workers as they move through with another bouquet. One of the women moving through the room catches your eye. She is wearing a gorgeous maid's outfit that looks like something out of a boutique magazine
  
@@ -14,9 +14,9 @@ As you are busy taking in the sight of the cute maid when you get a shove from b
 
 [img[setup.ImagePath + "events/cocktailparty/broken_plates.jpg"]]
 
-[[This won't be good.|firstcocktailparty1b]]
+[[This won't be good.|mansionCPartyIntro03]]
 
-::firstcocktailparty1b [event]
+::mansionCPartyIntro03 [event]
  
 Everyone in the room turns to you both, lying on the ground and the caterer comes storming out of the kitchen.
  
@@ -50,10 +50,10 @@ $wife.name grabs your arm and pulls you to your feet with startling ease and sho
  
 <<= $caterer.speak("It better be fast and they'd better know what they are doing!")>> $caterer.name shouts down the hall.
  
-$wife.name drags you towards the [[Master Bedroom|firstcocktailparty2]]
+$wife.name drags you towards the [[Master Bedroom|mansionCPartyIntro04]]
 <<set $flags.firstCocktailParty to true>>
 
-::firstcocktailparty2 [event] 
+::mansionCPartyIntro04 [event] 
 <<= $wife.speak("I swear $caterer.name is such a handful some times.")>> $wife.name pushes you down onto the bed so you're sitting on the end with her towering over you. "This is a disaster. Do you know how much trouble you've caused with your little stunt?")>>
  
 <<= $player.speak("But the workers…")>>
@@ -64,9 +64,9 @@ $wife.name drags you towards the [[Master Bedroom|firstcocktailparty2]]
  
 <<= $wife.speak("I don't want to hear your weak excuses.")>> You never realised you could feel this small but $wife.name was holding all the cards. <<= $wife.speak("The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away but this will have to do. I couldn't have someone in your state around our guests. If you agree and do a good job I'll pretend this whole mess never happened. What do you say? It's either this or I hand you over to the state.")>>
  
-[[Agree to serve at the party. It's the only real option you have.|firstcocktailparty3a]]
+[[Agree to serve at the party. It's the only real option you have.|mansionCPartyIntro05]]
 
-::firstcocktailparty3a [event] 
+::mansionCPartyIntro05 [event] 
 <<= $wife.speak("Excellent. Not that you have much choice though. Who knows, if you like it we might make this part of your normal duties. Now we can't have you dressed like this so stay there while I get you something to wear.")>>
  
 $wife.name goes into the closet and you sit wringing your hands nervously. Hopefully you can do well enough that they'll let you stay on at the estate.
@@ -81,9 +81,9 @@ She comes back out with a bundle of items and starts laying them out on the larg
  
 $wife.name snaps around and stares right at you. <<= $wife.speak("Watch your tone.")>>
  
-You immediately shrink back realising how that sounded and she [[continues.|firstcocktailparty3b]]
+You immediately shrink back realising how that sounded and she [[continues.|mansionCPartyIntro06]]
 
-::firstcocktailparty3b [event]
+::mansionCPartyIntro06 [event]
  
 $wife.name continues putting out the clothes she had gathered. <<= $wife.speak("There is a guest coming tonight who is a valued business partner and friend of the family. He is quite vocal in his distaste of keeping male indentured servants. That means if this is going to work you will need to pretend to be a girl for the night. I will ''NOT'' tolerate him finding out you are a boy. It shouldn't be too hard for you to pass as a girl anyway.")>>
  
@@ -95,9 +95,9 @@ Then under her breathe you hear her say. <<= $wife.speak("Who knows, you might e
  
 <<= $wife.speak("Oh for goodness sake. If you're going to convince anyone you need to wear everything. If you're that embarrassed by your manhood you can go into the bathroom.")>>
  
-[[Go to bathroom|firstcocktailparty4]]
+[[Go to bathroom|mansionCPartyIntro07]]
 
-::firstcocktailparty4 [event] 
+::mansionCPartyIntro07 [event] 
 You reach out take the black silk panties, half worried they might jump up and bite you. $wife.name bustles you into the large bathroom that ajoins the closet.
  
 Once the door is safely closed you. You drop your shirt, pants and boxers onto a nearby counter and hold out the girly panties.
@@ -122,9 +122,9 @@ $wife.name puts the items on top of your normal clothes. <<= $wife.speak("We nee
 
 <<= $wife.speak("Shush now.")>>
 
-[[She's setting the terms so you have no choice|firstcocktailparty5a]]
+[[She's setting the terms so you have no choice|mansionCPartyIntro08]]
 
-::firstcocktailparty5a [event] 
+::mansionCPartyIntro08 [event] 
 $wife.name pulls out a razor and some shaving butter. She starts rubbing the oil all over your leg.
  
 <<= $wife.speak("Hmm. It's nice a sparse already. Convenient.")>>
@@ -145,9 +145,9 @@ You stop shifting as she removes all the hair from first one leg and then the ot
 
 <<= $wife.speak("Now roll over and lay down.")>>
 
-[[Roll over.|firstcocktailparty5b]]
+[[Roll over.|mansionCPartyIntro09]]
 
-:: firstcocktailparty5b [event] 
+:: mansionCPartyIntro09 [event] 
 You roll over and she repeats the process on the thin patch of hair on your chest.
  
 <<= $player.speak("<i>Who will even see my chest?</i>")>>
@@ -167,7 +167,7 @@ You look at the intimidating pile of silk beforing reaching out to take...
 			You reach out and take the bra from the pile. It's a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder they are already a bit tangled.<br>
 			<br>
 			<<= $wife.speak("Oh for goodness sake. You are hopeless.")>><br>
-			[[She snatches the item from you.|firstcocktailparty6]]
+			[[She snatches the item from you.|mansionCPartyIntro10]]
 		<</replace>>
 	<</link>>, 
 	<<link "the stockings">><br>
@@ -175,7 +175,7 @@ You look at the intimidating pile of silk beforing reaching out to take...
 			You take one of the long stockings and sit down. Aside from being made of nylon it feel like any other sock so you poke your toes in the opening and yank it over you heel. You're immediately hear a ripping sound and can see your toes poking through the tear.<br>
 			<br>
 			<<= $wife.speak("Oh for goodness sake. You are hopeless.")>><br>
-			[[She snatches the item from you.|firstcocktailparty6]]
+			[[She snatches the item from you.|mansionCPartyIntro10]]
 		<</replace>>
 	<</link>> or
 	<<link "the cincher">>
@@ -183,12 +183,12 @@ You look at the intimidating pile of silk beforing reaching out to take...
 			You take the bundle of fabric and it unrolls into a long tube of silk. Assuming it's a top of some kind you try to pull it on like a shirt. It is extremely tight and within seconds you manage to pin your arms in an awkward position and can't budge it.<br>
 			<br>
 			<<= $wife.speak("Oh for goodness sake. You are hopeless.")>><br>
-			[[She snatches the item from you.|firstcocktailparty6]]
+			[[She snatches the item from you.|mansionCPartyIntro10]]
 		<</replace>>
 	<</link>>.
 </span><</nobr>>
 
-::firstcocktailparty6 [event]
+::mansionCPartyIntro10 [event]
 
 $wife.name takes one the bigger items.
 
@@ -208,9 +208,9 @@ You hold your arms above your head as she wraps the black lace around your waist
 		<</replace>>
 	<</link>> 
 </span><</nobr>>
-[[Just do as she says.|firstcocktailparty7]]
+[[Just do as she says.|mansionCPartyIntro11]]
 
-::firstcocktailparty7 [event]
+::mansionCPartyIntro11 [event]
 
 You take a deep breathe and $wife.name pulls the shaper even tighter and manages to get the hooks into the last holes.<br>
 
@@ -220,9 +220,9 @@ You do and can feel the shaper holding your thin waist in tightly. You twist and
 
 <<= $wife.speak("Bra next.")>>
 
-[[Continue dressing|firstcocktailparty8]]
+[[Continue dressing|mansionCPartyIntro12]]
 
-::firstcocktailparty8 [event]
+::mansionCPartyIntro12 [event]
 
 $wife.name holds the shoulder straps for the bra open and you slip your hands through. She pulls it up over your shoulders before adjusting the fit on your chest. Once it's in the right place she hooks it together and walks back in front of you.
  
@@ -242,9 +242,9 @@ $wife.name pulls your attention away from the breast forms as she grabs your chi
  
 <<= $wife.speak("Hmm, not a bad start but we'll need to work on your looks.")>>
  
-[[She sits you down on the vanity chair.|firstcocktailparty9]]
+[[She sits you down on the vanity chair.|mansionCPartyIntro13]]
 
-::firstcocktailparty9 [event] 
+::mansionCPartyIntro13 [event] 
 <<= $wife.speak("Close your eyes.")>>
 
 You do and feel her brushing and pushing against your face. It doesn't take a genius to guess that's she applying makeup.
@@ -277,7 +277,7 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the hair back into a ponytail.
 			<br><br>
 			<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-			[[Continue dressing|firstcocktailparty10]]
+			[[Continue dressing|mansionCPartyIntro14]]
 		<</replace>>
 	<</link>><br>
 	<<link "Blondes">>
@@ -296,7 +296,7 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the hair back into a ponytail.
 			<br><br>
 			<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-			[[Continue dressing|firstcocktailparty10]]
+			[[Continue dressing|mansionCPartyIntro14]]
 		<</replace>>
 	<</link>><br>
 	<<link "Brunettes">>
@@ -315,7 +315,7 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the hair back into a ponytail.
 			<br><br>
 			<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-			[[Continue dressing|firstcocktailparty10]]
+			[[Continue dressing|mansionCPartyIntro14]]
 		<</replace>>
 	<</link>><br>
 	<<link "Red heads">>
@@ -334,12 +334,12 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 			$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall around your shoulders. She spends some time adjusting the front so it frames your face and then ties the long hair at the back into a ponytail.
 			<br><br>
 			<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-			[[Continue dressing|firstcocktailparty10]]
+			[[Continue dressing|mansionCPartyIntro14]]
 		<</replace>>
 	<</link>><br>
 </span><</nobr>>
 
-::firstcocktailparty10 [event]
+::mansionCPartyIntro14 [event]
 
 You open your eyes to the weird feeling of $player.hairColor bangs framing your view. $wife.name give you a quick slap on the bottom of your foot when you hold your legs out.
  
@@ -361,9 +361,9 @@ Before you move $wife.name pulls you up and turns you around.
 
 <<= $wife.speak("I haven't got all day.")>>
 
-[[When you face the mirror your jaw almost hits the floor.|firstcocktailparty11]]
+[[When you face the mirror your jaw almost hits the floor.|mansionCPartyIntro15]]
 
-::firstcocktailparty11[event]
+::mansionCPartyIntro15[event]
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_firstlook.jpg"]]
 
 Standing in front of you, wearing demure black lingerie, is one of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to  give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The $player.hairColor chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
@@ -386,7 +386,7 @@ You can't finish as staring at your cute reflexion has had the exact reaction yo
 			<br>
 			<<= $wife.speak("Oh, that will not do.")>><br>
 			<br>
-			[[Hide your hard on|firstcocktailparty12]]
+			[[Hide your hard on|mansionCPartyIntro16]]
 		<</replace>>
 	<</link>><br>
 	<<link "Cover yourself.">>
@@ -395,63 +395,63 @@ You can't finish as staring at your cute reflexion has had the exact reaction yo
 			<br>
 			<<= $wife.speak("Oh, that will not do.")>><br>
 			<br>
-			[[Hide your hard on|firstcocktailparty12]]
+			[[Hide your hard on|mansionCPartyIntro16]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::firstcocktailparty12 [event]
+::mansionCPartyIntro16 [event]
 $wife.name leaves again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflexion. If that girl wasn't you, you might stomach up the courage to go talk to her.
 
 <<= $player.speak("Might as well...")>>
  
-[[Touch breasts|firstcocktailparty_touchbreasts]]
-[[Strike a pose|firstcocktailparty_pose]]
-[[Turn around|firstcocktailparty_turn]]
-[[Wait|firstcocktailparty13]]
+[[Touch breasts|mansionCPartyIntroTouchBreasts]]
+[[Strike a pose|mansionCPartyIntroPose]]
+[[Turn around|mansionCPartyIntroTurn]]
+[[Wait|mansionCPartyIntro17]]
 
 <<set $cocktailPartyChckBra to false>>
 <<set $cocktailPartyPose to false>>
 <<set $cocktailPartyChckBack to false>>
 <<set $cocktailPartyCheckSelf = 0>>
 
-::firstcocktailparty_touchbreasts [event]
-[img[setup.ImagePath + "events/cocktailparty/coktailparty_boobs.jpg"]]
+::mansionCPartyIntroTouchBreasts [event]
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_boobs.jpg"]]
 
 You reach up and cup your "breasts" through the silk bra. The breast forms give a little bit of weight to them but any sort of closer inspection would quickly reveal the truth. You suspect that's why $wife.name chose this bra, to make them feel real but have them hidden. As your knead teh faux breasts your nipples tingle as the texture gently pulls and twists them around. You pull your hands away and...
 
-<<if $cocktailPartyPose is false>>[[Strike a pose|firstcocktailparty_pose]]<</if>>
-<<if $cocktailPartyChckBack is false>>[[Turn around|firstcocktailparty_turn]]<</if>>
-[[Wait|firstcocktailparty13]]
+<<if $cocktailPartyPose is false>>[[Strike a pose|mansionCPartyIntroPose]]<</if>>
+<<if $cocktailPartyChckBack is false>>[[Turn around|mansionCPartyIntroTurn]]<</if>>
+[[Wait|mansionCPartyIntro17]]
 
 <<set $cocktailPartyCheckSelf ++>>
 <<set $cocktailPartyChckBra to true>>
 
-::firstcocktailparty_pose [event]
+::mansionCPartyIntroPose [event]
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_pose.jpg"]]
 
 With one hand behind your head you put the other on your hips before cocking them to the side. The girl looking back at you in the mirror could almost be a lingerie model. The slight tilt gives her hips even more definition as she smiles cutely at you. You quickly shake your head and drop the pose before...
 
-<<if $cocktailPartyChckBra is false>>[[Touch breasts|firstcocktailparty_touchbreasts]]<</if>>
-<<if $cocktailPartyChckBack is false>>[[Turn around|firstcocktailparty_turn]]<</if>>
-[[Wait|firstcocktailparty13]]
+<<if $cocktailPartyChckBra is false>>[[Touch breasts|mansionCPartyIntroTouchBreasts]]<</if>>
+<<if $cocktailPartyChckBack is false>>[[Turn around|mansionCPartyIntroTurn]]<</if>>
+[[Wait|mansionCPartyIntro17]]
 
 <<set $cocktailPartyCheckSelf ++>>
 <<set $cocktailPartyPose to true>>
 
-::firstcocktailparty_turn [event]
+::mansionCPartyIntroTurn [event]
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_turn.jpg"]]
 
 Looking back over your shoulder the ponytail flicks out of the way. The pale skim of your back is complemented by the dark lingerie. The modest silk panties cover your butt just enough but still show the hint of your cheeks underneath. The shaper and stockings create a sexy little squeeze at their edges to show you at least have a little muscle.
 
-<<if $cocktailPartyChckBra is false>>[[Touch breasts|firstcocktailparty_touchbreasts]]<</if>>
-<<if $cocktailPartyPose is false>>[[Strike a pose|firstcocktailparty_pose]]<</if>>
-[[Wait|firstcocktailparty13]]
+<<if $cocktailPartyChckBra is false>>[[Touch breasts|mansionCPartyIntroTouchBreasts]]<</if>>
+<<if $cocktailPartyPose is false>>[[Strike a pose|mansionCPartyIntroPose]]<</if>>
+[[Wait|mansionCPartyIntro17]]
 
 <<set $cocktailPartyCheckSelf ++>>
 <<set $cocktailPartyChckBack to true>>
 
-::firstcocktailparty13 [event]
+::mansionCPartyIntro17 [event]
 
 <<nobr>>
 <<if $cocktailPartyCheckSelf > 1>>
@@ -476,12 +476,12 @@ $wife.name stands up angrily. <<= $wife.speak("Excuse me?")>>
 			<br>
 			<<= $wife.speak("No, servant, I am not crazy and you'd best watch your tone. You're already walking on thin ice and don't think I haven't noticed you not addressing me as ma'am this entire time.")>><br>
 			<br>
-			[[back off|firstcocktailparty14]]
+			[[back off|mansionCPartyIntro18]]
 		<</replace>>
-	<</link>> or [[back off|firstcocktailparty14]]
+	<</link>> or [[back off|mansionCPartyIntro18]]
 </span><</nobr>>
 
-::firstcocktailparty14 [event]
+::mansionCPartyIntro18 [event]
 
 <<= $player.speak("Sorry. It's just that it really hurt.")>> You shrink back a little and look away from her.
  
@@ -513,9 +513,9 @@ $wife.name was already walking back to the dressing room.
  
 <<= $wife.speak("Come on. Let's wrap this up.")>>
 
-[[Follow|firstcocktailparty15]]
+[[Follow|mansionCPartyIntro19]]
 
-::firstcocktailparty15 [event] 
+::mansionCPartyIntro19 [event] 
 You quickly head back into the main bedroom where $wife.name is already waiting with the maid's dress unzipped.
  
 You step into the dress and she pulls it up over your hips. She helps you thread your arms through the sleeves and pulls it over your shoulders. $wife.name zips up the back before tying the laces on the back to pull the whole outfit tight in against your new curves. The black skirt ends just above your knees and has a ruffled white petti coat underneath it to give a bit of bounce. The dress stops just below your bra but it includes a thin white blouse that covers them high enough to hide your assets. The effect enhances your new bust while still mostly hiding it from view. $wife.name has already tied a white apron over the skirt with a large white bow in the back. The puffy black sleeves go just over your shoulders and end in white lace.
@@ -547,10 +547,9 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 			<br>
 			She seems happy with that response.<br>
 			<br>
-			[["Oh. One more thing."|firstcocktailparty16]]
+			[["Oh. One more thing."|mansionCPartyIntro20]]
 			<<set $previousFemininity to ($player.femininity += 1)>>
 			<<set $player.femininity to 100>>
-			<<set $voiceTonic to true>>
 		<</replace>>
 	<</link>><br>
 	<<link "Get me out of this stuff.">>
@@ -561,15 +560,14 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
  			<br>
 			<<= $player.speak("Wouldn't $wife.title.")>><br>
 			<br>
-			[["Better. Oh. One more thing."|firstcocktailparty16]]
+			[["Better. Oh. One more thing."|mansionCPartyIntro20]]
 			<<set $previousFemininity to ($player.femininity += 1)>>
-			<<set $voiceTonic to true>>
 			<<set $player.femininity to 100>>
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::firstcocktailparty16 [event] 
+::mansionCPartyIntro20 [event] 
 $wife.name wraps a choker around your neck. It's not too tight but it does the job of hiding your small Adams apple.
  
 <<= $wife.speak("Here. Drink this.")>> She hands you a small glass bottle. <<= $wife.speak("The whole thing.")>>
@@ -594,7 +592,7 @@ It smells like sour oranges and, knowing there's no way around it you down the e
 			<br>
 			<<= $wife.speak("Now. About your name.")>><br>
 			<br>
-			[[What about your name?|firstcocktailparty17]]
+			[[What about your name?|mansionCPartyIntro21]]
 		<</replace>>
 	<</link>><br>
 	<<link "Submissively.">>
@@ -603,12 +601,12 @@ It smells like sour oranges and, knowing there's no way around it you down the e
 			<br>
 			<<= $wife.speak("Now. About your name.")>><br>
 			<br>
-			[[What about your name?|firstcocktailparty17]]
+			[[What about your name?|mansionCPartyIntro21]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::firstcocktailparty17 [event]
+::mansionCPartyIntro21 [event]
 
 <<= $wife.speak("You'll need a different name to keep up appearances.")>>
 
@@ -616,9 +614,9 @@ It smells like sour oranges and, knowing there's no way around it you down the e
 
 <<= $wife.speak("I want to avoid confusion. What if someone comes by after the party and meets you when you aren't a girl?")>>
 
-Choose your girl name: <<textbox "$player.femName" "" "firstcocktailparty18">>
+Choose your girl name: <<textbox "$player.femName" "" "mansionCPartyIntro22">>
 
-::firstcocktailparty18 [event]
+::mansionCPartyIntro22 [event]
 
 <<= $wife.speak("Yes, $player.femName suits you.")>>
 
@@ -644,9 +642,9 @@ $butler.name pauses for a moment and looks you up and down. There's littel to no
 
 <<= $butler.speak("AL, please update $player.femName's CUFF with the hostess protocols.")>> He looks you in the eye and you wan't to shrink back into yourself. <<= $butler.speak("Come with me $player.femName.")>>
 
-[[Introduce everyone to the new maid.|firstcocktailparty19]]
+[[Introduce everyone to the new maid.|mansionCPartyIntro23]]
 
-::firstcocktailparty19 [event]
+::mansionCPartyIntro23 [event]
 
 [img[setup.ImagePath + "events/cocktailparty/maid_debut.gif"]]
 
@@ -676,9 +674,9 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
  
 <<= $caterer.speak("Come on girl. We need to get you started.")>>
  
-[[Mason walks you through your duties|firstcocktailparty20]]
+[[Mason walks you through your duties|mansionCPartyIntro24]]
 
-::firstcocktailparty20 [event] 
+::mansionCPartyIntro24 [event] 
 <<= $caterer.speak("Alright. I expect that you have no idea what you're doing when it comes to the food prep so just leave all that to me. I'll have to laps of the guests with the serving trays. Have you ever held a serving tray before.")>>
  
 <<= $player.speak("Only when I bring out breakfast.")>>
@@ -695,7 +693,7 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
 			<br>
 			<<= $caterer.speak("Better. But you still need some work")>><br>
 			<br>
-			[[Continue praticing|firstcocktailparty21]]
+			[[Continue praticing|mansionCPartyIntro25]]
 		<</replace>>
 	<</link>><br>
 	<<link "Take the tray with one hand.">>
@@ -706,12 +704,12 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
 			<br>
 			<<= $caterer.speak("You still need the other hand behind your back though.")>><br>
 			<br>
-			[[Continue praticing|firstcocktailparty21a]]
+			[[Continue praticing|mansionCPartyIntro25]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::firstcocktailparty21a [event]
+::mansionCPartyIntro25 [event]
 
 <<= $caterer.speak("I'll load you up with something that won't break and you can practice for a while.")>>
 
@@ -735,9 +733,9 @@ As you're watching him explain the ins and outs of body language in relation to 
  
 After the lesson he has you do some basic tidy work while he finishes his prep. It's already starting to get to mid-afternoon. The workers have finished their setup and cleared out.
 
-[[Your work continues into the afternoon.|firstcocktailparty21b]]
+[[Your work continues into the afternoon.|mansionCPartyIntro26]]
 
-::firstcocktailparty21b
+::mansionCPartyIntro26
  
 You're busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She's wearing sexy black cocktail dress with back heels.
  
@@ -757,7 +755,7 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 			<br>
 			<<= $player.speak("If you say so.")>><br>
 			<br>
-			[[Continue|firstcocktailparty22]]
+			[[Continue|mansionCPartyIntro27]]
 		<</replace>>
 	<</link>><br>
 	<<link "Get snarky.">>
@@ -774,14 +772,12 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 			<br>
 			<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName.")>><br>
 			<br>
-			[[Continue|firstcocktailparty22]]
+			[[Continue|mansionCPartyIntro27]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-<<= $time.setDate({day:0, hour: 16, minute:0})>>
-
-::firstcocktailparty22 [event]
+::mansionCPartyIntro27 [event]
 
 She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly starts straining against its plastic prison.
 
@@ -795,9 +791,7 @@ $daughter.name gives you a quick pat on the cheek before turning around to $cate
 
 [[Begin serving|cocktailparty_setup01]]
 
-<<set $cocktailparty_start to true>>
-
-::firstcocktailparty23 [event]
+::mansionCPartyIntro28 [event]
 
 Exhausted from the busy night your only thoughts are bathroom then bed. <<if $suitorPath is true>>Although the kiss still lingers on your mind.<</if>>
 
@@ -805,9 +799,9 @@ You head to the bathroom and quickly do a double take at the attractive maid loo
 
 <<= $player.speak("What have I gotten myself into?")>> The cute girl says to you.
  
-[[Undress|firstcocktailparty24]]
+[[Undress|mansionCPartyIntro29]]
 
-::firstcocktailparty24 [event]
+::mansionCPartyIntro29 [event]
 
 You reach around to unzip the dress. It's a bit difficult since the zipper is fairly high but eventually, and after a lot of stretching and curses, you manage to grab a hold of it and pull the dress down off your shoulder and down to your ankles.
 
@@ -825,16 +819,16 @@ You try to release the device but quickly find a small padlock holding the clasp
 
 You tug and pull but only manage to make your urgent need to pee even worse.
 
-[[Go ask for it to be unlocked.|firstcocktailparty25]]
-[[It's late so you should wait until tomorrow.|firstcocktailparty26]]
+[[Go ask for it to be unlocked.|mansionCPartyIntro30]]
+[[It's late so you should wait until tomorrow.|mansionCPartyIntro31]]
 
-::firstcocktailparty25 [event]
+::mansionCPartyIntro30 [event]
 
 You head back through the halls of the estate. Compared to a few hours ago it's is practically dead. You reach the master bedroom but before knock on the door you hear noise from inside. You listen for a moment and it's clear $wife.title is preoccupied with her pending orgasm. You think better of it and head back to your room, resigned to spend the night in chastity.
 
-[[Head back to your your bathroom.|firstcocktailparty26]]
+[[Head back to your your bathroom.|mansionCPartyIntro31]]
 
-::firstcocktailparty26 [event]
+::mansionCPartyIntro31 [event]
 
 Resigning yourself to the situation you try to position yourself over the toilet to relieve yourself. It's a tight squeeze in the small room and you can't quite get your trapped member in the right spot. With a grumble you put the toilet seat down and turn around before planting your butt. You let go with a sigh of relief.
 
@@ -846,7 +840,7 @@ You wipe the cage clean with some tissue and then remove the wig and make up. Yo
 
 [[sleep]]
 
-::firstcocktailparty27 [event]
+::mansionCPartyIntro32 [event]
 
 You look at the time and hope $wife.title is awake. You put on your normal clothes, grab the maid's uniform and head the master bedroom. After listening for the sound of any... morning activities you think it's clear so knock and wait for a moment and $wife.title eventually open the door.
 
@@ -866,5 +860,5 @@ You look at the time and hope $wife.title is awake. You put on your normal cloth
 
 You can see $owner.title lying asleep face down, clearly naked, and quickly follow $wife.title into the wardrobe.
 
-[[Performance review|cocktailparty_review]]
+[[Performance review|mansionCPartyReview01]]
 <<set $flags.firstCocktailParty to false>>

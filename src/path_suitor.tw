@@ -1,4 +1,4 @@
-::suitorPath_intro01
+::suitorPathIntro01
 
 $wife.name gestures for you to come over with your tray. She's standing with $owner.name and another man who stands out a bit as he isn't as dressed up as everyone else. He's wearing stylish jeans with plain shoes and nice t-shirt. There is a design on the shirt but it's half covered by his casual business jacket. He's staring right into your eyes as you walk over.
 
@@ -36,8 +36,8 @@ You leave and come back with the drink a few moments later.
  			<br>
 			<<= $wife.speak("You're always welcome $suitor.name. We love having you over.")>><br>
 			<br>
-			You bow your head and [[Get back to work.|cocktailparty_serving01]]
-			<<set $suitor.acceptance to 1>>
+			You bow your head and [[Get back to work.|mansionCPartyServing01]]
+			<<set $suitor.acceptance += 1>>
 		<</replace>>
 	<</link>><br>
 	<<link "I don't want to talk to this guy.">>
@@ -46,12 +46,12 @@ You leave and come back with the drink a few moments later.
 			<br>
 			<<= $wife.speak("Of course $player.femName. Off you go.")>><br>
 			<br>
-			You bow your head and [[Get back to work.|cocktailparty_serving01]]
+			You bow your head and [[Get back to work.|mansionCPartyServing01]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::suitorPath_intro02
+::suitorPathIntro02
 
 After taking  moment to catch your breath you start heading back to the kitchen. As you round a corner you bump into one of the guests. You know he's been drinking all night since you've been serving his drinks and dodging his groping hands.
 
@@ -79,7 +79,7 @@ Every word has a slur to it as he gets way too far inside your personal space. Y
 			<br>
 			His breath is gross as he leans forward with his lips pursed. You try pull away again but he's backed you up against the wall.<br>
 			<br>
-			Your heart is thumping hard when [[you here a voice nearby.|suitorPath_intro03]]
+			Your heart is thumping hard when [[you here a voice nearby.|suitorPathIntro03]]
 		<</replace>>
 	<</link>><br>
 	<<link "Hope for him stop.">>
@@ -94,12 +94,12 @@ Every word has a slur to it as he gets way too far inside your personal space. Y
 			<br>
 			His breath is gross as he leans forward with his lips pursed. You shrink back against the wall behind you, knowing there's no way for you to stop him.<br>
 			<br>
-			Your heart is thumping hard when [[you here a voice nearby.|suitorPath_intro03]]
+			Your heart is thumping hard when [[you here a voice nearby.|suitorPathIntro03]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::suitorPath_intro03
+::suitorPathIntro03
 
 <<= $suitor.speak("I don't think she's enjoying that.")>>
 
@@ -131,10 +131,10 @@ Without taking his hand off the man's shoulder $suitor.title guides him away and
 
 <<= $suitor.speak("I did actually speak to her. You seemed curious about what I do.")>>
 
-[[Follow him to the study.|suitorPath_intro04]]
-[[Don't encourage this further.|suitorPath_introEnd]]
+[[Follow him to the study.|suitorPathIntro04]]
+[[Don't encourage this further.|suitorPathIntroEnd1]]
 
-::suitorPath_introEnd
+::suitorPathIntroEnd1
 
 <<= $player.speak("Sorry $suitor.title but I reallyshould be getting back to work.")>>
 
@@ -148,13 +148,13 @@ He turns and heads to the foyer. You can even hear the door slam over the din of
 
 <<= $player.speak("<i>Shit. That's going to have consequences.</i>")>>
 
-[[Get back to the party.|cocktailparty_serving01]]
+[[Get back to the party.|mansionCPartyServing01]]
 
-<<set $suitor.acceptance to 0>>
+<<set $suitor.acceptance -= 1>>
 To do: minus points for leading him on then rejecting him
 	comment when being assessed
 
-::suitorPath_intro04
+::suitorPathIntro04
 
 $suitor.title gestures for you to sit down as he walks over to the small bar $owner.name keeps stocked.
 
@@ -176,7 +176,7 @@ $suitor.title gestures for you to sit down as he walks over to the small bar $ow
 						<br>
 						$suitor.title takes the spot next to you. You half expected him to be all over you already but there's a nice, respectable gap between you. He hands you your drink.<br>
 						<br>
-						[[Thank him.|suitorPath_intro05]]
+						[[Thank him.|suitorPathIntro05]]
 					<</replace>>
 				<</link>><br>
 			</span><</nobr>>
@@ -184,7 +184,7 @@ $suitor.title gestures for you to sit down as he walks over to the small bar $ow
 	<</link>><br>
 </span><</nobr>>
 
-::suitorPath_intro05
+::suitorPathIntro05
 
 <<= $player.speak("Thank you $suitor.title.")>>
 
@@ -204,17 +204,17 @@ He holds out his glass and clinks it against yours.
 		<<replace "#suitorRescue04">>
 			Your down the drink in one go and $suitor.name chuckles.<br>
  			<br>
-			<<= $suitor.speak("A woman after my own heart.")>> He follows suit and downs his drink before getting up to make [[another.|suitorPath_intro06]]
+			<<= $suitor.speak("A woman after my own heart.")>> He follows suit and downs his drink before getting up to make [[another.|suitorPathIntro06]]
 		<</replace>>
 	<</link>><br>
 	<<link "Sip the drink and savour this moment of peace.">>
 		<<replace "#suitorRescue04">>
-			$suitor.name gives a half smile and just downs his before getting up to make [[another.|suitorPath_intro06]]
+			$suitor.name gives a half smile and just downs his before getting up to make [[another.|suitorPathIntro06]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::suitorPath_intro06
+::suitorPathIntro06
 
 <<= $suitor.speak("So you were curious about my work?")>>
 
@@ -224,9 +224,9 @@ You sit quietly for a moment and look at the door that's now closed leaving you 
 
 You spend the next little while chatting with $suitor.name about what he does. It's all very fascinating and you tell he's enjoying the conversation by how animated he gets when responding to a good question. The friendly conversation along with the liquor has you feeling relaxed for the first time in a while.
 
-[[Relax and enjoy the company.|suitorPath_intro07]]
+[[Relax and enjoy the company.|suitorPathIntro07]]
 
-::suitorPath_intro07
+::suitorPathIntro07
 
 You lose track of time in the conversation. He tells one particularly good joke that has you laughing, you absentmindedly grab his arm as you both enjoy the humour. You feel a touch on your leg and see $suitor.name has placed his hand on it. Before you can react there's a knock at the door and $daughter.name comes in.
 
@@ -246,9 +246,9 @@ You start to pull away but $suitor.name holds onto your shoulder. <<= $suitor.sp
 
 <<= $daughter.speak("Sure. Whatever you say.")>> $daughter.name, still grinning at you, takes $suitor.names other hand. <<= $daughter.speak("Back to $caterer.name $player.femName, before he storms out in protest.")>>
 
-The two of them start chatting as you head [[back to the kitchen.|cocktailparty_serving01]]
+The two of them start chatting as you head [[back to the kitchen.|mansionCPartyServing01]]
 
-::suitorPath_intro08
+::suitorPathIntro08
 
 As evening winds down you're mostly stuck in the kitchen cleaning up with $caterer.name. People have been leaving for a while now and the estate is mostly empty.
 
@@ -270,9 +270,9 @@ $wife.name heads off to the master bedroom to join $owner.name leaving you alone
 
 <<= $player.speak("Um, this way sir.")>>
 
-$suitor.name falls in next to you as you head to the [[main entrance.|suitorPath_intro09]]
+$suitor.name falls in next to you as you head to the [[main entrance.|suitorPathIntro09]]
 
-::suitorPath_intro09
+::suitorPathIntro09
 
 <<= $player.speak("So did you have a good night $suitor.name?")>>
 
@@ -290,10 +290,10 @@ You turn to leave when $suitor.name stops you with an out held hand. You turn ba
 
 $suitor.name gently places a hand on your shoulder and starts leaning towards you.
 
-[[Panic!|suitorPath_intro10][$suitorIntroPanic to true]]
-[[Stay calm.|suitorPath_intro10][$suitorIntroPanic to false]]
+[[Panic!|suitorPathIntro10][$suitorIntroPanic to true]]
+[[Stay calm.|suitorPathIntro10][$suitorIntroPanic to false]]
 
-::suitorPath_intro10
+::suitorPathIntro10
 
 <<if $suitorIntroPanic is true>>
 	You quickly take a step back but he follows and you find yourself pinned between $suitor.name and the main doors.
@@ -313,9 +313,9 @@ Eventually $suitor.name pulls back and cups your face with his hand.
 
 <<= $suitor.speak("Until next time.")>>
 
-With that he lets himself out, [[leaving you alone in the foyer.|suitorPath_intro11]]
+With that he lets himself out, [[leaving you alone in the foyer.|suitorPathIntro11]]
 
-::suitorPath_intro11
+::suitorPathIntro11
 
 Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He must've thought you being friendly was you returning the affection. Which it wasn't.
 
@@ -323,4 +323,4 @@ You shift your hips again as you realise your caged member is pressing against t
 
 <<= $player.speak("<i>I definitely wasn't flirting back...</i>")>>
 
-[[Finish cleaning up.|cocktailparty_finish]]
+[[Finish cleaning up.|mansionCPartyFinish01]]

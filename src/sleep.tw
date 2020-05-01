@@ -19,7 +19,7 @@ You feel something warm and firm press against the your womanhood before the fig
 
 [[Start the next day|wakeUp]]
 
-<<if $voiceSpray is true>>
+<<if $voiceTonic is true>>
 	 <<set $player.femininity to $previousFemininity>>
 <</if>>
 
@@ -45,33 +45,5 @@ The CUFF alarm goes off and you quickly set it to snooze. It's not long before t
 [[Roll out of bed|PlayerBdRm]]
 <</if>>
 <<= $mansion.resetChores()>>
-
+<<set $player.rest()>>
 <</nobr>>
-
-::commented
-<<if $time.day == 9>>
-	As you roll out of bed you can't help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards you decide to ride the wave and end up relaxing in your room for the rest of the morning instead of getting your chores done.<br>
-	<br>
-	It's nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.<br>
-	<br>
-	[[Get started.|firstcocktailparty1]]
-	<<= $time.setDate({hour: 12, minute:0})>>
-<<elseif $cocktailparty_start is true>>
-	After a fitful nights sleep you wake up and immediately feel pressure of the locked chastity cage against your growing morning wood. You rolled onto your stomach in the night as well so it's wedged right againsts you. You roll over and then shift around to try and get comfortable but it's no good. You'll need to go see $wife.name.<br>
-	<br>
-	<<if $flags.firstCocktailParty is true>>
-		[[Get up and go get the key.|firstcocktailparty27]]
-	<<else>>
-		[[Performance review|cocktailparty_review]]
-	<</if>>
-<<else>>
-	[[Roll out of bed|PlayerBdRm]]
-	<<= $time.setDate({hour: 6, minute:0})>>
-	<<set $eventCount_cocktailparty ++>>
-<</if>>
-<</nobr>>
-
-<<set $time.addTime({day:1})>>
-<<if $eventCount_cocktailparty >= 14>>
-	<<set $eventCount_cocktailparty to 0>>
-<</if>>

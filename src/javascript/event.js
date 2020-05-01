@@ -21,9 +21,9 @@ class Event {
 			return "<<include '" + this.passage + "'>>";
 		} else {
 			if (!this.repeats) {
-				return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.room + "','" + this.name + "')</link>>";
+				return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.room + "','" + this.name + "')<</link>>";
 			} else {
-			return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
+				return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
 			}
 		}
 	}

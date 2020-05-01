@@ -1,7 +1,7 @@
-::cocktailparty_setup01 [event]
+::mansionCPartySetup01 [event]
 <<= $time.setDate({day:0, hour: 16, minute:0})>>
 <<set $cocktailparty_start to true>>
-<<set $voiceSpray to true>>
+<<set $voiceTonic to true>>
 <<if $flags.firstCocktailParty is false>>
 
 	To do: add truncated description of the player getting ready
@@ -12,9 +12,9 @@
 
 previousFemininity = $previousFemininity
 
-[[cocktailparty_serving01]]
+[[mansionCPartyServing01]]
 
-::cocktailparty_serving01 [event]
+::mansionCPartyServing01 [event]
 
 Options to prioritise guests or VIP's
  
@@ -22,11 +22,12 @@ VIP guests
 *owner*
 *wife*
 *daughter*
+	[[daughterPath02ServeA]]
 
 *suitor* -
-	[[suitorPath_intro01]]
-	<<if $suitor.acceptance >= 1>>[[suitorPath_intro02]]
-	[[suitorPath_intro08]]<</if>>
+	[[suitorPathIntro01]]
+	<<if $suitor.acceptance >= 1>>[[suitorPathIntro02]]
+	[[suitorPathIntro08]]<</if>>
 
 
 *no name 1* - throw away for now. just to bulk out the interactions
@@ -34,19 +35,19 @@ VIP guests
 
 Run the Party Mini Games
 
-[[cocktailparty_finish]]
+[[mansionCPartyFinish01]]
 
-::cocktailparty_finish [event]
+::mansionCPartyFinish01 [event]
 
 Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It's very late and after the nights work you are definitely ready for bed.
 <<if $flags.firstCocktailParty is true>>
-	[[Head to your room|firstcocktailparty23]]
+	[[Head to your room|mansionCPartyIntro28]]
 <<else>>
 	[[Head to your room and go to bed|sleep]]
 <</if>>
  <<= $time.setDate({day:0, hour: 1, minute:30})>>
 
-::cocktailparty_Morning [event]
+::mansionCPartyMorning01 [event]
 
 <<if $flags.firstCocktailParty is true>>>>
 You look at the time and hope $wife.name is awake. You put on your normal clothes, grab the maid's uniform and head the master bedroom. After listening for the sound of any... morning activities you think it's clear so knock and wait for a moment and $wife.title eventually open the door.
@@ -77,9 +78,9 @@ You get up, grab the maid's uniform and head to the master bedroom so $wife.name
 
 You follow $wife.name into the wardrobe.
 <</if>>
-[[Performance review|cocktailparty_review]]
+[[Performance review|mansionCPartyReview01]]
 
-::cocktailparty_review [event]
+::mansionCPartyReview01 [event]
 
 Good
 <<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
@@ -107,7 +108,7 @@ You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
 <<set $eventCount_cocktailparty to 0>>
 <<set $cocktailparty_start to false>>
 
-::cocktailparty_praise01 [event]
+::mansionCPartyPraise01 [event]
 
 As you're heading back to the bar you over hear $owner.name chatting with another guest.
 
@@ -121,13 +122,13 @@ Performance good
 Performance bad
 <<= $owner.speak("She needs some improvement but I think we'll get there.")>>
 
-::cocktailparty_Staring01 [event]
+::mansionCPartyStaring01 [event]
 
 While moving about you get stopped by one of the groups who happily clear the rest of the finger food from your tray. You catch one of them looking strait at your chest. You're a little flushed from all the walking so it has a nice pink hue just above the blouse. His eyes meet yours and he smiles warmly and tips his glass to you.
 
 You quickly move away to escape his gaze.
 
-::cocktailparty_Staring02 [event]
+::mansionCPartyStaring02 [event]
 
 You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
 
@@ -137,30 +138,30 @@ You lean down to offer the drink to the lady on the lounge. She takes it and giv
 
 You politely pull away and hurry back to the bar to pick up some more drinks.
 
-::cocktailparty_Groping01 [event]
+::mansionCPartyGroping01 [event]
 
 As you turn away to retrieve the man's drink you feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
 
 <<nobr>>
-<span id="groping01">
+<span id="cpartygroping01">
 	<<link "Defend yourself.">>
-		<<replace "#groping01">>
+		<<replace "#cpartygroping01">>
 			<<= $player.speak("Ow! Hands to yourself.")>><br>
 			<br>
 			The man looks surprised at your reaction as you slap his hand away. Some of the guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else.<br>
 			<br>
 			The man is staring at you with the barest hint of alarm.<br>
 			<br>
-			<span id="groping01a">
+			<span id="cpartygroping01">
 				<<link "Apologise.">>
-					<<replace "#groping01a">>
+					<<replace "#cpartygroping01">>
 						You swallow and say. <<= $player.speak("Sorry sir. You startled me is all.")>><br>
 						<br>
 						<<= Character.speakAnonymous("Not a problem.")>> The man smiles smugly. <<= Character.speakAnonymous("Now fetch my drink like a good girl.")>> He gives you another quick slap on the butt and sends you on your way.
 					<</replace>>
 				<</link>><br>
 				<<link "No way you're apologising.">>
-					<<replace "#groping01a">>
+					<<replace "#cpartygroping01">>
 							You stare at $wife.name for a moment and then simply turn around and walk away. You still retrieve the man's drink but you'll be damned if you're apologising to the groper.
 					<</replace>>
 				<</link>>
@@ -169,7 +170,7 @@ As you turn away to retrieve the man's drink you feel a hard pinch on your rear 
 	<</link>>
 </span><</nobr>>
 
-::cocktailparty_Cage01 [event]
+::mansionCPartyCage01 [event]
 
 $caterer.name pushes forward a fresh tray for you to collect.
 
@@ -178,22 +179,22 @@ $caterer.name pushes forward a fresh tray for you to collect.
 You lean forward to grab it and your hips bump against the counter. You gasp as the plastic cage is pushed into your crotch reminding you of your current situation down there. It gets shifted into an uncomfortable position.
 
 <<nobr>>
-<span id="maiddressing4">
+<span id="cpartycage01">
 	<<link "Reach down to adjust yourself.">>
-		<<replace "#maiddressing4">>
+		<<replace "#cpartycage01">>
 			<<= $caterer.speak("What the hell are you doing?")>> Caterer flicks out his arm and slaps your hand with a utensil and then hisses in a low voice. <<= $caterer.speak("Guests don't want to see you playing with yourself before taking out their food.")>>
 
 			You take the tray and walk out of the kitchen. Your restrain member twitches in the cage as it twist and pokes in an uncomfortable position. You'll just have to deal with it for now.
 		<</replace>>
 	<</link>><br>
 	<<link "Try and ignore it.">>
-		<<replace "#maiddressing4">>
+		<<replace "#cpartycage01">>
 			You take a moment to collect yourself, your twitching member straining against its plastic prison.
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-::cocktailparty_Cage02 [event]
+::mansionCPartyCage02 [event]
 
 You're on your way back to the kitchen to refill your tray. As you pass between two guests one of them laughs loudly and tilts back forcing you to dodge them. Unfortunately you bump into the other guest. Worse still your hips press up against theirs and you feel the hard plastic of your chastity cage pressing against their thigh.
 

@@ -9,7 +9,7 @@
 <<= $mansion.addRoom(new Room({name: "Foyer", id: "Foyer", img: ["Foyer.jpg"], adjacentRooms: ["Lounge", "Kitchen", "Dining", "UpperHall", "Hall"]}))>>
 <<= $mansion.addRoom(new Room({name: "Hall", id: "Hall", adjacentRooms: ["Foyer", "MasterBdRm", "Office", "PlayerBdRm", "Laundry", "Kitchen", "Dining", "Garden", "Lounge"]}))>>
 <<= $mansion.addRoom(new Room({name: "Upper Hall", id: "UpperHall", adjacentRooms: ["Foyer", "SonBdRm", "DaughterBdRm", "GuestRm"]}))>>
-<<= $mansion.addRoom(new Room({name: "Garden", id: "Garden", img: ["Garden1.jpg", "Garden2.jpg", "Garden3.jpg"], adjacentRooms: ["Lounge", "Pool", "Dining", "Kitchen", "Laundry", "Gym"]}))>>
+<<= $mansion.addRoom(new Room({name: "Garden", id: "Garden", img: ["Garden1.jpg", "Garden2.jpg", "Garden3.jpg"], adjacentRooms: ["Lounge", "Pool", "Dining", "Kitchen", "Laundry", "Gym", "Hall"]}))>>
 <<= $mansion.addRoom(new Room({name: "Kitchen", id: "Kitchen", img: ["Kitchen.jpg"], adjacentRooms: ["Lounge", "Dining", "Foyer", "Hall"]}))>>
 <<= $mansion.addRoom(new Room({name: "Laundry", id: "Laundry", img: ["Laundry.jpg"], adjacentRooms: ["Hall", "Garden"]}))>>
 <<= $mansion.addRoom(new Room({name: "Lounge", id: "Lounge", img: ["Lounge.jpg"], adjacentRooms: ["Foyer", "Kitchen", "Dining", "Hall", "Garden"]}))>>

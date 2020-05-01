@@ -19,7 +19,7 @@ Day $time.day</span>
 <</click>>
 <<click "Skip to end of day">>
 	<<silently>>
-		<<= $time.setDate({hour:22, minute:0})>>
+		
 		<<goto `passage()`>>
 	<</silently>>
 <</click>>

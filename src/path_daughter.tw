@@ -1,9 +1,12 @@
-::event_daughterpath01 [event]
+:: daughterPath01Homedrunk [noreturn chore]
+
+trigger: First Friday night (last thing to happen before the player goes to bed) - day 5
+
 As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
  
 <<= $wife.speak("That damned girl will be the death of me!")>>
  
-She abruptly open the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
+She abruptly opens the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
  
 <<= $wife.speak("For goodness sake $daughter.name.")>> $wife.name grabs $daughter.name arm and pulls her inside.
  
@@ -17,7 +20,7 @@ $wife.name slams the door shut.
  
 <<= $daughter.speak("It was just some cocktails with my friends. We didn't do anything.")>>
  
-<<= $wife.speak("You almost set a bar on fire! I had hoped your education would train you out of that kind of behaviour but you've go strait back into your old habits.")>>
+<<= $wife.speak("You almost set a bar on fire! I had hoped your education would train you out of that kind of behaviour but you've gone strait back into your old habits.")>>
  
 $daughter.name yanks her arm free and stumbles a bit. <<= $daughter.speak("I finished my degree. What more do you want? I just wana have fun!")>>
  
@@ -29,7 +32,7 @@ $wife.name points to the stairs.
  
 She spots you standing nearby.
  
-<<= $daughter.speak("Heeeey *fname*. Look at you. All cute and domesticated.")>> She stumbles over and squeezes your cheeks. <<speak $daughter.speak("I could just gobble you up.")>>
+<<= $daughter.speak("Heeeey $player.name. Look at you. All cute and domesticated.")>> She stumbles over and squeezes your cheeks. <<speak $daughter.speak("I could just gobble you up.")>>
  
 <<= $wife.speak("$daughter.name!")>>
  
@@ -37,6 +40,231 @@ She spots you standing nearby.
  
 $wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
 
-[[Avoid catching their attention until you get back to your room|PlayerBdRm]]
+:: daughterPath02ServeA
 
-<<set $eventCount_daughterdate to 0>>
+Trigger: First time they serve the daughter at the cocktail party
+
+<<= $daughter.speak("Hey $player.femName. You really are working this new look of yours.")>>
+
+She leans in a bit closer.
+
+<<= $daughter.speak("I think I'm getting a little jealous of all the eyes on that cute butt of yours.")>>
+
+You reach down to fix the hem of your skirt as if ready for it to fly up at any moment to reveal what's underneath then, blushing furiously.
+
+<<nobr>>
+<span id="daughterServe01">
+	<<link "Get annoyed.">>
+		<<replace "#daughterServe01">>
+			<<= $player.speak("The sooner I get out of this damned dress the better.")>><br>
+			<br>
+			<<= $daughter.speak("Oh well. Maybe you'll get used to it or just learn to take a compliment.")>><br>
+			<br>
+			$daughter.name turns back to her conversation so you can continue serving.<br>
+			<br>
+			[[Continue serving|mansionCPartyServing01]]
+		<</replace>>
+	<</link>><br>
+	<<link "Thank her... begrudgingly.">>
+		<<replace "#daughterServe01">>
+			<<= $player.speak("Thank you $daughter.title. I guess.")>><br>
+			<br>
+			<<= $daughter.speak("Come on. Just $daughter.name. To be honest I kind of wish we could get out of here and go to a pub for a beer.")>><br>
+			<br>
+			[[I'd drink more than a beer if I could.|daughterPath02ServeB]]
+		<</replace>>
+	<</link>>
+</span><</nobr>>
+
+:: daughterPath02ServeB
+
+<<= $player.speak("I'd take a case if I could get some of these eyes off me.")>>
+
+$daughter.name laughs. <<= $daughter.speak("I should sneak you out of here sometime. Although I think the eyes wouldn't stop staring at a cutey like you.")>>
+
+You roll your eyes and $daughter.name chuckles again before turning back to her conversation.
+
+[[Continue serving|mansionCPartyServing01]]
+
+<<set $daughter.acceptance += 1>>
+
+:: daughterPath03GardenChatA [event]
+
+As you are passing through the garden you spot $daughter.name resting under some shade reading a book. She's wearing a simple white dress and has her hair down over her shoulders. There's small platter of fruit and cheeses on her blanket along a with a few more books stacked nearby.
+
+[img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]
+
+$daughter.name looks up at you through her glasses and her face brightens.
+
+<<= $daughter.speak("Hey $player.name. Out here to enjoy the sun?")>>
+
+You look down at your broom and then back up to her.
+
+<<nobr>>
+<span id="gardenchat01">
+	<<link "She's just being nice.">>
+		<<replace "#gardenchat01">>
+			<<= $player.speak("Well $daughter.title, I'm kinda in the middle of sweeping but the sun is out so I guess you're right.")>><br>
+			<br>
+			She chuckles. <<= $daughter.speak("Yeah, someone needs to keep $gardener.name happy. Wouldn't want someone tripping over a stray blade of grass right?")>><br>
+			<br>
+			<<= $player.speak("Heh. Yeah he really takes this garden seriously.")>><br>
+			<br>
+			You gesture to the stack of books on her blanket.<br>
+			<br>
+			[[A little light reading?|daughterPath03GardenChatB]]
+		<</replace>>
+	<</link>><br>
+	<<link "She's either oblivious or making fun of you.">>
+		<<replace "#gardenchat01">>
+			<<= $player.speak("It's either sweeping or prison. Not a lot of choice really.")>><br>
+			<br>
+			$daughter.name frouns <<= $daughter.speak("I'm surprised you're so snarky about a little sweeping if those are your options.")>> She snaps her book closed and begins packing up her little picnic. <<= $daughter.speak("You could try to make the most of it by trying to enjoy what you have. Maybe you should get back to work and remember your situation could get a lot worse if you keep up that attitude.")>>
+			<br>
+			Not wanting to push your luck your go [[back to what you were doing.|return]]
+		<</replace>>
+	<</link>>
+</span><</nobr>><br>
+
+:: daughterPath03GardenChatB
+
+<<= $player.speak("That's quite a pile you've built up $daughter.title.")>>
+
+<<= $daughter.speak("Come on $player.name, just call me $daughter.name.")>>
+
+<<= $player.speak("Ok, $daughter.name.")>>
+
+<<= $daughter.speak("Care to join me for a bit?")>>
+
+You look around to see if anyone is watching.
+
+<<= $daughter.speak("Oh don't worry. The big bad won't be home for hours.")>> She pats the spot next to her on the blanket.
+
+With one more glance around you put the broom down and take a seat next to her.
+
+<<= $daughter.speak("It's about my degree.")>>
+
+<<= $player.speak("Huh?")>>
+
+<<= $daughter.speak("The books. I'm keeping up my reading.")>>
+
+<<= $player.speak("What ldid you get your degree in?")>>
+
+<<= $daughter.speak("Advanced Biomedicine and Genetic Mechanics.")>>
+
+<<= $player.speak("Holy crap!")>>
+
+<<= $daughter.speak("Yeah, I know. Not what you were thinking about me right? People see me and think rich girl with good looks who couldn't possibly have a brain.")>>
+
+<<= $player.speak("Well sort of but I'm just impressed because you're so young. That sounds like the kind of thing most people spend their lives trying to accomplish.")>>
+
+<<= $daughter.speak("Well people keep telling me I was some kind of prodigy. To be honest having such a head start because of Dad did help. I got all the tutors and resources I needed. Not like some other people.")>>
+
+$daughter.name seems thoughful, almost as if she regrets having such an advantage. <<= $player.speak("Well some people are lucky but the ones that make it are usually the ones that make the best of the lucky shots they have.")>>
+
+She smiles again and brushes a stray hair behind her ear. <<= $daughter.speak("That's nice of you to say.")>>
+
+There's a moment of awkward silence before she continues. <<= $daughter.speak("So tell me about where you're from.")>>
+
+You both begin trading details of your homes and upbringing. There aren't many parallels but $daughter.name is so easy to talk to you find yourself getting swept up in the conversation. Besides, it's just nice to be chatting with someone close your own age for once.
+
+After a while the sound of laughter dies down and it's time to get back to what you were doing.
+
+<<= $player.speak("Well thanks for the chat but duty calls.")>>
+
+<<= $daughter.speak("No problem. It's nice to have someone to just talk with.")>>
+
+You smile and then get <<return "back to what you were doing.">>
+
+<<set $time.addTime({day:0, hour: 0, minute:30})>>
+<<set $daughter.acceptance += 1>>
+
+:: daughterPath04DateA
+
+Trigger: d acceptance >= 2, on Fri at 5pm in whichever room the player is in - potentially day 19 if the player finds her in the garden strait away.
+
+You hear the sounds of $daughter.name and $wife.name arguing as they enter the room.
+
+<<= $daughter.speak("You can't just keep me locked up here!")>>
+
+<<= $wife.speak("I'm pretty sure I can. Every time you leave this estate to go out for the night security has to carry you back home.")>>
+
+<<= $daughter.speak("I can figure out a way past them and you know it you might as well just let me go out.")>>
+
+$wife.name has her hands on her hips and is about to reply when she spots you. She thinks for a moment and then smiles.
+
+<<= $player.speak("<i>This can't be good.</i>")>>
+
+<<= $wife.speak("How about a compromise?")>>
+
+$daughter.name seems suspicous. <<= $daughter.speak("I'm listening.")>>
+
+<<= $wife.speak("I'll let you go out and have fun with no security to keep watch. But you have to take a chaperone.")>>
+
+<<= $daughter.speak("How is that any different to having security with me?")>>
+
+<<= $wife.speak("Because this chaperone can't tell you what to do but will have hell to pay if you get in trouble.")>> $wife.name gestures at you and $daughter.name follows her gaze before smiling as well.
+
+<<= $daughter.speak("I can live with that.")>>
+
+<<= $player.speak("<i>That's probably worse.</i>")>>
+
+<<= $wife.speak("$player.name come over here.")>>
+
+You approach $wife.name and $daughter.name.
+ 
+<<= $player.speak("Yes $wife.name.")>>
+
+<<= $wife.speak("It seems you have an opportunity to improve your situation. $daughter.name has been getting into trouble of late and I would like you to escort her out tonight and keep her out of trouble. If you do I will consider it as a bonus to your debt. What do you say?")>>
+
+
+
+
+
+:: choreEvent_DaughterChat02 [event]
+
+Trigger: player is in the same room in the house (not gym, garden, etc)
+
+As you are moving into the room $daughter.name arrives at the same time.
+
+She smiles at you and says. <<= $daughter.speak("Hey $player.name.")>>
+
+She walks and gives you a quick hug. <<= $daughter.speak("So what have you been up to?")>>
+
+<<= $player.speak("<i>I know she's being nice but come on.</i>")>>
+
+<<= $player.speak("Just cleaning, same as always.")>>
+
+<<= $daughter.speak("It must be boring.")>> $daughter.name looks you up and down. <<= $daughter.speak("You should really get into the gym every once in a while. You're all skin and bones.")>>
+
+<<= $player.speak("I'm in there plenty. Only to clean though.")>>
+
+<<if $daughter.acceptance >= 2>>
+	<<= $daughter.speak("I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.")>>
+
+	You stammer for a moment at the opportunity for something new to do. <<= $player.speak("Uh... I mean... If you want. I would like that.")>> Never mind being close to $daughter.name in her gym clothes while you both work out.
+<<else>>
+	<<= $daughter.speak("Oh well. Chin up. I'm sure things will get better for you eventually.")>>
+
+	<<= $player.speak("Yeah. Sure.")>>
+<</if>>
+
+<<= $daughter.speak("Well. I'll talk to you later then.")>>
+
+:: choreEvent_DaughterTease01 [noreturn chore]
+
+todo: trigger should be if the daughter acceptance is above a certain amount. Just after/at the end of when she's been in the gym
+
+It takes a bit of time to collect everything from all the hampers but now you're ready to get the washing started. You're in the middle of separating all the various loads when $daughter.name comes in wearing her sweaty gym equipment.
+
+<<= $daughter.speak("Whew. Just in time.")>>
+
+You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her shoes, socks and shorts. She does not wear anything underneath them, at all.
+
+<<= $daughter.speak("Throw these in with the rest will you.")>>
+
+You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you're too busy watching $daughter.name as she spins around and bounces out of the room.
+
+<<= $player.speak("What the hell just happened?")>>
+
+todo: add cage conditions, arousal, etc

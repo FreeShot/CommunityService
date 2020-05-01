@@ -1,10 +1,13 @@
 ::eventInit [event]
-<<= $mansion.addEvent("Gym", new Event({name: "DaughterSquats01", passage: "choreEvent_DaughterSquats01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
-<<= $mansion.addEvent("Gym", new Event({name: "DaughterDumbell01", passage: "choreEvent_DaughterDumbell01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
-<<= $mansion.addEvent("Gym", new Event({name: "DaughterChinup01", passage: "choreEvent_DaughterChinup01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Gym", new Event({name: "daughterGymSquat01", passage: "daughterGymSquat01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Gym", new Event({name: "daughterGymArms01", passage: "daughterGymArms01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Gym", new Event({name: "daughterGymChinup01", passage: "daughterGymChinup01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
 
-<<= $mansion.addEvent("specialEvent", new Event({name: "firstcocktailparty", passage: "firstcocktailparty", inline:true, repeats:false, tags: ["weekEven", "Saturday"]}))>>
-<<= $mansion.addEvent("specialEvent", new Event({name: "cocktailpartySetup", passage: "cocktailparty_setup01", inline:true, repeats:true, tags: ["weekEven", "Saturday","cocktailPartyPrep", "playerBedroom"]}))>>
-<<= $mansion.addEvent("specialEvent", new Event({name: "cocktailparty_Morning", passage: "cocktailparty_Morning", inline:true, repeats:true, tags: ["weekEven", "Sunday", "cocktailPartyInProgress" ]}))>>
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCParty01", passage: "mansionCParty01", inline:true, repeats:false, tags: ["weekEven", "Saturday"]}))>>
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartySetup01", passage: "mansionCPartySetup01", inline:true, repeats:true, tags: ["weekEven", "Saturday","cocktailPartyPrep", "playerBedroom"]}))>>
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartyMorning01", passage: "mansionCPartyMorning01", inline:true, repeats:true, tags: ["weekEven", "Sunday", "cocktailPartyInProgress" ]}))>>
 
-<<= $mansion.addEvent("Laundry", new Event({name: "daughterTease", passage: "choreEvent_DaughterTease01", inline:true, repeats:false, tags: ["playerLaundry", "daughterAcceptance2"]}))>>
+<<= $mansion.addEvent("Garden", new Event({name: "daughterPath03GardenChatA", passage: "daughterPath03GardenChatA", inline:true, repeats:false, tags: ["needDaughter", "daughterAcceptance1"]}))>>
+
+
+<!--  <<= $mansion.addEvent("Laundry", new Event({name: "daughterTease", passage: "choreEvent_DaughterTease01", inline:true, repeats:false, tags: ["playerLaundry", "daughterAcceptance2"]}))>>  -->
