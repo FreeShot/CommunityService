@@ -20,3 +20,5 @@
 <<include "eventInit">>
 <<include "tagsInit">>
 <<include "bodyPartInit">>
+
+<<set $shopTest to new Shop()>>
