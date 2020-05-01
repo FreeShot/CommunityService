@@ -1,4 +1,4 @@
-:: daughterpath01 [noreturn chore]
+:: daughterPath01Homedrunk [noreturn chore]
 
 trigger: First Friday night (last thing to happen before the player goes to bed) - day 5
 
@@ -6,7 +6,7 @@ As you are finishing up in the Foyer you hear the buzzer for the main door rings
  
 <<= $wife.speak("That damned girl will be the death of me!")>>
  
-She abruptly open the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
+She abruptly opens the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
  
 <<= $wife.speak("For goodness sake $daughter.name.")>> $wife.name grabs $daughter.name arm and pulls her inside.
  
@@ -40,7 +40,7 @@ She spots you standing nearby.
  
 $wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
 
-:: daughterCPartyServe01a
+:: daughterPath02ServeA
 
 Trigger: First time they serve the daughter at the cocktail party
 
@@ -62,7 +62,7 @@ You reach down to fix the hem of your skirt as if ready for it to fly up at any 
 			<br>
 			$daughter.name turns back to her conversation so you can continue serving.<br>
 			<br>
-			[[Continue serving|cocktailparty_serving01]]
+			[[Continue serving|mansionCPartyServing01]]
 		<</replace>>
 	<</link>><br>
 	<<link "Thank her... begrudgingly.">>
@@ -71,12 +71,12 @@ You reach down to fix the hem of your skirt as if ready for it to fly up at any 
 			<br>
 			<<= $daughter.speak("Come on. Just $daughter.name. To be honest I kind of wish we could get out of here and go to a pub for a beer.")>><br>
 			<br>
-			[[I'd drink more than a beer if I could.|daughterCPartyServe01b]]
+			[[I'd drink more than a beer if I could.|daughterPath02ServeB]]
 		<</replace>>
 	<</link>>
 </span><</nobr>>
 
-:: daughterCPartyServe01b
+:: daughterPath02ServeB
 
 <<= $player.speak("I'd take a case if I could get some of these eyes off me.")>>
 
@@ -84,11 +84,11 @@ $daughter.name laughs. <<= $daughter.speak("I should sneak you out of here somet
 
 You roll your eyes and $daughter.name chuckles again before turning back to her conversation.
 
-[[Continue serving|cocktailparty_serving01]]
+[[Continue serving|mansionCPartyServing01]]
 
 <<set $daughter.acceptance += 1>>
 
-:: daughterGardenSweepChat01a [event]
+:: daughterPath03GardenChatA [event]
 
 As you are passing through the garden you spot $daughter.name resting under some shade reading a book. She's wearing a simple white dress and has her hair down over her shoulders. There's small platter of fruit and cheeses on her blanket along a with a few more books stacked nearby.
 
@@ -112,7 +112,7 @@ You look down at your broom and then back up to her.
 			<br>
 			You gesture to the stack of books on her blanket.<br>
 			<br>
-			[[A little light reading?|daughterGardenSweepChat01b]]
+			[[A little light reading?|daughterPath03GardenChatB]]
 		<</replace>>
 	<</link>><br>
 	<<link "She's either oblivious or making fun of you.">>
@@ -126,7 +126,7 @@ You look down at your broom and then back up to her.
 	<</link>>
 </span><</nobr>><br>
 
-:: daughterGardenSweepChat01b
+:: daughterPath03GardenChatB
 
 <<= $player.speak("That's quite a pile you've built up $daughter.title.")>>
 
@@ -179,7 +179,7 @@ You smile and then get <<return "back to what you were doing.">>
 <<set $time.addTime({day:0, hour: 0, minute:30})>>
 <<set $daughter.acceptance += 1>>
 
-:: daughterpath02
+:: daughterPath04DateA
 
 Trigger: d acceptance >= 2, on Fri at 5pm in whichever room the player is in - potentially day 19 if the player finds her in the garden strait away.
 

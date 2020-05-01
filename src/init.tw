@@ -10,7 +10,6 @@
 	},
 	"manorIntro" : true,
 	"firstNight" : true,
-	"firstCocktailParty" : true,
 }>>
 
 <<include "clothesInit">>

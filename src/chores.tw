@@ -1,9 +1,9 @@
-::Foyer_cleaning [noreturn chore]
-<<include "Foyer_Dusting">>
+::foyerCleaning [noreturn chore]
+<<include "foyerDusting">>
 
-<<include "Foyer_SweepMop">>
+<<include "foyerSweepMop">>
 
-::Foyer_Dusting [noreturn chore]
+::foyerDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -11,7 +11,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: Foyer_SweepMop [noreturn chore]
+:: foyerSweepMop [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sweeping/sweeping_1.jpg"]]
 
@@ -19,13 +19,13 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 [[Return|$return]]
 
-:: Hall_cleaning [noreturn chore]
+:: hallcleaning [noreturn chore]
 
-<<include "Hall_Dusting">>
+<<include "hallDusting">>
 
-<<include "Hall_SweepMop">>
+<<include "hallSweepMop">>
 
-:: Hall_Dusting [noreturn chore]
+:: hallDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -33,7 +33,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: Hall_SweepMop [noreturn chore]
+:: hallSweepMop [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_mopping/mopping_2.jpg"]]
 
@@ -41,11 +41,11 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 [[Return|$return]]
 
-:: Garden_cleaning [noreturn chore]
+:: gardenCleaning [noreturn chore]
 
-<<include "Garden_Sweep">>
+<<include "gardenSweep">>
 
-:: Garden_Sweep [noreturn chore]
+:: gardenSweep [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sweeping/sweeping_2.jpg"]]
 
@@ -53,7 +53,7 @@ $gardner.name doesn't like you messing with the plants so all you can do here is
 
 [[Return|$return]]
 
-:: Kitchen_Dishes [noreturn chore]
+:: kitchenDishes [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dishes/dishes_1.jpg"]]
 
@@ -61,7 +61,7 @@ You run the water until it's piping hot and then add dish soap to get a good amo
 
 [[Return|$return]]
 
-:: Kitchen_Clean [noreturn chore]
+:: kitchenClean [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sink/sink_1.jpg"]]
 
@@ -69,7 +69,7 @@ You get some heavy duty cleaner and give the whole sink area a good scrub down, 
 
 [[Return|$return]]
 
-:: Kitchen_SweepMop [noreturn chore]
+:: kitchenSweepMop [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_mopping/mopping_1.jpg"]]
 
@@ -77,7 +77,7 @@ You sweep the floor carefully, making sure to get into the counter corners and i
 
 [[Return|$return]]
 
-:: Laundry_Linen [noreturn chore]
+:: laundryLinen [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_laundry/laundry_linen_2.jpg"]]
 
@@ -85,7 +85,7 @@ You go through each room, stripping the beds, pillows and quilts and take it all
 
 [[Return|$return]]
 
-:: Laundry_Clothes [noreturn chore]
+:: laundryClothes [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_laundry/laundry_clothes_1.jpg"]]
 
@@ -93,15 +93,15 @@ With a heavy sigh, you spend time going through each room, taking the clothes di
 
 [[Return|$return]]
 
-:: Lounge_cleaning [noreturn chore]
+:: loungeCleaning [noreturn chore]
 
-<<include "Lounge_Dusting">>
+<<include "loungeDusting">>
 
-<<include "Lounge_SweepMop">>
+<<include "loungeSweepMop">>
 
-<<include "Lounge_Windows">>
+<<include "loungeWindows">>
 
-:: Lounge_Dusting [noreturn chore]
+:: loungeDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -109,7 +109,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: Lounge_SweepMop [noreturn chore]
+:: loungeSweepMop [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sweeping/sweeping_1.jpg"]]
 
@@ -117,7 +117,7 @@ Before you can start you move the furniture out of the way and then sweep the fl
 
 [[Return|$return]]
 
-:: Lounge_Windows [noreturn chore]
+:: loungeWindows [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
@@ -125,15 +125,15 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: Dining_cleaning [noreturn chore]
+:: diningCleaning [noreturn chore]
 
-<<include "Dining_Dusting">>
+<<include "diningDusting">>
 
-<<include "Dining_SweepMop">>
+<<include "diningSweepMop">>
 
-<<include "Dining_Windows">>
+<<include "diningWindows">>
 
-:: Dining_Dusting [noreturn chore]
+:: diningDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -141,7 +141,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: Dining_SweepMop [noreturn chore]
+:: diningSweepMop [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sweeping/mopping_1.jpg"]]
 
@@ -149,7 +149,7 @@ Before you can start you move the furniture out of the way and then sweep the fl
 
 [[Return|$return]]
 
-:: Dining_Windows [noreturn chore]
+:: diningWindows [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
@@ -157,15 +157,15 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: MasterBdRm_cleaning [noreturn chore]
+:: masterBdRmCleaning [noreturn chore]
 
-<<include "MasterBdRm_Dusting">>
+<<include "masterBdRmDusting">>
 
-<<include "MasterBdRm_Vacuum">>
+<<include "masterBdRmVacuum">>
 
-<<include "MasterBdRm_Windows">>
+<<include "masterBdRmWindows">>
 
-:: MasterBdRm_Dusting [noreturn chore]
+:: masterBdRmDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -173,7 +173,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: MasterBdRm_Vacuum [noreturn chore]
+:: masterBdRmVacuum [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_vacuum/vacuum_1.jpg"]]
 
@@ -181,7 +181,7 @@ You take out your vacuum and go over the entire room. You make sure to fluff and
 
 [[Return|$return]]
 
-:: MasterBdRm_Windows [noreturn chore]
+:: masterBdRmWindows [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
@@ -189,19 +189,19 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: MasterBathRm_cleaning [noreturn chore]
+:: masterBathRmCleaning [noreturn chore]
 
-<<include "MasterBathRm_SweepMop">>
+<<include "masterBathRmSweepMop">>
 
-<<include "MasterBathRm_Sink">>
+<<include "masterBathRmSink">>
 
-<<include "MasterBathRm_Toilet">>
+<<include "masterBathRmToilet">>
 
-<<include "MasterBathRm_Shower">>
+<<include "masterBathRmShower">>
 
-<<include "MasterBathRm_Bath">>
+<<include "masterBathRmBath">>
 
-:: MasterBathRm_SweepMop [noreturn chore]
+:: masterBathRmSweepMop [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_mopping/mopping_1.jpg"]]
 
@@ -209,7 +209,7 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 [[Return|$return]]
 
-:: MasterBathRm_Sink [noreturn chore]
+:: masterBathRmSink [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sink/sink_2.jpg"]]
 
@@ -219,7 +219,7 @@ You spray down the mirror with some glass cleaner and start polishing the surfac
 
 [[Return|$return]]
 
-:: MasterBathRm_Toilet [noreturn chore]
+:: masterBathRmToilet [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_toilet/toilet_1.jpg"]]
 
@@ -227,7 +227,7 @@ You're on your hands and knees scrubbing around the toilet for longer than any p
 
 [[Return|$return]]
 
-:: MasterBathRm_Shower [noreturn chore]
+:: masterBathRmShower [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_shower/shower_1.jpg"]]
 
@@ -235,7 +235,7 @@ You wash the entire inside of the shower with some nasty-smelling mildew remover
 
 [[Return|$return]]
 
-:: MasterBathRm_Bath [noreturn chore]
+:: masterBathRmBath [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_bath/bath_1.jpg"]]
 
@@ -243,15 +243,15 @@ You get into the bathtub and scrub down the rings staining the inside. It takes 
 
 [[Return|$return]]
 
-:: Office_cleaning [noreturn chore]
+:: officeCleaning [noreturn chore]
 
-<<include "Office_Dusting">>
+<<include "officeDusting">>
 
-<<include "Office_Vacuum">>
+<<include "officeVacuum">>
 
-<<include "Office_Windows">>
+<<include "officeWindows">>
 
-:: Office_Dusting [noreturn chore]
+:: officeDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -259,7 +259,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: Office_Vacuum [noreturn chore]
+:: officeVacuum [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_vacuum/vacuum_1.jpg"]]
 
@@ -267,7 +267,7 @@ You take out your vacuum and go over the entire room. You make sure to fluff and
 
 [[Return|$return]]
 
-:: Office_Windows [noreturn chore]
+:: officeWindows [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
@@ -275,13 +275,13 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: Gym_cleaning [noreturn chore]
+:: gymCleaning [noreturn chore]
 
-<<include "Gym_Dusting">>
+<<include "gymDusting">>
 
-<<include "Gym_SweepMop">>
+<<include "gymSweepMop">>
 
-:: Gym_Dusting [noreturn chore]
+:: gymDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -289,7 +289,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: Gym_SweepMop [noreturn chore]
+:: gymSweepMop [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sweeping/sweeping_1.jpg"]]
 
@@ -297,7 +297,7 @@ You pick the rubber mats and other loose gear. Embarassingly, some of the equipm
 
 [[Return|$return]]
 
-:: Gym_Windows [noreturn chore]
+:: gymWindows [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
@@ -305,11 +305,11 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: SonBdRm_cleaning [noreturn chore]
+:: sonBdRmCleaning [noreturn chore]
 
-<<include "Son_Locked">>
+<<include "sonBdRmLocked">>
 
-:: Son_Locked [noreturn chore]
+:: sonBdRmLocked [noreturn chore]
 
 [img[setup.ImagePath + "estate/SonBdRm/Locked.jpg"]]
 
@@ -317,21 +317,21 @@ The door to this room is locked. Someone did mention something about not going i
 
 [[Return|$return]]
 
-:: PlayerBdRm_cleaning [noreturn chore]
+:: playerBdRmCleaning [noreturn chore]
 
-<<include "PlayerBdRm_Clean">>
+<<include "playerBdRmClean">>
 
-:: PlayerBdRm_Clean [noreturn chore]
+:: playerBdRmClean [noreturn chore]
 
-Thers isn't a lot of room to work with so clewaning up is as simple as putting everything where it's supposed to be and giving everything and quick dust and wipe.
+Thers isn't a lot of room to work with so cleaning up is as simple as putting everything where it's supposed to be and giving everything and quick dust and wipe.
 
 [[Return|$return]]
 
-:: Pool_cleaning [noreturn chore]
+:: poolCleaning [noreturn chore]
 
-<<include "Pool_Sweep">>
+<<include "poolSweep">>
 
-:: Pool_Sweep [noreturn chore]
+:: poolSweep [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sweeping/sweeping_2.jpg"]]
 
@@ -339,15 +339,15 @@ $gardner.name takes care of most of the pool maintenance so you just sweep the s
 
 [[Return|$return]]
 
-:: DaughterBdRm_cleaning [noreturn chore]
+:: daughterBdRmcleaning [noreturn chore]
 
-<<include "DaughterBdRm_Dusting">>
+<<include "daughterBdRmDusting">>
 
-<<include "DaughterBdRm_Vacuum">>
+<<include "daughterBdRmVacuum">>
 
-<<include "DaughterBdRm_Windows">>
+<<include "daughterBdRmWindows">>
 
-:: DaughterBdRm_Dusting [noreturn chore]
+:: daughterBdRmDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -355,7 +355,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: DaughterBdRm_Vacuum [noreturn chore]
+:: daughterBdRmVacuum [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_vacuum/vacuum_1.jpg"]]
 
@@ -363,7 +363,7 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 
 [[Return|$return]]
 
-:: DaughterBdRm_Windows [noreturn chore]
+:: daughterBdRmWindows [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
@@ -371,15 +371,15 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 [[Return|$return]]
 
-:: GuestRm_cleaning [noreturn chore]
+:: guestRmCleaning [noreturn chore]
 
-<<include "GuestRm_Dusting">>
+<<include "guestRmDusting">>
 
-<<include "GuestRm_Vacuum">>
+<<include "guestRmVacuum">>
 
-<<include "GuestRm_Windows">>
+<<include "guestRmWindows">>
 
-:: GuestRm_Dusting [noreturn chore]
+:: guestRmDusting [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_dusting/dusting_1.jpg"]]
 
@@ -387,7 +387,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 [[Return|$return]]
 
-:: GuestRm_Vacuum [noreturn chore]
+:: guestRmVacuum [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_vacuum/vacuum_1.jpg"]]
 
@@ -395,7 +395,7 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 
 [[Return|$return]]
 
-:: GuestRm_Windows [noreturn chore]
+:: guestRmWindows [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_windows/windows_1.jpg"]]
 
