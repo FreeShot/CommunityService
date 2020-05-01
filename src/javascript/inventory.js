@@ -1,51 +1,31 @@
 class Inventory {
 	constructor(config) {
 		this.items = [];
-		this.clothes = [];
-		this.money = 0;
-		this.owner = null;
+		this.name = "Default";
 
-		Object.keys(config).forEach(function (pn) {
+		Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
 	}
 
-	addItem(item) {
-		if (item.type === "clothes") {
-			this.clothes.push(item);
+	addItem(item, count)
+	{
+		if (this.items.find(function(el){return el.item.name == item.name}))
+		{
+			this.items.find(function(el){return el.item.name == item.name}).count += count || 1;
 		} else {
-			this.items.push(item);
+			this.items.push({"item" : item, "count" : count || 1});
 		}
 	}
 
-	removeItem(item) {
-		var itemSelect = this.clothes.find(function(el) {return el.id === item});
-		this.clothes = this.clothes.filter(function(el) {return el.id != item});
-		if (itemSelect !== undefined) {
-			return itemSelect;
-		} else {
-			itemSelect = this.items.find(function(el) {return el.id === item});
-			this.items = this.items.filter(function(el){return el.id != item});
-			return itemSelect;
-		}
-	}
-
-	buy(shop, item) {
-		if (shop.canSellItem(item)) {
-			this.addItem(shop.removeItem(item));
-		}
-	}
-
-	canSellItem(item) {
-		return this.clothes.some(function(el) {return el.id == item}) ||
-			this.items.some(function(el) {return el.id == item});
-	}
-
-	equip(item) {
-		if (this.owner != null) {
-			this.clothes.find(function(el) {return el.id === item}).equip(this.owner);
-		}
-		return this.owner;
+	listItem() {
+		var str = String.format("{0} <ul>", this.name);
+		this.items.forEach(function(el){
+			str += String.format(
+				"<li>{0}</li>", 
+				el.item.description(el.count), 
+		)});
+		return str + "</ul>";
 	}
 
 	clone() {

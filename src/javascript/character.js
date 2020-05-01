@@ -87,34 +87,6 @@ class Player extends Character {
                 name: "Alex",
                 title: "Alex",
                 femininity: 0,
-                looks: {
-                	hairColor: 0,
-                	hairLength: 0,
-                    eyeColor: 0,
-                	face: 0,
-                	lips: 0,
-                	skin: 0,
-                	chest: 0,
-                	butt: 0,
-                	hips: 0,
-                	crotch: 0,
-                	legs: 0
-                },
-                slots: [
-                	{name: "wig", equipped: null},
-                	{name: "chest", equipped: null},
-                	{name: "bra", equipped: null},
-                	{name: "underwear", equipped: null},
-                	{name: "hoistery", equipped: null},
-                	{name: "legs", equipped: null},
-                	{name: "feet", equipped: null},
-                	{name: "accessory-hair", equipped: null},
-                	{name: "accessory-neck", equipped: null},
-                	{name: "accessory-ear", equipped: null},
-                	{name: "accessory-eye", equipped: null},
-                	{name: "toy-front", equipped: null},
-                	{name: "toy-back", equipped: null}
-                ],
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 choresLate : 0
@@ -144,63 +116,10 @@ class Player extends Character {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
 	}
 
-	getLook(bodyPart) {
-		return State.variables[bodyPart][this.looks[bodyPart]];
-	}
-
-    tryDescribe(slot) {
-        var s = this.getSlot(slot);
-        return s.equipped !== null ? s.equipped.describe(this) : "";
-    }
-
 	getSlot(slot) {
 		return this.slots.find(function(el) {return el.name == slot});
 	}
-
-    hasEquipped(slot) {
-        return this.getSlot(slot).equipped != null;
-    }
-
-    equipped(slot, item) {
-        this.slots.forEach(function (el) {
-            if (el.name == slot) {
-                el.equipped = item
-            }
-        });
-    }
-
-    describe() {
-        var str = String.format(
-            "Your name is {0}. <br> {1} <br> {2} <br> {3}",
-            this.name,
-            this.descFace(),
-            this.descBody()
-        );
-        return str;
-    }
-
-    descHair() {
-        var wig = this.getSlot("wig").equipped;
-        wig = wig === null ? "" : wig.describe();
-        return wig === "" ? String.format("You have {0} {1} hairs", this.getLook("hairLength"), this.getLook("hairColor")) : wig; 
-    }
-
-    desc
-
-    descEye() {
-        var eye = this.getSlot("accessory-eye")
-    }
-
-    descFace() {
-        var str = "";
-        str += this.descHair();
-        return str;
-    }
-
-    descBody() {
-        return "Description of the body";
-    }
-
+    
 	get gender() {
 		if (this.femininity > 50) {
 			return "female";

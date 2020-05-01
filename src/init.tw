@@ -20,4 +20,7 @@
 <<include "tagsInit">>
 <<include "bodyPartInit">>
 
-<<set $shopTest to new Shop({})>>
+<<set $shop to new Shop({name: "TestShop"})>>
+<<set $shop.addCategory("testItems")>>
+<<= $shop.addItem("testItems", new Item({name: "TestItem"}), 1)>>
+<<= $shop.addItem("testItems", new Item({name: "TestItem2"}), 3)>>

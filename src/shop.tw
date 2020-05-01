@@ -1,0 +1,4 @@
+::shopTest
+
+<<= $shop.name>>
+<<= $shop.listItem>>

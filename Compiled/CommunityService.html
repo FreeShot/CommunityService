@@ -497,34 +497,6 @@ class Player extends Character {
                 name: "Alex",
                 title: "Alex",
                 femininity: 0,
-                looks: {
-                	hairColor: 0,
-                	hairLength: 0,
-                    eyeColor: 0,
-                	face: 0,
-                	lips: 0,
-                	skin: 0,
-                	chest: 0,
-                	butt: 0,
-                	hips: 0,
-                	crotch: 0,
-                	legs: 0
-                },
-                slots: [
-                	{name: "wig", equipped: null},
-                	{name: "chest", equipped: null},
-                	{name: "bra", equipped: null},
-                	{name: "underwear", equipped: null},
-                	{name: "hoistery", equipped: null},
-                	{name: "legs", equipped: null},
-                	{name: "feet", equipped: null},
-                	{name: "accessory-hair", equipped: null},
-                	{name: "accessory-neck", equipped: null},
-                	{name: "accessory-ear", equipped: null},
-                	{name: "accessory-eye", equipped: null},
-                	{name: "toy-front", equipped: null},
-                	{name: "toy-back", equipped: null}
-                ],
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 choresLate : 0
@@ -554,63 +526,10 @@ class Player extends Character {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
 	}
 
-	getLook(bodyPart) {
-		return State.variables[bodyPart][this.looks[bodyPart]];
-	}
-
-    tryDescribe(slot) {
-        var s = this.getSlot(slot);
-        return s.equipped !== null ? s.equipped.describe(this) : "";
-    }
-
 	getSlot(slot) {
 		return this.slots.find(function(el) {return el.name == slot});
 	}
-
-    hasEquipped(slot) {
-        return this.getSlot(slot).equipped != null;
-    }
-
-    equipped(slot, item) {
-        this.slots.forEach(function (el) {
-            if (el.name == slot) {
-                el.equipped = item
-            }
-        });
-    }
-
-    describe() {
-        var str = String.format(
-            "Your name is {0}. <br> {1} <br> {2} <br> {3}",
-            this.name,
-            this.descFace(),
-            this.descBody()
-        );
-        return str;
-    }
-
-    descHair() {
-        var wig = this.getSlot("wig").equipped;
-        wig = wig === null ? "" : wig.describe();
-        return wig === "" ? String.format("You have {0} {1} hairs", this.getLook("hairLength"), this.getLook("hairColor")) : wig; 
-    }
-
-    desc
-
-    descEye() {
-        var eye = this.getSlot("accessory-eye")
-    }
-
-    descFace() {
-        var str = "";
-        str += this.descHair();
-        return str;
-    }
-
-    descBody() {
-        return "Description of the body";
-    }
-
+    
 	get gender() {
 		if (this.femininity > 50) {
 			return "female";
@@ -786,85 +705,7 @@ class Chore {
 Object.defineProperty(window, 'Chore', {
     value : Chore
 });
-/* twine-user-script #3: "clothes.js" */
-class Item {
-	constructor(config) {
-		this.id = '';
-        this.name = '';
-        this.type = 'genericItem';
-        this.price = 0;
-		
-		Object.keys(config).forEach(function (pn) {
-            this[pn] = clone(config[pn]);
-        }, this);
-	}
-
-	clone() {
-        return new Item(this);
-    }
-
-	toJSON() {
-        var ownData = {};
-        Object.keys(this).forEach(function (pn) {
-            ownData[pn] = clone(this[pn]);
-        }, this);
-        return JSON.reviveWrapper('new Item($ReviveData$)', ownData);
-    }
-}
-Object.defineProperty(window, 'Item', {
-    value : Item
-});
-
-class Clothes extends Item {
-	constructor(config) {
-		super(Object.assign({
-            type: "clothes",
-            clothesType: "",
-            equipped: false
-        },config));
-	}
-
-    equip(char) {
-        State.variables.clothesType[this.clothesType].slots.forEach(function (el) {
-            var slot = char.getSlot(el);
-            if (slot.equipped !== null) {
-                slot.equipped.unequip();
-            }
-            char.equipped(el, this);
-        }, this);
-        this.equipped = true;
-    }
-
-    unequip() {
-        State.variables.clothesType[this.clothesType].slots.forEach(function (el) {
-            var slot = char.getSlot(el);
-            if (slot.equipped.id === this.id){
-                char.equipped(el, null);
-            }
-        }, this)
-        this.equipped = false;
-    }
-
-    describe(char) {
-        return State.variables.clothesType[this.clothesType].description(this, char);
-    }
-
-	clone() {
-        return new Clothes(this);
-    }
-
-	toJSON() {
-        var ownData = {};
-        Object.keys(this).forEach(function (pn) {
-            ownData[pn] = clone(this[pn]);
-        }, this);
-        return JSON.reviveWrapper('new Clothes($ReviveData$)', ownData);
-    }
-}
-Object.defineProperty(window, 'Clothes', {
-    value : Clothes
-});
-/* twine-user-script #4: "event.js" */
+/* twine-user-script #3: "event.js" */
 class Event {
 	constructor(config) {
 		this.name = ''; // Not used, just for us to remeber it
@@ -919,55 +760,35 @@ class Event {
 Object.defineProperty(window, 'Event', {
     value : Event
 });
-/* twine-user-script #5: "inventory.js" */
+/* twine-user-script #4: "inventory.js" */
 class Inventory {
 	constructor(config) {
 		this.items = [];
-		this.clothes = [];
-		this.money = 0;
-		this.owner = null;
+		this.name = "Default";
 
-		Object.keys(config).forEach(function (pn) {
+		Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
 	}
 
-	addItem(item) {
-		if (item.type === "clothes") {
-			this.clothes.push(item);
+	addItem(item, count)
+	{
+		if (this.items.find(function(el){return el.item.name == item.name}))
+		{
+			this.items.find(function(el){return el.item.name == item.name}).count += count || 1;
 		} else {
-			this.items.push(item);
+			this.items.push({"item" : item, "count" : count || 1});
 		}
 	}
 
-	removeItem(item) {
-		var itemSelect = this.clothes.find(function(el) {return el.id === item});
-		this.clothes = this.clothes.filter(function(el) {return el.id != item});
-		if (itemSelect !== undefined) {
-			return itemSelect;
-		} else {
-			itemSelect = this.items.find(function(el) {return el.id === item});
-			this.items = this.items.filter(function(el){return el.id != item});
-			return itemSelect;
-		}
-	}
-
-	buy(shop, item) {
-		if (shop.canSellItem(item)) {
-			this.addItem(shop.removeItem(item));
-		}
-	}
-
-	canSellItem(item) {
-		return this.clothes.some(function(el) {return el.id == item}) ||
-			this.items.some(function(el) {return el.id == item});
-	}
-
-	equip(item) {
-		if (this.owner != null) {
-			this.clothes.find(function(el) {return el.id === item}).equip(this.owner);
-		}
-		return this.owner;
+	listItem() {
+		var str = String.format("{0} <ul>", this.name);
+		this.items.forEach(function(el){
+			str += String.format(
+				"<li>{0}</li>", 
+				el.item.description(el.count), 
+		)});
+		return str + "</ul>";
 	}
 
 	clone() {
@@ -984,6 +805,39 @@ class Inventory {
 }
 Object.defineProperty(window, 'Inventory', {
     value : Inventory
+});
+/* twine-user-script #5: "items.js" */
+class Item {
+    constructor (config) {
+        this.name = "Unnamed item";
+
+        Object.keys(config || {}).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+    }
+
+    description(count) {
+        return String.format(
+            "{0} ({1})",
+            this.name,
+            count
+        );
+    }
+    
+    clone() {
+        return new Item(this);
+    }
+
+    toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Item($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'Item', {
+    value : Item
 });
 /* twine-user-script #6: "mansion.js" */
 class Mansion {
@@ -1591,7 +1445,7 @@ Setting.addToggle("nsfw", {
 /* twine-user-script #10: "shop.js" */
 class Shop {
 	constructor (config) {
-		this.inventory = new Inventory({});
+		this.categories = [];
 		this.name = "Unnamed shop";
 
 		Object.keys(config || {}).forEach(function (pn) {
@@ -1599,7 +1453,28 @@ class Shop {
         }, this);
 	}
 
+	addCategory(categoryName)
+	{
+		this.categories.push(new Inventory({"name": categoryName}));
+	}
 
+	addItem(category, item, count)
+	{
+		this.categories.find(
+			function(el){return el.name == category}).addItem(item, count);
+	}
+
+	get listItem()
+	{
+		var str = "<ul>";
+		this.categories.forEach(function(el) {
+			str += String.format(
+				"<li>{0}</li>",
+				el.listItem()
+			);
+		});
+		return str + "</ul>";
+	}
 	
 	clone() {
         return new Shop(this);
@@ -3099,26 +2974,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({name: &quot;Check the door&quot;, duration: {minute: 5}, passages:[{name: &quot;sonBdRmCleaning&quot;, weight:2}, {name: &quot;sonBdRmLocked&quot;, weight: 1}], staminaCost: 0, choreFrequency: &quot;W&quot;}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({name: &quot;Tidy your room&quot;, duration: {hour: 1}, passages:[{name: &quot;playerBdRmCleaning&quot;, weight:2}, {name: &quot;playerBdRmClean&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean the bedroom&quot;, duration: {hour: 1}, passages:[{name: &quot;daughterBdRmcleaning&quot;, weight:2}, {name: &quot;daughterBdRmDusting&quot;, weight: 10}, {name: &quot;daughterBdRmVacuum&quot;, weight: 11}, {name: &quot;daughterBdRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean the guest room&quot;, duration: {hour: 1}, passages:[{name: &quot;guestRmCleaning&quot;, weight:2}, {name: &quot;guestRmDusting&quot;, weight: 10}, {name: &quot;guestRmVacuum&quot;, weight: 11}, {name: &quot;guestRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="clothesInit" tags="init" position="100,1475" size="100,100">&lt;&lt;set $clothesType to {
-	&quot;wig&quot; : {
-		slots : [&quot;wig&quot;],
-		description : function(clothes, character) {
-			return String.format(
-				&quot;Your {0} hides your {1} {2} hairs&quot;,
-				clothes.name, 
-				character.getLook(&quot;hairLength&quot;),
-				character.getLook(&quot;hairColor&quot;)
-			);
-		} 
-	}
-}&gt;&gt;
-
-&lt;&lt;set $playerInv to new Inventory({owner: $player})&gt;&gt;
-&lt;&lt;= $playerInv.addItem(new Clothes({
-	id: &quot;defalutT-shirt&quot;,
-	name: &quot;a plain old white t-shirt&quot;,
-	clothesType: &quot;top&quot;
-}))&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="eventInit" tags="event" position="225,1475" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymSquat01&quot;, passage: &quot;daughterGymSquat01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean the guest room&quot;, duration: {hour: 1}, passages:[{name: &quot;guestRmCleaning&quot;, weight:2}, {name: &quot;guestRmDusting&quot;, weight: 10}, {name: &quot;guestRmVacuum&quot;, weight: 11}, {name: &quot;guestRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="clothesInit" tags="init" position="100,1475" size="100,100"></tw-passagedata><tw-passagedata pid="112" name="eventInit" tags="event" position="225,1475" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymSquat01&quot;, passage: &quot;daughterGymSquat01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymArms01&quot;, passage: &quot;daughterGymArms01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymChinup01&quot;, passage: &quot;daughterGymChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 
@@ -3192,7 +3048,10 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;include &quot;tagsInit&quot;&gt;&gt;
 &lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;
 
-&lt;&lt;set $shopTest to new Shop({})&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Intro1" tags="intro tutorial" position="725,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;set $shop to new Shop({name: &quot;TestShop&quot;})&gt;&gt;
+&lt;&lt;set $shop.addCategory(&quot;testItems&quot;)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem&quot;}), 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem2&quot;}), 3)&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Intro1" tags="intro tutorial" position="725,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -3347,8 +3206,8 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	&quot;firstNight&quot; : false,
 }&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-
-[[playerDescription]]</tw-passagedata><tw-passagedata pid="124" name="manorIntro01" tags="tutorial" position="475,1600" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+&lt;br&gt;
+[[shopTest]]</tw-passagedata><tw-passagedata pid="124" name="manorIntro01" tags="tutorial" position="475,1600" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
@@ -4177,7 +4036,8 @@ You turn on the warm stream of water and step into the shower. You soap up and w
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="166" name="RoomDescription" tags="room" position="725,2100" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="167" name="sleep" tags="sleep" position="850,2100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
+&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="166" name="RoomDescription" tags="room" position="725,2100" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="167" name="shopTest" tags="" position="850,2100" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;= $shop.listItem&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="sleep" tags="sleep" position="975,2100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 &lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
@@ -4199,7 +4059,7 @@ You feel something warm and firm press against the your womanhood before the fig
 
 &lt;&lt;if $voiceTonic is true&gt;&gt;
 	 &lt;&lt;set $player.femininity to $previousFemininity&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="wakeUp" tags="sleep" position="975,2100" size="100,100">&lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="169" name="wakeUp" tags="sleep" position="1100,2100" size="100,100">&lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
 You wake up with a jolt. The early morning light is only barely visible through your window so you only have the dim light of your lamp but with thankfully there is no one looming over the top of you. You pull off your sheets and see your member is still there, still locked in the pink cage.
 
 &lt;&lt;= $player.speak(&quot;Just a dream.&quot;)&gt;&gt;

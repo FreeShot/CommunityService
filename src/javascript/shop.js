@@ -1,6 +1,6 @@
 class Shop {
 	constructor (config) {
-		this.inventory = new Inventory({});
+		this.categories = [];
 		this.name = "Unnamed shop";
 
 		Object.keys(config || {}).forEach(function (pn) {
@@ -8,7 +8,28 @@ class Shop {
         }, this);
 	}
 
+	addCategory(categoryName)
+	{
+		this.categories.push(new Inventory({"name": categoryName}));
+	}
 
+	addItem(category, item, count)
+	{
+		this.categories.find(
+			function(el){return el.name == category}).addItem(item, count);
+	}
+
+	get listItem()
+	{
+		var str = "<ul>";
+		this.categories.forEach(function(el) {
+			str += String.format(
+				"<li>{0}</li>",
+				el.listItem()
+			);
+		});
+		return str + "</ul>";
+	}
 	
 	clone() {
         return new Shop(this);
