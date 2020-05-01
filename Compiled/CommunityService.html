@@ -1582,7 +1582,32 @@ Setting.addToggle("nsfw", {
 	label    : "Displays NSFW images",
 	default  : true
 });
-/* twine-user-script #10: "time.js" */
+/* twine-user-script #10: "shop.js" */
+class Shop {
+	constructor (config) {
+		self.inventory = new Inventory();
+
+		Object.keys(config || {}).forEach(function (pn) {
+            this[pn] = clone(config[pn]);
+        }, this);
+	}
+	
+	clone() {
+        return new Shop(this);
+    }
+
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Shop($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Shop', {
+    value : Shop
+});
+/* twine-user-script #11: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -3144,7 +3169,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;DaughterChinup01&quot;, passage: &quot;choreEvent_DaughterChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;firstcocktailparty&quot;, passage: &quot;firstcocktailparty&quot;, inline:true, repeats:false, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailpartySetup&quot;, passage: &quot;cocktailparty_setup01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;,&quot;cocktailPartyPrep&quot;, &quot;playerLaundry&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailpartySetup&quot;, passage: &quot;cocktailparty_setup01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;,&quot;cocktailPartyPrep&quot;, &quot;playerBedroom&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;cocktailparty_Morning&quot;, passage: &quot;cocktailparty_Morning&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Sunday&quot;, &quot;cocktailPartyInProgress&quot; ]}))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;Laundry&quot;, new Event({name: &quot;daughterTease&quot;, passage: &quot;choreEvent_DaughterTease01&quot;, inline:true, repeats:false, tags: [&quot;playerLaundry&quot;, &quot;daughterAcceptance2&quot;]}))&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="roomInit" tags="init" position="725,1475" size="100,100">&lt;!--  Mansion  --&gt;
@@ -3208,7 +3233,9 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;include &quot;choresInit&quot;&gt;&gt;
 &lt;&lt;include &quot;eventInit&quot;&gt;&gt;
 &lt;&lt;include &quot;tagsInit&quot;&gt;&gt;
-&lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Intro1" tags="intro tutorial" position="1100,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;
+
+&lt;&lt;set $shopTest to new Shop()&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Intro1" tags="intro tutorial" position="1100,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
