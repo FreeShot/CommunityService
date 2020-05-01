@@ -1,11 +1,14 @@
 class Shop {
 	constructor (config) {
-		self.inventory = new Inventory();
+		this.inventory = new Inventory({});
+		this.name = "Unnamed shop";
 
 		Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
 	}
+
+
 	
 	clone() {
         return new Shop(this);

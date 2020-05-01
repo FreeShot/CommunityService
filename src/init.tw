@@ -20,4 +20,4 @@
 <<include "tagsInit">>
 <<include "bodyPartInit">>
 
-<!--<<set $shopTest to new Shop({})>>-->
+<<set $shopTest to new Shop({})>>

@@ -1591,12 +1591,15 @@ Setting.addToggle("nsfw", {
 /* twine-user-script #10: "shop.js" */
 class Shop {
 	constructor (config) {
-		self.inventory = new Inventory();
+		this.inventory = new Inventory({});
+		this.name = "Unnamed shop";
 
 		Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
 	}
+
+
 	
 	clone() {
         return new Shop(this);
@@ -3189,7 +3192,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;include &quot;tagsInit&quot;&gt;&gt;
 &lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;
 
-&lt;!--&lt;&lt;set $shopTest to new Shop({})&gt;&gt;--&gt;</tw-passagedata><tw-passagedata pid="116" name="Intro1" tags="intro tutorial" position="725,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;set $shopTest to new Shop({})&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Intro1" tags="intro tutorial" position="725,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
