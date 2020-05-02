@@ -20,6 +20,12 @@ You back into the gym with you cleaning equipment and turn to see $daughter.name
 
 You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she's taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.
 
+::daughterGardenReading01
+
+$daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
+
+[img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]
+
 :: wifeLoungeBossy01 [noreturn chore]
 
 You about to get started when $wife.name walks into the room. You pasue for a moment waiting for her to react.
@@ -113,3 +119,51 @@ You snatch up one of the nearby towels and quickly cover yourself.
 <<= $wife.speak("I don't have time for this. Make yourself presentable and get to work!")>>
 
 $wife.name leaves the room. You clearly lost some credibility with that slip up.
+
+:: choreEvent_DaughterChat02 [event]
+
+Trigger: player is in the same room in the house (not gym, garden, etc)
+
+As you are moving into the room $daughter.name arrives at the same time.
+
+She smiles at you and says. <<= $daughter.speak("Hey $player.name.")>>
+
+She walks and gives you a quick hug. <<= $daughter.speak("So what have you been up to?")>>
+
+<<= $player.speak("<i>I know she's being nice but come on.</i>")>>
+
+<<= $player.speak("Just cleaning, same as always.")>>
+
+<<= $daughter.speak("It must be boring.")>> $daughter.name looks you up and down. <<= $daughter.speak("You should really get into the gym every once in a while. You're all skin and bones.")>>
+
+<<= $player.speak("I'm in there plenty. Only to clean though.")>>
+
+<<if $daughter.acceptance >= 2>>
+	<<= $daughter.speak("I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.")>>
+
+	You stammer for a moment at the opportunity for something new to do. <<= $player.speak("Uh... I mean... If you want. I would like that.")>> Never mind being close to $daughter.name in her gym clothes while you both work out.
+<<else>>
+	<<= $daughter.speak("Oh well. Chin up. I'm sure things will get better for you eventually.")>>
+
+	<<= $player.speak("Yeah. Sure.")>>
+<</if>>
+
+<<= $daughter.speak("Well. I'll talk to you later then.")>>
+
+:: choreEvent_DaughterTease01 [noreturn chore]
+
+todo: trigger should be if the daughter acceptance is above a certain amount. Just after/at the end of when she's been in the gym
+
+It takes a bit of time to collect everything from all the hampers but now you're ready to get the washing started. You're in the middle of separating all the various loads when $daughter.name comes in wearing her sweaty gym equipment.
+
+<<= $daughter.speak("Whew. Just in time.")>>
+
+You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her shoes, socks and shorts. She does not wear anything underneath them, at all.
+
+<<= $daughter.speak("Throw these in with the rest will you.")>>
+
+You stand stock still as she throws them to you. Some of the items land on your shoulders. You would react but you're too busy watching $daughter.name as she spins around and bounces out of the room.
+
+<<= $player.speak("What the hell just happened?")>>
+
+todo: add cage conditions, arousal, etc

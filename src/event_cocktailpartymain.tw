@@ -2,13 +2,10 @@
 <<= $time.setDate({day:0, hour: 16, minute:0})>>
 <<set $cocktailparty_start to true>>
 <<set $voiceTonic to true>>
-<<if $flags.firstCocktailParty is false>>
+<<set $previousFemininity to ($player.femininity += 1)>>
+<<set $player.femininity to 100>>
 
-	To do: add truncated description of the player getting ready
-
-	<<set $previousFemininity to ($player.femininity += 1)>>
-	<<set $player.femininity to 100>>
-<</if>>
+To do: add truncated description of the player getting ready
 
 previousFemininity = $previousFemininity
 

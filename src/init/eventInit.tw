@@ -2,12 +2,14 @@
 <<= $mansion.addEvent("Gym", new Event({name: "daughterGymSquat01", passage: "daughterGymSquat01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
 <<= $mansion.addEvent("Gym", new Event({name: "daughterGymArms01", passage: "daughterGymArms01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
 <<= $mansion.addEvent("Gym", new Event({name: "daughterGymChinup01", passage: "daughterGymChinup01", inline: true, repeats:true, tags: ["needDaughter"]}))>>
+<<= $mansion.addEvent("Garden", new Event({name: "daughterGardenReading01", passage: "daughterGardenReading01", inline:true, repeats:true, tags: ["needDaughter"]}))>>
 
-<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCParty01", passage: "mansionCParty01", inline:true, repeats:false, tags: ["weekEven", "Saturday"]}))>>
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartyIntro01", passage: "mansionCPartyIntro01", inline:true, repeats:false, tags: ["weekEven", "Saturday"]}))>>
 <<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartySetup01", passage: "mansionCPartySetup01", inline:true, repeats:true, tags: ["weekEven", "Saturday","cocktailPartyPrep", "playerBedroom"]}))>>
 <<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartyMorning01", passage: "mansionCPartyMorning01", inline:true, repeats:true, tags: ["weekEven", "Sunday", "cocktailPartyInProgress" ]}))>>
 
-<<= $mansion.addEvent("Garden", new Event({name: "daughterPath03GardenChatA", passage: "daughterPath03GardenChatA", inline:true, repeats:false, tags: ["needDaughter", "daughterAcceptance1"]}))>>
+<<= $mansion.addEvent("Garden", new Event({name: "daughterPath03GardenChatA", passage: "daughterPath03GardenChatA", inline:true, repeats:true, tags: ["needDaughter", "daughterAcceptance1"]}))>>
+<<= $mansion.addEvent("Foyer", new Event({name: "daughterPath04IntroDate01", passage: "daughterPath04IntroDate01", inline:true, repeats:false, tags: ["Friday", "needDaughter", "daughterAcceptance2"]}))>>
 
 
 <!--  <<= $mansion.addEvent("Laundry", new Event({name: "daughterTease", passage: "choreEvent_DaughterTease01", inline:true, repeats:false, tags: ["playerLaundry", "daughterAcceptance2"]}))>>  -->

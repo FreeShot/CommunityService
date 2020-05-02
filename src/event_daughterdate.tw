@@ -1,0 +1,32 @@
+:: daughterDateSetup01
+
+"So what would you like to do? We can…"
+
+> go to a club
+> see a movie
+> eat at a fancy restaurant
+
+On choice
+
+"Good choice. I know just the place."
+
+These can be repeatable
+
+On first - this will change after hypno. starts to be a role reversal
+
+[[daughterDateActivity01]]
+
+::daughterDateActivity01
+
+[[daughterDateFinish01]]
+
+::daughterDateFinish01
+
+Date stuff happens
+
+Date ending is variable "date" type ending
+First one will always end in a drunk kiss
+
+The next morning
+
+[[sleep]]
