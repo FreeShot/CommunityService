@@ -50,7 +50,7 @@ She leans in a bit closer.
 
 <<= $daughter.speak("I think I'm getting a little jealous of all the eyes on that cute butt of yours.")>>
 
-You reach down to fix the hem of your skirt as if ready for it to fly up at any moment to reveal what's underneath then, blushing furiously.
+Blushing furiously you reach down to fix the hem of your skirt as if ready for it to fly up at any moment to reveal what's underneath then.
 
 <<nobr>>
 <span id="daughterServe01">
@@ -82,7 +82,11 @@ You reach down to fix the hem of your skirt as if ready for it to fly up at any 
 
 $daughter.name laughs. <<= $daughter.speak("I should sneak you out of here sometime. Although I think the eyes wouldn't stop staring at a cutey like you.")>>
 
-You roll your eyes and $daughter.name chuckles again before turning back to her conversation.
+You roll your eyes but she just chuckles <<if $suitor.acceptance >= 1>> and leans forwards to whisper.
+
+<<= $daughter.speak("Just between us girls, I caught $suitor.name checking you out before and he's not easy to impress, trust me.")>>
+
+You look at her wide eyed but before you can reply $daughter.name winks <</if>>and turns back to her conversation to leave you to your duties.
 
 [[Continue serving|mansionCPartyServing01]]
 
@@ -291,7 +295,7 @@ The cage just sits there, mocking you.
 
 You drop your pants and slip the cool plastic on. It's a little difficult because you are semi hard but eventually your slip your member into the sleeve and then clip the base around yourself before snapping it closed. The lock engages itself before you can second guess the choice and like that your masculinity is sealed away until $wife.name releases you.
 
-Reflexive you tug at it in a half hearted attempt to remove it but the cage is shut tight.
+You tug at it in a half hearted attempt to remove it but the cage is shut tight.
 
 It still feels alien but as the hard plastic warms up there is a slight tingle of familiarity.
 
@@ -308,9 +312,9 @@ Knowing there is no other way, you drop your pants and pick the small piece of p
 
 [img[setup.ImagePath + "items/wearables/toys/cage_02.jpg"]]
 
-<<= $player.speak("<i>It's kind of tiny. Why does she have more than one?</i>")>>
+<<= $player.speak("<i>It's kind of small. Why does she have more than one?</i>")>>
 
-You begin putting it on. It's a little difficult because you are semi hard but eventually your slip your member into the sleeve and then clip the base around yourself before snapping it closed. The lock engages itself before you can second guess the choice and like that your masculinity is sealed away until $wife.name releases you.
+You begin putting it on. It's a little difficult because you are semi hard but eventually you slip your member into the sleeve and then clip the base around yourself before snapping it closed. The lock engages itself before you can second guess the choice and like that your masculinity is sealed away until $wife.name releases you.
 
 It still feels alien but as the hard plastic warms up there is a slight tingle of familiarity.
 
