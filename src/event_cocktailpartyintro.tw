@@ -15,6 +15,7 @@ As you are busy taking in the sight of the cute maid when you get a shove from b
 [img[setup.ImagePath + "events/cocktailparty/broken_plates.jpg"]]
 
 [[This won't be good.|mansionCPartyIntro03]]
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartySetup01", passage: "mansionCPartySetup01", inline:true, repeats:true, tags: ["weekEven", "Saturday"]}))>>
 
 ::mansionCPartyIntro03 [event]
  
@@ -795,7 +796,7 @@ $daughter.name gives you a quick pat on the cheek before turning around to $cate
 
 [[Begin serving|mansionCPartyServing01]]
 
-<<set $cocktailparty_start to true>>
+<<set $cocktailPartyStart to true>>
 
 ::mansionCPartyIntro28 [event]
 
@@ -868,3 +869,4 @@ You can see $owner.title lying asleep face down, clearly naked, and quickly foll
 
 [[Performance review|mansionCPartyReview01]]
 <<set $flags.firstCocktailParty to false>>
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartySetup01", passage: "mansionCPartySetup01", inline:true, repeats:true, tags: ["weekEven", "Saturday"]}))>>

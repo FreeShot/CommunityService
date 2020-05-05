@@ -1,6 +1,6 @@
 ::mansionCPartySetup01 [event]
 <<= $time.setDate({day:0, hour: 16, minute:0})>>
-<<set $cocktailparty_start to true>>
+<<set $cocktailPartyStart to true>>
 <<set $voiceTonic to true>>
 <<set $previousFemininity to ($player.femininity += 1)>>
 <<set $player.femininity to 100>>
@@ -14,7 +14,9 @@ previousFemininity = $previousFemininity
 ::mansionCPartyServing01 [event]
 
 Options to prioritise guests or VIP's
- 
+
+<<= $player.speak("player speaking")>>
+
 VIP guests
 *owner*
 *wife*

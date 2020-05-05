@@ -186,8 +186,6 @@ You smile and then get <<return "back to what you were doing.">>
 
 :: daughterPath04IntroDate01
 
-Trigger: d acceptance >= 2, on Fri at 5pm in whichever room the player is in - potentially day 19 if the player finds her in the garden strait away.
-
 You hear the sounds of $daughter.name and $wife.name arguing as they enter the room.
 
 <<= $daughter.speak("You can't just keep me locked up here!")>>
@@ -222,9 +220,13 @@ You approach $wife.name and $daughter.name.
 
 <<= $wife.speak("It seems you have an opportunity to improve your situation. $daughter.name has been getting into trouble of late and I would like you to escort her out tonight and keep her out of trouble. If you do I will consider it as a bonus to your debt. What do you say?")>>
 
+You quickly weight up the pros and cons. On the one hand you'll be responsible for keeping $daughter.name from partying too hard without even being able to tell her what to do. On the other it's a chance to get out and relax for a night and possibly even be rewarded for it. That and $daughter.name seems like the closest thing you have to a friend here.
+
+Judging from the look on $wife.name's face you get the feeling that you won't get this offer again.
+
 <<nobr>>
 <span id="firstdate01">
-	<<link "Agreed.">>
+	<<link "Agree.">>
 		<<replace "#firstdate01">>
 			Before you can finish agreeing $daughter.name claps her hands excitedly. <<= $daughter.speak("Awesome, it's a date then. I'll go get ready. Meet you at the door in a bit.")>><br>
 			<br>
@@ -237,15 +239,15 @@ You approach $wife.name and $daughter.name.
 			[[Follow|daughterPath04IntroDate02]]
 		<</replace>>
 	<</link>><br>
-	<<link "Disagree.">>
+<!--	<<link "Disagree.">>
 		<<replace "#firstdate01">>
-			D slumps at your response and is clearly upset but she leaves before you can say anything.<br>
+			$daughter.name slumps at your response and is clearly upset but she leaves before you can say anything.<br>
 			<br>
 			<<= $wife.speak("A shame. Well back to work now.")>><br>
 			<br>
 			$wife.name follows after $daughter.name leaving you to your chores.
 		<</replace>>
-	<</link>>
+	<</link>>-->
 </span><</nobr>><br>
 
 :: daughterPath04IntroDate02
@@ -337,7 +339,9 @@ You miss a beat as you see she is wearing one of the smallest cocktail dresses y
 
 <<= $daughter.speak("What took you so long? Come on.")>>
 <<else>>
-You head to the foyer and wait for $daughter.name Eventually she walks around the corner and cocks her hips to one side.
+You head to the foyer and wait for $daughter.name.
+
+Eventually she walks around the corner and cocks her hips to one side.
 
 [img[setup.ImagePath + "events/daughterdate/firstdate_dress01.jpg"]]
 
@@ -352,6 +356,9 @@ She loops her arm in yours and you head out throught he main doors for the first
 
 [[daughterDateSetup01]]
 
+<<set $daughterDateIntro to true>>
+<<set $therapyPathStart to true>>
+
 :: daughterPath04IntroDate05
 
 This is the first real chance you've had to check out the city since this whole mess started. $daughter.name calls a car and you are both picked up to be taken to the place she's chosen.
@@ -362,15 +369,31 @@ The drive through the streets is so calming though. There's something about not 
 
 :: daughterPath04IntroDate06
 
-You and $daughter.name stumble in throught he main 
+You and $daughter.name stumble in through the main door and into the foyer. Everyone else is already asleep so there are only night lights on. As you walk her towards the stairs you both bump into one of the tables and it bangs agsint the wall.
 
+$daughter.name  presses a finger to her mouth. <<= $daughter.speak("Shhhhhhhh.")>>
 
+<<= $player.speak("You shhhhhhhh.")>> There's a bit more of a slur to your voice than you would like.
 
+You both manage to steer to the stair case leading up stairs.
 
-Date ending is variable "date" type ending
-First one will always end in a drunk kiss
+$daughter.name stops you. <<= $daughter.speak("Heeeey. You don't get to tell me what to do. No matter how cute you are.")>>. She boops you on the nose.
 
-[[daughterDateFinish01]]
+Her eyes are lull with weariness and a hefty amount of liquor.
+
+ <<= $daughter.speak("It's nice... having a friend in the house to hang out with.")>>
+
+ You rub your CUFF and reply. <<= $player.speak("Yeah. I liked it. Despite everything.")>>
+
+ <<= $daughter.speak("Aaaaww. You're sweet $player.femName.")>>
+
+Without warning $daughter.name leans forward and presses her mouth to yours. With the fog in your mind you don't think twice and embrace the kiss. Her soft lips part slightly and you mirror the action, as if you are both in perfect synch. One of her hands makes its way around your waist and grabs your rear. The other has already found its way to your chest and is massaging it gently. Despite $daughter.name's wandering hands the sweet and soft kiss feels far more chaste than a drunken make out session would ususally be.
+
+$daughter.name pulls away and smile. <<= $daughter.speak("Night $player.femName.")>>. With that she turns and quickly walks up the stairs with a lot more ease than you would expect given how much she's had to drink.
+
+Not thinking too much on it you turn and head back to your room and crash on the bed before you know it.
+
+[[sleep]]
 
 <<= $time.setDate({day:0, hour: 2, minute:0})>>
 

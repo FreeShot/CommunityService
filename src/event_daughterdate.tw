@@ -1,4 +1,5 @@
 :: daughterDateSetup01
+<<set $daughterDateStart to true>>
 
 "So what would you like to do? We can…"
 
@@ -29,7 +30,13 @@ good result will get a better bonus and hopefully offset the night out
 
 possibly improve stats like stamina?
 
-[[daughterDateFinish01]]
+increase or decrease acceptance?
+
+<<if $daughterDateIntro is true>>
+	[[daughterPath04IntroDate06]]
+<<else>>
+	[[daughterDateFinish01]]
+<</if>>
 
 ::daughterDateFinish01
 
@@ -41,3 +48,5 @@ First one will always end in a drunk kiss
 The next morning
 
 [[sleep]]
+
+::daughterDateMorning01

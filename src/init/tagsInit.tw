@@ -18,6 +18,7 @@
 	"daughterAcceptance2" : function() {return (State.variables.daughter.acceptance == 2);},
 	"playerLaundry" : function() {return (State.variables.player.currentRoom === "Laundry");},
 	"playerBedroom" : function() {return (State.variables.player.currentRoom === "PlayerBdRm");},
-	"cocktailPartyPrep" : function() {return ($flags.cocktailIntroComplete == true);},
-	"cocktailPartyInProgress" : function() {return ($cocktailparty_start == true);}
+	"cocktailPartyInProgress" : function() {return ($cocktailPartyStart == true);},
+	"daughterDateInProgress" : function() {return ($daughterDateStart == true);},
+	"therapyPathStart" : function() {return ($therapyPathStart == true);}
 }>>

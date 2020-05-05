@@ -1,0 +1,11 @@
+:: therapistPathStart01
+
+to do: trigger therapist tags
+
+<<if $daughterDateIntro is true>>
+
+Daughter date fall out
+
+<</if>>
+
+[[PlayerBdRm]]

@@ -23,14 +23,7 @@ Day $time.day</span>
 		<<goto `passage()`>>
 	<</silently>>
 <</click>>
-[[Skip party intro|mansionCPartySetup01][$player.femName to "Alexis"; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true]]
-
-<<click "D Acceptance: $daughter.acceptance">>
-	<<silently>>
-		<<set $daughter.acceptance += 1>>
-		<<goto `passage()`>>
-	<</silently>>
-<</click>>
+[[Skip party intro|mansionCPartyServing01][$player.femName to "Alexis"; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true; $cocktailPartyStart to true]]
 
 ::CUFF [nobr mainMenu]
 <<if $flags.cuff.init is false>>
