@@ -500,6 +500,7 @@ class Player extends Character {
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 choresLate : 0,
+                money : 0,
                 inv : new Inventory({name: "Player Inventory", isShop: false})
         }, config));
 	}
@@ -819,13 +820,17 @@ class Inventory {
 		if (wl !== undefined)
 		{
 			items = items.filter(function(el){
-				return el.item.tags.some(function(tag) {return wl.includes(tag)});
+				var hasAll = true;
+				wl.forEach(function(tag) {
+					hasAll &= el.item.tags.includes(tag)
+				});
+				return hasAll;
 			});
 		}
 		if (bl !== undefined)
 		{
 			items = items.filter(function(el){
-				return !el.items.tags.some(function(tag) {return bl.includes(tag)});
+				return !el.item.tags.some(function(tag) {return bl.includes(tag)});
 			});
 		}
 		return items;
@@ -851,16 +856,18 @@ class Inventory {
 		return str + "</ul>";
 	}
 
-	buyItem(item, amount)
+	buyItem(item, price, amount)
 	{
 		amount = amount || 1;
+		price = price || 0;
 		// TODO: Add price
 		var i = this.items.findIndex(function(el){return el.item.name == item;});
-		if (i !== undefined)
+		if (i !== undefined && State.variables.player.money >= price)
 		{
 			this.items[i].count -= amount || 1;
 			var item = this.items[i].item.clone();
 			item.removeTag("shopItem");
+			State.variables.player.money -= price;
 			State.variables.player.inv.addItem(
 				item, 
 				this.items[i].count <= 0 ? this.items[i].count + amount : amount
@@ -889,6 +896,7 @@ class Item {
     constructor (config) {
         this.name = "Unnamed item";
         this.tags = [];
+        this.price = 0
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -906,7 +914,16 @@ class Item {
         if (this.tags.includes("shopItem"))
         {
             str += String.format(
-                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}')>><</button>>",
+                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}', {3})>><</button>>",
+                parent,
+                this.name,
+                State.passage,
+                this.price
+            );
+        } else if (this.tags.includes("getable")) {
+            // Get for free
+            str += String.format(
+                "<<button 'Get' '{2}'>><<= {0}.buyItem('{1}', 0)>><</button>>",
                 parent,
                 this.name,
                 State.passage
@@ -3270,7 +3287,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 &lt;&lt;include &quot;tagsInit&quot;&gt;&gt;
 &lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;
 
-&lt;&lt;set $shop to new Shop({name: &quot;TestShop&quot;, id:&quot;shop&quot;})&gt;&gt;
+&lt;&lt;set $shop to new Shop({name: &quot;Base shop&quot;, id:&quot;shop&quot;})&gt;&gt;
 &lt;&lt;set $shop.addCategory(&quot;Wigs&quot;)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Brown wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Black wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="Intro1" tags="intro tutorial" position="350,1600" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
@@ -3429,7 +3446,9 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 }&gt;&gt;
 &lt;&lt;/link&gt;&gt;
 &lt;br&gt;
-[[shopTest]]</tw-passagedata><tw-passagedata pid="131" name="manorIntro01" tags="tutorial" position="100,1725" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+[[shopTest]]
+
+[[playerDescription]]</tw-passagedata><tw-passagedata pid="131" name="manorIntro01" tags="tutorial" position="100,1725" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
@@ -4381,11 +4400,13 @@ Daughter date fall out
 &lt;&lt;/if&gt;&gt;
 
 [[PlayerBdRm]]</tw-passagedata><tw-passagedata pid="173" name="playerDescription" tags="nobr" position="350,2225" size="100,100">You are &lt;&lt;= $player.name&gt;&gt;.
-&lt;&lt;if $player.inv.filter([&quot;wig&quot;])&gt;&gt;
+&lt;&lt;if $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;]).length &gt; 0&gt;&gt;
 HAS A WIG
 &lt;&lt;else&gt;&gt;
 HAS NO WIG
 &lt;&lt;/if&gt;&gt;
+
+&lt;&lt;return&gt;&gt;
 
 &lt;!--
 

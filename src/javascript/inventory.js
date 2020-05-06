@@ -31,13 +31,17 @@ class Inventory {
 		if (wl !== undefined)
 		{
 			items = items.filter(function(el){
-				return el.item.tags.some(function(tag) {return wl.includes(tag)});
+				var hasAll = true;
+				wl.forEach(function(tag) {
+					hasAll &= el.item.tags.includes(tag)
+				});
+				return hasAll;
 			});
 		}
 		if (bl !== undefined)
 		{
 			items = items.filter(function(el){
-				return !el.items.tags.some(function(tag) {return bl.includes(tag)});
+				return !el.item.tags.some(function(tag) {return bl.includes(tag)});
 			});
 		}
 		return items;
@@ -63,16 +67,18 @@ class Inventory {
 		return str + "</ul>";
 	}
 
-	buyItem(item, amount)
+	buyItem(item, price, amount)
 	{
 		amount = amount || 1;
+		price = price || 0;
 		// TODO: Add price
 		var i = this.items.findIndex(function(el){return el.item.name == item;});
-		if (i !== undefined)
+		if (i !== undefined && State.variables.player.money >= price)
 		{
 			this.items[i].count -= amount || 1;
 			var item = this.items[i].item.clone();
 			item.removeTag("shopItem");
+			State.variables.player.money -= price;
 			State.variables.player.inv.addItem(
 				item, 
 				this.items[i].count <= 0 ? this.items[i].count + amount : amount

@@ -2,6 +2,7 @@ class Item {
     constructor (config) {
         this.name = "Unnamed item";
         this.tags = [];
+        this.price = 0
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -19,7 +20,16 @@ class Item {
         if (this.tags.includes("shopItem"))
         {
             str += String.format(
-                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}')>><</button>>",
+                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}', {3})>><</button>>",
+                parent,
+                this.name,
+                State.passage,
+                this.price
+            );
+        } else if (this.tags.includes("getable")) {
+            // Get for free
+            str += String.format(
+                "<<button 'Get' '{2}'>><<= {0}.buyItem('{1}', 0)>><</button>>",
                 parent,
                 this.name,
                 State.passage

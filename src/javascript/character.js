@@ -90,6 +90,7 @@ class Player extends Character {
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 choresLate : 0,
+                money : 0,
                 inv : new Inventory({name: "Player Inventory", isShop: false})
         }, config));
 	}

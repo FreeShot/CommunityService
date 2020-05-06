@@ -1,11 +1,13 @@
 ::playerDescription [nobr]
 
 You are <<= $player.name>>.
-<<if $player.inv.filter(["wig"])>>
+<<if $player.inv.filter(["wig", "equipped"]).length > 0>>
 HAS A WIG
 <<else>>
 HAS NO WIG
 <</if>>
+
+<<return>>
 
 <!--
 
