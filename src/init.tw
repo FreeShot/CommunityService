@@ -21,6 +21,6 @@
 <<include "bodyPartInit">>
 
 <<set $shop to new Shop({name: "TestShop", id:"shop"})>>
-<<set $shop.addCategory("testItems")>>
-<<= $shop.addItem("testItems", new Item({name: "TestItem"}))>>
-<<= $shop.addItem("testItems", new Item({name: "TestItem2"}), 1)>>
+<<set $shop.addCategory("Wigs")>>
+<<= $shop.addItem("Wigs", new Item({name: "Brown wig", tags: ["wig", "equippable"]}), 1)>>
+<<= $shop.addItem("Wigs", new Item({name: "Black wig", tags: ["wig", "equippable"]}), 1)>>

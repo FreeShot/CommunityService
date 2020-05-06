@@ -94,6 +94,30 @@ class Player extends Character {
         }, config));
 	}
 
+    equip(itemName) {
+        var index = this.inv.items.findIndex(function(el) {
+            return el.item.name === itemName;
+        });
+        this.inv.items[index].item.removeTag("equippable");
+        var tags = this.inv.items[index].item.tags;
+        // Might have to prefiler the tags
+        this.inv.filter(tags).filter(function (el) {
+            return el.item.tags.includes("equipped");
+        }).forEach(function(el) {
+            el.item.addTag("equippable");
+            el.item.removeTag("equipped");
+        });
+        this.inv.items[index].item.addTag("equipped");
+    }
+
+    unequip(itemName) {
+        var index = this.inv.items.findIndex(function(el) {
+            return el.item.name === itemName;
+        });
+        this.inv.items[index].item.removeTag("equipped");
+        this.inv.items[index].item.addTag("equippable");
+    }
+
 	getStaminaBar() {
 		var str = "";
 		for(var i = 0; i < this.stamina.current; i++) {

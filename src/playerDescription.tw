@@ -1,9 +1,11 @@
 ::playerDescription [nobr]
-<<silently>>
 
-<</silently>>
-
-<<= $player.describe()>>
+You are <<= $player.name>>.
+<<if $player.inv.filter(["wig"])>>
+HAS A WIG
+<<else>>
+HAS NO WIG
+<</if>>
 
 <!--
 

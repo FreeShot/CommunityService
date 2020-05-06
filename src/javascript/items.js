@@ -1,10 +1,7 @@
-function False() {return false;} // Placeholder for tags
-function True() {return true;}
-
 class Item {
     constructor (config) {
         this.name = "Unnamed item";
-        this.tags = {};
+        this.tags = [];
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -19,28 +16,40 @@ class Item {
                 count
             );
         }
-        if ((this.tags["shopItem"] || False)()) // False with capital letter refers to the function on the top of this page
+        if (this.tags.includes("shopItem"))
         {
             str += String.format(
-                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}')>><<remove '#{1}'>><</button>>",
+                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}')>><</button>>",
                 parent,
                 this.name,
                 State.passage
             );
-        }
-        
+        } else if (this.tags.includes("equippable")) {
+            // Only if not a shop item
+            str += String.format(
+                "<<button 'Equip' '{1}'>><<= $player.equip('{0}')>><</button>>",
+                this.name,
+                State.passage
+            );
+        } else if (this.tags.includes("equipped")) {
+            str += String.format(
+                "<<button 'Unequip' '{1}'>><<= $player.unequip('{0}')>><</button>>",
+                this.name,
+                State.passage
+            );
+        }     
         return str + "</li>";
     }
 
-    addTag(tag, value) {
-        if (this.tags[tag] === undefined)
+    addTag(tag) {
+        if (!this.tags.includes(tag))
         {
-            this.tags[tag] = value || True; // True refers to the placeholder at the top of this file
+            this.tags.push(tag);
         }
     }
 
-    removeTag(tag) {
-        delete this.tags[tag];
+    removeTag(tagName) {
+        this.tags = this.tags.filter(function(tag) {return tag !== tagName});
     }
     
     clone() {

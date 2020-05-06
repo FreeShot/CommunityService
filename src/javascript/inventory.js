@@ -25,9 +25,28 @@ class Inventory {
 		return this.items.findIndex(function(el){return el.item.name == item;});
 	}
 
-	listItem(parent) {
+	filter(wl, bl)
+	{
+		var items = this.items;
+		if (wl !== undefined)
+		{
+			items = items.filter(function(el){
+				return el.item.tags.some(function(tag) {return wl.includes(tag)});
+			});
+		}
+		if (bl !== undefined)
+		{
+			items = items.filter(function(el){
+				return !el.items.tags.some(function(tag) {return bl.includes(tag)});
+			});
+		}
+		return items;
+	}
+
+	listItem(parent, wl, bl) {
 		var str = String.format("{0} <ul>", this.name);
-		this.items.forEach(function(el){
+		var items = this.filter(wl, bl);
+		items.forEach(function(el){
 			str += el.item.description(
 				el.count, 
 				parent !== undefined ?
