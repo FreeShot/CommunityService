@@ -23,4 +23,4 @@
 <<set $shop to new Shop({name: "TestShop", id:"shop"})>>
 <<set $shop.addCategory("testItems")>>
 <<= $shop.addItem("testItems", new Item({name: "TestItem"}))>>
-<<= $shop.addItem("testItems", new Item({name: "TestItem2"}), 3)>>
+<<= $shop.addItem("testItems", new Item({name: "TestItem2"}), 1)>>

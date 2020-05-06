@@ -499,7 +499,8 @@ class Player extends Character {
                 femininity: 0,
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
-                choresLate : 0
+                choresLate : 0,
+                inv : new Inventory({name: "Player Inventory", isShop: false})
         }, config));
 	}
 
@@ -780,7 +781,7 @@ class Inventory {
 		{
 			this.items.find(function(el){return el.item.name == item.name}).count += count || 1;
 		} else {
-			this.items.push({"item" : item, "count" : count || 1});
+			this.items.push({"item" : item, "count" : count || Infinity});
 		}
 	}
 
@@ -809,15 +810,18 @@ class Inventory {
 
 	buyItem(item, amount)
 	{
+		amount = amount || 1;
 		// TODO: Add price
 		var i = this.items.findIndex(function(el){return el.item.name == item;});
 		if (i !== undefined)
 		{
 			this.items[i].count -= amount || 1;
-			var amountLeft = this.items[i].count > 0 ? amount : amount + this.items[i].count;
-			var item = this.items[i].item;
+			var item = this.items[i].item.clone();
 			item.removeTag("shopItem");
-			State.variables.playerInv.addItem(item, amountLeft);
+			State.variables.player.inv.addItem(
+				item, 
+				this.items[i].count <= 0 ? this.items[i].count + amount : amount
+			);
 			this.items = this.items.filter(function(el){return el.count > 0});
 		}
 	}
@@ -838,7 +842,8 @@ Object.defineProperty(window, 'Inventory', {
     value : Inventory
 });
 /* twine-user-script #5: "items.js" */
-function False() {return false;}
+function False() {return false;} // Placeholder for tags
+function True() {return true;}
 
 class Item {
     constructor (config) {
@@ -852,6 +857,12 @@ class Item {
 
     description(count, parent) {
         var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
+        if (count != Infinity) {
+            str += String.format(
+                "(Amnt: {0}) ",
+                count
+            );
+        }
         if ((this.tags["shopItem"] || False)()) // False with capital letter refers to the function on the top of this page
         {
             str += String.format(
@@ -868,7 +879,7 @@ class Item {
     addTag(tag, value) {
         if (this.tags[tag] === undefined)
         {
-            this.tags[tag] = value || function () {return true;};
+            this.tags[tag] = value || True; // True refers to the placeholder at the top of this file
         }
     }
 
@@ -2959,9 +2970,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 
 &lt;&lt;set $crotch to [&quot;&quot;]&gt;&gt;
 
-&lt;&lt;set $legs to [&quot;&quot;]&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="characterInit" tags="init" position="1100,1350" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
-&lt;&lt;set $playerInv to new Inventory({name:&quot;Player inventory&quot;, isShop:false, id:&quot;playerInv&quot;})&gt;&gt;
-
+&lt;&lt;set $legs to [&quot;&quot;]&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="characterInit" tags="init" position="725,1475" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
 &lt;!--  NPC  --&gt;
 
 &lt;&lt;set $owner to new NPC({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;Sir&quot;, schedule: [
@@ -3212,7 +3221,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 &lt;&lt;set $shop to new Shop({name: &quot;TestShop&quot;, id:&quot;shop&quot;})&gt;&gt;
 &lt;&lt;set $shop.addCategory(&quot;testItems&quot;)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem&quot;}))&gt;&gt;
-&lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem2&quot;}), 3)&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Intro1" tags="intro tutorial" position="725,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem2&quot;}), 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="Intro1" tags="intro tutorial" position="350,1600" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -4399,13 +4408,13 @@ You turn on the warm stream of water and step into the shower. You soap up and w
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="166" name="RoomDescription" tags="room" position="725,2100" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="167" name="shopTest" tags="" position="850,2100" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="RoomDescription" tags="room" position="1100,2225" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="shopTest" tags="" position="1225,2225" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
 
-&lt;&lt;= $playerInv.listItem()&gt;&gt;
+&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;)&gt;&gt;
 
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="sleep" tags="sleep" position="975,2100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="181" name="sleep" tags="sleep" position="100,2350" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 &lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;

@@ -13,6 +13,12 @@ class Item {
 
     description(count, parent) {
         var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
+        if (count != Infinity) {
+            str += String.format(
+                "(Amnt: {0}) ",
+                count
+            );
+        }
         if ((this.tags["shopItem"] || False)()) // False with capital letter refers to the function on the top of this page
         {
             str += String.format(

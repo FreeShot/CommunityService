@@ -17,7 +17,7 @@ class Inventory {
 		{
 			this.items.find(function(el){return el.item.name == item.name}).count += count || 1;
 		} else {
-			this.items.push({"item" : item, "count" : count || 1});
+			this.items.push({"item" : item, "count" : count || Infinity});
 		}
 	}
 
@@ -46,15 +46,18 @@ class Inventory {
 
 	buyItem(item, amount)
 	{
+		amount = amount || 1;
 		// TODO: Add price
 		var i = this.items.findIndex(function(el){return el.item.name == item;});
 		if (i !== undefined)
 		{
 			this.items[i].count -= amount || 1;
-			var amountLeft = this.items[i].count > 0 ? amount : amount + this.items[i].count;
-			var item = this.items[i].item;
+			var item = this.items[i].item.clone();
 			item.removeTag("shopItem");
-			State.variables.playerInv.addItem(item, amountLeft);
+			State.variables.player.inv.addItem(
+				item, 
+				this.items[i].count <= 0 ? this.items[i].count + amount : amount
+			);
 			this.items = this.items.filter(function(el){return el.count > 0});
 		}
 	}

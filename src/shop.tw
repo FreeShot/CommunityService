@@ -4,6 +4,6 @@
 <<= $shop.listItem()>>
 
 
-<<= $playerInv.listItem()>>
+<<= $player.inv.listItem("$player.inv")>>
 
 <<return>>
