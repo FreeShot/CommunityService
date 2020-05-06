@@ -2,6 +2,7 @@ class Inventory {
 	constructor(config) {
 		this.items = [];
 		this.name = "Default";
+		this.isShop = false; 
 
 		Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -10,6 +11,8 @@ class Inventory {
 
 	addItem(item, count)
 	{
+		if (this.isShop) 
+			item.addTag("shopItem");
 		if (this.items.find(function(el){return el.item.name == item.name}))
 		{
 			this.items.find(function(el){return el.item.name == item.name}).count += count || 1;
@@ -18,14 +21,42 @@ class Inventory {
 		}
 	}
 
-	listItem() {
+	findItemIndex(item) {
+		return this.items.findIndex(function(el){return el.item.name == item;});
+	}
+
+	listItem(parent) {
 		var str = String.format("{0} <ul>", this.name);
 		this.items.forEach(function(el){
-			str += String.format(
-				"<li>{0}</li>", 
-				el.item.description(el.count), 
-		)});
+			str += el.item.description(
+				el.count, 
+				parent !== undefined ?
+				String.format(
+					"{0}.getCategory(['{1}'])",
+					parent,
+					this.name
+				) : String.format(
+					"State.variables['{0}']",
+					this.name
+				)
+			);
+		}, this);
 		return str + "</ul>";
+	}
+
+	buyItem(item, amount)
+	{
+		// TODO: Add price
+		var i = this.items.findIndex(function(el){return el.item.name == item;});
+		if (i !== undefined)
+		{
+			this.items[i].count -= amount || 1;
+			var amountLeft = this.items[i].count > 0 ? amount : amount + this.items[i].count;
+			var item = this.items[i].item;
+			item.removeTag("shopItem");
+			State.variables.playerInv.addItem(item, amountLeft);
+			this.items = this.items.filter(function(el){return el.count > 0});
+		}
 	}
 
 	clone() {

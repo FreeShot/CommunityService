@@ -1,4 +1,9 @@
 ::shopTest
 
 <<= $shop.name>>
-<<= $shop.listItem>>
+<<= $shop.listItem()>>
+
+
+<<= $playerInv.listItem()>>
+
+<<return>>

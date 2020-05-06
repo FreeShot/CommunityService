@@ -765,6 +765,7 @@ class Inventory {
 	constructor(config) {
 		this.items = [];
 		this.name = "Default";
+		this.isShop = false; 
 
 		Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -773,6 +774,8 @@ class Inventory {
 
 	addItem(item, count)
 	{
+		if (this.isShop) 
+			item.addTag("shopItem");
 		if (this.items.find(function(el){return el.item.name == item.name}))
 		{
 			this.items.find(function(el){return el.item.name == item.name}).count += count || 1;
@@ -781,14 +784,42 @@ class Inventory {
 		}
 	}
 
-	listItem() {
+	findItemIndex(item) {
+		return this.items.findIndex(function(el){return el.item.name == item;});
+	}
+
+	listItem(parent) {
 		var str = String.format("{0} <ul>", this.name);
 		this.items.forEach(function(el){
-			str += String.format(
-				"<li>{0}</li>", 
-				el.item.description(el.count), 
-		)});
+			str += el.item.description(
+				el.count, 
+				parent !== undefined ?
+				String.format(
+					"{0}.getCategory(['{1}'])",
+					parent,
+					this.name
+				) : String.format(
+					"State.variables['{0}']",
+					this.name
+				)
+			);
+		}, this);
 		return str + "</ul>";
+	}
+
+	buyItem(item, amount)
+	{
+		// TODO: Add price
+		var i = this.items.findIndex(function(el){return el.item.name == item;});
+		if (i !== undefined)
+		{
+			this.items[i].count -= amount || 1;
+			var amountLeft = this.items[i].count > 0 ? amount : amount + this.items[i].count;
+			var item = this.items[i].item;
+			item.removeTag("shopItem");
+			State.variables.playerInv.addItem(item, amountLeft);
+			this.items = this.items.filter(function(el){return el.count > 0});
+		}
 	}
 
 	clone() {
@@ -807,21 +838,42 @@ Object.defineProperty(window, 'Inventory', {
     value : Inventory
 });
 /* twine-user-script #5: "items.js" */
+function False() {return false;}
+
 class Item {
     constructor (config) {
         this.name = "Unnamed item";
+        this.tags = {};
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
     }
 
-    description(count) {
-        return String.format(
-            "{0} ({1})",
-            this.name,
-            count
-        );
+    description(count, parent) {
+        var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
+        if ((this.tags["shopItem"] || False)()) // False with capital letter refers to the function on the top of this page
+        {
+            str += String.format(
+                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}')>><<remove '#{1}'>><</button>>",
+                parent,
+                this.name,
+                State.passage
+            );
+        }
+        
+        return str + "</li>";
+    }
+
+    addTag(tag, value) {
+        if (this.tags[tag] === undefined)
+        {
+            this.tags[tag] = value || function () {return true;};
+        }
+    }
+
+    removeTag(tag) {
+        delete this.tags[tag];
     }
     
     clone() {
@@ -1447,6 +1499,7 @@ class Shop {
 	constructor (config) {
 		this.categories = [];
 		this.name = "Unnamed shop";
+		this.id = "shop"; // Id must be same as the variable name
 
 		Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -1455,24 +1508,36 @@ class Shop {
 
 	addCategory(categoryName)
 	{
-		this.categories.push(new Inventory({"name": categoryName}));
+		this.categories.push(new Inventory({"name": categoryName, "isShop": true}));
 	}
 
 	addItem(category, item, count)
 	{
-		this.categories.find(
-			function(el){return el.name == category}).addItem(item, count);
+		this.getCategory(category).addItem(item, count);
 	}
 
-	get listItem()
+	getCategory(category)
 	{
-		var str = "<ul>";
+		return this.categories.find(
+			function(el){return el.name == category});
+	}
+
+	listItem()
+	{
+		var str = String.format(
+			"<ul id='{0}'>",
+			this.id
+		);
+		var name = this.name;
 		this.categories.forEach(function(el) {
 			str += String.format(
 				"<li>{0}</li>",
-				el.listItem()
+				el.listItem(String.format(
+					"State.variables['{0}']",
+					this.id
+				))
 			);
-		});
+		}, this);
 		return str + "</ul>";
 	}
 	
@@ -2807,6 +2872,7 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;set $crotch to [&quot;&quot;]&gt;&gt;
 
 &lt;&lt;set $legs to [&quot;&quot;]&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="characterInit" tags="init" position="1100,1350" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
+&lt;&lt;set $playerInv to new Inventory({name:&quot;Player inventory&quot;, isShop:false, id:&quot;playerInv&quot;})&gt;&gt;
 
 &lt;!--  NPC  --&gt;
 
@@ -3048,9 +3114,9 @@ $wife.name leaves the room. You clearly lost some credibility with that slip up.
 &lt;&lt;include &quot;tagsInit&quot;&gt;&gt;
 &lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;
 
-&lt;&lt;set $shop to new Shop({name: &quot;TestShop&quot;})&gt;&gt;
+&lt;&lt;set $shop to new Shop({name: &quot;TestShop&quot;, id:&quot;shop&quot;})&gt;&gt;
 &lt;&lt;set $shop.addCategory(&quot;testItems&quot;)&gt;&gt;
-&lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem&quot;}), 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem&quot;}))&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;testItems&quot;, new Item({name: &quot;TestItem2&quot;}), 3)&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Intro1" tags="intro tutorial" position="725,1475" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
@@ -4037,7 +4103,12 @@ Inside, you fine some items left by the last person who stayed here. Unfortunate
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="166" name="RoomDescription" tags="room" position="725,2100" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="167" name="shopTest" tags="" position="850,2100" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
-&lt;&lt;= $shop.listItem&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="sleep" tags="sleep" position="975,2100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
+&lt;&lt;= $shop.listItem()&gt;&gt;
+
+
+&lt;&lt;= $playerInv.listItem()&gt;&gt;
+
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="sleep" tags="sleep" position="975,2100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 &lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
