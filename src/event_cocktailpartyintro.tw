@@ -15,6 +15,7 @@ As you are busy taking in the sight of the cute maid when you get a shove from b
 [img[setup.ImagePath + "events/cocktailparty/broken_plates.jpg"]]
 
 [[This won't be good.|mansionCPartyIntro03]]
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartySetup01", passage: "mansionCPartySetup01", inline:true, repeats:true, tags: ["weekEven", "Saturday"]}))>>
 
 ::mansionCPartyIntro03 [event]
  
@@ -51,7 +52,9 @@ $wife.name grabs your arm and pulls you to your feet with startling ease and sho
 <<= $caterer.speak("It better be fast and they'd better know what they are doing!")>> $caterer.name shouts down the hall.
  
 $wife.name drags you towards the [[Master Bedroom|mansionCPartyIntro04]]
+
 <<set $flags.firstCocktailParty to true>>
+
 
 ::mansionCPartyIntro04 [event] 
 <<= $wife.speak("I swear $caterer.name is such a handful some times.")>> $wife.name pushes you down onto the bed so you're sitting on the end with her towering over you. "This is a disaster. Do you know how much trouble you've caused with your little stunt?")>>
@@ -567,6 +570,8 @@ You turn and look in one of the full length mirror. The cute girl you saw earlie
 	<</link>>
 </span><</nobr>>
 
+<<set $voiceTonic to true>>
+
 ::mansionCPartyIntro20 [event] 
 $wife.name wraps a choker around your neck. It's not too tight but it does the job of hiding your small Adams apple.
  
@@ -789,7 +794,9 @@ $daughter.name gives you a quick pat on the cheek before turning around to $cate
 
 <<= $caterer.speak("Come on girl. You're up.")>> $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
 
-[[Begin serving|cocktailparty_setup01]]
+[[Begin serving|mansionCPartyServing01]]
+
+<<set $cocktailPartyStart to true>>
 
 ::mansionCPartyIntro28 [event]
 
@@ -862,3 +869,4 @@ You can see $owner.title lying asleep face down, clearly naked, and quickly foll
 
 [[Performance review|mansionCPartyReview01]]
 <<set $flags.firstCocktailParty to false>>
+<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartySetup01", passage: "mansionCPartySetup01", inline:true, repeats:true, tags: ["weekEven", "Saturday"]}))>>

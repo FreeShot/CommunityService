@@ -1,0 +1,52 @@
+:: daughterDateSetup01
+<<set $daughterDateStart to true>>
+
+"So what would you like to do? We can…"
+
+> go to a club
+> see a movie
+> eat at a fancy restaurant
+
+On choice
+
+"Good choice. I know just the place."
+
+These can be repeatable
+
+On first - this will change after hypno. starts to be a role reversal
+
+[[daughterDateActivity01]]
+
+::daughterDateActivity01
+
+will be a juggling act between keeping D happy and out of trouble
+Player is paying for everything too so they will have to balance that
+
+They will need to avoid arousal and drunkeness as much as possible
+High numbers there will reduce their better judgment
+Unlocks/locks certain option during the event depending on where they are at
+
+good result will get a better bonus and hopefully offset the night out
+
+possibly improve stats like stamina?
+
+increase or decrease acceptance?
+
+<<if $daughterDateIntro is true>>
+	[[daughterPath04IntroDate06]]
+<<else>>
+	[[daughterDateFinish01]]
+<</if>>
+
+::daughterDateFinish01
+
+Date stuff happens
+
+Date ending is variable "date" type ending
+First one will always end in a drunk kiss
+
+The next morning
+
+[[sleep]]
+
+::daughterDateMorning01

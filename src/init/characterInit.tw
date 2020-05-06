@@ -94,6 +94,11 @@
 		location: "DaughterBdRm", 
 		start: {hour: 14, minute: 0}, 
 		end: {hour: 18, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Foyer", 
+		start: {hour: 18, minute: 0}, 
+		end: {hour: 19, minute: 0}
 	}
 ]})>>
 

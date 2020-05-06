@@ -19,11 +19,11 @@ Day $time.day</span>
 <</click>>
 <<click "Skip to end of day">>
 	<<silently>>
-		
+		<<= $time.setDate({day:0, hour:22, minute:0})>>
 		<<goto `passage()`>>
 	<</silently>>
 <</click>>
-[[Skip party intro|cocktailparty_setup01][$player.femName to "Alexis"; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true]]
+[[Skip party intro|mansionCPartyServing01][$player.femName to "Alexis"; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true; $cocktailPartyStart to true]]
 
 ::CUFF [nobr mainMenu]
 <<if $flags.cuff.init is false>>
