@@ -153,7 +153,7 @@ class Player extends Character {
 	}
 
 	getDesc(bodyPart) {
-		return State.variables.bodyPart[bodyPart][this.bodyPart[bodyPart]];
+		return State.variables.bodyPart[bodyPart][this.bodyPart[bodyPart] || 0];
 	}
     
 	get gender() {

@@ -563,7 +563,7 @@ class Player extends Character {
 	}
 
 	getDesc(bodyPart) {
-		return State.variables.bodyPart[bodyPart][this.bodyPart[bodyPart]];
+		return State.variables.bodyPart[bodyPart][this.bodyPart[bodyPart] || 0];
 	}
     
 	get gender() {
@@ -814,6 +814,9 @@ function ItemSorter(a, b) {
 			tagIndexB = i;
 		}
 	});
+	if (tagIndexA == tagIndexB) {
+		return a.item.feminity - b.item.feminity;
+	}
 	return tagIndexA - tagIndexB;
 }
 
@@ -3074,9 +3077,41 @@ You stand stock still as she throws them to you. Some of the items land on your 
 todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115" name="bodyPartInit" tags="init" position="600,1475" size="100,100">&lt;!-- todo --&gt;
 
 &lt;&lt;set $bodyPart to {
-	hairColor : [&quot;brown&quot;],
-	hairLength : [&quot;short&quot;],
-	eyeColor : [&quot;blue&quot;, &quot;brown&quot;, &quot;black&quot;]
+	hairColor : [
+		&quot;brown&quot;
+	],
+	hairLength : [
+		&quot;short&quot;
+	],
+	eyeColor : [
+		&quot;blue&quot;, 
+		&quot;brown&quot;, 
+		&quot;black&quot;
+	],
+	face: [
+		&quot;Your face is fairly plain and ordinary, almost like a blank slate. You don&#39;t exactly turn any heads which is probably why you&#39;ve never been on a date before.&quot;
+	],
+	lips: [
+		&quot;TBA Lips&quot;
+	],
+	skin: [
+		&quot;TBA Skin&quot;
+	],
+	chest: [
+		&quot;You don&#39;t really exercise so your chest isn&#39;t much to look at.&quot;
+	],
+	butt: [
+		&quot;Your butt barely has any definition. Maybe if you exercised, but as it is, some might even call it flat.&quot;
+	],
+	hips: [
+		&quot;TBA Hips&quot;
+	],
+	crotch: [
+		&quot;You would call your penis average. At least that&#39;s what you tell yourself.&quot;
+	],
+	legs: [
+		&quot;TBA Legs&quot;
+	]
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="characterInit" tags="init" position="725,1475" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
 &lt;!--  NPC  --&gt;
 
@@ -3257,14 +3292,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Black wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Blonde wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
 
-&lt;!-- Base clothes --&gt;
-&lt;&lt;= $player.inv.addItem({name: &quot;Plain Shirt&quot;, tags: [&quot;chest&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name: &quot;Mens jeans&quot;, tags: [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name: &quot;Plain sneakers&quot;, tags: [&quot;feet&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name: &quot;White gym socks&quot;, tags: [&quot;hoistery&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name: &quot;Plain boxers&quot;, tags: [&quot;underwear&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;!-- Base clothes (already equipped) --&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Plain Shirt&quot;, tags: [&quot;chest&quot;, &quot;equipped&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Mens jeans&quot;, tags: [&quot;legs&quot;, &quot;equipped&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Plain sneakers&quot;, tags: [&quot;feet&quot;, &quot;equipped&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;White gym socks&quot;, tags: [&quot;hoistery&quot;, &quot;equipped&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Plain boxers&quot;, tags: [&quot;underwear&quot;, &quot;equipped&quot;]}, 1)&gt;&gt;
 
-&lt;!-- Wardrobe items --&gt;
+&lt;!-- Wardrobe items (can be equipped once feminity is high enougth) --&gt;
 &lt;&lt;= $player.inv.addItem({name:&quot;Female cut T-shirt&quot;, feminity: 10, tags : [&quot;chest&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({name:&quot;Modest skirt&quot;, feminity: 10, tags : [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({name:&quot;Plain white panties&quot;, feminity: 10, tags : [&quot;underwear&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
@@ -4458,9 +4493,31 @@ Daughter date fall out
 You wear a &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.name.toLowerCase()&gt;&gt; hiding your
 &lt;&lt;else&gt;&gt;
 You have &lt;&lt;/if&gt;&gt;
-&lt;&lt;= $player.getDesc(&quot;hairLength&quot;)&gt;&gt; &lt;&lt;= $player.getDesc(&quot;hairColor&quot;)&gt;&gt; hairs.
-You have &lt;&lt;= $player.getDesc(&quot;eyeColor&quot;)&gt;&gt; eyes.
+&lt;&lt;= $player.getDesc(&quot;hairLength&quot;)&gt;&gt; &lt;&lt;= $player.getDesc(&quot;hairColor&quot;)&gt;&gt; hairs. &lt;br&gt;
+You have &lt;&lt;= $player.getDesc(&quot;eyeColor&quot;)&gt;&gt; eyes. &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;face&quot;)&gt;&gt; &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;lips&quot;)&gt;&gt; &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;skin&quot;)&gt;&gt; &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;chest&quot;)&gt;&gt; &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;butt&quot;)&gt;&gt; &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;hips&quot;)&gt;&gt; &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;crotch&quot;)&gt;&gt; &lt;br&gt;
+&lt;&lt;= $player.getDesc(&quot;legs&quot;)&gt;&gt; &lt;br&gt;
 
+&lt;&lt;if $player.inv.filter([&quot;chest&quot;, &quot;legs&quot;, &quot;equipped&quot;]).length &gt; 0&gt;&gt;
+  Your &lt;&lt;= $player.inv.filter([&quot;chest&quot;, &quot;legs&quot;, &quot;equipped&quot;])[0].item.name.toLowerCase()&gt;&gt; hides your chest and your legs.
+&lt;&lt;else&gt;&gt;
+  &lt;&lt;if $player.inv.filter([&quot;chest&quot;, &quot;equipped&quot;]).length &gt; 0&gt;&gt;
+    Your &lt;&lt;= $player.inv.filter([&quot;chest&quot;, &quot;equipped&quot;])[0].item.name.toLowerCase()&gt;&gt; hides your chest.
+  &lt;&lt;else&gt;&gt;
+    Your bare chest is exposed for anyone to see.
+  &lt;&lt;/if&gt;&gt;
+  &lt;&lt;if $player.inv.filter([&quot;legs&quot;, &quot;equipped&quot;]).length &gt; 0&gt;&gt;
+    Your &lt;&lt;= $player.inv.filter([&quot;legs&quot;, &quot;equipped&quot;])[0].item.name.toLowerCase()&gt;&gt; hides your chest.
+  &lt;&lt;else&gt;&gt;
+    Your bare legs are exposed for anyone to see.
+  &lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt; &lt;br&gt;
 
 &lt;br&gt;&lt;&lt;return&gt;&gt;
 
@@ -4470,6 +4527,14 @@ looks: {
 	hairColor: 0,
     hairLength: 0,
     eyeColor: 0,
+    face: 0,
+    lips: 0,
+    skin: 0,
+    chest: 0,
+    butt: 0,
+    hips: 0,
+    crotch: 0,
+    legs: 0
 },
 slots: [
    	{name: &quot;wig&quot;, equipped: null},
@@ -4524,12 +4589,15 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 
 You turn on the warm stream of water and step into the shower. You soap up and wash yourself clean. This moment of relaxation feels great, almost as if your worreis are washing away with the water.
 &lt;&lt;set $time.addTime({day:0, hour:0, minute: 15})&gt;&gt;
-[[Finish|PlayerBdRm]]</tw-passagedata><tw-passagedata pid="176" name="playerRoomMakup" tags="playerRoom" position="725,2225" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="177" name="playerRoomMorningRoutine" tags="playerRoom" position="850,2225" size="100,100">Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.</tw-passagedata><tw-passagedata pid="178" name="playerRoomWardrobe" tags="playerRoom" position="975,2225" size="100,100">&lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
+&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="176" name="playerRoomMakup" tags="playerRoom" position="725,2225" size="100,100">Todo: Add makeup event
+&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="177" name="playerRoomMorningRoutine" tags="playerRoom" position="850,2225" size="100,100">Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.</tw-passagedata><tw-passagedata pid="178" name="playerRoomWardrobe" tags="playerRoom" position="975,2225" size="100,100">&lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;= $player.inv.listItem(undefined, &quot;$wardrobe&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="RoomDescription" tags="room" position="1100,2225" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="shopTest" tags="" position="1225,2225" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;= $player.inv.listItem(undefined, &quot;$wardrobe&quot;)&gt;&gt;
+
+&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="RoomDescription" tags="room" position="1100,2225" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="shopTest" tags="" position="1225,2225" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
 

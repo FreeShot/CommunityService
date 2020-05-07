@@ -15,6 +15,9 @@ function ItemSorter(a, b) {
 			tagIndexB = i;
 		}
 	});
+	if (tagIndexA == tagIndexB) {
+		return a.item.feminity - b.item.feminity;
+	}
 	return tagIndexA - tagIndexB;
 }
 
