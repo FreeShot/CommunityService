@@ -16,20 +16,16 @@ This game is intended for a mature audience. If you are too young, please <a cla
 </div>
 
 
-[[Start the game|Intro1]]
+[[Start the game|Intro1]]<br>
+
 <<link "Skip the introduction (Start with the default character)" "PlayerBdRm">>
 <<set $flags to {
 	"cuff" : {
 		"recieved" : true,
 		"init" : true,
-		"full" : true,
 		"rules" : true
 	},
-	"manorIntro" : false,
-	"firstNight" : false,
+	"manorIntro" : false
 }>>
+<<= $time.setDate({day: 0, hour: 22, minute: 0})>>
 <</link>>
-<br>
-[[shopTest]]
-
-[[playerDescription]]

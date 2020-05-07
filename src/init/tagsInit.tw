@@ -3,22 +3,43 @@
 <!--  Tags  -->
 
 <<set $tags to {
-	"needDaughter" : function() {return State.variables.player.currentRoom === State.variables.daughter.getLocation;},
-	"weekEven" : function() {return (State.variables.time.day % 14) >= 7;},
-	"weekOdd" : function() {return (State.variables.time.day % 14) < 7;},
-	"dayLate" : function() {return (State.variables.time.hour >= 21);},
-	"Monday" : function() {return (State.variables.time.weekDayFormat == "Monday");},
-	"Tuesday" : function() {return (State.variables.time.weekDayFormat == "Tuesday");},
-	"Wednesday" : function() {return (State.variable.times.weekDayFormat == "Wednesday");},
-	"Thursday" : function() {return (State.variables.time.weekDayFormat == "Thursday");},
-	"Friday" : function() {return (State.variables.time.weekDayFormat == "Friday");},
-	"Saturday" : function() {return (State.variables.time.weekDayFormat == "Saturday");},
-	"Sunday" : function() {return (State.variables.time.weekDayFormat == "Sunday");},
-	"daughterAcceptance1" : function() {return (State.variables.daughter.acceptance == 1);},
-	"daughterAcceptance2" : function() {return (State.variables.daughter.acceptance == 2);},
-	"playerLaundry" : function() {return (State.variables.player.currentRoom === "Laundry");},
-	"playerBedroom" : function() {return (State.variables.player.currentRoom === "PlayerBdRm");},
-	"cocktailPartyInProgress" : function() {return ($cocktailPartyStart == true);},
-	"daughterDateInProgress" : function() {return ($daughterDateStart == true);},
-	"therapyPathStart" : function() {return ($therapyPathStart == true);}
+	"NeedDaughter" : function() {
+		return $player.currentRoom === $daughter.getLocation
+	},
+	"WeekEven" : function() {
+		return $time.day % 14 >= 7
+	},
+	"FirstWeek" : function() {
+		return $time.day < 7
+	},
+	"Monday" : function() {
+		return $time.weekDayFormat == "Monday"
+	},
+	"Tuesday" : function() {
+		return $time.weekDayFormat == "Tuesday"
+	},
+	"Wednesday" : function() {
+		return $time.weekDayFormat == "Wednesday"
+	},
+	"Thursday" : function() {
+		return $time.weekDayFormat == "Thursday"
+	},
+	"Friday" : function() {
+		return $time.weekDayFormat == "Friday"
+	},
+	"Saturday" : function() {
+		return $time.weekDayFormat == "Saturday"
+	},
+	"Sunday" : function() {
+		return $time.weekDayFormat == "Sunday"
+	},
+	"Evening" : function() {
+		return $time.inInterval("sleep", "wakeup")
+	},
+	"DaughterAcceptance1" : function() {
+		return $daughter.acceptance == 1
+	},
+	"DaughterAcceptance2" : function() {
+		return $daughter.acceptance == 2
+	}
 }>>

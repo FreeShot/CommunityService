@@ -10,7 +10,7 @@ class Item {
         }, this);
     }
 
-    description(count, parent, storage) {
+    description(count, parent) {
         var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
         if (count != Infinity) {
             str += String.format(

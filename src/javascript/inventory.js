@@ -74,7 +74,7 @@ class Inventory {
 		return items;
 	}
 
-	listItem(parent, storage, wl, bl) {
+	listItem(parent, wl, bl) {
 		var str = String.format("{0} <ul>", this.name);
 		var items = this.filter(wl, bl);
 		items.sort(ItemSorter);
@@ -89,8 +89,7 @@ class Inventory {
 				) : String.format(
 					"State.variables['{0}']",
 					this.name
-				),
-				storage
+				)
 			);
 		}, this);
 		return str + "</ul>";

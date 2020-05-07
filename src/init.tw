@@ -1,15 +1,13 @@
 ::StoryInit
-<<set $time to new Timer({day: -1, time: {hour: 22, minute: 0}})>>
+<<set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})>>
 
 <<set $flags to {
 	"cuff" : {
 		"recieved" : false,
 		"init" : false,
-		"full" : false,
 		"rules" : false
 	},
-	"manorIntro" : true,
-	"firstNight" : true,
+	"manorIntro" : true
 }>>
 
 <<include "characterInit">>

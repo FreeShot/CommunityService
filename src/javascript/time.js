@@ -80,8 +80,7 @@ class Timer {
 	}
 
 	get weekDay() {
-		var day = this.day;
-		while (day < 0) {day += 7}
+		var day = this.day + 1;
 		return day % 7;
 	}
 

@@ -1,4 +1,4 @@
-::playerDescription [nobr]
+::playerDescription [nobr noreturn menu]
 
 You are <<= $player.name>>.<br>
 <<if $player.isHidden("hair") === undefined>>
@@ -29,35 +29,3 @@ You have <<= $player.getDesc("eyeColor")>> eyes. <br>
 <</for>>
 
 <br><<return>>
-
-<!--
-
-looks: {
-	hairColor: 0,
-    hairLength: 0,
-    eyeColor: 0,
-    face: 0,
-    lips: 0,
-    skin: 0,
-    chest: 0,
-    butt: 0,
-    hips: 0,
-    crotch: 0,
-    legs: 0
-},
-slots: [
-   	{name: "wig", equipped: null},
-   	{name: "chest", equipped: null},
-  	{name: "bra", equipped: null},
-  	{name: "underwear", equipped: null},
-   	{name: "hoistery", equipped: null},
-  	{name: "legs", equipped: null},
-  	{name: "feet", equipped: null},
-   	{name: "accessory-hair", equipped: null},
-  	{name: "accessory-neck", equipped: null},
-  	{name: "accessory-ear", equipped: null},
-  	{name: "accessory-eye", equipped: null},
-   	{name: "toy-front", equipped: null},
-   	{name: "toy-back", equipped: null}
-],
- -->

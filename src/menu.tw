@@ -1,6 +1,6 @@
 ::StoryCaption
 <hr>
-<<if $time.day >= 0>>
+<<if !$flags.manorIntro>>
 <span class="date">$time.weekDayFormat
 Day $time.day</span>
 <hr>
@@ -26,15 +26,15 @@ Day $time.day</span>
 [[Skip party intro|mansionCPartyServing01][$player.femName to "Alexis"; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true; $cocktailPartyStart to true]]
 
 ::CUFF [nobr mainMenu]
-<<if $flags.cuff.init is false>>
+<<if !$flags.cuff.init>>
 	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
-<<elseif $flags.cuff.full is true>>
+<<elseif !$flags.manorIntro>>
 	[[Chores|playerToDoList]]<br>
-	[[Appearence|appearence]]<br>
+	[[Appearence|playerDescription]]<br>
 	[[Skills|skills]]<br>
 	[[Possesions|inventory]]<br>
 <</if>>
-<<if $flags.cuff.rules is true>>
+<<if $flags.cuff.rules>>
 	[[Rules|rules]]<br>
 <</if>>
 [[Return|$exitMenu]]
@@ -44,18 +44,12 @@ Day $time.day</span>
 
 [[Return|$return]]
 
-::appearence [noreturn menu]
-Todo : Describe player
-
-[[Return|$return]]
-
 ::skills [noreturn menu]
-Todo : Add skills
+Skills will be added later
 [[Return|$return]]
 
 ::inventory [noreturn menu]
-W.I.P.
-TODO : List current held items
+<<= $player.inv.listItem("$player.inv")>>
 
 [[Return|$return]]
 
