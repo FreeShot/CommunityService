@@ -5,5 +5,5 @@
 <<set $bodyPart to {
 	hairColor : ["brown"],
 	hairLength : ["short"],
-	eyeColor : ["blue", "brown", "black", "gray"]
+	eyeColor : ["blue", "brown", "black"]
 }>>

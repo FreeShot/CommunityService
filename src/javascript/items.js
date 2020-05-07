@@ -26,7 +26,7 @@ class Item {
                 State.passage,
                 this.price
             );
-        } else if (this.tags.includes("getable")) {
+        } else if (this.tags.includes("gettable")) {
             // Get for free
             str += String.format(
                 "<<button 'Get' '{2}'>><<= {0}.buyItem('{1}', 0)>><</button>>",
