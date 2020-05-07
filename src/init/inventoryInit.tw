@@ -1,0 +1,6 @@
+::clothesInit [init]
+
+<<set $shop to new Shop({name: "Base shop", id:"shop"})>>
+<<set $shop.addCategory("Wigs")>>
+<<= $shop.addItem("Wigs", new Item({name: "Brown wig", tags: ["wig", "equippable"]}), 1)>>
+<<= $shop.addItem("Wigs", new Item({name: "Black wig", tags: ["wig", "equippable"]}), 1)>>
