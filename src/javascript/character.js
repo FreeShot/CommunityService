@@ -153,8 +153,42 @@ class Player extends Character {
 	}
 
 	getDesc(bodyPart) {
-		return State.variables.bodyPart[bodyPart][this.bodyPart[bodyPart] || 0];
+		return State.variables.bodyPart.desc[bodyPart][this.bodyPart[bodyPart] || 0];
 	}
+
+    hasEquipped(tags) {
+        if (!tags.includes["equipped"]) tags.push("equipped");
+        return this.inv.items.filter(function(el) {
+            return el.tags.some(function(tag) {return tags.includes(tag);});
+        }).length > 0;
+    }
+
+    hiddenBy(bodyPart) {
+        switch (bodyPart) {
+            case "hair":
+                return ["wig"];
+            case "chest":
+                return ["shirt", "bra"];
+            case "crotch":
+                return ["pants", "underwear"];
+            case "legs":
+                return ["pants"];
+            default:
+                return [];
+        }
+    }
+
+    isHidden(bodyPart) {
+        return this.hiddenBy(bodyPart).find(function(slot) {
+            var slots = [slot, "equipped"]; 
+            var items = this.inv.filter(slots);
+            if (items.length === 0) {
+                return undefined;
+            } else {
+                return items[0].item.name.toLowerCase()
+            }
+        }, this);
+    }
     
 	get gender() {
 		if (this.feminity > 50) {

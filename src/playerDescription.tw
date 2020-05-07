@@ -1,12 +1,15 @@
 ::playerDescription [nobr]
 
 You are <<= $player.name>>.<br>
-<<if $player.inv.filter(["wig", "equipped"]).length > 0>>
-You wear a <<= $player.inv.filter(["wig", "equipped"])[0].item.name.toLowerCase()>> hiding your
+<<if $player.isHidden("hair") === undefined>>
+  You have
 <<else>>
-You have <</if>>
-<<= $player.getDesc("hairLength")>> <<= $player.getDesc("hairColor")>> hairs. <br>
+  You wear a <<= $player.isHidden("hair")>> hiding your
+<</if>>
+<<= $player.getDesc("hairLength")>> <<= $player.getDesc("hairColor")>> hairs.<br>
+
 You have <<= $player.getDesc("eyeColor")>> eyes. <br>
+
 <<= $player.getDesc("face")>> <br>
 <<= $player.getDesc("lips")>> <br>
 <<= $player.getDesc("skin")>> <br>
@@ -16,20 +19,14 @@ You have <<= $player.getDesc("eyeColor")>> eyes. <br>
 <<= $player.getDesc("crotch")>> <br>
 <<= $player.getDesc("legs")>> <br>
 
-<<if $player.inv.filter(["chest", "legs", "equipped"]).length > 0>>
-  Your <<= $player.inv.filter(["chest", "legs", "equipped"])[0].item.name.toLowerCase()>> hides your chest and your legs.
-<<else>>
-  <<if $player.inv.filter(["chest", "equipped"]).length > 0>>
-    Your <<= $player.inv.filter(["chest", "equipped"])[0].item.name.toLowerCase()>> hides your chest.
+<<for _bp range ["chest", "crotch", "legs"]>>
+  <<if $player.isHidden(_bp) !== undefined>>
+    Your _bp is hidden by your <<= $player.isHidden(_bp)>>.
   <<else>>
-    Your bare chest is exposed for anyone to see.
+    Your _bp is exposed for anyone to see.
   <</if>>
-  <<if $player.inv.filter(["legs", "equipped"]).length > 0>>
-    Your <<= $player.inv.filter(["legs", "equipped"])[0].item.name.toLowerCase()>> hides your chest.
-  <<else>>
-    Your bare legs are exposed for anyone to see.
-  <</if>>
-<</if>> <br>
+  <br>
+<</for>>
 
 <br><<return>>
 

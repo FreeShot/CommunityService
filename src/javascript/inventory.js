@@ -1,5 +1,5 @@
 function ItemSorter(a, b) {
-	var tagOrder = ["wig", "chest", "legs", "underwear", "hoistery", "feet"];
+	var tagOrder = ["wig", "shirt", "pants", "underwear", "hoistery", "shoe"];
 	var tagIndexA = tagOrder.length;
 	a.item.tags.forEach(function(tag) {
 		var i = tagOrder.findIndex(t => t == tag);
