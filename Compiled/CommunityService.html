@@ -501,6 +501,11 @@ class Player extends Character {
                 currentRoom: "PlayerBdRm",
                 choresLate : 0,
                 money : 0,
+                bodyPart: {
+                    "hairColor" : 0,
+                    "hairLength" : 0,
+                    "eyeColor" : 0
+                },
                 inv : new Inventory({name: "Player Inventory", isShop: false})
         }, config));
 	}
@@ -552,8 +557,8 @@ class Player extends Character {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
 	}
 
-	getSlot(slot) {
-		return this.slots.find(function(el) {return el.name == slot});
+	getDesc(bodyPart) {
+		return State.variables.bodyPart[bodyPart][this.bodyPart[bodyPart]];
 	}
     
 	get gender() {
@@ -3022,24 +3027,11 @@ You stand stock still as she throws them to you. Some of the items land on your 
 
 todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115" name="bodyPartInit" tags="init" position="600,1475" size="100,100">&lt;!-- todo --&gt;
 
-&lt;&lt;set $hairColor to [&quot;brown&quot;]&gt;&gt;
-
-&lt;&lt;set $hairLength to [&quot;short&quot;]&gt;&gt;
-
-&lt;&lt;set $face to [&quot;&quot;]&gt;&gt;
-
-&lt;&lt;set $lips to [&quot;&quot;]&gt;&gt;
-
-&lt;&lt;set $skin to [&quot;&quot;]&gt;&gt;
-
-&lt;&lt;set $chest to [&quot;&quot;]&gt;&gt;
-
-&lt;&lt;set $butt to [&quot;&quot;]&gt;&gt;
-&lt;&lt;set $hips to [&quot;&quot;]&gt;&gt;
-
-&lt;&lt;set $crotch to [&quot;&quot;]&gt;&gt;
-
-&lt;&lt;set $legs to [&quot;&quot;]&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="characterInit" tags="init" position="725,1475" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
+&lt;&lt;set $bodyPart to {
+	hairColor : [&quot;brown&quot;],
+	hairLength : [&quot;short&quot;],
+	eyeColor : [&quot;blue&quot;, &quot;brown&quot;, &quot;black&quot;, &quot;gray&quot;]
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="characterInit" tags="init" position="725,1475" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
 &lt;!--  NPC  --&gt;
 
 &lt;&lt;set $owner to new NPC({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;Sir&quot;, schedule: [
@@ -4399,46 +4391,16 @@ Daughter date fall out
 
 &lt;&lt;/if&gt;&gt;
 
-[[PlayerBdRm]]</tw-passagedata><tw-passagedata pid="173" name="playerDescription" tags="nobr" position="350,2225" size="100,100">You are &lt;&lt;= $player.name&gt;&gt;.
+[[PlayerBdRm]]</tw-passagedata><tw-passagedata pid="173" name="playerDescription" tags="nobr" position="350,2225" size="100,100">You are &lt;&lt;= $player.name&gt;&gt;.&lt;br&gt;
 &lt;&lt;if $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;]).length &gt; 0&gt;&gt;
-HAS A WIG
+You wear a &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.name.toLowerCase()&gt;&gt; hiding your
 &lt;&lt;else&gt;&gt;
-HAS NO WIG
-&lt;&lt;/if&gt;&gt;
+You have &lt;&lt;/if&gt;&gt;
+&lt;&lt;= $player.getDesc(&quot;hairLength&quot;)&gt;&gt; &lt;&lt;= $player.getDesc(&quot;hairColor&quot;)&gt;&gt; hairs.
+You have &lt;&lt;= $player.getDesc(&quot;eyeColor&quot;)&gt;&gt; eyes.
 
-&lt;&lt;return&gt;&gt;
 
-&lt;!--
-
-looks: {
-	hairColor: 0,
-    hairLength: 0,
-    eyeColor: 0,
-    face: 0,
-    lips: 0,
-    skin: 0,
-    chest: 0,
-    butt: 0,
-    hips: 0,
-    crotch: 0,
-    legs: 0
-},
-slots: [
-   	{name: &quot;wig&quot;, equipped: null},
-   	{name: &quot;chest&quot;, equipped: null},
-  	{name: &quot;bra&quot;, equipped: null},
-  	{name: &quot;underwear&quot;, equipped: null},
-   	{name: &quot;hoistery&quot;, equipped: null},
-  	{name: &quot;legs&quot;, equipped: null},
-  	{name: &quot;feet&quot;, equipped: null},
-   	{name: &quot;accessory-hair&quot;, equipped: null},
-  	{name: &quot;accessory-neck&quot;, equipped: null},
-  	{name: &quot;accessory-ear&quot;, equipped: null},
-  	{name: &quot;accessory-eye&quot;, equipped: null},
-   	{name: &quot;toy-front&quot;, equipped: null},
-   	{name: &quot;toy-back&quot;, equipped: null}
-],
- --&gt;</tw-passagedata><tw-passagedata pid="174" name="PlayerBdRm" tags="playerRoom room" position="475,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+&lt;br&gt;&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="PlayerBdRm" tags="playerRoom room" position="475,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 

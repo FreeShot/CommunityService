@@ -2,21 +2,8 @@
 
 <!-- todo -->
 
-<<set $hairColor to ["brown"]>>
-
-<<set $hairLength to ["short"]>>
-
-<<set $face to [""]>>
-
-<<set $lips to [""]>>
-
-<<set $skin to [""]>>
-
-<<set $chest to [""]>>
-
-<<set $butt to [""]>>
-<<set $hips to [""]>>
-
-<<set $crotch to [""]>>
-
-<<set $legs to [""]>>
+<<set $bodyPart to {
+	hairColor : ["brown"],
+	hairLength : ["short"],
+	eyeColor : ["blue", "brown", "black", "gray"]
+}>>

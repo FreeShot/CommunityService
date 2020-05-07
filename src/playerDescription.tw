@@ -1,42 +1,12 @@
 ::playerDescription [nobr]
 
-You are <<= $player.name>>.
+You are <<= $player.name>>.<br>
 <<if $player.inv.filter(["wig", "equipped"]).length > 0>>
-HAS A WIG
+You wear a <<= $player.inv.filter(["wig", "equipped"])[0].item.name.toLowerCase()>> hiding your
 <<else>>
-HAS NO WIG
-<</if>>
+You have <</if>>
+<<= $player.getDesc("hairLength")>> <<= $player.getDesc("hairColor")>> hairs.
+You have <<= $player.getDesc("eyeColor")>> eyes.
 
-<<return>>
 
-<!--
-
-looks: {
-	hairColor: 0,
-    hairLength: 0,
-    eyeColor: 0,
-    face: 0,
-    lips: 0,
-    skin: 0,
-    chest: 0,
-    butt: 0,
-    hips: 0,
-    crotch: 0,
-    legs: 0
-},
-slots: [
-   	{name: "wig", equipped: null},
-   	{name: "chest", equipped: null},
-  	{name: "bra", equipped: null},
-  	{name: "underwear", equipped: null},
-   	{name: "hoistery", equipped: null},
-  	{name: "legs", equipped: null},
-  	{name: "feet", equipped: null},
-   	{name: "accessory-hair", equipped: null},
-  	{name: "accessory-neck", equipped: null},
-  	{name: "accessory-ear", equipped: null},
-  	{name: "accessory-eye", equipped: null},
-   	{name: "toy-front", equipped: null},
-   	{name: "toy-back", equipped: null}
-],
- -->
+<br><<return>>

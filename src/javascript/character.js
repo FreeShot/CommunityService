@@ -91,6 +91,11 @@ class Player extends Character {
                 currentRoom: "PlayerBdRm",
                 choresLate : 0,
                 money : 0,
+                bodyPart: {
+                    "hairColor" : 0,
+                    "hairLength" : 0,
+                    "eyeColor" : 0
+                },
                 inv : new Inventory({name: "Player Inventory", isShop: false})
         }, config));
 	}
@@ -142,8 +147,8 @@ class Player extends Character {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
 	}
 
-	getSlot(slot) {
-		return this.slots.find(function(el) {return el.name == slot});
+	getDesc(bodyPart) {
+		return State.variables.bodyPart[bodyPart][this.bodyPart[bodyPart]];
 	}
     
 	get gender() {
