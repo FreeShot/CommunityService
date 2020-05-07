@@ -86,7 +86,7 @@ class Player extends Character {
             {
                 name: "Alex",
                 title: "Alex",
-                femininity: 0,
+                feminity: 0,
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 choresLate : 0,
@@ -104,18 +104,21 @@ class Player extends Character {
         var index = this.inv.items.findIndex(function(el) {
             return el.item.name === itemName;
         });
-        this.inv.items[index].item.removeTag("equippable");
-        var tags = this.inv.items[index].item.tags;
-        // Might have to prefiler the tags
-        this.inv.items.filter(function (el) {
-            return el.item.tags.some(function(tag) {return tags.includes(tag)})
-        }).filter(function (el) {
-            return el.item.tags.includes("equipped");
-        }).forEach(function(el) {
-            el.item.addTag("equippable");
-            el.item.removeTag("equipped");
-        });
-        this.inv.items[index].item.addTag("equipped");
+        // Makes sure that the feminity is not too low
+        if (this.inv.items[index].item.feminity <= this.feminity) {
+            this.inv.items[index].item.removeTag("equippable");
+            var tags = this.inv.items[index].item.tags;
+            // Might have to prefiler the tags
+            this.inv.items.filter(function (el) {
+                return el.item.tags.some(function(tag) {return tags.includes(tag)})
+            }).filter(function (el) {
+                return el.item.tags.includes("equipped");
+            }).forEach(function(el) {
+                el.item.addTag("equippable");
+                el.item.removeTag("equipped");
+            });
+            this.inv.items[index].item.addTag("equipped");
+        }
     }
 
     unequip(itemName) {
@@ -154,15 +157,15 @@ class Player extends Character {
 	}
     
 	get gender() {
-		if (this.femininity > 50) {
+		if (this.feminity > 50) {
 			return "female";
 		}
 		return "male";
 	}
 
 	get getColor() {
-		if (this.femininity > this.gradiant.length - 1) {this.femininity = this.gradiant.length - 1;}
-		return this.gradiant[this.femininity];
+		if (this.feminity > this.gradiant.length - 1) {this.feminity = this.gradiant.length - 1;}
+		return this.gradiant[this.feminity];
 	}
 
 	speak(text) {

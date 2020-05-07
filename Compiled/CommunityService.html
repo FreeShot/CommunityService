@@ -496,7 +496,7 @@ class Player extends Character {
             {
                 name: "Alex",
                 title: "Alex",
-                femininity: 0,
+                feminity: 0,
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 choresLate : 0,
@@ -514,18 +514,21 @@ class Player extends Character {
         var index = this.inv.items.findIndex(function(el) {
             return el.item.name === itemName;
         });
-        this.inv.items[index].item.removeTag("equippable");
-        var tags = this.inv.items[index].item.tags;
-        // Might have to prefiler the tags
-        this.inv.items.filter(function (el) {
-            return el.item.tags.some(function(tag) {return tags.includes(tag)})
-        }).filter(function (el) {
-            return el.item.tags.includes("equipped");
-        }).forEach(function(el) {
-            el.item.addTag("equippable");
-            el.item.removeTag("equipped");
-        });
-        this.inv.items[index].item.addTag("equipped");
+        // Makes sure that the feminity is not too low
+        if (this.inv.items[index].item.feminity <= this.feminity) {
+            this.inv.items[index].item.removeTag("equippable");
+            var tags = this.inv.items[index].item.tags;
+            // Might have to prefiler the tags
+            this.inv.items.filter(function (el) {
+                return el.item.tags.some(function(tag) {return tags.includes(tag)})
+            }).filter(function (el) {
+                return el.item.tags.includes("equipped");
+            }).forEach(function(el) {
+                el.item.addTag("equippable");
+                el.item.removeTag("equipped");
+            });
+            this.inv.items[index].item.addTag("equipped");
+        }
     }
 
     unequip(itemName) {
@@ -564,15 +567,15 @@ class Player extends Character {
 	}
     
 	get gender() {
-		if (this.femininity > 50) {
+		if (this.feminity > 50) {
 			return "female";
 		}
 		return "male";
 	}
 
 	get getColor() {
-		if (this.femininity > this.gradiant.length - 1) {this.femininity = this.gradiant.length - 1;}
-		return this.gradiant[this.femininity];
+		if (this.feminity > this.gradiant.length - 1) {this.feminity = this.gradiant.length - 1;}
+		return this.gradiant[this.feminity];
 	}
 
 	speak(text) {
@@ -794,6 +797,26 @@ Object.defineProperty(window, 'Event', {
     value : Event
 });
 /* twine-user-script #4: "inventory.js" */
+function ItemSorter(a, b) {
+	var tagOrder = ["wig", "chest", "legs", "underwear", "hoistery", "feet"];
+	var tagIndexA = tagOrder.length;
+	a.item.tags.forEach(function(tag) {
+		var i = tagOrder.findIndex(t => t == tag);
+		if (i != -1 && tagIndexA > i) {
+			tagIndexA = i;
+		}
+	});
+
+	var tagIndexB = tagOrder.length;
+	b.item.tags.forEach(function(tag) {
+		var i = tagOrder.findIndex(t => t == tag);
+		if (i != -1 && tagIndexB > i) {
+			tagIndexB = i;
+		}
+	});
+	return tagIndexA - tagIndexB;
+}
+
 class Inventory {
 	constructor(config) {
 		this.items = [];
@@ -850,6 +873,7 @@ class Inventory {
 	listItem(parent, storage, wl, bl) {
 		var str = String.format("{0} <ul>", this.name);
 		var items = this.filter(wl, bl);
+		items.sort(ItemSorter);
 		items.forEach(function(el){
 			str += el.item.description(
 				el.count, 
@@ -908,7 +932,8 @@ class Item {
     constructor (config) {
         this.name = "Unnamed item";
         this.tags = [];
-        this.price = 0
+        this.price = 0;
+        this.feminity = 0;
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -923,10 +948,11 @@ class Item {
                 count
             );
         }
+
         if (this.tags.includes("shopItem"))
         {
             str += String.format(
-                "<<button 'Buy' '{2}'>><<= {0}.buyItem('{1}', {3})>><</button>>",
+                "<<button 'Buy (${3})' '{2}'>><<= {0}.buyItem('{1}', {3})>><</button>>",
                 parent,
                 this.name,
                 State.passage,
@@ -940,20 +966,32 @@ class Item {
                 this.name,
                 State.passage
             );
-        } else if (this.tags.includes("equippable")) {
-            // Only if not a shop item
-            str += String.format(
-                "<<button 'Equip' '{1}'>><<= $player.equip('{0}')>><</button>>",
-                this.name,
-                State.passage
-            );
+        } else {
+            if (this.tags.includes("equippable")) {
+                console.log(State.variables.player.feminity);
+                if (this.feminity <= State.variables.player.feminity) {
+                // Only if not a shop item
+                str += String.format(
+                    "<<button 'Equip' '{1}'>><<= $player.equip('{0}')>><</button>>",
+                    this.name,
+                    State.passage
+                    );
+            } else {
+                str += String.format(
+                    "[Fem: {2}] <span id='{1}-equip-button'><<button 'Equip'>><<replace '#{1}-equip-button'>>Feminity too low<</replace>><</button>></span>",
+                    this.name,
+                    this.name.split(' ').join('-').toLowerCase(),
+                    this.feminity
+                    );
+            }
         } else if (this.tags.includes("equipped")) {
             // Currently equipped tag can't be both equipped and equippable
             str += String.format(
                 "<<button 'Unequip' '{1}'>><<= $player.unequip('{0}')>><</button>>",
                 this.name,
                 State.passage
-            );
+                );
+        }
         }
         return str + "</li>";
     }
@@ -3219,12 +3257,20 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Black wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Blonde wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
 
-&lt;&lt;= $player.inv.addItem({name:&quot;Female cut T-shirt&quot;, price: 0, tags : [&quot;chest&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name:&quot;Modest skirt&quot;, price: 0, tags : [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name:&quot;Plain white panties&quot;, price: 0, tags : [&quot;underwear&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name:&quot;Modest summer dress&quot;, price: 0, tags : [&quot;chest&quot;, &quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name:&quot;Tight jeans short&quot;, price: 0, tags : [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({name:&quot;Flat shoes&quot;, price: 0, tags : [&quot;feet&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="eventInit" tags="event" position="1100,1475" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymSquat01&quot;, passage: &quot;daughterGymSquat01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
+&lt;!-- Base clothes --&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Plain Shirt&quot;, tags: [&quot;chest&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Mens jeans&quot;, tags: [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Plain sneakers&quot;, tags: [&quot;feet&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;White gym socks&quot;, tags: [&quot;hoistery&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name: &quot;Plain boxers&quot;, tags: [&quot;underwear&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+
+&lt;!-- Wardrobe items --&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Female cut T-shirt&quot;, feminity: 10, tags : [&quot;chest&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Modest skirt&quot;, feminity: 10, tags : [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Plain white panties&quot;, feminity: 10, tags : [&quot;underwear&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Modest summer dress&quot;, feminity: 10, tags : [&quot;chest&quot;, &quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Tight jeans short&quot;, feminity: 10, tags : [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Flat shoes&quot;, feminity: 10, tags : [&quot;feet&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="eventInit" tags="event" position="1100,1475" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymSquat01&quot;, passage: &quot;daughterGymSquat01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymArms01&quot;, passage: &quot;daughterGymArms01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymChinup01&quot;, passage: &quot;daughterGymChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Garden&quot;, new Event({name: &quot;daughterGardenReading01&quot;, passage: &quot;daughterGardenReading01&quot;, inline:true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;

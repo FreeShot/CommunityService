@@ -8,9 +8,17 @@
 <<= $shop.addItem("Wigs", new Item({name: "Black wig", tags: ["wig", "equippable"]}), 1)>>
 <<= $shop.addItem("Wigs", new Item({name: "Blonde wig", tags: ["wig", "equippable"]}), 1)>>
 
-<<= $player.inv.addItem({name:"Female cut T-shirt", price: 0, tags : ["chest", "equippable"]}, 1)>>
-<<= $player.inv.addItem({name:"Modest skirt", price: 0, tags : ["legs", "equippable"]}, 1)>>
-<<= $player.inv.addItem({name:"Plain white panties", price: 0, tags : ["underwear", "equippable"]}, 1)>>
-<<= $player.inv.addItem({name:"Modest summer dress", price: 0, tags : ["chest", "legs", "equippable"]}, 1)>>
-<<= $player.inv.addItem({name:"Tight jeans short", price: 0, tags : ["legs", "equippable"]}, 1)>>
-<<= $player.inv.addItem({name:"Flat shoes", price: 0, tags : ["feet", "equippable"]}, 1)>>
+<!-- Base clothes -->
+<<= $player.inv.addItem({name: "Plain Shirt", tags: ["chest", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name: "Mens jeans", tags: ["legs", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name: "Plain sneakers", tags: ["feet", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name: "White gym socks", tags: ["hoistery", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name: "Plain boxers", tags: ["underwear", "equippable"]}, 1)>>
+
+<!-- Wardrobe items -->
+<<= $player.inv.addItem({name:"Female cut T-shirt", feminity: 10, tags : ["chest", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Modest skirt", feminity: 10, tags : ["legs", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Plain white panties", feminity: 10, tags : ["underwear", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Modest summer dress", feminity: 10, tags : ["chest", "legs", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Tight jeans short", feminity: 10, tags : ["legs", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Flat shoes", feminity: 10, tags : ["feet", "equippable"]}, 1)>>

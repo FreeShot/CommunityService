@@ -1,3 +1,23 @@
+function ItemSorter(a, b) {
+	var tagOrder = ["wig", "chest", "legs", "underwear", "hoistery", "feet"];
+	var tagIndexA = tagOrder.length;
+	a.item.tags.forEach(function(tag) {
+		var i = tagOrder.findIndex(t => t == tag);
+		if (i != -1 && tagIndexA > i) {
+			tagIndexA = i;
+		}
+	});
+
+	var tagIndexB = tagOrder.length;
+	b.item.tags.forEach(function(tag) {
+		var i = tagOrder.findIndex(t => t == tag);
+		if (i != -1 && tagIndexB > i) {
+			tagIndexB = i;
+		}
+	});
+	return tagIndexA - tagIndexB;
+}
+
 class Inventory {
 	constructor(config) {
 		this.items = [];
@@ -54,6 +74,7 @@ class Inventory {
 	listItem(parent, storage, wl, bl) {
 		var str = String.format("{0} <ul>", this.name);
 		var items = this.filter(wl, bl);
+		items.sort(ItemSorter);
 		items.forEach(function(el){
 			str += el.item.description(
 				el.count, 
