@@ -107,7 +107,9 @@ class Player extends Character {
         this.inv.items[index].item.removeTag("equippable");
         var tags = this.inv.items[index].item.tags;
         // Might have to prefiler the tags
-        this.inv.filter(tags).filter(function (el) {
+        this.inv.items.filter(function (el) {
+            return el.item.tags.some(function(tag) {return tags.includes(tag)})
+        }).filter(function (el) {
             return el.item.tags.includes("equipped");
         }).forEach(function(el) {
             el.item.addTag("equippable");

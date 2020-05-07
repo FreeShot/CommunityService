@@ -11,6 +11,10 @@ class Inventory {
 
 	addItem(item, count)
 	{
+		if (item.constructor == Object)
+		{
+			item = new Item(item);
+		}
 		if (this.isShop) 
 			item.addTag("shopItem");
 		if (this.items.find(function(el){return el.item.name == item.name}))
@@ -47,7 +51,7 @@ class Inventory {
 		return items;
 	}
 
-	listItem(parent, wl, bl) {
+	listItem(parent, storage, wl, bl) {
 		var str = String.format("{0} <ul>", this.name);
 		var items = this.filter(wl, bl);
 		items.forEach(function(el){
@@ -61,7 +65,8 @@ class Inventory {
 				) : String.format(
 					"State.variables['{0}']",
 					this.name
-				)
+				),
+				storage
 			);
 		}, this);
 		return str + "</ul>";

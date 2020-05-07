@@ -1,2 +1,16 @@
 ::clothesInit [init]
 
+<<set $shop to new Shop({name: "Base shop", id:"shop"})>>
+
+<<set $shop.addCategory("Wigs")>>
+
+<<= $shop.addItem("Wigs", new Item({name: "Brown wig", tags: ["wig", "equippable"]}), 1)>>
+<<= $shop.addItem("Wigs", new Item({name: "Black wig", tags: ["wig", "equippable"]}), 1)>>
+<<= $shop.addItem("Wigs", new Item({name: "Blonde wig", tags: ["wig", "equippable"]}), 1)>>
+
+<<= $player.inv.addItem({name:"Female cut T-shirt", price: 0, tags : ["chest", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Modest skirt", price: 0, tags : ["legs", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Plain white panties", price: 0, tags : ["underwear", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Modest summer dress", price: 0, tags : ["chest", "legs", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Tight jeans short", price: 0, tags : ["legs", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Flat shoes", price: 0, tags : ["feet", "equippable"]}, 1)>>

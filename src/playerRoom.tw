@@ -49,10 +49,9 @@ Todo: Add makeup event
 Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.
 
 ::playerRoomWardrobe [playerRoom]
-Todo: Add clothes
 <<if $flags.wardrobeFirstLook is true>>
 <<set $flags.wardrobeFirstLook to false>>
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It's a little disheartening that such a small shirt looks like it would fit you.
 <</if>>
 
-<<= $time.inInterval("sleep", "wakeup")>>
+<<= $player.inv.listItem(undefined, "$wardrobe")>>

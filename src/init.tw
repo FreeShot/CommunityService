@@ -12,15 +12,10 @@
 	"firstNight" : true,
 }>>
 
-<<include "clothesInit">>
 <<include "characterInit">>
+<<include "clothesInit">>
 <<include "roomInit">>
 <<include "choresInit">>
 <<include "eventInit">>
 <<include "tagsInit">>
 <<include "bodyPartInit">>
-
-<<set $shop to new Shop({name: "Base shop", id:"shop"})>>
-<<set $shop.addCategory("Wigs")>>
-<<= $shop.addItem("Wigs", new Item({name: "Brown wig", tags: ["wig", "equippable"]}), 1)>>
-<<= $shop.addItem("Wigs", new Item({name: "Black wig", tags: ["wig", "equippable"]}), 1)>>

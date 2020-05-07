@@ -9,7 +9,7 @@ class Item {
         }, this);
     }
 
-    description(count, parent) {
+    description(count, parent, storage) {
         var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
         if (count != Infinity) {
             str += String.format(
@@ -42,12 +42,13 @@ class Item {
                 State.passage
             );
         } else if (this.tags.includes("equipped")) {
+            // Currently equipped tag can't be both equipped and equippable
             str += String.format(
                 "<<button 'Unequip' '{1}'>><<= $player.unequip('{0}')>><</button>>",
                 this.name,
                 State.passage
             );
-        }     
+        }
         return str + "</li>";
     }
 

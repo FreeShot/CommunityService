@@ -517,7 +517,9 @@ class Player extends Character {
         this.inv.items[index].item.removeTag("equippable");
         var tags = this.inv.items[index].item.tags;
         // Might have to prefiler the tags
-        this.inv.filter(tags).filter(function (el) {
+        this.inv.items.filter(function (el) {
+            return el.item.tags.some(function(tag) {return tags.includes(tag)})
+        }).filter(function (el) {
             return el.item.tags.includes("equipped");
         }).forEach(function(el) {
             el.item.addTag("equippable");
@@ -805,6 +807,10 @@ class Inventory {
 
 	addItem(item, count)
 	{
+		if (item.constructor == Object)
+		{
+			item = new Item(item);
+		}
 		if (this.isShop) 
 			item.addTag("shopItem");
 		if (this.items.find(function(el){return el.item.name == item.name}))
@@ -841,7 +847,7 @@ class Inventory {
 		return items;
 	}
 
-	listItem(parent, wl, bl) {
+	listItem(parent, storage, wl, bl) {
 		var str = String.format("{0} <ul>", this.name);
 		var items = this.filter(wl, bl);
 		items.forEach(function(el){
@@ -855,7 +861,8 @@ class Inventory {
 				) : String.format(
 					"State.variables['{0}']",
 					this.name
-				)
+				),
+				storage
 			);
 		}, this);
 		return str + "</ul>";
@@ -908,7 +915,7 @@ class Item {
         }, this);
     }
 
-    description(count, parent) {
+    description(count, parent, storage) {
         var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
         if (count != Infinity) {
             str += String.format(
@@ -925,7 +932,7 @@ class Item {
                 State.passage,
                 this.price
             );
-        } else if (this.tags.includes("getable")) {
+        } else if (this.tags.includes("gettable")) {
             // Get for free
             str += String.format(
                 "<<button 'Get' '{2}'>><<= {0}.buyItem('{1}', 0)>><</button>>",
@@ -941,12 +948,13 @@ class Item {
                 State.passage
             );
         } else if (this.tags.includes("equipped")) {
+            // Currently equipped tag can't be both equipped and equippable
             str += String.format(
                 "<<button 'Unequip' '{1}'>><<= $player.unequip('{0}')>><</button>>",
                 this.name,
                 State.passage
             );
-        }     
+        }
         return str + "</li>";
     }
 
@@ -3030,7 +3038,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 &lt;&lt;set $bodyPart to {
 	hairColor : [&quot;brown&quot;],
 	hairLength : [&quot;short&quot;],
-	eyeColor : [&quot;blue&quot;, &quot;brown&quot;, &quot;black&quot;, &quot;gray&quot;]
+	eyeColor : [&quot;blue&quot;, &quot;brown&quot;, &quot;black&quot;]
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="characterInit" tags="init" position="725,1475" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
 &lt;!--  NPC  --&gt;
 
@@ -3203,7 +3211,20 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 &lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({name: &quot;Check the door&quot;, duration: {minute: 5}, passages:[{name: &quot;sonBdRmCleaning&quot;, weight:2}, {name: &quot;sonBdRmLocked&quot;, weight: 1}], staminaCost: 0, choreFrequency: &quot;W&quot;}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({name: &quot;Tidy your room&quot;, duration: {hour: 1}, passages:[{name: &quot;playerBdRmCleaning&quot;, weight:2}, {name: &quot;playerBdRmClean&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean the bedroom&quot;, duration: {hour: 1}, passages:[{name: &quot;daughterBdRmcleaning&quot;, weight:2}, {name: &quot;daughterBdRmDusting&quot;, weight: 10}, {name: &quot;daughterBdRmVacuum&quot;, weight: 11}, {name: &quot;daughterBdRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean the guest room&quot;, duration: {hour: 1}, passages:[{name: &quot;guestRmCleaning&quot;, weight:2}, {name: &quot;guestRmDusting&quot;, weight: 10}, {name: &quot;guestRmVacuum&quot;, weight: 11}, {name: &quot;guestRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="clothesInit" tags="init" position="975,1475" size="100,100"></tw-passagedata><tw-passagedata pid="119" name="eventInit" tags="event" position="1100,1475" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymSquat01&quot;, passage: &quot;daughterGymSquat01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean the guest room&quot;, duration: {hour: 1}, passages:[{name: &quot;guestRmCleaning&quot;, weight:2}, {name: &quot;guestRmDusting&quot;, weight: 10}, {name: &quot;guestRmVacuum&quot;, weight: 11}, {name: &quot;guestRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="clothesInit" tags="init" position="975,1475" size="100,100">&lt;&lt;set $shop to new Shop({name: &quot;Base shop&quot;, id:&quot;shop&quot;})&gt;&gt;
+
+&lt;&lt;set $shop.addCategory(&quot;Wigs&quot;)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Brown wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Black wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Blonde wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
+
+&lt;&lt;= $player.inv.addItem({name:&quot;Female cut T-shirt&quot;, price: 0, tags : [&quot;chest&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Modest skirt&quot;, price: 0, tags : [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Plain white panties&quot;, price: 0, tags : [&quot;underwear&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Modest summer dress&quot;, price: 0, tags : [&quot;chest&quot;, &quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Tight jeans short&quot;, price: 0, tags : [&quot;legs&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({name:&quot;Flat shoes&quot;, price: 0, tags : [&quot;feet&quot;, &quot;equippable&quot;]}, 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="eventInit" tags="event" position="1100,1475" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymSquat01&quot;, passage: &quot;daughterGymSquat01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymArms01&quot;, passage: &quot;daughterGymArms01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Gym&quot;, new Event({name: &quot;daughterGymChinup01&quot;, passage: &quot;daughterGymChinup01&quot;, inline: true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;Garden&quot;, new Event({name: &quot;daughterGardenReading01&quot;, passage: &quot;daughterGardenReading01&quot;, inline:true, repeats:true, tags: [&quot;needDaughter&quot;]}))&gt;&gt;
@@ -3271,18 +3292,13 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 	&quot;firstNight&quot; : true,
 }&gt;&gt;
 
-&lt;&lt;include &quot;clothesInit&quot;&gt;&gt;
 &lt;&lt;include &quot;characterInit&quot;&gt;&gt;
+&lt;&lt;include &quot;clothesInit&quot;&gt;&gt;
 &lt;&lt;include &quot;roomInit&quot;&gt;&gt;
 &lt;&lt;include &quot;choresInit&quot;&gt;&gt;
 &lt;&lt;include &quot;eventInit&quot;&gt;&gt;
 &lt;&lt;include &quot;tagsInit&quot;&gt;&gt;
-&lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;
-
-&lt;&lt;set $shop to new Shop({name: &quot;Base shop&quot;, id:&quot;shop&quot;})&gt;&gt;
-&lt;&lt;set $shop.addCategory(&quot;Wigs&quot;)&gt;&gt;
-&lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Brown wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;
-&lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({name: &quot;Black wig&quot;, tags: [&quot;wig&quot;, &quot;equippable&quot;]}), 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="Intro1" tags="intro tutorial" position="350,1600" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
+&lt;&lt;include &quot;bodyPartInit&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="Intro1" tags="intro tutorial" position="350,1600" size="100,100">As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn&#39;t have any other relatives, so you were raised in foster care. It wasn&#39;t a perfect upbrining, but you got by.
 
 At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you&#39;ve been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
 
@@ -4400,7 +4416,31 @@ You have &lt;&lt;/if&gt;&gt;
 You have &lt;&lt;= $player.getDesc(&quot;eyeColor&quot;)&gt;&gt; eyes.
 
 
-&lt;br&gt;&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="PlayerBdRm" tags="playerRoom room" position="475,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+&lt;br&gt;&lt;&lt;return&gt;&gt;
+
+&lt;!--
+
+looks: {
+	hairColor: 0,
+    hairLength: 0,
+    eyeColor: 0,
+},
+slots: [
+   	{name: &quot;wig&quot;, equipped: null},
+   	{name: &quot;chest&quot;, equipped: null},
+  	{name: &quot;bra&quot;, equipped: null},
+  	{name: &quot;underwear&quot;, equipped: null},
+   	{name: &quot;hoistery&quot;, equipped: null},
+  	{name: &quot;legs&quot;, equipped: null},
+  	{name: &quot;feet&quot;, equipped: null},
+   	{name: &quot;accessory-hair&quot;, equipped: null},
+  	{name: &quot;accessory-neck&quot;, equipped: null},
+  	{name: &quot;accessory-ear&quot;, equipped: null},
+  	{name: &quot;accessory-eye&quot;, equipped: null},
+   	{name: &quot;toy-front&quot;, equipped: null},
+   	{name: &quot;toy-back&quot;, equipped: null}
+],
+ --&gt;</tw-passagedata><tw-passagedata pid="174" name="PlayerBdRm" tags="playerRoom room" position="475,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
@@ -4438,13 +4478,12 @@ Check the [[Wardrobe|playerRoomWardrobe]]
 
 You turn on the warm stream of water and step into the shower. You soap up and wash yourself clean. This moment of relaxation feels great, almost as if your worreis are washing away with the water.
 &lt;&lt;set $time.addTime({day:0, hour:0, minute: 15})&gt;&gt;
-[[Finish|PlayerBdRm]]</tw-passagedata><tw-passagedata pid="176" name="playerRoomMakup" tags="playerRoom" position="725,2225" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="177" name="playerRoomMorningRoutine" tags="playerRoom" position="850,2225" size="100,100">Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.</tw-passagedata><tw-passagedata pid="178" name="playerRoomWardrobe" tags="playerRoom" position="975,2225" size="100,100">Todo: Add clothes
-&lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
+[[Finish|PlayerBdRm]]</tw-passagedata><tw-passagedata pid="176" name="playerRoomMakup" tags="playerRoom" position="725,2225" size="100,100">Todo: Add makeup event</tw-passagedata><tw-passagedata pid="177" name="playerRoomMorningRoutine" tags="playerRoom" position="850,2225" size="100,100">Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.</tw-passagedata><tw-passagedata pid="178" name="playerRoomWardrobe" tags="playerRoom" position="975,2225" size="100,100">&lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
 &lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;= $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="RoomDescription" tags="room" position="1100,2225" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="shopTest" tags="" position="1225,2225" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;= $player.inv.listItem(undefined, &quot;$wardrobe&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="RoomDescription" tags="room" position="1100,2225" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="shopTest" tags="" position="1225,2225" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
 
