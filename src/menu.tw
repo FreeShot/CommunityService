@@ -68,6 +68,9 @@ Skills will be added later
 <<else>>
 <li>You are NOT permitted to use any of the onsite facilities outside of you normal chores.</li>
 <</if>>
+<<if $cPartyCompulsory is true>>
+<li>$caterer.name will require you assistance at $wife.title's biweekly gathering. You must be in full uniform and assist guest as required.</li>
+<</if>>
 <</nobr>>\
 </ol>
 [[Return|$return]]

@@ -66,6 +66,8 @@ You look at the time and hope $wife.name is awake. You put on your normal clothe
 <<= $wife.speak("Oh, I suppose. We'll need to discuss your performance last night first.")>> She opens the door all the way and let you into her room.
 
 You can see $owner.name lying asleep face down, clearly naked, and quickly follow $wife.name into the wardrobe.<<set $flags.firstCocktailParty to false>>
+
+[[Performance review|mansionCPartyReview01a]]
 <<else>>
 You get up, grab the maid's uniform and head to the master bedroom so $wife.name
 
@@ -76,10 +78,11 @@ You get up, grab the maid's uniform and head to the master bedroom so $wife.name
 <<= $wife.speak("Of course. Come in and lets discuss your performance.")>>
 
 You follow $wife.name into the wardrobe.
-<</if>>
-[[Performance review|mansionCPartyReview01]]
 
-::mansionCPartyReview01 [event]
+[[Performance review|mansionCPartyReview01b]]
+<</if>>
+
+::mansionCPartyReview01a [event]
 
 Good
 <<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
@@ -93,15 +96,31 @@ $wife.name pulls out a key and starts twirling it on her finger.
 
 <<= $player.speak("Please $wife.title. I would like it off.")>>
 
-She waits for an uncomfortable minute just teasing you with the key you’re your trapped penis spinning in front of you.
+She waits for an uncomfortable minute just teasing you with the key to you’re your trapped penis spinning in front of you. You look at it longingly, if anything just to have the uncomfortable cage removed.
  
-<<= $wife.speak("Oh fine.")>> She flicks you the key and heads to the bathroom. <<= $wife.speak("It's a shame. A lot of people commented on having a beauty like you under our care.")>>
+<<= $wife.speak("Oh fine.")>> She flicks you the key and gestures to one of the nearby cushions. You place the uniform there and wait for her to leave.
+
+She doesn't, and time draws out as $wife.name stands there looking at you thoughtfully, her gaze wandering over your body, taking in every part of it before pausing on your crotch. As if reacting on it's own your trapped member throbs against it's confinement, forcing you to shift uncomfortably.
+
+<<= $player.speak("Is there anything else you need $wife.title?")>>
+
+Her eyes still linger on your hips for a moment before quickly shooting up to meet your gaze. $wife.name's piercing eyes seem to bore into you. You can't help but look away.
+
+<<= $wife.speak("You know what. Given how everyone enjoyed having such a lovley and well presented young lady ath their beck and call I think we might make some changes to the rules.")>>
+
+Your eyes return to her face, smiling smugly and knowing you are at her mercy.
+
+<<= $wife.speak("AL? Update the rules so $player.name here must assist $caterer.name for my bi-weekly gatherings. In full costume of course.")>>
+
+Your [[CUFF]] beeps as the rules get updated.
+
+$wife.name heads to the bathroom. <<= $wife.speak("A lot of people commented on having a beauty like you under our care. We can't disappoint your admirers now can we?"")>>
  
-<<= $player.speak("<i>Care, yeah right.</i>")>>
+<<= $player.speak("<i>As if I have a choice you f...</i>")>>
  
-<<= $wife.speak("Just leave them on one of the cushions before you leave. You never know when I might need it again.")>>
+<<= $wife.speak("Leave your little toy on the cushion. You never know when I might need it again.")>>
  
-She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can't help and think how pathetic your small member looks after being compressed by the cage for so long.
+She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can't help but think how pathetic your small member looks after being compressed by the cage for so long.
  
 You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
 <<set $eventCount_cocktailparty to 0>>
