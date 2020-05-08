@@ -673,7 +673,7 @@ class Chore {
 				);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $aPsgText = '[[RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
+				"<<link '{0}' '{1}'>><<set $aPsgText = '[[Back to the chores list|playerToDoList]]<br>[[{5}|RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
 				this.name,
 				this.passage,
 				this.staminaCost,
@@ -2790,6 +2790,8 @@ You look at the time and hope $wife.name is awake. You put on your normal clothe
 &lt;&lt;= $wife.speak(&quot;Oh, I suppose. We&#39;ll need to discuss your performance last night first.&quot;)&gt;&gt; She opens the door all the way and let you into her room.
 
 You can see $owner.name lying asleep face down, clearly naked, and quickly follow $wife.name into the wardrobe.&lt;&lt;set $flags.firstCocktailParty to false&gt;&gt;
+
+[[Performance review|mansionCPartyReview01a]]
 &lt;&lt;else&gt;&gt;
 You get up, grab the maid&#39;s uniform and head to the master bedroom so $wife.name
 
@@ -2800,8 +2802,9 @@ You get up, grab the maid&#39;s uniform and head to the master bedroom so $wife.
 &lt;&lt;= $wife.speak(&quot;Of course. Come in and lets discuss your performance.&quot;)&gt;&gt;
 
 You follow $wife.name into the wardrobe.
-&lt;&lt;/if&gt;&gt;
-[[Performance review|mansionCPartyReview01]]</tw-passagedata><tw-passagedata pid="95" name="mansionCPartyReview01" tags="event" position="600,1225" size="100,100">Good
+
+[[Performance review|mansionCPartyReview01b]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="mansionCPartyReview01a" tags="event" position="600,1225" size="100,100">Good
 &lt;&lt;= $wife.speak(&quot;You worked so hard last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
 
 Bad
@@ -2813,15 +2816,31 @@ $wife.name pulls out a key and starts twirling it on her finger.
 
 &lt;&lt;= $player.speak(&quot;Please $wife.title. I would like it off.&quot;)&gt;&gt;
 
-She waits for an uncomfortable minute just teasing you with the key you’re your trapped penis spinning in front of you.
+She waits for an uncomfortable minute just teasing you with the key to you’re your trapped penis spinning in front of you. You look at it longingly, if anything just to have the uncomfortable cage removed.
  
-&lt;&lt;= $wife.speak(&quot;Oh fine.&quot;)&gt;&gt; She flicks you the key and heads to the bathroom. &lt;&lt;= $wife.speak(&quot;It&#39;s a shame. A lot of people commented on having a beauty like you under our care.&quot;)&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;Oh fine.&quot;)&gt;&gt; She flicks you the key and gestures to one of the nearby cushions. You place the uniform there and wait for her to leave.
+
+She doesn&#39;t, and time draws out as $wife.name stands there looking at you thoughtfully, her gaze wandering over your body, taking in every part of it before pausing on your crotch. As if reacting on it&#39;s own your trapped member throbs against it&#39;s confinement, forcing you to shift uncomfortably.
+
+&lt;&lt;= $player.speak(&quot;Is there anything else you need $wife.title?&quot;)&gt;&gt;
+
+Her eyes still linger on your hips for a moment before quickly shooting up to meet your gaze. $wife.name&#39;s piercing eyes seem to bore into you. You can&#39;t help but look away.
+
+&lt;&lt;= $wife.speak(&quot;You know what. Given how everyone enjoyed having such a lovley and well presented young lady ath their beck and call I think we might make some changes to the rules.&quot;)&gt;&gt;
+
+Your eyes return to her face, smiling smugly and knowing you are at her mercy.
+
+&lt;&lt;= $wife.speak(&quot;AL? Update the rules so $player.name here must assist $caterer.name for my bi-weekly gatherings. In full costume of course.&quot;)&gt;&gt;
+
+Your [[CUFF]] beeps as the rules get updated.
+
+$wife.name heads to the bathroom. &lt;&lt;= $wife.speak(&quot;A lot of people commented on having a beauty like you under our care. We can&#39;t disappoint your admirers now can we?&quot;&quot;)&gt;&gt;
  
-&lt;&lt;= $player.speak(&quot;&lt;i&gt;Care, yeah right.&lt;/i&gt;&quot;)&gt;&gt;
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;As if I have a choice you f...&lt;/i&gt;&quot;)&gt;&gt;
  
-&lt;&lt;= $wife.speak(&quot;Just leave them on one of the cushions before you leave. You never know when I might need it again.&quot;)&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;Leave your little toy on the cushion. You never know when I might need it again.&quot;)&gt;&gt;
  
-She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can&#39;t help and think how pathetic your small member looks after being compressed by the cage for so long.
+She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can&#39;t help but think how pathetic your small member looks after being compressed by the cage for so long.
  
 You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
 &lt;&lt;set $eventCount_cocktailparty to 0&gt;&gt;
@@ -4071,6 +4090,9 @@ Day $time.day&lt;/span&gt;
 &lt;li&gt;Use of any of the facilities on site is permitted between 8am to 10pm.&lt;/li&gt;
 &lt;&lt;else&gt;&gt;
 &lt;li&gt;You are NOT permitted to use any of the onsite facilities outside of you normal chores.&lt;/li&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $cPartyCompulsory is true&gt;&gt;
+&lt;li&gt;$caterer.name will require you assistance at $wife.title&#39;s biweekly gathering. You must be in full uniform and assist guest as required.&lt;/li&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;

@@ -39,7 +39,7 @@ class Chore {
 				);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $aPsgText = '[[RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
+				"<<link '{0}' '{1}'>><<set $aPsgText = '[[Back to the chores list|playerToDoList]]<br>[[{5}|RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
 				this.name,
 				this.passage,
 				this.staminaCost,
