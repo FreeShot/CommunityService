@@ -1,6 +1,24 @@
 ::clothesInit [init]
 
 <<set $shop to new Shop({name: "Base shop", id:"shop"})>>
+
 <<set $shop.addCategory("Wigs")>>
+
 <<= $shop.addItem("Wigs", new Item({name: "Brown wig", tags: ["wig", "equippable"]}), 1)>>
 <<= $shop.addItem("Wigs", new Item({name: "Black wig", tags: ["wig", "equippable"]}), 1)>>
+<<= $shop.addItem("Wigs", new Item({name: "Blonde wig", tags: ["wig", "equippable"]}), 1)>>
+
+<!-- Base clothes (already equipped) -->
+<<= $player.inv.addItem({name: "Plain Shirt", tags: ["shirt", "equipped"]}, 1)>>
+<<= $player.inv.addItem({name: "Mens jeans", tags: ["pants", "equipped"]}, 1)>>
+<<= $player.inv.addItem({name: "Plain sneakers", tags: ["shoe", "equipped"]}, 1)>>
+<<= $player.inv.addItem({name: "White gym socks", tags: ["hoistery", "equipped"]}, 1)>>
+<<= $player.inv.addItem({name: "Plain boxers", tags: ["underwear", "equipped"]}, 1)>>
+
+<!-- Wardrobe items (can be equipped once feminity is high enougth) -->
+<<= $player.inv.addItem({name:"Female cut T-shirt", feminity: 10, tags : ["shirt", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Modest skirt", feminity: 10, tags : ["pants", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Plain white panties", feminity: 10, tags : ["underwear", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Modest summer dress", feminity: 10, tags : ["shirt", "pants", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Tight jeans short", feminity: 10, tags : ["pants", "equippable"]}, 1)>>
+<<= $player.inv.addItem({name:"Flat shoes", feminity: 10, tags : ["shoe", "equippable"]}, 1)>>
