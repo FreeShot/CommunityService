@@ -3257,7 +3257,17 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 
 &lt;&lt;set $suitor to new NPC({name: &quot;Rick&quot;, color: &quot;#708090&quot;, title: &quot;Mr Stone&quot;})&gt;&gt;
 
-&lt;&lt;set $npcList to [$owner, $wife, $daughter, $son, $butler, $cook, $gardner, $caterer, $suitor]&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="choresInit" tags="init" position="850,1475" size="100,100">&lt;!--  Chores  --&gt;
+&lt;&lt;set $npcList to [
+	$owner, 
+	$wife, 
+	$daughter, 
+	$son, 
+	$butler, 
+	$cook, 
+	$gardner, 
+	$caterer, 
+	$suitor
+]&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="choresInit" tags="init" position="850,1475" size="100,100">&lt;!--  Chores  --&gt;
 
 &lt;&lt;= $mansion.addChore(&quot;Foyer&quot;, new Chore({
 	name: &quot;Clean Foyer&quot;, 
@@ -3634,23 +3644,218 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 
 &lt;!--  Rooms  --&gt;
 
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Foyer&quot;, id: &quot;Foyer&quot;, img: [&quot;Foyer.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Kitchen&quot;, &quot;Dining&quot;, &quot;UpperHall&quot;, &quot;Hall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Hall&quot;, id: &quot;Hall&quot;, adjacentRooms: [&quot;Foyer&quot;, &quot;MasterBdRm&quot;, &quot;Office&quot;, &quot;PlayerBdRm&quot;, &quot;Laundry&quot;, &quot;Kitchen&quot;, &quot;Dining&quot;, &quot;Garden&quot;, &quot;Lounge&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Upper Hall&quot;, id: &quot;UpperHall&quot;, adjacentRooms: [&quot;Foyer&quot;, &quot;SonBdRm&quot;, &quot;DaughterBdRm&quot;, &quot;GuestRm&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Garden&quot;, id: &quot;Garden&quot;, img: [&quot;Garden1.jpg&quot;, &quot;Garden2.jpg&quot;, &quot;Garden3.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Pool&quot;, &quot;Dining&quot;, &quot;Kitchen&quot;, &quot;Laundry&quot;, &quot;Gym&quot;, &quot;Hall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Kitchen&quot;, id: &quot;Kitchen&quot;, img: [&quot;Kitchen.jpg&quot;], adjacentRooms: [&quot;Lounge&quot;, &quot;Dining&quot;, &quot;Foyer&quot;, &quot;Hall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Laundry&quot;, id: &quot;Laundry&quot;, img: [&quot;Laundry.jpg&quot;], adjacentRooms: [&quot;Hall&quot;, &quot;Garden&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Lounge&quot;, id: &quot;Lounge&quot;, img: [&quot;Lounge.jpg&quot;], adjacentRooms: [&quot;Foyer&quot;, &quot;Kitchen&quot;, &quot;Dining&quot;, &quot;Hall&quot;, &quot;Garden&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Dining Room&quot;, id: &quot;Dining&quot;, img: [&quot;Dining.jpg&quot;], adjacentRooms: [&quot;Foyer&quot;, &quot;Kitchen&quot;, &quot;Hall&quot;, &quot;Lounge&quot;, &quot;Garden&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Master bedroom&quot;, id: &quot;MasterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet1.jpg&quot;, &quot;Closet2.jpg&quot;], adjacentRooms: [&quot;MasterBathRm&quot;, &quot;Hall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Master bathroom&quot;, id: &quot;MasterBathRm&quot;, img: [&quot;Bathroom.jpg&quot;], adjacentRooms: [&quot;MasterBdRm&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Office&quot;, id: &quot;Office&quot;, img: [&quot;Office.jpg&quot;], adjacentRooms: [&quot;Hall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Your bedroom&quot;, id: &quot;PlayerBdRm&quot;, img: [&quot;Bedroom.jpg&quot;], adjacentRooms: [&quot;Hall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Pool&quot;, id: &quot;Pool&quot;, img: [&quot;Pool.jpg&quot;], adjacentRooms: [&quot;Garden&quot;, &quot;Gym&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Gym&quot;, id: &quot;Gym&quot;, img: [&quot;Gym1.jpg&quot;], adjacentRooms: [&quot;Garden&quot;, &quot;Pool&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Mystery room&quot;, id: &quot;SonBdRm&quot;, img: [&quot;Locked.jpg&quot;, &quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;], adjacentRooms: [&quot;UpperHall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Daughter&#39;s bedroom&quot;, id: &quot;DaughterBdRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;], adjacentRooms: [&quot;UpperHall&quot;]}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({name: &quot;Guest room&quot;, id: &quot;GuestRm&quot;, img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;], adjacentRooms: [&quot;UpperHall&quot;]}))&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="tagsInit" tags="init" position="100,1600" size="100,100">&lt;!--  Tags  --&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Foyer&quot;, 
+	id: &quot;Foyer&quot;, 
+	img: [
+		&quot;Foyer.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Lounge&quot;, 
+		&quot;Kitchen&quot;, 
+		&quot;Dining&quot;, 
+		&quot;UpperHall&quot;, 
+		&quot;Hall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Hall&quot;, 
+	id: &quot;Hall&quot;, 
+	adjacentRooms: [
+		&quot;Foyer&quot;, 
+		&quot;MasterBdRm&quot;, 
+		&quot;Office&quot;, 
+		&quot;PlayerBdRm&quot;, 
+		&quot;Laundry&quot;, 
+		&quot;Kitchen&quot;, 
+		&quot;Dining&quot;, 
+		&quot;Garden&quot;, 
+		&quot;Lounge&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Upper Hall&quot;, 
+	id: &quot;UpperHall&quot;, 
+	adjacentRooms: [
+		&quot;Foyer&quot;, 
+		&quot;SonBdRm&quot;, 
+		&quot;DaughterBdRm&quot;, 
+		&quot;GuestRm&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Garden&quot;, 
+	id: &quot;Garden&quot;, 
+	img: [
+		&quot;Garden1.jpg&quot;, 
+		&quot;Garden2.jpg&quot;, 
+		&quot;Garden3.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Lounge&quot;, 
+		&quot;Pool&quot;, 
+		&quot;Dining&quot;, 
+		&quot;Kitchen&quot;, 
+		&quot;Laundry&quot;, 
+		&quot;Gym&quot;, 
+		&quot;Hall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Kitchen&quot;, 
+	id: &quot;Kitchen&quot;, 
+	img: [
+		&quot;Kitchen.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Lounge&quot;, 
+		&quot;Dining&quot;, 
+		&quot;Foyer&quot;, 
+		&quot;Hall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Laundry&quot;, 
+	id: &quot;Laundry&quot;, 
+	img: [
+		&quot;Laundry.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Hall&quot;, 
+		&quot;Garden&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Lounge&quot;, 
+	id: &quot;Lounge&quot;, 
+	img: [
+		&quot;Lounge.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Foyer&quot;, 
+		&quot;Kitchen&quot;, 
+		&quot;Dining&quot;, 
+		&quot;Hall&quot;, 
+		&quot;Garden&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Dining Room&quot;, 
+	id: &quot;Dining&quot;, 
+	img: [
+		&quot;Dining.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Foyer&quot;, 
+		&quot;Kitchen&quot;, 
+		&quot;Hall&quot;, 
+		&quot;Lounge&quot;, 
+		&quot;Garden&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Master bedroom&quot;, 
+	id: &quot;MasterBdRm&quot;, 
+	img: [
+		&quot;Bedroom.jpg&quot;, 
+		&quot;Bathroom.jpg&quot;, 
+		&quot;Closet1.jpg&quot;, 
+		&quot;Closet2.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;MasterBathRm&quot;, 
+		&quot;Hall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Master bathroom&quot;, 
+	id: &quot;MasterBathRm&quot;, 
+	img: [
+		&quot;Bathroom.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;MasterBdRm&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Office&quot;, 
+	id: &quot;Office&quot;, 
+	img: [
+		&quot;Office.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Hall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Your bedroom&quot;, 
+	id: &quot;PlayerBdRm&quot;, 
+	img: [
+		&quot;Bedroom.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Hall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Pool&quot;, 
+	id: &quot;Pool&quot;, 
+	img: [
+		&quot;Pool.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Garden&quot;, 
+		&quot;Gym&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Gym&quot;, 
+	id: &quot;Gym&quot;, 
+	img: [
+		&quot;Gym1.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;Garden&quot;, 
+		&quot;Pool&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Mystery room&quot;, 
+	id: &quot;SonBdRm&quot;, 
+	img: [
+		&quot;Locked.jpg&quot;, 
+		&quot;Bedroom.jpg&quot;, 
+		&quot;Bathroom.jpg&quot;, 
+		&quot;Closet.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;UpperHall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Daughter&#39;s bedroom&quot;, 
+	id: &quot;DaughterBdRm&quot;, 
+	img: [
+		&quot;Bedroom.jpg&quot;, 
+		&quot;Bathroom.jpg&quot;, 
+		&quot;Closet.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;UpperHall&quot;
+	]
+}))&gt;&gt;
+&lt;&lt;= $mansion.addRoom(new Room({
+	name: &quot;Guest room&quot;, 
+	id: &quot;GuestRm&quot;, 
+	img: [
+		&quot;Bedroom.jpg&quot;, 
+		&quot;Bathroom.jpg&quot;, 
+		&quot;Closet.jpg&quot;
+	], 
+	adjacentRooms: [
+		&quot;UpperHall&quot;
+	]
+}))&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="tagsInit" tags="init" position="100,1600" size="100,100">&lt;!--  Tags  --&gt;
 
 &lt;&lt;set $tags to {
 	&quot;NeedDaughter&quot; : function() {

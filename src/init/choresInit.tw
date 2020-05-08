@@ -5,9 +5,9 @@
 	name: "Clean Foyer", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "foyerCleaning", weight:2}, 
-		{name: "foyerSweepMop", weight: 10}, 
-		{name: "foyerDusting", weight: 11}
+		{name: "foyerCleaning", weight:1}, 
+		{name: "foyerSweepMop", weight: 2}, 
+		{name: "foyerDusting", weight: 2}
 	], 
 	staminaCost: 1, 
 	choreFrequency: "W"
@@ -16,9 +16,9 @@
 	name: "Clean Hall", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "hallCleaning", weight:2}, 
-		{name: "hallDusting", weight: 10}, 
-		{name: "hallSweepMop", weight: 11}
+		{name: "hallCleaning", weight:1}, 
+		{name: "hallDusting", weight: 2}, 
+		{name: "hallSweepMop", weight: 2}
 	], 
 	staminaCost: 1, 
 	choreFrequency: "W"
@@ -27,9 +27,9 @@
 	name: "Clean Upper Hall", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "hallCleaning", weight:2}, 
-		{name: "hallDusting", weight: 10}, 
-		{name: "hallSweepMop", weight: 11}
+		{name: "hallCleaning", weight:1}, 
+		{name: "hallDusting", weight: 2}, 
+		{name: "hallSweepMop", weight: 2}
 	], 
 	staminaCost: 1, 
 	choreFrequency: "W"
@@ -38,7 +38,7 @@
 	name: "Clean Garden", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "gardenCleaning", weight:2}, 
+		{name: "gardenCleaning", weight:1}, 
 		{name: "gardenSweep", weight: 1}
 	], 
 	staminaCost: 1, 
@@ -48,7 +48,7 @@
 	name: "Clean Pool", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "poolCleaning", weight:2}, 
+		{name: "poolCleaning", weight:1}, 
 		{name: "poolSweep", weight: 1}
 	], 
 	staminaCost: 1, 
@@ -101,82 +101,82 @@
 }))>>
 <<= $mansion.addChore("Lounge", new Chore({
 	name: "Clean Lounge", 
-	duration: {hour: 2}, 
+	duration: {hour: 1}, 
 	passages:[
-		{name: "loungeCleaning", weight:2}, 
-		{name: "loungeDusting", weight: 10}, 
-		{name: "loungeSweepMop", weight: 11}, 
-		{name: "loungeWindows", weight: 12}
+		{name: "loungeCleaning", weight:1}, 
+		{name: "loungeDusting", weight: 2}, 
+		{name: "loungeSweepMop", weight: 2}, 
+		{name: "loungeWindows", weight: 2}
 	], 
-	staminaCost: 2, 
+	staminaCost: 1, 
 	choreFrequency: "W"
 }))>>
 <<= $mansion.addChore("Dining", new Chore({
 	name: "Clean Dining Room", 
-	duration: {hour: 2}, 
+	duration: {hour: 1}, 
 	passages:[
-		{name: "diningCleaning", weight:2}, 
-		{name: "diningDusting", weight: 10}, 
-		{name: "diningSweepMop", weight: 11}, 
-		{name: "diningWindows", weight: 12}
+		{name: "diningCleaning", weight:1}, 
+		{name: "diningDusting", weight: 2}, 
+		{name: "diningSweepMop", weight: 2}, 
+		{name: "diningWindows", weight: 2}
 	], 
-	staminaCost: 2, 
+	staminaCost: 1, 
 	choreFrequency: "W"
 }))>>
 <<= $mansion.addChore("MasterBdRm", new Chore({
 	name: "Clean Master Bedroom", 
 	duration: {hour: 1},
 	passages:[
-		{name: "masterBdRmCleaning", weight:2}, 
-		{name: "masterBdRmDusting", weight: 10}, 
-		{name: "masterBdRmVacuum", weight: 11}, 
-		{name: "masterBdRmWindows", weight: 12}
+		{name: "masterBdRmCleaning", weight:1}, 
+		{name: "masterBdRmDusting", weight: 2}, 
+		{name: "masterBdRmVacuum", weight: 2}, 
+		{name: "masterBdRmWindows", weight: 2}
 	], 
 	staminaCost: 1, 
 	choreFrequency: "W"
 }))>>
 <<= $mansion.addChore("MasterBathRm", new Chore({
 	name: "Clean Master Bathroom", 
-	duration: {hour: 2}, 
+	duration: {hour: 1}, 
 	passages:[
-		{name: "masterBathRmCleaning", weight:2}, 
-		{name: "masterBathRmSweepMop", weight: 10}, 
-		{name: "masterBathRmSink", weight: 11}, 
-		{name: "masterBathRmToilet", weight: 12}, 
-		{name: "masterBathRmShower", weight: 13}, 
-		{name: "masterBathRmBath", weight: 12}
+		{name: "masterBathRmCleaning", weight:1}, 
+		{name: "masterBathRmSweepMop", weight: 2}, 
+		{name: "masterBathRmSink", weight: 2}, 
+		{name: "masterBathRmToilet", weight: 2}, 
+		{name: "masterBathRmShower", weight: 2}, 
+		{name: "masterBathRmBath", weight: 2}
 	], 
-	staminaCost: 2, 
+	staminaCost: 1, 
 	choreFrequency: "W"
 }))>>
 <<= $mansion.addChore("Office", new Chore({
 	name: "Clean Office", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "officeCleaning", weight:2}, 
-		{name: "officeDusting", weight: 10}, 
-		{name: "officeVacuum", weight: 11}, 
-		{name: "officeWindows", weight: 12}
+		{name: "officeCleaning", weight:1}, 
+		{name: "officeDusting", weight: 2}, 
+		{name: "officeVacuum", weight: 2}, 
+		{name: "officeWindows", weight: 2}
 	], 
 	staminaCost: 1, 
 	choreFrequency: "W"
 }))>>
 <<= $mansion.addChore("Gym", new Chore({
 	name: "Clean Gym", 
-	duration: {hour: 2}, 
+	duration: {hour: 1}, 
 	passages:[
-		{name: "gymCleaning", weight:2}, 
-		{name: "gymSweepMop", weight: 10}, 
-		{name: "gymWindows", weight: 11}
+		{name: "gymCleaning", weight:1}, 
+		{name: "gymSweepMop", weight: 2}, 
+		{name: "gymWindows", weight: 2}
 	], 
-	staminaCost: 2, 
+	staminaCost: 1, 
 	choreFrequency: "W"
 }))>>
 <<= $mansion.addChore("SonBdRm", new Chore({
 	name: "Check the door", 
 	duration: {minute: 5}, 
 	passages:[
-		{name: "sonBdRmCleaning", weight:2}, 
+		{name: "sonBdRmCleaning", weight:1}, 
 		{name: "sonBdRmLocked", weight: 1}
 	], 
 	staminaCost: 0, 
@@ -186,7 +186,7 @@
 	name: "Tidy your room", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "playerBdRmCleaning", weight:2}, 
+		{name: "playerBdRmCleaning", weight:1}, 
 		{name: "playerBdRmClean", weight: 1}
 	], 
 	staminaCost: 1, 
@@ -196,10 +196,10 @@
 	name: "Clean the bedroom", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "daughterBdRmcleaning", weight:2}, 
-		{name: "daughterBdRmDusting", weight: 10}, 
-		{name: "daughterBdRmVacuum", weight: 11}, 
-		{name: "daughterBdRmWindows", weight: 11}
+		{name: "daughterBdRmcleaning", weight:1}, 
+		{name: "daughterBdRmDusting", weight: 2}, 
+		{name: "daughterBdRmVacuum", weight: 2}, 
+		{name: "daughterBdRmWindows", weight: 2}
 	], 
 	staminaCost: 1, 
 	choreFrequency: "W"
@@ -208,10 +208,10 @@
 	name: "Clean the guest room", 
 	duration: {hour: 1}, 
 	passages:[
-		{name: "guestRmCleaning", weight:2}, 
-		{name: "guestRmDusting", weight: 10}, 
-		{name: "guestRmVacuum", weight: 11}, 
-		{name: "guestRmWindows", weight: 11}
+		{name: "guestRmCleaning", weight:1}, 
+		{name: "guestRmDusting", weight: 2}, 
+		{name: "guestRmVacuum", weight: 2}, 
+		{name: "guestRmWindows", weight: 2}
 	], 
 	staminaCost: 1, 
 	choreFrequency: "W"
