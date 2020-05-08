@@ -1,4 +1,7 @@
 ::StoryCaption
+
+[[mansionCPartyIntro01]]
+
 <<if !$flags.manorIntro>>
 <hr>
 <span class="date">$time.weekDayFormat

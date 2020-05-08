@@ -6,7 +6,9 @@ You are <<= $player.name>>.<br>
 <<else>>
   You wear a <<= $player.isHidden("hair")>> hiding your
 <</if>>
-<<= $player.getDesc("hairLength")>> <<= $player.getDesc("hairColor")>> hairs.<br>
+<<= $player.getDesc("hairLength")>> <<= $player.getDesc("hairColor")>> hairs. <<if $player.hasEquipped("accessory-head")>>On your head rests a <<= $player.hasEquipped("accessory-head")>><</if>>
+
+<br>
 
 You have <<= $player.getDesc("eyeColor")>> eyes. <br>
 

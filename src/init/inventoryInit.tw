@@ -1,25 +1,60 @@
 ::clothesInit [init]
 
-<<set $shop to new Shop({name: "Base shop", id:"shop"})>>
-
-<<set $shop.addCategory("Wigs")>>
-
-<<= $shop.addItem("Wigs", new Item({
+<<= $wife.inv.addItem({
 	name: "Short Brown wig", 
-	tags: ["wig", "equippable"]
-}), 1)>>
-<<= $shop.addItem("Wigs", new Item({
-	name: "Short Black wig", 
-	tags: ["wig", "equippable"]
-}), 1)>>
-<<= $shop.addItem("Wigs", new Item({
+	tags: ["wig", "equippable"],
+	femininity: 10,
+	color: "brown"
+}, 1)>>
+<<= $wife.inv.addItem({
 	name: "Short Blonde wig", 
-	tags: ["wig", "equippable"]
-}), 1)>>
-<<= $shop.addItem("Wigs", new Item({
+	tags: ["wig", "equippable"],
+	femininity: 10,
+	color: "blonde"
+}, 1)>>
+<<= $wife.inv.addItem({
 	name: "Short Aubrun wig", 
-	tags: ["wig", "equippable"]
-}), 1)>>
+	tags: ["wig", "equippable"],
+	femininity: 10,
+	color: "aubrun"
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Black Stockings with garter belt",
+	tags: ["hoisery", "equippable"],
+	femininity: 20
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Lacey black silk panties",
+	tags: ["underwear", "equippable"],
+	femininity: 15
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Lacey black silk bra",
+	tags: ["bra", "equippable"],
+	femininity: 15
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Maid headdress",
+	tags: ["accessory-head", "equippable"],
+	femininity: 10
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Black leather mary jane heels",
+	tags: ["shoe", "equippable"],
+	femininity: 5
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Stylised maid outfit",
+	tags: ["shirt", "pants", "equippable"]
+})>>
+
+<!-- Utilities -->
+<<= $wife.inv.addItem({
+	name: "Basic razor",
+	tags: ["razor"],
+	efficiency: 10,
+	quality: 1
+})>>
 
 <!-- Base clothes (already equipped) -->
 <<= $player.inv.addItem({

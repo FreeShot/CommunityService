@@ -32,7 +32,7 @@ class Inventory {
         }, this);
 	}
 
-	addItem(item, count)
+	addItem(item, count, autoEquip)
 	{
 		if (item.constructor == Object)
 		{
@@ -46,6 +46,8 @@ class Inventory {
 		} else {
 			this.items.push({"item" : item, "count" : count || Infinity});
 		}
+		if (autoEquip || false)
+			State.variables.player.equip(item.name, true);
 	}
 
 	removeItem(item, count) {
@@ -53,6 +55,16 @@ class Inventory {
 		this.items[i].count -= amount || 1;
 		var item = this.items[i].item.clone();
 		this.items = this.items.filter(function(el){return el.count > 0});
+	}
+
+	getAsTemp(item) {
+		var item = this.items[this.findItemIndex(item)].item.clone();
+		item.addTag("temp");
+		return item;
+	}
+
+	removeTemp() {
+		this.filter(undefined, ["temp"]);
 	}
 
 	findItemIndex(item) {

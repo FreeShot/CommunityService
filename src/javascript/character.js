@@ -5,6 +5,7 @@ class Character {
 		this.title = '';
 		this.currentRoom = '';
 		this.color = '';
+        this.inv = new Inventory({name: "Inventory", isShop: false})
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -51,9 +52,14 @@ class NPC extends Character {
                 		end : {hour: 24, minute: 0}
                 	}
                 ],
-                acceptance : 0
+                apreciation : 0
             }, config));
 	}
+
+    addAppreciation(val) {
+        this.apreciation += val;
+        Math.clamp(this.apreciation, -100, 100);
+    }
 
 	get getLocation() {
 		var schedule = this.schedule.find(function(ev) {return ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end)});
@@ -96,16 +102,19 @@ class Player extends Character {
                     "hairLength" : 0,
                     "eyeColor" : 0
                 },
-                inv : new Inventory({name: "Player Inventory", isShop: false})
+                bodyHair: {
+                    growthSpeed: {current: 10, absolute: 10},
+                    current: 0
+                }
         }, config));
 	}
 
-    equip(itemName) {
+    equip(itemName, bypassFeminity) {
         var index = this.inv.items.findIndex(function(el) {
             return el.item.name === itemName;
         });
         // Makes sure that the femininity is not too low
-        if (this.inv.items[index].item.femininity <= this.femininity) {
+        if (bypassFeminity || this.inv.items[index].item.femininity <= this.femininity) {
             this.inv.items[index].item.removeTag("equippable");
             var tags = this.inv.items[index].item.tags;
             // Might have to prefiler the tags
@@ -122,11 +131,33 @@ class Player extends Character {
     }
 
     unequip(itemName) {
-        var index = this.inv.items.findIndex(function(el) {
-            return el.item.name === itemName;
-        });
-        this.inv.items[index].item.removeTag("equipped");
-        this.inv.items[index].item.addTag("equippable");
+        if (itemName === "All") {
+            // Unequips all of the items
+            this.inv.items.forEach(function(el) {
+                if (el.item.tags.includes("equipped")) this.unequip(el.item.name);
+            }, this);
+        } else {
+            var index = this.inv.items.findIndex(function(el) {
+                return el.item.name === itemName || 
+                    (el.item.tags.includes(itemName) && el.item.tags.includes("equipped"));
+            });
+            if (index === -1) return undefined;
+            this.inv.items[index].item.removeTag("equipped");
+            this.inv.items[index].item.addTag("equippable");
+        }
+    }
+
+    shave(item) {
+        if (item.tags.includes("razor")) {
+            this.bodyHair.current += item.efficiency;
+            this.bodyHair.growthSpeed.current -= item.efficiency;
+            if(this.bodyHair.growthSpeed.current < 1) this.bodyHair.growthSpeed.current = 1;
+        }
+    }
+
+    growHair() {
+        this.bodyHair.current -= this.bodyHair.growthSpeed.current;
+        this.bodyHair.growthSpeed.currentRoom = this.bodyHair.growthSpeed.absolute;
     }
 
 	getStaminaBar() {
@@ -159,7 +190,7 @@ class Player extends Character {
     hasEquipped(tags) {
         if (!tags.includes["equipped"]) tags.push("equipped");
         return this.inv.items.filter(function(el) {
-            return el.tags.some(function(tag) {return tags.includes(tag);});
+            return el.item.tags.some(function(tag) {return tags.includes(tag);});
         }).length > 0;
     }
 
