@@ -1,5 +1,5 @@
 function ItemSorter(a, b) {
-	var tagOrder = ["wig", "shirt", "pants", "underwear", "hoistery", "shoe"];
+	var tagOrder = ["wig", "shirt", "bra", "pants", "underwear", "hoisery", "shoe"];
 	var tagIndexA = tagOrder.length;
 	a.item.tags.forEach(function(tag) {
 		var i = tagOrder.findIndex(t => t == tag);
@@ -16,7 +16,7 @@ function ItemSorter(a, b) {
 		}
 	});
 	if (tagIndexA == tagIndexB) {
-		return a.item.feminity - b.item.feminity;
+		return a.item.femininity - b.item.femininity;
 	}
 	return tagIndexA - tagIndexB;
 }
@@ -46,6 +46,13 @@ class Inventory {
 		} else {
 			this.items.push({"item" : item, "count" : count || Infinity});
 		}
+	}
+
+	removeItem(item, count) {
+		var i = this.items.findIndex(function(el){return el.item.name == item});
+		this.items[i].count -= amount || 1;
+		var item = this.items[i].item.clone();
+		this.items = this.items.filter(function(el){return el.count > 0});
 	}
 
 	findItemIndex(item) {
@@ -103,15 +110,13 @@ class Inventory {
 		var i = this.items.findIndex(function(el){return el.item.name == item;});
 		if (i !== undefined && State.variables.player.money >= price)
 		{
-			this.items[i].count -= amount || 1;
-			var item = this.items[i].item.clone();
+			var item = this.removeItem(el.item.name);
 			item.removeTag("shopItem");
 			State.variables.player.money -= price;
 			State.variables.player.inv.addItem(
 				item, 
 				this.items[i].count <= 0 ? this.items[i].count + amount : amount
 			);
-			this.items = this.items.filter(function(el){return el.count > 0});
 		}
 	}
 

@@ -33,6 +33,9 @@
 	"Sunday" : function() {
 		return $time.weekDayFormat == "Sunday"
 	},
+	"Morning" : function() {
+		return $time.inInterval("wakeup", {hour: 12, minutes: 0})
+	},
 	"Evening" : function() {
 		return $time.inInterval("sleep", "wakeup")
 	},

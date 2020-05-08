@@ -3,7 +3,7 @@ class Item {
         this.name = "Unnamed item";
         this.tags = [];
         this.price = 0;
-        this.feminity = 0;
+        this.femininity = 0;
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -38,8 +38,8 @@ class Item {
             );
         } else {
             if (this.tags.includes("equippable")) {
-                console.log(State.variables.player.feminity);
-                if (this.feminity <= State.variables.player.feminity) {
+                console.log(State.variables.player.femininity);
+                if (this.femininity <= State.variables.player.femininity) {
                 // Only if not a shop item
                 str += String.format(
                     "<<button 'Equip' '{1}'>><<= $player.equip('{0}')>><</button>>",
@@ -48,10 +48,10 @@ class Item {
                     );
             } else {
                 str += String.format(
-                    "[Fem: {2}] <span id='{1}-equip-button'><<button 'Equip'>><<replace '#{1}-equip-button'>>Feminity too low<</replace>><</button>></span>",
+                    "[Fem: {2}] <span id='{1}-equip-button'><<button 'Equip'>><<replace '#{1}-equip-button'>>femininity too low<</replace>><</button>></span>",
                     this.name,
                     this.name.split(' ').join('-').toLowerCase(),
-                    this.feminity
+                    this.femininity
                     );
             }
         } else if (this.tags.includes("equipped")) {

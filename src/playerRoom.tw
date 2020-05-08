@@ -23,11 +23,11 @@ Desk
 
 
 	[[Check you to do list.|playerToDoList]]<br>
-	<<click "Rest 1 Hour">>
+	<<link "Rest 1 Hour">>
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>
 		<<goto `passage()`>>
-	<</click>>	
+	<</link>>	
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 <</if>>
 <</nobr>>
@@ -40,7 +40,7 @@ You turn on the warm stream of water and step into the shower. You soap up and w
 <<return 'Finish'>>
 
 ::playerRoomMakup [playerRoom]
-Todo: Add makeup event
+Makeup will come in a later update
 <<return 'Finish'>>
 
 ::playerRoomMorningRoutine [playerRoom]
@@ -52,6 +52,8 @@ Despite your facial hair already being fairly sparse you still need to maintain 
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It's a little disheartening that such a small shirt looks like it would fit you.
 <</if>>
 
-<<= $player.inv.listItem(undefined, "$wardrobe")>>
+<<= $player.inv.listItem("$player.inv", ["equipped"])>>
+
+<<= $player.inv.listItem("$player.inv", ["equippable"])>>
 
 <<return 'Finish'>>

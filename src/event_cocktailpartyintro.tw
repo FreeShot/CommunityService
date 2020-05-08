@@ -4,6 +4,13 @@ As you roll out of bed you can't help but have a good feeling about the day. The
 It's nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.
 [[Get started.|mansionCPartyIntro02]]
 <<= $time.setDate({hour: 12, minute:0})>>
+<<= $mansion.addEvent("specialEvent", new Event({
+	name: "mansionCPartySetup01", 
+	passage: "mansionCPartySetup01", 
+	inline:true, 
+	repeats:true, 
+	tags: ["weekEven", "Saturday"]
+}))>>
 
 ::mansionCPartyIntro02 [event]
 The main foyer is busy with people setting up for the party this evening. The Sono's spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
@@ -15,7 +22,6 @@ As you are busy taking in the sight of the cute maid when you get a shove from b
 [img[setup.ImagePath + "events/cocktailparty/broken_plates.jpg"]]
 
 [[This won't be good.|mansionCPartyIntro03]]
-<<= $mansion.addEvent("specialEvent", new Event({name: "mansionCPartySetup01", passage: "mansionCPartySetup01", inline:true, repeats:true, tags: ["weekEven", "Saturday"]}))>>
 
 ::mansionCPartyIntro03 [event]
  
@@ -57,7 +63,7 @@ $wife.name drags you towards the [[Master Bedroom|mansionCPartyIntro04]]
 
 
 ::mansionCPartyIntro04 [event] 
-<<= $wife.speak("I swear $caterer.name is such a handful some times.")>> $wife.name pushes you down onto the bed so you're sitting on the end with her towering over you. "This is a disaster. Do you know how much trouble you've caused with your little stunt?")>>
+<<= $wife.speak("I swear $caterer.name is such a handful some times.")>> $wife.name pushes you down onto the bed so you're sitting on the end with her towering over you. <<= $wife.speak("This is a disaster. Do you know how much trouble you've caused with your little stunt?")>>
  
 <<= $player.speak("But the workers…")>>
  

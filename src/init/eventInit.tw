@@ -23,6 +23,14 @@
 	tags: ["FirstWeek", "manorIntro"]
 }))>>
 
+<<= $mansion.addEvent("specialEvent", new Event({
+	name: "cocktail party",
+	passage: "mansionCPartyIntro01",
+	inline: false,
+	repeats: false,
+	tags: ["WeekEven", "Sunday", "morning"]
+}))>>
+
 
 <!-- --------------------------------- -->
 
