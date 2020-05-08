@@ -60,7 +60,6 @@ class Timer {
 		time.minute += (duration.minute || 0);
 		time.hour += (duration.hour || 0) + Math.floor((duration.minute || 0) / 60);
 		time.minute %= 60;
-		console.log(time);
 		return this.compareTime(endTime, time) != -1;
 	}
 
@@ -80,7 +79,7 @@ class Timer {
 	}
 
 	get weekDay() {
-		var day = this.day + 1;
+		var day = this.day;
 		return day % 7;
 	}
 

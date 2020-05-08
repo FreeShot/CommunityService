@@ -2,4 +2,6 @@
 
 THIS WILL BE THE END OF THE WEEK RECAP
 
+Chores missed: <<= $player.choresLate>>
+
 [[Go to bed.|sleep]]

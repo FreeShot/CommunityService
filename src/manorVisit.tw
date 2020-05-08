@@ -21,8 +21,6 @@ With that, the turns around and walks into the estate proper.
 
 [[Follow|manorIntro02]]
 
-<!-- <<set $time.addTime({day:1, hour: 12, minute:0})>> -->
-
 ::manorIntro02 [tutorial]
 <<= $mansion.display("Foyer")>>
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
@@ -49,8 +47,6 @@ Your [[CUFF]] beeps and a tiny red light flashes on and off.
 
 <<= $butler.speak("Now follow me to the [[Kitchen|manorIntro04]]")>>
 <<set $flags.cuff.init to true>>
-<<set $flags.cuff.rules to true>>
-<!-- <<set $time.addTime({day:0, hour:0, minute:10})>> -->
 
 ::manorIntro04 [tutorial]
 <<= $mansion.display("Kitchen")>>

@@ -1,6 +1,6 @@
 ::StoryCaption
-<hr>
 <<if !$flags.manorIntro>>
+<hr>
 <span class="date">$time.weekDayFormat
 Day $time.day</span>
 <hr>
@@ -28,14 +28,14 @@ Day $time.day</span>
 ::CUFF [nobr mainMenu]
 <<if !$flags.cuff.init>>
 	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
-<<elseif !$flags.manorIntro>>
+<<else>>
+<<if !$flags.manorIntro>>
 	[[Chores|playerToDoList]]<br>
 	[[Appearence|playerDescription]]<br>
 	[[Skills|skills]]<br>
 	[[Possesions|inventory]]<br>
 <</if>>
-<<if $flags.cuff.rules>>
-	[[Rules|rules]]<br>
+[[Rules|rules]]<br>
 <</if>>
 [[Return|$exitMenu]]
 

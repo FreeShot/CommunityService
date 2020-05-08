@@ -81,8 +81,8 @@ class Inventory {
 		return items;
 	}
 
-	listItem(parent, wl, bl) {
-		var str = String.format("{0} <ul>", this.name);
+	listItem(parent, wl, bl, displayName) {
+		var str = String.format("{0} <ul>", displayName || this.name);
 		var items = this.filter(wl, bl);
 		items.sort(ItemSorter);
 		items.forEach(function(el){

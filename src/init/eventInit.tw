@@ -4,7 +4,7 @@
 	passage: "endOfWeekRecap", 
 	inline:false, 
 	repeats:true, 
-	tags: ["Sunday", "Evening", "!FirstWeek"]
+	tags: ["Sunday", "Morning", "!FirstWeek"]
 }))>>
 
 <<= $mansion.addEvent("specialEvent", new Event({
@@ -28,7 +28,7 @@
 	passage: "mansionCPartyIntro01",
 	inline: false,
 	repeats: false,
-	tags: ["WeekEven", "Sunday", "morning"]
+	tags: ["WeekEven", "Sunday", "Morning"]
 }))>>
 
 

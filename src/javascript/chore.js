@@ -7,7 +7,7 @@ class Chore {
 		];
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = false;
+		this.done = true;
 		this.room = '';
 		this.id = '';
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
@@ -19,7 +19,7 @@ class Chore {
 	}
 
 	do() {
-		console.log(State.variables.time.endsAfter("sleep", this.duration));
+		//console.log(State.variables.time.endsAfter("sleep", this.duration));
 		if (this.dayLeft < 0) {
 			return "";
 		} else if (this.done) {
@@ -39,7 +39,7 @@ class Chore {
 				);
 		} else {
 			return String.format(
-				"<<link '{0}' '{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
+				"<<link '{0}' '{1}'>><<set $aPsgText = '[[RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
 				this.name,
 				this.passage,
 				this.staminaCost,
@@ -54,7 +54,7 @@ class Chore {
 	reset() {
 		var days = State.variables.time.day % 7;
 		this.dayLeft--;
-		if(this.dayLeft < 0) {
+		if(this.dayLeft == -1) {
 			if (!this.done){
 				console.log("Missing chores is bad");
 				State.variables.player.choresLate++;

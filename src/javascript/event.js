@@ -30,10 +30,10 @@ class Event {
 
 	active() {
 		for (var i = 0; i < this.tags.length; i++) {
-			var tag = this.tags[i][0] === "!";
-			var tagName = this.tags[i][0] === "!" ? this.tags[i].substr(1) : this.tags[i];
+			var tagTrue = this.tags[i][0] === "!";
+			var tagName = tagTrue ? this.tags[i].substr(1) : this.tags[i];
 			if ((State.variables.tags[tagName] || 
-					function(){return State.variables.flags[tagName]})() === tag) {
+					function(){return State.variables.flags[tagName]})() === tagTrue) {
 				return false;
 			}
 		}

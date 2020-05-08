@@ -19,6 +19,7 @@ You feel something warm and firm press against the your womanhood before the fig
 
 [[Start the next day|wakeUp]]
 
+<!-- Todo: Change -->
 <<if $voiceTonic is true>>
 	 <<set $player.femininity to $previousFemininity>>
 <</if>>
@@ -43,7 +44,7 @@ The CUFF alarm goes off and you quickly set it to snooze. It's not long before t
 	<<= _event>>
 <<else>>
 [[Roll out of bed|PlayerBdRm]]
-<</if>>
 <<= $mansion.resetChores()>>
 <<set $player.rest()>>
+<</if>>
 <</nobr>>

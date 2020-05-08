@@ -1,5 +1,5 @@
 ::mansionCPartySetup01 [event]
-<<= $time.setDate({day:0, hour: 16, minute:0})>>
+<<= $time.setDate({hour: 16, minute:0})>>
 <<set $cocktailPartyStart to true>>
 <<set $voiceTonic to true>>
 <<set $previousFemininity to ($player.femininity += 1)>>
