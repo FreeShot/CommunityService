@@ -884,6 +884,13 @@ class Inventory {
 		}
 	}
 
+	removeItem(item, count) {
+		var i = this.items.findIndex(function(el){return el.item.name == item});
+		this.items[i].count -= amount || 1;
+		var item = this.items[i].item.clone();
+		this.items = this.items.filter(function(el){return el.count > 0});
+	}
+
 	findItemIndex(item) {
 		return this.items.findIndex(function(el){return el.item.name == item;});
 	}
@@ -939,15 +946,13 @@ class Inventory {
 		var i = this.items.findIndex(function(el){return el.item.name == item;});
 		if (i !== undefined && State.variables.player.money >= price)
 		{
-			this.items[i].count -= amount || 1;
-			var item = this.items[i].item.clone();
+			var item = this.removeItem(el.item.name);
 			item.removeTag("shopItem");
 			State.variables.player.money -= price;
 			State.variables.player.inv.addItem(
 				item, 
 				this.items[i].count <= 0 ? this.items[i].count + amount : amount
 			);
-			this.items = this.items.filter(function(el){return el.count > 0});
 		}
 	}
 
@@ -2053,7 +2058,14 @@ Maybe I should&#39;ve chosen [[Indentured Servitude|Intro5]] instead?</tw-passag
 
 It&#39;s nice to spend the morning chilling out for once but you eventually remember you need to at least get the daily jobs done.
 [[Get started.|mansionCPartyIntro02]]
-&lt;&lt;= $time.setDate({hour: 12, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="mansionCPartyIntro02" tags="event" position="850,725" size="100,100">The main foyer is busy with people setting up for the party this evening. The Sono&#39;s spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
+&lt;&lt;= $time.setDate({hour: 12, minute:0})&gt;&gt;
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
+	name: &quot;mansionCPartySetup01&quot;, 
+	passage: &quot;mansionCPartySetup01&quot;, 
+	inline:true, 
+	repeats:true, 
+	tags: [&quot;weekEven&quot;, &quot;Saturday&quot;]
+}))&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="mansionCPartyIntro02" tags="event" position="850,725" size="100,100">The main foyer is busy with people setting up for the party this evening. The Sono&#39;s spare no expense with lavish decoration, flowers arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before but now you can really see the money on display.
  
 You dodge a few of the workers as they move through with another bouquet. One of the women moving through the room catches your eye. She is wearing a gorgeous maid&#39;s outfit that looks like something out of a boutique magazine
  
@@ -2061,8 +2073,7 @@ As you are busy taking in the sight of the cute maid when you get a shove from b
 
 [img[setup.ImagePath + &quot;events/cocktailparty/broken_plates.jpg&quot;]]
 
-[[This won&#39;t be good.|mansionCPartyIntro03]]
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({name: &quot;mansionCPartySetup01&quot;, passage: &quot;mansionCPartySetup01&quot;, inline:true, repeats:true, tags: [&quot;weekEven&quot;, &quot;Saturday&quot;]}))&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="mansionCPartyIntro03" tags="event" position="975,725" size="100,100">Everyone in the room turns to you both, lying on the ground and the caterer comes storming out of the kitchen.
+[[This won&#39;t be good.|mansionCPartyIntro03]]</tw-passagedata><tw-passagedata pid="58" name="mansionCPartyIntro03" tags="event" position="975,725" size="100,100">Everyone in the room turns to you both, lying on the ground and the caterer comes storming out of the kitchen.
  
 &lt;&lt;= $caterer.speak(&quot;What the hell is this!?&quot;)&gt;&gt;
  
@@ -2096,7 +2107,7 @@ $wife.name grabs your arm and pulls you to your feet with startling ease and sho
  
 $wife.name drags you towards the [[Master Bedroom|mansionCPartyIntro04]]
 
-&lt;&lt;set $flags.firstCocktailParty to true&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="mansionCPartyIntro04" tags="event" position="1100,725" size="100,100">&lt;&lt;= $wife.speak(&quot;I swear $caterer.name is such a handful some times.&quot;)&gt;&gt; $wife.name pushes you down onto the bed so you&#39;re sitting on the end with her towering over you. &quot;This is a disaster. Do you know how much trouble you&#39;ve caused with your little stunt?&quot;)&gt;&gt;
+&lt;&lt;set $flags.firstCocktailParty to true&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="mansionCPartyIntro04" tags="event" position="1100,725" size="100,100">&lt;&lt;= $wife.speak(&quot;I swear $caterer.name is such a handful some times.&quot;)&gt;&gt; $wife.name pushes you down onto the bed so you&#39;re sitting on the end with her towering over you. &lt;&lt;= $wife.speak(&quot;This is a disaster. Do you know how much trouble you&#39;ve caused with your little stunt?&quot;)&gt;&gt;
  
 &lt;&lt;= $player.speak(&quot;But the workers…&quot;)&gt;&gt;
  
@@ -3345,6 +3356,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 	tags: [&quot;FirstWeek&quot;, &quot;manorIntro&quot;]
 }))&gt;&gt;
 
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
+	name: &quot;cocktail party&quot;,
+	passage: &quot;mansionCPartyIntro01&quot;,
+	inline: false,
+	repeats: false,
+	tags: [&quot;WeekEven&quot;, &quot;Sunday&quot;, &quot;morning&quot;]
+}))&gt;&gt;
+
 
 &lt;!-- --------------------------------- --&gt;
 
@@ -3400,15 +3419,19 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 &lt;&lt;set $shop.addCategory(&quot;Wigs&quot;)&gt;&gt;
 
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({
-	name: &quot;Brown wig&quot;, 
+	name: &quot;Short Brown wig&quot;, 
 	tags: [&quot;wig&quot;, &quot;equippable&quot;]
 }), 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({
-	name: &quot;Black wig&quot;, 
+	name: &quot;Short Black wig&quot;, 
 	tags: [&quot;wig&quot;, &quot;equippable&quot;]
 }), 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({
-	name: &quot;Blonde wig&quot;, 
+	name: &quot;Short Blonde wig&quot;, 
+	tags: [&quot;wig&quot;, &quot;equippable&quot;]
+}), 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Wigs&quot;, new Item({
+	name: &quot;Short Aubrun wig&quot;, 
 	tags: [&quot;wig&quot;, &quot;equippable&quot;]
 }), 1)&gt;&gt;
 
@@ -3442,7 +3465,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name:&quot;Modest skirt&quot;, 
-	femininity: 10, 
+	femininity: 25, 
 	tags : [&quot;pants&quot;, &quot;equippable&quot;]
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
@@ -3451,8 +3474,8 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 	tags : [&quot;underwear&quot;, &quot;equippable&quot;]
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
-	name:&quot;Modest summer dress&quot;, 
-	femininity: 10, 
+	name:&quot;Teal summer dress&quot;, 
+	femininity: 25, 
 	tags : [&quot;shirt&quot;, &quot;pants&quot;, &quot;equippable&quot;]
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
@@ -3518,6 +3541,9 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 	},
 	&quot;Sunday&quot; : function() {
 		return $time.weekDayFormat == &quot;Sunday&quot;
+	},
+	&quot;Morning&quot; : function() {
+		return $time.inInterval(&quot;wakeup&quot;, {hour: 12, minutes: 0})
 	},
 	&quot;Evening&quot; : function() {
 		return $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)
@@ -4698,11 +4724,11 @@ Desk
 
 
 	[[Check you to do list.|playerToDoList]]&lt;br&gt;
-	&lt;&lt;click &quot;Rest 1 Hour&quot;&gt;&gt;
+	&lt;&lt;link &quot;Rest 1 Hour&quot;&gt;&gt;
 		&lt;&lt;set $time.addTime({day:0, hour:1, minute: 0})&gt;&gt;
 		&lt;&lt;set $player.rest()&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/click&gt;&gt;	
+	&lt;&lt;/link&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="playerRoomShower" tags="playerRoom" position="475,2225" size="100,100">[img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]

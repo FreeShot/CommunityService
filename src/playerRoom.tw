@@ -19,10 +19,8 @@ Desk
 		[[Do make-up|playerRoomMakup]]<br>
 		[[Morning Routine|playerRoomMorningRoutine]]<br>
 	<</if>>
-	Check the [[Wardrobe|playerRoomWardrobe]]
-
-
-	[[Check you to do list.|playerToDoList]]<br>
+	Check the [[Wardrobe|playerRoomWardrobe]]<br>
+	[[Check your to do list.|playerToDoList]]<br>
 	<<link "Rest 1 Hour">>
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>
