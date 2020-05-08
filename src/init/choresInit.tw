@@ -1,7 +1,7 @@
 ::choresInit [init]
 <!--  Chores  -->
 
-<<= $mansion.addChore("Foyer", new Chore({name: "Clean Foyer", duration: {hour: 1}, passages:[{name: "foyerCleaning", weight:2}, {name: "foyerSweepMop", weight: 10}, {name: "foyerDusting", weight: 11}], staminaCost: 1, choreFrequency: "W"}))>>
+<<= $mansion.addChore("Foyer", new Chore({name: "Clean Foyer", duration: {hour: 2}, passages:[{name: "foyerCleaning", weight:2}, {name: "foyerSweepMop", weight: 10}, {name: "foyerDusting", weight: 11}], staminaCost: 1, choreFrequency: "W"}))>>
 <<= $mansion.addChore("Hall", new Chore({name: "Clean Hall", duration: {hour: 1}, passages:[{name: "hallCleaning", weight:2}, {name: "hallDusting", weight: 10}, {name: "hallSweepMop", weight: 11}], staminaCost: 1, choreFrequency: "W"}))>>
 <<= $mansion.addChore("UpperHall", new Chore({name: "Clean Upper Hall", duration: {hour: 1}, passages:[{name: "hallCleaning", weight:2}, {name: "hallDusting", weight: 10}, {name: "hallSweepMop", weight: 11}], staminaCost: 1, choreFrequency: "W"}))>>
 <<= $mansion.addChore("Garden", new Chore({name: "Clean Garden", duration: {hour: 1}, passages:[{name: "gardenCleaning", weight:2}, {name: "gardenSweep", weight: 1}], staminaCost: 1, choreFrequency: "W"}))>>
