@@ -1,19 +1,19 @@
 ::clothesInit [init]
 
 <<= $wife.inv.addItem({
-	name: "Short Brown wig", 
+	name: "Long Brown wig", 
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	color: "brown"
 }, 1)>>
 <<= $wife.inv.addItem({
-	name: "Short Blonde wig", 
+	name: "Long Blonde wig", 
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	color: "blonde"
 }, 1)>>
 <<= $wife.inv.addItem({
-	name: "Short Aubrun wig", 
+	name: "Long Aubrun wig", 
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	color: "aubrun"
@@ -100,7 +100,7 @@
 	tags : ["shirt", "pants", "equippable"]
 }, 1)>>
 <<= $player.inv.addItem({
-	name:"Tight jeans short", 
+	name:"Tight jeans Long", 
 	femininity: 10, 
 	tags : ["pants", "equippable"]
 }, 1)>>

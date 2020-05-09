@@ -287,7 +287,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Short Brown wig"), 1, true)>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Long Brown wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>
@@ -308,7 +308,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Short Blonde wig"), 1, true)>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Long Blonde wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>
@@ -329,7 +329,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Short Brown wig"), 1, true)>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Long Brown wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>
@@ -350,14 +350,14 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Short Aubrun wig"), 1, true)>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Long Aubrun wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>\
 </span>
 
 ::mansionCPartyIntro14 [event]
-You open your eyes to the weird feeling of <<= $player.hasEquipped(["wig"]).color>> bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
+You open your eyes to the weird feeling of <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
 
 <<= $wife.speak("Point your toes.")>>
 

@@ -2273,7 +2273,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Short Brown wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Brown wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2294,7 +2294,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Short Blonde wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Blonde wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2315,7 +2315,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Short Brown wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Brown wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2336,11 +2336,11 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Short Aubrun wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Aubrun wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="69" name="mansionCPartyIntro14" tags="event" position="1100,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.hasEquipped([&quot;wig&quot;]).color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="69" name="mansionCPartyIntro14" tags="event" position="1100,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
 
 &lt;&lt;= $wife.speak(&quot;Point your toes.&quot;)&gt;&gt;
 
@@ -3193,19 +3193,19 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="95"
 	repeats:false, 
 	tags: [&quot;Friday&quot;, &quot;NeedDaughter&quot;, &quot;daughterAcceptance2&quot;]
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="clothesInit" tags="init" position="1100,1225" size="100,100">&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Short Brown wig&quot;, 
+	name: &quot;Long Brown wig&quot;, 
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	color: &quot;brown&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $wife.inv.addItem({
-	name: &quot;Short Blonde wig&quot;, 
+	name: &quot;Long Blonde wig&quot;, 
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	color: &quot;blonde&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $wife.inv.addItem({
-	name: &quot;Short Aubrun wig&quot;, 
+	name: &quot;Long Aubrun wig&quot;, 
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	color: &quot;aubrun&quot;
@@ -3292,7 +3292,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="95"
 	tags : [&quot;shirt&quot;, &quot;pants&quot;, &quot;equippable&quot;]
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
-	name:&quot;Tight jeans short&quot;, 
+	name:&quot;Tight jeans Long&quot;, 
 	femininity: 10, 
 	tags : [&quot;pants&quot;, &quot;equippable&quot;]
 }, 1)&gt;&gt;

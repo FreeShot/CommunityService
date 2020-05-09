@@ -5,7 +5,7 @@
 <<if !$flags.manorIntro>>
 <hr>
 <span class="date">$time.weekDayFormat
-Day $time.day</span>
+Day <<$time.day + 1>></span>
 <hr>
 <span class="time"><<= $time.clock>></span>\
 <</if>>
