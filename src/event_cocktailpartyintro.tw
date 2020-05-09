@@ -382,3 +382,67 @@ Before you move, $wife.name pulls you up and turns you arround.
 <</link>>
 
 ::mansionCPartyIntro15 [event]
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_firstlook.jpg"]]
+
+Standing in front of you, wearing demure black lingerie is onw of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
+
+The only problem is, that girl is you.
+
+<<= $player.speak("Holy shit.")>>
+
+<<= $wife.speak("Language.")>> $wife.name says sternly <<= $wife.speak("But yes, I think I've outdone myself this time.")>>
+
+<<= $player.speak("This time..?")>>
+
+You can't finish as staring at your cute reflexion has had the exact reaction you'd expect and your hard on pops out of the top of the elastic of the panties.
+
+<span id="maiddressing4">\
+<<link "Panic!">>\
+<<replace "#maiddressing4">>\
+You stand like a deer in headlight staring at $wife.name and your cheeks get even redder.
+
+<<= $wife.speak("Oh, that will not do.")>>
+
+[[Hide your hard on|mansionCPartyIntro16]]
+<</replace>>
+<</link>>
+<<link "Cover yourself.">>\
+<<replace "#maiddressing4">>
+You cover yourself but all it did was draw $wife.name's attention.
+
+<<= $wife.speak("Oh, that will not do.")>>
+
+[[Hide your hard on|mansionCPartyIntro16]]
+<</replace>>
+<</link>>
+</span>
+
+::mansionCPartyIntro16 [event]
+$wife.name leave again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflexion. It that girl wasn't you, you might stomack up the courrage to go talk to her.
+
+<<= $player.speak("Might as well...")>>
+
+<<set _i = 0>>\
+<span id="maiddressing5_breasts">\
+<<link "Touch your breasts">>
+<<= _i++>>
+<<replace "#maiddressing5_breasts">>
+<</replace>>
+<</link>>
+
+</span>
+<span id="maiddressing5_pose">\
+<<link "Strike a pose">>
+<<= _i++>>
+<<replace "#maiddressing5_pose">>
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_pose.jpg"]]
+
+With one hand behind your head, you put the other on your hips before cocking them to the side. The girl looking back at you in the mirror could almost be a lingerie model. The slight tilt gives her hips even more definition as she smiles cutely at you. You quickly shake your head and drop the pose...
+<</replace>>\
+<</link>>\
+</span>
+
+::mansionCPartyIntro16_TouchBreast [event]
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_boobs.jpg"]]
+
+You reach up and cup your "breasts" through the silk bra. The breast forms give a little bit of weight to them but any sort of closer inspection would quickly reveal the truth. You suspect that's why $wife.name chose this bra, to make them feel real but have them hidden. As you knead the faux breasts, your nipples tingle as the texture gently pulls and twists them around. You pull your hand away and...

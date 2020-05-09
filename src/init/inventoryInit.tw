@@ -71,7 +71,7 @@
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "White gym socks", 
-	tags: ["hoistery", "equipped"]
+	tags: ["hoisery", "equipped"]
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "Plain boxers", 

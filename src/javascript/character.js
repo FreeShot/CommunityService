@@ -119,7 +119,10 @@ class Player extends Character {
             var tags = this.inv.items[index].item.tags;
             // Might have to prefiler the tags
             this.inv.items.filter(function (el) {
-                return el.item.tags.some(function(tag) {return tags.includes(tag)})
+                return el.item.tags.some(function(tag) {
+                    return tags.includes(tag) && 
+                        !["temp", "equipped", "equippable", "shopItem", "gettable"].includes(tag)
+                    })
             }).filter(function (el) {
                 return el.item.tags.includes("equipped");
             }).forEach(function(el) {
