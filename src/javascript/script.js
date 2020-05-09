@@ -26,7 +26,8 @@ Setting.addToggle("nsfw", {
 });
 
 Config.passages.onProcess = function (p) {
-	var text = p.text + "<br>" + (State.variables.aPsgText || '');
+	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '');
+	State.variables.pPsgText = "";
 	State.variables.aPsgText = "";
 	return text;
 };

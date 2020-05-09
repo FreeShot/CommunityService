@@ -422,27 +422,330 @@ $wife.name leave again and you hastily tuck your penis back into the silk pantie
 
 <<= $player.speak("Might as well...")>>
 
+<span id="maiddressing5_action"></span>\
 <<set _i = 0>>\
 <span id="maiddressing5_breasts">\
 <<link "Touch your breasts">>
 <<= _i++>>
-<<replace "#maiddressing5_breasts">>
-<</replace>>
-<</link>>
+<<replace "#maiddressing5_breasts">><</replace>>
+<<append "#maiddressing5_action">>
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_boobs.jpg"]]
 
-</span>
+You reach up and cup your "breasts" through the silk bra. The breast forms give a little bit of weight to them but any sort of closer inspection would quickly reveal the truth. You suspect that's why $wife.name chose this bra, to make them feel real but have them hidden. As you knead the faux breasts, your nipples tingle as the texture gently pulls and twists them around. You pull your hand away and...
+
+
+<</append>>
+<</link>>
+</span>\
 <span id="maiddressing5_pose">\
 <<link "Strike a pose">>
 <<= _i++>>
-<<replace "#maiddressing5_pose">>
+<<replace "#maiddressing5_pose">><</replace>>
+<<append "#maiddressing5_action">>
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_pose.jpg"]]
 
-With one hand behind your head, you put the other on your hips before cocking them to the side. The girl looking back at you in the mirror could almost be a lingerie model. The slight tilt gives her hips even more definition as she smiles cutely at you. You quickly shake your head and drop the pose...
+With one hand behind your head, you put the other on your hips before cocking them to the side. The girl looking back at you in the mirror could almost be a lingerie model. The slight tilt gives her hips even more definition as she smiles cutely at you. You quickly shake your head and drop the pose before...
+
+
+<</append>>
+<</link>>
+</span>\
+<span id="maiddressing5_turn">\
+<<link "Turn around">>
+<<= _i++>>
+<<replace "#maiddressing5_turn">><</replace>>
+<<append "#maiddressing5_action">>
+[img[setup.ImagePath + "events/cocktailparty/cocktailparty_turn.jpg"]]
+
+Looking back over your shoulder, the ponytail flicks out of the way. The pale skim of your back is complemented by the dark lingerie. The modest silk panties cover your butt just enougth but still show the hint of your cheeks underneath. The shaper and stockings create a sexy little squeeze at their edges to show you at least have a little muscle.
+
+
+<</append>>
+<</link>>
+</span>\
+<<link "Wait" "mansionCPartyIntro17">>
+<<set $pPsgText to "<<set _i to " + _i + ">>">>
+<</link>>
+
+::mansionCPartyIntro17 [event]
+<<if _i > 1>>\
+<<= $wife.speak("Enjoying the view?")>>
+
+You turn around with a little squeak to find $wife.name watching you. You feel like you shrink dow to about half your size at the way she is smiling at you.
+
+<<= $wife.speak("Don't be embarassed. You look adorable.")>>
+
+<</if>>\
+$wife.name joins you and drops something on the chaise before she kneels down in front of you. Before you can react, she pulls the panties down to the top of your stockings and pinches you right in the middle of your balls.
+
+<<= $player.speak("Ow! What the hell!")>>
+
+$wife.name stands up angrily. <<= $wife.speak("Excuse me?")>>
+
+<span id="maiddressing6">\
+<<link "Keep going.">>\
+<<replace "#maiddressing6">>\
+<<= $player.speak("That hurts. Are you crazy?")>>
+
+<<= $wife.speak("No, servant, I'm not crazy and you'd better watch your tone. You're already walking on thin ice and don't think I haven't noticed you not addressing me as $wife.title this entire time.")>>
+
+[[Back off|mansionCPartyIntro18]]
+<</replace>>\
+<</link>> or [[Back off|mansionCPartyIntro18]]
+</span>
+
+::mansionCPartyIntro18 [event]
+<<= $player.speak("Sorry. It's just that it realy hurts.")>> You shrink back a little and look away from her.
+
+<<= $wife.speak("That's better. You need to watch yourself. Any more outburst like that and we'll have a problem. I'll let go of the fact that you haven't said $wife.title once today, but you'd better make sure your performance tonight works. Now eyes forward. I don't want you getting any ideas.")>>
+
+$wife.name kneels back down and takes the item from the chaise.
+
+<<= $player.speak("Why did you do that $wife.title and why are you, um, down there?")>>
+
+<<= $wife.speak("I can't have you tenting your skirt at the party tonight or someone might figure out you're not a pretty little maid.")>>
+
+You feel her grab your penis which softened moments after the pinch. She wraps something cold and hard over its than wraps it behind your balls.
+
+<<= $wife.speak("Fortunately one of my smaller chastity cages is just the right size.")>>
+
+<<= $player.speak("Excuse me $wife.title. A chastity what?")>>
+
+You hear a little click as the cage locks in place and the she pulls your panties back up.
+
+<<= $wife.speak("It will stop you from getting hard and making me look bad. You'll keep it on for the remainer of the night. You can come see me tomorrow to get it removed if you want to.")>>
+
+<<= $player.speak("<i>All night? It's still morning though.</i>")>>
+
+<<= $wife.speak("The only way anyone will find ouy is if they get handsy. Now, knowing some of my guests, that's possible but at least we're reducing the risk so don't let that stop you from leaning into any stray hands if you want to.")>>
+
+<<= $player.speak("Why would I do that $wife.title")>>
+
+$wife.name was already walking back to the dressing room.
+
+<<= $wife.speak("Come on. Let's wrap this up.")>>
+
+<<link "Follow" "mansionCPartyIntro19">>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Pink chastity cage"), 1, true)>>
+<</link>>
+
+::mansionCPartyIntro19 [event]
+You quickly head back into the main bedroom where $wife.name is already waiting with the maid's dress unzipped.
+
+You step into the dress and she pulls it up over your hips. She helps you thread your arms through the sleeves and pulls it over your shoulders. $wife.name zips up the back before tying the laces on the back to pull the whole outfit tight in against your new curves. The black skirt ends just above your knees and has a ruffled white petit coat underneath it to give a bit of bounce. The dress stops just below your bra but it includes a thin white blouse that covers the high enough to hide your assets. The effect enhances your new bust while still mostly hiding it from view. $wife.name has already tied a white apron over your shoulders and end in white lace.
+
+There is a pair of black mary janes wating and $wife.name buckles the up after helping you into them. Lastly, she places a white lave bonnet on your head.
+
+You turn and look in one of the full length mirror. The cute gir you saw earlier is still watching you, only now in a little maids outfit. Overall, the look it quite modest but just sexy enough to turn some heads. The appeal is there though and you wouldn't be surprised to see the outfit in a high class porno.
+
+[img[setup.ImagePath + "events/cocktailparty/maid_firstlook.jpg"]]
+
+<span id="maiddressing7">\
+<<link "Do a spin">>\
+<<replace "#maiddressing7">>\
+[img[setup.ImagePath + "items/wearables/dress/maid_twirl.gif"]]
+
+As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
 <</replace>>\
 <</link>>\
 </span>
 
-::mansionCPartyIntro16_TouchBreast [event]
-[img[setup.ImagePath + "events/cocktailparty/cocktailparty_boobs.jpg"]]
+<<= $wife.speak("Well? Thoughts? I won't ask for your opinion much so make the most of it.")>>
 
-You reach up and cup your "breasts" through the silk bra. The breast forms give a little bit of weight to them but any sort of closer inspection would quickly reveal the truth. You suspect that's why $wife.name chose this bra, to make them feel real but have them hidden. As you knead the faux breasts, your nipples tingle as the texture gently pulls and twists them around. You pull your hand away and...
+<span id="maiddressing8">\
+<<link "It could be worse.">>\
+<<replace "#maiddressing8">>\
+<<= $player.speak("It's fine, I guess... $wife.title.")>>
+
+She seems happy with that response.
+
+<<link "<<= $wife.speak('Oh, one more thing.')>>" "mansionCPartyIntro20">>
+<<= $player.raiseVoice({tmp:100, abs:1})>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Stylised maid outfit"), 1, true)>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Black leather mary jane heels"), 1, true)>>
+<</link>>
+<</replace>>\
+<</link>>
+<<link "Get me out of this stuff.">>\
+<<replace "#maiddressing8">>\
+<<= $player.speak("If I didn't have to be doing this, I wouldn't.")>>
+
+
+<<= $wife.speak("Wouldn't what?")>>
+
+<<= $player.speak("Wouldn't, $wife.title")>>
+
+<<link "<<= $wife.speak('Better. Oh, one more thing.')>>" "mansionCPartyIntro20">>
+<<= $player.raiseVoice({tmp:100, abs:1})>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Stylised maid outfit"), 1, true)>>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Black leather mary jane heels"), 1, true)>>
+<</link>>
+<</replace>>
+<</link>>\
+</span>
+
+::mansionCPartyIntro20 [event]
+$wife.name wraps a choker around your neck. It's not too tight, but it does the job of hiding your small Adam apple.
+
+<<= $wife.speak("Here. Drink this.")>> She hands you a small glass bottle. <<= $wife.speak("The whole thing.")>>
+
+It smells like sour oranges, and, knowing there is no way around it, you down the entire bottle. It burns going down, like a shot of pure alcohol.
+
+<<= $player.speak("What was that?")>> Your voice is softer and more feminine.
+
+<span id="maiddressing9">\
+<<link "Not good">>\
+<<replace "#maiddressing9">>\
+<<= $player.speak("What did you do to me?")>> You shout, grabbing your throat.
+
+<<= $wife.speak("We can't have you sounding like a boy, otherwise what's the point in dressing you up.")>>
+
+<<= $player.speak("But...")>>
+
+<<= $wife.speak("Oh stop worrying. The effects are usually temporary.")>>
+
+<<= $player.speak("<i>Usually...</i>")>>
+
+<<link "<<= $wife.speak('Now, about your name...')" "mansionCPartyIntro21">>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Black choker"), 1, true)>>
+<</link>>\
+<</replace>>\
+<</link>>
+<<link "Submissively.">>
+<<replace "#maiddressing9">>
+You grab your mouth and throat in shock.
+
+<<link "<<= $wife.speak('Now, about your name...')" "mansionCPartyIntro21">>
+<<= $player.inv.addItem($wife.inv.getAsTemp("Black choker"), 1, true)>>
+<</link>>\
+<</replace>>\
+<</link>>\
+</span>
+
+::mansionCPartyIntro21 [event]
+<<= $wife.speak("You'll need a different name to keep up appearance.")>>
+
+<<= $player.speak("Why can't I just use my name?")>>
+
+<<= $wife.speak("I want to avoid confusion. What if someone comes by after the party and meets you when you aren't a girl? So, how do you want to be named?")>>
+
+<<= $player.speak("<<textbox '$player.femName' '$player.femName' 'mansionCPartyIntro22'>>")>>
+
+::mansionCPartyIntro22 [event]
+<<= $wife.speak("Yes, $player.femName suits you.")>>
+
+$wife.name gives you a spritz of some nice smelling perfume.
+
+[img[setup.ImagePath + "events/bath_routine/perfume01.gif"]]
+
+<<= $wife.speak("Now make sure you look after your outfit. I expect everything to be cleaned and returned. If you don't I'll just add the items to your debt, and they aren't cheap, trust me.")>>
+
+<<= $player.speak("Yes $wife.title")>>
+
+There is a knock on the door and $butler.name comes in and gives a guick bow.
+
+<<= $butler.speak("$wife.title. $owner.title sent me ahead to make sure everything was prepared for this evening.")>>
+
+<<= $wife.speak("Right then. This is $player.femName. She will be assisting $caterer.name this evening. Please update AL with some new rules accordingly.")>>
+
+<<= $butler.speak("Of course $wife.title.")>>
+
+$wife.name walks past $butler.name back to the main event.
+
+$butler.name pauses for a moment and looks you up and down. There is little to no chance he hasn't already seen through the outfit and make-up.
+
+<<= $butler.speak("AL, please update $player.femName's CUFF with hostess protocols.")>> He looks you in the eyes and you want to shrink back into yourself. <<= $butler.speak("Come with me $player.femName.")>>
+
+[[Be introduced to everyone to the new maid.|mansionCPartyIntro23]]
+
+::mansionCPartyIntro23 [event]
+[img[setup.ImagePath + "events/cocktailparty/maid_debut.gif"]]
+
+You follow after $butler.name and try to get used to the changes in you wardrobe. The shaper isn't uncomfortable but both it and the short heels are forcing you to walk in a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You fidget with your hands as the long ponytail tickles behind your shoulder. Before you come into view of anyone else, you reach down and shift unconfortably a few times. After checking yourself out in the mirror your tapped member is already straining against its restricting plastic prison.
+
+$wife.name is already back in the kitchen with $caterer.nam.
+
+<<= $wife.name("Well $caterer.name. This is $player.femName.")>>
+
+$caterer.name walks over to you and walks around you thoughtfully. You're reminded of when you met $wife.name for the first time as she examines you.
+
+<<= $caterer.speak("What sort of experience do you have?")>>
+
+Your eyes dart to $wife.name who is looking at you sternly. <<= $player.speak("Some. I have experience with house work and general cleaning.")>>
+
+<<= $caterer.speak("Well, I'm not looking for a kitchen hand.")>> He turns back to $wife.name who rases an eyebrow at him. <<= $caterer.speak("She'll do. I'm going to have to switch things up and do standing service instead. That way she won't have to do any formal serving until after I've trained her properly.")>>
+
+<<= $wife.speak("Whatever you say $caterer.name. As long as you're happy.")>>
+
+$caterer.name goes back to the kitchen to continue his prep work.
+
+<<= $wife.speak("I'll be basing my decision on how $caterer.name feels you performed.")>> $wife.name shakes her finger at you. <<= $wife.speak("Make sure you follow his instruction as if they were coming from me. Is that understood?")>>
+
+<<= $player.speak("Yes $wife.title.")>>
+
+$wife.title leaves and starts giving the worker instructions to clear the dining room as $caterer.name says to you:
+
+<<= $caterer.speak("Come on girl. We need to get you started.")>>
+
+<<link "$caterer.name walks you through your duties." "mansionCPartyIntro24">><</link>>
+
+::mansionCPartyIntro24 [event]
+<<= $caterer.speak("Alright. I expect that you have no idea of what you're doing when it comes to the food prep so you just leave all that to me. I'll have you do laps to the guests with the serving trays. Have you ever held a serving tray before?")>>
+
+<<= $player.speak("Only when I bring out breakfast.")>>
+
+<<= $caterer.speak("So that's a no then. Here.")>> $caterer.name hands you a round serving tray.
+
+<span id="partytraining1">\
+<<link "You don't want to risk dropping it, hold it with two hands.">>
+<<replace "#partytraining1">>\
+<<= $caterer.speak("No, no, no.")>> He snatches the tray from you. <<= $caterer.speak("You hold the tray with one hand and put the other hand behind your back. Like this.")>>
+
+He demonstrates for you and then hands you the tray back. You hold it with one hand this time.
+
+<<= $caterer.speak("Better, but you still need some work.")>>
+
+[[Continue practicing|mansionCPartyIntro25]]
+<</replace>>
+<</link>>
+<<link "Take the tray with one hand.">>
+<<replace "#partytraining1">>\
+<<= $caterer.speak("Alright. At least you know that much. More than I was expecting to be honnest.")>>
+
+<<= $player.speak("<i>What a jerk</i>")>>
+
+<<= $caterer.speak("You still need the other hand behind your back though.")>>
+
+[[Continue practicing|mansionCPartyIntro25]]
+<</replace>>
+<</link>>
+
+::mansionCPartyIntro25 [event]
+<<= $caterer.speak("I'll load you up with something that won't break and you can practice for a while.")>>
+
+[img[setup.ImagePath + "events/cocktailparty/serving_tray01.jpg"]]
+
+He loads the tray with some plastic and metal usensils he's not using and then set about walking back and forth around the open space in the kitchen sitting room. It's a little hard at first and you drop everything a few times. The first time you dropped something, you tried to bend down normally but the skirt started to rid up as you spread your knees. Instead you have to eep your legs together and kneel to the side to stop anyone from seeing the silk panties hiding your caged member. You catch a few of the workers stopping to stare when you do this and realise it's a very delicate and ladylike pose. When you stand back up, you feel your crotch twich unconfortably against its restaints.
+
+<<= $player.speak("<i>It's just my blod pumping from being nervous</i>")>>
+
+After a while, you seem to be getting the hung of it and $caterer.name calls you back over.
+
+<<= $caterer.speak("Alright girl, one of the most important things to know about standing service is to catch the body language of your betters.")>>
+
+<<= $player.speak("My name is $player.femName.")>>
+
+<<= $caterer.speak("The position of the hands can tell you...")>> $caterer.name continues his in-depth explanation.
+
+<<= $player.speak("<i>Great, he's not even listening to me.</i>")>>
+
+As you're watching him explain the ins and outs of body language in relation to food service, it clicks that even the voice in your head sounds a bit feminine. You wonder what was in that drink $wife.name gave you.
+
+After the lesson, he has you do some basic tidy work while he fininshes his prep. It's already starting to get to mid-afternoon. The workers have finished their setup and cleared out.
+
+[[Your work continues into the afternoon.|mansionCPartyIntro26]]
+
+::mansionCPartyIntro26
+You're busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She's wearing sexy black cocktail dress with black heels.
+
+<<= $daughter.speak("Wow. Mum wasn't joking. You're getting some of my friend a run for their monney. The cute but sexy maid thing really works for you.")>>

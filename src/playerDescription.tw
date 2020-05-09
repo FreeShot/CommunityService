@@ -12,8 +12,9 @@ You are <<= $player.name>>.<br>
 
 You have <<= $player.getDesc("eyeColor")>> eyes. <br>
 
-<<= $player.getDesc("face")>> <br>
-<<= $player.getDesc("lips")>> <br>
+<<= $player.getDesc("face")>>
+<<= $player.getDesc("lips")>> 
+<<if $player.hasEquipped("accessory-neck")>> On your neck rests a <<= $player.hasEquipped("accessory-neck")>>.<</if>> <br>
 <<= $player.getDesc("skin")>> <br>
 <<= $player.getDesc("chest")>> <br>
 <<= $player.getDesc("butt")>> <br>
@@ -23,11 +24,18 @@ You have <<= $player.getDesc("eyeColor")>> eyes. <br>
 
 <<for _bp range ["chest", "crotch", "legs"]>>
   <<if $player.isHidden(_bp) !== undefined>>
-    Your _bp is hidden by your <<= $player.isHidden(_bp)>>.
+    Your _bp is hidden by your <<= $player.isHidden(_bp).name.toLowerCase()>>.
   <<else>>
     Your _bp is exposed for anyone to see.
   <</if>>
   <br>
 <</for>>
+
+<<if $player.hasEquipped(["toy-front"])>>
+You are currently using a <<= $player.inv.filter(["toy-front", "equipped"])[0].item.name>>.
+<</if>>
+<<if $player.hasEquipped(["toy-back"])>>
+You are currently using a <<= $player.inv.filter(["toy-back", "equipped"])[0].item.name>>.
+<</if>>
 
 <br><<return>>

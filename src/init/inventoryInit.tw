@@ -45,8 +45,19 @@
 }, 1)>>
 <<= $wife.inv.addItem({
 	name: "Stylised maid outfit",
-	tags: ["shirt", "pants", "equippable"]
-})>>
+	tags: ["shirt", "pants", "equippable"],
+	femininity: 25
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Pink chastity cage",
+	tags: ["toy-front", "equippable"],
+	femininity: 5
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Black choker",
+	tags: ["accessory-neck", "equippable"],
+	femininity: 10
+}, 1)>>
 
 <!-- Utilities -->
 <<= $wife.inv.addItem({
