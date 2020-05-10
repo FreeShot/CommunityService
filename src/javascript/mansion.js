@@ -2,6 +2,7 @@ class Mansion {
 	constructor(config) {
 		this.rooms = [];
 		this.events = []; // Special Events
+		this.currentEvent = "";
 
 		if (config != {}) {
 			Object.keys(config).forEach(function (pn) {

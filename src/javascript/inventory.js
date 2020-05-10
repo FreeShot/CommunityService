@@ -63,8 +63,11 @@ class Inventory {
 		return item;
 	}
 
-	removeTemp() {
-		this.filter(undefined, ["temp"]);
+	removeTmp(keepEquipped) {
+		this.items.filter(function(el) {
+			return !el.item.tags.includes("tmp") || 
+				(keepEquipped && el.item.tags.includes("equipped"));
+		});
 	}
 
 	findItemIndex(item) {
@@ -84,7 +87,7 @@ class Inventory {
 				return hasAll;
 			});
 		}
-		if (bl !== undefined)
+		else if (bl !== undefined)
 		{
 			items = items.filter(function(el){
 				return !el.item.tags.some(function(tag) {return bl.includes(tag)});

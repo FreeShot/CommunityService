@@ -18,6 +18,9 @@ $(document).on(':passagestart', function (ev) {
 		}
 		//State.variables.exitMenu = ev.passage.title;
 	}
+	if (ev.passage.tags.includes('eventStart')) { // Stores the last event
+		State.variables.mansion.currentEvent = ev.passage.title;
+	}
 });
 
 Setting.addToggle("nsfw", {

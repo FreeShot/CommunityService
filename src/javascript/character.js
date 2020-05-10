@@ -92,7 +92,7 @@ class Player extends Character {
             {
                 name: "Alex",
                 title: "Alex",
-                femaleName: "Alice";
+                femName: "Alice",
                 femininity: 0,
                 voice: {current: 0, absolute: 0},
                 stamina: {current : 10, max : 10},
@@ -135,11 +135,11 @@ class Player extends Character {
         }
     }
 
-    unequip(itemName) {
+    unequip(itemName, bl) {
         if (itemName === "All") {
             // Unequips all of the items
             this.inv.items.forEach(function(el) {
-                if (el.item.tags.includes("equipped")) this.unequip(el.item.name);
+                if (el.item.tags.includes("equipped") && !el.item.tags.some(function (tag) {return (bl || []).includes(tag)})) this.unequip(el.item.name);
             }, this);
         } else {
             var index = this.inv.items.findIndex(function(el) {

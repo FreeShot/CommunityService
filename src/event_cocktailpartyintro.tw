@@ -1,17 +1,10 @@
-::mansionCPartyIntro01 [event]
+::mansionCPartyIntro01 [event eventStart]
 As you roll out of bed, you can't help but have a good feeling about the day. The feeling puts a hop in your step as you shower and prepare to serve breakfast. Afterwards, you decide to ride the wave and end up relaxing in your room for the rest of the morning instread of getting your chores done.
 
 It's nice to spend the morning chilling out for once, but you eventually remember you need to at least get the daily jobs done.
 
 [[Get started.|mansionCPartyIntro02]]
 <<= $time.setDate({hour: 12, minute:0})>>
-<<= $mansion.addEvent("specialEvent", new Event({
-	name: "mansionCPartySetup01",
-	passage: "mansionCPartySetup01",
-	inline: true,
-	repeats: true,
-	tags: ["WeekEven", "Sunday"]
-}))>>
 
 ::mansionCPartyIntro02 [event]
 The main foyer is busy with people setting up for the party this evening. The Sonos's spare no expense with lavish decoration, flower arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before, but now you can really see the money on display.
@@ -606,7 +599,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 
 <<= $player.speak("<i>Usually...</i>")>>
 
-<<link "<<= $wife.speak('Now, about your name...')" "mansionCPartyIntro21">>
+<<link "<<= $wife.speak('Now, about your name...')>>" "mansionCPartyIntro21">>
 <<= $player.inv.addItem($wife.inv.getAsTemp("Black choker"), 1, true)>>
 <</link>>\
 <</replace>>\
@@ -615,7 +608,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 <<replace "#maiddressing9">>
 You grab your mouth and throat in shock.
 
-<<link "<<= $wife.speak('Now, about your name...')" "mansionCPartyIntro21">>
+<<link "<<= $wife.speak('Now, about your name...')>>" "mansionCPartyIntro21">>
 <<= $player.inv.addItem($wife.inv.getAsTemp("Black choker"), 1, true)>>
 <</link>>\
 <</replace>>\
@@ -629,7 +622,7 @@ You grab your mouth and throat in shock.
 
 <<= $wife.speak("I want to avoid confusion. What if someone comes by after the party and meets you when you aren't a girl? So, how do you want to be named?")>>
 
-<<= $player.speak("<<textbox '$player.femName' '$player.femName' 'mansionCPartyIntro22'>>")>>
+<<= $player.speak("<<textbox '$player.femName' 'Alice' 'mansionCPartyIntro22'>>")>>
 
 ::mansionCPartyIntro22 [event]
 <<= $wife.speak("Yes, $player.femName suits you.")>>
@@ -665,7 +658,7 @@ You follow after $butler.name and try to get used to the changes in you wardrobe
 
 $wife.name is already back in the kitchen with $caterer.nam.
 
-<<= $wife.name("Well $caterer.name. This is $player.femName.")>>
+<<= $wife.speak("Well $caterer.name. This is $player.femName.")>>
 
 $caterer.name walks over to you and walks around you thoughtfully. You're reminded of when you met $wife.name for the first time as she examines you.
 
@@ -719,6 +712,7 @@ He demonstrates for you and then hands you the tray back. You hold it with one h
 [[Continue practicing|mansionCPartyIntro25]]
 <</replace>>
 <</link>>
+</span>
 
 ::mansionCPartyIntro25 [event]
 <<= $caterer.speak("I'll load you up with something that won't break and you can practice for a while.")>>
@@ -745,7 +739,148 @@ After the lesson, he has you do some basic tidy work while he fininshes his prep
 
 [[Your work continues into the afternoon.|mansionCPartyIntro26]]
 
-::mansionCPartyIntro26
+::mansionCPartyIntro26 [event]
 You're busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She's wearing sexy black cocktail dress with black heels.
 
 <<= $daughter.speak("Wow. Mum wasn't joking. You're getting some of my friend a run for their monney. The cute but sexy maid thing really works for you.")>>
+
+<span id="partytraining2">\
+<<link "Thank her.">>\
+<<replace "#partytraining2">>\
+<<= $player.speak("Um, thank you $daughter.title.")>>
+
+$daughter.name walks up to you and grabs you by the waist to check you out. She leans in to wisper in your ears.
+
+<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName?")>>
+
+You nod meekly.
+
+<<= $player.speak("If you say so.")>>
+
+[[Continue|mansionCPartyIntro27]]
+<</replace>>
+<</link>>
+<<link "Get snarky.">>\
+<<replace "#partytraining2">>\
+<<= $player.speak("Oh please, if I didn't have to do this, I wouldn't be.")>>
+
+<<= $daughter.speak("Oh. You've dropped the formalities already? You've got some guts for a skinny little servant girl.")>>
+
+You start to bristle a bit but it reminds you of your place. $daughter.name starts laughting.
+
+<<= $daughter.speak("It's ok. I kind of like it.")>>
+
+$daughter.name walks up to you leans in to whisper in your ears.
+
+<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName?")>>
+
+You nod meekly.
+
+<<= $player.speak("If you say so.")>>
+
+[[Continue|mansionCPartyIntro27]]
+<</replace>>
+<</link>>
+</span>
+
+::mansionCPartyIntro27 [event]
+She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly start straining against its plastic prison.
+
+$daughter.name gives you a quick pat on the cheek before turing around to $caterer.name. She walks over and they hug before a quick peck on each cheeks.
+
+<<= $caterer.speak("Good to have you back $daughter.name. These gatherings have been getting a bit stale.")>> $caterer.name's attitude is polar shift from when he's been talking to you or $wife.name.
+
+<<= $daughter.speak("I have a beeling things might liven up over the next few week.")>>
+
+$daughter.name gives him another quick hug and moves to leave as guests start arriving.
+
+<<= $caterer.speak("Come on girl. You're up.")>> $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
+
+[[Begin serving|mansionCPartyServing01]]
+
+::mansionCPartyIntro28 [event]
+Exhausted from the busy night, your only thought are bathroom then bed. <<if HASKISSED>>Although the kiss still lingers on your mind.<</if>>
+
+You head to the bathroom and quickly do a double take at the attractive maid looking at you before once again realising that you are the maid.
+
+<<= $player.speak("What have I gotten myself into?")>> The cute girl says to you.
+
+[[Undress|mansionCPartyIntro29]]
+
+::mansionCPartyIntro29 [event]
+You reach around to unzip the dress. It's a bit difficult since the zipper is fairly high but eventually, and after a lot of streching and curses, you manage to grab a hold of it and pull the dress down off your shoulders and down your ankles.
+
+Following the reverse of what $wife.name did, you remove the rest of the items, making sure to pile them neatly after her warning when you were getting dressed.
+
+As you do you realise you havent't been to the bathroom all night and starting to feel the pressure on your bladder. You hirriedly pull down the panties and for the first time see your penis trapped in the pink chastity cage.
+
+[img[setup.ImagePath + "items/wearables/toys/cage_01.jpg"]]
+
+<<= $player.speak("Pink. Really?")>>
+
+You try to release the device but quickly find a small padlock holding the clasp shut.
+
+<<= $player.speak("What the fuck!?")>>
+
+You tug and pull but only manage to make your urgent need to pee even worse.
+
+<<link "Go ask for it to be unlocked." "mansionCPartyIntro30">><<= $player.unequip("All", ["toy-front", "wig", "underwear"])>><</link>>
+<<link "It's late so you should wait until tomorrow." "mansionCPartyIntro31">><<= $player.unequip("All", ["toy-front", "wig", "underwear"])>><<= $player.inv.removeTmp(true)>><</link>>
+
+::mansionCPartyIntro30 [event]
+You head back though the halls of the estate. Compared to a few hours ago, it's practically dead. You reach the master bedroom, but before you knock, you hear noise from inside. You listen for a moment and it's clear $wife.name is preocupied with her pending orgasm. You think better of it and head back to your room, resigned to spend the night in chastity.
+
+[[Head back to your bathroom|mansionCPartyIntro31]]
+
+::mansionCPartyIntro31 [event]
+Resigning yourself to the situation, you try to position yourself over the toilet to relieve yourself. It's a tight squeeze in the small room and you can't quite get your trapped member in the right spot. With a grumble, you put the toilet seat down and turn arround before planting your butt. You let go with a sigh of relief.
+
+[img[setup.ImagePath + "events/cocktailparty/sittingonthetoilet.jpg"]]
+
+After a moment, you catch a sight of the cute <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> hairs sitting on the loo in front of you. Your cheeks flush with embarrasement as you realise that if anyone saw this, they would just think it was a flat chested girl peeing right now.
+
+You wipe the cage clean with some tissues and then remove the wig and make-up. You put the maid's clothes in the laundry to clean overnight before rolling into bed to try and get some sleep.
+
+<<link "Sleep" "sleep">>
+<<= $player.unequip("All", ["toy-front"])>><<= $player.inv.removeTmp(true)>>
+<</link>>
+
+::mansionCPartyIntro32 [event]
+You wake up with a jolt. The early morning light is only barely visible through your window so you only have the dim light of your lamp but with thankfully there is no one looming over the top of you. You pull off your sheets and see your member is still there, still locked in the pink cage.
+
+<<= $player.speak("Just a dream.")>>
+
+The sound of your normal voice is a relief. You pull the sheet bakc up and lie down can't get comfortable. Something feels wet around you waist. You reach down and touch and wet sticky spot on the sheets before turning the light on. Now you can see the pink cage has fresh pre-cum on it.
+
+You quickly go to the bathroom and dry your self off with some tissue before getting back in bed, all the while doing your best to pretend none of that happened. Your sleep is ruined so all your really do is toss and turn for a while.
+
+[[Get up|mansionCPartyIntro33]]
+
+::mansionCPartyIntro33 [event]
+You look at the time and hope $wife.title is awake. You put your normal clothes, grab the maid's uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it's clear so you knock and wait for a moment before $wife.title eventually opens the door.
+
+<<= $wife.speak("What is it?")>> She seems awake enough so you think you timed it right.
+
+<<= $player.speak("The uniform $wife.title.")>> You hold out the black and white bundle.
+
+<<= $wife.speak("Of course.")>> She takes and starts closing the door.
+
+<<= $player.speak("Um, $wife.title.")>>
+
+<<= $wife.speak("What?")>> She stops and is now a little frustrated.
+
+<<= $player.speak("Would you mind you mind unlocking me?")>> Your eyes dart down to your crotch.
+
+<<= $wife.speak("Oh, I suppose. We'll need to discuss your performance last night first.")>> She opens the door all the way and lets you into her room.
+
+You can see $owner.title lying asleep face down, clearly naked, and quicly follow $wife.title into the wardrobe.
+
+<<link "Performance review" "mansionCPartyReview01">>
+<<= $mansion.addEvent("specialEvent", new Event({
+	name: "mansionCPartySetup01",
+	passage: "mansionCPartySetup01",
+	inline: true,
+	repeats: true,
+	tags: ["WeekEven", "Saturday", "Morning"]
+}))>>
+<</link>>
