@@ -572,18 +572,11 @@ class Player extends Character {
 
     growHair() {
         this.bodyHair.current -= this.bodyHair.growthSpeed.current;
-        this.bodyHair.growthSpeed.currentRoom = this.bodyHair.growthSpeed.absolute;
+        this.bodyHair.growthSpeed.current = this.bodyHair.growthSpeed.absolute;
     }
 
 	getStaminaBar() {
-		var str = "";
-		for(var i = 0; i < this.stamina.current; i++) {
-			str += "█";
-		}
-		for(var i = this.stamina.current; i < this.stamina.max; i++) {
-			str += "░";
-		}
-		return str
+		return String.format("<<scale {0} {1} {2}>><</scale>>", this.stamina.current, 0, this.stamina.max);
 	}
 
 	hasEnoughStamina(cost) {
@@ -1235,7 +1228,32 @@ $(document).on("keyup", function (e) {
 	}
 });
 /* Keyboard links - End */
-/* twine-user-script #7: "mansion.js" */
+/* twine-user-script #7: "macro.js" */
+Macro.add("scale", {
+	tags: undefined,
+	handler: function() {
+		var value = this.args[0];
+		var min = this.args.length > 1 ? this.args[1] : 0;
+		var max = this.args.length > 2 ? this.args[2] : 0;
+		var charOn = this.args.length > 3 ? this.args[3] : '█';
+		var charOff = this.args.length > 4 ? this.args[4] : '░';
+		var str = "";
+		if (value < min) {
+			return this.error("value must be higher than min");
+		} else if (value > max) {
+			return this.error("value must be lower than max");
+		} else {
+			for (var i = min; i < value; i+= (max - min) / 10) {
+				str += charOn;
+			}
+			for (var i = value; i < max; i += (max - min) / 10) {
+				str += charOff;
+			}
+			return jQuery(this.output).wiki(str);
+		}
+	}
+});
+/* twine-user-script #8: "mansion.js" */
 class Mansion {
 	constructor(config) {
 		this.rooms = [];
@@ -1326,7 +1344,7 @@ class Mansion {
 Object.defineProperty(window, 'Mansion', {
     value : Mansion
 });
-/* twine-user-script #8: "pronouns.js" */
+/* twine-user-script #9: "pronouns.js" */
 // Chapel's pronouns template
 
 (function () {
@@ -1668,7 +1686,7 @@ Object.defineProperty(window, 'Mansion', {
     window.gender = window.gender || setup.gender;
 
 }());
-/* twine-user-script #9: "rooms.js" */
+/* twine-user-script #10: "rooms.js" */
 class Room {
 	constructor(config) {
 		this.name = '';
@@ -1812,7 +1830,7 @@ class Room {
 Object.defineProperty(window, 'Room', {
     value : Room
 });
-/* twine-user-script #10: "script.js" */
+/* twine-user-script #11: "script.js" */
 // Adds Icons
 importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
@@ -1850,7 +1868,7 @@ Config.passages.onProcess = function (p) {
 	State.variables.aPsgText = "";
 	return text;
 };
-/* twine-user-script #11: "shop.js" */
+/* twine-user-script #12: "shop.js" */
 class Shop {
 	constructor (config) {
 		this.categories = [];
@@ -1912,7 +1930,7 @@ class Shop {
 Object.defineProperty(window, 'Shop', {
     value : Shop
 });
-/* twine-user-script #12: "time.js" */
+/* twine-user-script #13: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -2143,9 +2161,9 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="54" name="debug-passage" tags="debug" position="475,725" size="100,100">&lt;hr&gt;
 DEBUG
 
-[[mansionCPartyIntro01]]
+Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
-Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
+[[mansionCPartyIntro01]]</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 

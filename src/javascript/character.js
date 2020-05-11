@@ -162,18 +162,11 @@ class Player extends Character {
 
     growHair() {
         this.bodyHair.current -= this.bodyHair.growthSpeed.current;
-        this.bodyHair.growthSpeed.currentRoom = this.bodyHair.growthSpeed.absolute;
+        this.bodyHair.growthSpeed.current = this.bodyHair.growthSpeed.absolute;
     }
 
 	getStaminaBar() {
-		var str = "";
-		for(var i = 0; i < this.stamina.current; i++) {
-			str += "█";
-		}
-		for(var i = this.stamina.current; i < this.stamina.max; i++) {
-			str += "░";
-		}
-		return str
+		return String.format("<<scale {0} {1} {2}>><</scale>>", this.stamina.current, 0, this.stamina.max);
 	}
 
 	hasEnoughStamina(cost) {
