@@ -15,17 +15,17 @@ Title: $player.title
 femName: $player.femName
 femininity: $player.femininity
 voice:
-	current: $player.voice.current
-	real: $player.voice.absolute
+> current: <<= $player.speak("$player.voice.current")>>
+> real: $player.voice.absolute
 stamina: <<= $player.getStaminaBar()>>
 currentRoom: $player.currentRoom
 choresLate: $player.choresLate
 money: $player.money
 
 bodyParts:
-	hairColor: $player.bodyPart.hairColor
-	hairLength: $player.bodyPart.hairLength
-	eyeColor: $player.bodyPart.eyeColor
+> hairColor: $player.bodyPart.hairColor
+> hairLength: $player.bodyPart.hairLength
+> eyeColor: $player.bodyPart.eyeColor
 	
 
 Quick access to events:

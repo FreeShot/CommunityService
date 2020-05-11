@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Gotu&family=Permanent+Marker&family=Playfair+Display:wght@500&family=Roboto+Condensed:wght@300;400&display=swap');
@@ -13,14 +13,14 @@
 }
 
 #story {
-	margin: 2rem 0rem;
+	/*margin: 2rem 0rem;*/
 	color: var(--color);
 }
 
 body {
 	background-color: var(--background);
 }
-*/
+
 img {
 	max-width: 50%;
 	max-height: 300px;
@@ -28,7 +28,7 @@ img {
 	border-radius: 15px;
 	border: solid 4px #5C2C41; 
 }
-/*
+
 .gameTitle {
 	position: center;
 	font-size: 200%;
@@ -90,4 +90,4 @@ div.warning {
 .rules {
 	font-size: 20px;
 	font-family: 'Roboto Condensed', sans-serif;
-}*/
+}

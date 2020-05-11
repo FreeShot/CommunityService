@@ -101,7 +101,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
 	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="129" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "body.css" */
-/*.hidden .NSFW{
+.hidden .NSFW{
 	display: none;
 }
 
@@ -120,9 +120,9 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 
 input[type="text"] {
 	min-width: 0px;
-}*/
+}
 /* twine-user-stylesheet #2: "style.css" */
-/* @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Gotu&family=Permanent+Marker&family=Playfair+Display:wght@500&family=Roboto+Condensed:wght@300;400&display=swap');
@@ -137,14 +137,14 @@ input[type="text"] {
 }
 
 #story {
-	margin: 2rem 0rem;
+	/*margin: 2rem 0rem;*/
 	color: var(--color);
 }
 
 body {
 	background-color: var(--background);
 }
-*/
+
 img {
 	max-width: 50%;
 	max-height: 300px;
@@ -152,7 +152,7 @@ img {
 	border-radius: 15px;
 	border: solid 4px #5C2C41; 
 }
-/*
+
 .gameTitle {
 	position: center;
 	font-size: 200%;
@@ -214,24 +214,24 @@ div.warning {
 .rules {
 	font-size: 20px;
 	font-family: 'Roboto Condensed', sans-serif;
-}*/
+}
 /* twine-user-stylesheet #3: "ui.css" */
-/*#ui-bar {
-	position: fixed;
-	left: -15.5rem;
+#ui-bar {
+	/*position: fixed;
+	left: -15.5rem;*/
 	transition-delay: var(--t8n-delay);
 	background-color: var(--ui-background);
 	color: var(--ui-color);
 }
 
-#ui-bar:hover, #ui-bar.active {
+/*#ui-bar:hover, #ui-bar.active {
 	left: 0rem;
 }
 
 #ui-bar-body {
 	visibility: visible;
 }	
-
+*/
 #ui-bar-history {
 	margin-top: .5em;
 	height: 32px;
@@ -296,7 +296,7 @@ div.warning {
 	padding: 2px 7px; 
 }
 
-#ui-bar a.link-internal {
+#cuff-button {
 	color: #FFDEEA;
 	padding: 5px 30px 5px;
 	margin: 5px 5px 5px;
@@ -306,108 +306,12 @@ div.warning {
 	font-family: 'Share Tech Mono', monospace;
 }
 
-#ui-bar a.link-internal:hover {
+#cuff-button > a {
 	border: solid 1px #CE7298;
 	text-decoration: none;
 	padding: 2px 20px 2px;
 	margin: 8px 5px 8px;
-}
-
-/*
-#ui-bar{
-	background-color: #2C0C1A;
-	border-color: #3D1627;
-	color: #F4A9CE;
-}
-
-#ui-bar hr {
-	border-color: #F4A9CE;
-}
-
-#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]{
-	border-radius: 14px;
-	border-color: #62022C;
-	background-color: #694957;
-	color: #9A7A88;
-}
-
-#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]:hover {
-	border-radius: 14px;
-	border-color: #62022C;
-	background-color: #5C2C41;
-	color: #9A7A88;
-}
-
-#ui-bar a:not(.link-internal),#ui-bar-history [id|="history"]:disabled{
-	border-radius: 14px;
-	border-color: #62022C;
-	background-color: #704B5B;
-	color: #9A7A88;
-}
-
-#ui-bar-toggle:not {
-	border-top-left-radius: 14px;
-	border-bottom-left-radius: 14px;
-	border-color: #62022C;
-	background-color: #694957;
-	color: #9A7A88;
-}
-
-#ui-bar-toggle:hover:not {
-	border-top-left-radius: 14px;
-	border-bottom-left-radius: 14px;
-	border-color: #62022C;
-	background-color: #5C2C41;
-	color: #9A7A88;
-}
-
-#menu ul {
-	border: 0px;
-}
-
-#menu li:not(:first-child) {
-    border-top: 0px;
-    margin-top: 3px;
-}
-
-img {
-	max-width: 50%;
-	max-height: 300px;
-	object-fit: contain;
-	border-radius: 15px;
-	border: solid 4px #5C2C41; 
-}
-
-#ui-bar a.link-internal {
-	color: #FFDEEA;
-	padding: 5px 30px 5px 30px;
-	margin: 5px 5px 5px 5px;
-	border: solid 1px #FFDEEA;
-	border-radius: 5px;
-	font-size: 50px;
-	font-family: 'Share Tech Mono', monospace;
-}
-
-#ui-bar a.link-internal:hover {
-	color: #CE7298;
-	border: solid 1px #CE7298;
-	text-decoration: none;
-	padding: 2px 20px 2px 20px;
-	margin: 8px 5px 8px 5px;
-	font-family: 'Share Tech Mono', monospace;
-}
-
-#RuleTitle {
-	font-family: 'Gotu', sans-serif;
-	font-size: 30px;
-}
-
-.rules {
-	font-size: 20px;
-	font-family: 'Roboto Condensed', sans-serif;
-}
-
-*/</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
 class Character {
 	constructor(config) {
 		this.name = '';
@@ -1836,7 +1740,7 @@ Object.defineProperty(window, 'Room', {
 });
 /* twine-user-script #11: "script.js" */
 // Adds Icons
-importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
+//importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
 $(document).on(':passageinit', function (ev) {
@@ -2178,17 +2082,17 @@ Title: $player.title
 femName: $player.femName
 femininity: $player.femininity
 voice:
-	current: $player.voice.current
-	real: $player.voice.absolute
+&gt; current: &lt;&lt;= $player.speak(&quot;$player.voice.current&quot;)&gt;&gt;
+&gt; real: $player.voice.absolute
 stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;
 currentRoom: $player.currentRoom
 choresLate: $player.choresLate
 money: $player.money
 
 bodyParts:
-	hairColor: $player.bodyPart.hairColor
-	hairLength: $player.bodyPart.hairLength
-	eyeColor: $player.bodyPart.eyeColor
+&gt; hairColor: $player.bodyPart.hairColor
+&gt; hairLength: $player.bodyPart.hairLength
+&gt; eyeColor: $player.bodyPart.eyeColor
 	
 
 Quick access to events:
@@ -4559,7 +4463,7 @@ Day &lt;&lt;= $time.day + 1&gt;&gt;&lt;/span&gt;
 &lt;hr&gt;
 &lt;span class=&quot;Stamina&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/span&gt;
 &lt;hr&gt;
-&lt;&lt;if $flags.cuff.recieved&gt;&gt;[[CUFF]]&lt;hr&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;span id=cuff&gt;[[CUFF]]&lt;/span&gt;&lt;hr&gt;&lt;&lt;/if&gt;&gt;
 &lt;hr&gt;
 &lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;silently&gt;&gt;
