@@ -70,7 +70,7 @@
 	name: "daughterPath03GardenChatA", 
 	passage: "daughterPath03GardenChatA", 
 	inline:true, 
-	repeats:true,
+	repeats:false,
 	tags: ["NeedDaughter", "daughterAcceptance1"]
 }))>>
 
@@ -79,6 +79,6 @@
 	passage: "daughterPath04IntroDate01", 
 	inline:true, 
 	repeats:false, 
-	tags: ["Friday", "NeedDaughter", "daughterAcceptance2"]
+	tags: ["Thursday", "NeedDaughter", "daughterAcceptance2"]
 }))>>
 

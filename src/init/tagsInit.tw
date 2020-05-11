@@ -40,9 +40,9 @@
 		return $time.inInterval("sleep", "wakeup")
 	},
 	"DaughterAcceptance1" : function() {
-		return $daughter.acceptance == 1
+		return $daughter.appreciation == 1
 	},
 	"DaughterAcceptance2" : function() {
-		return $daughter.acceptance == 2
+		return $daughter.appreciation == 2
 	}
 }>>
