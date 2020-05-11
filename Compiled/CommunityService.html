@@ -471,6 +471,10 @@ class NPC extends Character {
         Math.clamp(this.apreciation, -100, 100);
     }
 
+    getAppreciation(){
+        return String.format("<<scale {0} {1} {2}>><</scale>>", this.apreciation, -100, 100);
+    }
+
 	get getLocation() {
 		var schedule = this.schedule.find(function(ev) {return ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end)});
 		if (schedule) {return schedule.location}
@@ -2163,6 +2167,14 @@ DEBUG
 
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
+Characters:
+&lt;&lt;for _npc range $npcList&gt;&gt;
+_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.apreciation)
+&lt;&lt;/for&gt;&gt;
+
+
+
+Quick access to events:
 [[mansionCPartyIntro01]]</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
@@ -2889,7 +2901,7 @@ $daughter.name gives you a quick pat on the cheek before turing around to $cater
 
 &lt;&lt;= $caterer.speak(&quot;Good to have you back $daughter.name. These gatherings have been getting a bit stale.&quot;)&gt;&gt; $caterer.name&#39;s attitude is polar shift from when he&#39;s been talking to you or $wife.name.
 
-&lt;&lt;= $daughter.speak(&quot;I have a beeling things might liven up over the next few week.&quot;)&gt;&gt;
+&lt;&lt;= $daughter.speak(&quot;I have a feeling things might liven up over the next few week.&quot;)&gt;&gt;
 
 $daughter.name gives him another quick hug and moves to leave as guests start arriving.
 
@@ -2901,7 +2913,7 @@ You head to the bathroom and quickly do a double take at the attractive maid loo
 
 &lt;&lt;= $player.speak(&quot;What have I gotten myself into?&quot;)&gt;&gt; The cute girl says to you.
 
-[[Undress|mansionCPartyIntro29]]</tw-passagedata><tw-passagedata pid="85" name="mansionCPartyIntro29" tags="event" position="600,1100" size="100,100">You reach around to unzip the dress. It&#39;s a bit difficult since the zipper is fairly high but eventually, and after a lot of streching and curses, you manage to grab a hold of it and pull the dress down off your shoulders and down your ankles.
+[[Undress|mansionCPartyIntro29]]</tw-passagedata><tw-passagedata pid="85" name="mansionCPartyIntro29" tags="event" position="600,1100" size="100,100">You reach around to unzip the dress. It&#39;s a bit difficult since the zipper is fairly high but eventually, and after a lot of streching and curses, you manage to grab a hold of it and pull the dress down off your shoulders and let it fall to your ankles.
 
 Following the reverse of what $wife.name did, you remove the rest of the items, making sure to pile them neatly after her warning when you were getting dressed.
 
@@ -2938,7 +2950,7 @@ The sound of your normal voice is a relief. You pull the sheet bakc up and lie d
 
 You quickly go to the bathroom and dry your self off with some tissue before getting back in bed, all the while doing your best to pretend none of that happened. Your sleep is ruined so all your really do is toss and turn for a while.
 
-[[Get up|mansionCPartyIntro33]]</tw-passagedata><tw-passagedata pid="89" name="mansionCPartyIntro33" tags="event" position="1100,1100" size="100,100">You look at the time and hope $wife.title is awake. You put your normal clothes, grab the maid&#39;s uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it&#39;s clear so you knock and wait for a moment before $wife.title eventually opens the door.
+[[Get up|mansionCPartyIntro33]]</tw-passagedata><tw-passagedata pid="89" name="mansionCPartyIntro33" tags="event" position="1100,1100" size="100,100">You look at the time and hope $wife.name is awake. You put your normal clothes, grab the maid&#39;s uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it&#39;s clear so you knock and wait for a moment before $wife.name eventually opens the door.
 
 &lt;&lt;= $wife.speak(&quot;What is it?&quot;)&gt;&gt; She seems awake enough so you think you timed it right.
 
@@ -2954,7 +2966,7 @@ You quickly go to the bathroom and dry your self off with some tissue before get
 
 &lt;&lt;= $wife.speak(&quot;Oh, I suppose. We&#39;ll need to discuss your performance last night first.&quot;)&gt;&gt; She opens the door all the way and lets you into her room.
 
-You can see $owner.title lying asleep face down, clearly naked, and quicly follow $wife.title into the wardrobe.
+You can see $owner.name lying asleep face down, clearly naked, and quicly follow $wife.name into the wardrobe.
 
 &lt;&lt;link &quot;Performance review&quot; &quot;mansionCPartyReview01&quot;&gt;&gt;
 &lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
@@ -2986,9 +2998,9 @@ VIP guests
 
 *suitor* -
 	[[suitorPathIntro01]]
-	&lt;&lt;if $suitor.acceptance &gt;= 1&gt;&gt;[[suitorPathIntro02]]
+	&lt;&lt;if $suitor.apreciation &gt;= 1&gt;&gt;[[suitorPathIntro02]]
 	[[suitorPathIntro08]]&lt;&lt;/if&gt;&gt;
-
+suitor.apreciation = $suitor.apreciation
 
 *no name 1* - throw away for now. just to bulk out the interactions
 *no name 2*
@@ -3020,7 +3032,7 @@ You look at the time and hope $wife.name is awake. You put on your normal clothe
 
 You can see $owner.name lying asleep face down, clearly naked, and quickly follow $wife.name into the wardrobe.&lt;&lt;set $flags.firstCocktailParty to false&gt;&gt;
 
-[[Performance review|mansionCPartyReview01a]]
+[[Performance review|mansionCPartyReview01]]
 &lt;&lt;else&gt;&gt;
 You get up, grab the maid&#39;s uniform and head to the master bedroom so $wife.name
 
@@ -3032,8 +3044,8 @@ You get up, grab the maid&#39;s uniform and head to the master bedroom so $wife.
 
 You follow $wife.name into the wardrobe.
 
-[[Performance review|mansionCPartyReview01b]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="mansionCPartyReview01a" tags="event" position="475,1225" size="100,100">Good
+[[Performance review|mansionCPartyReview01]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="mansionCPartyReview01" tags="event" position="475,1225" size="100,100">Good
 &lt;&lt;= $wife.speak(&quot;You worked so hard last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
 
 Bad
@@ -3063,7 +3075,7 @@ Your eyes return to her face, smiling smugly and knowing you are at her mercy.
 
 Your [[CUFF]] beeps as the rules get updated.
 
-$wife.name heads to the bathroom. &lt;&lt;= $wife.speak(&quot;A lot of people commented on having a beauty like you under our care. We can&#39;t disappoint your admirers now can we?&quot;&quot;)&gt;&gt;
+$wife.name heads to the bathroom. &lt;&lt;= $wife.speak(&quot;A lot of people commented on having a beauty like you under our care. We can&#39;t disappoint your admirers now can we?&quot;)&gt;&gt;
  
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;As if I have a choice you f...&lt;/i&gt;&quot;)&gt;&gt;
  
@@ -5010,6 +5022,8 @@ With that she leaves you alone so you can go unlock yourself.
 
 Just leave the cage as is for now. They can go to one of the wardrobes or their room to remove it.</tw-passagedata><tw-passagedata pid="158" name="suitorPathIntro01" tags="" position="975,1975" size="100,100">$wife.name gestures for you to come over with your tray. She&#39;s standing with $owner.name and another man who stands out a bit as he isn&#39;t as dressed up as everyone else. He&#39;s wearing stylish jeans with plain shoes and nice t-shirt. There is a design on the shirt but it&#39;s half covered by his casual business jacket. He&#39;s staring right into your eyes as you walk over.
 
+suitor.apreciation = $suitor.apreciation
+
 &lt;&lt;= $wife.speak(&quot;$suitor.name what can we get you to start off?&quot;)&gt;&gt;
 
 &lt;&lt;= $suitor.speak(&quot;A glass of bourbon. $caterer.name knows the bottle.&quot;)&gt;&gt; He doesn&#39;t stop looking and you nervously break eye contact with him.
@@ -5045,7 +5059,7 @@ You leave and come back with the drink a few moments later.
 			&lt;&lt;= $wife.speak(&quot;You&#39;re always welcome $suitor.name. We love having you over.&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
 			You bow your head and [[Get back to work.|mansionCPartyServing01]]
-			&lt;&lt;set $suitor.acceptance += 1&gt;&gt;
+			&lt;&lt;set $suitor.addAppreciation(1)&gt;&gt;
 		&lt;&lt;/replace&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
 	&lt;&lt;link &quot;I don&#39;t want to talk to this guy.&quot;&gt;&gt;
@@ -5228,7 +5242,7 @@ You start to pull away but $suitor.name holds onto your shoulder. &lt;&lt;= $sui
 
 The two of them start chatting as you head [[back to the kitchen.|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="166" name="suitorPathIntro08" tags="" position="725,2100" size="100,100">As evening winds down you&#39;re mostly stuck in the kitchen cleaning up with $caterer.name. People have been leaving for a while now and the estate is mostly empty.
 
-You&#39;re elbow deep in water when $wife.name and $suitor.name walk in. $wife.name is laughing at something she found funny while hanging off of $suitor.names arm but you barely notice them.
+You&#39;re elbow deep in water when $wife.name and $suitor.name walk in. $wife.name is laughing at something she found funny while hanging off of $suitor.name&#39;s arm but you barely notice them.
 
 &lt;&lt;= $suitor.speak(&quot;Well. It&#39;s late so I think it&#39;s time for me to head off.&quot;)&gt;&gt; $suitor.name says.
 
