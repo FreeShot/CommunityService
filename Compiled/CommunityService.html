@@ -2172,6 +2172,13 @@ Characters:
 &lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation)&quot;)&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
+Player:
+Name: $player.name
+Title: $player.title
+femName: $player.femName
+femininity: $player.femininity
+
+
 	
 
 Quick access to events:
@@ -3795,7 +3802,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	name: &quot;daughterPath03GardenChatA&quot;, 
 	passage: &quot;daughterPath03GardenChatA&quot;, 
 	inline:true, 
-	repeats:true,
+	repeats:false,
 	tags: [&quot;NeedDaughter&quot;, &quot;daughterAcceptance1&quot;]
 }))&gt;&gt;
 
@@ -3804,7 +3811,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	passage: &quot;daughterPath04IntroDate01&quot;, 
 	inline:true, 
 	repeats:false, 
-	tags: [&quot;Friday&quot;, &quot;NeedDaughter&quot;, &quot;daughterAcceptance2&quot;]
+	tags: [&quot;Thursday&quot;, &quot;NeedDaughter&quot;, &quot;daughterAcceptance2&quot;]
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="clothesInit" tags="init" position="975,1475" size="100,100">&lt;&lt;= $wife.inv.addItem({
 	name: &quot;Long Brown wig&quot;, 
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
@@ -4181,10 +4188,10 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 		return $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)
 	},
 	&quot;DaughterAcceptance1&quot; : function() {
-		return $daughter.acceptance == 1
+		return $daughter.appreciation == 1
 	},
 	&quot;DaughterAcceptance2&quot; : function() {
-		return $daughter.acceptance == 2
+		return $daughter.appreciation == 2
 	}
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="StoryInit" tags="nodebug" position="100,1600" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})&gt;&gt;
 
@@ -4665,7 +4672,7 @@ Blushing furiously you reach down to fix the hem of your skirt as if ready for i
 
 $daughter.name laughs. &lt;&lt;= $daughter.speak(&quot;I should sneak you out of here sometime. Although I think the eyes wouldn&#39;t stop staring at a cutey like you.&quot;)&gt;&gt;
 
-You roll your eyes but she just chuckles &lt;&lt;if $suitor.acceptance &gt;= 1&gt;&gt; and leans forwards to whisper.
+You roll your eyes but she just chuckles &lt;&lt;if $suitor.appreciation &gt;= 1&gt;&gt; and leans forwards to whisper.
 
 &lt;&lt;= $daughter.speak(&quot;Just between us girls, I caught $suitor.name checking you out before and he&#39;s not easy to impress, trust me.&quot;)&gt;&gt;
 
@@ -4673,7 +4680,7 @@ You look at her wide eyed but before you can reply $daughter.name winks &lt;&lt;
 
 [[Continue serving|mansionCPartyServing01]]
 
-&lt;&lt;set $daughter.acceptance += 1&gt;&gt;</tw-passagedata><tw-passagedata pid="148" name="daughterPath03GardenChatA" tags="event" position="975,1850" size="100,100">$daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she&#39;s wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
+&lt;&lt;set $daughter.addAppreciation(1)&gt;&gt;</tw-passagedata><tw-passagedata pid="148" name="daughterPath03GardenChatA" tags="event" position="975,1850" size="100,100">$daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she&#39;s wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
 
 [img[setup.ImagePath + &quot;character/daughter/garden_reading_01.jpg&quot;]]
 
@@ -4756,7 +4763,7 @@ After a while the sound of laughter dies down and it&#39;s time to get back to w
 You smile and then get &lt;&lt;return &quot;back to what you were doing.&quot;&gt;&gt;
 
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:30})&gt;&gt;
-&lt;&lt;set $daughter.acceptance += 1&gt;&gt;
+&lt;&lt;set $daughter.addAppreciation(1)&gt;&gt;
 &lt;&lt;= $mansion.removeEvent(&quot;Garden&quot;, &quot;daughterPath03GardenChatA&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="daughterPath04IntroDate01" tags="" position="1225,1850" size="100,100">You hear the sounds of $daughter.name and $wife.name arguing as they enter the room.
 
 &lt;&lt;= $daughter.speak(&quot;You can&#39;t just keep me locked up here!&quot;)&gt;&gt;

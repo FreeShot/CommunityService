@@ -82,7 +82,7 @@ Blushing furiously you reach down to fix the hem of your skirt as if ready for i
 
 $daughter.name laughs. <<= $daughter.speak("I should sneak you out of here sometime. Although I think the eyes wouldn't stop staring at a cutey like you.")>>
 
-You roll your eyes but she just chuckles <<if $suitor.acceptance >= 1>> and leans forwards to whisper.
+You roll your eyes but she just chuckles <<if $suitor.appreciation >= 1>> and leans forwards to whisper.
 
 <<= $daughter.speak("Just between us girls, I caught $suitor.name checking you out before and he's not easy to impress, trust me.")>>
 
@@ -90,7 +90,7 @@ You look at her wide eyed but before you can reply $daughter.name winks <</if>>a
 
 [[Continue serving|mansionCPartyServing01]]
 
-<<set $daughter.acceptance += 1>>
+<<set $daughter.addAppreciation(1)>>
 
 :: daughterPath03GardenChatA [event]
 
@@ -181,7 +181,7 @@ After a while the sound of laughter dies down and it's time to get back to what 
 You smile and then get <<return "back to what you were doing.">>
 
 <<set $time.addTime({day:0, hour: 0, minute:30})>>
-<<set $daughter.acceptance += 1>>
+<<set $daughter.addAppreciation(1)>>
 <<= $mansion.removeEvent("Garden", "daughterPath03GardenChatA")>>
 
 :: daughterPath04IntroDate01
