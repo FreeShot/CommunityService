@@ -2169,10 +2169,10 @@ Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
 Characters:
 &lt;&lt;for _npc range $npcList&gt;&gt;
-_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.apreciation)
+&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.apreciation)&quot;)&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
-
+	
 
 Quick access to events:
 [[mansionCPartyIntro01]]</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;

@@ -6,10 +6,10 @@ Current event: <<= $mansion.currentEvent>>
 
 Characters:
 <<for _npc range $npcList>>
-_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.apreciation)
+<<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.apreciation)")>>
 <</for>>
 
-
+	
 
 Quick access to events:
 [[mansionCPartyIntro01]]
