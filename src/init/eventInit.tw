@@ -20,7 +20,7 @@
 	passage:"sleep", 
 	inline:false, 
 	repeats:true, 
-	tags: ["Evening", "!Sunday", "!Saturday"]
+	tags: ["Evening", "!Sunday"]
 }))>>
 
 <<= $mansion.addEvent("specialEvent", new Event({
