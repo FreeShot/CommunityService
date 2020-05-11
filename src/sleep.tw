@@ -36,6 +36,6 @@ The CUFF alarm goes off and you quickly set it to snooze. It's not long before t
 <<else>>
 [[Roll out of bed|PlayerBdRm]]
 <<= $mansion.resetChores()>>
-<<set $player.rest()>>
 <</if>>
+<<set $player.rest()>>
 <</nobr>>

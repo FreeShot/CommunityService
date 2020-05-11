@@ -1864,7 +1864,7 @@ class Timer {
 		if (typeof time === "string") {
 			time = this[time];
 			if (this.compareTime(time) == 1) {
-				time.day = 1;
+				this.addTime({day: 1});
 			}
 		}
 		this.day = time.day || this.day;
@@ -2878,7 +2878,10 @@ The sound of your normal voice is a relief. You pull the sheet bakc up and lie d
 
 You quickly go to the bathroom and dry your self off with some tissue before getting back in bed, all the while doing your best to pretend none of that happened. Your sleep is ruined so all your really do is toss and turn for a while.
 
-&lt;&lt;link &quot;Get up&quot; &quot;mansionCPartyIntro33&quot;&gt;&gt;&lt;&lt;= $time.setDate(&quot;wakeup&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="mansionCPartyIntro33" tags="event" position="1100,1100" size="100,100">You look at the time and hope $wife.name is awake. You put your normal clothes, grab the maid&#39;s uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it&#39;s clear so you knock and wait for a moment before $wife.name eventually opens the door.
+&lt;&lt;link &quot;Get up&quot; &quot;mansionCPartyIntro33&quot;&gt;&gt;
+&lt;&lt;= $time.setDate(&quot;wakeup&quot;)&gt;&gt;
+&lt;&lt;set $player.rest()&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="mansionCPartyIntro33" tags="event" position="1100,1100" size="100,100">You look at the time and hope $wife.name is awake. You put your normal clothes, grab the maid&#39;s uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it&#39;s clear so you knock and wait for a moment before $wife.name eventually opens the door.
 
 &lt;&lt;= $wife.speak(&quot;What is it?&quot;)&gt;&gt; She seems awake enough so you think you timed it right.
 
@@ -5357,8 +5360,8 @@ You feel something warm and firm press against the your womanhood before the fig
 &lt;&lt;else&gt;&gt;
 [[Roll out of bed|PlayerBdRm]]
 &lt;&lt;= $mansion.resetChores()&gt;&gt;
-&lt;&lt;set $player.rest()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+&lt;&lt;set $player.rest()&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="181" name="endOfWeekRecap" tags="event" position="100,2350" size="100,100">THIS WILL BE THE END OF THE WEEK RECAP
 
 Chores missed: &lt;&lt;= $player.choresLate&gt;&gt;

@@ -19,7 +19,7 @@ class Timer {
 		if (typeof time === "string") {
 			time = this[time];
 			if (this.compareTime(time) == 1) {
-				time.day = 1;
+				this.addTime({day: 1});
 			}
 		}
 		this.day = time.day || this.day;
