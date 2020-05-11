@@ -2,7 +2,7 @@
 [img[setup.ImagePath + "events/sleep/sleep1.jpg"]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
-<<if $flags.firstCocktailParty is true>>
+<<if $mansion.currentEvent.startsWith("mansionCPartyInit")>>
 There's a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
 
 <<= $daughter.speak("Come on. I have a surprise for you.")>>
@@ -14,13 +14,12 @@ Before you can speak $daughter.name shoves you down to the ground. You roll onto
 <<= $suitor.speak("I can't wait to be inside of you.")>>
 
 You feel something warm and firm press against the your womanhood before the figure thrusts forwards and...
-<<set $flags.cocktailIntroComplete to true>>
+
+[[Start the next day|mansionCPartyIntro32]]
 <</if>>
 
 <<if $mansion.currentEvent === "">>
 [[Start the next day|wakeUp]]
-<<elseif $mansion.currentEvent.startsWith("mansionCPartyInit")>>
-[[Start the next day|mansionCPartyIntro32]]
 <</if>>
 
 <<set $player.voice.current = $player.voice.absolute>>
