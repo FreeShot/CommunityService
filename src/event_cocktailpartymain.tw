@@ -122,7 +122,7 @@ $wife.name heads to the bathroom. <<= $wife.speak("A lot of people commented on 
  
 She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can't help but think how pathetic your small member looks after being compressed by the cage for so long.
  
-You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
+You leave the items on a cushion and then head <<link "back to your room." "PlayerBdRm">><<= $mansion.endEvent()>><</link>>
 <<set $eventCount_cocktailparty to 0>>
 <<set $cocktailparty_start to false>>
 

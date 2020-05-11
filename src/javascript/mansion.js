@@ -11,6 +11,10 @@ class Mansion {
 		}
 	}
 
+	endEvent() {
+		this.currentEvent = "";
+	}
+
 	findRoom(roomID) {
 		return this.rooms.find(element => element.id === roomID);
 	}

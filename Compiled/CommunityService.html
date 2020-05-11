@@ -1175,6 +1175,10 @@ class Mansion {
 		}
 	}
 
+	endEvent() {
+		this.currentEvent = "";
+	}
+
 	findRoom(roomID) {
 		return this.rooms.find(element => element.id === roomID);
 	}
@@ -3004,7 +3008,7 @@ $wife.name heads to the bathroom. &lt;&lt;= $wife.speak(&quot;A lot of people co
  
 She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can&#39;t help but think how pathetic your small member looks after being compressed by the cage for so long.
  
-You leave the items on a cushion and then head [[back to your room.|PlayerBdRm]]
+You leave the items on a cushion and then head &lt;&lt;link &quot;back to your room.&quot; &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;= $mansion.endEvent()&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;set $eventCount_cocktailparty to 0&gt;&gt;
 &lt;&lt;set $cocktailparty_start to false&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="mansionCPartyPraise01" tags="event" position="600,1225" size="100,100">As you&#39;re heading back to the bar you over hear $owner.name chatting with another guest.
 
