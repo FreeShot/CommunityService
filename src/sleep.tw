@@ -19,7 +19,7 @@ You feel something warm and firm press against the your womanhood before the fig
 
 <<if $mansion.currentEvent === "">>
 [[Start the next day|wakeUp]]
-<<elseif $mansion.currentEvent.startsWith("mansionCPartyFinish")>>
+<<elseif $mansion.currentEvent.startsWith("mansionCPartyInit")>>
 [[Start the next day|mansionCPartyIntro32]]
 <</if>>
 
