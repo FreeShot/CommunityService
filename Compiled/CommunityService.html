@@ -471,6 +471,10 @@ class NPC extends Character {
         Math.clamp(this.apreciation, -100, 100);
     }
 
+    getAppreciation(){
+        return String.format("<<scale {0} {1} {2}>><</scale>>", this.apreciation, -100, 100);
+    }
+
 	get getLocation() {
 		var schedule = this.schedule.find(function(ev) {return ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end)});
 		if (schedule) {return schedule.location}
@@ -2163,6 +2167,14 @@ DEBUG
 
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
+Characters:
+&lt;&lt;for _npc range $npcList&gt;&gt;
+_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.apreciation)
+&lt;&lt;/for&gt;&gt;
+
+
+
+Quick access to events:
 [[mansionCPartyIntro01]]</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;

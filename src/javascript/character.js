@@ -61,6 +61,10 @@ class NPC extends Character {
         Math.clamp(this.apreciation, -100, 100);
     }
 
+    getAppreciation(){
+        return String.format("<<scale {0} {1} {2}>><</scale>>", this.apreciation, -100, 100);
+    }
+
 	get getLocation() {
 		var schedule = this.schedule.find(function(ev) {return ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end)});
 		if (schedule) {return schedule.location}
