@@ -1863,9 +1863,9 @@ class Timer {
 	setDate(time) {
 		if (typeof time === "string") {
 			time = this[time];
-			if (this.compareTime(time) == 1) {
+		}
+		if (this.compareTime(time) === 1) {
 				this.addTime({day: 1});
-			}
 		}
 		this.day = time.day || this.day;
 		this.time.hour = time.hour;
@@ -4475,18 +4475,18 @@ Day &lt;&lt;= $time.day + 1&gt;&gt;&lt;/span&gt;
 &lt;hr&gt;
 &lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;span id=cuff&gt;[[CUFF]]&lt;/span&gt;&lt;hr&gt;&lt;&lt;/if&gt;&gt;
 &lt;hr&gt;
-&lt;&lt;click &quot;Debug Skip Day&quot;&gt;&gt;
+&lt;&lt;link &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;silently&gt;&gt;
 		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/silently&gt;&gt;
-&lt;&lt;/click&gt;&gt;
-&lt;&lt;click &quot;Skip to end of day&quot;&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Skip to end of day&quot;&gt;&gt;
 	&lt;&lt;silently&gt;&gt;
 		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/silently&gt;&gt;
-&lt;&lt;/click&gt;&gt;
+&lt;&lt;/link&gt;&gt;
 [[Skip party intro|mansionCPartyServing01][$player.femName to &quot;Alexis&quot;; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true; $cocktailPartyStart to true]]</tw-passagedata><tw-passagedata pid="139" name="CUFF" tags="nobr mainMenu" position="1100,1725" size="100,100">&lt;&lt;if !$flags.cuff.init&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;else&gt;&gt;

@@ -14,18 +14,18 @@ Day <<= $time.day + 1>></span>
 <hr>
 <<if $flags.cuff.recieved>><span id=cuff>[[CUFF]]</span><hr><</if>>
 <hr>
-<<click "Debug Skip Day">>
+<<link "Debug Skip Day">>
 	<<silently>>
 		<<include "wakeUp">>
 		<<goto `passage()`>>
 	<</silently>>
-<</click>>
-<<click "Skip to end of day">>
+<</link>>
+<<link "Skip to end of day">>
 	<<silently>>
 		<<= $time.setDate({day:0, hour:22, minute:0})>>
 		<<goto `passage()`>>
 	<</silently>>
-<</click>>
+<</link>>
 [[Skip party intro|mansionCPartyServing01][$player.femName to "Alexis"; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true; $cocktailPartyStart to true]]
 
 ::CUFF [nobr mainMenu]

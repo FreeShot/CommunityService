@@ -18,9 +18,9 @@ class Timer {
 	setDate(time) {
 		if (typeof time === "string") {
 			time = this[time];
-			if (this.compareTime(time) == 1) {
+		}
+		if (this.compareTime(time) === 1) {
 				this.addTime({day: 1});
-			}
 		}
 		this.day = time.day || this.day;
 		this.time.hour = time.hour;
