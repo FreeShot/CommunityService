@@ -29,7 +29,8 @@ Setting.addToggle("nsfw", {
 });
 
 Config.passages.onProcess = function (p) {
-	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '');
+	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '') +
+		(State.variables.debug && !["debug", "nodebug"].some(function(tag) {return p.tags.includes(tag)}) ? "<<include 'debug-passage'>>" : "");
 	State.variables.pPsgText = "";
 	State.variables.aPsgText = "";
 	return text;

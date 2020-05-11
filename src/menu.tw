@@ -1,6 +1,6 @@
-::StoryCaption
+::StoryCaption [nodebug]
 
-[[mansionCPartyIntro01]]
+<<link "Toggle debug (currently <<if $debug>>ON<<else>>OFF<</if>>)" `passage()`>><<= $debug = !$debug>><</link>>
 
 <<if !$flags.manorIntro>>
 <hr>
@@ -52,7 +52,7 @@ Skills will be added later
 [[Return|$return]]
 
 ::inventory [noreturn menu]
-<<= $player.inv.listItem("$player.inv")>>
+<<= $player.inv.listItem("$player.inv", undefined, undefined, "Inventory", false)>>
 
 [[Return|$return]]
 

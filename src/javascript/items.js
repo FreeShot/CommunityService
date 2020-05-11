@@ -10,7 +10,7 @@ class Item {
         }, this);
     }
 
-    description(count, parent) {
+    description(count, parent, canEquip) {
         var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
         if (count != Infinity) {
             str += String.format(
@@ -37,21 +37,20 @@ class Item {
                 State.passage
             );
         } else {
-            if (this.tags.includes("equippable")) {
-                console.log(State.variables.player.femininity);
+            if (this.tags.includes("equippable") && canEquip) {
                 if (this.femininity <= State.variables.player.femininity) {
-                // Only if not a shop item
-                str += String.format(
-                    "<<button 'Equip' '{1}'>><<= $player.equip('{0}')>><</button>>",
-                    this.name,
-                    State.passage
+                    // Only if not a shop item
+                    str += String.format(
+                        "<<button 'Equip' '{1}'>><<= $player.equip('{0}')>><</button>>",
+                        this.name,
+                        State.passage
                     );
-            } else {
-                str += String.format(
-                    "[Fem: {2}] <span id='{1}-equip-button'><<button 'Equip'>><<replace '#{1}-equip-button'>>femininity too low<</replace>><</button>></span>",
-                    this.name,
-                    this.name.split(' ').join('-').toLowerCase(),
-                    this.femininity
+                } else {
+                    str += String.format(
+                        "[Fem: {2}] <span id='{1}-equip-button'><<button 'Equip'>><<replace '#{1}-equip-button'>>femininity too low<</replace>><</button>></span>",
+                        this.name,
+                        this.name.split(' ').join('-').toLowerCase(),
+                        this.femininity
                     );
             }
         } else if (this.tags.includes("equipped")) {
@@ -61,7 +60,7 @@ class Item {
                 this.name,
                 State.passage
                 );
-        }
+            }
         }
         return str + "</li>";
     }

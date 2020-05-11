@@ -96,7 +96,7 @@ class Inventory {
 		return items;
 	}
 
-	listItem(parent, wl, bl, displayName) {
+	listItem(parent, wl, bl, displayName, canEquip) {
 		var str = String.format("{0} <ul>", displayName || this.name);
 		var items = this.filter(wl, bl);
 		items.sort(ItemSorter);
@@ -111,7 +111,8 @@ class Inventory {
 				) : String.format(
 					"State.variables['{0}']",
 					this.name
-				)
+				),
+				canEquip || true
 			);
 		}, this);
 		return str + "</ul>";
