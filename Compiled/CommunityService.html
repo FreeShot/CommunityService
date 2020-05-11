@@ -843,7 +843,7 @@ class Inventory {
 
 	getAsTemp(item) {
 		var item = this.items[this.findItemIndex(item)].item.clone();
-		item.addTag("temp");
+		item.addTag("tmp");
 		return item;
 	}
 
@@ -942,6 +942,7 @@ class Item {
         this.tags = [];
         this.price = 0;
         this.femininity = 0;
+        this.img = null;
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -955,6 +956,10 @@ class Item {
                 "(Amnt: {0}) ",
                 count
             );
+        }
+
+        if (this.img != null) {
+            str += String.format("[img['{0}']]", setup.ImagePath + this.img);
         }
 
         if (this.tags.includes("shopItem"))
@@ -2140,9 +2145,30 @@ Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
 &lt;&lt;include playerDescription&gt;&gt;
 
+&lt;&lt;= $player.inv.listItem()&gt;&gt;
+
 &lt;&lt;for _npc_name range $npcList&gt;&gt; &lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;
 &lt;&lt;capture [_npc_name, _npc]&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
+
+Quick access to events:
+[[mansionCPartyIntro01]]
+
+&lt;span id=&quot;debug-extended&quot;&gt;
+&lt;&lt;link &quot;Enable extended debug&quot;&gt;&gt;
+&lt;&lt;replace &quot;#debug-extended&quot;&gt;&gt;
+&lt;&lt;link &quot;Debug Skip Day&quot;&gt;&gt;
+	&lt;&lt;silently&gt;&gt;
+		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Skip to end of day&quot;&gt;&gt;
+	&lt;&lt;silently&gt;&gt;
+		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/link&gt;&gt;
 
 Player:
 &lt;&lt;debug &quot;player&quot;&gt;&gt;player&lt;&lt;/debug&gt;&gt;
@@ -2155,22 +2181,9 @@ _npc_name &lt;&lt;debug _npc_name&gt;&gt;&lt;&lt;/debug&gt;&gt;
 &lt;&lt;debug &quot;mansion&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
 
 &lt;&lt;debug &quot;time&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
-
-Quick access to events:
-[[mansionCPartyIntro01]]
-
-&lt;&lt;link &quot;Debug Skip Day&quot;&gt;&gt;
-	&lt;&lt;silently&gt;&gt;
-		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
-		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Skip to end of day&quot;&gt;&gt;
-	&lt;&lt;silently&gt;&gt;
-		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
-		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/silently&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -3873,23 +3886,28 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 &lt;!-- Base clothes (already equipped) --&gt;
 &lt;&lt;= $player.inv.addItem({
 	name: &quot;Plain Shirt&quot;, 
-	tags: [&quot;shirt&quot;, &quot;equipped&quot;]
+	tags: [&quot;shirt&quot;, &quot;equipped&quot;],
+	img: &quot;items/wearables/default/default_shirt.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name: &quot;Mens jeans&quot;, 
-	tags: [&quot;pants&quot;, &quot;equipped&quot;]
+	tags: [&quot;pants&quot;, &quot;equipped&quot;],
+	img: &quot;items/wearables/default/default_pants.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name: &quot;Plain sneakers&quot;, 
-	tags: [&quot;shoe&quot;, &quot;equipped&quot;]
+	tags: [&quot;shoe&quot;, &quot;equipped&quot;],
+	img: &quot;items/wearables/default/default_shoes.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name: &quot;White gym socks&quot;, 
-	tags: [&quot;hoisery&quot;, &quot;equipped&quot;]
+	tags: [&quot;hoisery&quot;, &quot;equipped&quot;],
+	img: &quot;items/wearables/default/default_socks.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name: &quot;Plain boxers&quot;, 
-	tags: [&quot;underwear&quot;, &quot;equipped&quot;]
+	tags: [&quot;underwear&quot;, &quot;equipped&quot;],
+	img: &quot;items/wearables/panties/mbrief_01.jpg&quot;
 }, 1)&gt;&gt;
 
 &lt;!-- Wardrobe items (can be equipped once femininity is high enougth) --&gt;

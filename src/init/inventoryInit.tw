@@ -70,23 +70,28 @@
 <!-- Base clothes (already equipped) -->
 <<= $player.inv.addItem({
 	name: "Plain Shirt", 
-	tags: ["shirt", "equipped"]
+	tags: ["shirt", "equipped"],
+	img: "items/wearables/default/default_shirt.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "Mens jeans", 
-	tags: ["pants", "equipped"]
+	tags: ["pants", "equipped"],
+	img: "items/wearables/default/default_pants.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "Plain sneakers", 
-	tags: ["shoe", "equipped"]
+	tags: ["shoe", "equipped"],
+	img: "items/wearables/default/default_shoes.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "White gym socks", 
-	tags: ["hoisery", "equipped"]
+	tags: ["hoisery", "equipped"],
+	img: "items/wearables/default/default_socks.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "Plain boxers", 
-	tags: ["underwear", "equipped"]
+	tags: ["underwear", "equipped"],
+	img: "items/wearables/panties/mbrief_01.jpg"
 }, 1)>>
 
 <!-- Wardrobe items (can be equipped once femininity is high enougth) -->

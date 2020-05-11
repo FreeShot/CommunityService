@@ -4,6 +4,7 @@ class Item {
         this.tags = [];
         this.price = 0;
         this.femininity = 0;
+        this.img = null;
 
         Object.keys(config || {}).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -17,6 +18,10 @@ class Item {
                 "(Amnt: {0}) ",
                 count
             );
+        }
+
+        if (this.img != null) {
+            str += String.format("[img['{0}']]", setup.ImagePath + this.img);
         }
 
         if (this.tags.includes("shopItem"))

@@ -59,7 +59,7 @@ class Inventory {
 
 	getAsTemp(item) {
 		var item = this.items[this.findItemIndex(item)].item.clone();
-		item.addTag("temp");
+		item.addTag("tmp");
 		return item;
 	}
 
