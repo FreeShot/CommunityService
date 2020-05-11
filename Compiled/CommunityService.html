@@ -462,17 +462,17 @@ class NPC extends Character {
                 		end : {hour: 24, minute: 0}
                 	}
                 ],
-                apreciation : 0
+                appreciation : 0
             }, config));
 	}
 
     addAppreciation(val) {
-        this.apreciation += val;
-        Math.clamp(this.apreciation, -100, 100);
+        this.appreciation += val;
+        Math.clamp(this.appreciation, -100, 100);
     }
 
     getAppreciation(){
-        return String.format("<<scale {0} {1} {2}>><</scale>>", this.apreciation, -100, 100);
+        return String.format("<<scale {0} {1} {2}>><</scale>>", this.appreciation, -100, 100);
     }
 
 	get getLocation() {
@@ -2169,7 +2169,7 @@ Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
 Characters:
 &lt;&lt;for _npc range $npcList&gt;&gt;
-&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.apreciation)&quot;)&gt;&gt;
+&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation)&quot;)&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
 	
@@ -2998,9 +2998,9 @@ VIP guests
 
 *suitor* -
 	[[suitorPathIntro01]]
-	&lt;&lt;if $suitor.apreciation &gt;= 1&gt;&gt;[[suitorPathIntro02]]
+	&lt;&lt;if $suitor.appreciation &gt;= 1&gt;&gt;[[suitorPathIntro02]]
 	[[suitorPathIntro08]]&lt;&lt;/if&gt;&gt;
-suitor.apreciation = $suitor.apreciation
+suitor.appreciation = $suitor.appreciation
 
 *no name 1* - throw away for now. just to bulk out the interactions
 *no name 2*

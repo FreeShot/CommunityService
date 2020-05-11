@@ -25,9 +25,9 @@ VIP guests
 
 *suitor* -
 	[[suitorPathIntro01]]
-	<<if $suitor.apreciation >= 1>>[[suitorPathIntro02]]
+	<<if $suitor.appreciation >= 1>>[[suitorPathIntro02]]
 	[[suitorPathIntro08]]<</if>>
-suitor.apreciation = $suitor.apreciation
+suitor.appreciation = $suitor.appreciation
 
 *no name 1* - throw away for now. just to bulk out the interactions
 *no name 2*

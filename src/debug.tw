@@ -6,8 +6,15 @@ Current event: <<= $mansion.currentEvent>>
 
 Characters:
 <<for _npc range $npcList>>
-<<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.apreciation)")>>
+<<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation)")>>
 <</for>>
+
+Player:
+Name: $player.name
+Title: $player.title
+femName: $player.femName
+femininity: $player.femininity
+
 
 	
 

@@ -52,17 +52,17 @@ class NPC extends Character {
                 		end : {hour: 24, minute: 0}
                 	}
                 ],
-                apreciation : 0
+                appreciation : 0
             }, config));
 	}
 
     addAppreciation(val) {
-        this.apreciation += val;
-        Math.clamp(this.apreciation, -100, 100);
+        this.appreciation += val;
+        Math.clamp(this.appreciation, -100, 100);
     }
 
     getAppreciation(){
-        return String.format("<<scale {0} {1} {2}>><</scale>>", this.apreciation, -100, 100);
+        return String.format("<<scale {0} {1} {2}>><</scale>>", this.appreciation, -100, 100);
     }
 
 	get getLocation() {
