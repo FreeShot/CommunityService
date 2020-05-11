@@ -854,7 +854,7 @@ The sound of your normal voice is a relief. You pull the sheet bakc up and lie d
 
 You quickly go to the bathroom and dry your self off with some tissue before getting back in bed, all the while doing your best to pretend none of that happened. Your sleep is ruined so all your really do is toss and turn for a while.
 
-[[Get up|mansionCPartyIntro33]]
+<<link "Get up" "mansionCPartyIntro33">><<= $time.setDate("wakeup")>><</link>>
 
 ::mansionCPartyIntro33 [event]
 You look at the time and hope $wife.name is awake. You put your normal clothes, grab the maid's uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it's clear so you knock and wait for a moment before $wife.name eventually opens the door.

@@ -6,7 +6,7 @@ Current event: <<= $mansion.currentEvent>>
 
 Characters:
 <<for _npc range $npcList>>
-<<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation)")>>
+<<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: _npc.currentRoom")>>
 <</for>>
 
 Player:
@@ -14,8 +14,18 @@ Name: $player.name
 Title: $player.title
 femName: $player.femName
 femininity: $player.femininity
+voice:
+> current: <<= $player.speak("$player.voice.current")>>
+> real: $player.voice.absolute
+stamina: <<= $player.getStaminaBar()>>
+currentRoom: $player.currentRoom
+choresLate: $player.choresLate
+money: $player.money
 
-
+bodyParts:
+> hairColor: $player.bodyPart.hairColor
+> hairLength: $player.bodyPart.hairLength
+> eyeColor: $player.bodyPart.eyeColor
 	
 
 Quick access to events:
