@@ -27,7 +27,21 @@ bodyParts:
 > hairColor: $player.bodyPart.hairColor
 > hairLength: $player.bodyPart.hairLength
 > eyeColor: $player.bodyPart.eyeColor
-	
+
+<<include playerDescription>>
 
 Quick access to events:
 [[mansionCPartyIntro01]]
+
+<<link "Debug Skip Day">>
+	<<silently>>
+		<<include "wakeUp">>
+		<<goto `passage()`>>
+	<</silently>>
+<</link>>
+<<link "Skip to end of day">>
+	<<silently>>
+		<<= $time.setDate({day:0, hour:22, minute:0})>>
+		<<goto `passage()`>>
+	<</silently>>
+<</link>>

@@ -24,7 +24,7 @@ You have <<= $player.getDesc("eyeColor")>> eyes. <br>
 
 <<for _bp range ["chest", "crotch", "legs"]>>
   <<if $player.isHidden(_bp) !== undefined>>
-    Your _bp is hidden by your <<= $player.isHidden(_bp).name.toLowerCase()>>.
+    Your _bp is hidden by your <<= $player.isHidden(_bp)>>.
   <<else>>
     Your _bp is exposed for anyone to see.
   <</if>>
@@ -38,4 +38,4 @@ You are currently using a <<= $player.inv.filter(["toy-front", "equipped"])[0].i
 You are currently using a <<= $player.inv.filter(["toy-back", "equipped"])[0].item.name>>.
 <</if>>
 
-<br><<return>>
+<br>

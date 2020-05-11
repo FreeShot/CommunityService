@@ -509,10 +509,12 @@ class Player extends Character {
 	}
 
     hasEquipped(tags) {
+        if (typeof(tags) !== Array) {tags = [tags];}
         if (!tags.includes["equipped"]) tags.push("equipped");
-        return this.inv.items.filter(function(el) {
-            return el.item.tags.some(function(tag) {return tags.includes(tag);});
-        }).length > 0;
+        var item = this.inv.items.filter(function(el) {
+            return tags.every(function(tag) {return el.item.tags.includes(tag);});
+        });
+        return item.length > 0 ? item[0].item.name : false;
     }
 
     hiddenBy(bodyPart) {
@@ -531,15 +533,14 @@ class Player extends Character {
     }
 
     isHidden(bodyPart) {
-        return this.hiddenBy(bodyPart).find(function(slot) {
-            var slots = [slot, "equipped"]; 
-            var items = this.inv.filter(slots);
-            if (items.length === 0) {
-                return undefined;
-            } else {
-                return items[0].item
-            }
-        }, this);
+        var bodyPart = this.hiddenBy(bodyPart).filter(
+            function (el) {return this.hasEquipped(el)}, this
+        );
+        if (bodyPart.length > 0) {
+            return this.hasEquipped(bodyPart[0]);
+        } else {
+            return undefined;
+        }
     }
     
 	get gender() {
@@ -2105,10 +2106,24 @@ bodyParts:
 &gt; hairColor: $player.bodyPart.hairColor
 &gt; hairLength: $player.bodyPart.hairLength
 &gt; eyeColor: $player.bodyPart.eyeColor
-	
+
+&lt;&lt;include playerDescription&gt;&gt;
 
 Quick access to events:
-[[mansionCPartyIntro01]]</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
+[[mansionCPartyIntro01]]
+
+&lt;&lt;link &quot;Debug Skip Day&quot;&gt;&gt;
+	&lt;&lt;silently&gt;&gt;
+		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Skip to end of day&quot;&gt;&gt;
+	&lt;&lt;silently&gt;&gt;
+		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -4479,25 +4494,12 @@ Day &lt;&lt;= $time.day + 1&gt;&gt;&lt;/span&gt;
 &lt;span class=&quot;Stamina&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/span&gt;
 &lt;hr&gt;
 &lt;&lt;if $flags.cuff.recieved&gt;&gt;&lt;span id=cuff&gt;[[CUFF]]&lt;/span&gt;&lt;hr&gt;&lt;&lt;/if&gt;&gt;
-&lt;hr&gt;
-&lt;&lt;link &quot;Debug Skip Day&quot;&gt;&gt;
-	&lt;&lt;silently&gt;&gt;
-		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
-		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/silently&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Skip to end of day&quot;&gt;&gt;
-	&lt;&lt;silently&gt;&gt;
-		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
-		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/silently&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-[[Skip party intro|mansionCPartyServing01][$player.femName to &quot;Alexis&quot;; $player.femininity to 100; $previousFemininity to 1; $voiceTonic to true; $flags.firstCocktailParty to true; $cocktailPartyStart to true]]</tw-passagedata><tw-passagedata pid="139" name="CUFF" tags="nobr mainMenu" position="1100,1725" size="100,100">&lt;&lt;if !$flags.cuff.init&gt;&gt;
+&lt;hr&gt;</tw-passagedata><tw-passagedata pid="139" name="CUFF" tags="nobr mainMenu" position="1100,1725" size="100,100">&lt;&lt;if !$flags.cuff.init&gt;&gt;
 	&lt;span style=&quot;color : DarkOrange;&quot;&gt;CUFF NOT INITIALISED BY OWNER&lt;/span&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if !$flags.manorIntro&gt;&gt;
 	[[Chores|playerToDoList]]&lt;br&gt;
-	[[Appearence|playerDescription]]&lt;br&gt;
+	[[Appearence|playerDescription][$aPsgText to &quot;&lt;&lt;return&gt;&gt;&quot;]]&lt;br&gt;
 	[[Skills|skills]]&lt;br&gt;
 	[[Possesions|inventory]]&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
@@ -5269,7 +5271,7 @@ You have &lt;&lt;= $player.getDesc(&quot;eyeColor&quot;)&gt;&gt; eyes. &lt;br&gt
 
 &lt;&lt;for _bp range [&quot;chest&quot;, &quot;crotch&quot;, &quot;legs&quot;]&gt;&gt;
   &lt;&lt;if $player.isHidden(_bp) !== undefined&gt;&gt;
-    Your _bp is hidden by your &lt;&lt;= $player.isHidden(_bp).name.toLowerCase()&gt;&gt;.
+    Your _bp is hidden by your &lt;&lt;= $player.isHidden(_bp)&gt;&gt;.
   &lt;&lt;else&gt;&gt;
     Your _bp is exposed for anyone to see.
   &lt;&lt;/if&gt;&gt;
@@ -5283,7 +5285,7 @@ You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-front&quot;, &
 You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-back&quot;, &quot;equipped&quot;])[0].item.name&gt;&gt;.
 &lt;&lt;/if&gt;&gt;
 
-&lt;br&gt;&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="PlayerBdRm" tags="playerRoom room" position="225,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="172" name="PlayerBdRm" tags="playerRoom room" position="225,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 

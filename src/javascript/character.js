@@ -195,10 +195,12 @@ class Player extends Character {
 	}
 
     hasEquipped(tags) {
+        if (typeof(tags) !== Array) {tags = [tags];}
         if (!tags.includes["equipped"]) tags.push("equipped");
-        return this.inv.items.filter(function(el) {
-            return el.item.tags.some(function(tag) {return tags.includes(tag);});
-        }).length > 0;
+        var item = this.inv.items.filter(function(el) {
+            return tags.every(function(tag) {return el.item.tags.includes(tag);});
+        });
+        return item.length > 0 ? item[0].item.name : false;
     }
 
     hiddenBy(bodyPart) {
@@ -217,15 +219,14 @@ class Player extends Character {
     }
 
     isHidden(bodyPart) {
-        return this.hiddenBy(bodyPart).find(function(slot) {
-            var slots = [slot, "equipped"]; 
-            var items = this.inv.filter(slots);
-            if (items.length === 0) {
-                return undefined;
-            } else {
-                return items[0].item
-            }
-        }, this);
+        var bodyPart = this.hiddenBy(bodyPart).filter(
+            function (el) {return this.hasEquipped(el)}, this
+        );
+        if (bodyPart.length > 0) {
+            return this.hasEquipped(bodyPart[0]);
+        } else {
+            return undefined;
+        }
     }
     
 	get gender() {
