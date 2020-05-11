@@ -1,1 +1,3 @@
-::PassageDone
+::PassageFooter [nodebug]
+
+<<if $debug>><<include 'debug-passage'>><</if>>

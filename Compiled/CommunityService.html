@@ -1774,8 +1774,7 @@ Setting.addToggle("nsfw", {
 });
 
 Config.passages.onProcess = function (p) {
-	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '') +
-		(State.variables.debug && !["debug", "nodebug", "init"].some(function(tag) {return p.tags.includes(tag)}) ? "<<include 'debug-passage'>>" : "");
+	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '');
 	State.variables.pPsgText = "";
 	State.variables.aPsgText = "";
 	return text;
@@ -2080,7 +2079,7 @@ Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
 Characters:
 &lt;&lt;for _npc range $npcList&gt;&gt;
-&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: _npc.currentRoom&quot;)&gt;&gt;
+&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title)&quot;)&gt;&gt;: &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
 Player:
@@ -4522,7 +4521,7 @@ Day &lt;&lt;= $time.day + 1&gt;&gt;&lt;/span&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="144" name="PassageDone" tags="" position="475,1850" size="100,100"></tw-passagedata><tw-passagedata pid="145" name="daughterPath01Homedrunk" tags="noreturn chore" position="600,1850" size="100,100">trigger: First Friday night (last thing to happen before the player goes to bed) - day 5
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="144" name="PassageFooter" tags="nodebug" position="475,1850" size="100,100">&lt;&lt;if $debug&gt;&gt;&lt;&lt;include &#39;debug-passage&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="145" name="daughterPath01Homedrunk" tags="noreturn chore" position="600,1850" size="100,100">trigger: First Friday night (last thing to happen before the player goes to bed) - day 5
 
 As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
  
