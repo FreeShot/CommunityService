@@ -29,7 +29,7 @@ You feel something warm and firm press against the your womanhood before the fig
 The CUFF alarm goes off and you quickly set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
 
 <<nobr>>
-<<= $time.addTime({day:1}); $time.setDate("wakeup")>>
+<<= $time.setDate("wakeup")>>
 <<set _event to $mansion.checkSpecialEvents()>>
 <<if _event != "">>
 	<<= _event>>
