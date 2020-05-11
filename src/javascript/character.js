@@ -85,14 +85,16 @@ Object.defineProperty(window, 'NPC', {
 
 
 class Player extends Character {
-	gradiant = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"];
+	gradient = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"];
 
 	constructor(config) {
 		super(Object.assign(
             {
                 name: "Alex",
                 title: "Alex",
+                femName: "Alice",
                 femininity: 0,
+                voice: {current: 0, absolute: 0},
                 stamina: {current : 10, max : 10},
                 currentRoom: "PlayerBdRm",
                 choresLate : 0,
@@ -119,7 +121,10 @@ class Player extends Character {
             var tags = this.inv.items[index].item.tags;
             // Might have to prefiler the tags
             this.inv.items.filter(function (el) {
-                return el.item.tags.some(function(tag) {return tags.includes(tag)})
+                return el.item.tags.some(function(tag) {
+                    return tags.includes(tag) && 
+                        !["temp", "equipped", "equippable", "shopItem", "gettable"].includes(tag)
+                    })
             }).filter(function (el) {
                 return el.item.tags.includes("equipped");
             }).forEach(function(el) {
@@ -130,11 +135,11 @@ class Player extends Character {
         }
     }
 
-    unequip(itemName) {
+    unequip(itemName, bl) {
         if (itemName === "All") {
             // Unequips all of the items
             this.inv.items.forEach(function(el) {
-                if (el.item.tags.includes("equipped")) this.unequip(el.item.name);
+                if (el.item.tags.includes("equipped") && !el.item.tags.some(function (tag) {return (bl || []).includes(tag)})) this.unequip(el.item.name);
             }, this);
         } else {
             var index = this.inv.items.findIndex(function(el) {
@@ -216,7 +221,7 @@ class Player extends Character {
             if (items.length === 0) {
                 return undefined;
             } else {
-                return items[0].item.name.toLowerCase()
+                return items[0].item
             }
         }, this);
     }
@@ -228,9 +233,14 @@ class Player extends Character {
 		return "male";
 	}
 
+    raiseVoice(amnt) {
+        this.voice.current = amnt.tmp;
+        this.voice.absolute += amnt.abs;
+    }
+
 	get getColor() {
-		if (this.femininity > this.gradiant.length - 1) {this.femininity = this.gradiant.length - 1;}
-		return this.gradiant[this.femininity];
+		if (this.voice.current / 10 > this.gradient.length - 1) {this.voice.current = 10 * this.gradient.length - 1;}
+		return this.gradient[Math.floor(this.voice.current / 10)];
 	}
 
 	speak(text) {

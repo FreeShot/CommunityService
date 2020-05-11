@@ -1,4 +1,4 @@
-::mansionCPartySetup01 [event]
+::mansionCPartySetup01 [event eventStart]
 <<= $time.setDate({hour: 16, minute:0})>>
 <<set $cocktailPartyStart to true>>
 <<set $voiceTonic to true>>

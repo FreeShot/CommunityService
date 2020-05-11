@@ -18,6 +18,9 @@ $(document).on(':passagestart', function (ev) {
 		}
 		//State.variables.exitMenu = ev.passage.title;
 	}
+	if (ev.passage.tags.includes('eventStart')) { // Stores the last event
+		State.variables.mansion.currentEvent = ev.passage.title;
+	}
 });
 
 Setting.addToggle("nsfw", {
@@ -26,7 +29,8 @@ Setting.addToggle("nsfw", {
 });
 
 Config.passages.onProcess = function (p) {
-	var text = p.text + "<br>" + (State.variables.aPsgText || '');
+	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '');
+	State.variables.pPsgText = "";
 	State.variables.aPsgText = "";
 	return text;
 };

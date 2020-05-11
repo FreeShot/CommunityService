@@ -1,5 +1,5 @@
 function ItemSorter(a, b) {
-	var tagOrder = ["wig", "shirt", "bra", "pants", "underwear", "hoisery", "shoe"];
+	var tagOrder = ["wig", "shirt", "bra", "pants", "underwear", "hoisery", "shoe", "toy-front", "toy-back"];
 	var tagIndexA = tagOrder.length;
 	a.item.tags.forEach(function(tag) {
 		var i = tagOrder.findIndex(t => t == tag);
@@ -63,8 +63,11 @@ class Inventory {
 		return item;
 	}
 
-	removeTemp() {
-		this.filter(undefined, ["temp"]);
+	removeTmp(keepEquipped) {
+		this.items.filter(function(el) {
+			return !el.item.tags.includes("tmp") || 
+				(keepEquipped && el.item.tags.includes("equipped"));
+		});
 	}
 
 	findItemIndex(item) {
@@ -84,7 +87,7 @@ class Inventory {
 				return hasAll;
 			});
 		}
-		if (bl !== undefined)
+		else if (bl !== undefined)
 		{
 			items = items.filter(function(el){
 				return !el.item.tags.some(function(tag) {return bl.includes(tag)});

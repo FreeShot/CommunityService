@@ -1,19 +1,19 @@
 ::clothesInit [init]
 
 <<= $wife.inv.addItem({
-	name: "Short Brown wig", 
+	name: "Long Brown wig", 
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	color: "brown"
 }, 1)>>
 <<= $wife.inv.addItem({
-	name: "Short Blonde wig", 
+	name: "Long Blonde wig", 
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	color: "blonde"
 }, 1)>>
 <<= $wife.inv.addItem({
-	name: "Short Aubrun wig", 
+	name: "Long Aubrun wig", 
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	color: "aubrun"
@@ -45,8 +45,19 @@
 }, 1)>>
 <<= $wife.inv.addItem({
 	name: "Stylised maid outfit",
-	tags: ["shirt", "pants", "equippable"]
-})>>
+	tags: ["shirt", "pants", "equippable"],
+	femininity: 25
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Pink chastity cage",
+	tags: ["toy-front", "equippable"],
+	femininity: 5
+}, 1)>>
+<<= $wife.inv.addItem({
+	name: "Black choker",
+	tags: ["accessory-neck", "equippable"],
+	femininity: 10
+}, 1)>>
 
 <!-- Utilities -->
 <<= $wife.inv.addItem({
@@ -71,7 +82,7 @@
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "White gym socks", 
-	tags: ["hoistery", "equipped"]
+	tags: ["hoisery", "equipped"]
 }, 1)>>
 <<= $player.inv.addItem({
 	name: "Plain boxers", 
@@ -100,7 +111,7 @@
 	tags : ["shirt", "pants", "equippable"]
 }, 1)>>
 <<= $player.inv.addItem({
-	name:"Tight jeans short", 
+	name:"Tight jeans Long", 
 	femininity: 10, 
 	tags : ["pants", "equippable"]
 }, 1)>>
