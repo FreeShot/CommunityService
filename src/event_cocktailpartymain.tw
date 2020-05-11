@@ -39,7 +39,7 @@ Run the Party Mini Games
 ::mansionCPartyFinish01 [event]
 
 Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It's very late and after the nights work you are definitely ready for bed.
-<<if $flags.firstCocktailParty is true>>
+<<if $mansion.currentEvent.startsWith("mansionCPartyIntro")>>
 	[[Head to your room|mansionCPartyIntro28]]
 <<else>>
 	[[Head to your room and go to bed|sleep]]

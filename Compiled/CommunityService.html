@@ -3008,7 +3008,7 @@ suitor.apreciation = $suitor.apreciation
 Run the Party Mini Games
 
 [[mansionCPartyFinish01]]</tw-passagedata><tw-passagedata pid="92" name="mansionCPartyFinish01" tags="event" position="225,1225" size="100,100">Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It&#39;s very late and after the nights work you are definitely ready for bed.
-&lt;&lt;if $flags.firstCocktailParty is true&gt;&gt;
+&lt;&lt;if $mansion.currentEvent.startsWith(&quot;mansionCPartyIntro&quot;)&gt;&gt;
 	[[Head to your room|mansionCPartyIntro28]]
 &lt;&lt;else&gt;&gt;
 	[[Head to your room and go to bed|sleep]]
