@@ -2,7 +2,7 @@
 [img[setup.ImagePath + "events/sleep/sleep1.jpg"]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
-<<if $mansion.currentEvent.startsWith("mansionCPartyInit")>>
+<<if $mansion.currentEvent.startsWith("mansionCPartyIntro")>>
 There's a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
 
 <<= $daughter.speak("Come on. I have a surprise for you.")>>

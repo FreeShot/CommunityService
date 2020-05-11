@@ -1,3 +1,7 @@
 ::debug-passage [debug]
-<hl>
+<hr>
 DEBUG
+
+[[mansionCPartyIntro01]]
+
+Current event: <<= $mansion.currentEvent>>

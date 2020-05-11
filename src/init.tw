@@ -1,4 +1,4 @@
-::StoryInit
+::StoryInit [nodebug]
 <<set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})>>
 
 <<set $debug to true>>

@@ -1845,7 +1845,7 @@ Setting.addToggle("nsfw", {
 
 Config.passages.onProcess = function (p) {
 	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '') +
-		(State.variables.debug && !["debug", "nodebug"].some(function(tag) {return p.tags.includes(tag)}) ? "<<include 'debug-passage'>>" : "");
+		(State.variables.debug && !["debug", "nodebug", "init"].some(function(tag) {return p.tags.includes(tag)}) ? "<<include 'debug-passage'>>" : "");
 	State.variables.pPsgText = "";
 	State.variables.aPsgText = "";
 	return text;
@@ -2140,8 +2140,12 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 You take out your vacuum and go over the entire room. You make sure to get into every nook and canny and are careful not to disturb anything on the desk.</tw-passagedata><tw-passagedata pid="53" name="guestRmWindows" tags="noreturn chore" position="350,725" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_windows/windows_1.jpg&quot;]]
 
-Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="54" name="debug-passage" tags="debug" position="475,725" size="100,100">&lt;hl&gt;
-DEBUG</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
+Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="54" name="debug-passage" tags="debug" position="475,725" size="100,100">&lt;hr&gt;
+DEBUG
+
+[[mansionCPartyIntro01]]
+
+Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -4152,7 +4156,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	&quot;DaughterAcceptance2&quot; : function() {
 		return $daughter.acceptance == 2
 	}
-}&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="StoryInit" tags="" position="100,1600" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})&gt;&gt;
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="StoryInit" tags="nodebug" position="100,1600" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})&gt;&gt;
 
 &lt;&lt;set $debug to true&gt;&gt;
 
@@ -5363,7 +5367,7 @@ Inside, you fine some items left by the last person who stayed here. Unfortunate
 &lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="sleep" tags="sleep" position="1100,2225" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
-&lt;&lt;if $mansion.currentEvent.startsWith(&quot;mansionCPartyInit&quot;)&gt;&gt;
+&lt;&lt;if $mansion.currentEvent.startsWith(&quot;mansionCPartyIntro&quot;)&gt;&gt;
 There&#39;s a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
 
 &lt;&lt;= $daughter.speak(&quot;Come on. I have a surprise for you.&quot;)&gt;&gt;
