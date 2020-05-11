@@ -152,13 +152,13 @@
 <<set $suitor to new NPC({name: "Rick", color: "#708090", title: "Mr Stone"})>>
 
 <<set $npcList to [
-	$owner, 
-	$wife, 
-	$daughter, 
-	$son, 
-	$butler, 
-	$cook, 
-	$gardner, 
-	$caterer, 
-	$suitor
+	"owner", 
+	"wife", 
+	"daughter", 
+	"son", 
+	"butler", 
+	"cook", 
+	"gardner", 
+	"caterer", 
+	"suitor"
 ]>>

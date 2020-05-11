@@ -7,7 +7,8 @@ Its furnishings are plain with no decorations.
 
 Desk
 	There is nothing here at the moment
-
+<<= $daughter.addAppreciation(10)>>
+<<= $daughter.appreciation>>
 <<nobr>>
 <<set _event to $mansion.checkSpecialEvents()>>
 <<if _event != "">>

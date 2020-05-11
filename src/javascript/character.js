@@ -58,7 +58,12 @@ class NPC extends Character {
 
     addAppreciation(val) {
         this.appreciation += val;
-        Math.clamp(this.appreciation, -100, 100);
+        if (this.appreciation > 100) {
+            this.appreciation = 100;
+        }
+        else if (this.appreciation < -100) {
+            this.appreciation = -100;
+        }
     }
 
     getAppreciation(){

@@ -372,7 +372,12 @@ class NPC extends Character {
 
     addAppreciation(val) {
         this.appreciation += val;
-        Math.clamp(this.appreciation, -100, 100);
+        if (this.appreciation > 100) {
+            this.appreciation = 100;
+        }
+        else if (this.appreciation < -100) {
+            this.appreciation = -100;
+        }
     }
 
     getAppreciation(){
@@ -1774,7 +1779,7 @@ Setting.addToggle("nsfw", {
 });
 
 Config.passages.onProcess = function (p) {
-	var text = (State.variables.pPsgText || '') + p.text + "<br>" + (State.variables.aPsgText || '');
+	var text = State.variables.pPsgText + p.text + "<br>" + State.variables.aPsgText;
 	State.variables.pPsgText = "";
 	State.variables.aPsgText = "";
 	return text;
@@ -2078,8 +2083,9 @@ DEBUG
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
 Characters:
-&lt;&lt;for _npc range $npcList&gt;&gt;
-&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title)&quot;)&gt;&gt;: &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;
+&lt;&lt;= console.log($npcList)&gt;&gt;
+&lt;&lt;for _npc_name range $npcList&gt;&gt; 
+&lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;&lt;&lt;capture _npc&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
 Player:
@@ -3429,15 +3435,15 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 &lt;&lt;set $suitor to new NPC({name: &quot;Rick&quot;, color: &quot;#708090&quot;, title: &quot;Mr Stone&quot;})&gt;&gt;
 
 &lt;&lt;set $npcList to [
-	$owner, 
-	$wife, 
-	$daughter, 
-	$son, 
-	$butler, 
-	$cook, 
-	$gardner, 
-	$caterer, 
-	$suitor
+	&quot;owner&quot;, 
+	&quot;wife&quot;, 
+	&quot;daughter&quot;, 
+	&quot;son&quot;, 
+	&quot;butler&quot;, 
+	&quot;cook&quot;, 
+	&quot;gardner&quot;, 
+	&quot;caterer&quot;, 
+	&quot;suitor&quot;
 ]&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="choresInit" tags="init" position="725,1475" size="100,100">&lt;!--  Chores  --&gt;
 
 &lt;&lt;= $mansion.addChore(&quot;Foyer&quot;, new Chore({
@@ -5285,7 +5291,8 @@ Its furnishings are plain with no decorations.
 
 Desk
 	There is nothing here at the moment
-
+&lt;&lt;= $daughter.addAppreciation(10)&gt;&gt;
+&lt;&lt;= $daughter.appreciation&gt;&gt;
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;set _event to $mansion.checkSpecialEvents()&gt;&gt;
 &lt;&lt;if _event != &quot;&quot;&gt;&gt;

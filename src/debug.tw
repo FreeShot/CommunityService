@@ -5,8 +5,9 @@ DEBUG
 Current event: <<= $mansion.currentEvent>>
 
 Characters:
-<<for _npc range $npcList>>
-<<= _npc.speak("_npc.name (_npc.title)")>>: <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>
+<<= console.log($npcList)>>
+<<for _npc_name range $npcList>> 
+<<set _npc to State.variables[_npc_name]>><<capture _npc>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
 <</for>>
 
 Player:
