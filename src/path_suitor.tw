@@ -2,6 +2,8 @@
 
 $wife.name gestures for you to come over with your tray. She's standing with $owner.name and another man who stands out a bit as he isn't as dressed up as everyone else. He's wearing stylish jeans with plain shoes and nice t-shirt. There is a design on the shirt but it's half covered by his casual business jacket. He's staring right into your eyes as you walk over.
 
+suitor.apreciation = $suitor.apreciation
+
 <<= $wife.speak("$suitor.name what can we get you to start off?")>>
 
 <<= $suitor.speak("A glass of bourbon. $caterer.name knows the bottle.")>> He doesn't stop looking and you nervously break eye contact with him.
@@ -37,7 +39,7 @@ You leave and come back with the drink a few moments later.
 			<<= $wife.speak("You're always welcome $suitor.name. We love having you over.")>><br>
 			<br>
 			You bow your head and [[Get back to work.|mansionCPartyServing01]]
-			<<set $suitor.acceptance += 1>>
+			<<set $suitor.addAppreciation(1)>>
 		<</replace>>
 	<</link>><br>
 	<<link "I don't want to talk to this guy.">>
@@ -252,7 +254,7 @@ The two of them start chatting as you head [[back to the kitchen.|mansionCPartyS
 
 As evening winds down you're mostly stuck in the kitchen cleaning up with $caterer.name. People have been leaving for a while now and the estate is mostly empty.
 
-You're elbow deep in water when $wife.name and $suitor.name walk in. $wife.name is laughing at something she found funny while hanging off of $suitor.names arm but you barely notice them.
+You're elbow deep in water when $wife.name and $suitor.name walk in. $wife.name is laughing at something she found funny while hanging off of $suitor.name's arm but you barely notice them.
 
 <<= $suitor.speak("Well. It's late so I think it's time for me to head off.")>> $suitor.name says.
 

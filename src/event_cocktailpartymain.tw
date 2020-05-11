@@ -25,9 +25,9 @@ VIP guests
 
 *suitor* -
 	[[suitorPathIntro01]]
-	<<if $suitor.acceptance >= 1>>[[suitorPathIntro02]]
+	<<if $suitor.apreciation >= 1>>[[suitorPathIntro02]]
 	[[suitorPathIntro08]]<</if>>
-
+suitor.apreciation = $suitor.apreciation
 
 *no name 1* - throw away for now. just to bulk out the interactions
 *no name 2*
@@ -67,7 +67,7 @@ You look at the time and hope $wife.name is awake. You put on your normal clothe
 
 You can see $owner.name lying asleep face down, clearly naked, and quickly follow $wife.name into the wardrobe.<<set $flags.firstCocktailParty to false>>
 
-[[Performance review|mansionCPartyReview01a]]
+[[Performance review|mansionCPartyReview01]]
 <<else>>
 You get up, grab the maid's uniform and head to the master bedroom so $wife.name
 
@@ -79,10 +79,10 @@ You get up, grab the maid's uniform and head to the master bedroom so $wife.name
 
 You follow $wife.name into the wardrobe.
 
-[[Performance review|mansionCPartyReview01b]]
+[[Performance review|mansionCPartyReview01]]
 <</if>>
 
-::mansionCPartyReview01a [event]
+::mansionCPartyReview01 [event]
 
 Good
 <<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
@@ -114,7 +114,7 @@ Your eyes return to her face, smiling smugly and knowing you are at her mercy.
 
 Your [[CUFF]] beeps as the rules get updated.
 
-$wife.name heads to the bathroom. <<= $wife.speak("A lot of people commented on having a beauty like you under our care. We can't disappoint your admirers now can we?"")>>
+$wife.name heads to the bathroom. <<= $wife.speak("A lot of people commented on having a beauty like you under our care. We can't disappoint your admirers now can we?")>>
  
 <<= $player.speak("<i>As if I have a choice you f...</i>")>>
  

@@ -790,7 +790,7 @@ $daughter.name gives you a quick pat on the cheek before turing around to $cater
 
 <<= $caterer.speak("Good to have you back $daughter.name. These gatherings have been getting a bit stale.")>> $caterer.name's attitude is polar shift from when he's been talking to you or $wife.name.
 
-<<= $daughter.speak("I have a beeling things might liven up over the next few week.")>>
+<<= $daughter.speak("I have a feeling things might liven up over the next few week.")>>
 
 $daughter.name gives him another quick hug and moves to leave as guests start arriving.
 
@@ -808,7 +808,7 @@ You head to the bathroom and quickly do a double take at the attractive maid loo
 [[Undress|mansionCPartyIntro29]]
 
 ::mansionCPartyIntro29 [event]
-You reach around to unzip the dress. It's a bit difficult since the zipper is fairly high but eventually, and after a lot of streching and curses, you manage to grab a hold of it and pull the dress down off your shoulders and down your ankles.
+You reach around to unzip the dress. It's a bit difficult since the zipper is fairly high but eventually, and after a lot of streching and curses, you manage to grab a hold of it and pull the dress down off your shoulders and let it fall to your ankles.
 
 Following the reverse of what $wife.name did, you remove the rest of the items, making sure to pile them neatly after her warning when you were getting dressed.
 
@@ -857,7 +857,7 @@ You quickly go to the bathroom and dry your self off with some tissue before get
 [[Get up|mansionCPartyIntro33]]
 
 ::mansionCPartyIntro33 [event]
-You look at the time and hope $wife.title is awake. You put your normal clothes, grab the maid's uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it's clear so you knock and wait for a moment before $wife.title eventually opens the door.
+You look at the time and hope $wife.name is awake. You put your normal clothes, grab the maid's uniform and head to the master bedroom. After listening for the sound of any... morning activities, you think it's clear so you knock and wait for a moment before $wife.name eventually opens the door.
 
 <<= $wife.speak("What is it?")>> She seems awake enough so you think you timed it right.
 
@@ -873,7 +873,7 @@ You look at the time and hope $wife.title is awake. You put your normal clothes,
 
 <<= $wife.speak("Oh, I suppose. We'll need to discuss your performance last night first.")>> She opens the door all the way and lets you into her room.
 
-You can see $owner.title lying asleep face down, clearly naked, and quicly follow $wife.title into the wardrobe.
+You can see $owner.name lying asleep face down, clearly naked, and quicly follow $wife.name into the wardrobe.
 
 <<link "Performance review" "mansionCPartyReview01">>
 <<= $mansion.addEvent("specialEvent", new Event({
