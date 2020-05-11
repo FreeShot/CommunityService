@@ -4,31 +4,23 @@ DEBUG
 
 Current event: <<= $mansion.currentEvent>>
 
-Characters:
-<<= console.log($npcList)>>
-<<for _npc_name range $npcList>> 
-<<set _npc to State.variables[_npc_name]>><<capture _npc>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
+<<include playerDescription>>
+
+<<for _npc_name range $npcList>> <<set _npc to State.variables[_npc_name]>>
+<<capture [_npc_name, _npc]>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
 <</for>>
 
 Player:
-Name: $player.name
-Title: $player.title
-femName: $player.femName
-femininity: $player.femininity
-voice:
-> current: <<= $player.speak("$player.voice.current")>>
-> real: $player.voice.absolute
-stamina: <<= $player.getStaminaBar()>>
-currentRoom: $player.currentRoom
-choresLate: $player.choresLate
-money: $player.money
+<<debug "player">>player<</debug>>
 
-bodyParts:
-> hairColor: $player.bodyPart.hairColor
-> hairLength: $player.bodyPart.hairLength
-> eyeColor: $player.bodyPart.eyeColor
+Characters:
+<<for _npc_name range $npcList>> 
+_npc_name <<debug _npc_name>><</debug>>
+<</for>>
 
-<<include playerDescription>>
+<<debug "mansion">><</debug>>
+
+<<debug "time">><</debug>>
 
 Quick access to events:
 [[mansionCPartyIntro01]]

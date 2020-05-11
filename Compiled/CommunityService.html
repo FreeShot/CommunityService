@@ -1167,6 +1167,61 @@ Macro.add("scale", {
 		}
 	}
 });
+
+Macro.add("debug", {
+	tags: [],
+	handler: function() {
+		var id = this.args[0];
+		var obj = State.variables[id];
+		return jQuery(this.output).wiki(String.format(
+			"<span id='{0}'><<link 'Debug {0}'>><<replace '#{0}'>><<debug-internal>>{1}<</debug-internal>><</replace>><</link>></span>",
+			id,
+			obj
+		));
+	}
+});
+
+Macro.add("debug-internal", {
+	tags: [],
+	handler: function() {
+		var obj = this.payload[0].contents;
+		try {
+			obj = JSON.parse(obj);
+		} catch {}
+		var str = "";
+		if (obj instanceof Object && !Array.isArray(obj)) {
+			str += "<ul>";
+			Object.keys(obj).forEach(function(tag) {
+				if (obj[tag] instanceof Object) {
+					str += String.format(
+						"<li>{0}: <<debug-internal>>{1}<</debug-internal>></li>",
+						tag, 
+						obj[tag]
+					);
+				} else if (obj[tag] != "") {
+					str += String.format(
+						"<li>{0} : {1}</li>",
+						tag,
+						obj[tag]
+					);
+				}
+			});
+			str += "</ul>";
+		} else if (Array.isArray(obj)) {
+			str += "<li><ol>"
+			obj.forEach(function(val) {
+				str += String.format(
+					"<li><<debug-internal>>{0}<</debug-internal>></li>",
+					val
+				);
+			});
+			str += "</ol></li>"
+		} else {
+			str += JSON.stringify(obj);
+		}
+		return jQuery(this.output).wiki(str);
+	}
+});
 /* twine-user-script #8: "mansion.js" */
 class Mansion {
 	constructor(config) {
@@ -2083,31 +2138,23 @@ DEBUG
 
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
-Characters:
-&lt;&lt;= console.log($npcList)&gt;&gt;
-&lt;&lt;for _npc_name range $npcList&gt;&gt; 
-&lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;&lt;&lt;capture _npc&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
+&lt;&lt;include playerDescription&gt;&gt;
+
+&lt;&lt;for _npc_name range $npcList&gt;&gt; &lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;
+&lt;&lt;capture [_npc_name, _npc]&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
 Player:
-Name: $player.name
-Title: $player.title
-femName: $player.femName
-femininity: $player.femininity
-voice:
-&gt; current: &lt;&lt;= $player.speak(&quot;$player.voice.current&quot;)&gt;&gt;
-&gt; real: $player.voice.absolute
-stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;
-currentRoom: $player.currentRoom
-choresLate: $player.choresLate
-money: $player.money
+&lt;&lt;debug &quot;player&quot;&gt;&gt;player&lt;&lt;/debug&gt;&gt;
 
-bodyParts:
-&gt; hairColor: $player.bodyPart.hairColor
-&gt; hairLength: $player.bodyPart.hairLength
-&gt; eyeColor: $player.bodyPart.eyeColor
+Characters:
+&lt;&lt;for _npc_name range $npcList&gt;&gt; 
+_npc_name &lt;&lt;debug _npc_name&gt;&gt;&lt;&lt;/debug&gt;&gt;
+&lt;&lt;/for&gt;&gt;
 
-&lt;&lt;include playerDescription&gt;&gt;
+&lt;&lt;debug &quot;mansion&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
+
+&lt;&lt;debug &quot;time&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
 
 Quick access to events:
 [[mansionCPartyIntro01]]
