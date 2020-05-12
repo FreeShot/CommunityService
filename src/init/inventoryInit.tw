@@ -1,71 +1,240 @@
 ::clothesInit [init]
 
-<<= $wife.inv.addItem({
-	name: "Long Brown wig", 
+<<set $shop to new Shop({name: "Main shop", id:"shop"})>>
+
+<<= $shop.addCategory("Wig")>>
+<<= $shop.addCategory("Top")>>
+<<= $shop.addCategory("Dress")>>
+<<= $shop.addCategory("Bottom")>>
+<<= $shop.addCategory("Bra")>>
+<<= $shop.addCategory("Underwear")>>
+<<= $shop.addCategory("Hoisery")>>
+<<= $shop.addCategory("Shoes")>>
+<<= $shop.addCategory("Accessory")>>
+<<= $shop.addCategory("Toys")>>
+<<= $shop.addCategory("Items")>>
+
+
+<<= $shop.addItem("Wig", {
+	name: "Short Black Wig",
 	tags: ["wig", "equippable"],
 	femininity: 10,
+	price: 0,
+	color: "black"
+}, 1)>>
+<<= $shop.addItem("Wig", {
+	name: "Short Brown Wig",
+	tags: ["wig", "equippable"],
+	femininity: 10,
+	price: 0,
 	color: "brown"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Long Blonde wig", 
+<<= $shop.addItem("Wig", {
+	name: "Short Blonde Wig",
 	tags: ["wig", "equippable"],
 	femininity: 10,
+	price: 0,
 	color: "blonde"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Long Aubrun wig", 
+<<= $shop.addItem("Wig", {
+	name: "Short Aubrun Wig",
 	tags: ["wig", "equippable"],
 	femininity: 10,
+	price: 0,
 	color: "aubrun"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Black Stockings with garter belt",
-	tags: ["hoisery", "equippable"],
-	femininity: 20
+<<= $shop.addItem("Wig", {
+	name: "Medium Black Wig",
+	tags: ["wig", "equippable"],
+	femininity: 15,
+	price: 0,
+	color: "black"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Lacey black silk panties",
-	tags: ["underwear", "equippable"],
-	femininity: 15
+<<= $shop.addItem("Wig", {
+	name: "Medium Brown Wig",
+	tags: ["wig", "equippable"],
+	femininity: 15,
+	price: 0,
+	color: "brown"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Lacey black silk bra",
-	tags: ["bra", "equippable"],
-	femininity: 15
+<<= $shop.addItem("Wig", {
+	name: "Medium Blonde Wig",
+	tags: ["wig", "equippable"],
+	femininity: 15,
+	price: 0,
+	color: "blonde"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Maid headdress",
-	tags: ["accessory-head", "equippable"],
-	femininity: 10
+<<= $shop.addItem("Wig", {
+	name: "Medium Aubrun Wig",
+	tags: ["wig", "equippable"],
+	femininity: 15,
+	price: 0,
+	color: "aubrun"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Black leather mary jane heels",
-	tags: ["shoe", "equippable"],
-	femininity: 5
+<<= $shop.addItem("Wig", {
+	name: "Long Black Wig",
+	tags: ["wig", "equippable"],
+	femininity: 20,
+	price: 0,
+	color: "black"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Stylised maid outfit",
-	tags: ["shirt", "pants", "equippable"],
-	femininity: 25
+<<= $shop.addItem("Wig", {
+	name: "Long Brown Wig",
+	tags: ["wig", "equippable"],
+	femininity: 20,
+	price: 0,
+	color: "brown"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Pink chastity cage",
-	tags: ["toy-front", "equippable"],
-	femininity: 5
+<<= $shop.addItem("Wig", {
+	name: "Long Blonde Wig",
+	tags: ["wig", "equippable"],
+	femininity: 20,
+	price: 0,
+	color: "blonde"
 }, 1)>>
-<<= $wife.inv.addItem({
-	name: "Black choker",
-	tags: ["accessory-neck", "equippable"],
-	femininity: 10
+<<= $shop.addItem("Wig", {
+	name: "Long Aubrun Wig",
+	tags: ["wig", "equippable"],
+	femininity: 20,
+	price: 0,
+	color: "aubrun"
 }, 1)>>
 
-<!-- Utilities -->
-<<= $wife.inv.addItem({
+<<= $shop.addItem("Underwear", {
+	name: "Pink stripped panties",
+	tags: ["underwear", "equipped"],
+	femininity: 10,
+	price: 0,
+	img: "items/wearables/panties/plain_02.jpg"
+}, 1)>>
+<<= $shop.addItem("Underwear", {
+	name: "Lacey black silk panties",
+	tags: ["underwear", "equipped"],
+	femininity: 15,
+	price: 0,
+	img: "items/wearables/panties/lace_01.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Bra", {
+	name: "Pink stripped bra",
+	tags: ["bra", "equipped"],
+	femininity: 10,
+	price: 0,
+	img: "items/wearables/bra/plain_02.jpg"
+}, 1)>>
+<<= $shop.addItem("Bra", {
+	name: "Lacey black silk bra",
+	tags: ["bra", "equipped"],
+	femininity: 15,
+	price: 0,
+	img: "items/wearables/bra/lace_01.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Top", {
+	name: "Black camisole",
+	tags: ["shirt", "equippable"],
+	femininity: 15,
+	price: 0,
+	img: "items/wearables/tops/top_02.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Dress", {
+	name: "Black summer dress",
+	tags: ["shirt", "pants", "equippable"],
+	femininity: 25,
+	price: 0,
+	img: "items/wearables/dress/summerdress_02.jpg"
+}, 1)>>
+<<= $shop.addItem("Dress", {
+	name: "Stylised maid outfit",
+	tags: ["shirt", "pants", "equippable"],
+	femininity: 25,
+	price: 0,
+	img: "items/wearables/dress/maid_01.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Bottom", {
+	name: "Tartan school skirt",
+	tags: ["pants", "equippable"],
+	femininity: 25,
+	price: 0,
+	img: "items/wearables/bottoms/skirt_02.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Hoisery", {
+	name: "Black stockings with garter belt",
+	tags: ["hoisery", "equippable"],
+	femininity: 20,
+	price: 0,
+	img: "items/wearables/hoisery/stockings_01.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Shoes", {
+	name: "Black leather mary jane heels",
+	tags: ["shoe", "equippable"],
+	femininity: 5,
+	price: 0,
+	img: "items/wearables/shoes/heels_01.jpg"
+}, 1)>>
+<<= $shop.addItem("Shoes", {
+	name: "Black leather block heels",
+	tags: ["shoe", "equippable"],
+	femininity: 15,
+	price: 0,
+	img: "items/wearables/shoes/heels_02.jpg"
+}, 1)>>
+<<= $shop.addItem("Shoes", {
+	name: "Black leather high heels",
+	tags: ["shoe", "equippable"],
+	femininity: 15,
+	price: 0,
+	img: "items/wearables/shoes/heels_03.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Accessory", {
+	name: "Maid headdress",
+	tags: ["accessory-head", "equippable"],
+	femininity: 10,
+	price: 0,
+	img: "items/wearables/accessories/headband_maid_01.jpg"
+}, 1)>>
+<<= $shop.addItem("Accessory", {
+	name: "Black choker",
+	tags: ["accessory-head", "equippable"],
+	femininity: 10,
+	price: 0,
+	img: "items/wearables/accessories/choker_01.jpg"
+}, 1)>>
+<<= $shop.addItem("Accessory", {
+	name: "Frilly black and white choker",
+	tags: ["accessory-head", "equippable"],
+	femininity: 15,
+	price: 0,
+	img: "items/wearables/accessories/choker_02.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Toys", {
+	name: "Pink chastity cage",
+	tags: ["toy-front", "equippable"],
+	femininity: 5,
+	price: 0,
+	img: "items/wearables/toy/cage_01.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Items", {
 	name: "Basic razor",
 	tags: ["razor"],
-	efficiency: 10,
-	quality: 1
+	price: 0,
+	efficiency: 10
 })>>
+<<= $shop.addItem("Items", {
+	name: "Rain Hair Removal Cream",
+	tags: ["razor"],
+	price: 0,
+	efficiency: 10
+})>>
+
+
 
 <!-- Base clothes (already equipped) -->
 <<= $player.inv.addItem({
@@ -97,31 +266,43 @@
 <!-- Wardrobe items (can be equipped once femininity is high enougth) -->
 <<= $player.inv.addItem({
 	name:"Female cut T-shirt", 
+	tags : ["shirt", "equippable"],
 	femininity: 10, 
-	tags : ["shirt", "equippable"]
+	img: "items/wearables/tops/top_01.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name:"Modest skirt", 
+	tags : ["pants", "equippable"],
 	femininity: 25, 
-	tags : ["pants", "equippable"]
+	img: "items/wearables/bottoms/skirt_01.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name:"Plain white panties", 
+	tags : ["underwear", "equippable"],
 	femininity: 10, 
-	tags : ["underwear", "equippable"]
+	img: "items/wearables/panties/plain_01.jpg"
+}, 1)>>
+<<= $player.inv.addItem({
+	name:"Plain white bra", 
+	tags : ["bra", "equippable"],
+	femininity: 10, 
+	img: "items/wearables/bra/plain_01.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name:"Teal summer dress", 
+	tags : ["shirt", "pants", "equippable"],
 	femininity: 25, 
-	tags : ["shirt", "pants", "equippable"]
+	img: "items/wearables/dress/summerdress_01.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
-	name:"Tight jeans Long", 
+	name:"Tight jeans", 
+	tags : ["pants", "equippable"],
 	femininity: 10, 
-	tags : ["pants", "equippable"]
+	img: "items/wearables/bottoms/jeans_01.jpg"
 }, 1)>>
 <<= $player.inv.addItem({
 	name:"Flat shoes", 
+	tags : ["shoe", "equippable"],
 	femininity: 10, 
-	tags : ["shoe", "equippable"]
+	img: "items/wearables/shoes/flats_01.jpg"
 }, 1)>>

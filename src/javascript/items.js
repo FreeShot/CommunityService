@@ -12,16 +12,16 @@ class Item {
     }
 
     description(count, parent, canEquip) {
-        var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
+        var str = "";
+        if (this.img != null) {
+            str += String.format("[img['{0}']]", setup.ImagePath + this.img);
+        }
+        str += String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
         if (count != Infinity) {
             str += String.format(
                 "(Amnt: {0}) ",
                 count
             );
-        }
-
-        if (this.img != null) {
-            str += String.format("[img['{0}']]", setup.ImagePath + this.img);
         }
 
         if (this.tags.includes("shopItem"))

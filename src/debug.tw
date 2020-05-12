@@ -4,17 +4,6 @@ DEBUG
 
 Current event: <<= $mansion.currentEvent>>
 
-<<include playerDescription>>
-
-<<= $player.inv.listItem()>>
-
-<<for _npc_name range $npcList>> <<set _npc to State.variables[_npc_name]>>
-<<capture [_npc_name, _npc]>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
-<</for>>
-
-Quick access to events:
-[[mansionCPartyIntro01]]
-
 <span id="debug-extended">
 <<link "Enable extended debug">>
 <<replace "#debug-extended">>
@@ -42,6 +31,17 @@ _npc_name <<debug _npc_name>><</debug>>
 <<debug "mansion">><</debug>>
 
 <<debug "time">><</debug>>
+
+<<debug "shop">><</debug>>
 <</replace>>
 <</link>>
 </span>
+
+<<include playerDescription>>
+
+<<for _npc_name range $npcList>> <<set _npc to State.variables[_npc_name]>>
+<<capture [_npc_name, _npc]>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
+<</for>>
+
+Quick access to events:
+[[mansionCPartyIntro01]]

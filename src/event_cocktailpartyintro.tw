@@ -124,7 +124,7 @@ $wife.name puts the items on top of your normal clothes. <<= $wife.speak("We nee
 
 <<link "She's setting the terms so you have no choice." "mansionCPartyIntro08">>
 <<= $player.unequip("All")>>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Lacey black silk panties"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Lacey black silk panties"), 1, true)>>
 <</link>>
 
 ::mansionCPartyIntro08 [event]
@@ -149,7 +149,7 @@ You stop shifting as she removes all the hairs from one leg, then the other. she
 <<= $wife.speak("Now roll over and lay down.")>>
 
 <<link "Roll over." "mansionCPartyIntro09">>
-<<= $player.shave($wife.inv.getAsTemp("Basic razor"))>>
+<<= $player.shave($shop.getAsTemp("Basic razor"))>>
 <</link>>
 
 ::mansionCPartyIntro09 [event]
@@ -244,7 +244,7 @@ $wife.name pulls your attention away from the breast forms as she grabs your chi
 <<= $wife.speak("Hmm, not a bad start, but we'll need to work on your looks.")>>
 
 <<link "She sits you down on the vanity chair." "mansionCPartyIntro13">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Lacey black silk bra"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Lacey black silk bra"), 1, true)>>
 <</link>>
 
 ::mansionCPartyIntro13 [event]
@@ -280,7 +280,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Long Brown wig"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Long brown wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>
@@ -301,7 +301,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Long Blonde wig"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Long blonde wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>
@@ -322,7 +322,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Long Brown wig"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Long brown wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>
@@ -343,7 +343,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>>
 
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Long Aubrun wig"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Long aubrun wig"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>\
@@ -371,7 +371,7 @@ Before you move, $wife.name pulls you up and turns you arround.
 <<= $wife.speak("I havent got all day.")>>
 
 <<link "When you face the mirror your jaw almost hits the floor." "mansionCPartyIntro15">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Black Stockings with garter belt"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black Stockings with garter belt"), 1, true)>>
 <</link>>
 
 ::mansionCPartyIntro15 [event]
@@ -519,7 +519,7 @@ $wife.name was already walking back to the dressing room.
 <<= $wife.speak("Come on. Let's wrap this up.")>>
 
 <<link "Follow" "mansionCPartyIntro19">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Pink chastity cage"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
 <</link>>
 
 ::mansionCPartyIntro19 [event]
@@ -554,8 +554,8 @@ She seems happy with that response.
 
 <<link "<<= $wife.speak('Oh, one more thing.')>>" "mansionCPartyIntro20">>
 <<= $player.raiseVoice({tmp:100, abs:1})>>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Stylised maid outfit"), 1, true)>>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Black leather mary jane heels"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Stylised maid outfit"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
 <</link>>
 <</replace>>\
 <</link>>
@@ -570,8 +570,8 @@ She seems happy with that response.
 
 <<link "<<= $wife.speak('Better. Oh, one more thing.')>>" "mansionCPartyIntro20">>
 <<= $player.raiseVoice({tmp:100, abs:1})>>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Stylised maid outfit"), 1, true)>>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Black leather mary jane heels"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Stylised maid outfit"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
 <</link>>
 <</replace>>
 <</link>>\
@@ -600,7 +600,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 <<= $player.speak("<i>Usually...</i>")>>
 
 <<link "<<= $wife.speak('Now, about your name...')>>" "mansionCPartyIntro21">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Black choker"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black choker"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>
@@ -609,7 +609,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 You grab your mouth and throat in shock.
 
 <<link "<<= $wife.speak('Now, about your name...')>>" "mansionCPartyIntro21">>
-<<= $player.inv.addItem($wife.inv.getAsTemp("Black choker"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black choker"), 1, true)>>
 <</link>>\
 <</replace>>\
 <</link>>\

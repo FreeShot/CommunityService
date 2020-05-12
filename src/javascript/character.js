@@ -113,10 +113,7 @@ class Player extends Character {
                     "hairLength" : 0,
                     "eyeColor" : 0
                 },
-                bodyHair: {
-                    growthSpeed: {current: 10, absolute: 10},
-                    current: 0
-                }
+                bodyHair: 0
         }, config));
 	}
 
@@ -163,9 +160,8 @@ class Player extends Character {
 
     shave(item) {
         if (item.tags.includes("razor")) {
-            this.bodyHair.current += item.efficiency;
-            this.bodyHair.growthSpeed.current -= item.efficiency;
-            if(this.bodyHair.growthSpeed.current < 1) this.bodyHair.growthSpeed.current = 1;
+            this.bodyHair += item.efficiency;
+            if(this.bodyHair > 1) this.bodyHair--;
         }
     }
 

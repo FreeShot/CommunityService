@@ -57,10 +57,13 @@ class Inventory {
 		this.items = this.items.filter(function(el){return el.count > 0});
 	}
 
-	getAsTemp(item) {
-		var item = this.items[this.findItemIndex(item)].item.clone();
-		item.addTag("tmp");
-		return item;
+	getAsTemp(itemName) {
+		var index = this.findItemIndex(itemName);
+		if (index != -1) {
+			var item = this.items[index].item.clone();
+			item.addTag("tmp");
+			return item;
+		} return undefined;
 	}
 
 	removeTmp(keepEquipped) {

@@ -427,10 +427,7 @@ class Player extends Character {
                     "hairLength" : 0,
                     "eyeColor" : 0
                 },
-                bodyHair: {
-                    growthSpeed: {current: 10, absolute: 10},
-                    current: 0
-                }
+                bodyHair: 0
         }, config));
 	}
 
@@ -477,9 +474,8 @@ class Player extends Character {
 
     shave(item) {
         if (item.tags.includes("razor")) {
-            this.bodyHair.current += item.efficiency;
-            this.bodyHair.growthSpeed.current -= item.efficiency;
-            if(this.bodyHair.growthSpeed.current < 1) this.bodyHair.growthSpeed.current = 1;
+            this.bodyHair += item.efficiency;
+            if(this.bodyHair > 1) this.bodyHair--;
         }
     }
 
@@ -841,10 +837,13 @@ class Inventory {
 		this.items = this.items.filter(function(el){return el.count > 0});
 	}
 
-	getAsTemp(item) {
-		var item = this.items[this.findItemIndex(item)].item.clone();
-		item.addTag("tmp");
-		return item;
+	getAsTemp(itemName) {
+		var index = this.findItemIndex(itemName);
+		if (index != -1) {
+			var item = this.items[index].item.clone();
+			item.addTag("tmp");
+			return item;
+		} return undefined;
 	}
 
 	removeTmp(keepEquipped) {
@@ -950,16 +949,16 @@ class Item {
     }
 
     description(count, parent, canEquip) {
-        var str = String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
+        var str = "";
+        if (this.img != null) {
+            str += String.format("[img['{0}']]", setup.ImagePath + this.img);
+        }
+        str += String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
         if (count != Infinity) {
             str += String.format(
                 "(Amnt: {0}) ",
                 count
             );
-        }
-
-        if (this.img != null) {
-            str += String.format("[img['{0}']]", setup.ImagePath + this.img);
         }
 
         if (this.tags.includes("shopItem"))
@@ -1867,6 +1866,13 @@ class Shop {
 		this.getCategory(category).addItem(item, count);
 	}
 
+	getAsTemp(itemName){
+		for (var i = 0; i < this.categories.length; i++) {
+			var item = this.categories[i].getAsTemp(itemName);
+			if (item !== undefined) {return item;}
+		}
+	}
+
 	getCategory(category)
 	{
 		return this.categories.find(
@@ -2143,17 +2149,6 @@ DEBUG
 
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
-&lt;&lt;include playerDescription&gt;&gt;
-
-&lt;&lt;= $player.inv.listItem()&gt;&gt;
-
-&lt;&lt;for _npc_name range $npcList&gt;&gt; &lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;
-&lt;&lt;capture [_npc_name, _npc]&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
-&lt;&lt;/for&gt;&gt;
-
-Quick access to events:
-[[mansionCPartyIntro01]]
-
 &lt;span id=&quot;debug-extended&quot;&gt;
 &lt;&lt;link &quot;Enable extended debug&quot;&gt;&gt;
 &lt;&lt;replace &quot;#debug-extended&quot;&gt;&gt;
@@ -2181,9 +2176,20 @@ _npc_name &lt;&lt;debug _npc_name&gt;&gt;&lt;&lt;/debug&gt;&gt;
 &lt;&lt;debug &quot;mansion&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
 
 &lt;&lt;debug &quot;time&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
+
+&lt;&lt;debug &quot;shop&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
 &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
+&lt;/span&gt;
+
+&lt;&lt;include playerDescription&gt;&gt;
+
+&lt;&lt;for _npc_name range $npcList&gt;&gt; &lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;
+&lt;&lt;capture [_npc_name, _npc]&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+
+Quick access to events:
+[[mansionCPartyIntro01]]</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -2304,7 +2310,7 @@ $wife.name puts the items on top of your normal clothes. &lt;&lt;= $wife.speak(&
 
 &lt;&lt;link &quot;She&#39;s setting the terms so you have no choice.&quot; &quot;mansionCPartyIntro08&quot;&gt;&gt;
 &lt;&lt;= $player.unequip(&quot;All&quot;)&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Lacey black silk panties&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Lacey black silk panties&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="mansionCPartyIntro08" tags="event" position="475,850" size="100,100">$wife.name pulls out a razor and some shaving butter. She start rubbing the oil all over your legs.
 
 &lt;&lt;= $wife.speak(&quot;Hmm. It&#39;s nice a sparse already. Convenient.&quot;)&gt;&gt;
@@ -2326,7 +2332,7 @@ You stop shifting as she removes all the hairs from one leg, then the other. she
 &lt;&lt;= $wife.speak(&quot;Now roll over and lay down.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Roll over.&quot; &quot;mansionCPartyIntro09&quot;&gt;&gt;
-&lt;&lt;= $player.shave($wife.inv.getAsTemp(&quot;Basic razor&quot;))&gt;&gt;
+&lt;&lt;= $player.shave($shop.getAsTemp(&quot;Basic razor&quot;))&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="mansionCPartyIntro09" tags="event" position="600,850" size="100,100">You roll over and she repeats the process on the thin patch of hair on your chest.
 
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;Who will even see my chest?&lt;/i&gt;&quot;)&gt;&gt;
@@ -2408,7 +2414,7 @@ $wife.name pulls your attention away from the breast forms as she grabs your chi
 &lt;&lt;= $wife.speak(&quot;Hmm, not a bad start, but we&#39;ll need to work on your looks.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;She sits you down on the vanity chair.&quot; &quot;mansionCPartyIntro13&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Lacey black silk bra&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Lacey black silk bra&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="mansionCPartyIntro13" tags="event" position="1100,850" size="100,100">&lt;&lt;= $wife.speak(&quot;Close your eyes.&quot;)&gt;&gt;
 
 You do so and feel her brushing and pusing against your face. It doesn&#39;t take a genious to guess that she is applying makeup.
@@ -2441,7 +2447,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Brown wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long brown wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2462,7 +2468,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Blonde wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long blonde wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2483,7 +2489,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Brown wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long brown wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2504,7 +2510,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Long Aubrun wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long aubrun wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;\
@@ -2529,7 +2535,7 @@ Before you move, $wife.name pulls you up and turns you arround.
 &lt;&lt;= $wife.speak(&quot;I havent got all day.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;When you face the mirror your jaw almost hits the floor.&quot; &quot;mansionCPartyIntro15&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Black Stockings with garter belt&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black Stockings with garter belt&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="mansionCPartyIntro15" tags="event" position="100,975" size="100,100">[img[setup.ImagePath + &quot;events/cocktailparty/cocktailparty_firstlook.jpg&quot;]]
 
 Standing in front of you, wearing demure black lingerie is onw of the prettiest girls you&#39;ve ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
@@ -2665,7 +2671,7 @@ $wife.name was already walking back to the dressing room.
 &lt;&lt;= $wife.speak(&quot;Come on. Let&#39;s wrap this up.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Follow&quot; &quot;mansionCPartyIntro19&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Pink chastity cage&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Pink chastity cage&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="mansionCPartyIntro19" tags="event" position="600,975" size="100,100">You quickly head back into the main bedroom where $wife.name is already waiting with the maid&#39;s dress unzipped.
 
 You step into the dress and she pulls it up over your hips. She helps you thread your arms through the sleeves and pulls it over your shoulders. $wife.name zips up the back before tying the laces on the back to pull the whole outfit tight in against your new curves. The black skirt ends just above your knees and has a ruffled white petit coat underneath it to give a bit of bounce. The dress stops just below your bra but it includes a thin white blouse that covers the high enough to hide your assets. The effect enhances your new bust while still mostly hiding it from view. $wife.name has already tied a white apron over your shoulders and end in white lace.
@@ -2697,8 +2703,8 @@ She seems happy with that response.
 
 &lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Oh, one more thing.&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro20&quot;&gt;&gt;
 &lt;&lt;= $player.raiseVoice({tmp:100, abs:1})&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2713,8 +2719,8 @@ She seems happy with that response.
 
 &lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Better. Oh, one more thing.&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro20&quot;&gt;&gt;
 &lt;&lt;= $player.raiseVoice({tmp:100, abs:1})&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;
 &lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
@@ -2740,7 +2746,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;Usually...&lt;/i&gt;&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Now, about your name...&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro21&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2749,7 +2755,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 You grab your mouth and throat in shock.
 
 &lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Now, about your name...&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro21&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($wife.inv.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;\
@@ -3323,15 +3329,13 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 &lt;&lt;set $bodyPart to {
 	desc: {
 		hairColor : [
-			&quot;brown&quot;
+			&quot;brown&quot;, &quot;black&quot;, &quot;brown&quot;, &quot;aubrun&quot;
 		],
 		hairLength : [
-			&quot;short&quot;
+			&quot;short&quot;, &quot;medium&quot;, &quot;long&quot;
 		],
 		eyeColor : [
-			&quot;blue&quot;, 
-			&quot;brown&quot;, 
-			&quot;black&quot;
+			&quot;blue&quot;, &quot;brown&quot;, &quot;black&quot;
 		],
 		face: [
 			&quot;Your face is fairly plain and ordinary, almost like a blank slate. You don&#39;t exactly turn any heads which is probably why you&#39;ve never been on a date before.&quot;
@@ -3816,72 +3820,241 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	inline:true, 
 	repeats:false, 
 	tags: [&quot;Thursday&quot;, &quot;NeedDaughter&quot;, &quot;daughterAcceptance2&quot;]
-}))&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="clothesInit" tags="init" position="975,1475" size="100,100">&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Long Brown wig&quot;, 
+}))&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="clothesInit" tags="init" position="975,1475" size="100,100">&lt;&lt;set $shop to new Shop({name: &quot;Main shop&quot;, id:&quot;shop&quot;})&gt;&gt;
+
+&lt;&lt;= $shop.addCategory(&quot;Wig&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Top&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Dress&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Bottom&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Bra&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Underwear&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Hoisery&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Shoes&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Accessory&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Toys&quot;)&gt;&gt;
+&lt;&lt;= $shop.addCategory(&quot;Items&quot;)&gt;&gt;
+
+
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Short Black Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
+	price: 0,
+	color: &quot;black&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Short Brown Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 10,
+	price: 0,
 	color: &quot;brown&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Long Blonde wig&quot;, 
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Short Blonde Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
+	price: 0,
 	color: &quot;blonde&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Long Aubrun wig&quot;, 
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Short Aubrun Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
+	price: 0,
 	color: &quot;aubrun&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Black Stockings with garter belt&quot;,
-	tags: [&quot;hoisery&quot;, &quot;equippable&quot;],
-	femininity: 20
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Medium Black Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	color: &quot;black&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Lacey black silk panties&quot;,
-	tags: [&quot;underwear&quot;, &quot;equippable&quot;],
-	femininity: 15
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Medium Brown Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	color: &quot;brown&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Lacey black silk bra&quot;,
-	tags: [&quot;bra&quot;, &quot;equippable&quot;],
-	femininity: 15
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Medium Blonde Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	color: &quot;blonde&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Maid headdress&quot;,
-	tags: [&quot;accessory-head&quot;, &quot;equippable&quot;],
-	femininity: 10
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Medium Aubrun Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	color: &quot;aubrun&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Black leather mary jane heels&quot;,
-	tags: [&quot;shoe&quot;, &quot;equippable&quot;],
-	femininity: 5
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Long Black Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 20,
+	price: 0,
+	color: &quot;black&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Stylised maid outfit&quot;,
-	tags: [&quot;shirt&quot;, &quot;pants&quot;, &quot;equippable&quot;],
-	femininity: 25
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Long Brown Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 20,
+	price: 0,
+	color: &quot;brown&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Pink chastity cage&quot;,
-	tags: [&quot;toy-front&quot;, &quot;equippable&quot;],
-	femininity: 5
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Long Blonde Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 20,
+	price: 0,
+	color: &quot;blonde&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $wife.inv.addItem({
-	name: &quot;Black choker&quot;,
-	tags: [&quot;accessory-neck&quot;, &quot;equippable&quot;],
-	femininity: 10
+&lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
+	name: &quot;Long Aubrun Wig&quot;,
+	tags: [&quot;wig&quot;, &quot;equippable&quot;],
+	femininity: 20,
+	price: 0,
+	color: &quot;aubrun&quot;
 }, 1)&gt;&gt;
 
-&lt;!-- Utilities --&gt;
-&lt;&lt;= $wife.inv.addItem({
+&lt;&lt;= $shop.addItem(&quot;Underwear&quot;, {
+	name: &quot;Pink stripped panties&quot;,
+	tags: [&quot;underwear&quot;, &quot;equipped&quot;],
+	femininity: 10,
+	price: 0,
+	img: &quot;items/wearables/panties/plain_02.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Underwear&quot;, {
+	name: &quot;Lacey black silk panties&quot;,
+	tags: [&quot;underwear&quot;, &quot;equipped&quot;],
+	femininity: 15,
+	price: 0,
+	img: &quot;items/wearables/panties/lace_01.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Bra&quot;, {
+	name: &quot;Pink stripped bra&quot;,
+	tags: [&quot;bra&quot;, &quot;equipped&quot;],
+	femininity: 10,
+	price: 0,
+	img: &quot;items/wearables/bra/plain_02.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Bra&quot;, {
+	name: &quot;Lacey black silk bra&quot;,
+	tags: [&quot;bra&quot;, &quot;equipped&quot;],
+	femininity: 15,
+	price: 0,
+	img: &quot;items/wearables/bra/lace_01.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Top&quot;, {
+	name: &quot;Black camisole&quot;,
+	tags: [&quot;shirt&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	img: &quot;items/wearables/tops/top_02.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Dress&quot;, {
+	name: &quot;Black summer dress&quot;,
+	tags: [&quot;shirt&quot;, &quot;pants&quot;, &quot;equippable&quot;],
+	femininity: 25,
+	price: 0,
+	img: &quot;items/wearables/dress/summerdress_02.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Dress&quot;, {
+	name: &quot;Stylised maid outfit&quot;,
+	tags: [&quot;shirt&quot;, &quot;pants&quot;, &quot;equippable&quot;],
+	femininity: 25,
+	price: 0,
+	img: &quot;items/wearables/dress/maid_01.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Bottom&quot;, {
+	name: &quot;Tartan school skirt&quot;,
+	tags: [&quot;pants&quot;, &quot;equippable&quot;],
+	femininity: 25,
+	price: 0,
+	img: &quot;items/wearables/bottoms/skirt_02.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Hoisery&quot;, {
+	name: &quot;Black stockings with garter belt&quot;,
+	tags: [&quot;hoisery&quot;, &quot;equippable&quot;],
+	femininity: 20,
+	price: 0,
+	img: &quot;items/wearables/hoisery/stockings_01.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Shoes&quot;, {
+	name: &quot;Black leather mary jane heels&quot;,
+	tags: [&quot;shoe&quot;, &quot;equippable&quot;],
+	femininity: 5,
+	price: 0,
+	img: &quot;items/wearables/shoes/heels_01.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Shoes&quot;, {
+	name: &quot;Black leather block heels&quot;,
+	tags: [&quot;shoe&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	img: &quot;items/wearables/shoes/heels_02.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Shoes&quot;, {
+	name: &quot;Black leather high heels&quot;,
+	tags: [&quot;shoe&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	img: &quot;items/wearables/shoes/heels_03.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Accessory&quot;, {
+	name: &quot;Maid headdress&quot;,
+	tags: [&quot;accessory-head&quot;, &quot;equippable&quot;],
+	femininity: 10,
+	price: 0,
+	img: &quot;items/wearables/accessories/headband_maid_01.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Accessory&quot;, {
+	name: &quot;Black choker&quot;,
+	tags: [&quot;accessory-head&quot;, &quot;equippable&quot;],
+	femininity: 10,
+	price: 0,
+	img: &quot;items/wearables/accessories/choker_01.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Accessory&quot;, {
+	name: &quot;Frilly black and white choker&quot;,
+	tags: [&quot;accessory-head&quot;, &quot;equippable&quot;],
+	femininity: 15,
+	price: 0,
+	img: &quot;items/wearables/accessories/choker_02.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Toys&quot;, {
+	name: &quot;Pink chastity cage&quot;,
+	tags: [&quot;toy-front&quot;, &quot;equippable&quot;],
+	femininity: 5,
+	price: 0,
+	img: &quot;items/wearables/toy/cage_01.jpg&quot;
+}, 1)&gt;&gt;
+
+&lt;&lt;= $shop.addItem(&quot;Items&quot;, {
 	name: &quot;Basic razor&quot;,
 	tags: [&quot;razor&quot;],
-	efficiency: 10,
-	quality: 1
+	price: 0,
+	efficiency: 10
 })&gt;&gt;
+&lt;&lt;= $shop.addItem(&quot;Items&quot;, {
+	name: &quot;Rain Hair Removal Cream&quot;,
+	tags: [&quot;razor&quot;],
+	price: 0,
+	efficiency: 10
+})&gt;&gt;
+
+
 
 &lt;!-- Base clothes (already equipped) --&gt;
 &lt;&lt;= $player.inv.addItem({
@@ -3913,33 +4086,45 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 &lt;!-- Wardrobe items (can be equipped once femininity is high enougth) --&gt;
 &lt;&lt;= $player.inv.addItem({
 	name:&quot;Female cut T-shirt&quot;, 
+	tags : [&quot;shirt&quot;, &quot;equippable&quot;],
 	femininity: 10, 
-	tags : [&quot;shirt&quot;, &quot;equippable&quot;]
+	img: &quot;items/wearables/tops/top_01.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name:&quot;Modest skirt&quot;, 
+	tags : [&quot;pants&quot;, &quot;equippable&quot;],
 	femininity: 25, 
-	tags : [&quot;pants&quot;, &quot;equippable&quot;]
+	img: &quot;items/wearables/bottoms/skirt_01.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name:&quot;Plain white panties&quot;, 
+	tags : [&quot;underwear&quot;, &quot;equippable&quot;],
 	femininity: 10, 
-	tags : [&quot;underwear&quot;, &quot;equippable&quot;]
+	img: &quot;items/wearables/panties/plain_01.jpg&quot;
+}, 1)&gt;&gt;
+&lt;&lt;= $player.inv.addItem({
+	name:&quot;Plain white bra&quot;, 
+	tags : [&quot;bra&quot;, &quot;equippable&quot;],
+	femininity: 10, 
+	img: &quot;items/wearables/bra/plain_01.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name:&quot;Teal summer dress&quot;, 
+	tags : [&quot;shirt&quot;, &quot;pants&quot;, &quot;equippable&quot;],
 	femininity: 25, 
-	tags : [&quot;shirt&quot;, &quot;pants&quot;, &quot;equippable&quot;]
+	img: &quot;items/wearables/dress/summerdress_01.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
-	name:&quot;Tight jeans Long&quot;, 
+	name:&quot;Tight jeans&quot;, 
+	tags : [&quot;pants&quot;, &quot;equippable&quot;],
 	femininity: 10, 
-	tags : [&quot;pants&quot;, &quot;equippable&quot;]
+	img: &quot;items/wearables/bottoms/jeans_01.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $player.inv.addItem({
 	name:&quot;Flat shoes&quot;, 
+	tags : [&quot;shoe&quot;, &quot;equippable&quot;],
 	femininity: 10, 
-	tags : [&quot;shoe&quot;, &quot;equippable&quot;]
+	img: &quot;items/wearables/shoes/flats_01.jpg&quot;
 }, 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="roomInit" tags="init" position="1100,1475" size="100,100">&lt;!--  Mansion  --&gt;
 
 &lt;&lt;set $mansion to new Mansion({})&gt;&gt;

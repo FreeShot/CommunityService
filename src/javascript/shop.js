@@ -19,6 +19,13 @@ class Shop {
 		this.getCategory(category).addItem(item, count);
 	}
 
+	getAsTemp(itemName){
+		for (var i = 0; i < this.categories.length; i++) {
+			var item = this.categories[i].getAsTemp(itemName);
+			if (item !== undefined) {return item;}
+		}
+	}
+
 	getCategory(category)
 	{
 		return this.categories.find(

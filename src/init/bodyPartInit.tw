@@ -5,15 +5,13 @@
 <<set $bodyPart to {
 	desc: {
 		hairColor : [
-			"brown"
+			"brown", "black", "brown", "aubrun"
 		],
 		hairLength : [
-			"short"
+			"short", "medium", "long"
 		],
 		eyeColor : [
-			"blue", 
-			"brown", 
-			"black"
+			"blue", "brown", "black"
 		],
 		face: [
 			"Your face is fairly plain and ordinary, almost like a blank slate. You don't exactly turn any heads which is probably why you've never been on a date before."
