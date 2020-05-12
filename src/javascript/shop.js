@@ -22,7 +22,10 @@ class Shop {
 	getAsTemp(itemName){
 		for (var i = 0; i < this.categories.length; i++) {
 			var item = this.categories[i].getAsTemp(itemName);
-			if (item !== undefined) {return item;}
+			if (item !== undefined) {
+				item.removeTag("shopItem")
+				return item;
+			}
 		}
 	}
 
