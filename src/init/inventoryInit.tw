@@ -91,7 +91,7 @@
 <<= $player.inv.addItem({
 	name: "Plain boxers", 
 	tags: ["underwear", "equipped"],
-	img: "items/wearables/panties/mbrief_01.jpg"
+	img: "items/wearables/panties/mbriefs_01.jpg"
 }, 1)>>
 
 <!-- Wardrobe items (can be equipped once femininity is high enougth) -->
