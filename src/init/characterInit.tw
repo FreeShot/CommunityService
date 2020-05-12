@@ -162,3 +162,5 @@
 	"caterer", 
 	"suitor"
 ]>>
+
+<<set $minorNPC to []>>

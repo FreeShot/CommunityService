@@ -29,3 +29,9 @@ This game is intended for a mature audience. If you are too young, please <a cla
 }>>
 <<= $time.setDate({day: 0, hour: 22, minute: 0})>>
 <</link>>
+
+<<for _i = 0; _i < 10; _i++>>
+<<capture _i>>
+<<set _select to $minorNPC[generateNPC(_i)]>><<= _select.speak("<<= _select.info()>>")>><br>
+<</capture>>
+<</for>>

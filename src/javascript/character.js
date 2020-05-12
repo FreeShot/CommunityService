@@ -1,11 +1,40 @@
+function createNPC() {
+    var values = {};
+
+    values["gender"] = (Math.random() > settings.maleNPC) ? 'female' : 'male';
+    values["title"] = values["gender"] === "male" ? "Mr" : "Mrs";
+    
+    var names;
+    if (values["gender"] === "male"){
+        names = ["James", "Joseff", "Jack", "John", "Hugo", "Leo", "Vincent"];
+    } else {
+        names = ["Lea", "Marie", "Aurora", "Fiona", "Maeve", "Jade", "Amber", "Liya", "Velma", "Nana"];
+    }
+    var lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"];
+
+    var index = Math.floor(Math.random() * names.length);
+    values["name"] = names[index];
+
+    index = Math.floor(Math.random() * lastName.length);
+    lastName = lastName[index];
+    values["name"] += " " + lastName;
+    values["title"] += " " + lastName;
+
+    values["age"] = Math.floor(Math.random() * 30) + 20;
+    values["appreciation"] = Math.floor(Math.random() * 50) - 10; 
+
+    values["color"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
+    return values;
+}
+
+
 class Character {
 	constructor(config) {
 		this.name = '';
-        this.givenName = '';
 		this.title = '';
 		this.currentRoom = '';
 		this.color = '';
-        this.inv = new Inventory({name: "Inventory", isShop: false})
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -113,7 +142,8 @@ class Player extends Character {
                     "hairLength" : 0,
                     "eyeColor" : 0
                 },
-                bodyHair: 0
+                bodyHair: 0,
+                inv: new Inventory({name: "Player Inventory"})
         }, config));
 	}
 
@@ -261,3 +291,52 @@ class Player extends Character {
 Object.defineProperty(window, 'Player', {
     value : Player
 });
+
+class MinorNPC extends Character {
+    constructor() {
+        var values = createNPC();
+        while (State.variables.minorNPC.find(function(el) {
+            return el.name === values.name;
+        })) {
+            values = createNPC();
+        }
+
+        super(values);
+    }
+
+    info() {
+        return String.format(
+            "{0} <ul><li>Title: {1}</li><li>Color: {2}</li><li>Gender: {3}</li><li>Age: {4}</li><li>appreciation: {5}</li></ul>",
+            this.name,
+            this.title,
+            this.color,
+            this.gender,
+            this.age,
+            this.appreciation,
+        );
+    }
+
+    clone() {
+        return new MinorNPC(this);
+    }
+
+    toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new MinorNPC($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'MinorNPC', {
+    value : MinorNPC
+});
+
+window.generateNPC = function(id) {
+    if (settings.maxNPC > State.variables.minorNPC.length) {
+        State.variables.minorNPC.push(new MinorNPC());
+        return id;
+    } else {
+        return Math.floor(Math.random() * State.variables.minorNPC.length);
+    }
+}

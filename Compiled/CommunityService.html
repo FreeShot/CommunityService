@@ -312,14 +312,43 @@ div.warning {
 	padding: 2px 20px 2px;
 	margin: 8px 5px 8px;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
+function createNPC() {
+    var values = {};
+
+    values["gender"] = (Math.random() > settings.maleNPC) ? 'female' : 'male';
+    values["title"] = values["gender"] === "male" ? "Mr" : "Mrs";
+    
+    var names;
+    if (values["gender"] === "male"){
+        names = ["James", "Joseff", "Jack", "John", "Hugo", "Leo", "Vincent"];
+    } else {
+        names = ["Lea", "Marie", "Aurora", "Fiona", "Maeve", "Jade", "Amber", "Liya", "Velma", "Nana"];
+    }
+    var lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"];
+
+    var index = Math.floor(Math.random() * names.length);
+    values["name"] = names[index];
+
+    index = Math.floor(Math.random() * lastName.length);
+    lastName = lastName[index];
+    values["name"] += " " + lastName;
+    values["title"] += " " + lastName;
+
+    values["age"] = Math.floor(Math.random() * 30) + 20;
+    values["appreciation"] = Math.floor(Math.random() * 50) - 10; 
+
+    values["color"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
+    return values;
+}
+
+
 class Character {
 	constructor(config) {
 		this.name = '';
-        this.givenName = '';
 		this.title = '';
 		this.currentRoom = '';
 		this.color = '';
-        this.inv = new Inventory({name: "Inventory", isShop: false})
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -427,7 +456,8 @@ class Player extends Character {
                     "hairLength" : 0,
                     "eyeColor" : 0
                 },
-                bodyHair: 0
+                bodyHair: 0,
+                inv: new Inventory({name: "Player Inventory"})
         }, config));
 	}
 
@@ -575,6 +605,55 @@ class Player extends Character {
 Object.defineProperty(window, 'Player', {
     value : Player
 });
+
+class MinorNPC extends Character {
+    constructor() {
+        var values = createNPC();
+        while (State.variables.minorNPC.find(function(el) {
+            return el.name === values.name;
+        })) {
+            values = createNPC();
+        }
+
+        super(values);
+    }
+
+    info() {
+        return String.format(
+            "{0} <ul><li>Title: {1}</li><li>Color: {2}</li><li>Gender: {3}</li><li>Age: {4}</li><li>appreciation: {5}</li></ul>",
+            this.name,
+            this.title,
+            this.color,
+            this.gender,
+            this.age,
+            this.appreciation,
+        );
+    }
+
+    clone() {
+        return new MinorNPC(this);
+    }
+
+    toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new MinorNPC($ReviveData$)', ownData);
+    }
+}
+Object.defineProperty(window, 'MinorNPC', {
+    value : MinorNPC
+});
+
+window.generateNPC = function(id) {
+    if (settings.maxNPC > State.variables.minorNPC.length) {
+        State.variables.minorNPC.push(new MinorNPC());
+        return id;
+    } else {
+        return Math.floor(Math.random() * State.variables.minorNPC.length);
+    }
+}
 /* twine-user-script #2: "chore.js" */
 class Chore {
 	constructor (config) {
@@ -1833,18 +1912,37 @@ $(document).on(':passagestart', function (ev) {
 	}
 });
 
-Setting.addToggle("nsfw", {
-	label    : "Displays NSFW images",
-	default  : true
-});
-
 Config.passages.onProcess = function (p) {
 	var text = State.variables.pPsgText + p.text + "<br>" + State.variables.aPsgText;
 	State.variables.pPsgText = "";
 	State.variables.aPsgText = "";
 	return text;
 };
-/* twine-user-script #12: "shop.js" */
+/* twine-user-script #12: "settings.js" */
+Setting.addHeader("NPC", "Anything that influence the generation of NPCs.");
+Setting.addList("maxNPC", {
+	label: "Maximum of npc to generate.",
+	list: [10, 20, 50, 100],
+	default: 20,
+	onChange: function() {
+		if (State.variables.minorNPC.length > settings.maxNPC) {
+			State.variables.minorNPC.splice(settings.maxNPC, State.variables.minorNPC.length);
+		}
+	}
+});
+Setting.addList("maleNPC", {
+	label: "Number of male NPC generated.",
+	list: [0, 0.25, 0.5, 0.75, 1],
+	default: 0.5
+});
+
+
+Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
+Setting.addToggle("nsfw", {
+	label    : "Displays NSFW images",
+	default  : true
+});
+/* twine-user-script #13: "shop.js" */
 class Shop {
 	constructor (config) {
 		this.categories = [];
@@ -1869,7 +1967,10 @@ class Shop {
 	getAsTemp(itemName){
 		for (var i = 0; i < this.categories.length; i++) {
 			var item = this.categories[i].getAsTemp(itemName);
-			if (item !== undefined) {return item;}
+			if (item !== undefined) {
+				item.removeTag("shopItem")
+				return item;
+			}
 		}
 	}
 
@@ -1913,7 +2014,7 @@ class Shop {
 Object.defineProperty(window, 'Shop', {
     value : Shop
 });
-/* twine-user-script #13: "time.js" */
+/* twine-user-script #14: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -3523,7 +3624,9 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	&quot;gardner&quot;, 
 	&quot;caterer&quot;, 
 	&quot;suitor&quot;
-]&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="choresInit" tags="init" position="725,1475" size="100,100">&lt;!--  Chores  --&gt;
+]&gt;&gt;
+
+&lt;&lt;set $minorNPC to []&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="choresInit" tags="init" position="725,1475" size="100,100">&lt;!--  Chores  --&gt;
 
 &lt;&lt;= $mansion.addChore(&quot;Foyer&quot;, new Chore({
 	name: &quot;Clean Foyer&quot;, 
@@ -4560,7 +4663,13 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 	&quot;manorIntro&quot; : false
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="manorIntro01" tags="tutorial" position="1225,1600" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;for _i = 0; _i &lt; 10; _i++&gt;&gt;
+&lt;&lt;capture _i&gt;&gt;
+&lt;&lt;set _select to $minorNPC[generateNPC(_i)]&gt;&gt;&lt;&lt;= _select.speak(&quot;&lt;&lt;= _select.info()&gt;&gt;&quot;)&gt;&gt;&lt;br&gt;
+&lt;&lt;/capture&gt;&gt;
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="manorIntro01" tags="tutorial" position="1225,1600" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 

@@ -23,11 +23,6 @@ $(document).on(':passagestart', function (ev) {
 	}
 });
 
-Setting.addToggle("nsfw", {
-	label    : "Displays NSFW images",
-	default  : true
-});
-
 Config.passages.onProcess = function (p) {
 	var text = State.variables.pPsgText + p.text + "<br>" + State.variables.aPsgText;
 	State.variables.pPsgText = "";
