@@ -335,7 +335,10 @@ function createNPC() {
     values["title"] += " " + lastName;
 
     values["age"] = Math.floor(Math.random() * 30) + 20;
-    values["appreciation"] = Math.floor(Math.random() * 50) - 10; 
+
+    values["like"] = Object.keys(State.variables.npcLike).filter(function(el) {
+        return Math.random() < 2 / (Object.keys(State.variables.npcLike).length);
+    });
 
     values["color"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
@@ -581,6 +584,14 @@ class Player extends Character {
         this.voice.absolute += amnt.abs;
     }
 
+    get getHairColor() {
+        return this.isHidden("hair") ? this.inv.filter(["wig", "equipped"]).color : this.getDesc("hairColor");
+    }
+
+    get getHairLength() {
+        return this.isHidden("hair") ? this.inv.filter(["wig", "equipped"]).length : this.getDesc("hairLength");
+    }
+
 	get getColor() {
 		if (this.voice.current / 10 > this.gradient.length - 1) {this.voice.current = 10 * this.gradient.length - 1;}
 		return this.gradient[Math.floor(this.voice.current / 10)];
@@ -626,7 +637,7 @@ class MinorNPC extends Character {
             this.color,
             this.gender,
             this.age,
-            this.appreciation,
+            this.like,
         );
     }
 
@@ -3943,84 +3954,96 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	price: 0,
-	color: &quot;black&quot;
+	color: &quot;black&quot;,
+	length: &quot;short&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Short Brown Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	price: 0,
-	color: &quot;brown&quot;
+	color: &quot;brown&quot;,
+	length: &quot;short&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Short Blonde Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	price: 0,
-	color: &quot;blonde&quot;
+	color: &quot;blonde&quot;,
+	length: &quot;short&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Short Aubrun Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	price: 0,
-	color: &quot;aubrun&quot;
+	color: &quot;aubrun&quot;,
+	length: &quot;short&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Medium Black Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 15,
 	price: 0,
-	color: &quot;black&quot;
+	color: &quot;black&quot;,
+	length: &quot;medium&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Medium Brown Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 15,
 	price: 0,
-	color: &quot;brown&quot;
+	color: &quot;brown&quot;,
+	length: &quot;medium&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Medium Blonde Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 15,
 	price: 0,
-	color: &quot;blonde&quot;
+	color: &quot;blonde&quot;,
+	length: &quot;medium&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Medium Aubrun Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 15,
 	price: 0,
-	color: &quot;aubrun&quot;
+	color: &quot;aubrun&quot;,
+	length: &quot;medium&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Long Black Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 20,
 	price: 0,
-	color: &quot;black&quot;
+	color: &quot;black&quot;,
+	length: &quot;long&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Long Brown Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 20,
 	price: 0,
-	color: &quot;brown&quot;
+	color: &quot;brown&quot;,
+	length: &quot;long&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Long Blonde Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 20,
 	price: 0,
-	color: &quot;blonde&quot;
+	color: &quot;blonde&quot;,
+	length: &quot;long&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Wig&quot;, {
 	name: &quot;Long Aubrun Wig&quot;,
 	tags: [&quot;wig&quot;, &quot;equippable&quot;],
 	femininity: 20,
 	price: 0,
-	color: &quot;aubrun&quot;
+	color: &quot;aubrun&quot;,
+	length: &quot;long&quot;
 }, 1)&gt;&gt;
 
 &lt;&lt;= $shop.addItem(&quot;Underwear&quot;, {
@@ -4489,6 +4512,30 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	},
 	&quot;DaughterAcceptance2&quot; : function() {
 		return $daughter.appreciation == 2
+	}
+}&gt;&gt;
+
+&lt;&lt;set $npcLike to {
+	&quot;Blonde&quot; : function () {
+		return $player.getHairColor === &quot;blonde&quot;;
+	},
+	&quot;Brunette&quot; : function() {
+		return $player.getHairColor === &quot;brown&quot;;
+	},
+	&quot;Black&quot; : function() {
+		return $player.getHairColor === &quot;black&quot;;
+	},
+	&quot;Aubrun&quot; : function() {
+		return $player.getHairColor === &quot;aubrun&quot;;
+	},
+	&quot;ShortHairs&quot; : function() {
+		return $player.getHairLength === &quot;short&quot;;
+	},
+	&quot;MediumHairs&quot; : function() {
+		return $player.getHairLength === &quot;medium&quot;;
+	},
+	&quot;LongHairs&quot; : function() {
+		return $player.getHairLength === &quot;long&quot;;
 	}
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="StoryInit" tags="nodebug" position="100,1600" size="100,100">&lt;&lt;set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})&gt;&gt;
 

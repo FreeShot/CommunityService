@@ -20,84 +20,96 @@
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	price: 0,
-	color: "black"
+	color: "black",
+	length: "short"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Short Brown Wig",
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	price: 0,
-	color: "brown"
+	color: "brown",
+	length: "short"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Short Blonde Wig",
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	price: 0,
-	color: "blonde"
+	color: "blonde",
+	length: "short"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Short Aubrun Wig",
 	tags: ["wig", "equippable"],
 	femininity: 10,
 	price: 0,
-	color: "aubrun"
+	color: "aubrun",
+	length: "short"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Medium Black Wig",
 	tags: ["wig", "equippable"],
 	femininity: 15,
 	price: 0,
-	color: "black"
+	color: "black",
+	length: "medium"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Medium Brown Wig",
 	tags: ["wig", "equippable"],
 	femininity: 15,
 	price: 0,
-	color: "brown"
+	color: "brown",
+	length: "medium"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Medium Blonde Wig",
 	tags: ["wig", "equippable"],
 	femininity: 15,
 	price: 0,
-	color: "blonde"
+	color: "blonde",
+	length: "medium"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Medium Aubrun Wig",
 	tags: ["wig", "equippable"],
 	femininity: 15,
 	price: 0,
-	color: "aubrun"
+	color: "aubrun",
+	length: "medium"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Long Black Wig",
 	tags: ["wig", "equippable"],
 	femininity: 20,
 	price: 0,
-	color: "black"
+	color: "black",
+	length: "long"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Long Brown Wig",
 	tags: ["wig", "equippable"],
 	femininity: 20,
 	price: 0,
-	color: "brown"
+	color: "brown",
+	length: "long"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Long Blonde Wig",
 	tags: ["wig", "equippable"],
 	femininity: 20,
 	price: 0,
-	color: "blonde"
+	color: "blonde",
+	length: "long"
 }, 1)>>
 <<= $shop.addItem("Wig", {
 	name: "Long Aubrun Wig",
 	tags: ["wig", "equippable"],
 	femininity: 20,
 	price: 0,
-	color: "aubrun"
+	color: "aubrun",
+	length: "long"
 }, 1)>>
 
 <<= $shop.addItem("Underwear", {

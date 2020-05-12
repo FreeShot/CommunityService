@@ -46,3 +46,27 @@
 		return $daughter.appreciation == 2
 	}
 }>>
+
+<<set $npcLike to {
+	"Blonde" : function () {
+		return $player.getHairColor === "blonde";
+	},
+	"Brunette" : function() {
+		return $player.getHairColor === "brown";
+	},
+	"Black" : function() {
+		return $player.getHairColor === "black";
+	},
+	"Aubrun" : function() {
+		return $player.getHairColor === "aubrun";
+	},
+	"ShortHairs" : function() {
+		return $player.getHairLength === "short";
+	},
+	"MediumHairs" : function() {
+		return $player.getHairLength === "medium";
+	},
+	"LongHairs" : function() {
+		return $player.getHairLength === "long";
+	}
+}>>

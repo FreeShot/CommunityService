@@ -21,7 +21,10 @@ function createNPC() {
     values["title"] += " " + lastName;
 
     values["age"] = Math.floor(Math.random() * 30) + 20;
-    values["appreciation"] = Math.floor(Math.random() * 50) - 10; 
+
+    values["like"] = Object.keys(State.variables.npcLike).filter(function(el) {
+        return Math.random() < 2 / (Object.keys(State.variables.npcLike).length);
+    });
 
     values["color"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
@@ -267,6 +270,14 @@ class Player extends Character {
         this.voice.absolute += amnt.abs;
     }
 
+    get getHairColor() {
+        return this.isHidden("hair") ? this.inv.filter(["wig", "equipped"]).color : this.getDesc("hairColor");
+    }
+
+    get getHairLength() {
+        return this.isHidden("hair") ? this.inv.filter(["wig", "equipped"]).length : this.getDesc("hairLength");
+    }
+
 	get getColor() {
 		if (this.voice.current / 10 > this.gradient.length - 1) {this.voice.current = 10 * this.gradient.length - 1;}
 		return this.gradient[Math.floor(this.voice.current / 10)];
@@ -312,7 +323,7 @@ class MinorNPC extends Character {
             this.color,
             this.gender,
             this.age,
-            this.appreciation,
+            this.like,
         );
     }
 
