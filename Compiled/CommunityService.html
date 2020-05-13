@@ -100,217 +100,48 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="131" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "body.css" */
-.hidden .NSFW{
-	display: none;
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="131" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
+	--story-bg: #E8DFDB;
+	--story-text: #19231A;
+	--ui-bg: #D8CBC7;
+	--ui-text: #33673B;
+	--link-color: #CC3F0C;
+	--link-hover-color: #8A2006;
 }
 
-#menu ul {
-	border: 0px;
-}
-
-#menu li:not(:first-child) {
-    border-top: 0px;
-    margin-top: 3px;
-}
-
-.estateRoom {
-	font-size: 4rem;
-}
-
-input[type="text"] {
-	min-width: 0px;
-}
-/* twine-user-stylesheet #2: "style.css" */
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Gotu&family=Permanent+Marker&family=Playfair+Display:wght@500&family=Roboto+Condensed:wght@300;400&display=swap');
-
-:root {
-	size: 16px;
-	--ui-background: #1C030E;
-	--ui-color: #F4A9CE;
-	--background: #1C030E;
-	--color: #EBD8E2;
-	--t8n-delay: .1s;
-}
-
-#story {
-	/*margin: 2rem 0rem;*/
-	color: var(--color);
+.theme-dark {
+	--story-bg: black;
+	--story-text: white;
+	--ui-bg: black;
+	--ui-text: white;
+	--link-color: red;
+	--link-hover-color: darkred;
 }
 
 body {
-	background-color: var(--background);
+	background-color: var(--story-bg);
+	color: var(--story-text);
+}
+
+#ui-bar {
+	background: var(--ui-bg);
+	color: var(--ui-text);
+}
+
+a {
+	color: var(--link-color);
+}
+
+a:hover {
+	color: var(--link-hover-color);
 }
 
 img {
 	max-width: 50%;
-	max-height: 300px;
+	max-height: 20em;
 	object-fit: contain;
 	border-radius: 15px;
 	border: solid 4px #5C2C41; 
-}
-
-.gameTitle {
-	position: center;
-	font-size: 200%;
-	font-family: 'Quicksand', sans-serif;
-	width: auto;
-}
-
-a.link-internal {
-	color: #EE0064;
-	padding: 4px;
-	border: solid 1px #40021C;
-	border-radius: 5px
-}
-
-a.link-internal:hover {
-	color: #8F003C;
-	text-decoration: underline;
-}
-
-div.warning {
-	background-color: #660335; 
-	border-radius: 15px;
-	border: dashed 3px #8E0248;
-	padding: 10px;
-	margin: 10px 0px 10px -15px;
-}
-
-#player-customisation-form {
-	background-color: #B76C93;
-	color: #1C030E;
-	border: dashed 3px #8E0248;
-	border-radius: 15px;
-	padding: 10px 10px 10px 10px;
-	margin: 10px;
-	font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
-}
-
-#player-customisation-form input {
-	background-color: #B76C93;
-	color: #1C030E;
-	font-family: 'Caveat', cursive;
-	font-size: 30px;
-	border-width: 1px;
-}
-
-#player-customisation-form input:hover {
-	background-color: #B76C93;
-	color: #1C030E;
-	font-family: 'Caveat', cursive;
-	font-size: 30px;
-	border-width: 1px;
-}
-
-#RuleTitle {
-	font-family: 'Gotu', sans-serif;
-	font-size: 30px;
-}
-
-.rules {
-	font-size: 20px;
-	font-family: 'Roboto Condensed', sans-serif;
-}
-/* twine-user-stylesheet #3: "ui.css" */
-#ui-bar {
-	/*position: fixed;
-	left: -15.5rem;*/
-	transition-delay: var(--t8n-delay);
-	background-color: var(--ui-background);
-	color: var(--ui-color);
-}
-
-/*#ui-bar:hover, #ui-bar.active {
-	left: 0rem;
-}
-
-#ui-bar-body {
-	visibility: visible;
-}	
-*/
-#ui-bar-history {
-	margin-top: .5em;
-	height: 32px;
-}
-
-#ui-bar-history > input[id|="history"]:not(:first-child) {
-	-ms-transform: scale(2);
-	-moz-transform: scale(2);
-	-webkit-transform: scale(2);
-	-o-transform: scale(2);
-	transform: scale(2);
-
-	margin-top: 8px;
-}
-
-#ui-bar-history [id|="history"] {
-	position: relative;
-	height: 32px;
-	width: 32px;
-
-	border-radius: 4px;
-	border-color: #62022C;
-}
-
-#ui-bar-history #history-pin {
-	background-color: #111111;
-}
-
-#ui-bar-history #history-pin.active {
-	background-color: #484848;
-}
-
-#story-title {
-	font-size: 2.5rem;
-	font-family: 'Quicksand', sans-serif;
-}
-
-#story-author {
-	font-weight: 400;
-	font-size: 1.15rem;
-	font-family: 'Baloo Thambi 2', cursive;
-}
-
-#ui-bar hr {
-	border-color: #F4A9CE;
-}
-
-.date {
-	font-size: 2rem;
-	font-family: 'Fira Code', monospace;
-}
-
-.time {
-	background-color: #4A1111;
-	color: #FF3D3D;
-	border: #FF3D3D 2px solid;
-
-	font-size: 3rem;
-	font-family: 'Squada One', cursive;
-	
-	border-radius: 5px;
-	padding: 2px 7px; 
-}
-
-#cuff-button {
-	color: #FFDEEA;
-	padding: 5px 30px 5px;
-	margin: 5px 5px 5px;
-	border: solid 1px #FFDEEA;
-	border-radius: 5px;
-	font-size: 50px;
-	font-family: 'Share Tech Mono', monospace;
-}
-
-#cuff-button > a {
-	border: solid 1px #CE7298;
-	text-decoration: none;
-	padding: 2px 20px 2px;
-	margin: 8px 5px 8px;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "character.js" */
 function createNPC() {
     var values = {};
@@ -342,8 +173,8 @@ function createNPC() {
 
     values["appreciation"] = 0;
 
-    values["color"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-
+    values["color"]["light"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    values["color"]["dark"] = values["color"]["light"];
     return values;
 }
 
@@ -353,7 +184,7 @@ class Character {
 		this.name = '';
 		this.title = '';
 		this.currentRoom = '';
-		this.color = '';
+		this.color = {};
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -361,8 +192,12 @@ class Character {
 	}
 
 	speak(text) {
-		return Character.speakAnonymous(text, this.color);
+		return Character.speakAnonymous(text, this.colorTheme);
 	}
+
+    get colorTheme() {
+        return settings.theme === "theme-dark" ? this.color["dark"] : this.color["light"];
+    }
 
 	static speakAnonymous(text, color) {
 		return String.format(
@@ -2021,6 +1856,35 @@ Setting.addList("inventoryRows", {
 	default  : 5
 });
 
+// Setting up a list control for the settings property 'theme' w/ callbacks
+var settingThemeHandler = function () {
+	// cache the jQuery-wrapped <html> element
+	var $html = $("html");
+
+	// remove any existing theme class
+	$html.removeClass("theme-dark theme-light");
+
+	// switch on the theme name to add the requested theme class
+	switch (settings.theme) {
+	case "theme-dark":
+		$html.addClass("theme-dark");
+		break;
+	case "theme-light":
+		$html.addClass("theme-light");
+		break;
+	default:
+		$html.addClass("theme-dark");
+		break;
+	}
+};
+Setting.addList("theme", {
+	label    : "Choose a theme.",
+	list     : ["theme-dark", "theme-light"],
+	default  : "theme-dark",
+	onInit   : settingThemeHandler,
+	onChange : settingThemeHandler
+}); // default value not defined, so the first array member "(none)" is used
+
 
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
 Setting.addToggle("nsfw", {
@@ -3589,7 +3453,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="characterInit" tags="init" position="850,1475" size="100,100">&lt;&lt;set $player to new Player({})&gt;&gt;
 &lt;!--  NPC  --&gt;
 
-&lt;&lt;set $owner to new NPC({name: &quot;Mr Sono&quot;, color: &quot;Brown&quot;, title: &quot;Sir&quot;, schedule: [
+&lt;&lt;set $owner to new NPC({
+	name: &quot;Mr Sono&quot;, 
+	color: {
+		light: &quot;#2C302E&quot;, 
+		dark: &quot;#555958&quot;
+	}, 
+	title: &quot;Sir&quot;, 
+	schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;MasterBdRm&quot;, 
@@ -3618,7 +3489,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $wife to new NPC({name: &quot;Mrs Sono&quot;, givenName: &quot;Maria&quot;, color: &quot;MediumOrchid&quot;, title: &quot;Ma&#39;am&quot;, schedule: [
+&lt;&lt;set $wife to new NPC({
+	name: &quot;Mrs Sono&quot;,
+	color: {
+		light: &quot;#621708&quot;, 
+		dark: &quot;#81412F&quot;
+	}, 
+	title: &quot;Ma&#39;am&quot;, 
+	schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;MasterBdRm&quot;, 
@@ -3647,7 +3525,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $daughter to new NPC({name: &quot;Angeline&quot;, color: &quot;DarkSalmon&quot;, title: &quot;Ms Sono&quot;, schedule: [
+&lt;&lt;set $daughter to new NPC({
+	name: &quot;Angeline&quot;, 
+	color: {
+		light: &quot;#D0918A&quot;, 
+		dark: &quot;#D0918A&quot;
+	}, 
+	title: &quot;Ms Sono&quot;, 
+	schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;DaughterBdRm&quot;, 
@@ -3686,7 +3571,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $son to new NPC({name: &quot;Mr Sono&quot;, color: &quot;LightGreen&quot;, title: &quot;Mr Sono&quot;, schedule: [
+&lt;&lt;set $son to new NPC({
+	name: &quot;Mr Sono&quot;, 
+	color: {
+		light: &quot;#69A8AD&quot;, 
+		dark: &quot;#69A8AD&quot;
+	}, 
+	title: &quot;Mr Sono&quot;, 
+	schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;SonBdRm&quot;, 
@@ -3695,7 +3587,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $butler to new NPC({name: &quot;Mr Benson&quot;, color: &quot;#7DA231&quot;, title: &quot;Mr Benson&quot;, schedule: [
+&lt;&lt;set $butler to new NPC({
+	name: &quot;Mr Benson&quot;, 
+	color: {
+		light: &quot;#634669&quot;, 
+		dark: &quot;#634669&quot;
+	}, 
+	title: &quot;Mr Benson&quot;, 
+	schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;Kitchen&quot;, 
@@ -3709,7 +3608,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $cook to new NPC({name: &quot;Ivan&quot;, color: &quot;DarkKhaki&quot;, title: &quot;Cook&quot;, schedule: [
+&lt;&lt;set $cook to new NPC({
+	name: &quot;Ivan&quot;, 
+	color: {
+		light: &quot;#E2B05D&quot;, 
+		dark: &quot;#F6C467&quot;
+	}, 
+	title: &quot;Cook&quot;, 
+	schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;Kitchen&quot;, 
@@ -3718,7 +3624,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $gardner to new NPC({name: &quot;Juan&quot;, color: &quot;Sienna&quot;, title: &quot;Juan&quot;, schedule: [
+&lt;&lt;set $gardner to new NPC({
+	name: &quot;Juan&quot;, 
+	color: {
+		light: &quot;#00916E&quot;, 
+		dark: &quot;#00916E&quot;
+	}, 
+	title: &quot;Juan&quot;, 
+	schedule: [
 	{
 		days: [&quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;], 
 		location: &quot;Garden&quot;, 
@@ -3733,9 +3646,21 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="116
 	}
 ]})&gt;&gt;
 
-&lt;&lt;set $caterer to new NPC({name: &quot;Mason&quot;, color: &quot;MediumSpringGreen&quot;, title: &quot;Chef&quot;})&gt;&gt;
+&lt;&lt;set $caterer to new NPC({
+	name: &quot;Mason&quot;, 
+	color: {
+		light: &quot;#EE6123&quot;, 
+		dark: &quot;#EE6123&quot;
+	}, 
+	title: &quot;Chef&quot;})&gt;&gt;
 
-&lt;&lt;set $suitor to new NPC({name: &quot;Rick&quot;, color: &quot;#708090&quot;, title: &quot;Mr Stone&quot;})&gt;&gt;
+&lt;&lt;set $suitor to new NPC({
+	name: &quot;Rick&quot;, 
+	color: {
+		light: &quot;#D08816&quot;, 
+		dark: &quot;#D08816&quot;
+	}, 
+	title: &quot;Mr Stone&quot;})&gt;&gt;
 
 &lt;&lt;set $npcList to [
 	&quot;owner&quot;, 
@@ -5842,7 +5767,6 @@ Desk
 	
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;set _event to $mansion.checkSpecialEvents()&gt;&gt;
-&lt;&lt;= console.log(_event)&gt;&gt;
 &lt;&lt;if _event !== &quot;&quot;&gt;&gt;
 	&lt;&lt;= _event&gt;&gt;
 &lt;&lt;else&gt;&gt;

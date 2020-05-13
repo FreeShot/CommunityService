@@ -44,6 +44,35 @@ Setting.addList("inventoryRows", {
 	default  : 5
 });
 
+// Setting up a list control for the settings property 'theme' w/ callbacks
+var settingThemeHandler = function () {
+	// cache the jQuery-wrapped <html> element
+	var $html = $("html");
+
+	// remove any existing theme class
+	$html.removeClass("theme-dark theme-light");
+
+	// switch on the theme name to add the requested theme class
+	switch (settings.theme) {
+	case "theme-dark":
+		$html.addClass("theme-dark");
+		break;
+	case "theme-light":
+		$html.addClass("theme-light");
+		break;
+	default:
+		$html.addClass("theme-dark");
+		break;
+	}
+};
+Setting.addList("theme", {
+	label    : "Choose a theme.",
+	list     : ["theme-dark", "theme-light"],
+	default  : "theme-dark",
+	onInit   : settingThemeHandler,
+	onChange : settingThemeHandler
+}); // default value not defined, so the first array member "(none)" is used
+
 
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
 Setting.addToggle("nsfw", {

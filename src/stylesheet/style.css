@@ -1,93 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Fira+Code&family=Quicksand&family=Squada+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gotu&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Julius+Sans+One&family=Share+Tech+Mono&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Gotu&family=Permanent+Marker&family=Playfair+Display:wght@500&family=Roboto+Condensed:wght@300;400&display=swap');
-
-:root {
-	size: 16px;
-	--ui-background: #1C030E;
-	--ui-color: #F4A9CE;
-	--background: #1C030E;
-	--color: #EBD8E2;
-	--t8n-delay: .1s;
+.theme-light {
+	--story-bg: #E8DFDB;
+	--story-text: #19231A;
+	--ui-bg: #D8CBC7;
+	--ui-text: #33673B;
+	--link-color: #CC3F0C;
+	--link-hover-color: #8A2006;
 }
 
-#story {
-	/*margin: 2rem 0rem;*/
-	color: var(--color);
+.theme-dark {
+	--story-bg: black;
+	--story-text: white;
+	--ui-bg: black;
+	--ui-text: white;
+	--link-color: red;
+	--link-hover-color: darkred;
 }
 
 body {
-	background-color: var(--background);
+	background-color: var(--story-bg);
+	color: var(--story-text);
+}
+
+#ui-bar {
+	background: var(--ui-bg);
+	color: var(--ui-text);
+}
+
+a {
+	color: var(--link-color);
+}
+
+a:hover {
+	color: var(--link-hover-color);
 }
 
 img {
 	max-width: 50%;
-	max-height: 300px;
+	max-height: 20em;
 	object-fit: contain;
 	border-radius: 15px;
 	border: solid 4px #5C2C41; 
-}
-
-.gameTitle {
-	position: center;
-	font-size: 200%;
-	font-family: 'Quicksand', sans-serif;
-	width: auto;
-}
-
-a.link-internal {
-	color: #EE0064;
-	padding: 4px;
-	border: solid 1px #40021C;
-	border-radius: 5px
-}
-
-a.link-internal:hover {
-	color: #8F003C;
-	text-decoration: underline;
-}
-
-div.warning {
-	background-color: #660335; 
-	border-radius: 15px;
-	border: dashed 3px #8E0248;
-	padding: 10px;
-	margin: 10px 0px 10px -15px;
-}
-
-#player-customisation-form {
-	background-color: #B76C93;
-	color: #1C030E;
-	border: dashed 3px #8E0248;
-	border-radius: 15px;
-	padding: 10px 10px 10px 10px;
-	margin: 10px;
-	font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
-}
-
-#player-customisation-form input {
-	background-color: #B76C93;
-	color: #1C030E;
-	font-family: 'Caveat', cursive;
-	font-size: 30px;
-	border-width: 1px;
-}
-
-#player-customisation-form input:hover {
-	background-color: #B76C93;
-	color: #1C030E;
-	font-family: 'Caveat', cursive;
-	font-size: 30px;
-	border-width: 1px;
-}
-
-#RuleTitle {
-	font-family: 'Gotu', sans-serif;
-	font-size: 30px;
-}
-
-.rules {
-	font-size: 20px;
-	font-family: 'Roboto Condensed', sans-serif;
 }

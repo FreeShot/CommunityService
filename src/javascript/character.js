@@ -28,8 +28,8 @@ function createNPC() {
 
     values["appreciation"] = 0;
 
-    values["color"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-
+    values["color"]["light"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    values["color"]["dark"] = values["color"]["light"];
     return values;
 }
 
@@ -39,7 +39,7 @@ class Character {
 		this.name = '';
 		this.title = '';
 		this.currentRoom = '';
-		this.color = '';
+		this.color = {};
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -47,8 +47,12 @@ class Character {
 	}
 
 	speak(text) {
-		return Character.speakAnonymous(text, this.color);
+		return Character.speakAnonymous(text, this.colorTheme);
 	}
+
+    get colorTheme() {
+        return settings.theme === "theme-dark" ? this.color["dark"] : this.color["light"];
+    }
 
 	static speakAnonymous(text, color) {
 		return String.format(

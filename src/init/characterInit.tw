@@ -3,7 +3,14 @@
 <<set $player to new Player({})>>
 <!--  NPC  -->
 
-<<set $owner to new NPC({name: "Mr Sono", color: "Brown", title: "Sir", schedule: [
+<<set $owner to new NPC({
+	name: "Mr Sono", 
+	color: {
+		light: "#2C302E", 
+		dark: "#555958"
+	}, 
+	title: "Sir", 
+	schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "MasterBdRm", 
@@ -32,7 +39,14 @@
 	}
 ]})>>
 
-<<set $wife to new NPC({name: "Mrs Sono", givenName: "Maria", color: "MediumOrchid", title: "Ma'am", schedule: [
+<<set $wife to new NPC({
+	name: "Mrs Sono",
+	color: {
+		light: "#621708", 
+		dark: "#81412F"
+	}, 
+	title: "Ma'am", 
+	schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "MasterBdRm", 
@@ -61,7 +75,14 @@
 	}
 ]})>>
 
-<<set $daughter to new NPC({name: "Angeline", color: "DarkSalmon", title: "Ms Sono", schedule: [
+<<set $daughter to new NPC({
+	name: "Angeline", 
+	color: {
+		light: "#D0918A", 
+		dark: "#D0918A"
+	}, 
+	title: "Ms Sono", 
+	schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "DaughterBdRm", 
@@ -100,7 +121,14 @@
 	}
 ]})>>
 
-<<set $son to new NPC({name: "Mr Sono", color: "LightGreen", title: "Mr Sono", schedule: [
+<<set $son to new NPC({
+	name: "Mr Sono", 
+	color: {
+		light: "#69A8AD", 
+		dark: "#69A8AD"
+	}, 
+	title: "Mr Sono", 
+	schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "SonBdRm", 
@@ -109,7 +137,14 @@
 	}
 ]})>>
 
-<<set $butler to new NPC({name: "Mr Benson", color: "#7DA231", title: "Mr Benson", schedule: [
+<<set $butler to new NPC({
+	name: "Mr Benson", 
+	color: {
+		light: "#634669", 
+		dark: "#634669"
+	}, 
+	title: "Mr Benson", 
+	schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Kitchen", 
@@ -123,7 +158,14 @@
 	}
 ]})>>
 
-<<set $cook to new NPC({name: "Ivan", color: "DarkKhaki", title: "Cook", schedule: [
+<<set $cook to new NPC({
+	name: "Ivan", 
+	color: {
+		light: "#E2B05D", 
+		dark: "#F6C467"
+	}, 
+	title: "Cook", 
+	schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Kitchen", 
@@ -132,7 +174,14 @@
 	}
 ]})>>
 
-<<set $gardner to new NPC({name: "Juan", color: "Sienna", title: "Juan", schedule: [
+<<set $gardner to new NPC({
+	name: "Juan", 
+	color: {
+		light: "#00916E", 
+		dark: "#00916E"
+	}, 
+	title: "Juan", 
+	schedule: [
 	{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Garden", 
@@ -147,9 +196,21 @@
 	}
 ]})>>
 
-<<set $caterer to new NPC({name: "Mason", color: "MediumSpringGreen", title: "Chef"})>>
+<<set $caterer to new NPC({
+	name: "Mason", 
+	color: {
+		light: "#EE6123", 
+		dark: "#EE6123"
+	}, 
+	title: "Chef"})>>
 
-<<set $suitor to new NPC({name: "Rick", color: "#708090", title: "Mr Stone"})>>
+<<set $suitor to new NPC({
+	name: "Rick", 
+	color: {
+		light: "#D08816", 
+		dark: "#D08816"
+	}, 
+	title: "Mr Stone"})>>
 
 <<set $npcList to [
 	"owner", 
