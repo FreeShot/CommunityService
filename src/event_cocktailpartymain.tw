@@ -54,33 +54,178 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 ::mansionCPartyInit [event nobr]
 <<silently>>
 /* Used to generate npcs and other stuff needed for the party */
+<<if !$eventInfo>>
 <<set $eventInfo to {
 	npc: [],
 	score: 0,
 	stage: 5,
 	microEventCount: 2,
 	events: [
-		{name: "NAME", passage: "PASSAGE"},
-		{name: "NAME2", passage: "PASSAGE2"},
+		{name: "Serve the group of people", passage: "mansionCPartyStaring01"},
+		{name: "Serve the lady on the lounge", passage: "mansionCPartyStaring02"},
+		{name: "Serve a man in the back", passage: "mansionCPartyGroping01"},
+		{name: "Go refill your tray", passage: "mansionCPartyCage01"},
+		{name: "Go refill your tray", passage: "mansionCPartyCage02"}
 	]
 }>>
 <<for _i = 0; _i < 5; _i++>>
 <<= $eventInfo.npc.push(generateNPC(_i))>>
 <</for>>
-
+<</if>>
 <</silently>>
 
 ::mansionCPartyServing01 [event]
 <<include mansionCPartyInit>>\
-<<for _i range $eventInfo.npc>>
-<<= $minorNPC[_i].info()>>
-<</for>>
+<h1>At the party</h1>
 
 <<if $eventInfo.stage === 0>>
 [[Finish the party|mansionCPartyFinish01]]
 <<else>>
-<<set _microEvent to $eventInfo.events.randomMany($eventInfo.microEventCount)>>\
-<<for _event range _microEvent>>
+<<for _event range $eventInfo.events.randomMany($eventInfo.microEventCount)>>
 <<link _event.name _event.passage>><<= $eventInfo.stage-->><</link>>
 <</for>>
 <</if>>
+
+::mansionCPartyStaring01 [event]
+
+While moving about you get stopped by one of the groups who happily clear the rest of the finger food from your tray. You catch one of them looking strait at your chest. You're a little flushed from all the walking so it has a nice pink hue just above the blouse. His eyes meet yours and he smiles warmly and tips his glass to you.
+
+You quickly move away to escape his gaze.
+
+[[Back to serving|mansionCPartyServing01]]
+
+::mansionCPartyStaring02 [event]
+
+You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
+
+<<= Character.speakAnonymous("Thank you so much. You must tell me how you keep your skin so soft.")>> She caresses your arm for a few seconds longer. <<= Character.speakAnonymous("It's like touching silk.")>>
+
+<<= $player.speak("Um, thank you.")>>
+
+You politely pull away and hurry back to the bar to pick up some more drinks.
+
+[[Back to serving|mansionCPartyServing01]]
+
+::mansionCPartyGroping01 [event]
+
+As you turn away to retrieve the man's drink you feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
+
+<<nobr>>
+<span id="cpartygroping01">
+	<<link "Defend yourself.">>
+		<<replace "#cpartygroping01">>
+			<<= $player.speak("Ow! Hands to yourself.")>><br>
+			<br>
+			The man looks surprised at your reaction as you slap his hand away. Some of the guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else.<br>
+			<br>
+			The man is staring at you with the barest hint of alarm.<br>
+			<br>
+			<span id="cpartygroping01">
+				<<link "Apologise.">>
+					<<replace "#cpartygroping01">>
+						You swallow and say. <<= $player.speak("Sorry sir. You startled me is all.")>><br>
+						<br>
+						<<= Character.speakAnonymous("Not a problem.")>> The man smiles smugly. <<= Character.speakAnonymous("Now fetch my drink like a good girl.")>> He gives you another quick slap on the butt and sends you on your way.
+						<br><br>
+						[[Back to serving|mansionCPartyServing01]]
+					<</replace>>
+				<</link>><br>
+				<<link "No way you're apologising.">>
+					<<replace "#cpartygroping01">>
+							You stare at $wife.name for a moment and then simply turn around and walk away. You still retrieve the man's drink but you'll be damned if you're apologising to the groper.
+							<br><br>
+							[[Back to serving|mansionCPartyServing01]]
+					<</replace>>
+				<</link>>
+			</span>
+		<</replace>>
+	<</link>>
+</span><</nobr>>
+
+::mansionCPartyCage01 [event]
+
+$caterer.name pushes forward a fresh tray for you to collect.
+
+<<= $caterer.speak("Come on girl.")>>
+
+You lean forward to grab it and your hips bump against the counter. You gasp as the plastic cage is pushed into your crotch reminding you of your current situation down there. It gets shifted into an uncomfortable position.
+
+<<nobr>>
+<span id="cpartycage01">
+	<<link "Reach down to adjust yourself.">>
+		<<replace "#cpartycage01">>
+			<<= $caterer.speak("What the hell are you doing?")>> Caterer flicks out his arm and slaps your hand with a utensil and then hisses in a low voice. <<= $caterer.speak("Guests don't want to see you playing with yourself before taking out their food.")>>
+
+			You take the tray and walk out of the kitchen. Your restrain member twitches in the cage as it twist and pokes in an uncomfortable position. You'll just have to deal with it for now.
+			<br><br>
+			[[Back to serving|mansionCPartyServing01]]
+		<</replace>>
+	<</link>><br>
+	<<link "Try and ignore it.">>
+		<<replace "#cpartycage01">>
+			You take a moment to collect yourself, your twitching member straining against its plastic prison.
+			<br><br>
+			[[Back to serving|mansionCPartyServing01]]
+		<</replace>>
+	<</link>>
+</span><</nobr>>
+
+::mansionCPartyCage02 [event]
+
+You're on your way back to the kitchen to refill your tray. As you pass between two guests one of them laughs loudly and tilts back forcing you to dodge them. Unfortunately you bump into the other guest. Worse still your hips press up against theirs and you feel the hard plastic of your chastity cage pressing against their thigh.
+
+You pull back and fix you skirt before apologising. The person just looks down to your skirt and then back up before giving you a knowing wink.
+
+You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before excusing yourself.
+
+[[Back to serving|mansionCPartyServing01]]
+
+::mansionCPartyFinish01 [event]
+Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It's very late and after the nights work you are definitely ready for bed.
+
+[[Head to your room|mansionCPartyIntro28][$time.setDate({hour:1, minute:30})]]
+
+::mansionCPartyReview01 [event]
+Your score base: <<= $eventInfo.score>>
+<<set $eventInfo.score = Math.floor($eventInfo.score * (1 + $caterer.appreciation / 100))>>\
+Your score final: <<= $eventInfo.score>>
+
+Good
+<<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
+
+Bad
+<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>>
+
+$wife.name pulls out a key and starts twirling it on her finger.
+
+<<= $wife.speak("What do you think?")>>
+
+<<= $player.speak("Please $wife.title. I would like it off.")>>
+
+She waits for an uncomfortable minute just teasing you with the key to you’re your trapped penis spinning in front of you. You look at it longingly, if anything just to have the uncomfortable cage removed.
+ 
+<<= $wife.speak("Oh fine.")>> She flicks you the key and gestures to one of the nearby cushions. You place the uniform there and wait for her to leave.
+
+She doesn't, and time draws out as $wife.name stands there looking at you thoughtfully, her gaze wandering over your body, taking in every part of it before pausing on your crotch. As if reacting on it's own your trapped member throbs against it's confinement, forcing you to shift uncomfortably.
+
+<<= $player.speak("Is there anything else you need $wife.title?")>>
+
+Her eyes still linger on your hips for a moment before quickly shooting up to meet your gaze. $wife.name's piercing eyes seem to bore into you. You can't help but look away.
+
+<<= $wife.speak("You know what. Given how everyone enjoyed having such a lovley and well presented young lady ath their beck and call I think we might make some changes to the rules.")>>
+
+Your eyes return to her face, smiling smugly and knowing you are at her mercy.
+
+<<= $wife.speak("AL? Update the rules so $player.name here must assist $caterer.name for my bi-weekly gatherings. In full costume of course.")>>
+
+Your [[CUFF]] beeps as the rules get updated.
+
+$wife.name heads to the bathroom. <<= $wife.speak("A lot of people commented on having a beauty like you under our care. We can't disappoint your admirers now can we?")>>
+ 
+<<= $player.speak("<i>As if I have a choice you f...</i>")>>
+ 
+<<= $wife.speak("Leave your little toy on the cushion. You never know when I might need it again.")>>
+ 
+She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can't help but think how pathetic your small member looks after being compressed by the cage for so long.
+ 
+You leave the items on a cushion and then head <<link "back to your room." "PlayerBdRm">><<= $mansion.endEvent()>><< $eventInfo = undefined>><</link>>
