@@ -54,15 +54,33 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 ::mansionCPartyInit [event nobr]
 <<silently>>
 /* Used to generate npcs and other stuff needed for the party */
-<<set $eventNPC to []>>
+<<set $eventInfo to {
+	npc: [],
+	score: 0,
+	stage: 5,
+	microEventCount: 2,
+	events: [
+		{name: "NAME", passage: "PASSAGE"},
+		{name: "NAME2", passage: "PASSAGE2"},
+	]
+}>>
 <<for _i = 0; _i < 5; _i++>>
-<<= $eventNPC.push(generateNPC(_i))>>
+<<= $eventInfo.npc.push(generateNPC(_i))>>
 <</for>>
 
 <</silently>>
 
 ::mansionCPartyServing01 [event]
 <<include mansionCPartyInit>>\
-<<for _i range $eventNPC>>
+<<for _i range $eventInfo.npc>>
 <<= $minorNPC[_i].info()>>
 <</for>>
+
+<<if $eventInfo.stage === 0>>
+[[Finish the party|mansionCPartyFinish01]]
+<<else>>
+<<set _microEvent to $eventInfo.events.randomMany($eventInfo.microEventCount)>>\
+<<for _event range _microEvent>>
+<<link _event.name _event.passage>><<= $eventInfo.stage-->><</link>>
+<</for>>
+<</if>>

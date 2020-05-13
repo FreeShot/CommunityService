@@ -3170,15 +3170,33 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 
 [[mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="93" name="mansionCPartyInit" tags="event nobr" position="350,1225" size="100,100">&lt;&lt;silently&gt;&gt;
 /* Used to generate npcs and other stuff needed for the party */
-&lt;&lt;set $eventNPC to []&gt;&gt;
+&lt;&lt;set $eventInfo to {
+	npc: [],
+	score: 0,
+	stage: 5,
+	microEventCount: 2,
+	events: [
+		{name: &quot;NAME&quot;, passage: &quot;PASSAGE&quot;},
+		{name: &quot;NAME2&quot;, passage: &quot;PASSAGE2&quot;},
+	]
+}&gt;&gt;
 &lt;&lt;for _i = 0; _i &lt; 5; _i++&gt;&gt;
-&lt;&lt;= $eventNPC.push(generateNPC(_i))&gt;&gt;
+&lt;&lt;= $eventInfo.npc.push(generateNPC(_i))&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
 &lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="mansionCPartyServing01" tags="event" position="475,1225" size="100,100">&lt;&lt;include mansionCPartyInit&gt;&gt;\
-&lt;&lt;for _i range $eventNPC&gt;&gt;
+&lt;&lt;for _i range $eventInfo.npc&gt;&gt;
 &lt;&lt;= $minorNPC[_i].info()&gt;&gt;
-&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="daughterDateSetup01" tags="" position="600,1225" size="100,100">&lt;&lt;set $daughterDateStart to true&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+
+&lt;&lt;if $eventInfo.stage === 0&gt;&gt;
+[[Finish the party|mansionCPartyFinish01]]
+&lt;&lt;else&gt;&gt;
+&lt;&lt;set _microEvent to $eventInfo.events.randomMany($eventInfo.microEventCount)&gt;&gt;\
+&lt;&lt;for _event range _microEvent&gt;&gt;
+&lt;&lt;link _event.name _event.passage&gt;&gt;&lt;&lt;= $eventInfo.stage--&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="daughterDateSetup01" tags="" position="600,1225" size="100,100">&lt;&lt;set $daughterDateStart to true&gt;&gt;
 
 &quot;So what would you like to do? We can…&quot;
 
