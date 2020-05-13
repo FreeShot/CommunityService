@@ -59,16 +59,17 @@ class Mansion {
 
 	removeEvent(roomID, eventName) {
 		if (roomID === "specialEvent") {
-			this.events = this.events.filter(function(em) {return em.name != eventName});
+			this.events = this.events.filter(function(em) {return em.name !== eventName});
 		} else {
-			this.findRoom(roomID).events.filter(function(em) {return em.name != eventName});
+			this.findRoom(roomID).events.filter(function(em) {return em.name !== eventName});
 		}
 	}
 
 	checkSpecialEvents() {
-		var str = "";
-		this.events.forEach(function (ev) {if (ev.active()) {;str += ev.playEvent()}});
-		return str;
+		return this.events.reduce(
+			function (str, ev) {
+				if (ev.active()) {str += ev.playEvent()}
+			}, 0);
 	}
 
 	resetChores() {
