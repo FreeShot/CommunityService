@@ -32,7 +32,7 @@
 }))>>
 
 <<= $mansion.addEvent("specialEvent", new Event({
-	name: "Before that though...",
+	name: "Time to get the cage off.",
 	passage: "therapistPathStart01",
 	inline: false,
 	repeats: false,

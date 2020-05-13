@@ -4,7 +4,7 @@ DEBUG
 
 <<link "Debug Skip Day">>
 	<<silently>>
-		<<include "wakeUp">>
+		<<= $time.setDate("wakeup")>>
 		<<goto `passage()`>>
 	<</silently>>
 <</link>>

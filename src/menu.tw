@@ -2,6 +2,8 @@
 
 <<link "Toggle debug (currently <<if $debug>>ON<<else>>OFF<</if>>)" `passage()`>><<= $debug = !$debug>><</link>>
 
+
+
 <<if !$flags.manorIntro>>
 <hr>
 <span class="date">$time.weekDayFormat

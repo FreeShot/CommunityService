@@ -349,6 +349,8 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 <</link>>\
 </span>
 
+[[mansionCPartyIntro14]]
+
 ::mansionCPartyIntro14 [event]
 You open your eyes to the weird feeling of <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
 
@@ -373,6 +375,8 @@ Before you move, $wife.name pulls you up and turns you arround.
 <<link "When you face the mirror your jaw almost hits the floor." "mansionCPartyIntro15">>
 <<= $player.inv.addItem($shop.getAsTemp("Black Stockings with garter belt"), 1, true)>>
 <</link>>
+
+[[mansionCPartyIntro15]]
 
 ::mansionCPartyIntro15 [event]
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_firstlook.jpg"]]

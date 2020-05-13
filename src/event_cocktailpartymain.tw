@@ -5,9 +5,41 @@
 <<set $previousFemininity to ($player.femininity += 1)>>
 <<set $player.femininity to 100>>
 
-To do: add truncated description of the player getting ready
+It’s Saturday and today is $wife.name’s bi-weekly party so it’s time for you to take your role as $player.femName.
 
-previousFemininity = $previousFemininity
+There are already several workers setting up for the event and you do your best to avoid them and head to the master bedroom. $wife.name is already waiting  with everything you need to get ready laid out in front of her. The pink chastity cage dangling in her hand.
+
+<<= $wife.speak("Time to get dressed $player.femName.")>>
+
+<<= $player.speak("Yes $wife.title.")>>
+
+[[Start getting ready|mansionCPartySetup02]]
+
+::mansionCPartySetup02
+
+Knowing waiting for $wife.name to leave is pointless you undress in front of her. She walks over, never breaking eye contact. You feel her slip the pink cage over your member and with a click the padlock is in place. It already feels uncomfortably tight.
+
+Next she hands you your black lace panties. You slide them up over your legs so the rest on your hips. The thin lace hardly does anything to conceal the cage underneath. Thank goodness you’ll be wearing a dress.
+
+$wife.name helps you with the rest of your outfit. The cincher, stockings and bra all go on first. She then provides a wig and does your make up. Finally you step into the dress and pull it up over your slim figure and put on shoes, bonnett and the choker.
+
+<<= $wife.speak("Now to restore that sweet sounding voice.")>>
+
+She hands you a bottle of tonic.
+
+[[Complete the transformation|mansionCPartySetup03]]
+
+::mansionCPartySetup03
+
+You down the sour smelling liquid. You wince at it burns going down.
+
+<<= $player.speak("Eh hem.")>> You clean your throat and the noise is decidely more feminine. Looks like you're $player.famName for now.
+
+<<= $wife.speak("Well $player.femName. Off you go.")>>
+
+<<= $player.speak("Yes $wife.title.")>>
+
+You turn and head towards the kitchen where $caterer.name has just arrived and is getting ready.
 
 [[mansionCPartyServing01]]
 
