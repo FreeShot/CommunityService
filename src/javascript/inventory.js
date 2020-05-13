@@ -100,10 +100,13 @@ class Inventory {
 	}
 
 	listItem(parent, wl, bl, displayName, canEquip) {
-		var str = String.format("{0} <ul>", displayName || this.name);
+		var str = String.format("{0} <table>", displayName || this.name);
 		var items = this.filter(wl, bl);
 		items.sort(ItemSorter);
-		items.forEach(function(el){
+		items.forEach(function(el, i){
+			if (i % settings.inventoryRows === 0){
+				str += "<tr>";
+			}
 			str += el.item.description(
 				el.count, 
 				parent !== undefined ?
@@ -117,8 +120,14 @@ class Inventory {
 				),
 				canEquip || true
 			);
+			if (i % settings.inventoryRows === settings.inventoryRows - 1){
+				str += "</tr>";
+			}
 		}, this);
-		return str + "</ul>";
+		if (items.length % settings.inventoryRows !== 0) {
+			str += "</tr>";
+		}
+		return str + "</table>";
 	}
 
 	buyItem(item, price, amount)

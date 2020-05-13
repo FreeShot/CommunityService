@@ -37,6 +37,14 @@ Setting.addList("remeberLastEvents", {
 });
 
 
+Setting.addHeader("Display");
+Setting.addList("inventoryRows", {
+	label    : "Number of rows in the inventory",
+	list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+	default  : 5
+});
+
+
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
 Setting.addToggle("nsfw", {
 	label    : "Displays NSFW images",

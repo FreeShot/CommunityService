@@ -48,7 +48,7 @@ She nods. <<= $wife.speak("This is satisfactory. See that you try and get things
 
 With that $wife.name turns around and leave you to your duties.
 
-:: wifeLoungeBossy01 [noreturn chore]
+:: wifeLoungeBossy02 [noreturn chore]
 
 Every now and then you have some diffuclty getting to get some of the high up areas. You're on you tip toes right now trying to get to one of these trouble spot when you hear a cough behind you.
 

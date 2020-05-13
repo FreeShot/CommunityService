@@ -12,11 +12,11 @@ class Item {
     }
 
     description(count, parent, canEquip) {
-        var str = "";
+        var str = String.format("<td class='itemDescription' id='{0}'>", this.name);
         if (this.img != null) {
             str += String.format("[img['{0}']]", setup.ImagePath + this.img);
         }
-        str += String.format("<li class='itemDescription' id='{0}'>{0} ", this.name);
+        str += String.format("{0} ", this.name);
         if (count != Infinity) {
             str += String.format(
                 "(Amnt: {0}) ",
@@ -67,7 +67,7 @@ class Item {
                 );
             }
         }
-        return str + "</li>";
+        return str + "</td>";
     }
 
     addTag(tag) {
