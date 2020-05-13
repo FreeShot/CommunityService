@@ -26,6 +26,8 @@ function createNPC() {
         return Math.random() < 2 / (Object.keys(State.variables.npcLike).length);
     });
 
+    values["appreciation"] = 0;
+
     values["color"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
     return values;
@@ -307,12 +309,20 @@ class MinorNPC extends Character {
     constructor() {
         var values = createNPC();
         while (State.variables.minorNPC.find(function(el) {
-            return el.name === values.name;
+            return el.title === values.title;
         })) {
             values = createNPC();
         }
 
         super(values);
+    }
+
+    getBonusPoint() {
+        var points = 0;
+        this.like.forEach(function(el, tag) {
+            points += State.variables.npcLike[el] ? 1 : 0;
+        });
+        return points;
     }
 
     info() {
