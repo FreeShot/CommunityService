@@ -3,17 +3,19 @@
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
 	--ui-text: #33673B;
+	--ui-border: #565857;
 	--link-color: #CC3F0C;
 	--link-hover-color: #8A2006;
 }
 
 .theme-dark {
-	--story-bg: black;
-	--story-text: white;
-	--ui-bg: black;
-	--ui-text: white;
-	--link-color: red;
-	--link-hover-color: darkred;
+	--story-bg: #090C02;
+	--story-text: #F0F7EE;
+	--ui-bg: #191A16;
+	--ui-text: #ACD5A1;
+	--ui-border: #339989;
+	--link-color: #E17A79;
+	--link-hover-color: #D15159;
 }
 
 body {
@@ -21,8 +23,22 @@ body {
 	color: var(--story-text);
 }
 
-#ui-bar {
+#ui-bar, 
+#ui-dialog-title, 
+#ui-dialog-body {
 	background: var(--ui-bg);
+	color: var(--ui-text);
+}
+
+#ui-dialog-body select, 
+#ui-dialog-body button,
+#ui-dialog-body.settings button[id|="setting-control"] {
+	background: var(--ui-bg);
+	color: var(--ui-text);
+	border-color: var(--ui-border);
+}
+
+#menu li a {
 	color: var(--ui-text);
 }
 
