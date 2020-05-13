@@ -104,6 +104,8 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
+	--ui-bg-hover: #C4B7B3;
+	--ui-bg-active: #7A6E6B;
 	--ui-text: #33673B;
 	--ui-border: #565857;
 	--link-color: #CC3F0C;
@@ -114,6 +116,8 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 	--story-bg: #090C02;
 	--story-text: #F0F7EE;
 	--ui-bg: #191A16;
+	--ui-bg-hover: #30312D;
+	--ui-bg-active: #5E5F5B;
 	--ui-text: #ACD5A1;
 	--ui-border: #339989;
 	--link-color: #E17A79;
@@ -139,6 +143,19 @@ body {
 	color: var(--ui-text);
 	border-color: var(--ui-border);
 }
+
+#ui-dialog-body select:hover, 
+#ui-dialog-body button:hover,
+#ui-dialog-body.settings button[id|="setting-control"]:hover {
+	background: var(--ui-bg-hover);
+}
+
+#ui-dialog-body button.enabled,
+#ui-dialog-body.settings button[id|="setting-control"].enabled {
+	background: var(--ui-bg-active);
+}
+
+
 
 #menu li a {
 	color: var(--ui-text);
@@ -1202,6 +1219,41 @@ Macro.add("debug-internal", {
 		return jQuery(this.output).wiki(str);
 	}
 });
+
+Macro.add("chooseOption", {
+	tags: ["option", "end"],
+	handler: function() {
+		if (this.payload.lenght === 0) {
+			return this.error("bad expression: this macro require at least one argument");
+		}
+		var end = "";
+		var id = Date.now();
+		if (this.payload[this.payload.length - 1].name == "end") {
+			end = this.payload.pop().contents;
+		}
+		console.log(this.payload);
+		var str = this.payload.reduce(function(str, p, i) {
+			if (i != 0 && p.name != "option") {
+				return "";
+			} else {
+				return str + String.format(
+					"<<link '{0}'>><<replace '#{1}'>>{2}{3}<</replace>><</link>><br>",
+					p.args[0],
+					id,
+					p.contents,
+					end
+				);
+			}
+		}, "");
+		if (str === "") {return this.error("One of the tags is invalid")}
+		console.log(str);
+		return $(this.output).wiki(String.format(
+			"<span id='{0}'>{1}</span>",
+			id,
+			str
+		));
+	}
+})
 /* twine-user-script #8: "mansion.js" */
 class Mansion {
 	constructor(config) {

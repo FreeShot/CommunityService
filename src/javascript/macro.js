@@ -77,3 +77,38 @@ Macro.add("debug-internal", {
 		return jQuery(this.output).wiki(str);
 	}
 });
+
+Macro.add("chooseOption", {
+	tags: ["option", "end"],
+	handler: function() {
+		if (this.payload.lenght === 0) {
+			return this.error("bad expression: this macro require at least one argument");
+		}
+		var end = "";
+		var id = Date.now();
+		if (this.payload[this.payload.length - 1].name == "end") {
+			end = this.payload.pop().contents;
+		}
+		console.log(this.payload);
+		var str = this.payload.reduce(function(str, p, i) {
+			if (i != 0 && p.name != "option") {
+				return "";
+			} else {
+				return str + String.format(
+					"<<link '{0}'>><<replace '#{1}'>>{2}{3}<</replace>><</link>><br>",
+					p.args[0],
+					id,
+					p.contents,
+					end
+				);
+			}
+		}, "");
+		if (str === "") {return this.error("One of the tags is invalid")}
+		console.log(str);
+		return $(this.output).wiki(String.format(
+			"<span id='{0}'>{1}</span>",
+			id,
+			str
+		));
+	}
+})

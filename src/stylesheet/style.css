@@ -2,6 +2,8 @@
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
+	--ui-bg-hover: #C4B7B3;
+	--ui-bg-active: #7A6E6B;
 	--ui-text: #33673B;
 	--ui-border: #565857;
 	--link-color: #CC3F0C;
@@ -12,6 +14,8 @@
 	--story-bg: #090C02;
 	--story-text: #F0F7EE;
 	--ui-bg: #191A16;
+	--ui-bg-hover: #30312D;
+	--ui-bg-active: #5E5F5B;
 	--ui-text: #ACD5A1;
 	--ui-border: #339989;
 	--link-color: #E17A79;
@@ -37,6 +41,19 @@ body {
 	color: var(--ui-text);
 	border-color: var(--ui-border);
 }
+
+#ui-dialog-body select:hover, 
+#ui-dialog-body button:hover,
+#ui-dialog-body.settings button[id|="setting-control"]:hover {
+	background: var(--ui-bg-hover);
+}
+
+#ui-dialog-body button.enabled,
+#ui-dialog-body.settings button[id|="setting-control"].enabled {
+	background: var(--ui-bg-active);
+}
+
+
 
 #menu li a {
 	color: var(--ui-text);
