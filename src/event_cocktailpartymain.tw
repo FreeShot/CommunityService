@@ -49,7 +49,7 @@ You down the sour smelling liquid. You wince at it burns going down.
 
 You turn and head towards the kitchen where $caterer.name has just arrived and is getting ready.
 
-[[mansionCPartyServing01]]
+[[Start serving at the party|mansionCPartyInit]]
 
 ::mansionCPartyInit [event nobr]
 <<silently>>
@@ -68,15 +68,18 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 		{name: "Go refill your tray", passage: "mansionCPartyCage02"}
 	]
 }>>
-<<for _i = 0; _i < 5; _i++>>
-<<= $eventInfo.npc.push(generateNPC(_i))>>
-<</for>>
 <</if>>
+<<= $eventInfo.npc = []>>
+<<for _i = 0; _i < settings.npcPerEvent; _i++>>
+<<= generateNPC($minorNPC, $eventInfo.npc)>>
+<</for>>
+<<goto "mansionCPartyServing01">>
 <</silently>>
 
 ::mansionCPartyServing01 [event]
-<<include mansionCPartyInit>>\
 <h1>At the party</h1>
+
+TODO: ADD GENERAL DESCRIPTION OF THE PARTY
 
 <<if $eventInfo.stage === 0>>
 [[Finish the party|mansionCPartyFinish01]]
@@ -190,10 +193,10 @@ Your score base: <<= $eventInfo.score>>
 <<set $eventInfo.score = Math.floor($eventInfo.score * (1 + $caterer.appreciation / 100))>>\
 Your score final: <<= $eventInfo.score>>
 
-Good
+GOOD
 <<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
 
-Bad
+BAD
 <<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>>
 
 $wife.name pulls out a key and starts twirling it on her finger.
@@ -228,4 +231,4 @@ $wife.name heads to the bathroom. <<= $wife.speak("A lot of people commented on 
  
 She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can't help but think how pathetic your small member looks after being compressed by the cage for so long.
  
-You leave the items on a cushion and then head <<link "back to your room." "PlayerBdRm">><<= $mansion.endEvent()>><< $eventInfo = undefined>><</link>>
+You leave the items on a cushion and then head <<link "back to your room." "PlayerBdRm">><<= $mansion.endEvent()>><<set $eventInfo to undefined>><</link>>

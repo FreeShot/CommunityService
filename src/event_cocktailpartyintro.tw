@@ -796,7 +796,7 @@ $daughter.name gives him another quick hug and moves to leave as guests start ar
 
 <<= $caterer.speak("Come on girl. You're up.")>> $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
 
-[[Begin serving|mansionCPartyServing01]]
+[[Begin serving|mansionCPartyInit]]
 
 ::mansionCPartyIntro28 [event]
 Exhausted from the busy night, your only thought are bathroom then bed. <<if HASKISSED>>Although the kiss still lingers on your mind.<</if>>

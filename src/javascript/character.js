@@ -365,11 +365,16 @@ Object.defineProperty(window, 'MinorNPC', {
     value : MinorNPC
 });
 
-window.generateNPC = function(id) {
-    if (settings.maxNPC > State.variables.minorNPC.length) {
-        State.variables.minorNPC.push(new MinorNPC());
-        return id;
+window.generateNPC = function(list, activeNPC) {
+    if (settings.maxNPC <= list.length || (list.length > 1 && Math.random() > 0.5)) {
+        var index = Math.floor(Math.random() * list.length);
+        if (!activeNPC.includes(index)){
+            activeNPC.push(index);
+        } else {
+            generateNPC(list, activeNPC);
+        }
     } else {
-        return Math.floor(Math.random() * State.variables.minorNPC.length);
+        list.push(new MinorNPC());
+        activeNPC.push(list.length);
     }
 }

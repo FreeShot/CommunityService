@@ -679,12 +679,17 @@ Object.defineProperty(window, 'MinorNPC', {
     value : MinorNPC
 });
 
-window.generateNPC = function(id) {
-    if (settings.maxNPC > State.variables.minorNPC.length) {
-        State.variables.minorNPC.push(new MinorNPC());
-        return id;
+window.generateNPC = function(list, activeNPC) {
+    if (settings.maxNPC <= list.length || (list.length > 1 && Math.random() > 0.5)) {
+        var index = Math.floor(Math.random() * list.length);
+        if (!activeNPC.includes(index)){
+            activeNPC.push(index);
+        } else {
+            generateNPC(list, activeNPC);
+        }
     } else {
-        return Math.floor(Math.random() * State.variables.minorNPC.length);
+        list.push(new MinorNPC());
+        activeNPC.push(list.length);
     }
 }
 /* twine-user-script #2: "chore.js" */
@@ -1968,6 +1973,11 @@ Setting.addList("maleNPC", {
 	list: [0, 0.25, 0.5, 0.75, 1],
 	default: 0.5
 });
+Setting.addList("npcPerEvent", {
+	label: "Number of npc per events.",
+	list: [5, 6, 7, 8, 9, 10],
+	default: 5
+});
 
 
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
@@ -3054,7 +3064,7 @@ $daughter.name gives him another quick hug and moves to leave as guests start ar
 
 &lt;&lt;= $caterer.speak(&quot;Come on girl. You&#39;re up.&quot;)&gt;&gt; $caterer.name pushes a tray forward and you quickly take it and leave to start serving the new arrivals.
 
-[[Begin serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="84" name="mansionCPartyIntro28" tags="event" position="475,1100" size="100,100">Exhausted from the busy night, your only thought are bathroom then bed. &lt;&lt;if HASKISSED&gt;&gt;Although the kiss still lingers on your mind.&lt;&lt;/if&gt;&gt;
+[[Begin serving|mansionCPartyInit]]</tw-passagedata><tw-passagedata pid="84" name="mansionCPartyIntro28" tags="event" position="475,1100" size="100,100">Exhausted from the busy night, your only thought are bathroom then bed. &lt;&lt;if HASKISSED&gt;&gt;Although the kiss still lingers on your mind.&lt;&lt;/if&gt;&gt;
 
 You head to the bathroom and quickly do a double take at the attractive maid looking at you before once again realising that you are the maid.
 
@@ -3168,7 +3178,7 @@ She hands you a bottle of tonic.
 
 You turn and head towards the kitchen where $caterer.name has just arrived and is getting ready.
 
-[[mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="93" name="mansionCPartyInit" tags="event nobr" position="350,1225" size="100,100">&lt;&lt;silently&gt;&gt;
+[[Start serving at the party|mansionCPartyInit]]</tw-passagedata><tw-passagedata pid="93" name="mansionCPartyInit" tags="event nobr" position="350,1225" size="100,100">&lt;&lt;silently&gt;&gt;
 /* Used to generate npcs and other stuff needed for the party */
 &lt;&lt;if !$eventInfo&gt;&gt;
 &lt;&lt;set $eventInfo to {
@@ -3184,12 +3194,15 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 		{name: &quot;Go refill your tray&quot;, passage: &quot;mansionCPartyCage02&quot;}
 	]
 }&gt;&gt;
-&lt;&lt;for _i = 0; _i &lt; 5; _i++&gt;&gt;
-&lt;&lt;= $eventInfo.npc.push(generateNPC(_i))&gt;&gt;
-&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="mansionCPartyServing01" tags="event" position="475,1225" size="100,100">&lt;&lt;include mansionCPartyInit&gt;&gt;\
-&lt;h1&gt;At the party&lt;/h1&gt;
+&lt;&lt;= $eventInfo.npc = []&gt;&gt;
+&lt;&lt;for _i = 0; _i &lt; settings.npcPerEvent; _i++&gt;&gt;
+&lt;&lt;= generateNPC($minorNPC, $eventInfo.npc)&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;&lt;goto &quot;mansionCPartyServing01&quot;&gt;&gt;
+&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="mansionCPartyServing01" tags="event" position="475,1225" size="100,100">&lt;h1&gt;At the party&lt;/h1&gt;
+
+TODO: ADD GENERAL DESCRIPTION OF THE PARTY
 
 &lt;&lt;if $eventInfo.stage === 0&gt;&gt;
 [[Finish the party|mansionCPartyFinish01]]
@@ -3277,10 +3290,10 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 &lt;&lt;set $eventInfo.score = Math.floor($eventInfo.score * (1 + $caterer.appreciation / 100))&gt;&gt;\
 Your score final: &lt;&lt;= $eventInfo.score&gt;&gt;
 
-Good
+GOOD
 &lt;&lt;= $wife.speak(&quot;You worked so hard last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
 
-Bad
+BAD
 &lt;&lt;= $wife.speak(&quot;Given your poor performance last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
 
 $wife.name pulls out a key and starts twirling it on her finger.
@@ -3315,7 +3328,7 @@ $wife.name heads to the bathroom. &lt;&lt;= $wife.speak(&quot;A lot of people co
  
 She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can&#39;t help but think how pathetic your small member looks after being compressed by the cage for so long.
  
-You leave the items on a cushion and then head &lt;&lt;link &quot;back to your room.&quot; &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;= $mansion.endEvent()&gt;&gt;&lt;&lt; $eventInfo = undefined&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="daughterDateSetup01" tags="" position="225,1350" size="100,100">&lt;&lt;set $daughterDateStart to true&gt;&gt;
+You leave the items on a cushion and then head &lt;&lt;link &quot;back to your room.&quot; &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;= $mansion.endEvent()&gt;&gt;&lt;&lt;set $eventInfo to undefined&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="daughterDateSetup01" tags="" position="225,1350" size="100,100">&lt;&lt;set $daughterDateStart to true&gt;&gt;
 
 &quot;So what would you like to do? We can…&quot;
 
