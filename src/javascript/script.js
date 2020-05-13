@@ -32,7 +32,7 @@ Config.passages.onProcess = function (p) {
 
 window.rememberScore = function(score, event) {
 	// Stores the new events and forgets an event if it needs to
-	while (State.variables.lastEvents[event].length > settings.rememberLastEvents) {
+	while (State.variables.lastEvents[event].length >= settings.rememberLastEvents) {
 		State.variables.lastEvents[event].shift();
 	}
 	State.variables.lastEvents[event].push(score);

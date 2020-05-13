@@ -68,8 +68,9 @@ class Mansion {
 	checkSpecialEvents() {
 		return this.events.reduce(
 			function (str, ev) {
-				if (ev.active()) {str += ev.playEvent()}
-			}, 0);
+				if (ev.active()) {return str += ev.playEvent()}
+				return str;
+			}, "");
 	}
 
 	resetChores() {

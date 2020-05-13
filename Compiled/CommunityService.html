@@ -1422,8 +1422,9 @@ class Mansion {
 	checkSpecialEvents() {
 		return this.events.reduce(
 			function (str, ev) {
-				if (ev.active()) {str += ev.playEvent()}
-			}, 0);
+				if (ev.active()) {return str += ev.playEvent()}
+				return str;
+			}, "");
 	}
 
 	resetChores() {
@@ -1968,7 +1969,7 @@ Config.passages.onProcess = function (p) {
 
 window.rememberScore = function(score, event) {
 	// Stores the new events and forgets an event if it needs to
-	while (State.variables.lastEvents[event].length > settings.rememberLastEvents) {
+	while (State.variables.lastEvents[event].length >= settings.rememberLastEvents) {
 		State.variables.lastEvents[event].shift();
 	}
 	State.variables.lastEvents[event].push(score);
@@ -1997,7 +1998,7 @@ Setting.addList("npcPerEvent", {
 });
 Setting.addList("remeberLastEvents", {
 	label: "How many events to store (More means the game is more forgiving).",
-	desc: "Avoid changing during the game as it may cause some inbala",
+	desc: "Avoid changing during the game as it may cause some inbalance",
 	list: [1, 2, 3, 4, 5, 6],
 	default: 1,
 	onInit: function() {
@@ -5841,7 +5842,8 @@ Desk
 	
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;set _event to $mansion.checkSpecialEvents()&gt;&gt;
-&lt;&lt;if _event != &quot;&quot;&gt;&gt;
+&lt;&lt;= console.log(_event)&gt;&gt;
+&lt;&lt;if _event !== &quot;&quot;&gt;&gt;
 	&lt;&lt;= _event&gt;&gt;
 &lt;&lt;else&gt;&gt;
 	Got to the bathroom and:&lt;br&gt;

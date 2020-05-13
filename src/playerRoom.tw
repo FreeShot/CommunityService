@@ -10,7 +10,7 @@ Desk
 	
 <<nobr>>
 <<set _event to $mansion.checkSpecialEvents()>>
-<<if _event != "">>
+<<if _event !== "">>
 	<<= _event>>
 <<else>>
 	Got to the bathroom and:<br>
