@@ -79,13 +79,18 @@ Macro.add("debug-internal", {
 });
 
 Macro.add("chooseOption", {
-	tags: ["option", "end"],
+	tags: ["option", "end", "default"],
 	handler: function() {
+		console.log(this.payload);
 		if (this.payload.lenght === 0) {
 			return this.error("bad expression: this macro require at least one argument");
 		}
 		var end = "";
+		var def = "";
 		var id = Date.now();
+		if (this.payload[this.payload.length - 1].name == "default") {
+			def = "<br>" + this.payload.pop().contents;
+		}
 		if (this.payload[this.payload.length - 1].name == "end") {
 			end = this.payload.pop().contents;
 		}
@@ -95,7 +100,7 @@ Macro.add("chooseOption", {
 				return "";
 			} else {
 				return str + String.format(
-					"<<link '{0}'>><<replace '#{1}'>>{2}{3}<</replace>><</link>><br>",
+					"<<link \"{0}\">><<replace '#{1}'>>{2}{3}<</replace>><</link>><br>",
 					p.args[0],
 					id,
 					p.contents,
@@ -104,11 +109,11 @@ Macro.add("chooseOption", {
 			}
 		}, "");
 		if (str === "") {return this.error("One of the tags is invalid")}
-		console.log(str);
 		return $(this.output).wiki(String.format(
-			"<span id='{0}'>{1}</span>",
+			"<span id='{0}'>{1}{2}</span>",
 			id,
-			str
+			str,
+			def
 		));
 	}
 })

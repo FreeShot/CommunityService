@@ -165,35 +165,18 @@ You roll over and she repeats the process on the thin patch of hair on your ches
 
 You look at the intimidating pile of silk before reaching out to take...
 
-<span id="maiddressing1">\
-<<link "the bra">>
-<<replace '#maiddressing1'>>\
+<<chooseOption "The bra">>
 You reach out and take the bra from the pile. It's a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder, they are already a bit tangled.
-
-<<= $wife.speak("Oh for goodness sake. You are hopeless.")>>
-
-[[She snatches the item from you|mansionCPartyIntro10]]
-<</replace>>\
-<</link>>
-<<link "the stockings">>
-<<replace "#maiddressing1">>\
+<<option "The stockings">>
 You take one of the long stockings and sit down. Aside from being made of nylon it feels like any other sock, so you poke your toes in the opening and yank it over your heel. You immediately hear a ripping sound and can see your toes poking through the tear.
-
-<<= $wife.speak("Oh for goodness sake. You are hopeless.")>>
-
-[[She snatches the item from you|mansionCPartyIntro10]]
-<</replace>>\
-<</link>>
-<<link "the cincher">>
-<<replace "#maiddressing1">>\
+<<option "The chincher">>
 You take the bundle of fabric and it unrolls into a long tube of silk. Assuming it's a top of some kind, you try to pull it on like a shirt. It's extremely tight and within seconds, you manage to pin your arms in an awkward position and cant budge it.
+<<end>>
 
 <<= $wife.speak("Oh for goodness sake. You are hopeless.")>>
 
 [[She snatches the item from you|mansionCPartyIntro10]]
-<</replace>>\
-<</link>>
-</span>
+<</chooseOption>>
 
 ::mansionCPartyIntro10 [event]
 
@@ -205,15 +188,11 @@ You hold your arms above your head as she warps the black lave arround your wais
 
 <<= $wife.speak("Take a deep breath now.")>>
 
-<span id="maiddressing2">\
-<<link "Why?">>\
-<<replace "#maiddressing2">>\
-<<= $player.speak("Isn't it already tight enought?")>>
+<<chooseOption "Why">>
+<<= $player.speak("Isn't it already tight enougth?")>>
 
 <<= $wife.speak("The more you complain the less happy I am with your performance. Now take a deep breath.")>>
-<</replace>>\
-<</link>>\
-</span>\
+<</chooseOption>>
 
 [[Just do as she says.|mansionCPartyIntro11]]
 
@@ -262,9 +241,7 @@ She stops for a moment and you're tempted to open your eyes and risk getting a t
 
 <<= $wife.speak("Do you prefer blondes, brunettes, or red heads?")>>
 
-<span id="maiddressing3">\
-<<link "Um...">>\
-<<replace "#maiddressing3">>\
+<<chooseOption "Um...">>
 <<= $player.speak("Um...")>>
 
 <<= $wife.speak("Brunette then.")>>
@@ -277,15 +254,8 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-
-<<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($shop.getAsTemp("Long Brown Wig"), 1, true)>>
-<</link>>\
-<</replace>>\
-<</link>>
-<<link "Blonde">>\
-<<replace "#maiddressing3">>\
+<<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Brown Wig">>
+<<option "Blonde">>
 <<= $player.speak("Blonde, I think...")>>
 
 <<= $wife.speak("Blonde it is. Looks like you're in for some fun")>>
@@ -298,15 +268,8 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-
-<<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($shop.getAsTemp("Long Blonde Wig"), 1, true)>>
-<</link>>\
-<</replace>>\
-<</link>>
-<<link "Brunettes">>\
-<<replace "#maiddressing3">>\
+<<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Brown Wig">>
+<<option "Brunettes">>
 <<= $player.speak("Brunettes, I think")>>
 
 <<= $wife.speak("Brunette then. Locking to play the friend card, eh?")>>
@@ -319,15 +282,8 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-
-<<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($shop.getAsTemp("Long Brown Wig"), 1, true)>>
-<</link>>\
-<</replace>>\
-<</link>>
-<<link "Red heads">>\
-<<replace "#maiddressing3">>\
+<<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Brown Wig">>
+<<option "Red heads">>
 <<= $player.speak("I kind of like red heads, I guess...")>>
 
 <<= $wife.speak("Hmm, you're not really firey, but Aubrun may suit you.")>>
@@ -340,14 +296,12 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-<<= $wife.speak("Put your legs out so we can get your stockings on.")>>
-
+<<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Aubrun Wig">>
+<<end>>
 <<link "Continue dressing" "mansionCPartyIntro14">>
-<<= $player.inv.addItem($shop.getAsTemp("Long Aubrun Wig"), 1, true)>>
-<</link>>\
-<</replace>>\
-<</link>>\
-</span>
+<<= $player.inv.addItem($shop.getAsTemp(_wig), 1, true)>>
+<</link>>
+<</chooseOption>>
 
 ::mansionCPartyIntro14 [event]
 You open your eyes to the weird feeling of <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
@@ -389,26 +343,15 @@ The only problem is, that girl is you.
 
 You can't finish as staring at your cute reflexion has had the exact reaction you'd expect and your hard on pops out of the top of the elastic of the panties.
 
-<span id="maiddressing4">\
-<<link "Panic!">>\
-<<replace "#maiddressing4">>\
+<<chooseOption "Panic!">>
 You stand like a deer in headlight staring at $wife.name and your cheeks get even redder.
-
-<<= $wife.speak("Oh, that will not do.")>>
-
-[[Hide your hard on|mansionCPartyIntro16]]
-<</replace>>
-<</link>>
-<<link "Cover yourself.">>\
-<<replace "#maiddressing4">>
+<<option "Cover yourself.">>
 You cover yourself but all it did was draw $wife.name's attention.
-
+<<end>>
 <<= $wife.speak("Oh, that will not do.")>>
 
 [[Hide your hard on|mansionCPartyIntro16]]
-<</replace>>
-<</link>>
-</span>
+<</chooseOption>>
 
 ::mansionCPartyIntro16 [event]
 $wife.name leave again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflexion. It that girl wasn't you, you might stomack up the courrage to go talk to her.
@@ -475,17 +418,14 @@ $wife.name joins you and drops something on the chaise before she kneels down in
 
 $wife.name stands up angrily. <<= $wife.speak("Excuse me?")>>
 
-<span id="maiddressing6">\
-<<link "Keep going.">>\
-<<replace "#maiddressing6">>\
+<<chooseOption "Keep going.">>
 <<= $player.speak("That hurts. Are you crazy?")>>
 
 <<= $wife.speak("No, servant, I'm not crazy and you'd better watch your tone. You're already walking on thin ice and don't think I haven't noticed you not addressing me as $wife.title this entire time.")>>
 
 [[Back off|mansionCPartyIntro18]]
-<</replace>>\
-<</link>> or [[Back off|mansionCPartyIntro18]]
-</span>
+<<default>> or [[Back off|mansionCPartyIntro18]]
+<</chooseOption>>
 
 ::mansionCPartyIntro18 [event]
 <<= $player.speak("Sorry. It's just that it realy hurts.")>> You shrink back a little and look away from her.
@@ -533,49 +473,32 @@ You turn and look in one of the full length mirror. The cute gir you saw earlier
 
 [img[setup.ImagePath + "events/cocktailparty/maid_firstlook.jpg"]]
 
-<span id="maiddressing7">\
-<<link "Do a spin">>\
-<<replace "#maiddressing7">>\
+<<chooseOption "Do a spin">>
 [img[setup.ImagePath + "items/wearables/dress/maid_twirl.gif"]]
 
 As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
-<</replace>>\
-<</link>>\
-</span>
+<</chooseOption>>
 
 <<= $wife.speak("Well? Thoughts? I won't ask for your opinion much so make the most of it.")>>
 
-<span id="maiddressing8">\
-<<link "It could be worse.">>\
-<<replace "#maiddressing8">>\
+<<chooseOption "It could be worse">>
 <<= $player.speak("It's fine, I guess... $wife.title.")>>
 
 She seems happy with that response.
 
-<<link "<<= $wife.speak('Oh, one more thing.')>>" "mansionCPartyIntro20">>
-<<= $player.raiseVoice({tmp:100, abs:1})>>
-<<= $player.inv.addItem($shop.getAsTemp("Stylised maid outfit"), 1, true)>>
-<<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
-<</link>>
-<</replace>>\
-<</link>>
-<<link "Get me out of this stuff.">>\
-<<replace "#maiddressing8">>\
+<<option "Get me out of this stuff.">>
 <<= $player.speak("If I didn't have to be doing this, I wouldn't.")>>
-
 
 <<= $wife.speak("Wouldn't what?")>>
 
 <<= $player.speak("Wouldn't, $wife.title")>>
 
-<<link "<<= $wife.speak('Better. Oh, one more thing.')>>" "mansionCPartyIntro20">>
+<<end>><<link "<<= $wife.speak('Better. Oh, one more thing.')>>" "mansionCPartyIntro20">>
 <<= $player.raiseVoice({tmp:100, abs:1})>>
 <<= $player.inv.addItem($shop.getAsTemp("Stylised maid outfit"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
 <</link>>
-<</replace>>
-<</link>>\
-</span>
+<</chooseOption>>
 
 ::mansionCPartyIntro20 [event]
 $wife.name wraps a choker around your neck. It's not too tight, but it does the job of hiding your small Adam apple.
@@ -586,9 +509,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 
 <<= $player.speak("What was that?")>> Your voice is softer and more feminine.
 
-<span id="maiddressing9">\
-<<link "Not good">>\
-<<replace "#maiddressing9">>\
+<<chooseOption "Not good">>
 <<= $player.speak("What did you do to me?")>> You shout, grabbing your throat.
 
 <<= $wife.speak("We can't have you sounding like a boy, otherwise what's the point in dressing you up.")>>
@@ -599,21 +520,14 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 
 <<= $player.speak("<i>Usually...</i>")>>
 
-<<link "<<= $wife.speak('Now, about your name...')>>" "mansionCPartyIntro21">>
-<<= $player.inv.addItem($shop.getAsTemp("Black choker"), 1, true)>>
-<</link>>\
-<</replace>>\
-<</link>>
-<<link "Submissively.">>
-<<replace "#maiddressing9">>
+<<option "Submissively.">>
 You grab your mouth and throat in shock.
 
+<<end>>
 <<link "<<= $wife.speak('Now, about your name...')>>" "mansionCPartyIntro21">>
 <<= $player.inv.addItem($shop.getAsTemp("Black choker"), 1, true)>>
-<</link>>\
-<</replace>>\
-<</link>>\
-</span>
+<</link>>
+<</chooseOption>>
 
 ::mansionCPartyIntro21 [event]
 <<= $wife.speak("You'll need a different name to keep up appearance.")>>
@@ -689,30 +603,23 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
 
 <<= $caterer.speak("So that's a no then. Here.")>> $caterer.name hands you a round serving tray.
 
-<span id="partytraining1">\
-<<link "You don't want to risk dropping it, hold it with two hands.">>
-<<replace "#partytraining1">>\
+<<chooseOption "You don't want to risk dropping it, hold it with two hands.">>
 <<= $caterer.speak("No, no, no.")>> He snatches the tray from you. <<= $caterer.speak("You hold the tray with one hand and put the other hand behind your back. Like this.")>>
 
 He demonstrates for you and then hands you the tray back. You hold it with one hand this time.
 
 <<= $caterer.speak("Better, but you still need some work.")>>
 
-[[Continue practicing|mansionCPartyIntro25]]
-<</replace>>
-<</link>>
-<<link "Take the tray with one hand.">>
-<<replace "#partytraining1">>\
+<<option "Take the tray with one hand.">>
 <<= $caterer.speak("Alright. At least you know that much. More than I was expecting to be honnest.")>>
 
 <<= $player.speak("<i>What a jerk</i>")>>
 
 <<= $caterer.speak("You still need the other hand behind your back though.")>>
 
+<<end>>
 [[Continue practicing|mansionCPartyIntro25]]
-<</replace>>
-<</link>>
-</span>
+<</chooseOption>>
 
 ::mansionCPartyIntro25 [event]
 <<= $caterer.speak("I'll load you up with something that won't break and you can practice for a while.")>>
@@ -744,24 +651,12 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 
 <<= $daughter.speak("Wow. Mum wasn't joking. You're getting some of my friend a run for their monney. The cute but sexy maid thing really works for you.")>>
 
-<span id="partytraining2">\
-<<link "Thank her.">>\
-<<replace "#partytraining2">>\
+<<chooseOption "Thank her.">>
 <<= $player.speak("Um, thank you $daughter.title.")>>
 
 $daughter.name walks up to you and grabs you by the waist to check you out. She leans in to wisper in your ears.
 
-<<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName?")>>
-
-You nod meekly.
-
-<<= $player.speak("If you say so.")>>
-
-[[Continue|mansionCPartyIntro27]]
-<</replace>>
-<</link>>
-<<link "Get snarky.">>\
-<<replace "#partytraining2">>\
+<<option "Get snarky.">>
 <<= $player.speak("Oh please, if I didn't have to do this, I wouldn't be.")>>
 
 <<= $daughter.speak("Oh. You've dropped the formalities already? You've got some guts for a skinny little servant girl.")>>
@@ -772,6 +667,7 @@ You start to bristle a bit but it reminds you of your place. $daughter.name star
 
 $daughter.name walks up to you leans in to whisper in your ears.
 
+<<end>>
 <<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName?")>>
 
 You nod meekly.
@@ -779,9 +675,7 @@ You nod meekly.
 <<= $player.speak("If you say so.")>>
 
 [[Continue|mansionCPartyIntro27]]
-<</replace>>
-<</link>>
-</span>
+<</chooseOption>>
 
 ::mansionCPartyIntro27 [event]
 She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly start straining against its plastic prison.

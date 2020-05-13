@@ -1221,13 +1221,18 @@ Macro.add("debug-internal", {
 });
 
 Macro.add("chooseOption", {
-	tags: ["option", "end"],
+	tags: ["option", "end", "default"],
 	handler: function() {
+		console.log(this.payload);
 		if (this.payload.lenght === 0) {
 			return this.error("bad expression: this macro require at least one argument");
 		}
 		var end = "";
+		var def = "";
 		var id = Date.now();
+		if (this.payload[this.payload.length - 1].name == "default") {
+			def = "<br>" + this.payload.pop().contents;
+		}
 		if (this.payload[this.payload.length - 1].name == "end") {
 			end = this.payload.pop().contents;
 		}
@@ -1237,7 +1242,7 @@ Macro.add("chooseOption", {
 				return "";
 			} else {
 				return str + String.format(
-					"<<link '{0}'>><<replace '#{1}'>>{2}{3}<</replace>><</link>><br>",
+					"<<link \"{0}\">><<replace '#{1}'>>{2}{3}<</replace>><</link>><br>",
 					p.args[0],
 					id,
 					p.contents,
@@ -1246,11 +1251,11 @@ Macro.add("chooseOption", {
 			}
 		}, "");
 		if (str === "") {return this.error("One of the tags is invalid")}
-		console.log(str);
 		return $(this.output).wiki(String.format(
-			"<span id='{0}'>{1}</span>",
+			"<span id='{0}'>{1}{2}</span>",
 			id,
-			str
+			str,
+			def
 		));
 	}
 })
@@ -2462,35 +2467,18 @@ You stop shifting as she removes all the hairs from one leg, then the other. she
 
 You look at the intimidating pile of silk before reaching out to take...
 
-&lt;span id=&quot;maiddressing1&quot;&gt;\
-&lt;&lt;link &quot;the bra&quot;&gt;&gt;
-&lt;&lt;replace &#39;#maiddressing1&#39;&gt;&gt;\
+&lt;&lt;chooseOption &quot;The bra&quot;&gt;&gt;
 You reach out and take the bra from the pile. It&#39;s a bit difficult to manage and you fumble a bit as you try to hook your arms through the loops. $wife.name is already tapping her foot impatiently. By the time you manage to get it over your shoulder, they are already a bit tangled.
-
-&lt;&lt;= $wife.speak(&quot;Oh for goodness sake. You are hopeless.&quot;)&gt;&gt;
-
-[[She snatches the item from you|mansionCPartyIntro10]]
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;the stockings&quot;&gt;&gt;
-&lt;&lt;replace &quot;#maiddressing1&quot;&gt;&gt;\
+&lt;&lt;option &quot;The stockings&quot;&gt;&gt;
 You take one of the long stockings and sit down. Aside from being made of nylon it feels like any other sock, so you poke your toes in the opening and yank it over your heel. You immediately hear a ripping sound and can see your toes poking through the tear.
-
-&lt;&lt;= $wife.speak(&quot;Oh for goodness sake. You are hopeless.&quot;)&gt;&gt;
-
-[[She snatches the item from you|mansionCPartyIntro10]]
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;the cincher&quot;&gt;&gt;
-&lt;&lt;replace &quot;#maiddressing1&quot;&gt;&gt;\
+&lt;&lt;option &quot;The chincher&quot;&gt;&gt;
 You take the bundle of fabric and it unrolls into a long tube of silk. Assuming it&#39;s a top of some kind, you try to pull it on like a shirt. It&#39;s extremely tight and within seconds, you manage to pin your arms in an awkward position and cant budge it.
+&lt;&lt;end&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Oh for goodness sake. You are hopeless.&quot;)&gt;&gt;
 
 [[She snatches the item from you|mansionCPartyIntro10]]
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="66" name="mansionCPartyIntro10" tags="event" position="725,850" size="100,100">$wife.name takes one of the bigger items.
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="mansionCPartyIntro10" tags="event" position="725,850" size="100,100">$wife.name takes one of the bigger items.
 
 &lt;&lt;= $wife.speak(&quot;First the body shaper. Lift your arms up.&quot;)&gt;&gt;
 
@@ -2498,15 +2486,11 @@ You hold your arms above your head as she warps the black lave arround your wais
 
 &lt;&lt;= $wife.speak(&quot;Take a deep breath now.&quot;)&gt;&gt;
 
-&lt;span id=&quot;maiddressing2&quot;&gt;\
-&lt;&lt;link &quot;Why?&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing2&quot;&gt;&gt;\
-&lt;&lt;= $player.speak(&quot;Isn&#39;t it already tight enought?&quot;)&gt;&gt;
+&lt;&lt;chooseOption &quot;Why&quot;&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Isn&#39;t it already tight enougth?&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;The more you complain the less happy I am with your performance. Now take a deep breath.&quot;)&gt;&gt;
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;\
+&lt;&lt;/chooseOption&gt;&gt;
 
 [[Just do as she says.|mansionCPartyIntro11]]</tw-passagedata><tw-passagedata pid="67" name="mansionCPartyIntro11" tags="event" position="850,850" size="100,100">You take a deep breath and $wife.name pulls the shaper even tighter and manages to get the hooks into the last holes.
 
@@ -2546,9 +2530,7 @@ She stops for a moment and you&#39;re tempted to open your eyes and risk getting
 
 &lt;&lt;= $wife.speak(&quot;Do you prefer blondes, brunettes, or red heads?&quot;)&gt;&gt;
 
-&lt;span id=&quot;maiddressing3&quot;&gt;\
-&lt;&lt;link &quot;Um...&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing3&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;Um...&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;Um...&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Brunette then.&quot;)&gt;&gt;
@@ -2561,15 +2543,8 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
-
-&lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Brown Wig&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;\
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Blonde&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing3&quot;&gt;&gt;\
+&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;&lt;&lt;set _wig to &quot;Long Brown Wig&quot;&gt;&gt;
+&lt;&lt;option &quot;Blonde&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;Blonde, I think...&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Blonde it is. Looks like you&#39;re in for some fun&quot;)&gt;&gt;
@@ -2582,15 +2557,8 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
-
-&lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Blonde Wig&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;\
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Brunettes&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing3&quot;&gt;&gt;\
+&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;&lt;&lt;set _wig to &quot;Long Brown Wig&quot;&gt;&gt;
+&lt;&lt;option &quot;Brunettes&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;Brunettes, I think&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Brunette then. Locking to play the friend card, eh?&quot;)&gt;&gt;
@@ -2603,15 +2571,8 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
-
-&lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Brown Wig&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;\
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Red heads&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing3&quot;&gt;&gt;\
+&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;&lt;&lt;set _wig to &quot;Long Brown Wig&quot;&gt;&gt;
+&lt;&lt;option &quot;Red heads&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;I kind of like red heads, I guess...&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Hmm, you&#39;re not really firey, but Aubrun may suit you.&quot;)&gt;&gt;
@@ -2624,14 +2585,12 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
-
+&lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;&lt;&lt;set _wig to &quot;Long Aubrun Wig&quot;&gt;&gt;
+&lt;&lt;end&gt;&gt;
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Aubrun Wig&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;\
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="70" name="mansionCPartyIntro14" tags="event" position="1225,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(_wig), 1, true)&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="mansionCPartyIntro14" tags="event" position="1225,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
 
 &lt;&lt;= $wife.speak(&quot;Point your toes.&quot;)&gt;&gt;
 
@@ -2667,26 +2626,15 @@ The only problem is, that girl is you.
 
 You can&#39;t finish as staring at your cute reflexion has had the exact reaction you&#39;d expect and your hard on pops out of the top of the elastic of the panties.
 
-&lt;span id=&quot;maiddressing4&quot;&gt;\
-&lt;&lt;link &quot;Panic!&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing4&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;Panic!&quot;&gt;&gt;
 You stand like a deer in headlight staring at $wife.name and your cheeks get even redder.
-
-&lt;&lt;= $wife.speak(&quot;Oh, that will not do.&quot;)&gt;&gt;
-
-[[Hide your hard on|mansionCPartyIntro16]]
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Cover yourself.&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing4&quot;&gt;&gt;
+&lt;&lt;option &quot;Cover yourself.&quot;&gt;&gt;
 You cover yourself but all it did was draw $wife.name&#39;s attention.
-
+&lt;&lt;end&gt;&gt;
 &lt;&lt;= $wife.speak(&quot;Oh, that will not do.&quot;)&gt;&gt;
 
 [[Hide your hard on|mansionCPartyIntro16]]
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="72" name="mansionCPartyIntro16" tags="event" position="225,975" size="100,100">$wife.name leave again and you hastily tuck your penis back into the silk panties. You&#39;re alone and staring at your cute reflexion. It that girl wasn&#39;t you, you might stomack up the courrage to go talk to her.
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="mansionCPartyIntro16" tags="event" position="225,975" size="100,100">$wife.name leave again and you hastily tuck your penis back into the silk panties. You&#39;re alone and staring at your cute reflexion. It that girl wasn&#39;t you, you might stomack up the courrage to go talk to her.
 
 &lt;&lt;= $player.speak(&quot;Might as well...&quot;)&gt;&gt;
 
@@ -2747,17 +2695,14 @@ $wife.name joins you and drops something on the chaise before she kneels down in
 
 $wife.name stands up angrily. &lt;&lt;= $wife.speak(&quot;Excuse me?&quot;)&gt;&gt;
 
-&lt;span id=&quot;maiddressing6&quot;&gt;\
-&lt;&lt;link &quot;Keep going.&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing6&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;Keep going.&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;That hurts. Are you crazy?&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;No, servant, I&#39;m not crazy and you&#39;d better watch your tone. You&#39;re already walking on thin ice and don&#39;t think I haven&#39;t noticed you not addressing me as $wife.title this entire time.&quot;)&gt;&gt;
 
 [[Back off|mansionCPartyIntro18]]
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt; or [[Back off|mansionCPartyIntro18]]
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="74" name="mansionCPartyIntro18" tags="event" position="475,975" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry. It&#39;s just that it realy hurts.&quot;)&gt;&gt; You shrink back a little and look away from her.
+&lt;&lt;default&gt;&gt; or [[Back off|mansionCPartyIntro18]]
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="mansionCPartyIntro18" tags="event" position="475,975" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry. It&#39;s just that it realy hurts.&quot;)&gt;&gt; You shrink back a little and look away from her.
 
 &lt;&lt;= $wife.speak(&quot;That&#39;s better. You need to watch yourself. Any more outburst like that and we&#39;ll have a problem. I&#39;ll let go of the fact that you haven&#39;t said $wife.title once today, but you&#39;d better make sure your performance tonight works. Now eyes forward. I don&#39;t want you getting any ideas.&quot;)&gt;&gt;
 
@@ -2799,49 +2744,32 @@ You turn and look in one of the full length mirror. The cute gir you saw earlier
 
 [img[setup.ImagePath + &quot;events/cocktailparty/maid_firstlook.jpg&quot;]]
 
-&lt;span id=&quot;maiddressing7&quot;&gt;\
-&lt;&lt;link &quot;Do a spin&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing7&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;Do a spin&quot;&gt;&gt;
 [img[setup.ImagePath + &quot;items/wearables/dress/maid_twirl.gif&quot;]]
 
 As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;
+&lt;&lt;/chooseOption&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Well? Thoughts? I won&#39;t ask for your opinion much so make the most of it.&quot;)&gt;&gt;
 
-&lt;span id=&quot;maiddressing8&quot;&gt;\
-&lt;&lt;link &quot;It could be worse.&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing8&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;It could be worse&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;It&#39;s fine, I guess... $wife.title.&quot;)&gt;&gt;
 
 She seems happy with that response.
 
-&lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Oh, one more thing.&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro20&quot;&gt;&gt;
-&lt;&lt;= $player.raiseVoice({tmp:100, abs:1})&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Get me out of this stuff.&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing8&quot;&gt;&gt;\
+&lt;&lt;option &quot;Get me out of this stuff.&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;If I didn&#39;t have to be doing this, I wouldn&#39;t.&quot;)&gt;&gt;
-
 
 &lt;&lt;= $wife.speak(&quot;Wouldn&#39;t what?&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;Wouldn&#39;t, $wife.title&quot;)&gt;&gt;
 
-&lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Better. Oh, one more thing.&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro20&quot;&gt;&gt;
+&lt;&lt;end&gt;&gt;&lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Better. Oh, one more thing.&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro20&quot;&gt;&gt;
 &lt;&lt;= $player.raiseVoice({tmp:100, abs:1})&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="76" name="mansionCPartyIntro20" tags="event" position="725,975" size="100,100">$wife.name wraps a choker around your neck. It&#39;s not too tight, but it does the job of hiding your small Adam apple.
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="mansionCPartyIntro20" tags="event" position="725,975" size="100,100">$wife.name wraps a choker around your neck. It&#39;s not too tight, but it does the job of hiding your small Adam apple.
 
 &lt;&lt;= $wife.speak(&quot;Here. Drink this.&quot;)&gt;&gt; She hands you a small glass bottle. &lt;&lt;= $wife.speak(&quot;The whole thing.&quot;)&gt;&gt;
 
@@ -2849,9 +2777,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 
 &lt;&lt;= $player.speak(&quot;What was that?&quot;)&gt;&gt; Your voice is softer and more feminine.
 
-&lt;span id=&quot;maiddressing9&quot;&gt;\
-&lt;&lt;link &quot;Not good&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#maiddressing9&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;Not good&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;What did you do to me?&quot;)&gt;&gt; You shout, grabbing your throat.
 
 &lt;&lt;= $wife.speak(&quot;We can&#39;t have you sounding like a boy, otherwise what&#39;s the point in dressing you up.&quot;)&gt;&gt;
@@ -2862,21 +2788,14 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;Usually...&lt;/i&gt;&quot;)&gt;&gt;
 
-&lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Now, about your name...&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro21&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;\
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Submissively.&quot;&gt;&gt;
-&lt;&lt;replace &quot;#maiddressing9&quot;&gt;&gt;
+&lt;&lt;option &quot;Submissively.&quot;&gt;&gt;
 You grab your mouth and throat in shock.
 
+&lt;&lt;end&gt;&gt;
 &lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Now, about your name...&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro21&quot;&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;\
-&lt;&lt;/replace&gt;&gt;\
-&lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="77" name="mansionCPartyIntro21" tags="event" position="850,975" size="100,100">&lt;&lt;= $wife.speak(&quot;You&#39;ll need a different name to keep up appearance.&quot;)&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="mansionCPartyIntro21" tags="event" position="850,975" size="100,100">&lt;&lt;= $wife.speak(&quot;You&#39;ll need a different name to keep up appearance.&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;Why can&#39;t I just use my name?&quot;)&gt;&gt;
 
@@ -2940,30 +2859,23 @@ $wife.title leaves and starts giving the worker instructions to clear the dining
 
 &lt;&lt;= $caterer.speak(&quot;So that&#39;s a no then. Here.&quot;)&gt;&gt; $caterer.name hands you a round serving tray.
 
-&lt;span id=&quot;partytraining1&quot;&gt;\
-&lt;&lt;link &quot;You don&#39;t want to risk dropping it, hold it with two hands.&quot;&gt;&gt;
-&lt;&lt;replace &quot;#partytraining1&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;You don&#39;t want to risk dropping it, hold it with two hands.&quot;&gt;&gt;
 &lt;&lt;= $caterer.speak(&quot;No, no, no.&quot;)&gt;&gt; He snatches the tray from you. &lt;&lt;= $caterer.speak(&quot;You hold the tray with one hand and put the other hand behind your back. Like this.&quot;)&gt;&gt;
 
 He demonstrates for you and then hands you the tray back. You hold it with one hand this time.
 
 &lt;&lt;= $caterer.speak(&quot;Better, but you still need some work.&quot;)&gt;&gt;
 
-[[Continue practicing|mansionCPartyIntro25]]
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Take the tray with one hand.&quot;&gt;&gt;
-&lt;&lt;replace &quot;#partytraining1&quot;&gt;&gt;\
+&lt;&lt;option &quot;Take the tray with one hand.&quot;&gt;&gt;
 &lt;&lt;= $caterer.speak(&quot;Alright. At least you know that much. More than I was expecting to be honnest.&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;What a jerk&lt;/i&gt;&quot;)&gt;&gt;
 
 &lt;&lt;= $caterer.speak(&quot;You still need the other hand behind your back though.&quot;)&gt;&gt;
 
+&lt;&lt;end&gt;&gt;
 [[Continue practicing|mansionCPartyIntro25]]
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="81" name="mansionCPartyIntro25" tags="event" position="100,1100" size="100,100">&lt;&lt;= $caterer.speak(&quot;I&#39;ll load you up with something that won&#39;t break and you can practice for a while.&quot;)&gt;&gt;
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="mansionCPartyIntro25" tags="event" position="100,1100" size="100,100">&lt;&lt;= $caterer.speak(&quot;I&#39;ll load you up with something that won&#39;t break and you can practice for a while.&quot;)&gt;&gt;
 
 [img[setup.ImagePath + &quot;events/cocktailparty/serving_tray01.jpg&quot;]]
 
@@ -2989,24 +2901,12 @@ After the lesson, he has you do some basic tidy work while he fininshes his prep
 
 &lt;&lt;= $daughter.speak(&quot;Wow. Mum wasn&#39;t joking. You&#39;re getting some of my friend a run for their monney. The cute but sexy maid thing really works for you.&quot;)&gt;&gt;
 
-&lt;span id=&quot;partytraining2&quot;&gt;\
-&lt;&lt;link &quot;Thank her.&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#partytraining2&quot;&gt;&gt;\
+&lt;&lt;chooseOption &quot;Thank her.&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;Um, thank you $daughter.title.&quot;)&gt;&gt;
 
 $daughter.name walks up to you and grabs you by the waist to check you out. She leans in to wisper in your ears.
 
-&lt;&lt;= $daughter.speak(&quot;You can call me $daughter.name. Just when it&#39;s us girls though. Ok $player.femName?&quot;)&gt;&gt;
-
-You nod meekly.
-
-&lt;&lt;= $player.speak(&quot;If you say so.&quot;)&gt;&gt;
-
-[[Continue|mansionCPartyIntro27]]
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Get snarky.&quot;&gt;&gt;\
-&lt;&lt;replace &quot;#partytraining2&quot;&gt;&gt;\
+&lt;&lt;option &quot;Get snarky.&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;Oh please, if I didn&#39;t have to do this, I wouldn&#39;t be.&quot;)&gt;&gt;
 
 &lt;&lt;= $daughter.speak(&quot;Oh. You&#39;ve dropped the formalities already? You&#39;ve got some guts for a skinny little servant girl.&quot;)&gt;&gt;
@@ -3017,6 +2917,7 @@ You start to bristle a bit but it reminds you of your place. $daughter.name star
 
 $daughter.name walks up to you leans in to whisper in your ears.
 
+&lt;&lt;end&gt;&gt;
 &lt;&lt;= $daughter.speak(&quot;You can call me $daughter.name. Just when it&#39;s us girls though. Ok $player.femName?&quot;)&gt;&gt;
 
 You nod meekly.
@@ -3024,9 +2925,7 @@ You nod meekly.
 &lt;&lt;= $player.speak(&quot;If you say so.&quot;)&gt;&gt;
 
 [[Continue|mansionCPartyIntro27]]
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="83" name="mansionCPartyIntro27" tags="event" position="350,1100" size="100,100">She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly start straining against its plastic prison.
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="mansionCPartyIntro27" tags="event" position="350,1100" size="100,100">She pulls away and gives you a wink. You feel your cheeks burning and your penis quickly start straining against its plastic prison.
 
 $daughter.name gives you a quick pat on the cheek before turing around to $caterer.name. She walks over and they hug before a quick peck on each cheeks.
 
