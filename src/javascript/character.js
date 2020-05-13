@@ -331,10 +331,9 @@ class MinorNPC extends Character {
 
     getBonusPoint() {
         var points = 0;
-        this.like.forEach(function(el, tag) {
-            points += State.variables.npcLike[el] ? 1 : 0;
+        return this.like.reduce(function(val, el) {
+            val += State.variables.npcLike[el]() ? 5 : 0;
         });
-        return points;
     }
 
     info() {
