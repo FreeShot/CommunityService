@@ -85,7 +85,7 @@ TODO: ADD GENERAL DESCRIPTION OF THE PARTY
 [[Finish the party|mansionCPartyFinish01]]
 <<else>>
 <<for _event range $eventInfo.events.randomMany($eventInfo.microEventCount)>>
-<<link _event.name _event.passage>><<= $eventInfo.stage-->><</link>>
+<<link _event.name _event.passage>><<= $eventInfo.stage-->><<= $eventInfo.score+=25>><</link>>
 <</for>>
 <</if>>
 

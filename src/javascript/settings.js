@@ -28,9 +28,9 @@ Setting.addList("remeberLastEvents", {
 		State.variables.lastEvents = {
 			CParty : [100],
 			mean : function(event) {
-				return State.variables.lastEvents[event].reduce(function(total, curr, i, arr) {
-					return total + curr / arr.length;
-				});
+				return State.variables.lastEvents[event].reduce(function(total, curr) {
+					return total + curr;
+				}) / State.variables.lastEvents[event].length;
 			}
 		};
 	}

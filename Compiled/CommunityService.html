@@ -1995,9 +1995,9 @@ Setting.addList("remeberLastEvents", {
 		State.variables.lastEvents = {
 			CParty : [100],
 			mean : function(event) {
-				return State.variables.lastEvents[event].reduce(function(total, curr, i, arr) {
-					return total + curr / arr.length;
-				});
+				return State.variables.lastEvents[event].reduce(function(total, curr) {
+					return total + curr;
+				}) / State.variables.lastEvents[event].length;
 			}
 		};
 	}
@@ -3232,7 +3232,7 @@ TODO: ADD GENERAL DESCRIPTION OF THE PARTY
 [[Finish the party|mansionCPartyFinish01]]
 &lt;&lt;else&gt;&gt;
 &lt;&lt;for _event range $eventInfo.events.randomMany($eventInfo.microEventCount)&gt;&gt;
-&lt;&lt;link _event.name _event.passage&gt;&gt;&lt;&lt;= $eventInfo.stage--&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link _event.name _event.passage&gt;&gt;&lt;&lt;= $eventInfo.stage--&gt;&gt;&lt;&lt;= $eventInfo.score+=25&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="mansionCPartyStaring01" tags="event" position="600,1225" size="100,100">While moving about you get stopped by one of the groups who happily clear the rest of the finger food from your tray. You catch one of them looking strait at your chest. You&#39;re a little flushed from all the walking so it has a nice pink hue just above the blouse. His eyes meet yours and he smiles warmly and tips his glass to you.
 
