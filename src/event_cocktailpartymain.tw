@@ -28,7 +28,7 @@ She hands you a bottle of tonic.
 /* Will change this to symply equip a set of clothes, like this it will be customisable */
 <<= $player.inv.addItem($shop.getAsTemp("Lacey black silk panties"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Lacey black silk bra"), 1, true)>>
-<<= $player.inv.addItem($shop.getAsTemp("Long brown wig"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Long Brown Wig"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Black Stockings with garter belt"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Stylised maid outfit"), 1, true)>>

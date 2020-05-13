@@ -478,7 +478,19 @@ class Player extends Character {
             this.inv.items.filter(function (el) {
                 return el.item.tags.some(function(tag) {
                     return tags.includes(tag) && 
-                        !["temp", "equipped", "equippable", "shopItem", "gettable"].includes(tag)
+                        [
+                            "wig", 
+                            "shirt", 
+                            "pants", 
+                            "underwear",
+                            "bra",
+                            "hoisery",
+                            "shoe",
+                            "accessory-head",
+                            "accessory-neck",
+                            "toy-front",
+                            "toy-back"
+                        ].includes(tag)
                     })
             }).filter(function (el) {
                 return el.item.tags.includes("equipped");
@@ -2568,7 +2580,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long brown wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Brown Wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2589,7 +2601,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long blonde wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Blonde Wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2610,7 +2622,7 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long brown wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Brown Wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;
@@ -2631,13 +2643,11 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;= $wife.speak(&quot;Put your legs out so we can get your stockings on.&quot;)&gt;&gt;
 
 &lt;&lt;link &quot;Continue dressing&quot; &quot;mansionCPartyIntro14&quot;&gt;&gt;
-&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long aubrun wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Aubrun Wig&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;
-
-[[mansionCPartyIntro14]]</tw-passagedata><tw-passagedata pid="70" name="mansionCPartyIntro14" tags="event" position="1225,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="70" name="mansionCPartyIntro14" tags="event" position="1225,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
 
 &lt;&lt;= $wife.speak(&quot;Point your toes.&quot;)&gt;&gt;
 
@@ -2659,9 +2669,7 @@ Before you move, $wife.name pulls you up and turns you arround.
 
 &lt;&lt;link &quot;When you face the mirror your jaw almost hits the floor.&quot; &quot;mansionCPartyIntro15&quot;&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black Stockings with garter belt&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-
-[[mansionCPartyIntro15]]</tw-passagedata><tw-passagedata pid="71" name="mansionCPartyIntro15" tags="event" position="100,975" size="100,100">[img[setup.ImagePath + &quot;events/cocktailparty/cocktailparty_firstlook.jpg&quot;]]
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="mansionCPartyIntro15" tags="event" position="100,975" size="100,100">[img[setup.ImagePath + &quot;events/cocktailparty/cocktailparty_firstlook.jpg&quot;]]
 
 Standing in front of you, wearing demure black lingerie is onw of the prettiest girls you&#39;ve ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
 
@@ -3138,7 +3146,19 @@ $wife.name helps you with the rest of your outfit. The cincher, stockings and br
 
 She hands you a bottle of tonic.
 
-[[Complete the transformation|mansionCPartySetup03]]</tw-passagedata><tw-passagedata pid="92" name="mansionCPartySetup03" tags="" position="225,1225" size="100,100">You down the sour smelling liquid. You wince at it burns going down.
+&lt;&lt;link &quot;Complete the transformation&quot; &quot;mansionCPartySetup03&quot;&gt;&gt;
+&lt;&lt;= $player.unequip(&quot;All&quot;)&gt;&gt;
+/* Will change this to symply equip a set of clothes, like this it will be customisable */
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Lacey black silk panties&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Lacey black silk bra&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Long Brown Wig&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black Stockings with garter belt&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Pink chastity cage&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.raiseVoice({tmp: 100, abs:1})&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="mansionCPartySetup03" tags="" position="225,1225" size="100,100">You down the sour smelling liquid. You wince at it burns going down.
 
 &lt;&lt;= $player.speak(&quot;Eh hem.&quot;)&gt;&gt; You clean your throat and the noise is decidely more feminine. Looks like you&#39;re $player.famName for now.
 
@@ -3990,7 +4010,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="108
 }, 1)&gt;&gt;
 
 &lt;&lt;= $shop.addItem(&quot;Hoisery&quot;, {
-	name: &quot;Black stockings with garter belt&quot;,
+	name: &quot;Black Stockings with garter belt&quot;,
 	tags: [&quot;hoisery&quot;, &quot;equippable&quot;],
 	femininity: 20,
 	price: 0,
@@ -4028,14 +4048,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="108
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Accessory&quot;, {
 	name: &quot;Black choker&quot;,
-	tags: [&quot;accessory-head&quot;, &quot;equippable&quot;],
+	tags: [&quot;accessory-neck&quot;, &quot;equippable&quot;],
 	femininity: 10,
 	price: 0,
 	img: &quot;items/wearables/accessories/choker_01.jpg&quot;
 }, 1)&gt;&gt;
 &lt;&lt;= $shop.addItem(&quot;Accessory&quot;, {
 	name: &quot;Frilly black and white choker&quot;,
-	tags: [&quot;accessory-head&quot;, &quot;equippable&quot;],
+	tags: [&quot;accessory-neck&quot;, &quot;equippable&quot;],
 	femininity: 15,
 	price: 0,
 	img: &quot;items/wearables/accessories/choker_02.jpg&quot;

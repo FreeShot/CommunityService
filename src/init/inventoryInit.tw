@@ -174,7 +174,7 @@
 }, 1)>>
 
 <<= $shop.addItem("Hoisery", {
-	name: "Black stockings with garter belt",
+	name: "Black Stockings with garter belt",
 	tags: ["hoisery", "equippable"],
 	femininity: 20,
 	price: 0,
@@ -212,14 +212,14 @@
 }, 1)>>
 <<= $shop.addItem("Accessory", {
 	name: "Black choker",
-	tags: ["accessory-head", "equippable"],
+	tags: ["accessory-neck", "equippable"],
 	femininity: 10,
 	price: 0,
 	img: "items/wearables/accessories/choker_01.jpg"
 }, 1)>>
 <<= $shop.addItem("Accessory", {
 	name: "Frilly black and white choker",
-	tags: ["accessory-head", "equippable"],
+	tags: ["accessory-neck", "equippable"],
 	femininity: 15,
 	price: 0,
 	img: "items/wearables/accessories/choker_02.jpg"

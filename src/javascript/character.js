@@ -164,7 +164,19 @@ class Player extends Character {
             this.inv.items.filter(function (el) {
                 return el.item.tags.some(function(tag) {
                     return tags.includes(tag) && 
-                        !["temp", "equipped", "equippable", "shopItem", "gettable"].includes(tag)
+                        [
+                            "wig", 
+                            "shirt", 
+                            "pants", 
+                            "underwear",
+                            "bra",
+                            "hoisery",
+                            "shoe",
+                            "accessory-head",
+                            "accessory-neck",
+                            "toy-front",
+                            "toy-back"
+                        ].includes(tag)
                     })
             }).filter(function (el) {
                 return el.item.tags.includes("equipped");
