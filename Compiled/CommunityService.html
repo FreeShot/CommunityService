@@ -1956,6 +1956,14 @@ Config.passages.onProcess = function (p) {
 	State.variables.aPsgText = "";
 	return text;
 };
+
+window.rememberScore = function(score, event) {
+	// Stores the new events and forgets an event if it needs to
+	while (State.variables.lastEvents[event].length > settings.rememberLastEvents) {
+		State.variables.lastEvents[event].shift();
+	}
+	State.variables.lastEvents[event].push(score);
+}
 /* twine-user-script #12: "settings.js" */
 Setting.addHeader("NPC", "Anything that influence the generation of NPCs.");
 Setting.addList("maxNPC", {
@@ -1977,6 +1985,22 @@ Setting.addList("npcPerEvent", {
 	label: "Number of npc per events.",
 	list: [5, 6, 7, 8, 9, 10],
 	default: 5
+});
+Setting.addList("remeberLastEvents", {
+	label: "How many events to store (More means the game is more forgiving).",
+	desc: "Avoid changing during the game as it may cause some inbala",
+	list: [1, 2, 3, 4, 5, 6],
+	default: 1,
+	onInit: function() {
+		State.variables.lastEvents = {
+			CParty : [100],
+			mean : function(event) {
+				return State.variables.lastEvents[event].reduce(function(total, curr, i, arr) {
+					return total + curr / arr.length;
+				});
+			}
+		};
+	}
 });
 
 
@@ -3286,15 +3310,20 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="100" name="mansionCPartyFinish01" tags="event" position="1225,1225" size="100,100">Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It&#39;s very late and after the nights work you are definitely ready for bed.
 
-[[Head to your room|mansionCPartyIntro28][$time.setDate({hour:1, minute:30})]]</tw-passagedata><tw-passagedata pid="101" name="mansionCPartyReview01" tags="event" position="100,1350" size="100,100">Your score base: &lt;&lt;= $eventInfo.score&gt;&gt;
-&lt;&lt;set $eventInfo.score = Math.floor($eventInfo.score * (1 + $caterer.appreciation / 100))&gt;&gt;\
-Your score final: &lt;&lt;= $eventInfo.score&gt;&gt;
+[[Head to your room|mansionCPartyIntro28][$time.setDate({hour:1, minute:30})]]</tw-passagedata><tw-passagedata pid="101" name="mansionCPartyReview01" tags="event" position="100,1350" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set _final_score = Math.floor($eventInfo.score * (1 + $caterer.appreciation / 100))&gt;&gt;
+&lt;&lt;set $flags.partyRule to true&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;\
+Your score base: &lt;&lt;= $eventInfo.score&gt;&gt;
+Your score final: &lt;&lt;= _final_score&gt;&gt; (expected at least &lt;&lt;= $lastEvents.mean(&quot;CParty&quot;)&gt;&gt;)
 
-GOOD
+&lt;&lt;if _final_score &gt; $lastEvents.mean(&quot;CParty&quot;)&gt;&gt;
 &lt;&lt;= $wife.speak(&quot;You worked so hard last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
-
-BAD
+&lt;&lt;elseif _final_score &gt; 0.9 * $lastEvents.mean(&quot;CParty&quot;)&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;Your performance was mediocre last night, I&#39;m half tempted to leave it on until you do better as a motivation.&quot;)&gt;&gt;
+&lt;&lt;else&gt;&gt;
 &lt;&lt;= $wife.speak(&quot;Given your poor performance last night I&#39;m half tempted to leave it on just to keep you focused.&quot;)&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 $wife.name pulls out a key and starts twirling it on her finger.
 
@@ -3328,7 +3357,7 @@ $wife.name heads to the bathroom. &lt;&lt;= $wife.speak(&quot;A lot of people co
  
 She closes the door and you quickly unlock the cage and remove it. The relief is instant but you can&#39;t help but think how pathetic your small member looks after being compressed by the cage for so long.
  
-You leave the items on a cushion and then head &lt;&lt;link &quot;back to your room.&quot; &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;= $mansion.endEvent()&gt;&gt;&lt;&lt;set $eventInfo to undefined&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="daughterDateSetup01" tags="" position="225,1350" size="100,100">&lt;&lt;set $daughterDateStart to true&gt;&gt;
+You leave the items on a cushion and then head &lt;&lt;link &quot;back to your room.&quot; &quot;PlayerBdRm&quot;&gt;&gt;&lt;&lt;= $mansion.endEvent()&gt;&gt;&lt;&lt;= rememberScore($eventInfo.score, &quot;CParty&quot;)&gt;&gt;&lt;&lt;set $eventInfo to undefined&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="daughterDateSetup01" tags="" position="225,1350" size="100,100">&lt;&lt;set $daughterDateStart to true&gt;&gt;
 
 &quot;So what would you like to do? We can…&quot;
 
@@ -4602,7 +4631,9 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="115
 		&quot;init&quot; : false,
 		&quot;rules&quot; : false
 	},
-	&quot;manorIntro&quot; : true
+	&quot;manorIntro&quot; : true,
+	&quot;partyRule&quot; : false,
+	&quot;gymUnlocked&quot; : false
 }&gt;&gt;
 
 &lt;&lt;include &quot;characterInit&quot;&gt;&gt;
@@ -4976,12 +5007,12 @@ Day &lt;&lt;= $time.day + 1&gt;&gt;&lt;/span&gt;
 &lt;li&gt;Performance will be assessed regularly at the the discretion of Mr and Mrs Sono.&lt;/li&gt;
 &lt;li&gt;Punishment for not meeting the requirements of your duties will be at the discretion of Mr and Mrs Sono.&lt;/li&gt;
 &lt;&lt;nobr&gt;&gt;
-&lt;&lt;if $gymEstateUnlocked is true&gt;&gt;
+&lt;&lt;if $flags.gymUnlocked is true&gt;&gt;
 &lt;li&gt;Use of any of the facilities on site is permitted between 8am to 10pm.&lt;/li&gt;
 &lt;&lt;else&gt;&gt;
 &lt;li&gt;You are NOT permitted to use any of the onsite facilities outside of you normal chores.&lt;/li&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;if $cPartyCompulsory is true&gt;&gt;
+&lt;&lt;if $flags.partyRule is true&gt;&gt;
 &lt;li&gt;$caterer.name will require you assistance at $wife.title&#39;s biweekly gathering. You must be in full uniform and assist guest as required.&lt;/li&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\

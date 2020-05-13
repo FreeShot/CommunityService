@@ -26,7 +26,12 @@ Setting.addList("remeberLastEvents", {
 	default: 1,
 	onInit: function() {
 		State.variables.lastEvents = {
-			"CParty" : [100];
+			CParty : [100],
+			mean : function(event) {
+				return State.variables.lastEvents[event].reduce(function(total, curr, i, arr) {
+					return total + curr / arr.length;
+				});
+			}
 		};
 	}
 });

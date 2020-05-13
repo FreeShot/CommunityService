@@ -55,12 +55,12 @@ Skills will be added later
 <li>Performance will be assessed regularly at the the discretion of Mr and Mrs Sono.</li>
 <li>Punishment for not meeting the requirements of your duties will be at the discretion of Mr and Mrs Sono.</li>
 <<nobr>>
-<<if $gymEstateUnlocked is true>>
+<<if $flags.gymUnlocked is true>>
 <li>Use of any of the facilities on site is permitted between 8am to 10pm.</li>
 <<else>>
 <li>You are NOT permitted to use any of the onsite facilities outside of you normal chores.</li>
 <</if>>
-<<if $cPartyCompulsory is true>>
+<<if $flags.partyRule is true>>
 <li>$caterer.name will require you assistance at $wife.title's biweekly gathering. You must be in full uniform and assist guest as required.</li>
 <</if>>
 <</nobr>>\

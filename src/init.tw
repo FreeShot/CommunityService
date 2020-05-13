@@ -9,7 +9,9 @@
 		"init" : false,
 		"rules" : false
 	},
-	"manorIntro" : true
+	"manorIntro" : true,
+	"partyRule" : false,
+	"gymUnlocked" : false
 }>>
 
 <<include "characterInit">>

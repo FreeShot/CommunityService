@@ -189,15 +189,20 @@ Eventually the last guests leave and you help $caterer.name clean up. By the tim
 [[Head to your room|mansionCPartyIntro28][$time.setDate({hour:1, minute:30})]]
 
 ::mansionCPartyReview01 [event]
+<<nobr>>
+<<set _final_score = Math.floor($eventInfo.score * (1 + $caterer.appreciation / 100))>>
+<<set $flags.partyRule to true>>
+<</nobr>>\
 Your score base: <<= $eventInfo.score>>
-<<set $eventInfo.score = Math.floor($eventInfo.score * (1 + $caterer.appreciation / 100))>>\
-Your score final: <<= $eventInfo.score>>
+Your score final: <<= _final_score>> (expected at least <<= $lastEvents.mean("CParty")>>)
 
-GOOD
+<<if _final_score > $lastEvents.mean("CParty")>>
 <<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
-
-BAD
+<<elseif _final_score > 0.9 * $lastEvents.mean("CParty")>>
+<<= $wife.speak("Your performance was mediocre last night, I'm half tempted to leave it on until you do better as a motivation.")>>
+<<else>>
 <<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>>
+<</if>>
 
 $wife.name pulls out a key and starts twirling it on her finger.
 
