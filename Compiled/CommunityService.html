@@ -2259,11 +2259,6 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="54" name="debug-passage" tags="debug" position="475,725" size="100,100">&lt;hr&gt;
 DEBUG
 
-Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
-
-&lt;span id=&quot;debug-extended&quot;&gt;
-&lt;&lt;link &quot;Enable extended debug&quot;&gt;&gt;
-&lt;&lt;replace &quot;#debug-extended&quot;&gt;&gt;
 &lt;&lt;link &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;silently&gt;&gt;
 		&lt;&lt;include &quot;wakeUp&quot;&gt;&gt;
@@ -2276,6 +2271,18 @@ Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/silently&gt;&gt;
 &lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;++ D app&quot;&gt;&gt;
+	&lt;&lt;silently&gt;&gt;
+		&lt;&lt;set $daughter.addAppreciation(1)&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/silently&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+
+Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
+
+&lt;span id=&quot;debug-extended&quot;&gt;
+&lt;&lt;link &quot;Enable extended debug&quot;&gt;&gt;
+&lt;&lt;replace &quot;#debug-extended&quot;&gt;&gt;
 
 Player:
 &lt;&lt;debug &quot;player&quot;&gt;&gt;player&lt;&lt;/debug&gt;&gt;
@@ -2626,7 +2633,9 @@ $wife.name adjusts the fit as best as she can and tucks your short hair under th
 &lt;&lt;/link&gt;&gt;\
 &lt;&lt;/replace&gt;&gt;\
 &lt;&lt;/link&gt;&gt;\
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="70" name="mansionCPartyIntro14" tags="event" position="1225,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
+&lt;/span&gt;
+
+[[mansionCPartyIntro14]]</tw-passagedata><tw-passagedata pid="70" name="mansionCPartyIntro14" tags="event" position="1225,850" size="100,100">You open your eyes to the weird feeling of &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; bangs framing your view. $wife.name gives you a quick slap on the bottom of your foot when you hold your legs out.
 
 &lt;&lt;= $wife.speak(&quot;Point your toes.&quot;)&gt;&gt;
 
@@ -2648,7 +2657,9 @@ Before you move, $wife.name pulls you up and turns you arround.
 
 &lt;&lt;link &quot;When you face the mirror your jaw almost hits the floor.&quot; &quot;mansionCPartyIntro15&quot;&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black Stockings with garter belt&quot;), 1, true)&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="mansionCPartyIntro15" tags="event" position="100,975" size="100,100">[img[setup.ImagePath + &quot;events/cocktailparty/cocktailparty_firstlook.jpg&quot;]]
+&lt;&lt;/link&gt;&gt;
+
+[[mansionCPartyIntro15]]</tw-passagedata><tw-passagedata pid="71" name="mansionCPartyIntro15" tags="event" position="100,975" size="100,100">[img[setup.ImagePath + &quot;events/cocktailparty/cocktailparty_firstlook.jpg&quot;]]
 
 Standing in front of you, wearing demure black lingerie is onw of the prettiest girls you&#39;ve ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The &lt;&lt;= $player.inv.filter([&quot;wig&quot;, &quot;equipped&quot;])[0].item.color&gt;&gt; chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
 
@@ -3885,6 +3896,14 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	tags: [&quot;FirstWeek&quot;, &quot;manorIntro&quot;]
 }))&gt;&gt;
 
+&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
+	name: &quot;Before that though...&quot;,
+	passage: &quot;therapistPathStart01&quot;,
+	inline: false,
+	repeats: false,
+	tags: [&quot;therapyPathStart&quot;]
+}))&gt;&gt;
+
 &lt;!-- --------------------------------- --&gt;
 
 
@@ -4512,6 +4531,9 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="114
 	},
 	&quot;DaughterAcceptance2&quot; : function() {
 		return $daughter.appreciation == 2
+	},
+	&quot;therapyPathStart&quot; : function() {
+		return ($therapyPathStart == true);
 	}
 }&gt;&gt;
 

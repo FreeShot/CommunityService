@@ -31,6 +31,14 @@
 	tags: ["FirstWeek", "manorIntro"]
 }))>>
 
+<<= $mansion.addEvent("specialEvent", new Event({
+	name: "Before that though...",
+	passage: "therapistPathStart01",
+	inline: false,
+	repeats: false,
+	tags: ["therapyPathStart"]
+}))>>
+
 <!-- --------------------------------- -->
 
 
