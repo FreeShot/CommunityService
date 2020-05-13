@@ -23,7 +23,19 @@ $wife.name helps you with the rest of your outfit. The cincher, stockings and br
 
 She hands you a bottle of tonic.
 
-[[Complete the transformation|mansionCPartySetup03]]
+<<link "Complete the transformation" "mansionCPartySetup03">>
+<<= $player.unequip("All")>>
+/* Will change this to symply equip a set of clothes, like this it will be customisable */
+<<= $player.inv.addItem($shop.getAsTemp("Lacey black silk panties"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Lacey black silk bra"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Long brown wig"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black Stockings with garter belt"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Stylised maid outfit"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Black choker"), 1, true)>>
+<<= $player.raiseVoice({tmp: 100, abs:1})>>
+<</link>>
 
 ::mansionCPartySetup03
 
@@ -39,10 +51,18 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 
 [[mansionCPartyServing01]]
 
-::mansionCPartyInit [event]
+::mansionCPartyInit [event nobr]
+<<silently>>
 /* Used to generate npcs and other stuff needed for the party */
-<<set _npc to $minorNPC[generateNPC(_i)]>>
+<<set $eventNPC to []>>
+<<for _i = 0; _i < 5; _i++>>
+<<= $eventNPC.push(generateNPC(_i))>>
+<</for>>
+
+<</silently>>
 
 ::mansionCPartyServing01 [event]
-<<include mansionCPartyInit>>
-<<= _npc.speak("Test")>>
+<<include mansionCPartyInit>>\
+<<for _i range $eventNPC>>
+<<= $minorNPC[_i].info()>>
+<</for>>
