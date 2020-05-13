@@ -19,6 +19,17 @@ Setting.addList("npcPerEvent", {
 	list: [5, 6, 7, 8, 9, 10],
 	default: 5
 });
+Setting.addList("remeberLastEvents", {
+	label: "How many events to store (More means the game is more forgiving).",
+	desc: "Avoid changing during the game as it may cause some inbala",
+	list: [1, 2, 3, 4, 5, 6],
+	default: 1,
+	onInit: function() {
+		State.variables.lastEvents = {
+			"CParty" : [100];
+		};
+	}
+});
 
 
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
