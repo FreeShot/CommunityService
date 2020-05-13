@@ -44,6 +44,9 @@
 	},
 	"DaughterAcceptance2" : function() {
 		return $daughter.appreciation == 2
+	},
+	"therapyPathStart" : function() {
+		return ($therapyPathStart == true);
 	}
 }>>
 

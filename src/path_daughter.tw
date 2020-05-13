@@ -352,12 +352,19 @@ Your jaw drops as you see she is wearing one of the smallest cocktail dresses yo
 She loops her arm in yours and you head out.
 <</if>>
 
-She loops her arm in yours and you head out throught he main doors for the first time since you arrived.
+She loops her arm in yours and you head out through the main doors for the first time since you arrived.
 
 [[daughterDateSetup01]]
 
 <<set $daughterDateIntro to true>>
 <<set $therapyPathStart to true>>
+<<= $mansion.addEvent("Foyer", new Event({
+	name: "daughterDateSetup01", 
+	passage: "daughterDateSetup01", 
+	inline:true, 
+	repeats:true, 
+	tags: ["Thursday", "NeedDaughter"]
+}))>>
 
 :: daughterPath04IntroDate05
 
@@ -398,6 +405,8 @@ Not thinking too much on it you turn and head back to your room and crash on the
 <<= $time.setDate({day:0, hour: 2, minute:0})>>
 
 :: daughterPath04IntroDate07
+
+[[PlayerBdRm]]
 
 You scan your cuff to check your current quota before starting the day and see you've lost XXXX credits.
 

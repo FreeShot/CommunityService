@@ -2,14 +2,9 @@
 <hr>
 DEBUG
 
-Current event: <<= $mansion.currentEvent>>
-
-<span id="debug-extended">
-<<link "Enable extended debug">>
-<<replace "#debug-extended">>
 <<link "Debug Skip Day">>
 	<<silently>>
-		<<include "wakeUp">>
+		<<= $time.setDate("wakeup")>>
 		<<goto `passage()`>>
 	<</silently>>
 <</link>>
@@ -19,6 +14,18 @@ Current event: <<= $mansion.currentEvent>>
 		<<goto `passage()`>>
 	<</silently>>
 <</link>>
+<<link "++ D app">>
+	<<silently>>
+		<<set $daughter.addAppreciation(1)>>
+		<<goto `passage()`>>
+	<</silently>>
+<</link>>
+
+Current event: <<= $mansion.currentEvent>>
+
+<span id="debug-extended">
+<<link "Enable extended debug">>
+<<replace "#debug-extended">>
 
 Player:
 <<debug "player">>player<</debug>>

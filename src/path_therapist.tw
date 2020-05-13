@@ -1,11 +1,21 @@
 :: therapistPathStart01
 
-to do: trigger therapist tags
-
 <<if $daughterDateIntro is true>>
 
-Daughter date fall out
+Daughter date fall out from Wife and then check in with daughter about bill
+
+[[daughterPath04IntroDate07]]
 
 <</if>>
+
+<<= $mansion.addEvent("Foyer", new Event({
+	name: "therapySetup01", 
+	passage: "therapySetup01", 
+	inline:true, 
+	repeats:true, 
+	tags: ["Monday", "Evening"]
+}))>>
+
+<<set $therapyPathStart to false>>
 
 [[PlayerBdRm]]
