@@ -127,8 +127,45 @@ img {
 	border: solid 4px var(--link-color); 
 }
 
-table.inventoryTable {
-	max-width: 100%;
+.shop-display {
+	display: grid;
+	grid-template-columns: auto;
+	grid-row-gap: 10px;
+}
+
+.inventory-display {
+	display: grid;
+	grid-template-columns: repeat(var(--inventoryRow), 1fr);
+	grid-column: 1fr;
+	grid-gap: 10px 10px;
+}
+
+.inventory-name {
+	grid-column: 1 / span var(--inventoryRow);
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+	padding: auto auto;
+}
+
+.item-display, .inventory-display-empty {
+	display: grid;
+	grid-template-columns: 1;
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+}
+
+.item-display-img {
+	height: 100%;
+}
+
+.item-display-button button{
+	background: var(--link-color-hover);
+	color: var(--link-color);
+	border: solid 2px var(--link-color);
+	border-radius: 5px;
+	margin: 5px;
 }
 
 .estateRoom {

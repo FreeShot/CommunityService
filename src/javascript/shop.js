@@ -38,20 +38,16 @@ class Shop {
 	listItem()
 	{
 		var str = String.format(
-			"<ul id='{0}'>",
-			this.id
+			"<div class='shop-display'>",
 		);
 		var name = this.name;
-		this.categories.forEach(function(el) {
-			str += String.format(
-				"<li>{0}</li>",
-				el.listItem(String.format(
-					"State.variables['{0}']",
-					this.id
-				))
-			);
+		this.categories.forEach(function(el) { // Can't use reduce because of this
+			str += el.listItem(String.format(
+				"State.variables['{0}']",
+				this.id
+			));
 		}, this);
-		return str + "</ul>";
+		return str + "</div>";
 	}
 	
 	clone() {

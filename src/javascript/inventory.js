@@ -1,4 +1,7 @@
 function ItemSorter(a, b) {
+	if(a.item.tags.includes("equipped") || b.item.tags.includes("equipped")) {
+		return a.item.tags.includes("equipped") ? -1 : 1;
+	}
 	var tagOrder = ["wig", "shirt", "bra", "pants", "underwear", "hoisery", "shoe", "toy-front", "toy-back"];
 	var tagIndexA = tagOrder.length;
 	a.item.tags.forEach(function(tag) {
@@ -100,34 +103,22 @@ class Inventory {
 	}
 
 	listItem(parent, wl, bl, displayName, canEquip) {
-		var str = String.format("{0} <table class='inventoryTable'>", displayName || this.name);
 		var items = this.filter(wl, bl);
 		items.sort(ItemSorter);
-		items.forEach(function(el, i){
-			if (i % settings.inventoryRows === 0){
-				str += "<tr class='inventoryRows'>";
-			}
-			str += el.item.description(
-				el.count, 
-				parent !== undefined ?
-				String.format(
-					"{0}.getCategory(['{1}'])",
-					parent,
-					this.name
-				) : String.format(
-					"State.variables['{0}']",
-					this.name
-				),
-				canEquip || true
-			);
-			if (i % settings.inventoryRows === settings.inventoryRows - 1){
-				str += "</tr>";
-			}
-		}, this);
-		if (items.length % settings.inventoryRows !== 0) {
-			str += "</tr>";
+
+		var str = items.reduce(function(str, item) {
+			return str + item.item.description(item.count, parent || ("State.variables." + this.name), canEquip);
+		}, String.format("<div class='inventory-display'><div class='inventory-name'>{0}</div>", displayName || this.name));
+
+		var i = 0;
+		console.log(items.length % settings.inventoryRows);
+		while ((i + items.length) % settings.inventoryRows !== 0) {
+			str += "<div class='inventory-display-empty'></div>"
+			i++;
 		}
-		return str + "</table>";
+		console.log(i);
+
+		return str + "</div>";
 	}
 
 	buyItem(item, price, amount)

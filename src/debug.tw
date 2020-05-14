@@ -1,6 +1,9 @@
 ::debug-passage [debug]
 <hr>
 DEBUG
+TEMP
+<<= $player.inv.listItem("$player.inv", undefined, undefined, "Inventory", false)>>
+
 
 <<link "Debug Skip Day">>
 	<<= $time.setDate("wakeup")>>

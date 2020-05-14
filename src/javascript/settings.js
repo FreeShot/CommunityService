@@ -36,7 +36,13 @@ Setting.addHeader("Display");
 Setting.addList("inventoryRows", {
 	label    : "Number of rows in the inventory",
 	list: [1, 2, 3, 4, 5],
-	default  : 5
+	default  : 5,
+	onInit: function() {
+		document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows);
+	},
+	onChange: function() {
+		document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows);
+	}
 });
 
 // Setting up a list control for the settings property 'theme' w/ callbacks
