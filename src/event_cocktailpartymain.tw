@@ -57,27 +57,40 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 ::mansionCPartyInit [event nobr]
 <<silently>>
 /* Used to generate npcs and other stuff needed for the party */
-<<if !$eventInfo>>
+<<if $eventInfo === undefined>>
+<<= console.log("UNDEFINED EVENT INFO")>>
 <<set $eventInfo to {
 	npc: [],
 	score: 0,
 	stage: 5,
 	microEventCount: 2,
 	events: [
-		{name: "Circulate some hors d'oeuvres", passage: "mansionCPartyStaring01"},
-		{name: "Serve the lady on the lounge", passage: "mansionCPartyStaring02"},
-		{name: "Serve a man in the back", passage: "mansionCPartyGroping01"},
-		{name: "Get another tray of food", passage: "mansionCPartyCage01"},
-		{name: "Go refill your tray", passage: "mansionCPartyCage02"},
-		{name: "Approach the people eyeing your tray", passage: "mansionCPartySocialListen01"},
-		{name: "Serve the the nearby couple", passage: "mansionCPartySocialListen02"},
-		{name: "Clear some of the tables", passage: "mansionCPartySocialListen03"},
-		{name: "Tidy the side rooms", passage: "mansionCPartySocialListen04"}
+		{name: "Circulate some hors d'oeuvres", passage: "mansionCPartyStaring01", npc: []},
+		{name: "Serve the lady on the lounge", passage: "mansionCPartyStaring02", npc: ["female"]},
+		{name: "Serve a man in the back", passage: "mansionCPartyGroping01", npc: ["male"]},
+		{name: "Get another tray of food", passage: "mansionCPartyCage01", npc: []},
+		{name: "Go refill your tray", passage: "mansionCPartyCage02", npc: []},
+		{name: "Approach the people eyeing your tray", passage: "mansionCPartySocialListen01", npc: ["any", "any"]},
+		{name: "Serve the the nearby couple", passage: "mansionCPartySocialListen02", npc: ["any", "any"]},
+		{name: "Clear some of the tables", passage: "mansionCPartySocialListen03", npc: ["any", "any"]},
+		{name: "Tidy the side rooms", passage: "mansionCPartySocialListen04", npc: ["any", "any"]}
+	],
+	getNpc: function(npcType) {
+		var NPC = [];
+		npcType.forEach(function (type) {
+			var npc = State.variables.eventInfo.npc.random();
+			while (NPC.includes(npc) || (type !== "any" && (State.variables.minorNPC[npc].gender !== type))) {
+				npc = State.variables.eventInfo.npc.random();
+			}
+			NPC.push(State.variables.minorNPC[npc]);
+		});
+		return NPC.length === 1 ? NPC[0] : NPC;
+	}
 }>>
 <</if>>
 <<= $eventInfo.npc = []>>
 <<for _i = 0; _i < settings.npcPerEvent; _i++>>
-<<= generateNPC($minorNPC, $eventInfo.npc)>>
+<<= generateNPC($minorNPC, $eventInfo.npc, _i)>>
 <</for>>
 <<goto "mansionCPartyServing01">>
 <</silently>>
@@ -91,10 +104,13 @@ TODO: ADD GENERAL DESCRIPTION OF THE PARTY
 [[Finish the party|mansionCPartyFinish01]]
 <<else>>
 <<for _event range $eventInfo.events.randomMany($eventInfo.microEventCount)>>
+<<capture _event>>\
 <<link _event.name _event.passage>>
 	<<= $eventInfo.stage-->>
 	<<= $eventInfo.score+=25>>
+	<<= $eventInfo.active = $eventInfo.getNpc(_event.npc)>>
 <</link>>
+<</capture>>
 <</for>>
 <</if>>
 
@@ -107,10 +123,8 @@ You quickly move away to escape his gaze.
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartyStaring02 [event]
-
 You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
-
-<<= Character.speakAnonymous("Thank you so much. You must tell me how you keep your skin so soft.", "MediumVioletRed")>> She caresses your arm for a few seconds longer. <<= Character.speakAnonymous("It's like touching silk.", "MediumVioletRed")>>
+<<= $eventInfo.active.speak("Thank you so much. You must tell me how you keep your skin so soft.")>> She caresses your arm for a few seconds longer. <<= $eventInfo.active.speak("It's like touching silk.")>>
 
 <<= $player.speak("Um, thank you.")>>
 
@@ -119,68 +133,46 @@ You politely pull away and hurry back to the bar to pick up some more drinks.
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartyGroping01 [event]
-
 As you turn away to retrieve the man's drink you feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
 
-<<nobr>>
-<span id="cpartygroping01">
-	<<link "Defend yourself.">>
-		<<replace "#cpartygroping01">>
-			<<= $player.speak("Ow! Hands to yourself.")>><br>
-			<br>
-			The man looks surprised at your reaction as you slap his hand away. Some of the guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else.<br>
-			<br>
-			The man is staring at you with the barest hint of alarm.<br>
-			<br>
-			<span id="cpartygroping01">
-				<<link "Apologise.">>
-					<<replace "#cpartygroping01">>
-						You swallow and say. <<= $player.speak("Sorry sir. You startled me is all.")>><br>
-						<br>
-						<<= Character.speakAnonymous("Not a problem.")>> The man smiles smugly. <<= Character.speakAnonymous("Now fetch my drink like a good girl.", "Peru")>> He gives you another quick slap on the butt and sends you on your way.
-						<br><br>
-						[[Back to serving|mansionCPartyServing01]]
-					<</replace>>
-				<</link>><br>
-				<<link "No way you're apologising.">>
-					<<replace "#cpartygroping01">>
-							You stare at $wife.name for a moment and then simply turn around and walk away. You still retrieve the man's drink but you'll be damned if you're apologising to the groper.
-							<br><br>
-							[[Back to serving|mansionCPartyServing01]]
-					<</replace>>
-				<</link>>
-			</span>
-		<</replace>>
-	<</link>>
-</span><</nobr>>
+<<chooseOption "Defend yourself">>
+<<= $player.speak("Ow! Hands to yourself.")>>
+
+The man looks surpised at your reaction as you slap his hand away. Some of the guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else...
+
+The man is staring at you with the barest hint of alarm.
+
+<<chooseOption "Appologise.">>
+You swallow and say. <<= $player.speak("Sorry sir. You startled me is all.")>>
+
+<<= $eventInfo.active.speak("Not a problem.")>> The man smiles smugly. <<= $eventInfo.active.speak("Now fetch my drink like a good girl.")>>
+
+He gives you another quick slap on the butt and sends you on your way.
+
+[[Back to serving|mansionCPartyServing01]]
+<<option "No way you're appologising">>
+You stare at $wife.name for a moment and simply turn around and walk away. You still retrieve the man's drink but you'll be damned if you're apologising to the groper
+<</chooseOption>>
+<</chooseOption>>
 
 ::mansionCPartyCage01 [event]
-
 $caterer.name pushes forward a fresh tray for you to collect.
 
 <<= $caterer.speak("Come on girl.")>>
 
 You lean forward to grab it and your hips bump against the counter. You gasp as the plastic cage is pushed into your crotch reminding you of your current situation down there. It gets shifted into an uncomfortable position.
 
-<<nobr>>
-<span id="cpartycage01">
-	<<link "Reach down to adjust yourself.">>
-		<<replace "#cpartycage01">>
-			<<= $caterer.speak("What the hell are you doing?")>> Caterer flicks out his arm and slaps your hand with a utensil and then hisses in a low voice. <<= $caterer.speak("Guests don't want to see you playing with yourself before taking out their food.")>>
+<<chooseOption "Reach down to adjust yourself.">>
+<<= $caterer.speak("What the hell are you doing?")>> Caterer flicks out his arm and slaps your hand with a utensil and then hisses in a low voice. <<= $caterer.speak("Guests don't want to see you playing with yourself before taking out their food.")>>
 
-			You take the tray and walk out of the kitchen. Your restrain member twitches in the cage as it twist and pokes in an uncomfortable position. You'll just have to deal with it for now.
-			<br><br>
-			[[Back to serving|mansionCPartyServing01]]
-		<</replace>>
-	<</link>><br>
-	<<link "Try and ignore it.">>
-		<<replace "#cpartycage01">>
-			You take a moment to collect yourself, your twitching member straining against its plastic prison.
-			<br><br>
-			[[Back to serving|mansionCPartyServing01]]
-		<</replace>>
-	<</link>>
-</span><</nobr>>
+You take the tray and walk out of the kitchen. Your restrain member twitches in the cage as it twist and pokes in an uncomfortable position. You'll just have to deal with it for now.
+
+[[Back to serving|mansionCPartyServing01]]
+<<option "Try and ignore it.">>
+You take a moment to collect yourself, your twitching member straining against its plastic prison.
+
+[[Back to serving|mansionCPartyServing01]]
+<</chooseOption>>
 
 ::mansionCPartyCage02 [event]
 
@@ -193,64 +185,60 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartySocialListen01 [event]
-
 Guests are taking items from your tray as you move through the crowd. They are pretty much ignoring the fact you are standing there as they carry on their conversations. One in particular gets your interest.
 
-<<= Character.speakAnonymous("Have you seen the latest reports on PharmaTech's stock?", "Orange")>>
+<<= $eventInfo.active[0].speak("Have you seen the latest reports on PharmaTech's stock?")>>
 
-<<= Character.speakAnonymous("Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.", "Saddle Brown")>>
+<<= $eventInfo.active[1].speak("Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.")>>
 
-<<= Character.speakAnonymous("The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn't even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She's much better at following instructions now.", "Orange")>>
+<<= $eventInfo.active[0].speak("The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn't even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She's much better at following instructions now.")>>
 
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartySocialListen02
-
 A guest gestures for you to bring your tray over. You approach and they start examining the hors d'oeuvres while continuing their conversation.
 
-<<= Character.speakAnonymous("Did you hear the news about $suitor.name?", "MediumVioletRed")>>
+<<= $eventInfo.active[0].speak("Did you hear the news about $suitor.name?")>>
 
-<<= Character.speakAnonymous("No, what happened?", "LightSeaGreen")>>
+<<= $eventInfo.active[1].speak("No, what happened?")>>
 
-<<= Character.speakAnonymous("It seems he's dismissed another servant.", "MediumVioletRed")>>
+<<= $eventInfo.active[0].speak("It seems he's dismissed another servant.")>>
 
-<<= Character.speakAnonymous("How long did this one last? 2 weeks?", "LightSeaGreen")>>
+<<= $eventInfo.active[1].speak("How long did this one last? 2 weeks?")>>
 
-<<= Character.speakAnonymous("Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.", "MediumVioletRed")>>
+<<= $eventInfo.active[0].speak("Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.")>>
 
 Both of them start laughing, though you're not sure why it's funny.
 
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartySocialListen03
-
 You're picking up some empty glasses from an end table when you overhear some of the guests talking from around the corner.
 
-<<= Character.speakAnonymous("I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It's amazing how such a bright mind can have such a wild side.", "Orange")>>
+<<= $eventInfo.active[0].speak("I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It's amazing how such a bright mind can have such a wild side.")>>
 
-<<= Character.speakAnonymous("Yes, did you hear she's been brought back home by security several times since she got back into town.", "GreenYellow")>>
+<<= $eventInfo.active[1].speak("Yes, did you hear she's been brought back home by security several times since she got back into town.")>>
 
-<<= Character.speakAnonymous("She definitely likes blowing off steam after being cooped up here all the time on her own. It's a bit sad really.", "Orange")>>
+<<= $eventInfo.active[0].speak("She definitely likes blowing off steam after being cooped up here all the time on her own. It's a bit sad really.")>>
 
-<<= Character.speakAnonymous("The emergency response units would say that's putting it mildly.", "GreenYellow")>>
+<<= $eventInfo.active[1].speak("The emergency response units would say that's putting it mildly.")>>
 
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartySocialListen04
-
 You go to one of the aloves and are collecting some of the discarded food and rubbish. These don't really seem to care much about what they're eating and you find plenty of half eaten food. While you are busy you hear some voices from around a corner.
 
-<<= Character.speakAnonymous("Have you seen $owner.name's latest acquisition?", "Orange")>>
+<<= $eventInfo.active[0].speak("Have you seen $owner.name's latest acquisition?")>>
 
-<<= Character.speakAnonymous("Hm, I most certainly have. $wife.name has already been putting some work in to her. She already created quite the beauty. Watching the way that maid's skirt bounces on that cute ass is definitely the highlight of my night so far", "Peru")>>
+<<= $eventInfo.active[1].speak("Hm, I most certainly have. $wife.name has already been putting some work in to her. She already created quite the beauty. Watching the way that maid's skirt bounces on that cute ass is definitely the highlight of my night so far")>>
 
 Your cheeks flush red as you realise, they are talking about you. Fortunately, they don't seem to know you are there so you do your best to keep it that way.
 
-<<= Character.speakAnonymous("How long do you think it will take before these she becomes the focal point of these parties?", "Orange")>>
+<<= $eventInfo.active[0].speak("How long do you think it will take before these she becomes the focal point of these parties?")>>
 
-<<= Character.speakAnonymous("Knowing how quickly $wife.name works not long at all.", "Peru")>>
+<<= $eventInfo.active[1].speak("Knowing how quickly $wife.name works not long at all.")>>
 
-CLANG!
+//CLANG!//
 
 You didn't realise you were leaning in to listen more and have knocked over one of your glasses. Quickly, you right the class and then move away.
 

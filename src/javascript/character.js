@@ -1,7 +1,7 @@
-function createNPC() {
+function createNPC(gender) {
     var values = {};
 
-    values["gender"] = (Math.random() > settings.maleNPC) ? 'female' : 'male';
+    values["gender"] = (gender) ? 'female' : 'male';
     values["title"] = values["gender"] === "male" ? "Mr" : "Mrs";
     
     var names;
@@ -27,7 +27,7 @@ function createNPC() {
     });
 
     values["appreciation"] = 0;
-
+    values["color"] = {};
     values["color"]["light"] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
     values["color"]["dark"] = values["color"]["light"];
     return values;
@@ -368,16 +368,16 @@ Object.defineProperty(window, 'MinorNPC', {
     value : MinorNPC
 });
 
-window.generateNPC = function(list, activeNPC) {
+window.generateNPC = function(list, activeNPC, nb) {
     if (settings.maxNPC <= list.length || (list.length > 1 && Math.random() > 0.5)) {
         var index = Math.floor(Math.random() * list.length);
         if (!activeNPC.includes(index)){
             activeNPC.push(index);
         } else {
-            generateNPC(list, activeNPC);
+            generateNPC(list, activeNPC, nb / settings.npcPerEvent < settings.maleNPC);
         }
     } else {
         list.push(new MinorNPC());
-        activeNPC.push(list.length);
+        activeNPC.push(list.length - 1);
     }
 }
