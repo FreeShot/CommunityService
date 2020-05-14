@@ -685,11 +685,16 @@ class Chore {
         }, this);
 	}
 
-	do() {
+	do(canDoChores) {
 		//console.log(State.variables.time.endsAfter("sleep", this.duration));
 		if (this.dayLeft < 0) {
 			return "";
-		} else if (this.done) {
+		} else if (!this.canDoChores) {
+			return String.format(
+				"<span class='choreUnavailable'>{0} (You can't do any chores right now)</span>",
+				this.name
+			);
+		} else  if (this.done) {
 			return String.format(
 				"<span class='ChoreDone'>{0} (Done)</span>",
 				this.name
@@ -1386,7 +1391,7 @@ class Mansion {
 		var str = "<ol>";
 		var hasChores = false;
 		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores();
+			var roomChores = this.rooms[i].displayChores(undefined, this.currentEvent == "");
 			if (roomChores != undefined && roomChores !== "") {
 				str += "<li>" + roomChores  + "</li>";
 				hasChores = true;
@@ -1877,7 +1882,7 @@ class Room {
 		str += this.display(0) + "<br>";
 		str += this.getEvent();
 		str += "<br>Chores: ";
-		str += this.displayChores();
+		str += this.displayChores(State.variables.mansion.currentEvent === "");
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
 		return str;
@@ -1903,7 +1908,7 @@ class Room {
 		}
 	}
 
-	displayChores(displayTitle) {
+	displayChores(displayTitle, canDoChores) {
 		if (this.chores.length > 0) {
 			var title = ((displayTitle || true) ? this.name : "") + "<ol>";
 			var str = "";

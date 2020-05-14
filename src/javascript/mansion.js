@@ -31,7 +31,7 @@ class Mansion {
 		var str = "<ol>";
 		var hasChores = false;
 		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores();
+			var roomChores = this.rooms[i].displayChores(undefined, this.currentEvent == "");
 			if (roomChores != undefined && roomChores !== "") {
 				str += "<li>" + roomChores  + "</li>";
 				hasChores = true;

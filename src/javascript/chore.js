@@ -18,11 +18,16 @@ class Chore {
         }, this);
 	}
 
-	do() {
+	do(canDoChores) {
 		//console.log(State.variables.time.endsAfter("sleep", this.duration));
 		if (this.dayLeft < 0) {
 			return "";
-		} else if (this.done) {
+		} else if (!this.canDoChores) {
+			return String.format(
+				"<span class='choreUnavailable'>{0} (You can't do any chores right now)</span>",
+				this.name
+			);
+		} else  if (this.done) {
 			return String.format(
 				"<span class='ChoreDone'>{0} (Done)</span>",
 				this.name

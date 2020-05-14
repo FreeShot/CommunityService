@@ -83,7 +83,7 @@ class Room {
 		str += this.display(0) + "<br>";
 		str += this.getEvent();
 		str += "<br>Chores: ";
-		str += this.displayChores();
+		str += this.displayChores(State.variables.mansion.currentEvent === "");
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
 		return str;
@@ -109,7 +109,7 @@ class Room {
 		}
 	}
 
-	displayChores(displayTitle) {
+	displayChores(displayTitle, canDoChores) {
 		if (this.chores.length > 0) {
 			var title = ((displayTitle || true) ? this.name : "") + "<ol>";
 			var str = "";
