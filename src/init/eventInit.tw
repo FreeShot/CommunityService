@@ -8,7 +8,7 @@
 }))>>
 
 <<= $mansion.addEvent("specialEvent", new Event({
-	name: "cocktail party",
+	name: "Something feels different.",
 	passage: "mansionCPartyIntro01",
 	inline: false,
 	repeats: false,

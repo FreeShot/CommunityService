@@ -4,12 +4,15 @@ DEBUG
 
 <<link "Debug Skip Day">>
 	<<= $time.setDate("wakeup")>>
+	<<goto `passage()`>>
 <</link>>
 <<link "Skip to end of day">>
 	<<= $time.setDate({day:0, hour:22, minute:0})>>
+	<<goto `passage()`>>
 <</link>>
 <<link "++ D app">>
 	<<set $daughter.addAppreciation(1)>>
+	<<goto `passage()`>>
 <</link>>
 
 Current event: <<= $mansion.currentEvent>>

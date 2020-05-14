@@ -268,11 +268,11 @@ You feel $wife.name putting something on your head.
 
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
-<<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Brown Wig">>
+<<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Blonde Wig">>
 <<option "Brunettes">>
-<<= $player.speak("Brunettes, I think")>>
+<<= $player.speak("Ah, Brunettes?")>>
 
-<<= $wife.speak("Brunette then. Locking to play the friend card, eh?")>>
+<<= $wife.speak("Brunette then. Looking to play the friend card, eh?")>>
 
 You feel $wife.name putting something on your head.
 
@@ -283,6 +283,20 @@ You feel $wife.name putting something on your head.
 $wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Brown Wig">>
+<<option "Jet Black">>
+<<= $player.speak("I suppose black hair?")>>
+
+<<= $wife.speak("Hmm, I'm not sure you have the confidence to pull off raven hair but so be it.")>>
+
+You feel $wife.name putting something on your head.
+
+<<= $player.speak("What's that?")>>
+
+<<= $wife.speak("Your hair is too scruffy to work with, so you'll have to wear a wig instead.")>>
+
+$wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
+
+<<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Black Wig">>
 <<option "Red heads">>
 <<= $player.speak("I kind of like red heads, I guess...")>>
 
@@ -563,7 +577,7 @@ $butler.name pauses for a moment and looks you up and down. There is little to n
 
 <<= $butler.speak("AL, please update $player.femName's CUFF with hostess protocols.")>> He looks you in the eyes and you want to shrink back into yourself. <<= $butler.speak("Come with me $player.femName.")>>
 
-[[Be introduced to everyone to the new maid.|mansionCPartyIntro23]]
+[[Introduce everyone to the new maid.|mansionCPartyIntro23]]
 
 ::mansionCPartyIntro23 [event]
 [img[setup.ImagePath + "events/cocktailparty/maid_debut.gif"]]

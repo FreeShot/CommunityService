@@ -240,7 +240,7 @@
 	efficiency: 10
 })>>
 <<= $shop.addItem("Items", {
-	name: "Rain Hair Removal Cream",
+	name: "Rayn Hair Removal Cream",
 	tags: ["razor"],
 	price: 0,
 	efficiency: 10
