@@ -374,7 +374,7 @@ window.generateNPC = function(list, activeNPC, nb) {
         if (!activeNPC.includes(index)){
             activeNPC.push(index);
         } else {
-            generateNPC(list, activeNPC, nb / settings.npcPerEvent < settings.maleNPC);
+            generateNPC(list, activeNPC, nb / settings.npcPerEvent < 0.5);
         }
     } else {
         list.push(new MinorNPC());

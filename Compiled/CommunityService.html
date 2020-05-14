@@ -620,7 +620,7 @@ window.generateNPC = function(list, activeNPC, nb) {
         if (!activeNPC.includes(index)){
             activeNPC.push(index);
         } else {
-            generateNPC(list, activeNPC, nb / settings.npcPerEvent < settings.maleNPC);
+            generateNPC(list, activeNPC, nb / settings.npcPerEvent < 0.5);
         }
     } else {
         list.push(new MinorNPC());
@@ -1961,11 +1961,6 @@ Setting.addList("maxNPC", {
 			State.variables.minorNPC.splice(settings.maxNPC, State.variables.minorNPC.length);
 		}
 	}
-});
-Setting.addList("maleNPC", {
-	label: "Number of male NPC generated.",
-	list: [0, 0.25, 0.5, 0.75, 1],
-	default: 0.5
 });
 Setting.addList("npcPerEvent", {
 	label: "Number of npc per events.",
@@ -4809,31 +4804,25 @@ Having anyone being in control of your life doesn&#39;t sound great.
 
 &lt;&lt;= Character.speakAnonymous(&quot;This is a standard private contract but has a few addendums from your potential owner. If you want this deal you&#39;ll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.&quot;, &quot;DarkGoldenRod&quot;)&gt;&gt;
 
-@@#Intro5Options;
-[[Sign the contract without reading (default character settings)|Intro6]]
-&lt;&lt;link &quot;Read the contract. (customise your character)&quot;&gt;&gt;
-    &lt;&lt;replace &quot;#Intro5Options&quot;&gt;&gt;
-       		You scan through the document making note of the main clauses:
+You scan through the document making note of the main clauses:
 		
-				&lt;i&gt;• As per the Servant Rights Act you forfeit all rights to your Owner up to a minimum standard.&lt;/i&gt;
-				&lt;i&gt;• The State Repayment Plan requires you to meet a weekly quota to repay your debt.&lt;/i&gt;
-				&lt;i&gt;• The Owner Protection Clause  allows the value of the work completed to be determined by the Owner.&lt;/i&gt;
-				&lt;i&gt;• The Community Protection Act requires you to be restricted to your household at all times unless under Owner supervision or the Owner grants you special permission to leave.&lt;/i&gt;
+&lt;ul&gt;
+&lt;li&gt;As per the Servant Rights Act you forfeit all rights to your Owner up to a minimum standard.&lt;/li&gt;
+&lt;li&gt;The State Repayment Plan requires you to meet a weekly quota to repay your debt.&lt;/li&gt;
+&lt;li&gt;The Owner Protection Clause  allows the value of the work completed to be determined by the Owner.&lt;/li&gt;
+&lt;li&gt;The Community Protection Act requires you to be restricted to your household at all times unless under Owner supervision or the Owner grants you special permission to leave.&lt;/li&gt;
+&lt;/ul&gt;
 
-			It goes further into all the laws regulation but the bottom line is if you want this deal you have to sign.
+It goes further into all the laws regulation but the bottom line is if you want this deal you have to sign.
 		
-			The last section shows your personal information.
+The last section shows your personal information.
 
-			&lt;div id=&quot;player-customisation-form&quot;&gt;\
-			&lt;h3&gt;Personnal information of the &lt;em&gt;Indured Servant&lt;/em&gt;&lt;/h3&gt;
-			Name: &lt;&lt;textbox &quot;$player.name&quot; $player.name &quot;Intro6&quot; true&gt;&gt;
+&lt;div id=&quot;player-customisation-form&quot;&gt;\
+&lt;h3&gt;Personnal information of the &lt;em&gt;Indured Servant&lt;/em&gt;&lt;/h3&gt;
+Name: &lt;&lt;textbox &quot;$player.name&quot; $player.name &quot;Intro6&quot; true&gt;&gt;
+&lt;/div&gt;
 
-			&lt;/div&gt;
-
-[[Sign the contract|Intro6]]
-    &lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-@@</tw-passagedata><tw-passagedata pid="133" name="Intro6" tags="intro tutorial" position="350,1725" size="100,100">&lt;&lt;set $flags.cuff.recieved to true&gt;&gt;\
+[[Sign the contract|Intro6]]</tw-passagedata><tw-passagedata pid="133" name="Intro6" tags="intro tutorial" position="350,1725" size="100,100">&lt;&lt;set $flags.cuff.recieved to true&gt;&gt;\
 You sign your rights away and with that you are now an indentured servant. You know enough to know this basically makes you a slave with a few basic human rights but that&#39;s it.
 
 The Sentencing Officer takes away the contract a woman comes in with a box. She doesn’t saying anything as she sits next to you and pulls you hand over.

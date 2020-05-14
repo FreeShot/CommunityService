@@ -9,11 +9,6 @@ Setting.addList("maxNPC", {
 		}
 	}
 });
-Setting.addList("maleNPC", {
-	label: "Number of male NPC generated.",
-	list: [0, 0.25, 0.5, 0.75, 1],
-	default: 0.5
-});
 Setting.addList("npcPerEvent", {
 	label: "Number of npc per events.",
 	list: [5, 6, 7, 8, 9, 10],

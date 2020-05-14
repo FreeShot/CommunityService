@@ -108,31 +108,25 @@ The Sentencing Officer does some quick paper work and then pushes foward a table
 
 <<= Character.speakAnonymous("This is a standard private contract but has a few addendums from your potential owner. If you want this deal you'll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.", "DarkGoldenRod")>>
 
-@@#Intro5Options;
-[[Sign the contract without reading (default character settings)|Intro6]]
-<<link "Read the contract. (customise your character)">>
-    <<replace "#Intro5Options">>
-       		You scan through the document making note of the main clauses:
+You scan through the document making note of the main clauses:
 		
-				<i>• As per the Servant Rights Act you forfeit all rights to your Owner up to a minimum standard.</i>
-				<i>• The State Repayment Plan requires you to meet a weekly quota to repay your debt.</i>
-				<i>• The Owner Protection Clause  allows the value of the work completed to be determined by the Owner.</i>
-				<i>• The Community Protection Act requires you to be restricted to your household at all times unless under Owner supervision or the Owner grants you special permission to leave.</i>
+<ul>
+<li>As per the Servant Rights Act you forfeit all rights to your Owner up to a minimum standard.</li>
+<li>The State Repayment Plan requires you to meet a weekly quota to repay your debt.</li>
+<li>The Owner Protection Clause  allows the value of the work completed to be determined by the Owner.</li>
+<li>The Community Protection Act requires you to be restricted to your household at all times unless under Owner supervision or the Owner grants you special permission to leave.</li>
+</ul>
 
-			It goes further into all the laws regulation but the bottom line is if you want this deal you have to sign.
+It goes further into all the laws regulation but the bottom line is if you want this deal you have to sign.
 		
-			The last section shows your personal information.
+The last section shows your personal information.
 
-			<div id="player-customisation-form">\
-			<h3>Personnal information of the <em>Indured Servant</em></h3>
-			Name: <<textbox "$player.name" $player.name "Intro6" true>>
-
-			</div>
+<div id="player-customisation-form">\
+<h3>Personnal information of the <em>Indured Servant</em></h3>
+Name: <<textbox "$player.name" $player.name "Intro6" true>>
+</div>
 
 [[Sign the contract|Intro6]]
-    <</replace>>
-<</link>>
-@@
 
 ::Intro6 [intro tutorial]
 <<set $flags.cuff.recieved to true>>\
