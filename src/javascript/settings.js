@@ -40,7 +40,7 @@ Setting.addList("remeberLastEvents", {
 Setting.addHeader("Display");
 Setting.addList("inventoryRows", {
 	label    : "Number of rows in the inventory",
-	list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+	list: [1, 2, 3, 4, 5],
 	default  : 5
 });
 
@@ -77,5 +77,9 @@ Setting.addList("theme", {
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
 Setting.addToggle("nsfw", {
 	label    : "Displays NSFW images",
+	default  : true
+});
+Setting.addToggle("debug", {
+	label    : "Displays the debugger",
 	default  : true
 });

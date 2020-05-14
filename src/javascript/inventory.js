@@ -100,12 +100,12 @@ class Inventory {
 	}
 
 	listItem(parent, wl, bl, displayName, canEquip) {
-		var str = String.format("{0} <table>", displayName || this.name);
+		var str = String.format("{0} <table class='inventoryTable'>", displayName || this.name);
 		var items = this.filter(wl, bl);
 		items.sort(ItemSorter);
 		items.forEach(function(el, i){
 			if (i % settings.inventoryRows === 0){
-				str += "<tr>";
+				str += "<tr class='inventoryRows'>";
 			}
 			str += el.item.description(
 				el.count, 

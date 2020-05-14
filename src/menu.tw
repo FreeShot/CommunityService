@@ -1,9 +1,20 @@
-::StoryCaption [nodebug]
+::StoryCaption [nodebug nobr]
+<table id="menuInfo">
+<<if !$flags.manorIntro>>
+<tr id="date">Day <<= $time.day + 1>>: $time.weekDayFormat</tr>
+<tr id="time"><p><<= $time.clock>></p></tr>
+<</if>>
+<tr id="stamina">Stamina: <<= $player.getStaminaBar()>></tr>
+<<if $flags.cuff.recieved>>
+<tr id="cuff">[[CUFF]]</tr>
+<</if>>
+</table>
+
+
+
+::comment
 
 <<link "Toggle debug (currently <<if $debug>>ON<<else>>OFF<</if>>)" `passage()`>><<= $debug = !$debug>><</link>>
-
-
-
 <<if !$flags.manorIntro>>
 <hr>
 <span class="date">$time.weekDayFormat

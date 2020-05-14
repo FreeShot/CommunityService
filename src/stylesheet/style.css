@@ -8,6 +8,7 @@
 	--ui-border: #565857;
 	--link-color: #CC3F0C;
 	--link-hover-color: #8A2006;
+	--title-color: #66C3FF;
 }
 
 .theme-dark {
@@ -20,6 +21,7 @@
 	--ui-border: #339989;
 	--link-color: #E17A79;
 	--link-hover-color: #D15159;
+	--title-color: #42BFDD;
 }
 
 body {
@@ -53,13 +55,63 @@ body {
 	background: var(--ui-bg-active);
 }
 
-
-
 #menu li a {
 	color: var(--ui-text);
 }
 
+#ui-bar-history [id|="history"] {
+	color: var(--ui-text);
+	background-color: var(--story-bg);
+}
+
+#ui-bar-history [id|="history"]:disabled {
+	color: var(--link-color);
+	background-color: var(--ui-bg);
+	border-width: 0px;
+}
+
+#menuInfo {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 20px;
+}
+
+#menuInfo tr + tr {
+	border-top: solid 2px var(--ui-text);
+}
+
+#time p {
+	font-size: 30px;
+	background-color: #580C0E;
+	color: #C85A63;
+	padding: 0px;
+	margin: 0px 40px;
+	border-radius: 10px;
+	border: solid 2px #C85A63;
+}
+
+#cuff a {
+	font-size: 20px;
+	color: var(--ui-text);
+	padding: 10px;
+	margin: 0px;
+	border: dotted 2px var(--ui-text);
+	border-radius: 10px;
+}
+
+#cuff a:hover {
+	padding: 5px;
+	margin: 5px;
+}
+
+input, hr {
+	color: var(--link-color);
+}
+
 a {
+	padding: 5px;
+	border: solid 1px var(--link-color);
+	border-radius: 5px;
 	color: var(--link-color);
 }
 
@@ -72,5 +124,21 @@ img {
 	max-height: 20em;
 	object-fit: contain;
 	border-radius: 15px;
-	border: solid 4px #5C2C41; 
+	border: solid 4px var(--link-color); 
+}
+
+table.inventoryTable {
+	max-width: 100%;
+}
+
+.estateRoom {
+	font-size: 32px;
+	color: var(--link-color);
+}
+
+/* DEBUG CSS */
+
+.error, .error-view > .error-toggle, .error-source {
+	background-color: red;
+	color: white;
 }

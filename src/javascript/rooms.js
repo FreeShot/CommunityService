@@ -73,9 +73,9 @@ class Room {
 	display(imgIndex) {
 		var imgIndex = imgIndex || 0;
 
-		var str = "<span class='estateRoom'>" + this.name + "</span><br>";
+		var str = "<span class='estateRoom'>" + this.name + "<br>";
 
-		return str + (imgIndex < this.img.length ? "[img[" + this.getImgPath(imgIndex) + "]]" : "");
+		return str + (imgIndex < this.img.length ? "[img[" + this.getImgPath(imgIndex) + "]]</span>" : "</span>");
 	}
 
 	generatePassage() {
