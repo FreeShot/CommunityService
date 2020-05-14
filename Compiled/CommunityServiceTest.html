@@ -2363,10 +2363,6 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="54" name="debug-passage" tags="debug" position="475,725" size="100,100">&lt;hr&gt;
 DEBUG
-TEMP
-&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, undefined, undefined, &quot;Inventory&quot;, false)&gt;&gt;
-
-
 &lt;&lt;link &quot;Debug Skip Day&quot;&gt;&gt;
 	&lt;&lt;= $time.setDate(&quot;wakeup&quot;)&gt;&gt;
 	&lt;&lt;goto `passage()`&gt;&gt;
@@ -2381,11 +2377,9 @@ TEMP
 &lt;&lt;/link&gt;&gt;
 
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
+&lt;&lt;chooseOption &quot;Enable extended debug&quot;&gt;&gt;
 
-&lt;span id=&quot;debug-extended&quot;&gt;
-&lt;&lt;link &quot;Enable extended debug&quot;&gt;&gt;
-&lt;&lt;replace &quot;#debug-extended&quot;&gt;&gt;
-
+&lt;hr&gt;
 Player:
 &lt;&lt;debug &quot;player&quot;&gt;&gt;player&lt;&lt;/debug&gt;&gt;
 
@@ -2399,16 +2393,16 @@ _npc_name &lt;&lt;debug _npc_name&gt;&gt;&lt;&lt;/debug&gt;&gt;
 &lt;&lt;debug &quot;time&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
 
 &lt;&lt;debug &quot;shop&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;
+&lt;&lt;/chooseOption&gt;&gt;
 
+&lt;hr&gt;
 &lt;&lt;include playerDescription&gt;&gt;
 
 &lt;&lt;for _npc_name range $npcList&gt;&gt; &lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;
 &lt;&lt;capture [_npc_name, _npc]&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
+&lt;hr&gt;
 Quick access to events:
 [[mansionCPartyIntro01]]
 [[mansionCPartySetup01]]</tw-passagedata><tw-passagedata pid="55" name="EndHomeSweetHome" tags="ending" position="600,725" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
@@ -4729,7 +4723,8 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="120
 	},
 	&quot;manorIntro&quot; : true,
 	&quot;partyRule&quot; : false,
-	&quot;gymUnlocked&quot; : false
+	&quot;gymUnlocked&quot; : false,
+	&quot;wardrobeEdit&quot; : true
 }&gt;&gt;
 
 &lt;&lt;include &quot;characterInit&quot;&gt;&gt;
@@ -5094,7 +5089,9 @@ Day &lt;&lt;= $time.day + 1&gt;&gt;&lt;/span&gt;
 [[Return|$exitMenu]]</tw-passagedata><tw-passagedata pid="147" name="playerToDoList" tags="noreturn menu" position="850,1850" size="100,100">&lt;&lt;= $mansion.displayChores()&gt;&gt;
 
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="148" name="skills" tags="noreturn menu" position="975,1850" size="100,100">Skills will be added later
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="149" name="inventory" tags="noreturn menu" position="1100,1850" size="100,100">&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, undefined, undefined, &quot;Inventory&quot;, false)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="149" name="inventory" tags="noreturn menu" position="1100,1850" size="100,100">&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equipped&quot;], undefined, &quot;Currently wearing&quot;, false)&gt;&gt;
+
+&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equippable&quot;], undefined, &quot;Wardrobe&quot;, false)&gt;&gt;
 
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="150" name="rules" tags="noreturn menu" position="1225,1850" size="100,100">&lt;h1 id=&quot;RuleTitle&quot;&gt;Rules&lt;/h1&gt;\
 &lt;ol class=&quot;rules&quot;&gt;\
@@ -5929,9 +5926,9 @@ You turn on the warm stream of water and step into the shower. You soap up and w
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equipped&quot;], undefined, &quot;Equipped Items&quot;)&gt;&gt;
+&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equipped&quot;], undefined, &quot;Currently wearing&quot;, $mansion.currentEvent === &quot;&quot;)&gt;&gt;
 
-&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equippable&quot;], undefined, &quot;Wardrobe&quot;)&gt;&gt;
+&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equippable&quot;], undefined, &quot;Wardrobe&quot;, $mansion.currentEvent === &quot;&quot;)&gt;&gt;
 
 &lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="RoomDescription" tags="room" position="475,2350" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="shopTest" tags="" position="600,2350" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;

@@ -1,10 +1,6 @@
 ::debug-passage [debug]
 <hr>
 DEBUG
-TEMP
-<<= $player.inv.listItem("$player.inv", undefined, undefined, "Inventory", false)>>
-
-
 <<link "Debug Skip Day">>
 	<<= $time.setDate("wakeup")>>
 	<<goto `passage()`>>
@@ -19,11 +15,9 @@ TEMP
 <</link>>
 
 Current event: <<= $mansion.currentEvent>>
+<<chooseOption "Enable extended debug">>
 
-<span id="debug-extended">
-<<link "Enable extended debug">>
-<<replace "#debug-extended">>
-
+<hr>
 Player:
 <<debug "player">>player<</debug>>
 
@@ -37,16 +31,16 @@ _npc_name <<debug _npc_name>><</debug>>
 <<debug "time">><</debug>>
 
 <<debug "shop">><</debug>>
-<</replace>>
-<</link>>
-</span>
+<</chooseOption>>
 
+<hr>
 <<include playerDescription>>
 
 <<for _npc_name range $npcList>> <<set _npc to State.variables[_npc_name]>>
 <<capture [_npc_name, _npc]>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
 <</for>>
 
+<hr>
 Quick access to events:
 [[mansionCPartyIntro01]]
 [[mansionCPartySetup01]]

@@ -52,7 +52,9 @@ Skills will be added later
 [[Return|$return]]
 
 ::inventory [noreturn menu]
-<<= $player.inv.listItem("$player.inv", undefined, undefined, "Inventory", false)>>
+<<= $player.inv.listItem("$player.inv", ["equipped"], undefined, "Currently wearing", false)>>
+
+<<= $player.inv.listItem("$player.inv", ["equippable"], undefined, "Wardrobe", false)>>
 
 [[Return|$return]]
 

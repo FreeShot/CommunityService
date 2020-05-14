@@ -50,8 +50,8 @@ Despite your facial hair already being fairly sparse you still need to maintain 
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It's a little disheartening that such a small shirt looks like it would fit you.
 <</if>>
 
-<<= $player.inv.listItem("$player.inv", ["equipped"], undefined, "Equipped Items")>>
+<<= $player.inv.listItem("$player.inv", ["equipped"], undefined, "Currently wearing", $mansion.currentEvent === "")>>
 
-<<= $player.inv.listItem("$player.inv", ["equippable"], undefined, "Wardrobe")>>
+<<= $player.inv.listItem("$player.inv", ["equippable"], undefined, "Wardrobe", $mansion.currentEvent === "")>>
 
 <<return 'Finish'>>

@@ -11,7 +11,8 @@
 	},
 	"manorIntro" : true,
 	"partyRule" : false,
-	"gymUnlocked" : false
+	"gymUnlocked" : false,
+	"wardrobeEdit" : true
 }>>
 
 <<include "characterInit">>
