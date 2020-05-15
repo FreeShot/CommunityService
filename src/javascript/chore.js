@@ -22,37 +22,39 @@ class Chore {
 		//console.log(State.variables.time.endsAfter("sleep", this.duration));
 		if (this.dayLeft < 0) {
 			return "";
-		} else if (!this.canDoChores) {
-			return String.format(
-				"<span class='choreUnavailable'>{0} (You can't do any chores right now)</span>",
-				this.name
-			);
 		} else  if (this.done) {
 			return String.format(
-				"<span class='ChoreDone'>{0} (Done)</span>",
+				"<span class='chore-done'>{0} (Done)</span>",
 				this.name
 			);
 		} else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) {
 			return String.format(
-				"<span class='ChoreDone'>{0} (Not enough stamina)</span>",
+				"<span class='chore-exhaused'>{0} (Not enough stamina)</span>",
 				this.name
 			);
 		} else if (State.variables.time.endsAfter("sleep", this.duration)) {
 			return String.format(
-				"<span class='ChoreDone'>{0} (Too late)</span>",
+				"<span class='chore-late'>{0} (Too late)</span>",
 				this.name
 				);
 		} else {
-			return String.format(
-				"<<link '{0}' '{1}'>><<set $aPsgText = '[[Back to the chores list|playerToDoList]]<br>[[{5}|RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
-				this.name,
-				this.passage,
-				this.staminaCost,
-				this.duration,
-				this.getDuration,
-				this.room,
-				this.getLastDay
-			);
+			if (canDoChores) {
+				return String.format(
+					"<<link '{0}' '{1}'>><<set $aPsgText = '[[Back to the chores list|playerToDoList]]<br>[[{5}|RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
+					this.name,
+					this.passage,
+					this.staminaCost,
+					this.duration,
+					this.getDuration,
+					this.room,
+					this.getLastDay
+				);
+			} else {
+				return String.format(
+					"<span class='chore-unavailable'>{0}</span>",
+					this.name
+				);
+			}
 		}
 	}
 

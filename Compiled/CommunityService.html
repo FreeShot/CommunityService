@@ -689,37 +689,39 @@ class Chore {
 		//console.log(State.variables.time.endsAfter("sleep", this.duration));
 		if (this.dayLeft < 0) {
 			return "";
-		} else if (!this.canDoChores) {
-			return String.format(
-				"<span class='choreUnavailable'>{0} (You can't do any chores right now)</span>",
-				this.name
-			);
 		} else  if (this.done) {
 			return String.format(
-				"<span class='ChoreDone'>{0} (Done)</span>",
+				"<span class='chore-done'>{0} (Done)</span>",
 				this.name
 			);
 		} else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) {
 			return String.format(
-				"<span class='ChoreDone'>{0} (Not enough stamina)</span>",
+				"<span class='chore-exhaused'>{0} (Not enough stamina)</span>",
 				this.name
 			);
 		} else if (State.variables.time.endsAfter("sleep", this.duration)) {
 			return String.format(
-				"<span class='ChoreDone'>{0} (Too late)</span>",
+				"<span class='chore-late'>{0} (Too late)</span>",
 				this.name
 				);
 		} else {
-			return String.format(
-				"<<link '{0}' '{1}'>><<set $aPsgText = '[[Back to the chores list|playerToDoList]]<br>[[{5}|RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
-				this.name,
-				this.passage,
-				this.staminaCost,
-				this.duration,
-				this.getDuration,
-				this.room,
-				this.getLastDay
-			);
+			if (canDoChores) {
+				return String.format(
+					"<<link '{0}' '{1}'>><<set $aPsgText = '[[Back to the chores list|playerToDoList]]<br>[[{5}|RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
+					this.name,
+					this.passage,
+					this.staminaCost,
+					this.duration,
+					this.getDuration,
+					this.room,
+					this.getLastDay
+				);
+			} else {
+				return String.format(
+					"<span class='chore-unavailable'>{0}</span>",
+					this.name
+				);
+			}
 		}
 	}
 
@@ -1387,11 +1389,11 @@ class Mansion {
 		return this.findRoom(roomID).generatePassage();
 	}
 
-	displayChores() {
+	displayChores(canDoChores) {
 		var str = "<ol>";
 		var hasChores = false;
 		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores(undefined, this.currentEvent == "");
+			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "");
 			if (roomChores != undefined && roomChores !== "") {
 				str += "<li>" + roomChores  + "</li>";
 				hasChores = true;
@@ -1882,7 +1884,7 @@ class Room {
 		str += this.display(0) + "<br>";
 		str += this.getEvent();
 		str += "<br>Chores: ";
-		str += this.displayChores(State.variables.mansion.currentEvent === "");
+		str += this.displayChores(undefined, State.variables.mansion.currentEvent === "");
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
 		return str;
@@ -1913,7 +1915,7 @@ class Room {
 			var title = ((displayTitle || true) ? this.name : "") + "<ol>";
 			var str = "";
 			for (var i = 0; i < this.chores.length; i++) {
-				var chore = this.chores[i].do();
+				var chore = this.chores[i].do(canDoChores);
 				if (chore != "") {
 					str += "<li>" + chore + "</li>";
 				}
@@ -4943,7 +4945,7 @@ Day &lt;&lt;= $time.day + 1&gt;&gt;&lt;/span&gt;
 &lt;&lt;/if&gt;&gt;
 [[Rules|rules]]&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-[[Return|$exitMenu]]</tw-passagedata><tw-passagedata pid="147" name="playerToDoList" tags="noreturn menu" position="850,1850" size="100,100">&lt;&lt;= $mansion.displayChores()&gt;&gt;
+[[Return|$exitMenu]]</tw-passagedata><tw-passagedata pid="147" name="playerToDoList" tags="noreturn menu" position="850,1850" size="100,100">&lt;&lt;= $mansion.displayChores(false)&gt;&gt;
 
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="148" name="skills" tags="noreturn menu" position="975,1850" size="100,100">Skills will be added later
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="149" name="inventory" tags="noreturn menu" position="1100,1850" size="100,100">&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equipped&quot;], undefined, &quot;Currently wearing&quot;, false)&gt;&gt;
