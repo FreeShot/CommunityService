@@ -91,10 +91,14 @@ class Timer {
 	}
 
 	get clock() {
+		return Timer.getTime(this.time);
+	}
+
+	static getTime(time) {
 		return String.format(
 			"{0}:{1}",
-			("0" + this.time.hour).slice(-2),
-			("0" + this.time.minute).slice(-2)
+			time.hour !== undefined ? ("0" + time.hour).slice(-2) : "00",
+			time.minute !== undefined ? ("0" + time.minute).slice(-2) : "00"
 		);
 	}
 

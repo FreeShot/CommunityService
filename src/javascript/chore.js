@@ -2,13 +2,10 @@ class Chore {
 	constructor (config) {
 		this.name = '';
 		this.duration = {day: 0, hour: 0, minute: 0};
-		this.time = {
-			start: {hour: 0, minute: 0},
-			end: {hour: 24, minute: 0}
-		};
 		this.passages = [
 			{name: '', weight: 1}
 		];
+		this.time = {};
 		this.img = [];
 		this.staminaCost  = 0;
 		this.done = true;
@@ -20,46 +17,65 @@ class Chore {
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
         }, this);
+
+        this.time.start = this.time.start || {hour: 6, minute: 0};
+		this.time.end = this.time.end || {hour: 18, minute: 0};
 	}
 
 	do(canDoChores) {
-		//console.log(State.variables.time.endsAfter("sleep", this.duration));
+		// Chore is waiting to be reset
 		if (this.dayLeft < 0) {
 			return "";
-		} else  if (this.done) {
-			return String.format(
-				"<span class='chore-done'>{0} (Done)</span>",
-				this.name
-			);
-		} else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) {
-			return String.format(
-				"<span class='chore-exhaused'>{0} (Not enough stamina)</span>",
-				this.name
-			);
-		} else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1) {
-			return String.format(
-				"<span class='chore-late'>{0} (It is not the time to do that)</span>",
-				this.name
-				);
-		} else {
-			if (canDoChores) {
-				return String.format(
-					"<<link '{0}' '{1}'>><<set $aPsgText = '[[Back to the chores list|playerToDoList]]<br>[[{5}|RoomDescription]]'>><<= $player.currentRoom='{5}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{5}').findChore('{0}').done = true>><</link>> (Costs {2} stamina, takes about {4} and needs to be done before {6})",
-					this.name,
-					this.passage,
-					this.staminaCost,
-					this.duration,
-					this.getDuration,
-					this.room,
-					this.getLastDay
-				);
-			} else {
-				return String.format(
-					"<span class='chore-unavailable'>{0}</span>",
-					this.name
-				);
-			}
 		}
+
+		var htmlClass = [];
+		if (this.done) {
+			htmlClass.push('chore-done');
+		}
+		if (!State.variables.player.hasEnoughStamina(this.staminaCost)) {
+			htmlClass.push('chore-exhaused');
+		}
+		if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1) {
+			htmlClass.push('chore-not-time');
+		}
+		if (!canDoChores) {
+			htmlClass.push('chore-unavailable');
+		}
+
+		var info = String.format(
+			"(To do beween: {0} to {1} before {2}. Duration: {3})",
+			Timer.getTime(this.time.start),
+			Timer.getTime(this.time.end),
+			this.getLastDay,
+			Timer.getTime(this.duration)
+		);
+
+		return String.format(
+			"<span class='{0}'>{1} {2} {3} {4}</span>",
+			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
+			this.name,
+			this.done ? "" : info,
+			htmlClass.reduce(function(str, el){
+				switch (el) {
+					case "chore-done":
+						return str + " [DONE]";
+					case "chore-exhaused":
+						return str + " [TOO TIRED]";
+					case "chore-not-time":
+						return str + " [NOT THE RIGHT TIME]";
+					case "chore-unavailable":
+						return str;
+				}
+			}, ""),
+			canDoChores ? String.format(
+				"<<button 'Start chore' '{0}'>><<set $aPsgText to '[[Finish the chore|RoomDescription]]'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</button>>",
+				this.passage,
+				this.room,
+				this.staminaCost,
+				this.duration,
+				this.name
+			) : ""
+		);
 	}
 
 	reset() {
