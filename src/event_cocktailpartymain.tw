@@ -98,14 +98,12 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 ::mansionCPartyServing01 [event]
 <h1>At the party</h1>
 
-TODO: ADD GENERAL DESCRIPTION OF THE PARTY
-
 <span id="party-description">
 <<link "Party Description">>
 <<replace "#party-description">>
-The people attending are not quiet what you expected. G
+The people attending the party dressed in casual formal wear. You can tell by the designs that most people are probably just as well off as the hosts. There are quite a few people in attendence and with a mix of all kinds of people.
 
-Most of the party goers are in the lounge which has been setup as the main focus of the party. Furniture has been shifted and another server is at the bar is mixing drinks. A small band is playing music in one corner and space has been cleared in center of the room for people to dance. Most of the guests here are seated in lounges or standing around the bar. It’s not packed but moving through here is definitely a test of your tray management skills. Laughter and loud discussion hums along with the music being played.
+The party goers are mostly gathering in the lounge which has been setup as the main focus of the event. Furniture has been shifted and another server is at the bar is mixing drinks. A small band is playing music in one corner and space has been cleared in center of the room for people to dance. Most of the guests here are seated in lounges or standing around the bar. It’s not packed but moving through here is definitely a test of your tray management skills. Laughter and loud discussion hums along with the music being played.
 
 The dining room furniture, including the large central table has all been moved and it is now setup to be a sitting area. The lighting is subdued and the music is still audible but much softer so guest can have quite conversations. The mood and conversations are much more subdued than in the rest of the estate. You overhear talk of social scandals, business deals and other upper class chat. The occasional salacious comment between some couples has you blushing in no time.
 

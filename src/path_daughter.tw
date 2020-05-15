@@ -488,10 +488,32 @@ With that she leaves you alone so you can go unlock yourself.
 
 Just leave the cage as is for now. They can go to one of the wardrobes or their room to remove it.
 
+:: choreEvent_DaughterChat02 [event]
 
+Trigger: player is in the same room in the house (not gym, garden, etc)
 
+As you are moving into the room $daughter.name arrives at the same time.
 
+She smiles at you and says. <<= $daughter.speak("Hey $player.name.")>>
 
+She walks and gives you a quick hug. <<= $daughter.speak("So what have you been up to?")>>
 
+<<= $player.speak("<i>I know she's being nice but come on.</i>")>>
 
+<<= $player.speak("Just cleaning, same as always.")>>
 
+<<= $daughter.speak("It must be boring.")>> $daughter.name looks you up and down. <<= $daughter.speak("You should really get into the gym every once in a while. You're all skin and bones.")>>
+
+<<= $player.speak("I'm in there plenty. Only to clean though.")>>
+
+<<if $daughter.acceptance >= 2>>
+	<<= $daughter.speak("I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.")>>
+
+	You stammer for a moment at the opportunity for something new to do. <<= $player.speak("Uh... I mean... If you want. I would like that.")>> Never mind being close to $daughter.name in her gym clothes while you both work out.
+<<else>>
+	<<= $daughter.speak("Oh well. Chin up. I'm sure things will get better for you eventually.")>>
+
+	<<= $player.speak("Yeah. Sure.")>>
+<</if>>
+
+<<= $daughter.speak("Well. I'll talk to you later then.")>>

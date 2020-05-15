@@ -3209,14 +3209,12 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 &lt;&lt;goto &quot;mansionCPartyServing01&quot;&gt;&gt;
 &lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="mansionCPartyServing01" tags="event" position="475,1225" size="100,100">&lt;h1&gt;At the party&lt;/h1&gt;
 
-TODO: ADD GENERAL DESCRIPTION OF THE PARTY
-
 &lt;span id=&quot;party-description&quot;&gt;
 &lt;&lt;link &quot;Party Description&quot;&gt;&gt;
 &lt;&lt;replace &quot;#party-description&quot;&gt;&gt;
-The people attending are not quiet what you expected. G
+The people attending the party dressed in casual formal wear. You can tell by the designs that most people are probably just as well off as the hosts. There are quite a few people in attendence and with a mix of all kinds of people.
 
-Most of the party goers are in the lounge which has been setup as the main focus of the party. Furniture has been shifted and another server is at the bar is mixing drinks. A small band is playing music in one corner and space has been cleared in center of the room for people to dance. Most of the guests here are seated in lounges or standing around the bar. It’s not packed but moving through here is definitely a test of your tray management skills. Laughter and loud discussion hums along with the music being played.
+The party goers are mostly gathering in the lounge which has been setup as the main focus of the event. Furniture has been shifted and another server is at the bar is mixing drinks. A small band is playing music in one corner and space has been cleared in center of the room for people to dance. Most of the guests here are seated in lounges or standing around the bar. It’s not packed but moving through here is definitely a test of your tray management skills. Laughter and loud discussion hums along with the music being played.
 
 The dining room furniture, including the large central table has all been moved and it is now setup to be a sitting area. The lighting is subdued and the music is still audible but much softer so guest can have quite conversations. The mood and conversations are much more subdued than in the rest of the estate. You overhear talk of social scandals, business deals and other upper class chat. The occasional salacious comment between some couples has you blushing in no time.
 
@@ -3826,56 +3824,220 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="120
 &lt;&lt;set $minorNPC to []&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="choresInit" tags="init" position="225,1600" size="100,100">&lt;!--  Chores  --&gt;
 
 &lt;&lt;= $mansion.addChore(&quot;Foyer&quot;, new Chore({
-	name: &quot;Clean Foyer&quot;,
-	duration: {hour: 1},
+	name: &quot;Clean Foyer&quot;, 
+	duration: {hour: 1}, 
 	passages:[
-		{name: &quot;foyerCleaning&quot;, weight:2},
-		{name: &quot;foyerSweepMop&quot;, weight: 10},
-		{name: &quot;foyerDusting&quot;, weight: 11}],
-	staminaCost: 1,
+		{name: &quot;foyerCleaning&quot;, weight:1}, 
+		{name: &quot;foyerSweepMop&quot;, weight: 2}, 
+		{name: &quot;foyerDusting&quot;, weight: 2}
+	], 
+	staminaCost: 1, 
 	choreFrequency: &quot;W&quot;
 }))&gt;&gt;
-
 &lt;&lt;= $mansion.addChore(&quot;Hall&quot;, new Chore({
-name: &quot;Clean Hall&quot;,
-duration: {hour: 1},
-passages:[{name: &quot;hallCleaning&quot;, weight:2}, {name: &quot;hallDusting&quot;, weight: 10}, {name: &quot;hallSweepMop&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({name: &quot;Clean Upper Hall&quot;, duration: {hour: 1}, passages:[{name: &quot;hallCleaning&quot;, weight:2}, {name: &quot;hallDusting&quot;, weight: 10}, {name: &quot;hallSweepMop&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({name: &quot;Clean Garden&quot;, duration: {hour: 1}, passages:[{name: &quot;gardenCleaning&quot;, weight:2}, {name: &quot;gardenSweep&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Pool&quot;, new Chore({name: &quot;Clean Pool&quot;, duration: {hour: 1}, passages:[{name: &quot;poolCleaning&quot;, weight:2}, {name: &quot;poolSweep&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Dishes&quot;, duration: {minute: 30}, passages: [{name: &quot;kitchenDishes&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;D&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Clean Sink and Benches&quot;, duration: {hour: 1}, passages:[{name: &quot;kitchenClean&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;D&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({name: &quot;Sweep and Mop&quot;, duration: {hour: 1}, passages:[{name: &quot;kitchenSweepMop&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;B&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({name: &quot;Wash Linen&quot;, duration: {hour: 1}, passages:[{name: &quot;laundryLinen&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;D&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({name: &quot;Wash Clothes&quot;, duration: {hour: 1}, passages:[{name: &quot;laundryClothes&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;D&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Lounge&quot;, new Chore({name: &quot;Clean Lounge&quot;, duration: {hour: 2}, passages:[{name: &quot;loungeCleaning&quot;, weight:2}, {name: &quot;loungeDusting&quot;, weight: 10}, {name: &quot;loungeSweepMop&quot;, weight: 11}, {name: &quot;loungeWindows&quot;, weight: 12}], staminaCost: 2, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Dining&quot;, new Chore({name: &quot;Clean Dining Room&quot;, duration: {hour: 2}, passages:[{name: &quot;diningCleaning&quot;, weight:2}, {name: &quot;diningDusting&quot;, weight: 10}, {name: &quot;diningSweepMop&quot;, weight: 11}, {name: &quot;diningWindows&quot;, weight: 12}], staminaCost: 2, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;MasterBdRm&quot;, new Chore({name: &quot;Clean Master Bedroom&quot;, duration: {hour: 1}, passages:[{name: &quot;masterBdRmCleaning&quot;, weight:2}, {name: &quot;masterBdRmDusting&quot;, weight: 10}, {name: &quot;masterBdRmVacuum&quot;, weight: 11}, {name: &quot;masterBdRmWindows&quot;, weight: 12}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({name: &quot;Clean Master Bathroom&quot;, duration: {hour: 2}, passages:[{name: &quot;masterBathRmCleaning&quot;, weight:2}, {name: &quot;masterBathRmSweepMop&quot;, weight: 10}, {name: &quot;masterBathRmSink&quot;, weight: 11}, {name: &quot;masterBathRmToilet&quot;, weight: 12}, {name: &quot;masterBathRmShower&quot;, weight: 13}, {name: &quot;masterBathRmBath&quot;, weight: 12}], staminaCost: 2, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({name: &quot;Clean Office&quot;, duration: {hour: 1}, passages:[{name: &quot;officeCleaning&quot;, weight:2}, {name: &quot;officeDusting&quot;, weight: 10}, {name: &quot;officeVacuum&quot;, weight: 11}, {name: &quot;officeWindows&quot;, weight: 12}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({name: &quot;Clean Gym&quot;, duration: {hour: 2}, passages:[{name: &quot;gymCleaning&quot;, weight:2}, {name: &quot;gymSweepMop&quot;, weight: 10}, {name: &quot;gymWindows&quot;, weight: 11}], staminaCost: 2, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({name: &quot;Check the door&quot;, duration: {minute: 5}, passages:[{name: &quot;sonBdRmCleaning&quot;, weight:2}, {name: &quot;sonBdRmLocked&quot;, weight: 1}], staminaCost: 0, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({name: &quot;Tidy your room&quot;, duration: {hour: 1}, passages:[{name: &quot;playerBdRmCleaning&quot;, weight:2}, {name: &quot;playerBdRmClean&quot;, weight: 1}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({name: &quot;Clean the bedroom&quot;, duration: {hour: 1}, passages:[{name: &quot;daughterBdRmcleaning&quot;, weight:2}, {name: &quot;daughterBdRmDusting&quot;, weight: 10}, {name: &quot;daughterBdRmVacuum&quot;, weight: 11}, {name: &quot;daughterBdRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;
-
-&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({name: &quot;Clean the guest room&quot;, duration: {hour: 1}, passages:[{name: &quot;guestRmCleaning&quot;, weight:2}, {name: &quot;guestRmDusting&quot;, weight: 10}, {name: &quot;guestRmVacuum&quot;, weight: 11}, {name: &quot;guestRmWindows&quot;, weight: 11}], staminaCost: 1, choreFrequency: &quot;W&quot;}))&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="eventInit" tags="event" position="350,1600" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
+	name: &quot;Clean Hall&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;hallCleaning&quot;, weight:1}, 
+		{name: &quot;hallDusting&quot;, weight: 2}, 
+		{name: &quot;hallSweepMop&quot;, weight: 2}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({
+	name: &quot;Clean Upper Hall&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;hallCleaning&quot;, weight:1}, 
+		{name: &quot;hallDusting&quot;, weight: 2}, 
+		{name: &quot;hallSweepMop&quot;, weight: 2}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({
+	name: &quot;Clean Garden&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;gardenCleaning&quot;, weight:1}, 
+		{name: &quot;gardenSweep&quot;, weight: 1}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Pool&quot;, new Chore({
+	name: &quot;Clean Pool&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;poolCleaning&quot;, weight:1}, 
+		{name: &quot;poolSweep&quot;, weight: 1}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
+	name: &quot;Dishes&quot;,
+	duration: {minute: 30}, 
+	passages: [
+		{name: &quot;kitchenDishes&quot;, weight: 1}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;D&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
+	name: &quot;Clean Sink and Benches&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;kitchenClean&quot;, weight: 1}
+	], 
+	staminaCost: 1,
+	choreFrequency: &quot;D&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
+	name: &quot;Sweep and Mop&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;kitchenSweepMop&quot;, weight: 1}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;B&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
+	name: &quot;Wash Linen&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;laundryLinen&quot;, weight: 1}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;D&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
+	name: &quot;Wash Clothes&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;laundryClothes&quot;, weight: 1}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;D&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Lounge&quot;, new Chore({
+	name: &quot;Clean Lounge&quot;, 
+	duration: {hour: 2}, 
+	passages:[
+		{name: &quot;loungeCleaning&quot;, weight:1}, 
+		{name: &quot;loungeDusting&quot;, weight: 2}, 
+		{name: &quot;loungeSweepMop&quot;, weight: 2}, 
+		{name: &quot;loungeWindows&quot;, weight: 2}
+	], 
+	staminaCost: 2, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Dining&quot;, new Chore({
+	name: &quot;Clean Dining Room&quot;, 
+	duration: {hour: 2}, 
+	passages:[
+		{name: &quot;diningCleaning&quot;, weight:1}, 
+		{name: &quot;diningDusting&quot;, weight: 2}, 
+		{name: &quot;diningSweepMop&quot;, weight: 2}, 
+		{name: &quot;diningWindows&quot;, weight: 2}
+	], 
+	staminaCost: 2, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;MasterBdRm&quot;, new Chore({
+	name: &quot;Clean Master Bedroom&quot;, 
+	duration: {hour: 1},
+	passages:[
+		{name: &quot;masterBdRmCleaning&quot;, weight:1}, 
+		{name: &quot;masterBdRmDusting&quot;, weight: 2}, 
+		{name: &quot;masterBdRmVacuum&quot;, weight: 2}, 
+		{name: &quot;masterBdRmWindows&quot;, weight: 2}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
+	name: &quot;Clean Master Bathroom&quot;, 
+	duration: {hour: 2}, 
+	passages:[
+		{name: &quot;masterBathRmCleaning&quot;, weight:1}, 
+		{name: &quot;masterBathRmSweepMop&quot;, weight: 2}, 
+		{name: &quot;masterBathRmSink&quot;, weight: 2}, 
+		{name: &quot;masterBathRmToilet&quot;, weight: 2}, 
+		{name: &quot;masterBathRmShower&quot;, weight: 2}, 
+		{name: &quot;masterBathRmBath&quot;, weight: 2}
+	], 
+	staminaCost: 2, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({
+	name: &quot;Clean Office&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;officeCleaning&quot;, weight:1}, 
+		{name: &quot;officeDusting&quot;, weight: 2}, 
+		{name: &quot;officeVacuum&quot;, weight: 2}, 
+		{name: &quot;officeWindows&quot;, weight: 2}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({
+	name: &quot;Clean Gym&quot;, 
+	duration: {hour: 2}, 
+	passages:[
+		{name: &quot;gymCleaning&quot;, weight:1}, 
+		{name: &quot;gymSweepMop&quot;, weight: 2}, 
+		{name: &quot;gymWindows&quot;, weight: 2}
+	], 
+	staminaCost: 2, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({
+	name: &quot;Check the door&quot;, 
+	duration: {minute: 5}, 
+	passages:[
+		{name: &quot;sonBdRmCleaning&quot;, weight:1}, 
+		{name: &quot;sonBdRmLocked&quot;, weight: 1}
+	], 
+	staminaCost: 0, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({
+	name: &quot;Tidy your room&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;playerBdRmCleaning&quot;, weight:1}, 
+		{name: &quot;playerBdRmClean&quot;, weight: 1}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
+	name: &quot;Clean the bedroom&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;daughterBdRmcleaning&quot;, weight:1}, 
+		{name: &quot;daughterBdRmDusting&quot;, weight: 2}, 
+		{name: &quot;daughterBdRmVacuum&quot;, weight: 2}, 
+		{name: &quot;daughterBdRmWindows&quot;, weight: 2}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;
+&lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({
+	name: &quot;Clean the guest room&quot;, 
+	duration: {hour: 1}, 
+	passages:[
+		{name: &quot;guestRmCleaning&quot;, weight:1}, 
+		{name: &quot;guestRmDusting&quot;, weight: 2}, 
+		{name: &quot;guestRmVacuum&quot;, weight: 2}, 
+		{name: &quot;guestRmWindows&quot;, weight: 2}
+	], 
+	staminaCost: 1, 
+	choreFrequency: &quot;W&quot;
+}))&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="eventInit" tags="event" position="350,1600" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
 	name: &quot;End of the week reca&quot;, 
 	passage: &quot;endOfWeekRecap&quot;, 
 	inline:false, 
