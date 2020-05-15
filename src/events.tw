@@ -106,7 +106,7 @@ You bend down to put some of the linen away when the door to the laundry open.
 
 <<= $player.speak("<i>The lock you idiot!</i>")>>
 
-You spin around and see $wife.name standing there, arms crossed and a furious look on her.
+You spin around and see $wife.name standing there, arms crossed and a furious look on her face.
 
 <<= $wife.speak("I come to check on you and find you like this?")>>
 
@@ -120,36 +120,6 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 $wife.name leaves the room. You clearly lost some credibility with that slip up.
 
-:: choreEvent_DaughterChat02 [event]
-
-Trigger: player is in the same room in the house (not gym, garden, etc)
-
-As you are moving into the room $daughter.name arrives at the same time.
-
-She smiles at you and says. <<= $daughter.speak("Hey $player.name.")>>
-
-She walks and gives you a quick hug. <<= $daughter.speak("So what have you been up to?")>>
-
-<<= $player.speak("<i>I know she's being nice but come on.</i>")>>
-
-<<= $player.speak("Just cleaning, same as always.")>>
-
-<<= $daughter.speak("It must be boring.")>> $daughter.name looks you up and down. <<= $daughter.speak("You should really get into the gym every once in a while. You're all skin and bones.")>>
-
-<<= $player.speak("I'm in there plenty. Only to clean though.")>>
-
-<<if $daughter.acceptance >= 2>>
-	<<= $daughter.speak("I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.")>>
-
-	You stammer for a moment at the opportunity for something new to do. <<= $player.speak("Uh... I mean... If you want. I would like that.")>> Never mind being close to $daughter.name in her gym clothes while you both work out.
-<<else>>
-	<<= $daughter.speak("Oh well. Chin up. I'm sure things will get better for you eventually.")>>
-
-	<<= $player.speak("Yeah. Sure.")>>
-<</if>>
-
-<<= $daughter.speak("Well. I'll talk to you later then.")>>
-
 :: choreEvent_DaughterTease01 [noreturn chore]
 
 todo: trigger should be if the daughter acceptance is above a certain amount. Just after/at the end of when she's been in the gym
@@ -158,7 +128,7 @@ It takes a bit of time to collect everything from all the hampers but now you're
 
 <<= $daughter.speak("Whew. Just in time.")>>
 
-You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her shoes, socks and shorts. She does not wear anything underneath them, at all.
+You're about ask what for when $daughter.name takes her top off. The top is quickly followed by her shoes, socks and shorts. She is not wearing anything underneath them, at all.
 
 <<= $daughter.speak("Throw these in with the rest will you.")>>
 
