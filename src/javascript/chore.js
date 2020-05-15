@@ -67,8 +67,8 @@ class Chore {
 						return str;
 				}
 			}, ""),
-			canDoChores ? String.format(
-				"<<button 'Start chore' '{0}'>><<set $aPsgText to '[[Finish the chore|RoomDescription]]'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</button>>",
+			canDoChores && !this.done ? String.format(
+				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '[[Finish the chore|RoomDescription]]'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
 				this.passage,
 				this.room,
 				this.staminaCost,
