@@ -669,6 +669,10 @@ class Chore {
 	constructor (config) {
 		this.name = '';
 		this.duration = {day: 0, hour: 0, minute: 0};
+		this.time = {
+			start: {hour: 0, minute: 0},
+			end: {hour: 24, minute: 0}
+		};
 		this.passages = [
 			{name: '', weight: 1}
 		];
@@ -699,9 +703,9 @@ class Chore {
 				"<span class='chore-exhaused'>{0} (Not enough stamina)</span>",
 				this.name
 			);
-		} else if (State.variables.time.endsAfter("sleep", this.duration)) {
+		} else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1) {
 			return String.format(
-				"<span class='chore-late'>{0} (Too late)</span>",
+				"<span class='chore-late'>{0} (It is not the time to do that)</span>",
 				this.name
 				);
 		} else {
@@ -3210,6 +3214,22 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 &lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="mansionCPartyServing01" tags="event" position="475,1225" size="100,100">&lt;h1&gt;At the party&lt;/h1&gt;
 
 TODO: ADD GENERAL DESCRIPTION OF THE PARTY
+
+&lt;span id=&quot;party-description&quot;&gt;
+&lt;&lt;link &quot;Party Description&quot;&gt;&gt;
+&lt;&lt;replace &quot;#party-description&quot;&gt;&gt;
+The people attending are not quiet what you expected. G
+
+Most of the party goers are in the lounge which has been setup as the main focus of the party. Furniture has been shifted and another server is at the bar is mixing drinks. A small band is playing music in one corner and space has been cleared in center of the room for people to dance. Most of the guests here are seated in lounges or standing around the bar. It’s not packed but moving through here is definitely a test of your tray management skills. Laughter and loud discussion hums along with the music being played.
+
+The dining room furniture, including the large central table has all been moved and it is now setup to be a sitting area. The lighting is subdued and the music is still audible but much softer so guest can have quite conversations. The mood and conversations are much more subdued than in the rest of the estate. You overhear talk of social scandals, business deals and other upper class chat. The occasional salacious comment between some couples has you blushing in no time.
+
+The expansive garden has been set up with strings of soft glowing lanterns hanging between most of the trees providing a very romantic mood to those moving between the flowers. People are more spread out here but no less boisterous than those inside. The music from inside is quieter but can still be heard through various speakers that have been setup. 
+
+Several people are gathered around the pool and enjoying the party atmosphere from deck chairs and recliners. The pool lights are on giving everything an ethereal glow while the music suffuses the whole area with fun energy. A few people are in their swimsuits and enjoying the warm water.
+&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;/span&gt;
 
 &lt;&lt;if $eventInfo.stage === 0&gt;&gt;
 [[Finish the party|mansionCPartyFinish01]]

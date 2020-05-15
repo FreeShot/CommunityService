@@ -2,6 +2,10 @@ class Chore {
 	constructor (config) {
 		this.name = '';
 		this.duration = {day: 0, hour: 0, minute: 0};
+		this.time = {
+			start: {hour: 0, minute: 0},
+			end: {hour: 24, minute: 0}
+		};
 		this.passages = [
 			{name: '', weight: 1}
 		];
@@ -32,9 +36,9 @@ class Chore {
 				"<span class='chore-exhaused'>{0} (Not enough stamina)</span>",
 				this.name
 			);
-		} else if (State.variables.time.endsAfter("sleep", this.duration)) {
+		} else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1) {
 			return String.format(
-				"<span class='chore-late'>{0} (Too late)</span>",
+				"<span class='chore-late'>{0} (It is not the time to do that)</span>",
 				this.name
 				);
 		} else {
