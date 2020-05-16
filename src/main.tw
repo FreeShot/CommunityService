@@ -1,5 +1,8 @@
-::StoryTitle [nodebu]
+::StoryTitle [nodebug]
 Community Service
+
+::StorySubtitle [nodebug]
+Version $version
 
 ::StoryAuthor [nodebug]
 By FreeShot and Yaflow
@@ -10,14 +13,15 @@ By FreeShot and Yaflow
 	"start" : "Start"
 }
 
-::Start [nobr startPassage]
+::Start [startPassage]
 <div class="warning">
 This game is intended for a mature audience. If you are too young, please <a class="link-internal" href="https://www.google.fr">leave.</a>
+
+Here is the [[changelog]] for the current version of the game.
 </div>
 
-
-[[Start the game|Intro1]]<br>
-
+[[Start the game|Intro1]]
+<<if !$firstTime>>
 <<link "Skip the introduction (Start with the default character)" "PlayerBdRm">>
 <<set $flags to {
 	"cuff" : {
@@ -29,5 +33,4 @@ This game is intended for a mature audience. If you are too young, please <a cla
 }>>
 <<= $time.setDate({day: 0, hour: 22, minute: 0})>>
 <</link>>
-
-[[shopTest]]
+<</if>>

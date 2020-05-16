@@ -181,7 +181,10 @@ class Player extends Character {
             bodyHair: 0,
             inv: new Inventory({
                 name: "Player Inventory"
-            })
+            }),
+            stats: {
+                serving: 0
+            }
         }, config));
     }
 
@@ -220,6 +223,14 @@ class Player extends Character {
             });
             this.inv.items[index].item.addTag("equipped");
         }
+    }
+
+    levelUp(stat, amnt) {
+        this.stats[stat] += amnt;
+    }
+
+    getStat(stat) {
+        return Math.floor(0.2 * Math.sqrt(this.stats[stat]));
     }
 
     // Unequips items. ItemName can be either specific item or All. If all, unequips all of the items but the ones with a tag in bl.

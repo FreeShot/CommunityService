@@ -51,7 +51,7 @@ body {
 }
 
 #ui-dialog-body button.enabled,
-#ui-dialog-body.settings button[id|="setting-control"].enabled {
+#ui-dialog-body.settings button[id|="setting-control"].enabled { /* Some buttons are extra pissy about when to be selected*/
 	background: var(--ui-bg-active);
 }
 

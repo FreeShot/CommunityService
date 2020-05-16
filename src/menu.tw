@@ -10,8 +10,6 @@
 <</if>>
 </table>
 
-
-
 ::comment
 
 <<link "Toggle debug (currently <<if $debug>>ON<<else>>OFF<</if>>)" `passage()`>><<= $debug = !$debug>><</link>>
