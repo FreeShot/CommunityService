@@ -13,6 +13,13 @@
 <</for>>
 </table>
 
+::CUFF [noreturn mainMenu]
+[[Chore list|playerToDoList]]
+[[skills]]
+[[inventory]]
+[[description|playerDescription]]
+[[rules]]
+
 ::playerToDoList [noreturn menu]
 <<= $mansion.displayChores(false)>>
 
