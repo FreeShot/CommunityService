@@ -14,7 +14,10 @@ By FreeShot and Yaflow
 }
 
 ::Start [startPassage]
-<div class="warning">
+<div id='game-title-info'><span id='game-title'>Comunity Service</span>
+<span id='game-author'>A game by FreeShot and Yaflow</span></div>
+
+<div class="warning">\
 This game is intended for a mature audience. If you are too young, please <a class="link-internal" href="https://www.google.fr">leave.</a>
 
 Here is the [[changelog]] for the current version of the game.

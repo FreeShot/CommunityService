@@ -1,6 +1,10 @@
 ::debug-passage [debug]
 <hr>
 DEBUG
+<<link "addXP">>
+	<<= $player.levelUp('serving', 1)>>
+	<<goto `passage()`>>
+<</link>>
 <<link "Debug Skip Day">>
 	<<= $time.setDate("wakeup")>>
 	<<goto `passage()`>>

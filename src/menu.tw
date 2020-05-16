@@ -8,37 +8,10 @@
 <<if $flags.cuff.recieved>>
 <tr id="cuff">[[CUFF]]</tr>
 <</if>>
+<<for _stat range Object.keys($player.stats)>>
+<tr class='stat'>_stat: level <<= $player.getStat(_stat)>> <<= $player.getStatBar(_stat)>></tr>
+<</for>>
 </table>
-
-::comment
-
-<<link "Toggle debug (currently <<if $debug>>ON<<else>>OFF<</if>>)" `passage()`>><<= $debug = !$debug>><</link>>
-<<if !$flags.manorIntro>>
-<hr>
-<span class="date">$time.weekDayFormat
-Day <<= $time.day + 1>></span>
-<hr>
-<span class="time"><<= $time.clock>></span>\
-<</if>>
-<hr>
-<span class="Stamina">Stamina: <<= $player.getStaminaBar()>></span>
-<hr>
-<<if $flags.cuff.recieved>><span id=cuff>[[CUFF]]</span><hr><</if>>
-<hr>
-
-::CUFF [nobr mainMenu]
-<<if !$flags.cuff.init>>
-	<span style="color : DarkOrange;">CUFF NOT INITIALISED BY OWNER</span>
-<<else>>
-<<if !$flags.manorIntro>>
-	[[Chores|playerToDoList]]<br>
-	[[Appearence|playerDescription][$aPsgText to "<<return>>"]]<br>
-	[[Skills|skills]]<br>
-	[[Possesions|inventory]]<br>
-<</if>>
-[[Rules|rules]]<br>
-<</if>>
-[[Return|$exitMenu]]
 
 ::playerToDoList [noreturn menu]
 <<= $mansion.displayChores(false)>>
