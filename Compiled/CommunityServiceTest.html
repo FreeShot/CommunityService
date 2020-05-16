@@ -4997,6 +4997,25 @@ Here is the [[changelog]] for the current version of the game.
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
 &lt;&lt;/link&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;span id=&quot;skip-intro&quot;&gt;
+&lt;&lt;link &quot;Skip the introduction (Start with the default character)&quot;&gt;&gt;
+&lt;&lt;replace &#39;#skip-intro&#39;&gt;&gt;\
+Are you sure you want to skip the intro (Not recommended for first timers)?
+&lt;&lt;link &quot;Yes&quot; &quot;PlayerBdRm&quot;&gt;&gt;
+&lt;&lt;set $flags to {
+	&quot;cuff&quot; : {
+		&quot;recieved&quot; : true,
+		&quot;init&quot; : true,
+		&quot;rules&quot; : true
+	},
+	&quot;manorIntro&quot; : false
+}&gt;&gt;
+&lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;/span&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="137" name="manorIntro01" tags="tutorial" position="850,1725" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
 
 &lt;&lt;= Character.speakAnonymous(&quot;State correction here with your new servant.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;

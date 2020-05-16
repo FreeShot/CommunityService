@@ -33,4 +33,23 @@ Here is the [[changelog]] for the current version of the game.
 }>>
 <<= $time.setDate({day: 0, hour: 22, minute: 0})>>
 <</link>>
+<<else>>
+<span id="skip-intro">
+<<link "Skip the introduction (Start with the default character)">>
+<<replace '#skip-intro'>>\
+Are you sure you want to skip the intro (Not recommended for first timers)?
+<<link "Yes" "PlayerBdRm">>
+<<set $flags to {
+	"cuff" : {
+		"recieved" : true,
+		"init" : true,
+		"rules" : true
+	},
+	"manorIntro" : false
+}>>
+<<= $time.setDate({day: 0, hour: 22, minute: 0})>>
+<</link>>
+<</replace>>
+<</link>>
+</span>
 <</if>>
