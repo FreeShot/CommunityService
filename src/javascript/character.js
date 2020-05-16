@@ -370,7 +370,7 @@ class Player extends Character {
     // Returns the voice color (TO BE CHANGED)
     get getColor() {
         console.log(Math.min(this.voice.current, State.variables.bluePinkGradient.length));
-        return State.variables.bluePinkGradient[Math.min(this.voice.current, State.variables.bluePinkGradient.length)];
+        return State.variables.bluePinkGradient[Math.min(this.voice.current, State.variables.bluePinkGradient.length - 1)];
     }
 
     // Makes the character speak
