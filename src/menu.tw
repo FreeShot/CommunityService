@@ -5,7 +5,7 @@
 <tr id="time"><p><<= $time.clock>></p></tr>
 <</if>>
 <tr id="stamina">Stamina: <<= $player.getStaminaBar()>></tr>
-<<if $flags.cuff.recieved>>
+<<if $flags.cuff.received>>
 <tr id="cuff">[[CUFF]]</tr>
 <</if>>
 <<for _stat range Object.keys($player.stats)>>

@@ -8,7 +8,7 @@
 
 <<set $flags to {
 	"cuff" : {
-		"recieved" : false,
+		"received" : false,
 		"init" : false,
 		"rules" : false
 	},

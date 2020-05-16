@@ -4867,7 +4867,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="120
 
 &lt;&lt;set $flags to {
 	&quot;cuff&quot; : {
-		&quot;recieved&quot; : false,
+		&quot;received&quot; : false,
 		&quot;init&quot; : false,
 		&quot;rules&quot; : false
 	},
@@ -5014,10 +5014,10 @@ The woman wraps a black band around your wrist and uses a tool to press button w
 
 With the formalities complete you get taken away so you can be sent to your owners. You ask about your things before leaving and get told they will kept by the state until the debt is paid off. Looks like you&#39;re stuck with only the clothes on your back for now.
 
-[[Be taken to your owner.|manorIntro01]]</tw-passagedata><tw-passagedata pid="134" name="StorySubtitle" tags="nodebug" position="475,1725" size="100,100">Version $version</tw-passagedata><tw-passagedata pid="135" name="StoryAuthor" tags="nodebug" position="600,1725" size="100,100">By FreeShot and Yaflow</tw-passagedata><tw-passagedata pid="136" name="Start" tags="startPassage" position="725,1725" size="100,100">&lt;div id=&#39;game-title-info&#39;&gt;&lt;span id=&#39;game-title&#39;&gt;Comunity Service&lt;/span&gt;
+[[Be taken to your owner.|manorIntro01]]</tw-passagedata><tw-passagedata pid="134" name="StorySubtitle" tags="nodebug" position="475,1725" size="100,100">Version $version</tw-passagedata><tw-passagedata pid="135" name="StoryAuthor" tags="nodebug" position="600,1725" size="100,100">By FreeShot and Yaflow</tw-passagedata><tw-passagedata pid="136" name="Start" tags="startPassage" position="725,1725" size="100,100">&lt;div id=&#39;game-title-info&#39;&gt;&lt;span id=&#39;game-title&#39;&gt;Community Service&lt;/span&gt;
 &lt;span id=&#39;game-author&#39;&gt;A game by FreeShot and Yaflow&lt;/span&gt;&lt;/div&gt;
 
-&lt;div class=&quot;warning&quot;&gt;
+&lt;div class=&quot;warning&quot;&gt;\
 This game is intended for a mature audience. If you are too young, please &lt;a class=&quot;link-internal&quot; href=&quot;https://www.google.fr&quot;&gt;leave.&lt;/a&gt;
 
 Here is the [[changelog]] for the current version of the game.
@@ -5028,7 +5028,7 @@ Here is the [[changelog]] for the current version of the game.
 &lt;&lt;link &quot;Skip the introduction (Start with the default character)&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $flags to {
 	&quot;cuff&quot; : {
-		&quot;recieved&quot; : true,
+		&quot;received&quot; : true,
 		&quot;init&quot; : true,
 		&quot;rules&quot; : true
 	},
@@ -5044,7 +5044,7 @@ Are you sure you want to skip the intro (Not recommended for first timers)?
 &lt;&lt;link &quot;Yes&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $flags to {
 	&quot;cuff&quot; : {
-		&quot;recieved&quot; : true,
+		&quot;received&quot; : true,
 		&quot;init&quot; : true,
 		&quot;rules&quot; : true
 	},
@@ -5232,7 +5232,7 @@ $butler.name leads you back to your [[small living space|PlayerBdRm]].
 &lt;tr id=&quot;time&quot;&gt;&lt;p&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/p&gt;&lt;/tr&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;tr id=&quot;stamina&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/tr&gt;
-&lt;&lt;if $flags.cuff.recieved&gt;&gt;
+&lt;&lt;if $flags.cuff.received&gt;&gt;
 &lt;tr id=&quot;cuff&quot;&gt;[[CUFF]]&lt;/tr&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;for _stat range Object.keys($player.stats)&gt;&gt;

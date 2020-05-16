@@ -14,7 +14,7 @@ By FreeShot and Yaflow
 }
 
 ::Start [startPassage]
-<div id='game-title-info'><span id='game-title'>Comunity Service</span>
+<div id='game-title-info'><span id='game-title'>Community Service</span>
 <span id='game-author'>A game by FreeShot and Yaflow</span></div>
 
 <div class="warning">\
@@ -28,7 +28,7 @@ Here is the [[changelog]] for the current version of the game.
 <<link "Skip the introduction (Start with the default character)" "PlayerBdRm">>
 <<set $flags to {
 	"cuff" : {
-		"recieved" : true,
+		"received" : true,
 		"init" : true,
 		"rules" : true
 	},
@@ -44,7 +44,7 @@ Are you sure you want to skip the intro (Not recommended for first timers)?
 <<link "Yes" "PlayerBdRm">>
 <<set $flags to {
 	"cuff" : {
-		"recieved" : true,
+		"received" : true,
 		"init" : true,
 		"rules" : true
 	},
