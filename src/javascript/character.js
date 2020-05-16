@@ -183,7 +183,7 @@ class Player extends Character {
                 name: "Player Inventory"
             }),
             stats: {
-                serving: 0
+                serving: {level:0, xp: 0}
             }
         }, config));
     }
@@ -226,7 +226,7 @@ class Player extends Character {
     }
 
     levelUp(stat, amnt) {
-        this.stats[stat] += amnt;
+        this.stats[stat].xp += amnt;
     }
 
     getStat(stat) {
