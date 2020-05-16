@@ -183,7 +183,7 @@ class Player extends Character {
                 name: "Player Inventory"
             }),
             stats: {
-                serving: {level:0, xp: 0}
+                serving: {level:1, xp: 0}
             }
         }, config));
     }
@@ -227,10 +227,19 @@ class Player extends Character {
 
     levelUp(stat, amnt) {
         this.stats[stat].xp += amnt;
+        while (this.stats[stat].xp > 25 * this.stats[stat].level) {
+            this.stats[stat].xp -= 25 * this.stats[stat].level;
+            this.stats[stat].level++;
+        }
     }
 
     getStat(stat) {
-        return Math.floor(0.2 * Math.sqrt(this.stats[stat]));
+        return this.stats[stat].level;
+    }
+
+    getStatBar(stat) {
+        console.log(25 * Math.pow(this.stats[stat].level,3))
+        return String.format("<<scale {0} {1} {2}>><</scale>>", this.stats[stat].xp, 0, 25 * this.stats[stat].level)
     }
 
     // Unequips items. ItemName can be either specific item or All. If all, unequips all of the items but the ones with a tag in bl.
