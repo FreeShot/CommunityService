@@ -154,8 +154,6 @@ Object.defineProperty(window, 'NPC', {
 
 class Player extends Character {
 	// Player's class
-    gradient = ["#1335A9", "#212EB0", "#3831B5", "#5941BC", "#7852C2", "#9465C7", "#AD78CE", "#C38CD3", "#D4A1DA", "#E0B9DE"];
-
     constructor(config) {
         super(Object.assign({
             name: "Alex",
@@ -371,10 +369,8 @@ class Player extends Character {
 
     // Returns the voice color (TO BE CHANGED)
     get getColor() {
-        if (this.voice.current / 10 > this.gradient.length - 1) {
-            this.voice.current = 10 * this.gradient.length - 1;
-        }
-        return this.gradient[Math.floor(this.voice.current / 10)];
+        console.log(Math.min(this.voice.current, State.variables.bluePinkGradient.length));
+        return State.variables.bluePinkGradient[Math.min(this.voice.current, State.variables.bluePinkGradient.length)];
     }
 
     // Makes the character speak

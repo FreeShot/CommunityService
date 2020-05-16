@@ -82,5 +82,5 @@ Setting.addToggle("nsfw", {
 });
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
-	default  : true
+	default  : false
 });
