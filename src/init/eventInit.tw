@@ -1,7 +1,7 @@
 ::eventInit [event]
 <<= $mansion.addEvent("specialEvent", new Event({
-	name: "End of the week reca", 
-	passage: "endOfWeekRecap", 
+	name: "End of the week review", 
+	passage: "endOfWeekRecapStart", 
 	inline:false, 
 	repeats:true, 
 	tags: ["Sunday", "Evening"]

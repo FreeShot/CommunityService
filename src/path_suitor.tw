@@ -326,3 +326,5 @@ You shift your hips again as you realise your caged member is pressing against t
 <<= $player.speak("<i>I definitely wasn't flirting back...</i>")>>
 
 [[Finish cleaning up.|mansionCPartyFinish01]]
+
+<<set $flags.kissedSuitor to true>>

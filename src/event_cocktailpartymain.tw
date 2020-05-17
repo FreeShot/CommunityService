@@ -248,7 +248,7 @@ You go to one of the aloves and are collecting some of the discarded food and ru
 
 Your cheeks flush red as you realise, they are talking about you. Fortunately, they don't seem to know you are there so you do your best to keep it that way.
 
-<<= $eventInfo.active[0].speak("How long do you think it will take before these she becomes the focal point of these parties?")>>
+<<= $eventInfo.active[0].speak("How long do you think it will take before she becomes the focal point of these parties?")>>
 
 <<= $eventInfo.active[1].speak("Knowing how quickly $wife.name works not long at all.")>>
 
