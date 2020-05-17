@@ -1,4 +1,4 @@
-::PlayerBdRm [playerRoom room]
+::PlayerBdRm [playerRoom Save room]
 <<= $mansion.display("PlayerBdRm")>>
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.

@@ -2068,7 +2068,25 @@ class Room {
 Object.defineProperty(window, 'Room', {
     value : Room
 });
-/* twine-user-script #11: "script.js" */
+/* twine-user-script #11: "save.js" */
+Config.saves.version = 1;
+Config.saves.slots = 8;
+Config.saves.onSave = function (save) {
+	console.log(save);
+	return save;
+};
+Config.saves.onLoad = function (save) {
+	return save;
+};
+Config.saves.isAllowed = function () {
+	// Dissalow when passage has tag noSave
+	return !Story.get(State.passage).tags.includes("noSave");
+};
+Config.saves.autosave = function () {
+	// Make autosave when passage has tag Save
+	return Story.get(State.passage).tags.includes("Save");
+}
+/* twine-user-script #12: "script.js" */
 // Adds Icons
 //importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
@@ -2108,7 +2126,7 @@ window.rememberScore = function(score, event) {
 	}
 	State.variables.lastEvents[event].push(score);
 }
-/* twine-user-script #12: "settings.js" */
+/* twine-user-script #13: "settings.js" */
 Setting.addHeader("NPC", "Anything that influence the generation of NPCs.");
 Setting.addList("maxNPC", {
 	label: "Maximum of npc to generate.",
@@ -2195,7 +2213,7 @@ Setting.addToggle("debug", {
 	label    : "Displays the debugger",
 	default  : false
 });
-/* twine-user-script #13: "shop.js" */
+/* twine-user-script #14: "shop.js" */
 class Shop {
 	constructor (config) {
 		this.categories = [];
@@ -2263,7 +2281,7 @@ class Shop {
 Object.defineProperty(window, 'Shop', {
     value : Shop
 });
-/* twine-user-script #14: "time.js" */
+/* twine-user-script #15: "time.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
 
@@ -6067,7 +6085,7 @@ You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-front&quot;, &
 You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-back&quot;, &quot;equipped&quot;])[0].item.name&gt;&gt;.
 &lt;&lt;/if&gt;&gt;
 
-&lt;br&gt;</tw-passagedata><tw-passagedata pid="180" name="PlayerBdRm" tags="playerRoom room" position="1225,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="180" name="PlayerBdRm" tags="playerRoom Save room" position="1225,2225" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
