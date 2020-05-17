@@ -29,7 +29,15 @@
 [[Return|$return]]
 
 ::playerToDoList [noreturn menu]
-<<= $mansion.displayChores(false)>>
+<<button "Filter done">>
+<<set $flags.filterDone = !$flags.filterDone>>
+<<replace '#to_do-list'>>
+<<= $mansion.displayChores(false, $flags.filterDone)>>
+<</replace>>
+<</button>>
+<span id='to_do-list'>
+<<= $mansion.displayChores(false, $flags.filterDone)>>
+</span>
 
 [[Return|$return]]
 

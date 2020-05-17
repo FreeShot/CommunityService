@@ -26,9 +26,9 @@ class Chore {
 		this.time.end = this.time.end || {hour: 18, minute: 0};
 	}
 
-	do(canDoChores) {
+	do(canDoChores, filterDone) {
 		// Chore is waiting to be reset
-		if (skipChores()) {
+		if (skipChores() || (this.done && filterDone)) {
 			return "";
 		}
 
@@ -72,12 +72,13 @@ class Chore {
 				}
 			}, ""),
 			canDoChores && !this.done && htmlClass.length === 0 ? String.format(
-				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '[[Finish the chore|RoomDescription]]'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
+				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '{5}'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
 				this.passage,
 				this.room,
 				this.staminaCost,
 				this.duration,
-				this.name
+				this.name,
+				State.variables.mansion.findRoom(this.room).getPassage()
 			) : ""
 		);
 	}
@@ -97,7 +98,7 @@ class Chore {
 				return 6 - day;
 			case "B":
 				// Resets on wednesday and sunday
-				return Math.max(6 - day, 2 - day);
+				return day < 3 ? 2 - day : 6 - day;
 			case "D":
 				// Chore resets everydays
 				return 0;

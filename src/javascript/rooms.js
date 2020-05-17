@@ -103,18 +103,18 @@ class Room {
 
 	getPassage() {
 		if (Story.has(this.id)) {
-			return "<<link \"" + this.name + "\" \"" + this.id + "\">><<set $player.currentRoom to '" + this.id + "'>><</link>>";
+			return "<<link \"" + this.name + "\" \"" + this.id + "\">><<set $player.currentRoom to \"" + this.id + "\">><</link>>";
 		} else {
-			return "<<link \"" + this.name + "\" 'RoomDescription'>><<set $player.currentRoom to '" + this.id + "'>><</link>>";
+			return "<<link \"" + this.name + "\" \"RoomDescription\">><<set $player.currentRoom to \"" + this.id + "\">><</link>>";
 		}
 	}
 
-	displayChores(displayTitle, canDoChores) {
+	displayChores(displayTitle, canDoChores, filterDone) {
 		if (this.chores.length > 0) {
 			var title = ((displayTitle || true) ? this.name : "") + "<ol>";
 			var str = "";
 			for (var i = 0; i < this.chores.length; i++) {
-				var chore = this.chores[i].do(canDoChores);
+				var chore = this.chores[i].do(canDoChores, filterDone);
 				if (chore != "") {
 					str += "<li>" + chore + "</li>";
 				}

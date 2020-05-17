@@ -26,7 +26,7 @@ Desk
 <</if>>
 <</nobr>>
 
-<<= $mansion.findRoom("PlayerBdRm").displayChores(true)>>
+<<= $mansion.findRoom("PlayerBdRm").displayChores(false, true)>>
 
 ::playerRoomShower [playerRoom]
 <<tooltips "comment">>
