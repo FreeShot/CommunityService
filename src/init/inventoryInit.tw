@@ -306,12 +306,12 @@
 	femininity: 25, 
 	img: "items/wearables/dress/summerdress_01.jpg"
 }, 1)>>
-<<= $player.inv.addItem({
+<!--<<= $player.inv.addItem({
 	name:"Tight jeans", 
 	tags : ["pants", "equippable"],
 	femininity: 10, 
 	img: "items/wearables/bottoms/jeans_01.jpg"
-}, 1)>>
+}, 1)>>-->
 <<= $player.inv.addItem({
 	name:"Flat shoes", 
 	tags : ["shoe", "equippable"],

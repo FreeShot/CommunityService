@@ -68,11 +68,11 @@ var settingThemeHandler = function () {
 };
 Setting.addList("theme", {
 	label    : "Choose a theme.",
-	list     : ["theme-dark", "theme-light"],
-	default  : "theme-dark",
+	list     : ["theme-dark", "theme-light"], // TODO - add auto switching as an option
+	default  : "theme-light",
 	onInit   : settingThemeHandler,
 	onChange : settingThemeHandler
-}); // default value not defined, so the first array member "(none)" is used
+});
 
 
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");

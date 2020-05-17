@@ -37,5 +37,5 @@ You are currently using a <<= $player.inv.filter(["toy-front", "equipped"])[0].i
 <<if $player.hasEquipped(["toy-back"])>>
 You are currently using a <<= $player.inv.filter(["toy-back", "equipped"])[0].item.name>>.
 <</if>>
-
 <br>
+[[Return|$return]]

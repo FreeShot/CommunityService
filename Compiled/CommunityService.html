@@ -825,6 +825,7 @@ function skipChores() {
 }
 
 class Chore {
+
 	constructor (config) {
 		this.name = '';
 		this.duration = {day: 0, hour: 0, minute: 0};
@@ -874,7 +875,7 @@ class Chore {
 			this.getLastDay,
 			Timer.getTime(this.duration)
 		);
-
+		console.log(6 - this.dayLeft);
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
@@ -998,7 +999,7 @@ Object.defineProperty(window, 'Chore', {
 });
 /* twine-user-script #3: "documentation.js" */
 Macro.add("tooltips", {
-	tag: [],
+	tags: [],
 	handler: function() {
 		if (!settings.tips) return $(this.output).wiki("");
 		var tipType = this.args[0]; // One of: "warning", "info", "comment"
@@ -1007,9 +1008,10 @@ Macro.add("tooltips", {
 			content = State.variables.tooltips[this.args[1]]; // Selects the right tooltip
 		}
 		else {
-			content = this.payloads[0].content;
+			console.log(this);
+			content = this.payload[0].contents;
 		}
-		return $(this.output).wiki(String.format("<<if !visited()>><div class='tooltip-{0}'>{1}</div><</if>>", tipType, content));
+		return $(this.output).wiki(String.format("<div class='tooltip-{0}'>{1}</div>", tipType, content));
 	}
 });
 /* twine-user-script #4: "event.js" */
@@ -2291,11 +2293,11 @@ var settingThemeHandler = function () {
 };
 Setting.addList("theme", {
 	label    : "Choose a theme.",
-	list     : ["theme-dark", "theme-light"],
-	default  : "theme-dark",
+	list     : ["theme-dark", "theme-light"], // TODO - add auto switching as an option
+	default  : "theme-light",
 	onInit   : settingThemeHandler,
 	onChange : settingThemeHandler
-}); // default value not defined, so the first array member "(none)" is used
+});
 
 
 Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
@@ -4671,12 +4673,12 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	femininity: 25, 
 	img: &quot;items/wearables/dress/summerdress_01.jpg&quot;
 }, 1)&gt;&gt;
-&lt;&lt;= $player.inv.addItem({
+&lt;!--&lt;&lt;= $player.inv.addItem({
 	name:&quot;Tight jeans&quot;, 
 	tags : [&quot;pants&quot;, &quot;equippable&quot;],
 	femininity: 10, 
 	img: &quot;items/wearables/bottoms/jeans_01.jpg&quot;
-}, 1)&gt;&gt;
+}, 1)&gt;&gt;--&gt;
 &lt;&lt;= $player.inv.addItem({
 	name:&quot;Flat shoes&quot;, 
 	tags : [&quot;shoe&quot;, &quot;equippable&quot;],
@@ -5134,7 +5136,7 @@ This game is intended for a mature audience. If you are too young, please &lt;a 
 
 Here is the [[changelog]] for the current version of the game.
 &lt;/div&gt;
-&lt;&lt;tooltips &quot;info&quot; &quot;disable-tips&quot;&gt;&gt;
+&lt;&lt;tooltips &quot;info&quot; &quot;disable-tips&quot;&gt;&gt;&lt;&lt;/tooltips&gt;&gt;
 [[Start the game|Intro1]]
 &lt;&lt;if !$firstTime&gt;&gt;
 &lt;&lt;link &quot;Skip the introduction (Start with the default character)&quot; &quot;PlayerBdRm&quot;&gt;&gt;
@@ -5333,7 +5335,7 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;&lt;for _stat range Object.keys($player.stats)&gt;&gt;
 &lt;tr class=&#39;stat&#39;&gt;_stat: level &lt;&lt;= $player.getStat(_stat)&gt;&gt; &lt;&lt;= $player.getStatBar(_stat)&gt;&gt;&lt;/tr&gt;
 &lt;&lt;/for&gt;&gt;
-&lt;/table&gt;</tw-passagedata><tw-passagedata pid="149" name="CUFF" tags="noreturn mainMenu" position="1100,1850" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
+&lt;/table&gt;</tw-passagedata><tw-passagedata pid="149" name="CUFF" tags="noreturn mainMenu menu" position="1100,1850" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
 [[Chore list|playerToDoList]]
@@ -6182,8 +6184,8 @@ You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-front&quot;, &
 &lt;&lt;if $player.hasEquipped([&quot;toy-back&quot;])&gt;&gt;
 You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-back&quot;, &quot;equipped&quot;])[0].item.name&gt;&gt;.
 &lt;&lt;/if&gt;&gt;
-
-&lt;br&gt;</tw-passagedata><tw-passagedata pid="183" name="PlayerBdRm" tags="playerRoom room" position="350,2350" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+&lt;br&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="183" name="PlayerBdRm" tags="playerRoom room" position="350,2350" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 

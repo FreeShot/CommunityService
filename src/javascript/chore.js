@@ -4,6 +4,7 @@ function skipChores() {
 }
 
 class Chore {
+
 	constructor (config) {
 		this.name = '';
 		this.duration = {day: 0, hour: 0, minute: 0};
@@ -53,7 +54,7 @@ class Chore {
 			this.getLastDay,
 			Timer.getTime(this.duration)
 		);
-
+		console.log(6 - this.dayLeft);
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),

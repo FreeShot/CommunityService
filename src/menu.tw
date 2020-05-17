@@ -15,7 +15,7 @@
 <</for>>
 </table>
 
-::CUFF [noreturn mainMenu]
+::CUFF [noreturn mainMenu menu]
 <<if $flags.CUFF === 1>>
 <<= Character.speakAnonymous("Cuff must be initialised by the owner.", "orange")>>
 <<else>>
