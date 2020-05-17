@@ -1,3 +1,8 @@
+function skipChores() {
+	// Checks if the chores are counted during the reset
+	return State.variables.time.day === 0 || State.variables.mansion.currentEvent !== "";
+}
+
 class Chore {
 	constructor (config) {
 		this.name = '';
@@ -8,11 +13,10 @@ class Chore {
 		this.time = {};
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = true;
+		this.done = false;
 		this.room = '';
 		this.id = '';
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
-		this.dayLeft = 0;
 
 		Object.keys(config).forEach(function (pn) {
             this[pn] = clone(config[pn]);
@@ -24,7 +28,7 @@ class Chore {
 
 	do(canDoChores) {
 		// Chore is waiting to be reset
-		if (this.dayLeft < 0) {
+		if (skipChores()) {
 			return "";
 		}
 
@@ -79,25 +83,27 @@ class Chore {
 	}
 
 	reset() {
-		var days = State.variables.time.day % 7;
-		this.dayLeft--;
-		if(this.dayLeft == -1) {
-			if (!this.done){
-				console.log("Missing chores is bad");
-				State.variables.player.choresLate++;
-			}
-			if (this.choreFrequency === "D") {
-				this.dayLeft = 0;
-			} else if (this.choreFrequency === "B") {
-				if (days === 2) {
-					this.dayLeft = 1;
-				} else if (days === 0) {
-					this.dayLeft = 2;
-				}
-			} else if (this.choreFrequency === "W" && days === 0) {
-				this.dayLeft = 6;
-			}
-			this.done = false;
+		// TODO - RESET CHORE IF TIME IS UP
+		if (this.dayLeft === 0 && !skipChores()) {
+			State.variables.player.choresLate++;
+		}
+	}
+
+	get dayLeft() {
+		var day = State.variables.time.weekDay;
+		switch (this.choreFrequency) {
+			case "W":
+				// Resets on sunday
+				return 6 - day;
+			case "B":
+				// Resets on wednesday and sunday
+				return Math.max(6 - day, 2 - day);
+			case "D":
+				// Chore resets everydays
+				return 0;
+			default:
+				console.log("Wrong chore frequency");
+				break;
 		}
 	}
 
