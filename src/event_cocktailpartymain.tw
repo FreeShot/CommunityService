@@ -286,7 +286,7 @@ Your score final: <<= _final_score>> (expected at least <<= $lastEvents.mean("CP
 <<elseif _final_score > 0.9 * $lastEvents.mean("CParty")>>
 <<= $wife.speak("Your performance was mediocre last night, I'm half tempted to leave it on until you do better as a motivation.")>>
 <<else>>
-<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>>
+<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>><<set $wife.addAppreciation(1)>>
 <</if>>
 
 $wife.name pulls out a key and starts twirling it on her finger.
@@ -305,7 +305,7 @@ She doesn't, and time draws out as $wife.name stands there looking at you though
 
 Her eyes still linger on your hips for a moment before quickly shooting up to meet your gaze. $wife.name's piercing eyes seem to bore into you. You can't help but look away.
 
-<<= $wife.speak("You know what. Given how everyone enjoyed having such a lovley and well presented young lady ath their beck and call I think we might make some changes to the rules.")>>
+<<= $wife.speak("You know what. Given how everyone enjoyed having such a lovely and well presented young lady at their beck and call I think we might make some changes to the rules.")>>
 
 Your eyes return to her face, smiling smugly and knowing you are at her mercy.
 
