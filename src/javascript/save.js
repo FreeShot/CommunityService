@@ -8,6 +8,15 @@ window.upgradeSave = function(save) {
 	}
 }
 
+window.downgradeSave = function(save) {
+	switch (save.version) {
+		case 1:
+			return save; // Earliest version
+		default:
+			return null;
+	}
+}
+
 Config.saves.version = 1;
 Config.saves.slots = 8;
 Config.saves.onSave = function (save) {
@@ -15,8 +24,11 @@ Config.saves.onSave = function (save) {
 	return save;
 };
 Config.saves.onLoad = function (save) {
-	while (save.version != Config.saves.version) {
+	while (save.version < Config.saves.version) {
 		upgradeSave(save);
+	}
+	while (save.version > Config.save.version) {
+		downgradeSave(save);
 	}
 	return save;
 };
