@@ -771,6 +771,11 @@ window.generateNPC = function(list, activeNPC, nb) {
     }
 }
 /* twine-user-script #2: "chore.js" */
+function skipChores() {
+	// Checks if the chores are counted during the reset
+	return false;
+}
+
 class Chore {
 	constructor (config) {
 		this.name = '';
@@ -781,7 +786,7 @@ class Chore {
 		this.time = {};
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = true;
+		this.done = false;
 		this.room = '';
 		this.id = '';
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
@@ -855,7 +860,7 @@ class Chore {
 		var days = State.variables.time.day % 7;
 		this.dayLeft--;
 		if(this.dayLeft == -1) {
-			if (!this.done){
+			if (!this.done && !skipChores()){
 				console.log("Missing chores is bad");
 				State.variables.player.choresLate++;
 			}
@@ -2069,13 +2074,38 @@ Object.defineProperty(window, 'Room', {
     value : Room
 });
 /* twine-user-script #11: "save.js" */
+window.upgradeSave = function(save) {
+	switch (save.version) {
+		case 1:
+			// Upgrades to version 2
+			return save;
+		default:
+			return null
+	}
+}
+
+window.downgradeSave = function(save) {
+	switch (save.version) {
+		case 1:
+			return save; // Earliest version
+		default:
+			return null;
+	}
+}
+
 Config.saves.version = 1;
 Config.saves.slots = 8;
 Config.saves.onSave = function (save) {
-	console.log(save);
+	save.title = State.passage;
 	return save;
 };
 Config.saves.onLoad = function (save) {
+	while (save.version < Config.saves.version) {
+		upgradeSave(save);
+	}
+	while (save.version > Config.save.version) {
+		downgradeSave(save);
+	}
 	return save;
 };
 Config.saves.isAllowed = function () {
@@ -4874,8 +4904,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="120
 	}
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="StoryInit" tags="nodebug" position="850,1600" size="100,100">&lt;&lt;set $version to &quot;V0.1.0&quot;&gt;&gt;
 &lt;&lt;set $debug to true&gt;&gt;
-&lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;
-&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
+&lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
 
 &lt;&lt;set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})&gt;&gt;
 
