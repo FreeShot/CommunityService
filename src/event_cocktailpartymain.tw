@@ -67,7 +67,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 	events: [
 		{name: "Circulate some hors d'oeuvres", passage: "mansionCPartyStaring01", npc: []},
 		{name: "Serve the lady on the lounge", passage: "mansionCPartyStaring02", npc: ["female"]},
-		{name: "Serve a man in the back", passage: "mansionCPartyGroping01", npc: ["male"]},
+		{name: "Serve a man in the back", passage: "mansionCPartyGroping01a", npc: ["any"]},
 		{name: "Get another tray of food", passage: "mansionCPartyCage01", npc: []},
 		{name: "Go refill your tray", passage: "mansionCPartyCage02", npc: []},
 		{name: "Approach the people eyeing your tray", passage: "mansionCPartySocialListen01", npc: ["any", "any"]},
@@ -146,27 +146,35 @@ You politely pull away and hurry back to the bar to pick up some more drinks.
 
 [[Back to serving|mansionCPartyServing01]]
 
-::mansionCPartyGroping01 [event]
-As you turn away to retrieve the man's drink you feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
+::mansionCPartyGroping01a [event]
+<<= $player.speak("Can I get you something?")>>
 
-<<chooseOption "Defend yourself">>
+<<= $eventInfo.active.speak("One scotch on the rock's and make it snappy.")>>
+
+You turn away to retrieve the guest's drink and then feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
+
+[[Defend yourself|mansionCPartyGroping01b]]
+
+::mansionCPartyGroping01b
 <<= $player.speak("Ow! Hands to yourself.")>>
 
-The man looks surpised at your reaction as you slap his hand away. Some of the guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else...
+The person looks surpised at your reaction as you slap their hand away. Some of the other guests turn to look at the commotion and you spot $wife.name giving you a withering stare. You can almost hear her voice in your head telling you to suck it up and apologise or else...
 
-The man is staring at you with the barest hint of alarm.
+The guest is staring at you with the barest hint of alarm.
 
 <<chooseOption "Appologise.">>
 You swallow and say. <<= $player.speak("Sorry sir. You startled me is all.")>>
 
-<<= $eventInfo.active.speak("Not a problem.")>> The man smiles smugly. <<= $eventInfo.active.speak("Now fetch my drink like a good girl.")>>
+<<= $eventInfo.active.speak("Not a problem.")>> The person smiles smugly. <<= $eventInfo.active.speak("Now fetch my drink like a good girl.")>>
 
-He gives you another quick slap on the butt and sends you on your way.
+You receive another quick slap on the butt to send you on your way.
+
+<<option "No way you're appologising">>
+You stare at $wife.name for a moment and simply turn around and walk away. You still retrieve the guest's drink but you'll be damned if you're apologising to the groper.
+
+<<end>>
 
 [[Back to serving|mansionCPartyServing01]]
-<<option "No way you're appologising">>
-You stare at $wife.name for a moment and simply turn around and walk away. You still retrieve the man's drink but you'll be damned if you're apologising to the groper
-<</chooseOption>>
 <</chooseOption>>
 
 ::mansionCPartyCage01 [event]
@@ -248,7 +256,7 @@ You go to one of the aloves and are collecting some of the discarded food and ru
 
 Your cheeks flush red as you realise, they are talking about you. Fortunately, they don't seem to know you are there so you do your best to keep it that way.
 
-<<= $eventInfo.active[0].speak("How long do you think it will take before these she becomes the focal point of these parties?")>>
+<<= $eventInfo.active[0].speak("How long do you think it will take before she becomes the focal point of these parties?")>>
 
 <<= $eventInfo.active[1].speak("Knowing how quickly $wife.name works not long at all.")>>
 
@@ -278,7 +286,7 @@ Your score final: <<= _final_score>> (expected at least <<= $lastEvents.mean("CP
 <<elseif _final_score > 0.9 * $lastEvents.mean("CParty")>>
 <<= $wife.speak("Your performance was mediocre last night, I'm half tempted to leave it on until you do better as a motivation.")>>
 <<else>>
-<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>>
+<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>><<set $wife.addAppreciation(1)>>
 <</if>>
 
 $wife.name pulls out a key and starts twirling it on her finger.
@@ -297,7 +305,7 @@ She doesn't, and time draws out as $wife.name stands there looking at you though
 
 Her eyes still linger on your hips for a moment before quickly shooting up to meet your gaze. $wife.name's piercing eyes seem to bore into you. You can't help but look away.
 
-<<= $wife.speak("You know what. Given how everyone enjoyed having such a lovley and well presented young lady ath their beck and call I think we might make some changes to the rules.")>>
+<<= $wife.speak("You know what. Given how everyone enjoyed having such a lovely and well presented young lady at their beck and call I think we might make some changes to the rules.")>>
 
 Your eyes return to her face, smiling smugly and knowing you are at her mercy.
 

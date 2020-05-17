@@ -1,7 +1,54 @@
-::endOfWeekRecap [event]
+::endOfWeekRecapStart [event]
 
-THIS WILL BE THE END OF THE WEEK RECAP
+Before you turn in for the night you report to the study. $owner.name is sitting behind his desk with $butler.name standing patiently nearby.
+
+He goes over what he thinks you did well and what needs improvement.
 
 Chores missed: <<= $player.choresLate>>
 
+[[endOfWeekRecapBad]]
+[[endOfWeekRecapNeutral]]
+[[endOfWeekRecapGood]]
+
+::endOfWeekRecapBad
+
+<<= $owner.speak("Overall your performance this week was lackluster so I have decided to withhold your reduction in debt.")>>
+
+Your shoulders slump as this essentially adds another week to your indenturement.
+
+<<= $owner.speak("See that this doesn't happen again or I may be forced to take more direct action.")>>
+
 [[Go to bed.|sleep]]
+
+::endOfWeekRecapNeutral
+
+<<= $owner.speak("Overall your performance has met my expectations so your debt has been reduced by the agreed amount.")>>
+
+You breathe a sigh of relief. You are now one week closer to all this being over.
+
+<<= $owner.speak("See that you maintain this level of effort moving forward.")>>
+
+[[Go to bed.|sleep]]
+
+::endOfWeekRecapGood
+
+<<= $owner.speak("It seems that everyone has been impressed with your level of effort this week so your debt has been reduced by the agreed amount.")>>
+
+You breathe a sigh of relief as the extra work has paid off. You are now one week closer to all this being over.
+
+<<= $owner.speak("I've also decided to add a little bonus to. You can choose to have this added to the reduction in debt or keep the funds separate for use as you see fit. Which would you prefer?")>>
+
+<<chooseOption "Reduce your debt.">>
+
+<<= $player.speak("I would like the amount removed from my debt $owner.title.")>>
+
+<<option "Keep the bonus.">>
+
+<<= $player.speak("I would like to keep the funds separate $owner.title.")>>
+
+<<end>>
+
+$owner.name nods and makes the neccessary changes before dismissing you.
+
+[[Go to bed.|sleep]]
+<</chooseOption>>

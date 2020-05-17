@@ -707,7 +707,7 @@ $daughter.name gives him another quick hug and moves to leave as guests start ar
 [[Begin serving|mansionCPartyInit]]
 
 ::mansionCPartyIntro28 [event]
-Exhausted from the busy night, your only thought are bathroom then bed. <<if HASKISSED>>Although the kiss still lingers on your mind.<</if>>
+Exhausted from the busy night, your only thought are bathroom then bed. <<if $flags.kissedSuitor is true>>Although the kiss still lingers on your mind.<</if>>
 
 You head to the bathroom and quickly do a double take at the attractive maid looking at you before once again realising that you are the maid.
 

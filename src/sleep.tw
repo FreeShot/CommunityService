@@ -40,7 +40,7 @@ $butler.name is already in there to help setup. Fortunately the family isn't par
 <br>
 $owner.name is first to the table as usual. $butler.name helps you bring out the coffee and tea. Slowly, everyone in the estate spends time at the table eating. You attend to anything unique they request until everyone is satisfied and leaves to go about their day. $butler.name leaves with $owner.name so you are alone to do the clean up.<br>
 <br>
-Once everything it tidy you grab a bite to eat back to your room.<br>
+Once everything it tidy you grab a bite to eat and go back to your room.<br>
 <br>
 [[Return to your room.|PlayerBdRm]]
 <<= $mansion.resetChores()>>
