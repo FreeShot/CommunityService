@@ -13,23 +13,23 @@ function createNPC(gender) {
     }
     var lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"];
 
-    var index = Math.floor(Math.random() * names.length);
+    var index = Math.floor(State.random() * names.length);
     values["name"] = names[index];
 
-    index = Math.floor(Math.random() * lastName.length);
+    index = Math.floor(State.random() * lastName.length);
     lastName = lastName[index];
     values["name"] += " " + lastName;
     values["title"] += " " + lastName;
 
-    values["age"] = Math.floor(Math.random() * 30) + 20;
+    values["age"] = Math.floor(State.random() * 30) + 20;
 
     values["like"] = Object.keys(State.variables.npcLike).filter(function(el) {
-        return Math.random() < 2 / (Object.keys(State.variables.npcLike).length);
+        return State.random() < 2 / (Object.keys(State.variables.npcLike).length);
     });
 
     values["appreciation"] = 0;
     values["color"] = {};
-    values["color"]["light"] = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+    values["color"]["light"] = '#' + (State.random() * 0xFFFFFF << 0).toString(16);
     values["color"]["dark"] = values["color"]["light"];
     return values;
 }
@@ -452,8 +452,8 @@ Object.defineProperty(window, 'MinorNPC', {
 
 // updates the list and active npc with some new npc
 window.generateNPC = function(list, activeNPC, nb) {
-    if (settings.maxNPC <= list.length || (list.length > 1 && Math.random() > 0.5)) {
-        var index = Math.floor(Math.random() * list.length);
+    if (settings.maxNPC <= list.length || (list.length > 1 && State.random() > 0.5)) {
+        var index = Math.floor(State.random() * list.length);
         if (!activeNPC.includes(index)) {
             activeNPC.push(index);
         } else {

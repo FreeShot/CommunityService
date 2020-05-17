@@ -43,7 +43,7 @@ class Room {
 			});
 
 			var i = 0;
-			for (var eventPicked = Math.floor(Math.random() * totalWeight); eventPicked > 0; eventPicked -= 1 << activeEvents[i].priority) {
+			for (var eventPicked = Math.floor(State.random() * totalWeight); eventPicked > 0; eventPicked -= 1 << activeEvents[i].priority) {
 				i++;
 			}
 			return activeEvents[i].playEvent(true);

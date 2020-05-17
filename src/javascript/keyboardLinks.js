@@ -93,7 +93,7 @@ $(document).on("keyup", function (e) {
 					}
 				}
 				if (UsableLinks.length > 0) {
-					n = random(UsableLinks.length - 1);
+					n = State.random(UsableLinks.length - 1);
 					Links[UsableLinks[n]].click();
 					return false;
 				}

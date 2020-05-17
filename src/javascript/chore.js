@@ -136,7 +136,7 @@ class Chore {
 
 	get passage() {
 		var sum = 0; for (var i = this.passages.length - 1; i >= 0; i--) {sum += this.passages[i].weight;}
-		var val = random(0, sum - 1);
+		var val = State.random(0, sum - 1);
 		for (var i = 0; i < this.passages.length; i++) {
 			val -= this.passages[i].weight;
 			if (val < 0) {
