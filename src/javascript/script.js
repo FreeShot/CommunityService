@@ -37,3 +37,14 @@ window.rememberScore = function(score, event) {
 	}
 	State.variables.lastEvents[event].push(score);
 }
+
+window.process = function (str) {
+	var str = str.split(".").reduce(function(obj, arg) {
+		console.log(str)
+		if (arg.endsWith('()')) {
+			return obj[arg.substr(0, arg.length - 2)]()
+		} 
+		return obj[arg]
+	}, State.variables);
+	return str;
+}

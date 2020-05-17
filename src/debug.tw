@@ -1,6 +1,14 @@
 ::debug-passage [debug]
 <hr>
 DEBUG
+
+Search variable: <<textbox '_value' ''>><<button "get">>
+<<replace '#story-variable'>><<debug _value>><</debug>>
+<</replace>>
+<</button>>
+
+<span id="story-variable"></span>
+
 <<link "addXP">>
 	<<= $player.levelUp('serving', 1)>>
 	<<goto `passage()`>>
@@ -19,23 +27,6 @@ DEBUG
 <</link>>
 
 Current event: <<= $mansion.currentEvent>>
-<<chooseOption "Enable extended debug">>
-
-<hr>
-Player:
-<<debug "player">>player<</debug>>
-
-Characters:
-<<for _npc_name range $npcList>> 
-_npc_name <<debug _npc_name>><</debug>>
-<</for>>
-
-<<debug "mansion">><</debug>>
-
-<<debug "time">><</debug>>
-
-<<debug "shop">><</debug>>
-<</chooseOption>>
 
 <hr>
 <<include playerDescription>>

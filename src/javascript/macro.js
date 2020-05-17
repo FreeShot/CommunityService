@@ -27,9 +27,9 @@ Macro.add("debug", {
 	tags: [],
 	handler: function() {
 		var id = this.args[0];
-		var obj = State.variables[id];
+		var obj = process(id);
 		return jQuery(this.output).wiki(String.format(
-			"<span id='{0}'><<link 'Debug {0}'>><<replace '#{0}'>><<debug-internal>>{1}<</debug-internal>><</replace>><</link>></span>",
+			"<<debug-internal>>{1}<</debug-internal>>",
 			id,
 			obj
 		));

@@ -1468,9 +1468,9 @@ Macro.add("debug", {
 	tags: [],
 	handler: function() {
 		var id = this.args[0];
-		var obj = State.variables[id];
+		var obj = process(id);
 		return jQuery(this.output).wiki(String.format(
-			"<span id='{0}'><<link 'Debug {0}'>><<replace '#{0}'>><<debug-internal>>{1}<</debug-internal>><</replace>><</link>></span>",
+			"<<debug-internal>>{1}<</debug-internal>>",
 			id,
 			obj
 		));
@@ -2222,6 +2222,17 @@ window.rememberScore = function(score, event) {
 	}
 	State.variables.lastEvents[event].push(score);
 }
+
+window.process = function (str) {
+	var str = str.split(".").reduce(function(obj, arg) {
+		console.log(str)
+		if (arg.endsWith('()')) {
+			return obj[arg.substr(0, arg.length - 2)]()
+		} 
+		return obj[arg]
+	}, State.variables);
+	return str;
+}
 /* twine-user-script #14: "settings.js" */
 Setting.addHeader("NPC", "Anything that influence the generation of NPCs.");
 Setting.addList("maxNPC", {
@@ -2634,6 +2645,14 @@ You take out your vacuum and go over the entire room. You make sure to get into 
 
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="56" name="debug-passage" tags="debug" position="725,725" size="100,100">&lt;hr&gt;
 DEBUG
+
+Search variable: &lt;&lt;textbox &#39;_value&#39; &#39;&#39;&gt;&gt;&lt;&lt;button &quot;get&quot;&gt;&gt;
+&lt;&lt;replace &#39;#story-variable&#39;&gt;&gt;&lt;&lt;debug _value&gt;&gt;&lt;&lt;/debug&gt;&gt;
+&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+
+&lt;span id=&quot;story-variable&quot;&gt;&lt;/span&gt;
+
 &lt;&lt;link &quot;addXP&quot;&gt;&gt;
 	&lt;&lt;= $player.levelUp(&#39;serving&#39;, 1)&gt;&gt;
 	&lt;&lt;goto `passage()`&gt;&gt;
@@ -2652,23 +2671,6 @@ DEBUG
 &lt;&lt;/link&gt;&gt;
 
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
-&lt;&lt;chooseOption &quot;Enable extended debug&quot;&gt;&gt;
-
-&lt;hr&gt;
-Player:
-&lt;&lt;debug &quot;player&quot;&gt;&gt;player&lt;&lt;/debug&gt;&gt;
-
-Characters:
-&lt;&lt;for _npc_name range $npcList&gt;&gt; 
-_npc_name &lt;&lt;debug _npc_name&gt;&gt;&lt;&lt;/debug&gt;&gt;
-&lt;&lt;/for&gt;&gt;
-
-&lt;&lt;debug &quot;mansion&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
-
-&lt;&lt;debug &quot;time&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
-
-&lt;&lt;debug &quot;shop&quot;&gt;&gt;&lt;&lt;/debug&gt;&gt;
-&lt;&lt;/chooseOption&gt;&gt;
 
 &lt;hr&gt;
 &lt;&lt;include playerDescription&gt;&gt;
