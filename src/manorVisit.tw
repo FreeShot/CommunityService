@@ -182,6 +182,6 @@ The older man replies <<= $butler.speak("Yes sir.")>>
 <<= $owner.speak("That will be all.")>>
 
 $butler.name leads you back to your <<link "small living space""PlayerBdRm">>
-<<= $flags.manorIntro++>>
+<<= $flags.manorIntro++>><<= $flags.CUFF++>>
 <<= $time.setDate({hour:22, minute:0})>>
 <</link>>.

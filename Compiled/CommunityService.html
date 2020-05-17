@@ -892,7 +892,7 @@ class Chore {
 						return str;
 				}
 			}, ""),
-			canDoChores && !this.done ? String.format(
+			canDoChores && !this.done && htmlClass.length === 0 ? String.format(
 				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '[[Finish the chore|RoomDescription]]'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
 				this.passage,
 				this.room,
@@ -1001,8 +1001,14 @@ Macro.add("tooltips", {
 	handler: function() {
 		if (!settings.tips) return $(this.output).wiki("");
 		var tipType = this.args[0]; // One of: "warning", "info", "comment"
-		var content = State.variables.tooltips[this.args[1]]; // Selects the right tooltip
-		return $(this.output).wiki(String.format("<div class='tooltip-{0}'>{1}</div>", tipType, content));
+		var content;
+		if (this.args.length > 1) {
+			content = State.variables.tooltips[this.args[1]]; // Selects the right tooltip
+		}
+		else {
+			content = this.payloads[0].content;
+		}
+		return $(this.output).wiki(String.format("<<if !visited()>><div class='tooltip-{0}'>{1}</div><</if>>", tipType, content));
 	}
 });
 /* twine-user-script #4: "event.js" */
@@ -2513,7 +2519,7 @@ Object.defineProperty(window, 'Timer', {
 
 You take the duster from your collection of cleaning supplies and start going over the room. There are a lot of delicate items so it takes a fair amount of time. Some of the higher areas are a bit hard to get to so you have to get up on your tips toes.</tw-passagedata><tw-passagedata pid="5" name="foyerSweepMop" tags="noreturn chore" position="600,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sweeping/sweeping_1.jpg&quot;]]
 
-You sweep the floor carefully, making sure to get into all the nooks and crannies while being careful not to knock any of the displays over. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the room with a pleasant aroma.</tw-passagedata><tw-passagedata pid="6" name="hallcleaning" tags="noreturn chore" position="725,100" size="100,100">&lt;&lt;include &quot;hallDusting&quot;&gt;&gt;
+You sweep the floor carefully, making sure to get into all the nooks and crannies while being careful not to knock any of the displays over. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the room with a pleasant aroma.</tw-passagedata><tw-passagedata pid="6" name="hallCleaning" tags="noreturn chore" position="725,100" size="100,100">&lt;&lt;include &quot;hallDusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;hallSweepMop&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="hallDusting" tags="noreturn chore" position="850,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
@@ -4939,9 +4945,6 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	},
 	&quot;therapyPathStart&quot; : function() {
 		return $therapyPathStart == true;
-	},
-	&quot;ManorIntro&quot; : function() {
-		return $flags.manorIntro &lt; 2;
 	}
 }&gt;&gt;
 
@@ -5312,7 +5315,7 @@ The older man replies &lt;&lt;= $butler.speak(&quot;Yes sir.&quot;)&gt;&gt;
 &lt;&lt;= $owner.speak(&quot;That will be all.&quot;)&gt;&gt;
 
 $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&quot;PlayerBdRm&quot;&gt;&gt;
-&lt;&lt;= $flags.manorIntro++&gt;&gt;
+&lt;&lt;= $flags.manorIntro++&gt;&gt;&lt;&lt;= $flags.CUFF++&gt;&gt;
 &lt;&lt;= $time.setDate({hour:22, minute:0})&gt;&gt;
 &lt;&lt;/link&gt;&gt;.</tw-passagedata><tw-passagedata pid="148" name="StoryCaption" tags="nodebug nobr" position="975,1850" size="100,100">&lt;table id=&quot;menuInfo&quot;&gt;
 &lt;&lt;if $flags.manorIntro &gt; 0&gt;&gt;
@@ -6186,10 +6189,6 @@ Desk
 &lt;&lt;else&gt;&gt;
 	Got to the bathroom and:&lt;br&gt;
 	[[Shower|playerRoomShower]]&lt;br&gt;
-	&lt;&lt;if $player.acceptance &gt; 0&gt;&gt;
-		[[Do make-up|playerRoomMakup]]&lt;br&gt;
-		[[Morning Routine|playerRoomMorningRoutine]]&lt;br&gt;
-	&lt;&lt;/if&gt;&gt;
 	Check the [[Wardrobe|playerRoomWardrobe]]&lt;br&gt;
 	[[Check your to do list.|playerToDoList]]&lt;br&gt;
 	&lt;&lt;link &quot;Rest 1 Hour&quot;&gt;&gt;
@@ -6199,13 +6198,14 @@ Desk
 	&lt;&lt;/link&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">[img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
+At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player&#39;s personnal hygene.
+&lt;&lt;/tooltips&gt;&gt;
+[img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]
 
 You turn on the warm stream of water and step into the shower. You soap up and wash yourself clean. This moment of relaxation feels great, almost as if your worreis are washing away with the water.
 &lt;&lt;set $time.addTime({hour:0, minute: 15})&gt;&gt;&lt;&lt;= $player.rest(5)&gt;&gt;
-&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="playerRoomMakup" tags="playerRoom" position="600,2350" size="100,100">Makeup will come in a later update
-&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="186" name="playerRoomMorningRoutine" tags="playerRoom" position="725,2350" size="100,100">Despite your facial hair already being fairly sparse you still need to maintain a clean shave. You take one of the pink disposable razors and some shaving butter. It only takes a few minutes before any trace of hair is removed.</tw-passagedata><tw-passagedata pid="187" name="playerRoomWardrobe" tags="playerRoom" position="850,2350" size="100,100">&lt;&lt;if $flags.wardrobeFirstLook is true&gt;&gt;
-&lt;&lt;set $flags.wardrobeFirstLook to false&gt;&gt;
+&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="playerRoomWardrobe" tags="playerRoom" position="600,2350" size="100,100">&lt;&lt;if !visited()&gt;&gt;
 Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
 &lt;&lt;/if&gt;&gt;
 
@@ -6213,13 +6213,13 @@ Inside, you fine some items left by the last person who stayed here. Unfortunate
 
 &lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equippable&quot;], undefined, &quot;Wardrobe&quot;, $mansion.currentEvent === &quot;&quot;)&gt;&gt;
 
-&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="188" name="RoomDescription" tags="room" position="975,2350" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="189" name="shopTest" tags="" position="1100,2350" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="186" name="RoomDescription" tags="room" position="725,2350" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="187" name="shopTest" tags="" position="850,2350" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
 
 &lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;)&gt;&gt;
 
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="190" name="sleep" tags="sleep Save" position="1225,2350" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="188" name="sleep" tags="sleep Save" position="975,2350" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 &lt;&lt;if $mansion.currentEvent.startsWith(&quot;mansionCParty&quot;)&gt;&gt;
@@ -6240,7 +6240,7 @@ You feel something warm and firm press against the your womanhood before the fig
 [[Start the next day|wakeUp]]
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;set $player.voice.current = $player.voice.absolute&gt;&gt;</tw-passagedata><tw-passagedata pid="191" name="wakeUp" tags="sleep" position="100,2475" size="100,100">The CUFF alarm goes off at 6 am sharp and you quickly slap your hand to your wrist and set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
+&lt;&lt;set $player.voice.current = $player.voice.absolute&gt;&gt;</tw-passagedata><tw-passagedata pid="189" name="wakeUp" tags="sleep" position="1100,2350" size="100,100">The CUFF alarm goes off at 6 am sharp and you quickly slap your hand to your wrist and set it to snooze. It&#39;s not long before the room lights start to come on forcing you to get up and start the day.
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;= $time.setDate(&quot;wakeup&quot;)&gt;&gt;
@@ -6264,7 +6264,7 @@ Once everything it tidy you grab a bite to eat and go back to your room.&lt;br&g
 &lt;&lt;set $player.rest()&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;= $time.addTime({hour: 2, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="192" name="endOfWeekRecapStart" tags="event" position="225,2475" size="100,100">Before you turn in for the night you report to the study. $owner.name is sitting behind his desk with $butler.name standing patiently nearby.
+&lt;&lt;= $time.addTime({hour: 2, minute:0})&gt;&gt;</tw-passagedata><tw-passagedata pid="190" name="endOfWeekRecapStart" tags="event" position="1225,2350" size="100,100">Before you turn in for the night you report to the study. $owner.name is sitting behind his desk with $butler.name standing patiently nearby.
 
 He goes over what he thinks you did well and what needs improvement.
 
@@ -6272,19 +6272,19 @@ Chores missed: &lt;&lt;= $player.choresLate&gt;&gt;
 
 [[endOfWeekRecapBad]]
 [[endOfWeekRecapNeutral]]
-[[endOfWeekRecapGood]]</tw-passagedata><tw-passagedata pid="193" name="endOfWeekRecapBad" tags="" position="350,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;Overall your performance this week was lackluster so I have decided to withhold your reduction in debt.&quot;)&gt;&gt;
+[[endOfWeekRecapGood]]</tw-passagedata><tw-passagedata pid="191" name="endOfWeekRecapBad" tags="" position="100,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;Overall your performance this week was lackluster so I have decided to withhold your reduction in debt.&quot;)&gt;&gt;
 
 Your shoulders slump as this essentially adds another week to your indenturement.
 
 &lt;&lt;= $owner.speak(&quot;See that this doesn&#39;t happen again or I may be forced to take more direct action.&quot;)&gt;&gt;
 
-[[Go to bed.|sleep]]</tw-passagedata><tw-passagedata pid="194" name="endOfWeekRecapNeutral" tags="" position="475,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;Overall your performance has met my expectations so your debt has been reduced by the agreed amount.&quot;)&gt;&gt;
+[[Go to bed.|sleep]]</tw-passagedata><tw-passagedata pid="192" name="endOfWeekRecapNeutral" tags="" position="225,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;Overall your performance has met my expectations so your debt has been reduced by the agreed amount.&quot;)&gt;&gt;
 
 You breathe a sigh of relief. You are now one week closer to all this being over.
 
 &lt;&lt;= $owner.speak(&quot;See that you maintain this level of effort moving forward.&quot;)&gt;&gt;
 
-[[Go to bed.|sleep]]</tw-passagedata><tw-passagedata pid="195" name="endOfWeekRecapGood" tags="" position="600,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;It seems that everyone has been impressed with your level of effort this week so your debt has been reduced by the agreed amount.&quot;)&gt;&gt;
+[[Go to bed.|sleep]]</tw-passagedata><tw-passagedata pid="193" name="endOfWeekRecapGood" tags="" position="350,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;It seems that everyone has been impressed with your level of effort this week so your debt has been reduced by the agreed amount.&quot;)&gt;&gt;
 
 You breathe a sigh of relief as the extra work has paid off. You are now one week closer to all this being over.
 

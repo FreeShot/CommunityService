@@ -19,7 +19,7 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 
 
-:: hallcleaning [noreturn chore]
+:: hallCleaning [noreturn chore]
 
 <<include "hallDusting">>
 
