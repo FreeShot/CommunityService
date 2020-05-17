@@ -54,7 +54,7 @@ class Chore {
 			this.getLastDay,
 			Timer.getTime(this.duration)
 		);
-		console.log(6 - this.dayLeft);
+		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"]
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
