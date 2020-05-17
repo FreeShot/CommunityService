@@ -46,7 +46,10 @@
 		return $daughter.appreciation == 2
 	},
 	"therapyPathStart" : function() {
-		return ($therapyPathStart == true);
+		return $therapyPathStart == true;
+	},
+	"ManorIntro" : function() {
+		return $flags.manorIntro < 2;
 	}
 }>>
 

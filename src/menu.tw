@@ -1,12 +1,14 @@
 ::StoryCaption [nodebug nobr]
 <table id="menuInfo">
-<<if !$flags.manorIntro>>
+<<if $flags.manorIntro > 0>>
 <tr id="date">Day <<= $time.day + 1>>: $time.weekDayFormat</tr>
 <tr id="time"><p><<= $time.clock>></p></tr>
 <</if>>
 <tr id="stamina">Stamina: <<= $player.getStaminaBar()>></tr>
-<<if $flags.cuff.received>>
+<<if $flags.CUFF > 0 >>
 <tr id="cuff">[[CUFF]]</tr>
+<<else>>
+<tr id="cuff">CUFF</tr>
 <</if>>
 <<for _stat range Object.keys($player.stats)>>
 <tr class='stat'>_stat: level <<= $player.getStat(_stat)>> <<= $player.getStatBar(_stat)>></tr>
@@ -14,11 +16,17 @@
 </table>
 
 ::CUFF [noreturn mainMenu]
+<<if $flags.CUFF === 1>>
+<<= Character.speakAnonymous("Cuff must be initialised by the owner.", "orange")>>
+<<else>>
 [[Chore list|playerToDoList]]
-[[skills]]
-[[inventory]]
-[[description|playerDescription]]
-[[rules]]
+[[Skills|skills]]
+[[Inventory|inventory]]
+[[Description|playerDescription]]
+[[Rules|rules]]
+<</if>>
+
+[[Return|$return]]
 
 ::playerToDoList [noreturn menu]
 <<= $mansion.displayChores(false)>>
@@ -26,7 +34,10 @@
 [[Return|$return]]
 
 ::skills [noreturn menu]
-Skills will be added later
+!!Skills:
+<<for _i range Object.keys($player.stats)>>
+_i: <<= $player.getStatBar(_i)>> (lvl <<= $player.getStat(_i)>>)
+<</for>>
 [[Return|$return]]
 
 ::inventory [noreturn menu]

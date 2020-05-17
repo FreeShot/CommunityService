@@ -132,7 +132,7 @@ a:hover {
 }
 
 img {
-	max-width: 50%;
+	max-width: 40%;
 	max-height: 20em;
 	object-fit: contain;
 	border-radius: 15px;

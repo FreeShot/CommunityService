@@ -34,7 +34,6 @@ function createNPC(gender) {
     return values;
 }
 
-
 class Character {
 	// Base class for npc
     constructor(config) {

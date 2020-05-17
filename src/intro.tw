@@ -75,12 +75,13 @@ The box is still closed.
 
 <<= Character.speakAnonymous("So you're in the habit of taking strange packages from people you don't know? Please follow us son.", "GoldenRod")>>
 
-@@#Intro3Options;
-[[Follow the guards|Intro4]]
-<<link "Make a run for it">><<replace "#Intro3Options">>You start running and try to make a break for it, but the guards are ready for it. They quickly tackle you to the ground and have you restrained in no time.
-[[Get taken away.|Intro4]]<</replace>>
-<</link>>
-@@
+<<chooseOption "Follow the guard">>
+<<goto "Intro4">>
+<<option "Make a run for it">>
+You start running and try to make a break for it, but the guards are ready for it. They quickly tackle you to the ground and have you restrained in no time.
+
+[[Get taken away.|Intro4]]
+<<ChooseOption>>
 
 ::Intro4 [intro tutorial]
 The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
@@ -126,10 +127,9 @@ The last section shows your personal information.
 Name: <<textbox "$player.name" $player.name "Intro6" true>>
 </div>
 
-[[Sign the contract|Intro6]]
+[[Sign the contract|Intro6][$flags.CUFF++]]
 
 ::Intro6 [intro tutorial]
-<<set $flags.cuff.recieved to true>>\
 You sign your rights away and with that you are now an indentured servant. You know enough to know this basically makes you a slave with a few basic human rights but that's it.
 
 The Sentencing Officer takes away the contract a woman comes in with a box. She doesn’t saying anything as she sits next to you and pulls you hand over.

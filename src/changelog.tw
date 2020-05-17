@@ -2,6 +2,12 @@
 ! Community service
 
 <!-- Versioning system: MAJOR.MINOR.FIX -->
+<<include "changelog-V0.1.0">>
+
+<<return>>
+
+::changelog-V0.1.0 [changelog]
+
 !! V0.1.0 - Getting to know each other
 !!! Main content:
 - Intro story

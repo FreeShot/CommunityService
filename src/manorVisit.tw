@@ -33,7 +33,7 @@ You follow the older man and the main door opens into a wide foyer. The room is 
 
 He continues walking through the foyer and into the main lounge
 
-You follow $butler.name to the [[Main Lounge|manorIntro03]]
+You follow $butler.name to the [[Main Lounge|manorIntro03][$flags.CUFF++]]
 
 ::manorIntro03 [tutorial]
 <<= $mansion.display("Lounge")>>
@@ -46,7 +46,6 @@ This is the main sitting room and is central to the rest of the building. It has
 Your [[CUFF]] beeps and a tiny red light flashes on and off.
 
 <<= $butler.speak("Now follow me to the [[Kitchen|manorIntro04]]")>>
-<<set $flags.cuff.init to true>>
 
 ::manorIntro04 [tutorial]
 <<= $mansion.display("Kitchen")>>
@@ -61,8 +60,6 @@ You enter the large open kitchen. It looks just as lavish as the rest of the roo
 The old chef points his knife at you to emphasize his point.
 
 <<= $butler.speak("You can familiarise yourself with the kitchen later. Follow me to the [[Gardens|manorIntro05]] and I will introduce you to the grounds keeper.")>>
-
-<!-- <<set $time.addTime({day:0, hour:0, minute:20})>> -->
 
 ::manorIntro05 [tutorial]
 <<= $mansion.display("Garden")>>
@@ -91,8 +88,6 @@ $butler.name walks back inside, through the kitchen and back to the foyer.
 <<= $butler.speak("As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I'll show you the upstairs rooms.")>>
 
 Follow $butler.name up the stairs to the [[Upper Hall|manorIntro06]]
-
-<!-- <<set $time.addTime({day:0, hour:0, minute:10})>> -->
 
 ::manorIntro06 [tutorial]
 <<= $mansion.display("UpperHall")>>
@@ -144,8 +139,6 @@ You stammer. <<= $player.speak("Yes $wife.title.")>>
 
 $butler.name bows slightly and then continues [[showing you around the manor.|manorIntro07]]
 
-<!-- <<set $time.addTime({day:0, hour:2, minute:10})>> -->
-
 ::manorIntro07 [tutorial]
 <<= $mansion.display("PlayerBdRm")>>
 $butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
@@ -158,7 +151,7 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 $butler.name closes the door behind you, leaving you alone.
 
-[[Inspect the room|PlayerBdRm]]
+[[Meet your master|manorIntro08]]
 
 ::manorIntro08 [tutorial]
 <<= $mansion.display("Office")>>
@@ -188,7 +181,7 @@ The older man replies <<= $butler.speak("Yes sir.")>>
 
 <<= $owner.speak("That will be all.")>>
 
-$butler.name leads you back to your [[small living space|PlayerBdRm]].
-
-<<set $flags.manorIntro to false>>
-<<= $time.setDate({day:0, hour:22, minute:0})>>
+$butler.name leads you back to your <<link "small living space""PlayerBdRm">>
+<<= $flags.manorIntro++>>
+<<= $time.setDate({hour:22, minute:0})>>
+<</link>>.

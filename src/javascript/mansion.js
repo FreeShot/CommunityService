@@ -37,7 +37,7 @@ class Mansion {
 				hasChores = true;
 			}
 		}
-		return str + "</ol>";
+		return hasChores ? (str + "</ol>") : "No chores right now !!";
 	}
 
 	addRoom(room) {
