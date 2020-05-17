@@ -172,7 +172,7 @@ img {
 	height: 100%;
 }
 
-.item-display-button button, .chore-button a {
+.item-display-button button, .chore-button a, .toggleButton button{
 	background: var(--link-color-hover);
 	color: var(--link-color);
 	border: solid 2px var(--link-color);

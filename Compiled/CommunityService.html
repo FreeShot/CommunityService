@@ -274,7 +274,7 @@ img {
 	height: 100%;
 }
 
-.item-display-button button, .chore-button a {
+.item-display-button button, .chore-button a, .toggleButton button{
 	background: var(--link-color-hover);
 	color: var(--link-color);
 	border: solid 2px var(--link-color);
@@ -5139,7 +5139,7 @@ Here is the [[changelog]] for the current version of the game.
 &lt;&lt;if !$firstTime&gt;&gt;
 &lt;&lt;link &quot;Skip the introduction (Start with the default character)&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $flags to {
-	cuff : 3,
+	CUFF : 3,
 	manorIntro : 1
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
@@ -5149,7 +5149,7 @@ Here is the [[changelog]] for the current version of the game.
 Are you sure you want to skip the intro (Not recommended for first timers)?
 &lt;&lt;link &quot;Yes&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $flags to {
-	cuff : 3
+	CUFF : 3
 	manorIntro : 1
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
@@ -5343,7 +5343,7 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 [[Rules|rules]]
 &lt;&lt;/if&gt;&gt;
 
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="150" name="playerToDoList" tags="noreturn menu" position="1225,1850" size="100,100">&lt;&lt;button &quot;Filter done&quot;&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="150" name="playerToDoList" tags="noreturn menu" position="1225,1850" size="100,100">&lt;span class=&quot;toggleButton&quot;&gt;&lt;&lt;button &quot;Filter done&quot;&gt;&gt;&lt;/span&gt;
 &lt;&lt;set $flags.filterDone = !$flags.filterDone&gt;&gt;
 &lt;&lt;replace &#39;#to_do-list&#39;&gt;&gt;
 &lt;&lt;= $mansion.displayChores(false, $flags.filterDone)&gt;&gt;

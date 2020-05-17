@@ -27,7 +27,7 @@ Here is the [[changelog]] for the current version of the game.
 <<if !$firstTime>>
 <<link "Skip the introduction (Start with the default character)" "PlayerBdRm">>
 <<set $flags to {
-	cuff : 3,
+	CUFF : 3,
 	manorIntro : 1
 }>>
 <<= $time.setDate({day: 0, hour: 22, minute: 0})>>
@@ -37,7 +37,7 @@ Here is the [[changelog]] for the current version of the game.
 Are you sure you want to skip the intro (Not recommended for first timers)?
 <<link "Yes" "PlayerBdRm">>
 <<set $flags to {
-	cuff : 3
+	CUFF : 3
 	manorIntro : 1
 }>>
 <<= $time.setDate({day: 0, hour: 22, minute: 0})>>
