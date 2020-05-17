@@ -1,7 +1,7 @@
 window.upgradeSave = function(save) {
 	switch (save.version) {
 		case 1:
-			// Upgrades to vertion 2
+			// Upgrades to version 2
 			return save;
 		default:
 			return null
