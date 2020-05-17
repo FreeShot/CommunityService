@@ -26,6 +26,8 @@ Desk
 <</if>>
 <</nobr>>
 
+<<= $mansion.findRoom("PlayerBdRm").displayChores(true)>>
+
 ::playerRoomShower [playerRoom]
 <<tooltips "comment">>
 At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player's personnal hygene.

@@ -4078,7 +4078,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;foyerDusting&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Hall&quot;, new Chore({
 	name: &quot;Clean Hall&quot;, 
@@ -4089,7 +4089,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({
 	name: &quot;Clean Upper Hall&quot;, 
@@ -4100,7 +4100,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({
 	name: &quot;Clean Garden&quot;, 
@@ -4177,7 +4177,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;loungeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Dining&quot;, new Chore({
 	name: &quot;Clean Dining Room&quot;, 
@@ -4189,7 +4189,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;diningWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBdRm&quot;, new Chore({
 	name: &quot;Clean Master Bedroom&quot;, 
@@ -4201,7 +4201,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
 	name: &quot;Clean Master Bathroom&quot;, 
@@ -4215,7 +4215,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBathRmBath&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({
 	name: &quot;Clean Office&quot;, 
@@ -4227,7 +4227,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;officeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({
 	name: &quot;Clean Gym&quot;, 
@@ -4258,7 +4258,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;playerBdRmClean&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;D&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
 	name: &quot;Clean the bedroom&quot;, 
@@ -4270,7 +4270,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;daughterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: &quot;B&quot;
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({
 	name: &quot;Clean the guest room&quot;, 
@@ -6198,7 +6198,9 @@ Desk
 	&lt;&lt;/link&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
+
+&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(true)&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
 At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player&#39;s personnal hygene.
 &lt;&lt;/tooltips&gt;&gt;
 [img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]

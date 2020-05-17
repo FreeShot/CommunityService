@@ -10,7 +10,7 @@
 		{name: "foyerDusting", weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("Hall", new Chore({
 	name: "Clean Hall", 
@@ -21,7 +21,7 @@
 		{name: "hallSweepMop", weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("UpperHall", new Chore({
 	name: "Clean Upper Hall", 
@@ -32,7 +32,7 @@
 		{name: "hallSweepMop", weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("Garden", new Chore({
 	name: "Clean Garden", 
@@ -109,7 +109,7 @@
 		{name: "loungeWindows", weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("Dining", new Chore({
 	name: "Clean Dining Room", 
@@ -121,7 +121,7 @@
 		{name: "diningWindows", weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("MasterBdRm", new Chore({
 	name: "Clean Master Bedroom", 
@@ -133,7 +133,7 @@
 		{name: "masterBdRmWindows", weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("MasterBathRm", new Chore({
 	name: "Clean Master Bathroom", 
@@ -147,7 +147,7 @@
 		{name: "masterBathRmBath", weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("Office", new Chore({
 	name: "Clean Office", 
@@ -159,7 +159,7 @@
 		{name: "officeWindows", weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("Gym", new Chore({
 	name: "Clean Gym", 
@@ -190,7 +190,7 @@
 		{name: "playerBdRmClean", weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: "W"
+	choreFrequency: "D"
 }))>>
 <<= $mansion.addChore("DaughterBdRm", new Chore({
 	name: "Clean the bedroom", 
@@ -202,7 +202,7 @@
 		{name: "daughterBdRmWindows", weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: "W"
+	choreFrequency: "B"
 }))>>
 <<= $mansion.addChore("GuestRm", new Chore({
 	name: "Clean the guest room", 
