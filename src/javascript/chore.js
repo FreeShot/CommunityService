@@ -54,7 +54,7 @@ class Chore {
 			this.getLastDay,
 			Timer.getTime(this.duration)
 		);
-		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"]
+		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"];
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
@@ -72,7 +72,7 @@ class Chore {
 						return str;
 				}
 			}, ""),
-			canDoChores && !this.done && htmlClass.length === 0 ? String.format(
+			canDoChores && !this.done && htmlClass[0] === "chore" ? String.format(
 				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '{5}'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
 				this.passage,
 				this.room,

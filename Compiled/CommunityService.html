@@ -875,7 +875,7 @@ class Chore {
 			this.getLastDay,
 			Timer.getTime(this.duration)
 		);
-		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"]
+		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"];
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
@@ -893,7 +893,7 @@ class Chore {
 						return str;
 				}
 			}, ""),
-			canDoChores && !this.done && htmlClass.length === 0 ? String.format(
+			canDoChores && !this.done && htmlClass[0] === "chore" ? String.format(
 				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '{5}'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
 				this.passage,
 				this.room,
@@ -2081,7 +2081,7 @@ class Room {
 		str += this.display(0) + "<br>";
 		str += this.getEvent();
 		str += "<br>Chores: ";
-		str += this.displayChores(undefined, State.variables.mansion.currentEvent === "");
+		str += this.displayChores(undefined, State.variables.mansion.currentEvent === "", false);
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
 		return str;
@@ -2112,7 +2112,7 @@ class Room {
 			var title = ((displayTitle || true) ? this.name : "") + "<ol>";
 			var str = "";
 			for (var i = 0; i < this.chores.length; i++) {
-				var chore = this.chores[i].do(canDoChores, filterDone);
+				var chore = this.chores[i].do(canDoChores, filterDone || false);
 				if (chore != "") {
 					str += "<li>" + chore + "</li>";
 				}
@@ -5153,7 +5153,7 @@ Here is the [[changelog]] for the current version of the game.
 Are you sure you want to skip the intro (Not recommended for first timers)?
 &lt;&lt;link &quot;Yes&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $flags to {
-	CUFF : 3
+	CUFF : 3,
 	manorIntro : 1
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
@@ -6214,7 +6214,7 @@ Desk
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(false, true)&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
+&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(&quot;&quot;, true)&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
 At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player&#39;s personnal hygene.
 &lt;&lt;/tooltips&gt;&gt;
 [img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]
