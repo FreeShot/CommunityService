@@ -80,6 +80,10 @@ Setting.addToggle("nsfw", {
 	label    : "Displays NSFW images",
 	default  : true
 });
+Setting.addToggle("tips", {
+	lavel    : "Displays the tips",
+	default  : true
+});
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
 	default  : false

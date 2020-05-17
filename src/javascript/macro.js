@@ -81,7 +81,6 @@ Macro.add("debug-internal", {
 Macro.add("chooseOption", {
 	tags: ["option", "end", "default"],
 	handler: function() {
-		console.log(this.payload);
 		if (this.payload.lenght === 0) {
 			return this.error("bad expression: this macro require at least one argument");
 		}
@@ -94,7 +93,6 @@ Macro.add("chooseOption", {
 		if (this.payload[this.payload.length - 1].name == "end") {
 			end = this.payload.pop().contents;
 		}
-		console.log(this.payload);
 		var str = this.payload.reduce(function(str, p, i) {
 			if (i != 0 && p.name != "option") {
 				return "";
@@ -116,4 +114,4 @@ Macro.add("chooseOption", {
 			def
 		));
 	}
-})
+});

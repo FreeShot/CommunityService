@@ -22,7 +22,7 @@ This game is intended for a mature audience. If you are too young, please <a cla
 
 Here is the [[changelog]] for the current version of the game.
 </div>
-
+<<tooltips "info" "disable-tips">>
 [[Start the game|Intro1]]
 <<if !$firstTime>>
 <<link "Skip the introduction (Start with the default character)" "PlayerBdRm">>

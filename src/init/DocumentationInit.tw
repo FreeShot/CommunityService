@@ -1,0 +1,4 @@
+::DocumentationInit [init]
+<<set $tooltips to {
+	"disable-tips" : "Tooltips can be disabled in the settings tab, accessible through the bar on the left."
+}>>
