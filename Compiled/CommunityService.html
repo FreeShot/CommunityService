@@ -111,6 +111,13 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 	--link-color: #CC3F0C;
 	--link-hover-color: #8A2006;
 	--title-color: #66C3FF;
+	--tooltip-warning: #FFD131;
+	--tooltip-warning-bg: #A76E1C;
+	--tooltip-info: #214365;
+	--tooltip-info-bg: #82C1D8;
+	--tooltip-comment: #D3D3D3;
+	--tooltip-comment-bg: #2D2A36;
+
 }
 
 .theme-dark {
@@ -124,6 +131,12 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 	--link-color: #E17A79;
 	--link-hover-color: #D15159;
 	--title-color: #42BFDD;
+	--tooltip-warning: #FFD131;
+	--tooltip-warning-bg: #A76E1C;
+	--tooltip-info: #82C1D8;
+	--tooltip-info-bg: #214365;
+	--tooltip-comment: #D3D3D3;
+	--tooltip-comment-bg: #2D2A36;
 }
 
 body {
@@ -270,6 +283,10 @@ img {
 	margin: 5px;
 }
 
+.chore-done:before {
+	content: "\2713 "
+}
+
 .estateRoom {
 	font-size: 32px;
 	color: var(--link-color);
@@ -296,6 +313,39 @@ img {
 	border: dashed 5px var(--link-color);
 	border-radius: 50px;
 	padding: 30px;
+}
+
+.tooltip-warning {
+	color: var(--tooltip-warning);
+	background-color: var(--tooltip-warning-bg);
+	border: dashed 2px var(--tooltip-warning);
+	border-radius: 30px;
+	padding: 20px;
+}
+.tooltip-warning:before {
+	content: "Warning: ";
+}
+
+.tooltip-info {
+	color: var(--tooltip-info);
+	background-color: var(--tooltip-info-bg);
+	border: dashed 2px var(--tooltip-info);
+	border-radius: 30px;
+	padding: 20px;
+}
+.tooltip-info:before {
+	content: "Info: ";
+}
+
+.tooltip-comment {
+	color: var(--tooltip-comment);
+	background-color: var(--tooltip-comment-bg);
+	border: dashed 2px var(--tooltip-comment);
+	border-radius: 30px;
+	padding: 20px;
+}
+.tooltip-comment:before {
+	content: "Comment: ";
 }
 
 /* DEBUG CSS */
@@ -2249,7 +2299,7 @@ Setting.addToggle("nsfw", {
 	default  : true
 });
 Setting.addToggle("tips", {
-	lavel    : "Displays the tips",
+	label    : "Displays the tips",
 	default  : true
 });
 Setting.addToggle("debug", {

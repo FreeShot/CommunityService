@@ -81,7 +81,7 @@ Setting.addToggle("nsfw", {
 	default  : true
 });
 Setting.addToggle("tips", {
-	lavel    : "Displays the tips",
+	label    : "Displays the tips",
 	default  : true
 });
 Setting.addToggle("debug", {
