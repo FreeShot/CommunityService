@@ -3,73 +3,29 @@
 <!--  Tags  -->
 
 <<set $tags to {
-	"NeedDaughter" : function() {
-		return $player.currentRoom === $daughter.getLocation
-	},
-	"WeekEven" : function() {
-		return $time.day % 14 >= 7
-	},
-	"FirstWeek" : function() {
-		return $time.day < 7
-	},
-	"Monday" : function() {
-		return $time.weekDayFormat == "Monday"
-	},
-	"Tuesday" : function() {
-		return $time.weekDayFormat == "Tuesday"
-	},
-	"Wednesday" : function() {
-		return $time.weekDayFormat == "Wednesday"
-	},
-	"Thursday" : function() {
-		return $time.weekDayFormat == "Thursday"
-	},
-	"Friday" : function() {
-		return $time.weekDayFormat == "Friday"
-	},
-	"Saturday" : function() {
-		return $time.weekDayFormat == "Saturday"
-	},
-	"Sunday" : function() {
-		return $time.weekDayFormat == "Sunday"
-	},
-	"Morning" : function() {
-		return $time.inInterval("wakeup", {hour: 12, minutes: 0})
-	},
-	"Evening" : function() {
-		return $time.inInterval("sleep", "wakeup")
-	},
-	"DaughterAcceptance1" : function() {
-		return $daughter.appreciation == 1
-	},
-	"DaughterAcceptance2" : function() {
-		return $daughter.appreciation == 2
-	},
-	"therapyPathStart" : function() {
-		return $therapyPathStart == true;
-	}
+	"NeedDaughter" : () => $player.currentRoom === $daughter.getLocation,
+	"WeekEven" : () => $time.day % 14 >= 7,
+	"FirstWeek" : () => $time.day < 7,
+	"Monday" : () => $time.weekDayFormat == "Monday",
+	"Tuesday" : () => $time.weekDayFormat == "Tuesday",
+	"Wednesday" : () => $time.weekDayFormat == "Wednesday",
+	"Thursday" : () => $time.weekDayFormat == "Thursday",
+	"Friday" : () => $time.weekDayFormat == "Friday",
+	"Saturday" : () => $time.weekDayFormat == "Saturday",
+	"Sunday" : () => $time.weekDayFormat == "Sunday",
+	"Morning" : () => $time.inInterval("wakeup", {hour: 12, minutes: 0}),
+	"Evening" : () => $time.inInterval("sleep", "wakeup"),
+	"DaughterAcceptance1" : () => $daughter.appreciation == 1,
+	"DaughterAcceptance2" : () => $daughter.appreciation == 2,
+	"therapyPathStart" : () => $therapyPathStart == true
 }>>
 
 <<set $npcLike to {
-	"Blonde" : function () {
-		return $player.getHairColor === "blonde";
-	},
-	"Brunette" : function() {
-		return $player.getHairColor === "brown";
-	},
-	"Black" : function() {
-		return $player.getHairColor === "black";
-	},
-	"Aubrun" : function() {
-		return $player.getHairColor === "aubrun";
-	},
-	"ShortHairs" : function() {
-		return $player.getHairLength === "short";
-	},
-	"MediumHairs" : function() {
-		return $player.getHairLength === "medium";
-	},
-	"LongHairs" : function() {
-		return $player.getHairLength === "long";
-	}
+	"Blonde" : () => $player.getHairColor === "blonde",
+	"Brunette" : () => $player.getHairColor === "brown",
+	"Black" : () => $player.getHairColor === "black",
+	"Aubrun" : () => $player.getHairColor === "aubrun",
+	"ShortHairs" : () => $player.getHairLength === "short",
+	"MediumHairs" : () => $player.getHairLength === "medium",
+	"LongHairs" : () => $player.getHairLength === "long"
 }>>

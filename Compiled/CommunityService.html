@@ -894,7 +894,7 @@ class Chore {
 				}
 			}, ""),
 			canDoChores && !this.done && htmlClass[0] === "chore" ? String.format(
-				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '{5}'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
+				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<set $aPsgText to `{5}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
 				this.passage,
 				this.room,
 				this.staminaCost,
@@ -4906,75 +4906,31 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="tagsInit" tags="init" position="1100,1600" size="100,100">&lt;!--  Tags  --&gt;
 
 &lt;&lt;set $tags to {
-	&quot;NeedDaughter&quot; : function() {
-		return $player.currentRoom === $daughter.getLocation
-	},
-	&quot;WeekEven&quot; : function() {
-		return $time.day % 14 &gt;= 7
-	},
-	&quot;FirstWeek&quot; : function() {
-		return $time.day &lt; 7
-	},
-	&quot;Monday&quot; : function() {
-		return $time.weekDayFormat == &quot;Monday&quot;
-	},
-	&quot;Tuesday&quot; : function() {
-		return $time.weekDayFormat == &quot;Tuesday&quot;
-	},
-	&quot;Wednesday&quot; : function() {
-		return $time.weekDayFormat == &quot;Wednesday&quot;
-	},
-	&quot;Thursday&quot; : function() {
-		return $time.weekDayFormat == &quot;Thursday&quot;
-	},
-	&quot;Friday&quot; : function() {
-		return $time.weekDayFormat == &quot;Friday&quot;
-	},
-	&quot;Saturday&quot; : function() {
-		return $time.weekDayFormat == &quot;Saturday&quot;
-	},
-	&quot;Sunday&quot; : function() {
-		return $time.weekDayFormat == &quot;Sunday&quot;
-	},
-	&quot;Morning&quot; : function() {
-		return $time.inInterval(&quot;wakeup&quot;, {hour: 12, minutes: 0})
-	},
-	&quot;Evening&quot; : function() {
-		return $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)
-	},
-	&quot;DaughterAcceptance1&quot; : function() {
-		return $daughter.appreciation == 1
-	},
-	&quot;DaughterAcceptance2&quot; : function() {
-		return $daughter.appreciation == 2
-	},
-	&quot;therapyPathStart&quot; : function() {
-		return $therapyPathStart == true;
-	}
+	&quot;NeedDaughter&quot; : () =&gt; $player.currentRoom === $daughter.getLocation,
+	&quot;WeekEven&quot; : () =&gt; $time.day % 14 &gt;= 7,
+	&quot;FirstWeek&quot; : () =&gt; $time.day &lt; 7,
+	&quot;Monday&quot; : () =&gt; $time.weekDayFormat == &quot;Monday&quot;,
+	&quot;Tuesday&quot; : () =&gt; $time.weekDayFormat == &quot;Tuesday&quot;,
+	&quot;Wednesday&quot; : () =&gt; $time.weekDayFormat == &quot;Wednesday&quot;,
+	&quot;Thursday&quot; : () =&gt; $time.weekDayFormat == &quot;Thursday&quot;,
+	&quot;Friday&quot; : () =&gt; $time.weekDayFormat == &quot;Friday&quot;,
+	&quot;Saturday&quot; : () =&gt; $time.weekDayFormat == &quot;Saturday&quot;,
+	&quot;Sunday&quot; : () =&gt; $time.weekDayFormat == &quot;Sunday&quot;,
+	&quot;Morning&quot; : () =&gt; $time.inInterval(&quot;wakeup&quot;, {hour: 12, minutes: 0}),
+	&quot;Evening&quot; : () =&gt; $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;),
+	&quot;DaughterAcceptance1&quot; : () =&gt; $daughter.appreciation == 1,
+	&quot;DaughterAcceptance2&quot; : () =&gt; $daughter.appreciation == 2,
+	&quot;therapyPathStart&quot; : () =&gt; $therapyPathStart == true
 }&gt;&gt;
 
 &lt;&lt;set $npcLike to {
-	&quot;Blonde&quot; : function () {
-		return $player.getHairColor === &quot;blonde&quot;;
-	},
-	&quot;Brunette&quot; : function() {
-		return $player.getHairColor === &quot;brown&quot;;
-	},
-	&quot;Black&quot; : function() {
-		return $player.getHairColor === &quot;black&quot;;
-	},
-	&quot;Aubrun&quot; : function() {
-		return $player.getHairColor === &quot;aubrun&quot;;
-	},
-	&quot;ShortHairs&quot; : function() {
-		return $player.getHairLength === &quot;short&quot;;
-	},
-	&quot;MediumHairs&quot; : function() {
-		return $player.getHairLength === &quot;medium&quot;;
-	},
-	&quot;LongHairs&quot; : function() {
-		return $player.getHairLength === &quot;long&quot;;
-	}
+	&quot;Blonde&quot; : () =&gt; $player.getHairColor === &quot;blonde&quot;,
+	&quot;Brunette&quot; : () =&gt; $player.getHairColor === &quot;brown&quot;,
+	&quot;Black&quot; : () =&gt; $player.getHairColor === &quot;black&quot;,
+	&quot;Aubrun&quot; : () =&gt; $player.getHairColor === &quot;aubrun&quot;,
+	&quot;ShortHairs&quot; : () =&gt; $player.getHairLength === &quot;short&quot;,
+	&quot;MediumHairs&quot; : () =&gt; $player.getHairLength === &quot;medium&quot;,
+	&quot;LongHairs&quot; : () =&gt; $player.getHairLength === &quot;long&quot;
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="StoryInit" tags="nodebug" position="1225,1600" size="100,100">&lt;&lt;set $version to &quot;V0.1.0&quot;&gt;&gt;
 &lt;&lt;set $debug to true&gt;&gt;
 &lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
