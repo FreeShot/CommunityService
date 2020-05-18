@@ -1,6 +1,6 @@
 Macro.add("tooltips", {
 	tags: [],
-	handler: function() {
+	handler: () => {
 		if (!settings.tips) return $(this.output).wiki("");
 		var tipType = this.args[0]; // One of: "warning", "info", "comment"
 		var content;
