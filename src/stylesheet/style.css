@@ -95,7 +95,7 @@ body {
 	border-top: solid 2px var(--ui-text);
 }
 
-#time p {
+#time td {
 	font-size: 30px;
 	background-color: #580C0E;
 	color: #C85A63;

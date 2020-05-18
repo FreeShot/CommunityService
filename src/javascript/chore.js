@@ -36,9 +36,9 @@ class Chore {
 			htmlClass = 'chore-done';
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
 			htmlClass = 'chore-exhaused';
-		if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1)
+		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1)
 			htmlClass = 'chore-not-time';
-		if (!canDoChores)
+		else if (!canDoChores)
 			htmlClass = 'chore-unavailable';
 
 		return String.format(
@@ -46,7 +46,7 @@ class Chore {
 			htmlClass,
 			this.name,
 			this.done ? "" : `(To do beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)} before ${this.getLastDay}. Duration: ${Timer.getTime(this.duration)})`,
-			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": ""}[htmlClass],
+			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
 			canDoChores && !this.done && htmlClass === "chore" ? String.format(
 				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {6})>><<set $aPsgText to `{5}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
 				this.passage,

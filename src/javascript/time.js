@@ -56,7 +56,7 @@ class Timer {
 		time.minute += (duration.minute || 0);
 		time.hour += (duration.hour || 0) + Math.floor((duration.minute || 0) / 60);
 		time.minute %= 60;
-		return this.compareTime(endTime, time) != -1;
+		return this.compareTime(endTime, time) === 1;
 	}
 
 	inInterval(timeStart, timeEnd) {
