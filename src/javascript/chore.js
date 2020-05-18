@@ -57,7 +57,7 @@ class Chore {
 		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"];
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
-			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
+			htmlClass.reduce((str, el) => `${str} ${el}`, ""),
 			this.name,
 			this.done ? "" : info,
 			htmlClass.reduce(function(str, el){

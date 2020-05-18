@@ -71,7 +71,7 @@
 	passage: "daughterPath03GardenChatA", 
 	inline:true, 
 	repeats:false,
-	tags: ["NeedDaughter", "daughterAcceptance1"]
+	tags: ["NeedDaughter", "DaughterAppreciation1"]
 }))>>
 
 <<= $mansion.addEvent("Foyer", new Event({
@@ -79,6 +79,6 @@
 	passage: "daughterPath04IntroDate01", 
 	inline:true, 
 	repeats:false, 
-	tags: ["Thursday", "NeedDaughter", "daughterAcceptance2"]
+	tags: ["Thursday", "NeedDaughter", "DaughterAppreciation2"]
 }))>>
 

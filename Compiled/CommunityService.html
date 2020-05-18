@@ -878,7 +878,7 @@ class Chore {
 		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"];
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
-			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
+			htmlClass.reduce((str, el) => `${str} ${el}`, ""),
 			this.name,
 			this.done ? "" : info,
 			htmlClass.reduce(function(str, el){
@@ -4355,7 +4355,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	passage: &quot;daughterPath03GardenChatA&quot;, 
 	inline:true, 
 	repeats:false,
-	tags: [&quot;NeedDaughter&quot;, &quot;daughterAcceptance1&quot;]
+	tags: [&quot;NeedDaughter&quot;, &quot;DaughterAppreciation1&quot;]
 }))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;Foyer&quot;, new Event({
@@ -4363,7 +4363,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	passage: &quot;daughterPath04IntroDate01&quot;, 
 	inline:true, 
 	repeats:false, 
-	tags: [&quot;Thursday&quot;, &quot;NeedDaughter&quot;, &quot;daughterAcceptance2&quot;]
+	tags: [&quot;Thursday&quot;, &quot;NeedDaughter&quot;, &quot;DaughterAppreciation2&quot;]
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="clothesInit" tags="init" position="850,1600" size="100,100">&lt;&lt;set $shop to new Shop({name: &quot;Main shop&quot;, id:&quot;shop&quot;})&gt;&gt;
 
 &lt;&lt;= $shop.addCategory(&quot;Wig&quot;)&gt;&gt;
@@ -4913,8 +4913,8 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	&quot;Sunday&quot; : () =&gt; $time.weekDayFormat == &quot;Sunday&quot;,
 	&quot;Morning&quot; : () =&gt; $time.inInterval(&quot;wakeup&quot;, {hour: 12, minutes: 0}),
 	&quot;Evening&quot; : () =&gt; $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;),
-	&quot;DaughterAcceptance1&quot; : () =&gt; $daughter.appreciation == 1,
-	&quot;DaughterAcceptance2&quot; : () =&gt; $daughter.appreciation == 2,
+	&quot;DaughterAppreciation1&quot; : () =&gt; $daughter.appreciation === 1,
+	&quot;DaughterAppreciation2&quot; : () =&gt; $daughter.appreciation === 2,
 	&quot;therapyPathStart&quot; : () =&gt; $therapyPathStart == true
 }&gt;&gt;
 

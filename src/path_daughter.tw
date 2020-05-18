@@ -93,7 +93,6 @@ You look at her wide eyed but before you can reply $daughter.name winks <</if>>a
 <<set $daughter.addAppreciation(1)>>
 
 :: daughterPath03GardenChatA [event]
-
 $daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
 
 [img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]

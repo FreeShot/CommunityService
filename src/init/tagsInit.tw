@@ -15,8 +15,8 @@
 	"Sunday" : () => $time.weekDayFormat == "Sunday",
 	"Morning" : () => $time.inInterval("wakeup", {hour: 12, minutes: 0}),
 	"Evening" : () => $time.inInterval("sleep", "wakeup"),
-	"DaughterAcceptance1" : () => $daughter.appreciation == 1,
-	"DaughterAcceptance2" : () => $daughter.appreciation == 2,
+	"DaughterAppreciation1" : () => $daughter.appreciation === 1,
+	"DaughterAppreciation2" : () => $daughter.appreciation === 2,
 	"therapyPathStart" : () => $therapyPathStart == true
 }>>
 
