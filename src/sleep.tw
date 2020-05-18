@@ -43,9 +43,8 @@ $owner.name is first to the table as usual. $butler.name helps you bring out the
 Once everything it tidy you grab a bite to eat and go back to your room.<br>
 <br>
 [[Return to your room.|PlayerBdRm]]
+<<= $time.addTime({hour: 2, minute:0})>>
 <<= $mansion.resetChores()>>
 <</if>>
 <<set $player.rest()>>
 <</nobr>>
-
-<<= $time.addTime({hour: 2, minute:0})>>

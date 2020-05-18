@@ -65,7 +65,7 @@
 }))>>
 <<= $mansion.addChore("Kitchen", new Chore({
 	name: "Clean Sink and Benches", 
-	duration: {hour: 1}, 
+	duration: {minute:30}, 
 	passages:[
 		{name: "kitchenClean", weight: 1}
 	], 
@@ -137,7 +137,7 @@
 }))>>
 <<= $mansion.addChore("MasterBathRm", new Chore({
 	name: "Clean Master Bathroom", 
-	duration: {hour: 2}, 
+	duration: {hour: 1}, 
 	passages:[
 		{name: "masterBathRmCleaning", weight:1}, 
 		{name: "masterBathRmSweepMop", weight: 2}, 
