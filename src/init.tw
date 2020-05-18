@@ -1,6 +1,6 @@
 ::StoryInit [nodebug]
 <<set $version to "V0.1.0">>
-<<set $debug to true>>
+<<set $debug to false>>
 <<set $firstTime to recall('firstTime', true)>><<= memorize('firstTime', false)>>
 
 <<set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})>>

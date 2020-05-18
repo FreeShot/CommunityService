@@ -2240,7 +2240,7 @@ Setting.addHeader("Display");
 Setting.addList("inventoryRows", {
 	label    : "Number of rows in the inventory",
 	list: [1, 2, 3, 4, 5],
-	default  : 5,
+	default  : 4,
 	onInit: function() {
 		document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows);
 	},
@@ -2288,10 +2288,13 @@ Setting.addToggle("tips", {
 	label    : "Displays the tips",
 	default  : true
 });
+/*
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
-	default  : false
+	default  : false,
+	onChange : function() {State.variables.debug = settings.debug}
 });
+*/
 /* twine-user-script #15: "shop.js" */
 class Shop {
 	constructor (config) {
@@ -4900,7 +4903,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	&quot;MediumHairs&quot; : () =&gt; $player.getHairLength === &quot;medium&quot;,
 	&quot;LongHairs&quot; : () =&gt; $player.getHairLength === &quot;long&quot;
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="StoryInit" tags="nodebug" position="1225,1600" size="100,100">&lt;&lt;set $version to &quot;V0.1.0&quot;&gt;&gt;
-&lt;&lt;set $debug to true&gt;&gt;
+&lt;&lt;set $debug to false&gt;&gt;
 &lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
 
 &lt;&lt;set $time to new Timer({day: 0, time: {hour: 19, minute: 0}})&gt;&gt;
@@ -5320,7 +5323,7 @@ _i: &lt;&lt;= $player.getStatBar(_i)&gt;&gt; (lvl &lt;&lt;= $player.getStat(_i)&
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="154" name="PassageFooter" tags="nodebug" position="475,1975" size="100,100">&lt;&lt;if settings.debug&gt;&gt;&lt;&lt;include &#39;debug-passage&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="155" name="daughterPath01Homedrunk" tags="noreturn chore" position="600,1975" size="100,100">Trigger: First Thursday night (last thing to happen before the player goes to bed)
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="154" name="PassageFooter" tags="nodebug" position="475,1975" size="100,100">&lt;&lt;if $debug&gt;&gt;&lt;&lt;include &#39;debug-passage&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="155" name="daughterPath01Homedrunk" tags="noreturn chore" position="600,1975" size="100,100">Trigger: First Thursday night (last thing to happen before the player goes to bed)
 
 As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
  

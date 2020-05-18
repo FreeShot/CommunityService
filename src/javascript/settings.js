@@ -36,7 +36,7 @@ Setting.addHeader("Display");
 Setting.addList("inventoryRows", {
 	label    : "Number of rows in the inventory",
 	list: [1, 2, 3, 4, 5],
-	default  : 5,
+	default  : 4,
 	onInit: function() {
 		document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows);
 	},
@@ -84,7 +84,10 @@ Setting.addToggle("tips", {
 	label    : "Displays the tips",
 	default  : true
 });
+/*
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
-	default  : false
+	default  : false,
+	onChange : function() {State.variables.debug = settings.debug}
 });
+*/

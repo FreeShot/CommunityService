@@ -180,7 +180,9 @@ class Player extends Character {
                 name: "Player Inventory"
             }),
             stats: {
-                serving: {level:1, xp: 0}
+                serving: {level:1, xp: 0},
+                cleaning: {level:1, xp: 0},
+                fitness: {level:1, xp: 0}
             }
         }, config));
     }
