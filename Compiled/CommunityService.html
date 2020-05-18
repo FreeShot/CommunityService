@@ -2224,14 +2224,7 @@ window.rememberScore = function(score, event) {
 }
 
 window.process = function (str) {
-	var str = str.split(".").reduce(function(obj, arg) {
-		console.log(str)
-		if (arg.endsWith('()')) {
-			return obj[arg.substr(0, arg.length - 2)]()
-		} 
-		return obj[arg]
-	}, State.variables);
-	return str;
+	return Scripting.evalTwineScript(str);
 }
 /* twine-user-script #14: "settings.js" */
 Setting.addHeader("NPC", "Anything that influence the generation of NPCs.");
@@ -6159,7 +6152,7 @@ You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-back&quot;, &q
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
-Its furnishings are plain with no decorations.
+Its furnishings are plain with little to no decorations.
 
 Desk
 	There is nothing here at the moment
