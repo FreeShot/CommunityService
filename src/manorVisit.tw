@@ -149,7 +149,19 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 <<= $butler.speak("You can stay there for now. I will come and collect you when $owner.name is ready to meet you.")>>
 
-$butler.name closes the door behind you, leaving you alone.
+$butler.name closes the door behind you, leaving you alone. With nothing better to do you explorer the small space.
+
+The drawers are mostly empty and the books are blank and just for show. There is a computer under the small desk but it doesn't seem to be working.
+
+You investigate the and inside you find some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing.
+
+[[Warbrobe|playerRoomWardrobe]]
+
+There is a small attached bathroom. It doesn't have a lot of space either and the window is just for show but at least it looks like it's for your private use.
+
+[img[setup.ImagePath + "estate/PlayerBdRm/Bathroom.jpg"]]
+
+Overall it looks like cheap but well maintained student accomodation.
 
 [[Meet your master|manorIntro08]]
 
@@ -159,7 +171,7 @@ At exactly 7pm, the door to your room opens and $butler.name walks in.
 
 <<= $butler.speak("$owner.name is waiting for you in his office.")>>
 
-He turns around and starts walking expecting you to follow.
+He turns around and starts walking clearly expecting you to follow.
 
 Not wanting to push your luck, you quickly catch up and fall in behind $butler.name. He takes you back to the study and you see $owner.name sitting behing his desk, working at his computer.
 
