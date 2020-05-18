@@ -1410,33 +1410,6 @@ $(document).on("keyup", function (e) {
 				}
 			}
 		}
-		// Trigger random click on "." or "r" key
-		if ((e.key == ".") || (e.key == "r")) {
-			e.preventDefault();
-			var Links = $("#passages a"), n, UsableLinks = [];
-			if (Links.length > 0) {
-				for (n = 0; n < Links.length; n++) {
-					if (!$(Links[n]).data("nokey")) {
-						UsableLinks.push(n);
-					}
-				}
-				if (UsableLinks.length > 0) {
-					n = State.random(UsableLinks.length - 1);
-					if (Links[UsableLinks[n]] !== undefined) {
-						Links[UsableLinks[n]].click();
-					}
-					return false;
-				}
-			}
-		}
-		// Trigger back click on left arrow key or backquote
-		if ((e.key == "ArrowLeft") || (e.key == "`")) {
-			if ((!tags().includes("IgnoreArrowKeys")) || (e.key != "ArrowLeft")) {
-				e.preventDefault();
-				Engine.backward();
-				return false;
-			}
-		}
 	}
 });
 /* Keyboard links - End */
