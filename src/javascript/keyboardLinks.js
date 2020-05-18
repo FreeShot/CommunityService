@@ -94,7 +94,9 @@ $(document).on("keyup", function (e) {
 				}
 				if (UsableLinks.length > 0) {
 					n = State.random(UsableLinks.length - 1);
-					Links[UsableLinks[n]].click();
+					if (Links[UsableLinks[n]] !== undefined) {
+						Links[UsableLinks[n]].click();
+					}
 					return false;
 				}
 			}

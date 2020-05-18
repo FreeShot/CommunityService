@@ -1422,7 +1422,9 @@ $(document).on("keyup", function (e) {
 				}
 				if (UsableLinks.length > 0) {
 					n = State.random(UsableLinks.length - 1);
-					Links[UsableLinks[n]].click();
+					if (Links[UsableLinks[n]] !== undefined) {
+						Links[UsableLinks[n]].click();
+					}
 					return false;
 				}
 			}
@@ -2636,7 +2638,7 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 You take out your vacuum and go over the entire room. You make sure to get into every nook and canny and are careful not to disturb anything on the desk.</tw-passagedata><tw-passagedata pid="55" name="guestRmWindows" tags="noreturn chore" position="600,725" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_windows/windows_1.jpg&quot;]]
 
-Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="56" name="debug-passage" tags="debug" position="725,725" size="100,100">&lt;hr&gt;
+Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="56" name="debug-passage" tags="debug DisableKeyLinks" position="725,725" size="100,100">&lt;hr&gt;
 DEBUG
 
 Search variable: &lt;&lt;textbox &#39;_value&#39; &#39;&#39;&gt;&gt;&lt;&lt;button &quot;get&quot;&gt;&gt;
