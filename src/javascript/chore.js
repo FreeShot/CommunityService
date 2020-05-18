@@ -19,7 +19,7 @@ class Chore {
 		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
 		this.xp = 1;
 
-		Object.keys(config).forEach(function (pn) {
+		Object.keys(config).forEach((pn) => {
             this[pn] = clone(config[pn]);
         }, this);
 
