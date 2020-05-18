@@ -185,9 +185,12 @@ body {
 }
 
 #menuInfo {
+	text-align: center;
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 20px;
+	margin-left:-25px; 
+    margin-right:-25px;
 }
 
 #menuInfo tr + tr {
@@ -535,7 +538,9 @@ class Player extends Character {
                 name: "Player Inventory"
             }),
             stats: {
-                serving: {level:1, xp: 0}
+                serving: {level:1, xp: 0},
+                cleaning: {level:1, xp: 0},
+                fitness: {level:1, xp: 0}
             }
         }, config));
     }
@@ -5264,18 +5269,16 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;&lt;= $time.setDate({hour:22, minute:0})&gt;&gt;
 &lt;&lt;/link&gt;&gt;.</tw-passagedata><tw-passagedata pid="148" name="StoryCaption" tags="nodebug nobr" position="975,1850" size="100,100">&lt;table id=&quot;menuInfo&quot;&gt;
 &lt;&lt;if $flags.manorIntro &gt; 0&gt;&gt;
-&lt;tr id=&quot;date&quot;&gt;Day &lt;&lt;= $time.day + 1&gt;&gt;: $time.weekDayFormat&lt;/tr&gt;
-&lt;tr id=&quot;time&quot;&gt;&lt;p&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/p&gt;&lt;/tr&gt;
+&lt;tr id=&quot;date&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;Day &lt;&lt;= $time.day + 1&gt;&gt;: $time.weekDayFormat&lt;/td&gt;&lt;/tr&gt;
+&lt;tr id=&quot;time&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;tr id=&quot;stamina&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/tr&gt;
+&lt;tr id=&quot;stamina&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;if $flags.CUFF &gt; 0 &gt;&gt;
-&lt;tr id=&quot;cuff&quot;&gt;[[CUFF]]&lt;/tr&gt;
+&lt;tr id=&quot;cuff&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;[[CUFF]]&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;else&gt;&gt;
-&lt;tr id=&quot;cuff&quot;&gt;CUFF&lt;/tr&gt;
+&lt;tr id=&quot;cuff&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;CUFF&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;for _stat range Object.keys($player.stats)&gt;&gt;
-&lt;tr class=&#39;stat&#39;&gt;_stat: level &lt;&lt;= $player.getStat(_stat)&gt;&gt; &lt;&lt;= $player.getStatBar(_stat)&gt;&gt;&lt;/tr&gt;
-&lt;&lt;/for&gt;&gt;
+&lt;&lt;for _stat range Object.keys($player.stats)&gt;&gt;&lt;tr class=&#39;stat&#39;&gt;&lt;td&gt;_stat: level &lt;&lt;= $player.getStat(_stat)&gt;&gt;&lt;/td&gt;&lt;td&gt;&lt;&lt;= $player.getStatBar(_stat)&gt;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;&lt;/for&gt;&gt;
 &lt;/table&gt;</tw-passagedata><tw-passagedata pid="149" name="CUFF" tags="noreturn mainMenu menu" position="1100,1850" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;

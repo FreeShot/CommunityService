@@ -1,18 +1,16 @@
 ::StoryCaption [nodebug nobr]
 <table id="menuInfo">
 <<if $flags.manorIntro > 0>>
-<tr id="date">Day <<= $time.day + 1>>: $time.weekDayFormat</tr>
-<tr id="time"><p><<= $time.clock>></p></tr>
+<tr id="date"><td colspan="2">Day <<= $time.day + 1>>: $time.weekDayFormat</td></tr>
+<tr id="time"><td colspan="2"><<= $time.clock>></td></tr>
 <</if>>
-<tr id="stamina">Stamina: <<= $player.getStaminaBar()>></tr>
+<tr id="stamina"><td colspan="2">Stamina: <<= $player.getStaminaBar()>></td></tr>
 <<if $flags.CUFF > 0 >>
-<tr id="cuff">[[CUFF]]</tr>
+<tr id="cuff"><td colspan="2">[[CUFF]]</td></tr>
 <<else>>
-<tr id="cuff">CUFF</tr>
+<tr id="cuff"><td colspan="2">CUFF</td></tr>
 <</if>>
-<<for _stat range Object.keys($player.stats)>>
-<tr class='stat'>_stat: level <<= $player.getStat(_stat)>> <<= $player.getStatBar(_stat)>></tr>
-<</for>>
+<<for _stat range Object.keys($player.stats)>><tr class='stat'><td>_stat: level <<= $player.getStat(_stat)>></td><td><<= $player.getStatBar(_stat)>></td></tr><</for>>
 </table>
 
 ::CUFF [noreturn mainMenu menu]
