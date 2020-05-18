@@ -16,7 +16,7 @@ class Mansion {
 	}
 
 	findRoom(roomID) {
-		return this.rooms.find(element => element.id === roomID);
+		return this.rooms.find((element) => element.id === roomID);
 	}
 
 	display(roomID, imgIndex) {
@@ -33,11 +33,11 @@ class Mansion {
 		for (var i = 0; i < this.rooms.length; i++) {
 			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone);
 			if (roomChores != undefined && roomChores !== "") {
-				str += "<li>" + roomChores  + "</li>";
+				str += `<li>${roomChores}</li>`;
 				hasChores = true;
 			}
 		}
-		return hasChores ? (str + "</ol>") : "No chores right now !!";
+		return hasChores ? (`${str}</ol>`) : "No chores right now !!";
 	}
 
 	addRoom(room) {
@@ -58,25 +58,18 @@ class Mansion {
 	}
 
 	removeEvent(roomID, eventName) {
-		if (roomID === "specialEvent") {
-			this.events = this.events.filter(function(em) {return em.name !== eventName});
-		} else {
-			this.findRoom(roomID).events.filter(function(em) {return em.name !== eventName});
-		}
+		if (roomID === "specialEvent")
+			this.events = this.events.filter((em) => em.name !== eventName);
+		else
+			this.findRoom(roomID).events.filter((em) => em.name !== eventName);
 	}
 
 	checkSpecialEvents() {
-		return this.events.reduce(
-			function (str, ev) {
-				if (ev.active()) {return str += ev.playEvent()}
-				return str;
-			}, "");
+		return this.events.reduce((str, ev) => ev.active() ? str += ev.playEvent() : str, "");
 	}
 
 	resetChores() {
-		for (var i = 0; i < this.rooms.length; i++) {
-			this.rooms[i].resetChores();
-		}
+		this.rooms.forEach((el) => el.resetChores())
 	}
 
 	clone() {

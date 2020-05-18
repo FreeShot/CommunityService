@@ -8,9 +8,7 @@ class Event {
 		this.tags = [] // add Tags here
 		this.priority = 0;
 
-		Object.keys(config).forEach(function (pn) {
-            this[pn] = clone(config[pn]);
-        }, this);
+		Object.keys(config).forEach((pn) => this[pn] = clone(config[pn]), this);
 	}
 
 	playEvent(debug) {
@@ -18,26 +16,20 @@ class Event {
 			if (!this.repeats) {
 				State.variables.mansion.removeEvent(this.room, this.name);
 			}
-			return "<<include '" + this.passage + "'>>";
+			return `<<include "${this.passage}">>`;
 		} else {
-			if (!this.repeats) {
-				return "<<link '" + this.name + "' '" + this.passage + "'>>$mansion.removeEvent('" + this.room + "','" + this.name + "')<</link>>";
-			} else {
-				return "<<link '" + this.name + "' '" + this.passage + "'>><</link>>";
-			}
+			if (!this.repeats)
+				return `<<link "${this.name}" "${this.passage}">>$mansion.removeEvent("${this.room}","${this.name}")<</link>>`;
+			return `<<link "${this.name}" "${this.passage}">><</link>>`;
 		}
 	}
 
 	active() {
-		for (var i = 0; i < this.tags.length; i++) {
-			var tagTrue = this.tags[i][0] === "!";
-			var tagName = tagTrue ? this.tags[i].substr(1) : this.tags[i];
-			if ((State.variables.tags[tagName] || 
-					function(){return State.variables.flags[tagName]})() === tagTrue) {
-				return false;
-			}
-		}
-		return true;
+		return !this.tags.find((tag) => {
+			var tagTrue = tag[0] === "!";
+			var tagName = tagTrue ? tag.substr(1) : tag;
+			return (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue
+		})
 	}
 
 	clone() {

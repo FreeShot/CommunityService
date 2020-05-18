@@ -16,21 +16,18 @@ class Timer {
 	}
 
 	setDate(time) {
-		if (typeof time === "string") {
-			time = this[time];
-		}
-		if (this.compareTime(time) === 1) {
+		if (typeof time === "string")
+			time = this[time]
+		if (this.compareTime(time) === 1)
 				this.addTime({day: 1});
-		}
 		this.day = time.day || this.day;
 		this.time.hour = time.hour;
 		this.time.minute = time.minute;
 	}
 
 	addTime(time) {
-		if (typeof time === "string") {
+		if (typeof time === "string")
 			time = this[time];
-		}
 		this.time.minute += (time.minute || 0);
 		this.time.hour += (time.hour || 0) + Math.floor(this.time.minute / 60);
 		this.time.minute %= 60;
@@ -39,26 +36,22 @@ class Timer {
 	}
 
 	compareTime(time, time2) {
-		if (typeof time === "string") {
+		if (typeof time === "string")
 			time = this[time];
-		}
 		time2 = time2 || this.time;
 		var minuteTime = time.hour * 60 + time.minute;
 		var minuteTime2 = time2.hour * 60 + time2.minute;
 		var timeDif = minuteTime - minuteTime2;
-		if (timeDif == 0) {
+		if (timeDif == 0)
 			return 0;
-		} else if (timeDif < 0) {
+		else if (timeDif < 0)
 			return 1;
-		} else {
-			return -1;
-		}
+		return -1;
 	}
 
 	endsAfter(endTime, duration) {
-		if (typeof endTime === "string") {
+		if (typeof endTime === "string")
 			endTime = this[endTime];
-		}
 		let time = Object.assign({}, this.time);
 		time.minute += (duration.minute || 0);
 		time.hour += (duration.hour || 0) + Math.floor((duration.minute || 0) / 60);
@@ -67,23 +60,20 @@ class Timer {
 	}
 
 	inInterval(timeStart, timeEnd) {
-		if (typeof timeStart === "string") {
+		if (typeof timeStart === "string")
 			timeStart = this[timeStart];
-		}
-		if (typeof timeEnd === "string") {
+
+		if (typeof timeEnd === "string")
 			timeEnd = this[timeEnd];
-		}
+
 		timeEnd = timeEnd || {hour : 24, minute : 0};
-		if (this.compareTime(timeEnd, timeStart) < 0) {
+		if (this.compareTime(timeEnd, timeStart) < 0)
 			return this.compareTime(timeStart) > -1 && this.compareTime(timeEnd) === -1;
-		} else {
-			return this.compareTime(timeStart) > -1 || this.compareTime(timeEnd) === -1;
-		}
+		return this.compareTime(timeStart) > -1 || this.compareTime(timeEnd) === -1;
 	}
 
 	get weekDay() {
-		var day = this.day;
-		return day % 7;
+		return this.day % 7;
 	}
 
 	get weekDayFormat() {
@@ -95,11 +85,7 @@ class Timer {
 	}
 
 	static getTime(time) {
-		return String.format(
-			"{0}:{1}",
-			time.hour !== undefined ? ("0" + time.hour).slice(-2) : "00",
-			time.minute !== undefined ? ("0" + time.minute).slice(-2) : "00"
-		);
+		return `${time.hour !== undefined ? ("0" + time.hour).slice(-2) : "00"}:${time.minute !== undefined ? ("0" + time.minute).slice(-2) : "00"}`
 	}
 
 	clone() {

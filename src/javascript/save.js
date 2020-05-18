@@ -19,24 +19,16 @@ window.downgradeSave = function(save) {
 
 Config.saves.version = 1;
 Config.saves.slots = 8;
-Config.saves.onSave = function (save) {
+Config.saves.onSave = (save) => {
 	save.title = State.passage;
 	return save;
 };
-Config.saves.onLoad = function (save) {
-	while (save.version < Config.saves.version) {
-		upgradeSave(save);
-	}
-	while (save.version > Config.save.version) {
-		downgradeSave(save);
-	}
+Config.saves.onLoad = (save) => {
+	while (save.version < Config.saves.version)
+		upgradeSave(save)
+	while (save.version > Config.save.version)
+		downgradeSave(save)
 	return save;
 };
-Config.saves.isAllowed = function () {
-	// Dissalow when passage has tag noSave
-	return !Story.get(State.passage).tags.includes("noSave");
-};
-Config.saves.autosave = function () {
-	// Make autosave when passage has tag Save
-	return Story.get(State.passage).tags.includes("Save");
-}
+Config.saves.isAllowed = () => !Story.get(State.passage).tags.includes("noSave");
+Config.saves.autosave = () => Story.get(State.passage).tags.includes("Save");

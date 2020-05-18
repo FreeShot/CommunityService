@@ -15,11 +15,11 @@ class Item {
 		var str = "<div class='item-display'>";
 
 		// Adds name and image if any
-		str += String.format("<div class='item-display-name'>{0}</div>", this.name);
+		str += `<div class='item-display-name'>${this.name}</div>`;
 		if (this.img != null) {
-			str += String.format("<div class='item-display-img'>[img['{0}']]</div>", setup.ImagePath + this.img);
+			str += `<div class='item-display-img'>[img["${setup.ImagePath + this.img}"]]</div>`;
 		} else {
-			str += "<div class='item-display-img'></div>";
+			str += `<div class='item-display-img'></div>`;
 		}
 
 		var info = "";
@@ -27,31 +27,23 @@ class Item {
 
 		// Creates base info for the item
 		info += (this.tags.includes("shopItem") ? "$ " + this.price + " " : "") + 
-				(count !== Infinity ? ("[Amnt: " + count + "]") : "") + " " + 
-				(("[Fem: " + this.femininity + "]") || "");
+				(count !== Infinity ? (`[Amnt: ${count}]`) : "") + " " + 
+				((`[Fem: ${this.femininity}]`) || "");
 
 		if (canEquip === false) {
-			return String.format(
-				"{0}<div class='item-display-info'>{1}</div><div class='item-display-button'></div></div>",
-				str, 
-				info
-			);
+			return `${str}<div class='item-display-info'>${info}</div><div class='item-display-button'></div></div>`;
 		}
 
-		var actionTags = ["shopItem", "gettable", "equippable", "equipped"].find(function(tag) {
-			return this.tags.includes(tag);
-		}, this);
+		var actionTags = ["shopItem", "gettable", "equippable", "equipped"].find((tag) => this.tags.includes(tag), this);
 
-		button += String.format([actionTags].map(function(tag) {
+		button += String.format([actionTags].map((tag) => {
 				switch (tag) {
 					case "shopItem": return "<span id='{5}-{6}-buy'><<button 'buy'>><<if $player.femininity >= {4}>><<= {0}.buyItem('{2}',{3})>><<goto {1}>><<else>><<replace '#{5}-{6}-buy'>><<= $player.speak('<i>I would never buy that</i>')>><</replace>><</if>><</button>></span>";
 					case "gettable": return "<span id='{5}-{6}-get'><<button 'get'>><<if $player.femininity >= {4}>><<= {0}.buyItem('{2}', 0 )>><<goto {1}>><<else>><<replace '#{5}-{6}-get'>><<= $player.speak('<i>I would never get that</i>')>><</replace>><</if>><</button>></span>";
 					case "equippable": return "<span id='{5}-{6}-wear'><<button 'wear'>><<if $player.femininity >= {4}>><<= $player.equip('{2}')>><<goto {1}>><<else>><<replace '#{5}-{6}-wear'>><<= $player.speak('<i>I would never wear that</i>')>><</replace>><</if>><</button>></span>";
 					case "equipped": return "<span id='{5}-{6}-remove'><<button 'remove' '{1}'>><<= $player.unequip('{2}')>><</button>></span>";
 				}
-			}).reduce(function(str, action) {
-				return str + action;
-			}, button),
+			}).reduce((str, action) => str + action, button),
 			parent, 
 			State.passage, 
 			this.name,
@@ -61,21 +53,16 @@ class Item {
 			this.name.replace(/ /g, "-")
 		);
 
-		str += String.format("<div class='item-display-info'>{0}</div>", info);
-		str += String.format("<div class='item-display-button'>{0}</div>", button);
-
-		return str + "</div>";
+		return `<div class='item-display-info'>${info}</div><div class='item-display-button'>${button}</div></div>`
 	}
 
 	addTag(tag) {
 		if (!this.tags.includes(tag))
-		{
-			this.tags.push(tag);
-		}
+			this.tags.push(tag)
 	}
 
 	removeTag(tagName) {
-		this.tags = this.tags.filter(function(tag) {return tag !== tagName});
+		this.tags = this.tags.filter((tag) => tag !== tagName);
 	}
 	
 	clone() {

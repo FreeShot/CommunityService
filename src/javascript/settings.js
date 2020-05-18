@@ -3,10 +3,9 @@ Setting.addList("maxNPC", {
 	label: "Maximum of npc to generate.",
 	list: [10, 20, 50, 100],
 	default: 20,
-	onChange: function() {
-		if (State.variables.minorNPC.length > settings.maxNPC) {
-			State.variables.minorNPC.splice(settings.maxNPC, State.variables.minorNPC.length);
-		}
+	onChange: () => {
+		if (State.variables.minorNPC.length > settings.maxNPC)
+			State.variables.minorNPC.splice(settings.maxNPC, State.variables.minorNPC.length)
 	}
 });
 Setting.addList("npcPerEvent", {
@@ -19,14 +18,10 @@ Setting.addList("remeberLastEvents", {
 	desc: "Avoid changing during the game as it may cause some inbalance",
 	list: [1, 2, 3, 4, 5, 6],
 	default: 1,
-	onInit: function() {
+	onInit: () => {
 		State.variables.lastEvents = {
 			CParty : [100],
-			mean : function(event) {
-				return State.variables.lastEvents[event].reduce(function(total, curr) {
-					return total + curr;
-				}) / State.variables.lastEvents[event].length;
-			}
+			mean : (event) => State.variables.lastEvents[event].reduce((total, curr) => total + curr, 0) / State.variables.lastEvents[event].length
 		};
 	}
 });
@@ -37,17 +32,12 @@ Setting.addList("inventoryRows", {
 	label    : "Number of rows in the inventory",
 	list: [1, 2, 3, 4, 5],
 	default  : 4,
-	onInit: function() {
-		document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows);
-	},
-	onChange: function() {
-		document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows);
-	}
+	onInit: () => document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows),
+	onChange: () =>	document.documentElement.style.setProperty("--inventoryRow", settings.inventoryRows)
 });
 
 // Setting up a list control for the settings property 'theme' w/ callbacks
-var settingThemeHandler = function () {
-	// cache the jQuery-wrapped <html> element
+var settingThemeHandler = () => {	// cache the jQuery-wrapped <html> element
 	var $html = $("html");
 
 	// remove any existing theme class
@@ -88,6 +78,6 @@ Setting.addToggle("tips", {
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
 	default  : false,
-	onChange : function() {State.variables.debug = settings.debug}
+	onChange : () => State.variables.debug = settings.debug
 });
 */

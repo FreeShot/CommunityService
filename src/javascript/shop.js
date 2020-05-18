@@ -31,22 +31,17 @@ class Shop {
 
 	getCategory(category)
 	{
-		return this.categories.find(
-			function(el){return el.name == category});
+		return this.categories.find((el) => el.name == category);
 	}
 
 	listItem()
 	{
-		var str = String.format(
-			"<div class='shop-display'>",
-		);
+		var str = "<div class='shop-display'>";
 		var name = this.name;
-		this.categories.forEach(function(el) { // Can't use reduce because of this
-			str += el.listItem(String.format(
-				"State.variables['{0}']",
-				this.id
-			));
-		}, this);
+		var id = this.id;
+		this.categories.reduce((str, el) => {
+			str + el.listItem(`State.variables['${id}']`);
+		}, str);
 		return str + "</div>";
 	}
 	
