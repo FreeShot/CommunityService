@@ -3,7 +3,7 @@
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
-Its furnishings are plain with no decorations.
+Its furnishings are plain with little to no decorations.
 
 Desk
 	There is nothing here at the moment
@@ -39,10 +39,6 @@ You turn on the warm stream of water and step into the shower. You soap up and w
 <<return 'Finish'>>
 
 ::playerRoomWardrobe [playerRoom]
-<<if !visited()>>
-Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It's a little disheartening that such a small shirt looks like it would fit you.
-<</if>>
-
 <<= $player.inv.listItem("$player.inv", ["equipped"], undefined, "Currently wearing", $mansion.currentEvent === "")>>
 
 <<= $player.inv.listItem("$player.inv", ["equippable"], undefined, "Wardrobe", $mansion.currentEvent === "")>>

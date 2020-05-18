@@ -845,7 +845,7 @@ class Chore {
         }, this);
 
         this.time.start = this.time.start || {hour: 6, minute: 0};
-		this.time.end = this.time.end || {hour: 20, minute: 0};
+		this.time.end = this.time.end || {hour: 18, minute: 0};
 	}
 
 	do(canDoChores, filterDone) {
@@ -875,7 +875,7 @@ class Chore {
 			this.getLastDay,
 			Timer.getTime(this.duration)
 		);
-		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"]
+		htmlClass = [htmlClass.length > 0 ? htmlClass[0] : "chore"];
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass.reduce(function(str, el){return str + " " + el;}, ""),
@@ -893,7 +893,7 @@ class Chore {
 						return str;
 				}
 			}, ""),
-			canDoChores && !this.done && htmlClass.length === 0 ? String.format(
+			canDoChores && !this.done && htmlClass[0] === "chore" ? String.format(
 				"<span class='chore-button'><<link 'Start chore' '{0}'>><<set $aPsgText to '{5}'>><<= $player.currentRoom='{1}'>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore('{4}').done = true>><</link>></span>",
 				this.passage,
 				this.room,
@@ -2081,7 +2081,7 @@ class Room {
 		str += this.display(0) + "<br>";
 		str += this.getEvent();
 		str += "<br>Chores: ";
-		str += this.displayChores(undefined, State.variables.mansion.currentEvent === "");
+		str += this.displayChores(undefined, State.variables.mansion.currentEvent === "", false);
 		str += "<br>From here, you can go to: ";
 		str += this.getAdjacentRooms();
 		return str;
@@ -2112,7 +2112,7 @@ class Room {
 			var title = ((displayTitle || true) ? this.name : "") + "<ol>";
 			var str = "";
 			for (var i = 0; i < this.chores.length; i++) {
-				var chore = this.chores[i].do(canDoChores, filterDone);
+				var chore = this.chores[i].do(canDoChores, filterDone || false);
 				if (chore != "") {
 					str += "<li>" + chore + "</li>";
 				}
@@ -5153,7 +5153,7 @@ Here is the [[changelog]] for the current version of the game.
 Are you sure you want to skip the intro (Not recommended for first timers)?
 &lt;&lt;link &quot;Yes&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $flags to {
-	CUFF : 3
+	CUFF : 3,
 	manorIntro : 1
 }&gt;&gt;
 &lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
@@ -5291,14 +5291,26 @@ At first glance it seems like a nice room. It&#39;s defienitely not large, with 
 
 &lt;&lt;= $butler.speak(&quot;You can stay there for now. I will come and collect you when $owner.name is ready to meet you.&quot;)&gt;&gt;
 
-$butler.name closes the door behind you, leaving you alone.
+$butler.name closes the door behind you, leaving you alone. With nothing better to do you explorer the small space.
+
+The drawers are mostly empty and the books are blank and just for show. There is a computer under the small desk but it doesn&#39;t seem to be working.
+
+You investigate the and inside you find some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing.
+
+[[Warbrobe|playerRoomWardrobe]]
+
+There is a small attached bathroom. It doesn&#39;t have a lot of space either and the window is just for show but at least it looks like it&#39;s for your private use.
+
+[img[setup.ImagePath + &quot;estate/PlayerBdRm/Bathroom.jpg&quot;]]
+
+Overall it looks like cheap but well maintained student accomodation.
 
 [[Meet your master|manorIntro08]]</tw-passagedata><tw-passagedata pid="147" name="manorIntro08" tags="tutorial" position="850,1850" size="100,100">&lt;&lt;= $mansion.display(&quot;Office&quot;)&gt;&gt;
 At exactly 7pm, the door to your room opens and $butler.name walks in.
 
 &lt;&lt;= $butler.speak(&quot;$owner.name is waiting for you in his office.&quot;)&gt;&gt;
 
-He turns around and starts walking expecting you to follow.
+He turns around and starts walking clearly expecting you to follow.
 
 Not wanting to push your luck, you quickly catch up and fall in behind $butler.name. He takes you back to the study and you see $owner.name sitting behing his desk, working at his computer.
 
@@ -6214,18 +6226,14 @@ Desk
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(false, true)&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
+&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(&quot;&quot;, true)&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
 At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player&#39;s personnal hygene.
 &lt;&lt;/tooltips&gt;&gt;
 [img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]
 
 You turn on the warm stream of water and step into the shower. You soap up and wash yourself clean. This moment of relaxation feels great, almost as if your worreis are washing away with the water.
 &lt;&lt;set $time.addTime({hour:0, minute: 15})&gt;&gt;&lt;&lt;= $player.rest(5)&gt;&gt;
-&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="playerRoomWardrobe" tags="playerRoom" position="600,2350" size="100,100">&lt;&lt;if !visited()&gt;&gt;
-Inside, you fine some items left by the last person who stayed here. Unfortunately, it all looks like women&#39;s clothing. The t-shirt looks a little tight in the waist but you might be able to wear it. It&#39;s a little disheartening that such a small shirt looks like it would fit you.
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equipped&quot;], undefined, &quot;Currently wearing&quot;, $mansion.currentEvent === &quot;&quot;)&gt;&gt;
+&lt;&lt;return &#39;Finish&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="playerRoomWardrobe" tags="playerRoom" position="600,2350" size="100,100">&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equipped&quot;], undefined, &quot;Currently wearing&quot;, $mansion.currentEvent === &quot;&quot;)&gt;&gt;
 
 &lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equippable&quot;], undefined, &quot;Wardrobe&quot;, $mansion.currentEvent === &quot;&quot;)&gt;&gt;
 
