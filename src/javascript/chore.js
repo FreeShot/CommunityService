@@ -61,8 +61,10 @@ class Chore {
 	}
 
 	reset() {
-		if (this.dayLeft === 0 && !skipChores())
-			State.variables.player.choresLate++;
+		if (this.dayLeft === 0)
+			this.done = false;
+			if (!skipChores())
+				State.variables.player.choresLate++;
 	}
 
 	get dayLeft() {
