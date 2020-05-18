@@ -1115,7 +1115,7 @@ class Item {
 
 		// Adds name and image if any
 		str += `<div class='item-display-name'>${this.name}</div>`;
-		if (this.img != null) {
+		if (this.img !== null) {
 			str += `<div class='item-display-img'>[img["${setup.ImagePath + this.img}"]]</div>`;
 		} else {
 			str += `<div class='item-display-img'></div>`;
@@ -1152,7 +1152,7 @@ class Item {
 			this.name.replace(/ /g, "-")
 		);
 
-		return `<div class='item-display-info'>${info}</div><div class='item-display-button'>${button}</div></div>`
+		return `${str}<div class='item-display-info'>${info}</div><div class='item-display-button'>${button}</div></div>`
 	}
 
 	addTag(tag) {
@@ -3837,7 +3837,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Clean Sink and Benches&quot;, 
-	duration: {hour: 1}, 
+	duration: {minute:30}, 
 	passages:[
 		{name: &quot;kitchenClean&quot;, weight: 1}
 	], 
@@ -3909,7 +3909,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
 	name: &quot;Clean Master Bathroom&quot;, 
-	duration: {hour: 2}, 
+	duration: {hour: 1}, 
 	passages:[
 		{name: &quot;masterBathRmCleaning&quot;, weight:1}, 
 		{name: &quot;masterBathRmSweepMop&quot;, weight: 2}, 

@@ -16,7 +16,7 @@ class Item {
 
 		// Adds name and image if any
 		str += `<div class='item-display-name'>${this.name}</div>`;
-		if (this.img != null) {
+		if (this.img !== null) {
 			str += `<div class='item-display-img'>[img["${setup.ImagePath + this.img}"]]</div>`;
 		} else {
 			str += `<div class='item-display-img'></div>`;
@@ -53,7 +53,7 @@ class Item {
 			this.name.replace(/ /g, "-")
 		);
 
-		return `<div class='item-display-info'>${info}</div><div class='item-display-button'>${button}</div></div>`
+		return `${str}<div class='item-display-info'>${info}</div><div class='item-display-button'>${button}</div></div>`
 	}
 
 	addTag(tag) {
