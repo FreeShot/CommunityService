@@ -785,7 +785,7 @@ class Chore {
             this[pn] = clone(config[pn]);
         }, this);
 
-		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:18, minute:0}}};
+		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:22, minute:0}}};
 	}
 
 	do(canDoChores, filterDone, short) {
@@ -2222,6 +2222,7 @@ Object.defineProperty(window, 'Timer', {
 !!! Other content
 - Reduced animation time from passage to passage
 - Moved to the right the images for the rooms
+- Changed the max time to do chores from 6pm to 10pm
 
 !!! Bug fixes:
 - Added the changelog from V0.1.1
@@ -3183,16 +3184,31 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 		{name: &quot;Clear some of the tables&quot;, passage: &quot;mansionCPartySocialListen03&quot;, npc: [&quot;any&quot;, &quot;any&quot;]},
 		{name: &quot;Tidy the side rooms&quot;, passage: &quot;mansionCPartySocialListen04&quot;, npc: [&quot;any&quot;, &quot;any&quot;]}
 	],
-	getNpc: (npcType) =&gt; {
+	active : [],
+	getNpc: function(npcType) {
 		var NPC = [];
 		npcType.forEach((type) =&gt; {
-			var npc = State.variables.eventInfo.npc.random();
+			var npc = this.npc.random();
 			while (NPC.includes(npc) || (type !== &quot;any&quot; &amp;&amp; (State.variables.minorNPC[npc].gender !== type))) {
-				npc = State.variables.eventInfo.npc.random();
+				npc = this.npc.random();
 			}
 			NPC.push(State.variables.minorNPC[npc]);
 		});
-		return NPC.length === 1 ? NPC[0] : NPC;
+		return this.active = NPC.length === 1 ? NPC[0] : NPC;
+	},
+	addPoint: function(nb) {
+		var arr;
+		console.log(this.active);
+		if (this.active === undefined) {
+			arr = [];
+		} else if (typeof this.active === String) {
+			arr = [this.active];
+		} else {
+			arr = this.active;
+		}
+		var nb = arr.reduce((nb, n) =&gt; nb + n.getBonusPoint(), nb);
+		this.score += nb;
+		return `Score + ${nb} (Total: ${this.score})`;
 	}
 }&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -3200,6 +3216,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 &lt;&lt;for _i = 0; _i &lt; settings.npcPerEvent; _i++&gt;&gt;
 &lt;&lt;= generateNPC($minorNPC, $eventInfo.npc, _i)&gt;&gt;
 &lt;&lt;/for&gt;&gt;
+&lt;&lt;= console.log($eventInfo)&gt;&gt;
 &lt;&lt;goto &quot;mansionCPartyServing01&quot;&gt;&gt;
 &lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="mansionCPartyServing01" tags="event" position="975,1225" size="100,100">&lt;h1&gt;At the party&lt;/h1&gt;
 &lt;span id=&quot;party-description&quot;&gt;
@@ -3221,14 +3238,15 @@ Several people are gathered around the pool and enjoying the party atmosphere fr
 &lt;&lt;capture _event&gt;&gt;\
 &lt;&lt;link _event.name _event.passage&gt;&gt;
 	&lt;&lt;= $eventInfo.stage--&gt;&gt;
-	&lt;&lt;= $eventInfo.score+=25&gt;&gt;
-	&lt;&lt;= $eventInfo.active = $eventInfo.getNpc(_event.npc)&gt;&gt;
+	&lt;&lt;= $eventInfo.getNpc(_event.npc)&gt;&gt;
 &lt;&lt;/link&gt;&gt;
 &lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="mansionCPartyStaring01" tags="event" position="1100,1225" size="100,100">While moving about you get stopped by one of the groups who happily clear the rest of the finger food from your tray. You catch one of them looking strait at your chest. You&#39;re a little flushed from all the walking so it has a nice pink hue just above the blouse. His eyes meet yours and he smiles warmly and tips his glass to you.
 
 You quickly move away to escape his gaze.
+
+&lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="100" name="mansionCPartyStaring02" tags="event" position="1225,1225" size="100,100">You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
 &lt;&lt;= $eventInfo.active.speak(&quot;Thank you so much. You must tell me how you keep your skin so soft.&quot;)&gt;&gt; She caresses your arm for a few seconds longer. &lt;&lt;= $eventInfo.active.speak(&quot;It&#39;s like touching silk.&quot;)&gt;&gt;
@@ -3237,11 +3255,15 @@ You quickly move away to escape his gaze.
 
 You politely pull away and hurry back to the bar to pick up some more drinks.
 
+&lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
+
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="101" name="mansionCPartyGroping01a" tags="event" position="100,1350" size="100,100">&lt;&lt;= $player.speak(&quot;Can I get you something?&quot;)&gt;&gt;
 
 &lt;&lt;= $eventInfo.active.speak(&quot;One scotch on the rock&#39;s and make it snappy.&quot;)&gt;&gt;
 
 You turn away to retrieve the guest&#39;s drink and then feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
+
+&lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Defend yourself|mansionCPartyGroping01b]]</tw-passagedata><tw-passagedata pid="102" name="mansionCPartyGroping01b" tags="" position="225,1350" size="100,100">&lt;&lt;= $player.speak(&quot;Ow! Hands to yourself.&quot;)&gt;&gt;
 
@@ -3256,8 +3278,12 @@ You swallow and say. &lt;&lt;= $player.speak(&quot;Sorry sir. You startled me is
 
 You receive another quick slap on the butt to send you on your way.
 
+&lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
+
 &lt;&lt;option &quot;No way you&#39;re appologising&quot;&gt;&gt;
 You stare at $wife.name for a moment and simply turn around and walk away. You still retrieve the guest&#39;s drink but you&#39;ll be damned if you&#39;re apologising to the groper.
+
+&lt;&lt;= $eventInfo.addPoint(0)&gt;&gt;
 
 &lt;&lt;end&gt;&gt;
 
@@ -3273,16 +3299,20 @@ You lean forward to grab it and your hips bump against the counter. You gasp as 
 
 You take the tray and walk out of the kitchen. Your restrain member twitches in the cage as it twist and pokes in an uncomfortable position. You&#39;ll just have to deal with it for now.
 
-[[Back to serving|mansionCPartyServing01]]
 &lt;&lt;option &quot;Try and ignore it.&quot;&gt;&gt;
 You take a moment to collect yourself, your twitching member straining against its plastic prison.
 
-[[Back to serving|mansionCPartyServing01]]
-&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="mansionCPartyCage02" tags="event" position="475,1350" size="100,100">You&#39;re on your way back to the kitchen to refill your tray. As you pass between two guests one of them laughs loudly and tilts back forcing you to dodge them. Unfortunately you bump into the other guest. Worse still your hips press up against theirs and you feel the hard plastic of your chastity cage pressing against their thigh.
+&lt;&lt;= $eventInfo.addPoint(10)&gt;&gt;
+
+&lt;&lt;/chooseOption&gt;&gt;
+
+[[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="104" name="mansionCPartyCage02" tags="event" position="475,1350" size="100,100">You&#39;re on your way back to the kitchen to refill your tray. As you pass between two guests one of them laughs loudly and tilts back forcing you to dodge them. Unfortunately you bump into the other guest. Worse still your hips press up against theirs and you feel the hard plastic of your chastity cage pressing against their thigh.
 
 You pull back and fix you skirt before apologising. The person just looks down to your skirt and then back up before giving you a knowing wink.
 
 You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before sheepishly looking down and then excusing yourself.
+
+&lt;&lt;= $eventInfo.addPoint(10)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="105" name="mansionCPartySocialListen01" tags="event" position="600,1350" size="100,100">Guests are taking items from your tray as you move through the crowd. They are pretty much ignoring the fact you are standing there as they carry on their conversations. One in particular gets your interest.
 
@@ -3291,6 +3321,8 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 &lt;&lt;= $eventInfo.active[1].speak(&quot;Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.&quot;)&gt;&gt;
 
 &lt;&lt;= $eventInfo.active[0].speak(&quot;The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn&#39;t even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She&#39;s much better at following instructions now.&quot;)&gt;&gt;
+
+&lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="106" name="mansionCPartySocialListen02" tags="" position="725,1350" size="100,100">A guest gestures for you to bring your tray over. You approach and they start examining the hors d&#39;oeuvres while continuing their conversation.
 
@@ -3306,6 +3338,8 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 
 Both of them start laughing, though you&#39;re not sure why it&#39;s funny.
 
+&lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
+
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="107" name="mansionCPartySocialListen03" tags="" position="850,1350" size="100,100">You&#39;re picking up some empty glasses from an end table when you overhear some of the guests talking from around the corner.
 
 &lt;&lt;= $eventInfo.active[0].speak(&quot;I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It&#39;s amazing how such a bright mind can have such a wild side.&quot;)&gt;&gt;
@@ -3315,6 +3349,8 @@ Both of them start laughing, though you&#39;re not sure why it&#39;s funny.
 &lt;&lt;= $eventInfo.active[0].speak(&quot;She definitely likes blowing off steam after being cooped up here all the time on her own. It&#39;s a bit sad really.&quot;)&gt;&gt;
 
 &lt;&lt;= $eventInfo.active[1].speak(&quot;The emergency response units would say that&#39;s putting it mildly.&quot;)&gt;&gt;
+
+&lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="108" name="mansionCPartySocialListen04" tags="" position="975,1350" size="100,100">You go to one of the aloves and are collecting some of the discarded food and rubbish. These don&#39;t really seem to care much about what they&#39;re eating and you find plenty of half eaten food. While you are busy you hear some voices from around a corner.
 
@@ -3333,6 +3369,8 @@ Your cheeks flush red as you realise, they are talking about you. Fortunately, t
 You didn&#39;t realise you were leaning in to listen more and have knocked over one of your glasses. Quickly, you right the class and then move away.
 
 A glance over your shoulder as you leave confirms the people heard and are watching you walk away with leering smiles.
+
+&lt;&lt;= $eventInfo.addPoint(30)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="109" name="mansionCPartyFinish01" tags="event" position="1100,1350" size="100,100">Eventually the last guests leave and you help $caterer.name clean up. By the time you are finished with the last of the dishes $caterer.name is already gone. It&#39;s very late and after the nights work you are definitely ready for bed.
 
@@ -4714,7 +4752,7 @@ The box is still closed.
 You start running and try to make a break for it, but the guards are ready for it. They quickly tackle you to the ground and have you restrained in no time.
 
 [[Get taken away.|Intro4]]
-&lt;&lt;ChooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="136" name="Intro4" tags="intro tutorial" position="725,1725" size="100,100">The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
+&lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="136" name="Intro4" tags="intro tutorial" position="725,1725" size="100,100">The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
 
 There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You&#39;re on your own.
 
@@ -5858,7 +5896,7 @@ Desk
 	[[Shower|playerRoomShower]]&lt;br&gt;
 	Check the [[Wardrobe|playerRoomWardrobe]]&lt;br&gt;
 	[[Check your to do list.|playerToDoList]]&lt;br&gt;
-	&lt;&lt;link &quot;Rest 1 Hour&quot;&gt;&gt;
+	&lt;&lt;link &quot;Rest&quot;&gt;&gt;
 		&lt;&lt;set $time.addTime({day:0, hour:1, minute: 0})&gt;&gt;
 		&lt;&lt;set $player.rest()&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;

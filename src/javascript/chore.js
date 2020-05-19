@@ -24,7 +24,7 @@ class Chore {
             this[pn] = clone(config[pn]);
         }, this);
 
-		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:18, minute:0}}};
+		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:22, minute:0}}};
 	}
 
 	do(canDoChores, filterDone, short) {
