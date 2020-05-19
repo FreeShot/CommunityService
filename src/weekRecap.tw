@@ -5,10 +5,13 @@ Before you turn in for the night you report to the study. $owner.name is sitting
 He goes over what he thinks you did well and what needs improvement.
 
 Chores missed: <<= $player.choresLate>>
-
-[[endOfWeekRecapBad]]
-[[endOfWeekRecapNeutral]]
-[[endOfWeekRecapGood]]
+<< if $player.choresLate > 4>>
+<<include "endOfWeekRecapBad">>
+<<elseif $player.choresLate > 0>>
+<<include "endOfWeekRecapNeutral">>
+<<else>>
+<<include "endOfWeekRecapGood">>
+<</if>>
 
 ::endOfWeekRecapBad
 
