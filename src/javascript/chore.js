@@ -13,10 +13,10 @@ class Chore {
 		this.time = {};
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = 0;
+		this.done = true;
+		this.days = [0, 1, 2, 3, 4, 5, 6];
 		this.room = '';
 		this.id = '';
-		this.choreFrequency = 7;
 		this.xp = 1;
 
 		Object.keys(config).forEach((pn) => {
@@ -28,11 +28,11 @@ class Chore {
 
 	do(canDoChores, filterDone) {
 		// Chore is waiting to be reset
-		if (skipChores() || (this.done && filterDone))
+		if (skipChores() || (this.done && filterDone) || (State.variables.mansion.currentEvent != "" || !this.days.includes(State.variables.time.weekDay)))
 			return "";
 
 		var htmlClass = "chore";
-		if (this.done === this.choreFrequency)
+		if (this.done)
 			htmlClass = 'chore-done';
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
 			htmlClass = 'chore-exhaused';
@@ -45,10 +45,10 @@ class Chore {
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass,
 			this.name,
-			this.done === this.choreFrequency ? "" : `(To do ${this.choreFrequency - this.done} times beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
+			this.done ? "" : `(To do ${this.choreFrequency - this.done} times beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
 			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
 			canDoChores && (this.choreFrequency - this.done) !== 0 && htmlClass === "chore" ? String.format(
-				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done++>><</link>></span>",
+				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
 				this.passage,
 				this.room,
 				this.staminaCost,
@@ -61,10 +61,10 @@ class Chore {
 	}
 
 	reset() {
-		if (State.variables.time.weekDay === 0){
+		if (State.variables.time.weekDay === this.days){
 			if (!skipChores())
-				State.variables.player.choresLate += this.choreFrequency - this.done;
-			this.done = 0;
+				State.variables.player.choresLate += this.done ? 0 : 1;
+			this.done = false;
 		}
 		console.log("Chores missed", State.variables.player.choresLate);
 	}
