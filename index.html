@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="139" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="139" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
@@ -1999,6 +1999,7 @@ Setting.addToggle("debug", {
 */
 
 Config.history.maxStates = 20;
+Config.passages.transitionOut = 10;
 /* twine-user-script #15: "shop.js" */
 class Shop {
 	constructor (config) {
@@ -4597,7 +4598,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	&quot;ShortHairs&quot; : () =&gt; $player.getHairLength === &quot;short&quot;,
 	&quot;MediumHairs&quot; : () =&gt; $player.getHairLength === &quot;medium&quot;,
 	&quot;LongHairs&quot; : () =&gt; $player.getHairLength === &quot;long&quot;
-}&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="StoryInit" tags="nodebug" position="1225,1600" size="100,100">&lt;&lt;set $version to &quot;V0.1.0&quot;&gt;&gt;
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="StoryInit" tags="nodebug" position="1225,1600" size="100,100">&lt;&lt;set $version to &quot;V0.1.1&quot;&gt;&gt;
 &lt;&lt;set $debug to false&gt;&gt;
 &lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
 

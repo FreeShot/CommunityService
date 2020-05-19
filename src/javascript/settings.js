@@ -83,3 +83,4 @@ Setting.addToggle("debug", {
 */
 
 Config.history.maxStates = 20;
+Config.passages.transitionOut = 10;
