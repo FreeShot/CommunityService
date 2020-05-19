@@ -75,16 +75,31 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 		{name: "Clear some of the tables", passage: "mansionCPartySocialListen03", npc: ["any", "any"]},
 		{name: "Tidy the side rooms", passage: "mansionCPartySocialListen04", npc: ["any", "any"]}
 	],
-	getNpc: (npcType) => {
+	active : [],
+	getNpc: function(npcType) {
 		var NPC = [];
 		npcType.forEach((type) => {
-			var npc = State.variables.eventInfo.npc.random();
+			var npc = this.npc.random();
 			while (NPC.includes(npc) || (type !== "any" && (State.variables.minorNPC[npc].gender !== type))) {
-				npc = State.variables.eventInfo.npc.random();
+				npc = this.npc.random();
 			}
 			NPC.push(State.variables.minorNPC[npc]);
 		});
-		return NPC.length === 1 ? NPC[0] : NPC;
+		return this.active = NPC.length === 1 ? NPC[0] : NPC;
+	},
+	addPoint: function(nb) {
+		var arr;
+		console.log(this.active);
+		if (this.active === undefined) {
+			arr = [];
+		} else if (typeof this.active === String) {
+			arr = [this.active];
+		} else {
+			arr = this.active;
+		}
+		var nb = arr.reduce((nb, n) => nb + n.getBonusPoint(), nb);
+		this.score += nb;
+		return `Score + ${nb} (Total: ${this.score})`;
 	}
 }>>
 <</if>>
@@ -92,6 +107,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 <<for _i = 0; _i < settings.npcPerEvent; _i++>>
 <<= generateNPC($minorNPC, $eventInfo.npc, _i)>>
 <</for>>
+<<= console.log($eventInfo)>>
 <<goto "mansionCPartyServing01">>
 <</silently>>
 
@@ -116,8 +132,7 @@ Several people are gathered around the pool and enjoying the party atmosphere fr
 <<capture _event>>\
 <<link _event.name _event.passage>>
 	<<= $eventInfo.stage-->>
-	<<= $eventInfo.score+=25>>
-	<<= $eventInfo.active = $eventInfo.getNpc(_event.npc)>>
+	<<= $eventInfo.getNpc(_event.npc)>>
 <</link>>
 <</capture>>
 <</for>>
@@ -129,6 +144,8 @@ While moving about you get stopped by one of the groups who happily clear the re
 
 You quickly move away to escape his gaze.
 
+<<= $eventInfo.addPoint(25)>>
+
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartyStaring02 [event]
@@ -139,6 +156,8 @@ You lean down to offer the drink to the lady on the lounge. She takes it and giv
 
 You politely pull away and hurry back to the bar to pick up some more drinks.
 
+<<= $eventInfo.addPoint(25)>>
+
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartyGroping01a [event]
@@ -147,6 +166,8 @@ You politely pull away and hurry back to the bar to pick up some more drinks.
 <<= $eventInfo.active.speak("One scotch on the rock's and make it snappy.")>>
 
 You turn away to retrieve the guest's drink and then feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
+
+<<= $eventInfo.addPoint(25)>>
 
 [[Defend yourself|mansionCPartyGroping01b]]
 
@@ -164,8 +185,12 @@ You swallow and say. <<= $player.speak("Sorry sir. You startled me is all.")>>
 
 You receive another quick slap on the butt to send you on your way.
 
+<<= $eventInfo.addPoint(25)>>
+
 <<option "No way you're appologising">>
 You stare at $wife.name for a moment and simply turn around and walk away. You still retrieve the guest's drink but you'll be damned if you're apologising to the groper.
+
+<<= $eventInfo.addPoint(0)>>
 
 <<end>>
 
@@ -184,12 +209,14 @@ You lean forward to grab it and your hips bump against the counter. You gasp as 
 
 You take the tray and walk out of the kitchen. Your restrain member twitches in the cage as it twist and pokes in an uncomfortable position. You'll just have to deal with it for now.
 
-[[Back to serving|mansionCPartyServing01]]
 <<option "Try and ignore it.">>
 You take a moment to collect yourself, your twitching member straining against its plastic prison.
 
-[[Back to serving|mansionCPartyServing01]]
+<<= $eventInfo.addPoint(10)>>
+
 <</chooseOption>>
+
+[[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartyCage02 [event]
 
@@ -198,6 +225,8 @@ You're on your way back to the kitchen to refill your tray. As you pass between 
 You pull back and fix you skirt before apologising. The person just looks down to your skirt and then back up before giving you a knowing wink.
 
 You blush and feel an uncomfortable twitch in your loins, reminding you again of your tight cage. You hold the guests gaze for a moment before sheepishly looking down and then excusing yourself.
+
+<<= $eventInfo.addPoint(10)>>
 
 [[Back to serving|mansionCPartyServing01]]
 
@@ -209,6 +238,8 @@ Guests are taking items from your tray as you move through the crowd. They are p
 <<= $eventInfo.active[1].speak("Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.")>>
 
 <<= $eventInfo.active[0].speak("The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn't even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She's much better at following instructions now.")>>
+
+<<= $eventInfo.addPoint(25)>>
 
 [[Back to serving|mansionCPartyServing01]]
 
@@ -227,6 +258,8 @@ A guest gestures for you to bring your tray over. You approach and they start ex
 
 Both of them start laughing, though you're not sure why it's funny.
 
+<<= $eventInfo.addPoint(25)>>
+
 [[Back to serving|mansionCPartyServing01]]
 
 ::mansionCPartySocialListen03
@@ -239,6 +272,8 @@ You're picking up some empty glasses from an end table when you overhear some of
 <<= $eventInfo.active[0].speak("She definitely likes blowing off steam after being cooped up here all the time on her own. It's a bit sad really.")>>
 
 <<= $eventInfo.active[1].speak("The emergency response units would say that's putting it mildly.")>>
+
+<<= $eventInfo.addPoint(25)>>
 
 [[Back to serving|mansionCPartyServing01]]
 
@@ -260,6 +295,8 @@ Your cheeks flush red as you realise, they are talking about you. Fortunately, t
 You didn't realise you were leaning in to listen more and have knocked over one of your glasses. Quickly, you right the class and then move away.
 
 A glance over your shoulder as you leave confirms the people heard and are watching you walk away with leering smiles.
+
+<<= $eventInfo.addPoint(30)>>
 
 [[Back to serving|mansionCPartyServing01]]
 

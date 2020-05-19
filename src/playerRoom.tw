@@ -21,7 +21,7 @@ Desk
 	[[Shower|playerRoomShower]]<br>
 	Check the [[Wardrobe|playerRoomWardrobe]]<br>
 	[[Check your to do list.|playerToDoList]]<br>
-	<<link "Rest 1 Hour">>
+	<<link "Rest">>
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>
 		<<goto `passage()`>>
