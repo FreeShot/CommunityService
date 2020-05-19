@@ -61,10 +61,12 @@ class Chore {
 	}
 
 	reset() {
-		if (State.variables.time.weekDay === 0)
+		if (State.variables.time.weekDay === 0){
 			if (!skipChores())
 				State.variables.player.choresLate += this.choreFrequency - this.done;
 			this.done = 0;
+		}
+		console.log("Chores missed", State.variables.player.choresLate);
 	}
 
 	get getDuration() {
