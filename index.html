@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="139" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="139" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
@@ -818,7 +818,7 @@ class Chore {
 	}
 
 	reset() {
-		if (this.dayLeft === 0)
+		if (State.time.getDay() === 6)
 			if (!skipChores())
 				State.variables.player.choresLate += this.choreFrequency - this.done;
 			this.done = 0;
@@ -1871,38 +1871,8 @@ Object.defineProperty(window, 'Room', {
     value : Room
 });
 /* twine-user-script #12: "save.js" */
-window.upgradeSave = function(save) {
-	switch (save.version) {
-		case 1:
-			// Upgrades to version 2
-			return save;
-		default:
-			return null
-	}
-}
-
-window.downgradeSave = function(save) {
-	switch (save.version) {
-		case 1:
-			return save; // Earliest version
-		default:
-			return null;
-	}
-}
-
 Config.saves.version = 1;
-Config.saves.slots = 8;
-Config.saves.onSave = (save) => {
-	save.title = State.passage;
-	return save;
-};
-Config.saves.onLoad = (save) => {
-	while (save.version < Config.saves.version)
-		upgradeSave(save)
-	while (save.version > Config.save.version)
-		downgradeSave(save)
-	return save;
-};
+
 Config.saves.isAllowed = () => !Story.get(State.passage).tags.includes("noSave");
 Config.saves.autosave = () => Story.get(State.passage).tags.includes("Save");
 /* twine-user-script #13: "script.js" */
