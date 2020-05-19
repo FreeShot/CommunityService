@@ -28,11 +28,11 @@ class Mansion {
 		return this.findRoom(roomID).generatePassage();
 	}
 
-	displayChores(canDoChores, filterDone) {
+	displayChores(canDoChores, filterDone, short) {
 		var str = "<ol>";
 		var hasChores = false;
 		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone);
+			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone, short || false);
 			if (roomChores != undefined && roomChores !== "") {
 				str += roomChores;
 				hasChores = true;
@@ -60,13 +60,13 @@ class Mansion {
 		);
 		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[i].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.1;
 		}, this);
 		var j = i; 
 		while (j === i) 
 			j = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[j].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.1;
 		}, this);
 	}
 

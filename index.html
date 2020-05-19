@@ -788,7 +788,7 @@ class Chore {
 		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:18, minute:0}}};
 	}
 
-	do(canDoChores, filterDone) {
+	do(canDoChores, filterDone, short) {
 		// Chore is waiting to be reset
 		if (skipChores() || (this.done && filterDone) || !this.todo)
 			return "";
@@ -802,6 +802,8 @@ class Chore {
 			htmlClass = 'chore-not-time';
 		else if (!canDoChores)
 			htmlClass = 'chore-unavailable';
+
+		if (short) return `<span class="${htmlClass}">${this.name}</span>`
 
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
@@ -824,7 +826,7 @@ class Chore {
 
 	reset() {
 		if (!skipChores())
-			State.variables.player.choresLate += this.done ? 0 : 1;
+			State.variables.player.choresLate += this.done && this.todo ? 0 : 1;
 		this.done = false;
 		this.todo = false;
 	}
@@ -1359,11 +1361,11 @@ class Mansion {
 		return this.findRoom(roomID).generatePassage();
 	}
 
-	displayChores(canDoChores, filterDone) {
+	displayChores(canDoChores, filterDone, short) {
 		var str = "<ol>";
 		var hasChores = false;
 		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone);
+			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone, short || false);
 			if (roomChores != undefined && roomChores !== "") {
 				str += roomChores;
 				hasChores = true;
@@ -1391,13 +1393,13 @@ class Mansion {
 		);
 		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[i].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.1;
 		}, this);
 		var j = i; 
 		while (j === i) 
 			j = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[j].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.1;
 		}, this);
 	}
 
@@ -1869,9 +1871,9 @@ class Room {
 		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
 	}
 
-	displayChores(displayTitle, canDoChores, filterDone) {
+	displayChores(displayTitle, canDoChores, filterDone, short) {
 		return this.chores.reduce((str, chore) => {
-			var choreDo = chore.do(canDoChores, filterDone||false);
+			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
 			if (choreDo === "") return str;
 			return `${str}<li>${choreDo}</li>`;
 		}, "");
@@ -3931,7 +3933,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;playerBdRmClean&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-}), &quot;base&quot;)&gt;&gt;
+}), &quot;main&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
 	name: &quot;Clean the daughter&#39;s bedroom&quot;, 
 	duration: {hour: 1}, 
@@ -4957,7 +4959,8 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;&lt;else&gt;&gt;
 &lt;tr id=&quot;cuff&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;CUFF&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;for _stat range Object.keys($player.stats)&gt;&gt;&lt;tr class=&#39;stat&#39;&gt;&lt;td&gt;_stat: level &lt;&lt;= $player.getStat(_stat)&gt;&gt;&lt;/td&gt;&lt;td&gt;&lt;&lt;= $player.getStatBar(_stat)&gt;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;&lt;/for&gt;&gt;
+&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;Daily Chores
+&lt;&lt;= $mansion.displayChores(false, $flags.filterDone, true)&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;</tw-passagedata><tw-passagedata pid="149" name="CUFF" tags="noreturn mainMenu menu" position="1100,1850" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -5914,7 +5917,7 @@ Once everything it tidy you grab a bite to eat and go back to your room.&lt;br&g
 He goes over what he thinks you did well and what needs improvement.
 
 Chores missed: &lt;&lt;= $player.choresLate&gt;&gt;
-&lt;&lt; if $player.choresLate &gt; 4&gt;&gt;
+&lt;&lt;if $player.choresLate &gt; 4&gt;&gt;
 &lt;&lt;include &quot;endOfWeekRecapBad&quot;&gt;&gt;
 &lt;&lt;elseif $player.choresLate &gt; 0&gt;&gt;
 &lt;&lt;include &quot;endOfWeekRecapNeutral&quot;&gt;&gt;

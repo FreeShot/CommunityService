@@ -27,7 +27,7 @@ class Chore {
 		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:18, minute:0}}};
 	}
 
-	do(canDoChores, filterDone) {
+	do(canDoChores, filterDone, short) {
 		// Chore is waiting to be reset
 		if (skipChores() || (this.done && filterDone) || !this.todo)
 			return "";
@@ -41,6 +41,8 @@ class Chore {
 			htmlClass = 'chore-not-time';
 		else if (!canDoChores)
 			htmlClass = 'chore-unavailable';
+
+		if (short) return `<span class="${htmlClass}">${this.name}</span>`
 
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
@@ -63,7 +65,7 @@ class Chore {
 
 	reset() {
 		if (!skipChores())
-			State.variables.player.choresLate += this.done ? 0 : 1;
+			State.variables.player.choresLate += !this.done && this.todo ? 1 : 0;
 		this.done = false;
 		this.todo = false;
 	}

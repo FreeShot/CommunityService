@@ -5,7 +5,7 @@ Before you turn in for the night you report to the study. $owner.name is sitting
 He goes over what he thinks you did well and what needs improvement.
 
 Chores missed: <<= $player.choresLate>>
-<< if $player.choresLate > 4>>
+<<if $player.choresLate > 4>>
 <<include "endOfWeekRecapBad">>
 <<elseif $player.choresLate > 0>>
 <<include "endOfWeekRecapNeutral">>

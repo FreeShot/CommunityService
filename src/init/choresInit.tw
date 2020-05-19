@@ -170,7 +170,7 @@
 		{name: "playerBdRmClean", weight: 1}
 	], 
 	staminaCost: 1, 
-}), "base")>>
+}), "main")>>
 <<= $mansion.addChore("DaughterBdRm", new Chore({
 	name: "Clean the daughter's bedroom", 
 	duration: {hour: 1}, 

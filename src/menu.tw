@@ -10,7 +10,8 @@
 <<else>>
 <tr id="cuff"><td colspan="2">CUFF</td></tr>
 <</if>>
-<<for _stat range Object.keys($player.stats)>><tr class='stat'><td>_stat: level <<= $player.getStat(_stat)>></td><td><<= $player.getStatBar(_stat)>></td></tr><</for>>
+<tr><td colspan="2">Daily Chores
+<<= $mansion.displayChores(false, $flags.filterDone, true)>></td></tr>
 </table>
 
 ::CUFF [noreturn mainMenu menu]
