@@ -88,9 +88,9 @@ class Room {
 		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
 	}
 
-	displayChores(displayTitle, canDoChores, filterDone) {
+	displayChores(displayTitle, canDoChores, filterDone, short) {
 		return this.chores.reduce((str, chore) => {
-			var choreDo = chore.do(canDoChores, filterDone||false);
+			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
 			if (choreDo === "") return str;
 			return `${str}<li>${choreDo}</li>`;
 		}, "");
