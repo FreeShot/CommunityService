@@ -75,9 +75,9 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 		{name: "Clear some of the tables", passage: "mansionCPartySocialListen03", npc: ["any", "any"]},
 		{name: "Tidy the side rooms", passage: "mansionCPartySocialListen04", npc: ["any", "any"]}
 	],
-	getNpc: function(npcType) {
+	getNpc: (npcType) => {
 		var NPC = [];
-		npcType.forEach(function (type) {
+		npcType.forEach((type) => {
 			var npc = State.variables.eventInfo.npc.random();
 			while (NPC.includes(npc) || (type !== "any" && (State.variables.minorNPC[npc].gender !== type))) {
 				npc = State.variables.eventInfo.npc.random();
@@ -97,10 +97,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 
 ::mansionCPartyServing01 [event]
 <h1>At the party</h1>
-
 <span id="party-description">
-<<link "Party Description">>
-<<replace "#party-description">>
 The people attending the party dressed in casual formal wear. You can tell by the designs that most people are probably just as well off as the hosts. There are quite a few people in attendence and with a mix of all kinds of people.
 
 The party goers are mostly gathering in the lounge which has been setup as the main focus of the event. Furniture has been shifted and another server is at the bar is mixing drinks. A small band is playing music in one corner and space has been cleared in center of the room for people to dance. Most of the guests here are seated in lounges or standing around the bar. It’s not packed but moving through here is definitely a test of your tray management skills. Laughter and loud discussion hums along with the music being played.
@@ -110,8 +107,6 @@ The dining room furniture, including the large central table has all been moved 
 The expansive garden has been set up with strings of soft glowing lanterns hanging between most of the trees providing a very romantic mood to those moving between the flowers. People are more spread out here but no less boisterous than those inside. The music from inside is quieter but can still be heard through various speakers that have been setup. 
 
 Several people are gathered around the pool and enjoying the party atmosphere from deck chairs and recliners. The pool lights are on giving everything an ethereal glow while the music suffuses the whole area with fun energy. A few people are in their swimsuits and enjoying the warm water.
-<</replace>>
-<</link>>
 </span>
 
 <<if $eventInfo.stage === 0>>

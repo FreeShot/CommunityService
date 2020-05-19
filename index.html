@@ -732,7 +732,11 @@ class MinorNPC extends Character {
 
 	// For twine
 	toJSON() {
-		return JSON.reviveWrapper('new Player($ReviveData$)', Object.keys(this).reduce((data, pn) => data[pn] = clone(this[pn]), this));
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new MinorNPC($ReviveData$)', ownData);
 	}
 }
 // Addst MinorNPC to window
@@ -818,10 +822,11 @@ class Chore {
 	}
 
 	reset() {
-		if (State.variables.time.weekDay === 0)
+		if (State.variables.time.weekDay === 0){
 			if (!skipChores())
 				State.variables.player.choresLate += this.choreFrequency - this.done;
 			this.done = 0;
+		}
 		console.log("Chores missed", State.variables.player.choresLate);
 	}
 
@@ -3115,9 +3120,9 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 		{name: &quot;Clear some of the tables&quot;, passage: &quot;mansionCPartySocialListen03&quot;, npc: [&quot;any&quot;, &quot;any&quot;]},
 		{name: &quot;Tidy the side rooms&quot;, passage: &quot;mansionCPartySocialListen04&quot;, npc: [&quot;any&quot;, &quot;any&quot;]}
 	],
-	getNpc: function(npcType) {
+	getNpc: (npcType) =&gt; {
 		var NPC = [];
-		npcType.forEach(function (type) {
+		npcType.forEach((type) =&gt; {
 			var npc = State.variables.eventInfo.npc.random();
 			while (NPC.includes(npc) || (type !== &quot;any&quot; &amp;&amp; (State.variables.minorNPC[npc].gender !== type))) {
 				npc = State.variables.eventInfo.npc.random();
@@ -3134,10 +3139,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 &lt;&lt;/for&gt;&gt;
 &lt;&lt;goto &quot;mansionCPartyServing01&quot;&gt;&gt;
 &lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="mansionCPartyServing01" tags="event" position="725,1225" size="100,100">&lt;h1&gt;At the party&lt;/h1&gt;
-
 &lt;span id=&quot;party-description&quot;&gt;
-&lt;&lt;link &quot;Party Description&quot;&gt;&gt;
-&lt;&lt;replace &quot;#party-description&quot;&gt;&gt;
 The people attending the party dressed in casual formal wear. You can tell by the designs that most people are probably just as well off as the hosts. There are quite a few people in attendence and with a mix of all kinds of people.
 
 The party goers are mostly gathering in the lounge which has been setup as the main focus of the event. Furniture has been shifted and another server is at the bar is mixing drinks. A small band is playing music in one corner and space has been cleared in center of the room for people to dance. Most of the guests here are seated in lounges or standing around the bar. It’s not packed but moving through here is definitely a test of your tray management skills. Laughter and loud discussion hums along with the music being played.
@@ -3147,8 +3149,6 @@ The dining room furniture, including the large central table has all been moved 
 The expansive garden has been set up with strings of soft glowing lanterns hanging between most of the trees providing a very romantic mood to those moving between the flowers. People are more spread out here but no less boisterous than those inside. The music from inside is quieter but can still be heard through various speakers that have been setup. 
 
 Several people are gathered around the pool and enjoying the party atmosphere from deck chairs and recliners. The pool lights are on giving everything an ethereal glow while the music suffuses the whole area with fun energy. A few people are in their swimsuits and enjoying the warm water.
-&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/link&gt;&gt;
 &lt;/span&gt;
 
 &lt;&lt;if $eventInfo.stage === 0&gt;&gt;
