@@ -2,13 +2,46 @@
 ! Community service
 
 <!-- Versioning system: MAJOR.MINOR.FIX -->
+!V0.X.X
+!!V0.1.X - Getting to know each other
+<<include "changelog-V0.1.2">>
+<<include "changelog-V0.1.1">>
 <<include "changelog-V0.1.0">>
 
 <<return>>
 
+::changelog-V0.1.2 [changelog]
+!! V0.1.2
+!!! Main conent
+- Reworked the chores to make use of less chores
+
+!!! Other content
+- Reduced animation time from passage to passage
+- Moved to the right the images for the rooms
+
+!!! Bug fixes:
+- Added the changelog from V0.1.1
+- Made Mrs Sono forget how to teleport
+
+::changelog-V0.1.1 [changelog]
+!! V0.1.1
+!!! Main content
+- Moved the first minigame to be on the first week
+- Made the player start mid-week
+
+!!!Other content:
+- Made more explicit how many chores need to be done weekly
+- You now skip the time between 18:00 and 22:00 where there is nothing to do
+
+!!!Bug fixes:
+- Saves were not working
+- At the end of the week, the player wasn't autoevaluated
+- Some NPC in the first event were not well generated
+- Fixed typo
+
 ::changelog-V0.1.0 [changelog]
 
-!! V0.1.0 - Getting to know each other
+!! V0.1.0
 !!! Main content:
 - Intro story
 - Start of the housekeeper role

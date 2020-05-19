@@ -45,12 +45,14 @@ class Mansion {
 		this.rooms.push(room);
 	}
 
-	addChore(roomID, chore, group) {
-		var group = group || "default"; 
-		if (this.choresGroup[group] !== undefined)
-			this.choresGroup[group].push({name: chore.name, room: roomID});
-		else
-			this.choresGroup[group] = [{name: chore.name, room: roomID}];
+	addChore(roomID, chore, groups) {
+		var groups = groups || ["default"]; 
+		groups.forEach(function(group) {
+			if (this.choresGroup[group] !== undefined)
+				this.choresGroup[group].push({name: chore.name, room: roomID});
+			else
+				this.choresGroup[group] = [{name: chore.name, room: roomID}];
+		}, this);
 		this.findRoom(roomID).addChore(chore.clone());
 	}
 
@@ -60,13 +62,13 @@ class Mansion {
 		);
 		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[i].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.1;
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
 		}, this);
 		var j = i; 
 		while (j === i) 
 			j = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[j].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.1;
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.5;
 		}, this);
 	}
 
