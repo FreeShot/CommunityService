@@ -13,10 +13,10 @@ class Chore {
 		this.time = {};
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = false;
+		this.done = 0;
 		this.room = '';
 		this.id = '';
-		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
+		this.choreFrequency = 7;
 		this.xp = 1;
 
 		Object.keys(config).forEach((pn) => {
@@ -32,7 +32,7 @@ class Chore {
 			return "";
 
 		var htmlClass = "chore";
-		if (this.done)
+		if (this.done === this.choreFrequency)
 			htmlClass = 'chore-done';
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
 			htmlClass = 'chore-exhaused';
@@ -45,47 +45,26 @@ class Chore {
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass,
 			this.name,
-			this.done ? "" : `(To do beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)} before ${this.getLastDay}. Duration: ${Timer.getTime(this.duration)})`,
+			this.done === this.choreFrequency ? "" : `(To do ${this.choreFrequency - this.done} times beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
 			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
-			canDoChores && !this.done && htmlClass === "chore" ? String.format(
-				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {6})>><<set $aPsgText to `{5}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
+			canDoChores && (this.choreFrequency - this.done) !== 0 && htmlClass === "chore" ? String.format(
+				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done++>><</link>></span>",
 				this.passage,
 				this.room,
 				this.staminaCost,
 				this.duration,
 				this.name,
-				State.variables.mansion.findRoom(this.room).getPassage(),
-				this.xp
+				this.xp,
+				State.variables.mansion.findRoom(this.room).getPassage()
 			) : ""
 		);
 	}
 
 	reset() {
 		if (this.dayLeft === 0)
-			this.done = false;
 			if (!skipChores())
-				State.variables.player.choresLate++;
-	}
-
-	get dayLeft() {
-		var day = State.variables.time.weekDay;
-		switch (this.choreFrequency) {
-			case "W":
-				// Resets on sunday
-				return 6 - day;
-			case "B":
-				// Resets on wednesday and sunday
-				return day < 3 ? 2 - day : 6 - day;
-			case "D":
-				// Chore resets everydays
-				return 0;
-			default:
-				break;
-		}
-	}
-
-	get getLastDay() {
-		return ["tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"][this.dayLeft];
+				State.variables.player.choresLate += this.choreFrequency - this.done;
+			this.done = 0;
 	}
 
 	get getDuration() {
