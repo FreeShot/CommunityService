@@ -12,6 +12,10 @@ class Room {
         }, this);
 	}
 
+	resetChores() {
+		this.chores.forEach((chore) => chore.reset())
+	}
+
 	addChore(chore) {
 		chore.room = this.id;
 		this.chores.push(chore);

@@ -45,6 +45,7 @@ Once everything it tidy you grab a bite to eat and go back to your room.<br>
 [[Return to your room.|PlayerBdRm]]
 <<= $time.addTime({hour: 2, minute:0})>>
 <</if>>
+<</nobr>>
+
 <<set $player.rest()>>
 <<= $mansion.resetChores()>>
-<</nobr>>
