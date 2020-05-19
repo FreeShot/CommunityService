@@ -27,6 +27,9 @@ Desk
 <</nobr>>
 
 <<= $mansion.findRoom("PlayerBdRm").displayChores("", true)>>
+<<if $time.compareTime({hour:18, minute:0}) === 1>>
+<<= $time.setDate({hour:22})>>
+<</if>>
 
 ::playerRoomShower [playerRoom]
 <<tooltips "comment">>

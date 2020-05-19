@@ -5846,7 +5846,10 @@ Desk
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(&quot;&quot;, true)&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
+&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(&quot;&quot;, true)&gt;&gt;
+&lt;&lt;if $time.compareTime({hour:18, minute:0}) === 1&gt;&gt;
+&lt;&lt;= $time.setDate({hour:22})&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="playerRoomShower" tags="playerRoom" position="475,2350" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
 At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player&#39;s personnal hygene.
 &lt;&lt;/tooltips&gt;&gt;
 [img[setup.ImagePath + &quot;events/bath_routine/shower01.gif&quot;]]
