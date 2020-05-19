@@ -89,6 +89,12 @@ class Room {
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone) {
+		return this.chores.reduce((str, chore) => {
+			var choreDo = chore.do(canDoChores, filterDone||false);
+			if (choreDo === "") return str;
+			return `${str}<li>${choreDo}</li>`;
+		}, "");
+
 		if (this.chores.length > 0) {
 			var title = `${((displayTitle || true) ? this.name : "")}<ol>`;
 			var str = "";

@@ -1365,7 +1365,7 @@ class Mansion {
 		for (var i = 0; i < this.rooms.length; i++) {
 			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone);
 			if (roomChores != undefined && roomChores !== "") {
-				str += `<li>${roomChores}</li>`;
+				str += roomChores;
 				hasChores = true;
 			}
 		}
@@ -1391,6 +1391,12 @@ class Mansion {
 		);
 		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[i].forEach(function(chore) {
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
+		}, this);
+		var j = i; 
+		while (j === i) 
+			j = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
+		this.choresGroup[j].forEach(function(chore) {
 			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
 		}, this);
 	}
@@ -1864,6 +1870,12 @@ class Room {
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone) {
+		return this.chores.reduce((str, chore) => {
+			var choreDo = chore.do(canDoChores, filterDone||false);
+			if (choreDo === "") return str;
+			return `${str}<li>${choreDo}</li>`;
+		}, "");
+
 		if (this.chores.length > 0) {
 			var title = `${((displayTitle || true) ? this.name : "")}<ol>`;
 			var str = "";
@@ -3759,7 +3771,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;foyerDusting&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;main&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Hall&quot;, new Chore({
 	name: &quot;Clean Hall&quot;, 
 	duration: {hour: 1}, 
@@ -3769,7 +3781,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;main&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({
 	name: &quot;Clean Upper Hall&quot;, 
 	duration: {hour: 1}, 
@@ -3779,7 +3791,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;main&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({
 	name: &quot;Clean Garden&quot;, 
 	duration: {hour: 1}, 
@@ -3788,7 +3800,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;gardenSweep&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;ext&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Pool&quot;, new Chore({
 	name: &quot;Clean Pool&quot;, 
 	duration: {hour: 1}, 
@@ -3797,16 +3809,16 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;poolSweep&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;ext&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
-	name: &quot;Dishes&quot;,
+	name: &quot;Do the dishes in the kitchen&quot;,
 	duration: {minute: 30}, 
 	passages: [
 		{name: &quot;kitchenDishes&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
 	days: [0, 1, 2, 3, 4, 5, 6]
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;kitchen&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Clean the kitchen&quot;, 
 	duration: {minute:30}, 
@@ -3816,25 +3828,25 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	], 
 	staminaCost: 1,
 	days: [0, 2, 4, 6]
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;kitchen&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
-	name: &quot;Wash Linen&quot;, 
+	name: &quot;Wash Linen in the laundry&quot;, 
 	duration: {hour: 1}, 
 	passages:[
 		{name: &quot;laundryLinen&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
 	days: [0]
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;kitchen&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
-	name: &quot;Wash Clothes&quot;, 
+	name: &quot;Wash Clothes in the laundry&quot;, 
 	duration: {hour: 1}, 
 	passages:[
 		{name: &quot;laundryClothes&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
 	days: [0]
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;kitchen&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Lounge&quot;, new Chore({
 	name: &quot;Clean Lounge&quot;, 
 	duration: {hour: 2}, 
@@ -3845,7 +3857,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;loungeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;base&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Dining&quot;, new Chore({
 	name: &quot;Clean Dining Room&quot;, 
 	duration: {hour: 2}, 
@@ -3856,7 +3868,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;diningWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;base&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBdRm&quot;, new Chore({
 	name: &quot;Clean Master Bedroom&quot;, 
 	duration: {hour: 1},
@@ -3867,7 +3879,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;base&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
 	name: &quot;Clean Master Bathroom&quot;, 
 	duration: {hour: 1}, 
@@ -3880,7 +3892,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBathRmBath&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;base&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({
 	name: &quot;Clean Office&quot;, 
 	duration: {hour: 1}, 
@@ -3891,7 +3903,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;officeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;base&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({
 	name: &quot;Clean Gym&quot;, 
 	duration: {hour: 2}, 
@@ -3901,16 +3913,16 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;gymWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;ext&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({
-	name: &quot;Check the door&quot;, 
+	name: &quot;Check the door (upper hall)&quot;, 
 	duration: {minute: 5}, 
 	passages:[
 		{name: &quot;sonBdRmCleaning&quot;, weight:1}, 
 		{name: &quot;sonBdRmLocked&quot;, weight: 1}
 	], 
 	staminaCost: 0, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;upper&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({
 	name: &quot;Tidy your room&quot;, 
 	duration: {hour: 1}, 
@@ -3919,9 +3931,9 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;playerBdRmClean&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;base&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
-	name: &quot;Clean the bedroom&quot;, 
+	name: &quot;Clean the daughter&#39;s bedroom&quot;, 
 	duration: {hour: 1}, 
 	passages:[
 		{name: &quot;daughterBdRmcleaning&quot;, weight:1}, 
@@ -3930,7 +3942,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;daughterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;
+}), &quot;upper&quot;)&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({
 	name: &quot;Clean the guest room&quot;, 
 	duration: {hour: 1}, 
@@ -3941,7 +3953,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;guestRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-}), &quot;default&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="eventInit" tags="event" position="725,1600" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
+}), &quot;upper&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="eventInit" tags="event" position="725,1600" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
 	name: &quot;End of the week review&quot;, 
 	passage: &quot;endOfWeekRecapStart&quot;, 
 	inline:false, 
