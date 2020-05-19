@@ -81,3 +81,5 @@ Setting.addToggle("debug", {
 	onChange : () => State.variables.debug = settings.debug
 });
 */
+
+Config.history.maxStates = 20;

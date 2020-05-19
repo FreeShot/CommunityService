@@ -1991,6 +1991,8 @@ Setting.addToggle("debug", {
 	onChange : () => State.variables.debug = settings.debug
 });
 */
+
+Config.history.maxStates = 20;
 /* twine-user-script #15: "shop.js" */
 class Shop {
 	constructor (config) {
@@ -2178,7 +2180,9 @@ Object.defineProperty(window, 'Timer', {
 - Inventory
 - Bugs for your entertainement
 !!! Bug fixes:
-- None, it&#39;s the first release</tw-passagedata><tw-passagedata pid="3" name="foyerCleaning" tags="noreturn chore" position="350,100" size="100,100">&lt;&lt;include &quot;foyerDusting&quot;&gt;&gt;
+- None, it&#39;s the first release
+
+test change</tw-passagedata><tw-passagedata pid="3" name="foyerCleaning" tags="noreturn chore" position="350,100" size="100,100">&lt;&lt;include &quot;foyerDusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;foyerSweepMop&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="foyerDusting" tags="noreturn chore" position="475,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
