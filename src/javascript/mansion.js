@@ -34,7 +34,7 @@ class Mansion {
 		for (var i = 0; i < this.rooms.length; i++) {
 			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone);
 			if (roomChores != undefined && roomChores !== "") {
-				str += `<li>${roomChores}</li>`;
+				str += roomChores;
 				hasChores = true;
 			}
 		}
@@ -60,6 +60,12 @@ class Mansion {
 		);
 		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
 		this.choresGroup[i].forEach(function(chore) {
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
+		}, this);
+		var j = i; 
+		while (j === i) 
+			j = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
+		this.choresGroup[j].forEach(function(chore) {
 			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
 		}, this);
 	}
