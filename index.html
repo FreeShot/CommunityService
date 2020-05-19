@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="139" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="139" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
@@ -4633,7 +4633,7 @@ You were enjoying your snack when a shady looking man took the seat accross from
 
 &lt;&lt;= Character.speakAnonymous(&quot;Hey kid, you look like a smart person ready to make some money. I&#39;m wondering if you wouldn&#39;t mind helping me out getting this package to some friend of mine.&quot;, &quot;Peru&quot;)&gt;&gt;
 
-He holds out a plane brown box in front of you. It&#39;s clear this person is up to no good.
+He holds out a plain brown box in front of you. It&#39;s clear this person is up to no good.
 
 [img[setup.ImagePath + &quot;items/general/brownbox.jpg&quot;]]
 
@@ -4644,7 +4644,7 @@ The man is rubbing his fingers together with a sly smile.
 [[Sounds like a good deal to me.|Intro2]]
 [[Nope. Stranger danger.|EndHomeSweetHome]]</tw-passagedata><tw-passagedata pid="132" name="Intro2" tags="intro tutorial" position="225,1725" size="100,100">&lt;&lt;= $player.speak(&quot;Sure. I can help you out.&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;Great ! you&#39;re a life saver. Have a safe trip.&quot;,&quot;Peru&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Great! you&#39;re a life saver. Have a safe trip.&quot;,&quot;Peru&quot;)&gt;&gt;
 
 With that, the man hands over the package.
 
@@ -4789,17 +4789,15 @@ The guard shoves you forward.
 
 The man looks you up and down. The appraising stare makes you feel unconfortable, as if you were examined like stock on a farm.
 
-&lt;&lt;= $butler.speak(&quot;Quite. If you please.&quot;)&gt;&gt;
+He looks back to the guard with out even adressing you. &lt;&lt;= $butler.speak(&quot;Quite.&quot;)&gt;&gt; The older man gestures to your cuff. &lt;&lt;= $butler.speak(&quot;If you please.&quot;)&gt;&gt;
 
-The older man gestures to your cuff and the guard grabs it.
-
-&lt;&lt;= Character.speakAnonymous(&quot;Welcome to your new home, kid.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
+The guard grabs it. &lt;&lt;= Character.speakAnonymous(&quot;Welcome to your new home, kid.&quot;,&quot;DarkGoldenRod&quot;)&gt;&gt;
 
 He uses a hand held device to re-code your tracker to this location. The older man adds a passcode and the guard leaves without another word.
 
-&lt;&lt;= $butler.speak(&quot;Very well then. Follow me.&quot;)&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;Follow me.&quot;)&gt;&gt;
 
-With that, the turns around and walks into the estate proper.
+With that, the man turns around and walks into the estate proper.
 
 [[Follow|manorIntro02]]</tw-passagedata><tw-passagedata pid="141" name="manorIntro02" tags="tutorial" position="100,1850" size="100,100">&lt;&lt;= $mansion.display(&quot;Foyer&quot;)&gt;&gt;
 You follow the older man and the main door opens into a wide foyer. The room is ornately decorated and you can see a flight of stairs leading to a second floor and corridors going to other parts of the estate.
@@ -4855,7 +4853,7 @@ You watch as the old gardner drops what he is doing and grabs his back with one 
 
 $butler.name walks back inside, through the kitchen and back to the foyer.
 
-&lt;&lt;= $butler.speak(&quot;As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I&#39;ll show you the upstairs rooms.&quot;)&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;As you can see, the estate is expansive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I&#39;ll show you the upstairs rooms.&quot;)&gt;&gt;
 
 Follow $butler.name up the stairs to the [[Upper Hall|manorIntro06]]</tw-passagedata><tw-passagedata pid="145" name="manorIntro06" tags="tutorial" position="600,1850" size="100,100">&lt;&lt;= $mansion.display(&quot;UpperHall&quot;)&gt;&gt;
 The upper hall streches for some way to the other rooms of the estate. Near one landing, you see two women in conversation.
@@ -4938,19 +4936,19 @@ Not wanting to push your luck, you quickly catch up and fall in behind $butler.n
 
 &lt;&lt;= $owner.speak(&quot;I expect $butler.name has already gone over the rules and updated your CUFF accordingly ?&quot;)&gt;&gt;
 
-&lt;&lt;= $player.speak(&quot;Yes sir.&quot;)&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Yes $owner.title.&quot;)&gt;&gt;
 
 &lt;&lt;= $owner.speak(&quot;Very good. You will answer to $butler.name after myself and my wife at all time. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he&#39;s not impressed, I&#39;m not impressed. Is that understood?&quot;)&gt;&gt;
 
-&lt;&lt;= $player.speak(&quot;Yes sir.&quot;)&gt;&gt;
+&lt;&lt;= $player.speak(&quot;Yes $owner.title.&quot;)&gt;&gt;
 
 &lt;&lt;= $owner.speak(&quot;$butler.name?&quot;)&gt;&gt;
 
-The older man replies &lt;&lt;= $butler.speak(&quot;Yes sir.&quot;)&gt;&gt;
+The older man replies &lt;&lt;= $butler.speak(&quot;Yes $owner.title.&quot;)&gt;&gt;
 
 &lt;&lt;= $owner.speak(&quot;See that he understands how to present himself as well. Slouching doesn&#39;t benefit his slight figure.&quot;)&gt;&gt;
 
-&lt;&lt;= $butler.speak(&quot;As you wish, sir.&quot;)&gt;&gt;
+&lt;&lt;= $butler.speak(&quot;As you wish, $owner.title.&quot;)&gt;&gt;
 
 &lt;&lt;= $owner.speak(&quot;That will be all.&quot;)&gt;&gt;
 
@@ -5845,7 +5843,11 @@ Desk
 		&lt;&lt;set $time.addTime({day:0, hour:1, minute: 0})&gt;&gt;
 		&lt;&lt;set $player.rest()&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
-	&lt;&lt;/link&gt;&gt;	
+	&lt;&lt;/link&gt;&gt;&lt;br&gt;
+	&lt;&lt;link &quot;Hide for rest of the day.&quot;&gt;&gt;
+		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
+		&lt;&lt;goto `passage()`&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;

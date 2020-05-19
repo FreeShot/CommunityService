@@ -12,7 +12,7 @@ You were enjoying your snack when a shady looking man took the seat accross from
 
 <<= Character.speakAnonymous("Hey kid, you look like a smart person ready to make some money. I'm wondering if you wouldn't mind helping me out getting this package to some friend of mine.", "Peru")>>
 
-He holds out a plane brown box in front of you. It's clear this person is up to no good.
+He holds out a plain brown box in front of you. It's clear this person is up to no good.
 
 [img[setup.ImagePath + "items/general/brownbox.jpg"]]
 
@@ -26,7 +26,7 @@ The man is rubbing his fingers together with a sly smile.
 ::Intro2 [intro tutorial]
 <<= $player.speak("Sure. I can help you out.")>>
 
-<<= Character.speakAnonymous("Great ! you're a life saver. Have a safe trip.","Peru")>>
+<<= Character.speakAnonymous("Great! you're a life saver. Have a safe trip.","Peru")>>
 
 With that, the man hands over the package.
 

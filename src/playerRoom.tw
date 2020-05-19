@@ -25,7 +25,11 @@ Desk
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>
 		<<goto `passage()`>>
-	<</link>>	
+	<</link>><br>
+	<<link "Hide for rest of the day.">>
+		<<= $time.setDate({day:0, hour:22, minute:0})>>
+		<<goto `passage()`>>
+	<</link>>
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
 	<</if>>
 <</if>>
