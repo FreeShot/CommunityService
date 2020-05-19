@@ -5,7 +5,7 @@ class Timer {
 	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
-		this.day = 0;
+		this.day = 2;
 
 		this.wakeup = {hour: 6, minute: 0};
 		this.sleep = {hour: 22, minute: 0};

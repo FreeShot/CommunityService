@@ -2062,7 +2062,7 @@ class Timer {
 	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
-		this.day = 0;
+		this.day = 2;
 
 		this.wakeup = {hour: 6, minute: 0};
 		this.sleep = {hour: 22, minute: 0};
@@ -3731,6 +3731,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;foyerDusting&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Hall&quot;, new Chore({
@@ -3742,6 +3743,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({
@@ -3753,6 +3755,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({
@@ -3763,6 +3766,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;gardenSweep&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Pool&quot;, new Chore({
@@ -3773,6 +3777,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;poolSweep&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
@@ -3782,6 +3787,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;kitchenDishes&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
@@ -3791,6 +3797,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;kitchenClean&quot;, weight: 1}
 	], 
 	staminaCost: 1,
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
@@ -3800,6 +3807,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;kitchenSweepMop&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
@@ -3830,6 +3838,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;loungeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Dining&quot;, new Chore({
@@ -3842,6 +3851,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;diningWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBdRm&quot;, new Chore({
@@ -3854,6 +3864,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
@@ -3868,6 +3879,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBathRmBath&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({
@@ -3880,6 +3892,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;officeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
+	done: 1,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({
@@ -3891,6 +3904,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;gymWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({
@@ -3901,6 +3915,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;sonBdRmLocked&quot;, weight: 1}
 	], 
 	staminaCost: 0, 
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({
@@ -3911,6 +3926,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;playerBdRmClean&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
@@ -3923,6 +3939,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;daughterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
+	done: 0,
 	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({
@@ -3935,6 +3952,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;guestRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
+	done: 0,
 	choreFrequency: 1
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="eventInit" tags="event" position="725,1600" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
 	name: &quot;End of the week review&quot;, 
@@ -5894,10 +5912,13 @@ Once everything it tidy you grab a bite to eat and go back to your room.&lt;br&g
 He goes over what he thinks you did well and what needs improvement.
 
 Chores missed: &lt;&lt;= $player.choresLate&gt;&gt;
-
-[[endOfWeekRecapBad]]
-[[endOfWeekRecapNeutral]]
-[[endOfWeekRecapGood]]</tw-passagedata><tw-passagedata pid="191" name="endOfWeekRecapBad" tags="" position="100,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;Overall your performance this week was lackluster so I have decided to withhold your reduction in debt.&quot;)&gt;&gt;
+&lt;&lt; if $player.choresLate &gt; 4&gt;&gt;
+&lt;&lt;include &quot;endOfWeekRecapBad&quot;&gt;&gt;
+&lt;&lt;elseif $player.choresLate &gt; 0&gt;&gt;
+&lt;&lt;include &quot;endOfWeekRecapNeutral&quot;&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;include &quot;endOfWeekRecapGood&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="191" name="endOfWeekRecapBad" tags="" position="100,2475" size="100,100">&lt;&lt;= $owner.speak(&quot;Overall your performance this week was lackluster so I have decided to withhold your reduction in debt.&quot;)&gt;&gt;
 
 Your shoulders slump as this essentially adds another week to your indenturement.
 

@@ -61,7 +61,7 @@ class Chore {
 	}
 
 	reset() {
-		if (State.time.getDay() === 6)
+		if (State.variables.time.getDay() === 6)
 			if (!skipChores())
 				State.variables.player.choresLate += this.choreFrequency - this.done;
 			this.done = 0;
