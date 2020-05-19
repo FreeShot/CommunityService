@@ -642,7 +642,7 @@ He demonstrates for you and then hands you the tray back. You hold it with one h
 
 He loads the tray with some plastic and metal usensils he's not using and then set about walking back and forth around the open space in the kitchen sitting room. It's a little hard at first and you drop everything a few times. The first time you dropped something, you tried to bend down normally but the skirt started to rid up as you spread your knees. Instead you have to eep your legs together and kneel to the side to stop anyone from seeing the silk panties hiding your caged member. You catch a few of the workers stopping to stare when you do this and realise it's a very delicate and ladylike pose. When you stand back up, you feel your crotch twich unconfortably against its restaints.
 
-<<= $player.speak("<i>It's just my blod pumping from being nervous</i>")>>
+<<= $player.speak("<i>It's just my blood pumping from being nervous</i>")>>
 
 After a while, you seem to be getting the hung of it and $caterer.name calls you back over.
 
@@ -663,7 +663,7 @@ After the lesson, he has you do some basic tidy work while he fininshes his prep
 ::mansionCPartyIntro26 [event]
 You're busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She's wearing sexy black cocktail dress with black heels.
 
-<<= $daughter.speak("Wow. Mum wasn't joking. You're giving some of my friend a run for their monney. The cute but sexy maid thing really works for you.")>>
+<<= $daughter.speak("Wow. Mum wasn't joking. You're giving some of my friends a run for their money. The cute but sexy maid thing really works for you.")>>
 
 <<chooseOption "Thank her.">>
 <<= $player.speak("Um, thank you $daughter.title.")>>
