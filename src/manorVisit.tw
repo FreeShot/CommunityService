@@ -7,17 +7,15 @@ The guard shoves you forward.
 
 The man looks you up and down. The appraising stare makes you feel unconfortable, as if you were examined like stock on a farm.
 
-<<= $butler.speak("Quite. If you please.")>>
+He looks back to the guard with out even adressing you. <<= $butler.speak("Quite.")>> The older man gestures to your cuff. <<= $butler.speak("If you please.")>>
 
-The older man gestures to your cuff and the guard grabs it.
-
-<<= Character.speakAnonymous("Welcome to your new home, kid.","DarkGoldenRod")>>
+The guard grabs it. <<= Character.speakAnonymous("Welcome to your new home, kid.","DarkGoldenRod")>>
 
 He uses a hand held device to re-code your tracker to this location. The older man adds a passcode and the guard leaves without another word.
 
-<<= $butler.speak("Very well then. Follow me.")>>
+<<= $butler.speak("Follow me.")>>
 
-With that, the turns around and walks into the estate proper.
+With that, the man turns around and walks into the estate proper.
 
 [[Follow|manorIntro02]]
 
@@ -85,7 +83,7 @@ You watch as the old gardner drops what he is doing and grabs his back with one 
 
 $butler.name walks back inside, through the kitchen and back to the foyer.
 
-<<= $butler.speak("As you can see, the estate is expensive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I'll show you the upstairs rooms.")>>
+<<= $butler.speak("As you can see, the estate is expansive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I'll show you the upstairs rooms.")>>
 
 Follow $butler.name up the stairs to the [[Upper Hall|manorIntro06]]
 
@@ -177,19 +175,19 @@ Not wanting to push your luck, you quickly catch up and fall in behind $butler.n
 
 <<= $owner.speak("I expect $butler.name has already gone over the rules and updated your CUFF accordingly ?")>>
 
-<<= $player.speak("Yes sir.")>>
+<<= $player.speak("Yes $owner.title.")>>
 
 <<= $owner.speak("Very good. You will answer to $butler.name after myself and my wife at all time. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he's not impressed, I'm not impressed. Is that understood?")>>
 
-<<= $player.speak("Yes sir.")>>
+<<= $player.speak("Yes $owner.title.")>>
 
 <<= $owner.speak("$butler.name?")>>
 
-The older man replies <<= $butler.speak("Yes sir.")>>
+The older man replies <<= $butler.speak("Yes $owner.title.")>>
 
 <<= $owner.speak("See that he understands how to present himself as well. Slouching doesn't benefit his slight figure.")>>
 
-<<= $butler.speak("As you wish, sir.")>>
+<<= $butler.speak("As you wish, $owner.title.")>>
 
 <<= $owner.speak("That will be all.")>>
 
