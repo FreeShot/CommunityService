@@ -770,10 +770,10 @@ class Chore {
 		this.time = {};
 		this.img = [];
 		this.staminaCost  = 0;
-		this.done = false;
+		this.done = 0;
 		this.room = '';
 		this.id = '';
-		this.choreFrequency = "D"; // Weekly, Biweekly, Daily
+		this.choreFrequency = 7;
 		this.xp = 1;
 
 		Object.keys(config).forEach((pn) => {
@@ -789,7 +789,7 @@ class Chore {
 			return "";
 
 		var htmlClass = "chore";
-		if (this.done)
+		if (this.done === this.choreFrequency)
 			htmlClass = 'chore-done';
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
 			htmlClass = 'chore-exhaused';
@@ -802,47 +802,26 @@ class Chore {
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass,
 			this.name,
-			this.done ? "" : `(To do beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)} before ${this.getLastDay}. Duration: ${Timer.getTime(this.duration)})`,
+			this.done === this.choreFrequency ? "" : `(To do ${this.choreFrequency - this.done} times beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
 			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
-			canDoChores && !this.done && htmlClass === "chore" ? String.format(
-				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {6})>><<set $aPsgText to `{5}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
+			canDoChores && (this.choreFrequency - this.done) !== 0 && htmlClass === "chore" ? String.format(
+				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done++>><</link>></span>",
 				this.passage,
 				this.room,
 				this.staminaCost,
 				this.duration,
 				this.name,
-				State.variables.mansion.findRoom(this.room).getPassage(),
-				this.xp
+				this.xp,
+				State.variables.mansion.findRoom(this.room).getPassage()
 			) : ""
 		);
 	}
 
 	reset() {
 		if (this.dayLeft === 0)
-			this.done = false;
 			if (!skipChores())
-				State.variables.player.choresLate++;
-	}
-
-	get dayLeft() {
-		var day = State.variables.time.weekDay;
-		switch (this.choreFrequency) {
-			case "W":
-				// Resets on sunday
-				return 6 - day;
-			case "B":
-				// Resets on wednesday and sunday
-				return day < 3 ? 2 - day : 6 - day;
-			case "D":
-				// Chore resets everydays
-				return 0;
-			default:
-				break;
-		}
-	}
-
-	get getLastDay() {
-		return ["tomorrow", "2 days", "3 days", "4 days", "5 days", "6 days", "a week"][this.dayLeft];
+				State.variables.player.choresLate += this.choreFrequency - this.done;
+			this.done = 0;
 	}
 
 	get getDuration() {
@@ -3782,7 +3761,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;foyerDusting&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Hall&quot;, new Chore({
 	name: &quot;Clean Hall&quot;, 
@@ -3793,7 +3772,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({
 	name: &quot;Clean Upper Hall&quot;, 
@@ -3804,7 +3783,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({
 	name: &quot;Clean Garden&quot;, 
@@ -3814,7 +3793,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;gardenSweep&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Pool&quot;, new Chore({
 	name: &quot;Clean Pool&quot;, 
@@ -3824,7 +3803,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;poolSweep&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Dishes&quot;,
@@ -3833,7 +3812,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;kitchenDishes&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;D&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Clean Sink and Benches&quot;, 
@@ -3842,7 +3821,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;kitchenClean&quot;, weight: 1}
 	], 
 	staminaCost: 1,
-	choreFrequency: &quot;D&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Sweep and Mop&quot;, 
@@ -3851,7 +3830,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;kitchenSweepMop&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
 	name: &quot;Wash Linen&quot;, 
@@ -3860,7 +3839,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;laundryLinen&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;D&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
 	name: &quot;Wash Clothes&quot;, 
@@ -3869,7 +3848,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;laundryClothes&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;D&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Lounge&quot;, new Chore({
 	name: &quot;Clean Lounge&quot;, 
@@ -3881,7 +3860,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;loungeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Dining&quot;, new Chore({
 	name: &quot;Clean Dining Room&quot;, 
@@ -3893,7 +3872,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;diningWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBdRm&quot;, new Chore({
 	name: &quot;Clean Master Bedroom&quot;, 
@@ -3905,7 +3884,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
 	name: &quot;Clean Master Bathroom&quot;, 
@@ -3919,7 +3898,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;masterBathRmBath&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({
 	name: &quot;Clean Office&quot;, 
@@ -3931,7 +3910,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;officeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({
 	name: &quot;Clean Gym&quot;, 
@@ -3942,7 +3921,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;gymWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({
 	name: &quot;Check the door&quot;, 
@@ -3952,7 +3931,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;sonBdRmLocked&quot;, weight: 1}
 	], 
 	staminaCost: 0, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({
 	name: &quot;Tidy your room&quot;, 
@@ -3962,7 +3941,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;playerBdRmClean&quot;, weight: 1}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;D&quot;
+	choreFrequency: 1
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
 	name: &quot;Clean the bedroom&quot;, 
@@ -3974,7 +3953,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;daughterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;B&quot;
+	choreFrequency: 2
 }))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({
 	name: &quot;Clean the guest room&quot;, 
@@ -3986,7 +3965,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 		{name: &quot;guestRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 1, 
-	choreFrequency: &quot;W&quot;
+	choreFrequency: 1
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="eventInit" tags="event" position="725,1600" size="100,100">&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
 	name: &quot;End of the week review&quot;, 
 	passage: &quot;endOfWeekRecapStart&quot;, 
