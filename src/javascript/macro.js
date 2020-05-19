@@ -19,7 +19,10 @@ Macro.add("scale", {
 
 Macro.add("debug", {
 	tags: [],
-	handler: () => jQuery(this.output).wiki(`<<debug-internal>>${process(this.args[0])}<</debug-internal>>`)
+	handler: function() {
+		return jQuery(this.output).wiki(
+		    `<<debug-internal>>${process(this.args[0])}<</debug-internal>>`)
+	}
 });
 
 Macro.add("debug-internal", {

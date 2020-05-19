@@ -14,6 +14,7 @@ class Chore {
 		this.img = [];
 		this.staminaCost  = 0;
 		this.done = true;
+		this.todo = false;
 		this.days = [0, 1, 2, 3, 4, 5, 6];
 		this.room = '';
 		this.id = '';
@@ -28,7 +29,7 @@ class Chore {
 
 	do(canDoChores, filterDone) {
 		// Chore is waiting to be reset
-		if (skipChores() || (this.done && filterDone) || (State.variables.mansion.currentEvent != "" || !this.days.includes(State.variables.time.weekDay)))
+		if (skipChores() || (this.done && filterDone) || !this.todo)
 			return "";
 
 		var htmlClass = "chore";
@@ -45,9 +46,9 @@ class Chore {
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
 			htmlClass,
 			this.name,
-			this.done ? "" : `(To do ${this.choreFrequency - this.done} times beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
+			this.done ? "" : `(To do beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
 			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
-			canDoChores && (this.choreFrequency - this.done) !== 0 && htmlClass === "chore" ? String.format(
+			canDoChores && !this.done && htmlClass === "chore" ? String.format(
 				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
 				this.passage,
 				this.room,
@@ -61,12 +62,10 @@ class Chore {
 	}
 
 	reset() {
-		if (State.variables.time.weekDay === this.days){
-			if (!skipChores())
-				State.variables.player.choresLate += this.done ? 0 : 1;
-			this.done = false;
-		}
-		console.log("Chores missed", State.variables.player.choresLate);
+		if (!skipChores())
+			State.variables.player.choresLate += this.done ? 0 : 1;
+		this.done = false;
+		this.todo = false;
 	}
 
 	get getDuration() {

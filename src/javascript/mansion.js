@@ -3,6 +3,7 @@ class Mansion {
 		this.rooms = [];
 		this.events = []; // Special Events
 		this.currentEvent = "";
+		this.choresGroup = {};
 
 		if (config != {}) {
 			Object.keys(config).forEach(function (pn) {
@@ -44,8 +45,23 @@ class Mansion {
 		this.rooms.push(room);
 	}
 
-	addChore(roomID, chore) {
+	addChore(roomID, chore, group) {
+		var group = group || "default"; 
+		if (this.choresGroup[group] !== undefined)
+			this.choresGroup[group].push({name: chore.name, room: roomID});
+		else
+			this.choresGroup[group] = [{name: chore.name, room: roomID}];
 		this.findRoom(roomID).addChore(chore.clone());
+	}
+
+	resetChores() {
+		this.rooms.forEach(
+		    function(room) {room.resetChores()}
+		);
+		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
+		this.choresGroup[i].forEach(function(chore) {
+			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
+		}, this);
 	}
 
 	addEvent(roomID, event) {
@@ -66,10 +82,6 @@ class Mansion {
 
 	checkSpecialEvents() {
 		return this.events.reduce((str, ev) => ev.active() ? str += ev.playEvent() : str, "");
-	}
-
-	resetChores() {
-		this.rooms.forEach((el) => el.resetChores())
 	}
 
 	clone() {
