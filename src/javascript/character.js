@@ -374,7 +374,11 @@ class MinorNPC extends Character {
 
 	// For twine
 	toJSON() {
-		return JSON.reviveWrapper('new Player($ReviveData$)', Object.keys(this).reduce((data, pn) => data[pn] = clone(this[pn]), this));
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new MinorNPC($ReviveData$)', ownData);
 	}
 }
 // Addst MinorNPC to window
