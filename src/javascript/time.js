@@ -5,7 +5,7 @@ class Timer {
 	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
-		this.day = 2;
+		this.day = 0;
 
 		this.wakeup = {hour: 6, minute: 0};
 		this.sleep = {hour: 22, minute: 0};
@@ -18,9 +18,12 @@ class Timer {
 	setDate(time) {
 		if (typeof time === "string")
 			time = this[time]
-		if (this.compareTime(time) === 1)
-				this.addTime({day: 1});
-		this.day = time.day || this.day;
+		time = Object.assign({day:0, hour:0, minute:0}, time);
+		if (this.inInterval({hour: 0, minute: 0}, time))
+			this.day = time.day != 0 ? time.day + 1 : this.day + 1
+		else {
+			this.day = time.day != 0 ? time.day : this.day;
+		}
 		this.time.hour = time.hour;
 		this.time.minute = time.minute;
 	}

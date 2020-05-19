@@ -13,6 +13,10 @@ Desk
 <<if _event !== "">>
 	<<= _event>>
 <<else>>
+	<<= console.log($time.inInterval("sleep", "wakeup"))>>
+	<<if $time.inInterval("sleep", "wakeup")>>
+	[[Go to bed|sleep]]
+	<<else>>
 	Got to the bathroom and:<br>
 	[[Shower|playerRoomShower]]<br>
 	Check the [[Wardrobe|playerRoomWardrobe]]<br>
@@ -23,6 +27,7 @@ Desk
 		<<goto `passage()`>>
 	<</link>>	
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
+	<</if>>
 <</if>>
 <</nobr>>
 

@@ -12,15 +12,7 @@
 	passage: "mansionCPartyIntro01",
 	inline: false,
 	repeats: false,
-	tags: ["WeekEven", "Saturday", "Morning"]
-}))>>
-
-<<= $mansion.addEvent("specialEvent", new Event({
-	name: "Go to bed", 
-	passage:"sleep", 
-	inline:false, 
-	repeats:true, 
-	tags: ["Evening", "!Sunday"]
+	tags: ["!WeekEven", "Saturday", "Morning"]
 }))>>
 
 <<= $mansion.addEvent("specialEvent", new Event({

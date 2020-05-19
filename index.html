@@ -818,7 +818,7 @@ class Chore {
 	}
 
 	reset() {
-		if (State.variables.time.weekDay === 6)
+		if (State.variables.time.weekDay === 0)
 			if (!skipChores())
 				State.variables.player.choresLate += this.choreFrequency - this.done;
 			this.done = 0;
@@ -2062,7 +2062,7 @@ class Timer {
 	days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 	constructor (config) {
 		this.time = {hour : 0, minute : 0};
-		this.day = 2;
+		this.day = 0;
 
 		this.wakeup = {hour: 6, minute: 0};
 		this.sleep = {hour: 22, minute: 0};
@@ -2075,9 +2075,12 @@ class Timer {
 	setDate(time) {
 		if (typeof time === "string")
 			time = this[time]
-		if (this.compareTime(time) === 1)
-				this.addTime({day: 1});
-		this.day = time.day || this.day;
+		time = Object.assign({day:0, hour:0, minute:0}, time);
+		if (this.inInterval({hour: 0, minute: 0}, time))
+			this.day = time.day != 0 ? time.day + 1 : this.day + 1
+		else {
+			this.day = time.day != 0 ? time.day : this.day;
+		}
 		this.time.hour = time.hour;
 		this.time.minute = time.minute;
 	}
@@ -3040,7 +3043,7 @@ You can see $owner.name lying asleep face down, clearly naked, and quicly follow
 	passage: &quot;mansionCPartySetup01&quot;,
 	inline: true,
 	repeats: true,
-	tags: [&quot;WeekEven&quot;, &quot;Saturday&quot;, &quot;Morning&quot;]
+	tags: [&quot;!WeekEven&quot;, &quot;Saturday&quot;, &quot;Morning&quot;]
 }))&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="mansionCPartySetup01" tags="event eventStart" position="225,1225" size="100,100">TODO: Set all of the clothes for the player.
 
@@ -3967,15 +3970,7 @@ todo: add cage conditions, arousal, etc</tw-passagedata><tw-passagedata pid="122
 	passage: &quot;mansionCPartyIntro01&quot;,
 	inline: false,
 	repeats: false,
-	tags: [&quot;WeekEven&quot;, &quot;Saturday&quot;, &quot;Morning&quot;]
-}))&gt;&gt;
-
-&lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
-	name: &quot;Go to bed&quot;, 
-	passage:&quot;sleep&quot;, 
-	inline:false, 
-	repeats:true, 
-	tags: [&quot;Evening&quot;, &quot;!Sunday&quot;]
+	tags: [&quot;!WeekEven&quot;, &quot;Saturday&quot;, &quot;Morning&quot;]
 }))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
@@ -4768,7 +4763,7 @@ Here is the [[changelog]] for the current version of the game.
 	CUFF : 3,
 	manorIntro : 1
 }&gt;&gt;
-&lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
+&lt;&lt;= $time.setDate({day: 2, hour: 22, minute: 0})&gt;&gt;
 &lt;&lt;/link&gt;&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;chooseOption &quot;Skip the introduction (Start with the default character)&quot;&gt;&gt;
@@ -4778,7 +4773,7 @@ Are you sure you want to skip the intro (Not recommended for first timers)?
 	CUFF : 3,
 	manorIntro : 1
 }&gt;&gt;
-&lt;&lt;= $time.setDate({day: 0, hour: 22, minute: 0})&gt;&gt;
+&lt;&lt;= $time.setDate({day: 2, hour: 22, minute: 0})&gt;&gt;
 &lt;&lt;/link&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="140" name="manorIntro01" tags="tutorial" position="1225,1725" size="100,100">You&#39;re taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
@@ -5833,6 +5828,10 @@ Desk
 &lt;&lt;if _event !== &quot;&quot;&gt;&gt;
 	&lt;&lt;= _event&gt;&gt;
 &lt;&lt;else&gt;&gt;
+	&lt;&lt;= console.log($time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;))&gt;&gt;
+	&lt;&lt;if $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
+	[[Go to bed|sleep]]
+	&lt;&lt;else&gt;&gt;
 	Got to the bathroom and:&lt;br&gt;
 	[[Shower|playerRoomShower]]&lt;br&gt;
 	Check the [[Wardrobe|playerRoomWardrobe]]&lt;br&gt;
@@ -5843,6 +5842,7 @@ Desk
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/link&gt;&gt;	
 	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
@@ -5907,9 +5907,9 @@ Once everything it tidy you grab a bite to eat and go back to your room.&lt;br&g
 &lt;br&gt;
 [[Return to your room.|PlayerBdRm]]
 &lt;&lt;= $time.addTime({hour: 2, minute:0})&gt;&gt;
-&lt;&lt;= $mansion.resetChores()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set $player.rest()&gt;&gt;
+&lt;&lt;= $mansion.resetChores()&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="190" name="endOfWeekRecapStart" tags="event" position="1225,2350" size="100,100">Before you turn in for the night you report to the study. $owner.name is sitting behind his desk with $butler.name standing patiently nearby.
 
 He goes over what he thinks you did well and what needs improvement.

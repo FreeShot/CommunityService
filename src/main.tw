@@ -30,7 +30,7 @@ Here is the [[changelog]] for the current version of the game.
 	CUFF : 3,
 	manorIntro : 1
 }>>
-<<= $time.setDate({day: 0, hour: 22, minute: 0})>>
+<<= $time.setDate({day: 2, hour: 22, minute: 0})>>
 <</link>>
 <<else>>
 <<chooseOption "Skip the introduction (Start with the default character)">>
@@ -40,7 +40,7 @@ Are you sure you want to skip the intro (Not recommended for first timers)?
 	CUFF : 3,
 	manorIntro : 1
 }>>
-<<= $time.setDate({day: 0, hour: 22, minute: 0})>>
+<<= $time.setDate({day: 2, hour: 22, minute: 0})>>
 <</link>>
 <</chooseOption>>
 <</if>>	
