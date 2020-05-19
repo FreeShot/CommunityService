@@ -7,11 +7,11 @@ It's nice to spend the morning chilling out for once, but you eventually remembe
 <<= $time.setDate({hour: 12, minute:0})>>
 
 ::mansionCPartyIntro02 [event]
-The main foyer is busy with people setting up for the party this evening. The Sonos's spare no expense with lavish decoration, flower arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before, but now you can really see the money on display.
+The main foyer is busy with people setting up for the party this evening. No expense was spared, there are lavish decorations, flower arrangements. The smell coming from the kitchen is amazing. The rooms were already impressive before, but now you can really see the money on display.
 
 You dodge a few of the workers as they move through with another bouquet. One of the women moving through the room catches your eyes. She is wearing a gorgeous maid's outfit that looks like something out of a boutique magazine.
 
-You are busy taking in the sight of the cute maid when you get a shove from behind from two people moving a table. The world teeters for a moment before you stumble down the stairs and run straight into a woman holding a stack of plates. You try to steady yourself but all you manage to do is tangle your feet in hers. Both you and the server crash to the ground and the plates shatter on impact.
+You are busy taking in the sight of the cute maid when you get a shoved from behind from two people moving a table. The world teeters for a moment before you stumble down the stairs and run straight into a woman holding a stack of plates. You try to steady yourself but all you manage to do is tangle your feet in hers. Both you and the server crash to the ground and the plates shatter on impact.
 
 [img[setup.ImagePath + "events/cocktailparty/broken_plates.jpg"]]
 
@@ -69,7 +69,7 @@ $wife.name drags you towards the [[Master Bedroom|mansionCPartyIntro04]]
 ::mansionCPartyIntro05 [event]
 <<= $wife.speak("Exellent. Not that you have a choice though. Who knows, if you like it, we might make this part of your normal duties. Now we can't have you dressed like this so stay there while I get you something to wear.")>>
 
-$wife goes into the closet and you sit wringing your hands nervously. Hopefully you can do well enough that they'll let you stay on at the estate.
+$wife.name goes into the closet and you sit wringing your hands nervously. Hopefully you can do well enough that they'll let you stay on at the estate.
 
 She comes back out with a bundle of items and starts laying them out on the large master bed. There's some simple silk bra and panties, a nice black and white silk dress...
 
@@ -229,7 +229,7 @@ $wife.name pulls your attention away from the breast forms as she grabs your chi
 ::mansionCPartyIntro13 [event]
 <<= $wife.speak("Close your eyes.")>>
 
-You do so and feel her brushing and pusing against your face. It doesn't take a genious to guess that she is applying makeup.
+You do so and feel her brushing against your eyes, cheeks and mouth. It doesn't take a genious to guess that she is applying makeup.
 
 [img[setup.ImagePath + "events/bath_routine/makeup_eyes01.gif"]]
 
@@ -237,7 +237,7 @@ It takes a few minutes and $wife.name chides you a few times for moving and spoi
 
 [img[setup.ImagePath + "events/bath_routine/makeup_lips01.gif"]]
 
-She stops for a moment and you're tempted to open your eyes and risk getting a taking to.
+She stops for a moment and you're tempted to open your eyes and risk getting a talking to.
 
 <<= $wife.speak("Do you prefer blondes, brunettes, or red heads?")>>
 
@@ -252,7 +252,7 @@ You feel $wife.name putting something on your head.
 
 <<= $wife.speak("Your hair is too scruffy to work with, so you'll have to wear a wig instead.")>>
 
-$wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
+$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Brown Wig">>
 <<option "Blonde">>
@@ -266,7 +266,7 @@ You feel $wife.name putting something on your head.
 
 <<= $wife.speak("Your hair is too scruffy to work with, so you'll have to wear a wig instead.")>>
 
-$wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
+$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Blonde Wig">>
 <<option "Brunettes">>
@@ -280,7 +280,7 @@ You feel $wife.name putting something on your head.
 
 <<= $wife.speak("Your hair is too scruffy to work with, so you'll have to wear a wig instead.")>>
 
-$wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
+$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Brown Wig">>
 <<option "Jet Black">>
@@ -294,7 +294,7 @@ You feel $wife.name putting something on your head.
 
 <<= $wife.speak("Your hair is too scruffy to work with, so you'll have to wear a wig instead.")>>
 
-$wife.name adjusts the fit as best as she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
+$wife.name adjusts the fit as best she can and tucks your short hair under the wig until she has it in the right spot. You feel the long tresses of the wig fall arount your shoulders. she spends some time adjusting the front so it frames your face and then ties your hairs back into a ponytail.
 
 <<= $wife.speak("Put your legs out so we can get your stockings on.")>><<set _wig to "Long Black Wig">>
 <<option "Red heads">>
@@ -584,7 +584,7 @@ $butler.name pauses for a moment and looks you up and down. There is little to n
 
 You follow after $butler.name and try to get used to the changes in you wardrobe. The shaper isn't uncomfortable but both it and the short heels are forcing you to walk in a feminine sway. Feeling the air against your thighs makes you all to aware of the skirt you have on. You fidget with your hands as the long ponytail tickles behind your shoulder. Before you come into view of anyone else, you reach down and shift unconfortably a few times. After checking yourself out in the mirror your tapped member is already straining against its restricting plastic prison.
 
-$wife.name is already back in the kitchen with $caterer.nam.
+$wife.name is already back in the kitchen with $caterer.name.
 
 <<= $wife.speak("Well $caterer.name. This is $player.femName.")>>
 
@@ -663,7 +663,7 @@ After the lesson, he has you do some basic tidy work while he fininshes his prep
 ::mansionCPartyIntro26 [event]
 You're busy polishing the silver wear when $daughter.name comes into the kitchen already dressed for the party. She's wearing sexy black cocktail dress with black heels.
 
-<<= $daughter.speak("Wow. Mum wasn't joking. You're getting some of my friend a run for their monney. The cute but sexy maid thing really works for you.")>>
+<<= $daughter.speak("Wow. Mum wasn't joking. You're giving some of my friend a run for their monney. The cute but sexy maid thing really works for you.")>>
 
 <<chooseOption "Thank her.">>
 <<= $player.speak("Um, thank you $daughter.title.")>>
