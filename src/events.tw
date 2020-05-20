@@ -215,3 +215,15 @@ You snatch up one of the nearby towels and quickly cover yourself.
 <<= $wife.speak("I don't have time for this. Make yourself presentable and get to work!")>>
 
 $wife.name leaves the room. You clearly lost some credibility with that slip up.
+
+:: cookKitchenCutting01
+
+You can see $cook.name is here going about his business. You're a little concerned a stiff breeze might knock him over and it's slow going and he creeps around the room. Once he's back at the counter he completely changes pace. It's amazing watching him work though since he knows his setup like the back of his hand. He reaches for a knife without looking and immediately his speed changes and he has a plate of vegetables chopped in seconds.
+
+[img[setup.ImagePath + "character/cook/cutting01.gif"]]
+
+It gets you wondering where he learned those knife skills...
+
+:: gardnerGardenBossy01
+
+:: gardnerPoolBossy01

@@ -148,3 +148,33 @@
 	repeats:true, 
 	tags: ["NeedWife", "NeedOwner"]
 }))>>
+
+<!-- Cook events -->
+
+<<= $mansion.addEvent("Kitchen", new Event({
+	name: "cookKitchenCutting01", 
+	passage: "cookKitchenCutting01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedCook"]
+}))>>
+
+<!-- Gardner events 
+
+<<= $mansion.addEvent("Garden", new Event({
+	name: "gardnerGardenBossy01", 
+	passage: "gardnerGardenBossy01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedGardner"]
+}))>>
+
+<<= $mansion.addEvent("Pool", new Event({
+	name: "gardnerPoolBossy01", 
+	passage: "gardnerPoolBossy01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedGardner"]
+}))>>
+
+-->
