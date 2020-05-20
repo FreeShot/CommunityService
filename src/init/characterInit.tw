@@ -24,12 +24,12 @@
 	},{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Office", 
-		start: {hour: 18, minute: 0}, 
+		start: {hour: 19, minute: 0}, 
 		end: {hour: 20, minute: 0}
 	},{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Lounge", 
-		start: {hour: 10, minute: 0}, 
+		start: {hour: 20, minute: 0}, 
 		end: {hour: 22, minute: 0}
 	},{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
@@ -59,13 +59,18 @@
 		end: {hour: 8, minute: 0}
 	},{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
+		location: "Office", 
+		start: {hour: 15, minute: 0}, 
+		end: {hour: 18, minute: 0}
+	},{
+		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Gym", 
-		start: {hour: 17, minute: 0}, 
-		end: {hour: 19, minute: 0}
+		start: {hour: 18, minute: 0}, 
+		end: {hour: 20, minute: 0}
 	},{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
 		location: "Lounge", 
-		start: {hour: 19, minute: 0}, 
+		start: {hour: 20, minute: 0}, 
 		end: {hour: 22, minute: 0}
 	},{
 		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 

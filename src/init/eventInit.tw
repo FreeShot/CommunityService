@@ -23,8 +23,7 @@
 	tags: ["therapyPathStart"]
 }))>>
 
-<!-- --------------------------------- -->
-
+<!-- Daughter events -->
 
 <<= $mansion.addEvent("Gym", new Event({
 	name: "daughterGymSquat01", 
@@ -50,9 +49,41 @@
 	tags: ["NeedDaughter"]
 }))>>
 
+<<= $mansion.addEvent("Pool", new Event({
+	name: "daughterPoolSwimming01", 
+	passage: "daughterPoolSwimming01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedDaughter"]
+}))>>
+
+<<= $mansion.addEvent("Pool", new Event({
+	name: "daughterPoolSwimming02", 
+	passage: "daughterPoolSwimming02", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedDaughter"]
+}))>>
+
 <<= $mansion.addEvent("Garden", new Event({
 	name: "daughterGardenReading01", 
 	passage: "daughterGardenReading01", 
+	inline:true, 
+	repeats:true, 
+	tags: ["NeedDaughter"]
+}))>>
+
+<<= $mansion.addEvent("DaughterBdRm", new Event({
+	name: "daughterDaughterBdRmStudying01", 
+	passage: "daughterDaughterBdRmStudying01", 
+	inline:true, 
+	repeats:true, 
+	tags: ["NeedDaughter"]
+}))>>
+
+<<= $mansion.addEvent("DaughterBdRm", new Event({
+	name: "daughterDaughterBdRmStudying02", 
+	passage: "daughterDaughterBdRmStudying02", 
 	inline:true, 
 	repeats:true, 
 	tags: ["NeedDaughter"]
@@ -74,3 +105,76 @@
 	tags: ["Thursday", "NeedDaughter", "DaughterAppreciation2"]
 }))>>
 
+<!-- Wife events -->
+
+<<= $mansion.addEvent("Office", new Event({
+	name: "wifeOffice01", 
+	passage: "wifeOffice01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedWife"]
+}))>>
+
+<<= $mansion.addEvent("Gym", new Event({
+	name: "wifeGym01", 
+	passage: "wifeGym01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedWife"]
+}))>>
+
+<<= $mansion.addEvent("Gym", new Event({
+	name: "wifeGym02", 
+	passage: "wifeGym02", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedWife"]
+}))>>
+
+<<= $mansion.addEvent("Gym", new Event({
+	name: "wifeGym03", 
+	passage: "wifeGym03", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedWife"]
+}))>>
+
+<!-- Group events -->
+
+<<= $mansion.addEvent("Lounge", new Event({
+	name: "wifeOwnerLounge01", 
+	passage: "wifeOwnerLounge01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedWife", "NeedOwner"]
+}))>>
+
+<!-- Cook events -->
+
+<<= $mansion.addEvent("Kitchen", new Event({
+	name: "cookKitchenCutting01", 
+	passage: "cookKitchenCutting01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedCook"]
+}))>>
+
+<!-- Gardner events 
+
+<<= $mansion.addEvent("Garden", new Event({
+	name: "gardnerGardenBossy01", 
+	passage: "gardnerGardenBossy01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedGardner"]
+}))>>
+
+<<= $mansion.addEvent("Pool", new Event({
+	name: "gardnerPoolBossy01", 
+	passage: "gardnerPoolBossy01", 
+	inline: true, 
+	repeats:true, 
+	tags: ["NeedGardner"]
+}))>>
+
+-->
