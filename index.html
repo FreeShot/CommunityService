@@ -924,7 +924,8 @@ class Event {
 		}
 	}
 
-	active() {
+	active(canSelfActivate) {
+		if ((canSelfActivate || false) && State.random() < State.variables.eventForceActive) return true;
 		return !this.tags.find((tag) => {
 			var tagTrue = tag[0] === "!";
 			var tagName = tagTrue ? tag.substr(1) : tag;
@@ -1422,7 +1423,7 @@ class Mansion {
 	}
 
 	checkSpecialEvents() {
-		return this.events.reduce((str, ev) => ev.active() ? str += ev.playEvent() : str, "");
+		return this.events.reduce((str, ev) => ev.active(false) ? str += ev.playEvent() : str, "");
 	}
 
 	clone() {
@@ -1822,7 +1823,7 @@ class Room {
 
 	getEvent() {
 		var activeEvents = Array.from(this.events);
-		activeEvents = activeEvents.filter((el) => el.active());
+		activeEvents = activeEvents.filter((el) => el.active(true));
 		if (activeEvents.length > 0) {
 			var totalWeight = activeEvents.reduce((totalWeight, el) => totalWeight + 1 << el.priority, 0);
 
@@ -4828,6 +4829,8 @@ It gets you wondering where he learned those knife skills...</tw-passagedata><tw
 	filterDone: false
 }&gt;&gt;
 
+&lt;&lt;set $eventForceActive to 0.3&gt;&gt;
+
 &lt;&lt;set $bluePinkGradient to [&quot;#0200b8&quot;,&quot;#0501b8&quot;,&quot;#0701b7&quot;,&quot;#0901b7&quot;,&quot;#0b01b7&quot;,&quot;#0e02b7&quot;,&quot;#1002b7&quot;,&quot;#1202b6&quot;,&quot;#1403b6&quot;,&quot;#1703b6&quot;,&quot;#1903b6&quot;,&quot;#1b04b6&quot;,&quot;#1e04b6&quot;,&quot;#2004b5&quot;,&quot;#2204b5&quot;,&quot;#2405b5&quot;,&quot;#2705b5&quot;,&quot;#2905b5&quot;,&quot;#2b06b4&quot;,&quot;#2e06b4&quot;,&quot;#3006b4&quot;,&quot;#3207b4&quot;,&quot;#3407b4&quot;,&quot;#3707b3&quot;,&quot;#3907b3&quot;,&quot;#3b08b3&quot;,&quot;#3d08b3&quot;,&quot;#4008b3&quot;,&quot;#4209b3&quot;,&quot;#4409b2&quot;,&quot;#4709b2&quot;,&quot;#490ab2&quot;,&quot;#4b0ab2&quot;,&quot;#4d0ab2&quot;,&quot;#500ab1&quot;,&quot;#520bb1&quot;,&quot;#540bb1&quot;,&quot;#570bb1&quot;,&quot;#590cb1&quot;,&quot;#5b0cb0&quot;,&quot;#5d0cb0&quot;,&quot;#600cb0&quot;,&quot;#620db0&quot;,&quot;#640db0&quot;,&quot;#660db0&quot;,&quot;#690eaf&quot;,&quot;#6b0eaf&quot;,&quot;#6d0eaf&quot;,&quot;#700faf&quot;,&quot;#720faf&quot;,&quot;#740fae&quot;,&quot;#760fae&quot;,&quot;#7910ae&quot;,&quot;#7b10ae&quot;,&quot;#7d10ae&quot;,&quot;#8011ad&quot;,&quot;#8211ad&quot;,&quot;#8411ad&quot;,&quot;#8612ad&quot;,&quot;#8912ad&quot;,&quot;#8b12ad&quot;,&quot;#8d12ac&quot;,&quot;#8f13ac&quot;,&quot;#9213ac&quot;,&quot;#9413ac&quot;,&quot;#9614ac&quot;,&quot;#9914ab&quot;,&quot;#9b14ab&quot;,&quot;#9d14ab&quot;,&quot;#9f15ab&quot;,&quot;#a215ab&quot;,&quot;#a415aa&quot;,&quot;#a616aa&quot;,&quot;#a916aa&quot;,&quot;#ab16aa&quot;,&quot;#ad17aa&quot;,&quot;#af17aa&quot;,&quot;#b217a9&quot;,&quot;#b417a9&quot;,&quot;#b618a9&quot;,&quot;#b818a9&quot;,&quot;#bb18a9&quot;,&quot;#bd19a8&quot;,&quot;#bf19a8&quot;,&quot;#c219a8&quot;,&quot;#c41aa8&quot;,&quot;#c61aa8&quot;,&quot;#c81aa7&quot;,&quot;#cb1aa7&quot;,&quot;#cd1ba7&quot;,&quot;#cf1ba7&quot;,&quot;#d21ba7&quot;,&quot;#d41ca7&quot;,&quot;#d61ca6&quot;,&quot;#d81ca6&quot;,&quot;#db1da6&quot;,&quot;#dd1da6&quot;,&quot;#df1da6&quot;,&quot;#e11da5&quot;,&quot;#e41ea5&quot;]&gt;&gt;
 
 &lt;&lt;include &quot;DocumentationInit&quot;&gt;&gt;
@@ -5186,6 +5189,7 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;&lt;/if&gt;&gt;
 &lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;Daily Chores
 &lt;&lt;= $mansion.displayChores(false, $flags.filterDone, true)&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td cospan=&quot;2&quot;&gt;Missed chores: $player.choresLate&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;</tw-passagedata><tw-passagedata pid="163" name="CUFF" tags="noreturn mainMenu menu" position="350,2100" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;

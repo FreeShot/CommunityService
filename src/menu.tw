@@ -12,6 +12,7 @@
 <</if>>
 <tr><td colspan="2">Daily Chores
 <<= $mansion.displayChores(false, $flags.filterDone, true)>></td></tr>
+<tr><td cospan="2">Missed chores: $player.choresLate</td></tr>
 </table>
 
 ::CUFF [noreturn mainMenu menu]

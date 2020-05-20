@@ -37,7 +37,7 @@ class Room {
 
 	getEvent() {
 		var activeEvents = Array.from(this.events);
-		activeEvents = activeEvents.filter((el) => el.active());
+		activeEvents = activeEvents.filter((el) => el.active(true));
 		if (activeEvents.length > 0) {
 			var totalWeight = activeEvents.reduce((totalWeight, el) => totalWeight + 1 << el.priority, 0);
 
