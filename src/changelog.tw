@@ -4,11 +4,23 @@
 <!-- Versioning system: MAJOR.MINOR.FIX -->
 !V0.X.X
 !!V0.1.X - Getting to know each other
+<<include "changelog-V0.1.3">>
 <<include "changelog-V0.1.2">>
 <<include "changelog-V0.1.1">>
 <<include "changelog-V0.1.0">>
 
 <<return>>
+
+::changelog-V0.1.3 [changelog]
+!! V0.1.3
+!!! Main content
+- Added a computer to your room. Now, have fun playing and reading.
+
+!!! Other content
+- More balancing of the chores
+
+!!! Bug fixes:
+- Fixed but for internet explorer
 
 ::changelog-V0.1.2 [changelog]
 !! V0.1.2
