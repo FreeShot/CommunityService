@@ -232,6 +232,24 @@ a {
 	color: var(--link-color);
 }
 
+li .chore-short a {
+	padding: 5px;
+	border: solid 0px var(--link-color);
+	color: var(--link-color);
+}
+
+!li .chore-short a {
+	border: solid 1px var(--link-color);
+	border-radius: 5px;
+	color: var(--link-color);
+	margin-top: 5px;
+}
+
+!li .short.done a {
+	border: solid 0px var(--story-text);
+	color: var(--story-text);
+}
+
 a:hover {
 	color: var(--link-hover-color);
 }
@@ -803,7 +821,8 @@ class Chore {
 		else if (!canDoChores)
 			htmlClass = 'chore-unavailable';
 
-		if (short) return `<span class="${htmlClass}">${this.name}</span>`
+		if (short && !this.done && !Story.get(State.passage).tags.includes("chore") && State.variables.mansion.currentEvent == "") return `<span class="chore-short ${htmlClass}">${State.variables.mansion.findRoom(this.room).getPassage(this.name)}</span>`;
+		if (short) return `<span class="${htmlClass}">${this.name}</span>`;
 
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
