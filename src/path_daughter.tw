@@ -42,8 +42,6 @@ $wife.name starts heading back into the estate. <<= $wife.speak("This is the las
 
 :: daughterPath02ServeA
 
-Trigger: First time they serve the daughter at the cocktail party
-
 <<= $daughter.speak("Hey $player.femName. You really are working this new look of yours.")>>
 
 She leans in a bit closer.
@@ -52,29 +50,22 @@ She leans in a bit closer.
 
 Blushing furiously you reach down to fix the hem of your skirt as if ready for it to fly up at any moment to reveal what's underneath then.
 
-<<nobr>>
-<span id="daughterServe01">
-	<<link "Get annoyed.">>
-		<<replace "#daughterServe01">>
-			<<= $player.speak("The sooner I get out of this damned dress the better.")>><br>
-			<br>
-			<<= $daughter.speak("Oh well. Maybe you'll get used to it or just learn to take a compliment.")>><br>
-			<br>
-			$daughter.name turns back to her conversation so you can continue serving.<br>
-			<br>
-			[[Continue serving|mansionCPartyServing01]]
-		<</replace>>
-	<</link>><br>
-	<<link "Thank her... begrudgingly.">>
-		<<replace "#daughterServe01">>
-			<<= $player.speak("Thank you $daughter.title. I guess.")>><br>
-			<br>
-			<<= $daughter.speak("Come on. Just $daughter.name. To be honest I kind of wish we could get out of here and go to a pub for a beer.")>><br>
-			<br>
-			[[I'd drink more than a beer if I could.|daughterPath02ServeB]]
-		<</replace>>
-	<</link>>
-</span><</nobr>>
+<<chooseOption "Get annoyed.">>
+<<= $player.speak("The sooner I get out of this damned dress the better.")>>
+
+<<= $daughter.speak("Oh well. Maybe you'll get used to it or just learn to take a compliment.")>>
+
+$daughter.name turns back to her conversation so you can continue serving.
+
+<<link "<<= $wife.speak('Continue serving')>>" "mansionCPartyServing01">><</link>>
+<<option "Thank her... begrudgingly.">>
+<<= $player.speak("Thank you $daughter.title. I guess.")>>
+
+<<= $daughter.speak("Come on. Just $daughter.name. To be honest I kind of wish we could get out of here and go to a pub for a beer.")>>
+
+<<link "I'd drink more than a beer if I could." "daughterPath02ServeB">><</link>>
+<<end>>
+<</chooseOption>>
 
 :: daughterPath02ServeB
 
@@ -103,31 +94,24 @@ You find yourself curious about what she spends her time reading so wander nearb
 
 You look down at your broom and then back up to her.
 
-<<nobr>>
-<span id="gardenchat01">
-	<<link "She's just being nice.">>
-		<<replace "#gardenchat01">>
-			<<= $player.speak("Well $daughter.title, I'm kinda in the middle of sweeping but the sun is out so I guess you're right.")>><br>
-			<br>
-			She chuckles. <<= $daughter.speak("Yeah, someone needs to keep $gardener.name happy. Wouldn't want someone tripping over a stray blade of grass right?")>><br>
-			<br>
-			<<= $player.speak("Heh. Yeah he really takes this garden seriously.")>><br>
-			<br>
-			You gesture to the stack of books on her blanket.<br>
-			<br>
-			[[A little light reading?|daughterPath03GardenChatB]]
-		<</replace>>
-	<</link>><br>
-	<<link "She's either oblivious or making fun of you.">>
-		<<replace "#gardenchat01">>
-			<<= $player.speak("It's either sweeping or prison. Not a lot of choice really.")>><br>
-			<br>
-			$daughter.name frouns <<= $daughter.speak("I'm surprised you're so snarky about a little sweeping if those are your options.")>> She snaps her book closed and begins packing up her little picnic. <<= $daughter.speak("You could try to make the most of it by trying to enjoy what you have. Maybe you should get back to work and remember your situation could get a lot worse if you keep up that attitude.")>>
-			<br>
-			Not wanting to push your luck your go [[back to what you were doing.|return]]
-		<</replace>>
-	<</link>>
-</span><</nobr>><br>
+<<chooseOption "She's just being nice.">>
+<<= $player.speak("Well $daughter.title, I'm kinda in the middle of sweeping but the sun is out so I guess you're right.")>>
+
+She chuckles. <<= $daughter.speak("Yeah, someone needs to keep $gardner.name happy. Wouldn't want someone tripping over a stray blade of grass right?")>>
+
+<<= $player.speak("Heh. Yeah he really takes this garden seriously.")>>
+
+You gesture to the stack of books on her blanket.
+
+<<link "<<= $player.speak('A little light reading?')>>" "daughterPath03GardenChatB">><</link>>
+<<option "She's either oblivious or making fun of you.">>
+<<= $player.speak("It's either sweeping or prison. Not a lot of choice really.")>>
+
+$daughter.name frouns <<= $daughter.speak("I'm surprised you're so snarky about a little sweeping if those are your options.")>> She snaps her book closed and begins packing up her little picnic. <<= $daughter.speak("You could try to make the most of it by trying to enjoy what you have. Maybe you should get back to work and remember your situation could get a lot worse if you keep up that attitude.")>>
+
+Not wanting to push your luck your go <<link "back to what you were doing." "return">><</link>>
+<<end>>
+<</chooseOption>>
 
 :: daughterPath03GardenChatB
 
