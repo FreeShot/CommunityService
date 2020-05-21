@@ -18,15 +18,16 @@ Desk
 	[[Go to bed|sleep]]
 	<<else>>
 	Got to the bathroom and:<br>
-	[[Shower|playerRoomShower]]<br>
+	[[Shower|playerRoomShower]]<br><br>
 	Check the [[Wardrobe|playerRoomWardrobe]]<br>
-	[[Check your to do list.|playerToDoList]]<br>
+	Use the [[Computer|playerRoomComputerMenu]]<br>
+	[[Check your to do list.|playerToDoList]]<br><br>
 	<<link "Rest">>
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>
 		<<goto `passage()`>>
 	<</link>><br>
-	<<link "Hide for rest of the day.">>
+	<<link "Hide until the end of the day.">>
 		<<= $time.setDate({day:0, hour:22, minute:0})>>
 		<<goto `passage()`>>
 	<</link>>
@@ -56,3 +57,65 @@ You turn on the warm stream of water and step into the shower. You soap up and w
 <<= $player.inv.listItem("$player.inv", ["equippable"], undefined, "Wardrobe", $mansion.currentEvent === "")>>
 
 <<return 'Finish'>>
+
+:: playerRoomComputerMenu [playerRoom]
+
+The computer has a pretty basic setup and your access is limited.
+
+Training:
+
+	[[Cleaning For The Delicate House Maid (read for 1 hour)|playerRoomComputerCleaning]]
+	[[Etiquette Tips For Submissive Servers (read for 1 hour)|playerRoomComputerServing]]
+
+Games: 
+
+	[[Household (play for 1 hour)|playerRoomComputerGame]]
+
+[[Stop using the computer|PlayerBdRm]]
+
+:: playerRoomComputerCleaning
+
+You load up the tutorial titled "Cleaning For The Delicate House Maid"
+
+<<= $player.speak("<i>Why can't it just say How to Clean?</i>")>>
+
+It has a lot of general tips and tricks such as the difference between "zone cleaning" and "task cleaning", always working top to bottom and left to right. The further you read to more in depth the information gets right down to the different components of the cleaning products you should use.
+
+Throughout the guide you see example of the different method. Each one has a picture of a woman in a cute maid outfit. The hem line of the skirt is a little high and you can see the tops of her stockings in some pictures. This usually in the section about how to present yourself, the proper work attire and how to under stand the needs of your host. It's all a bit more risqué than you would expect a professional guide to be but you enjoy looking at the alluring model anyway.
+
+It's also seems unsually thorough on the methods for keeping your apron pure white at all times.
+
+<<= $player.speak("<i>Maybe I should get my own apron...</i>")>>
+
+<<return 'Back to the menu'>>
+
+<<set $time.addTime({hour:1})>>
+<<= $player.levelUp("cleaning", 1)>>
+
+:: playerRoomComputerServing
+
+You load up "Etiquette Tips For Submissive Servers"
+
+The training manual runs you through all the best practices when performing table service. Serve from a guest’s left, using your left hand, and clear from their right, using your right hand. Don’t let a wine, beer, or spirits bottle touch the glass you’re pouring into. Never reach across a guest to serve another guest unless you are flirting with them and wish to present your bosom.
+
+The guide become more unorthodox from this point. You always find yourself wondering who the hell wrote them.
+
+How to flirt with guests and comport yourself by keeping you chest out and chin up. A big part of the second half focuses around the "Four bees of serving."
+
+	- Be pleasant, it’s your role to present a sweet and friendly demeanor.
+	- Be attentive, constantly scan the room, and if a guest needs attention it is your role to assist them in any way they desire.
+	- Be patient, never interrupt a conversation, you are to be seen not heard. Wait for a guest to address you before asking what they would like from you.
+	- Be discreet, don’t have audible conversations with other servers in earshot of guests. Gossip is encouraged of course but only if it is to embarrass yourself or get the attention of a guest.
+
+<<return 'Back to the menu'>>
+
+<<set $time.addTime({hour:1})>>
+<<= $player.levelUp("serving", 1)>>
+
+:: playerRoomComputerGame
+
+You load up the game and begin to play. It's mostly a choose you own adventure type story about a man who must navigate the day to day life of managing a household. It's an ok game with a few bugs. The chore system is a bit too grindy and some of the NPC descriptions are a bit flat but other than that it's fun to play.
+
+Halfway through your session you get this weird sense in the back of your shoulders, almost like someone is watching you. You feel the need to look at the fourth wall of your room and wink.
+<<set $time.addTime({hour:1})>><<= $player.rest(5)>>
+<<return 'Back to the menu'>>

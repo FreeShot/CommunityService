@@ -24,7 +24,8 @@ class Event {
 		}
 	}
 
-	active() {
+	active(canSelfActivate) {
+		if ((canSelfActivate || false) && State.random() < State.variables.eventForceActive) return true;
 		return !this.tags.find((tag) => {
 			var tagTrue = tag[0] === "!";
 			var tagName = tagTrue ? tag.substr(1) : tag;
