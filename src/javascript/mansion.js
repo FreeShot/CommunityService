@@ -89,7 +89,7 @@ class Mansion {
 	}
 
 	checkSpecialEvents() {
-		return this.events.reduce((str, ev) => ev.active() ? str += ev.playEvent() : str, "");
+		return this.events.reduce((str, ev) => ev.active(false) ? str += ev.playEvent() : str, "");
 	}
 
 	clone() {

@@ -149,7 +149,7 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 $butler.name closes the door behind you, leaving you alone. With nothing better to do you explorer the small space.
 
-The drawers are mostly empty and the books are blank and just for show. There is a computer under the small desk but it doesn't seem to be working.
+The drawers are mostly empty and the books are blank and just for show. There is a computer under the small desk but it doesn't seem to be working right now.
 
 You investigate the and inside you find some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing.
 
@@ -190,6 +190,10 @@ The older man replies <<= $butler.speak("Yes $owner.title.")>>
 <<= $butler.speak("As you wish, $owner.title.")>>
 
 <<= $owner.speak("That will be all.")>>
+
+You follow $butler.name out of the office and down the hall.
+
+<<= $butler.speak("The terminal in you room has now been enabled. You should use it during your free time to familiarise yourself with the skills required for your duties.")>>
 
 $butler.name leads you back to your <<link "small living space""PlayerBdRm">>
 <<= $flags.manorIntro++>><<= $flags.CUFF++>>
