@@ -90,7 +90,7 @@ It's also seems unsually thorough on the methods for keeping your apron pure whi
 <<return 'Back to the menu'>>
 
 <<set $time.addTime({hour:1})>>
-<<= $player.levelUp("cleaning", 5)>>
+<<= $player.levelUp("cleaning", 1)>>
 
 :: playerRoomComputerServing
 
@@ -110,7 +110,7 @@ How to flirt with guests and comport yourself by keeping you chest out and chin 
 <<return 'Back to the menu'>>
 
 <<set $time.addTime({hour:1})>>
-<<= $player.levelUp("serving", 5)>>
+<<= $player.levelUp("serving", 1)>>
 
 :: playerRoomComputerGame
 

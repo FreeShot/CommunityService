@@ -180,7 +180,7 @@ After a while the sound of laughter dies down and it's time to get back to what 
 You smile and then get <<return "back to what you were doing.">>
 
 <<set $time.addTime({day:0, hour: 0, minute:30})>>
-<<set $daughter.addAppreciation(1)>>
+<!--<<set $daughter.addAppreciation(1)>>-->
 <<= $mansion.removeEvent("Garden", "daughterPath03GardenChatA")>>
 
 :: daughterPath04IntroDate01
