@@ -1,4 +1,4 @@
-:: daughterDateSetup01
+:: daughterDateSetup01 [event eventStart]
 <<set $daughterDateStart to true>>
 
 "So what would you like to do? We can…"
@@ -16,8 +16,9 @@ These can be repeatable
 On first - this will change after hypno. starts to be a role reversal
 
 [[daughterDateActivity01]]
+[[daughterDateCinema01]]
 
-::daughterDateActivity01
+:: daughterDateActivity01
 
 will be a juggling act between keeping D happy and out of trouble
 Player is paying for everything too so they will have to balance that
@@ -38,7 +39,25 @@ increase or decrease acceptance?
 	[[daughterDateFinish01]]
 <</if>>
 
-::daughterDateFinish01
+:: daughterDateCinema01
+
+<<= $player.speak("Why don’t we go see a movie?")>> 
+
+<<= $daughter.speak("Sounds like fun. What movie do you want to see.")>>
+
+You are pretty out of touch with anything going on outside of your role as a servant so you have no idea what there is available.
+
+<<= $player.speak("I don’t really know what there is to see.")>> 
+
+<<= $daughter.speak("Ok. I’ll pick something for us then.")>> 
+
+[[Go to the movies|daughterDateCinema02]]
+
+:: daughterDateCinema02
+
+
+
+:: daughterDateFinish01
 
 Date stuff happens
 
