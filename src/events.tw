@@ -30,7 +30,7 @@ She takes a breath dips under the water. When she comes back up and open her eye
 
 <<= $daughter.speak("Care to join me?")>>
 
-You jolt back to your senses when you realise you were still staring. <<= $name.speak("Um. I have to, uh.")>>
+You jolt back to your senses when you realise you were still staring. <<= $player.speak("Um. I have to, uh.")>>
 
 <<= $daughter.speak("Suit yourself.")>>
 
@@ -54,7 +54,7 @@ $daughter.name walks over to where she put her towel. This time you catch yourse
 
 :: daughterGardenReading01
 
-$daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
+$daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and it glistens in the light.
 
 [img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]
 
@@ -62,7 +62,7 @@ $daughter.name is resting under some shade with a small picnic and a pile of boo
 
 You knock on the door to $daughter.name's room. She calls for you to come in. You head inside with your cleaning supplies and see $daughter.name is sitting at her computer wth her glasses on. Normally she'd tease you or say hi but it looks like she's pretty focused right now.
 
-[img[setup.ImagePath + "character/daughter/daughter_computer_01.jpg"]]
+[img[setup.ImagePath + "character/daughter/computer_01.jpg"]]
 
 You do your best not to disturb her as you to go about your business.
 
@@ -70,7 +70,7 @@ You do your best not to disturb her as you to go about your business.
 
 You know $daughter.name is normally in her room right now. There's no answer so you poke head and see she is sitting on the floor at the base of her bed with her laptop in front of her.
 
-[img[setup.ImagePath + "character/daughter/daughter_computer_02.jpg"]]
+[img[setup.ImagePath + "character/daughter/computer_02.jpg"]]
 
 She doesn't react to you entering so as you to go about your business and try not to distract her.
 

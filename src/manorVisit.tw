@@ -1,13 +1,13 @@
 ::manorIntro01 [tutorial]
-You're taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+You're taken to a car and then driven through the city to the high-rise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting around dressed in a suit, his hands behind his back and a plain disinterested look on his face.
 
 <<= Character.speakAnonymous("State correction here with your new servant.","DarkGoldenRod")>>
 
 The guard shoves you forward.
 
-The man looks you up and down. The appraising stare makes you feel unconfortable, as if you were examined like stock on a farm.
+The man looks you up and down. The appraising stare makes you feel uncomfortable, as if you were examined like stock on a farm.
 
-He looks back to the guard with out even adressing you. <<= $butler.speak("Quite.")>> The older man gestures to your cuff. <<= $butler.speak("If you please.")>>
+He looks back to the guard with out even adressing you. <<= $butler.speak("Of course.")>> The older man gestures to your CUFF. <<= $butler.speak("If you please.")>>
 
 The guard grabs it. <<= Character.speakAnonymous("Welcome to your new home, kid.","DarkGoldenRod")>>
 
@@ -83,7 +83,7 @@ You watch as the old gardner drops what he is doing and grabs his back with one 
 
 $butler.name walks back inside, through the kitchen and back to the foyer.
 
-<<= $butler.speak("As you can see, the estate is expansive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I'll show you the upstairs rooms.")>>
+<<= $butler.speak("As you can see, the estate is expansive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lower floor. I'll show you the upstairs rooms.")>>
 
 Follow $butler.name up the stairs to the [[Upper Hall|manorIntro06]]
 
@@ -103,7 +103,7 @@ $butler.name bows slightly to each woman.
 
 <<= $butler.speak("I would like to introduce $player.name. This is the new servant for the contract $owner.title acquired recently.")>>
 
-<<= $daughter.speak("Well, well. What a cutie.")>> The younger daughter grins and winks as whe looks at you up and down.
+<<= $daughter.speak("Well, well. What a cutie.")>> The younger daughter grins and winks as she looks at you up and down.
 
 $wife.name walks towards you. You hold out your hand, but she ignores it and walks around and examines you. You shift nervously.
 
@@ -147,7 +147,7 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 <<= $butler.speak("You can stay there for now. I will come and collect you when $owner.name is ready to meet you.")>>
 
-$butler.name closes the door behind you, leaving you alone. With nothing better to do you explorer the small space.
+$butler.name closes the door behind you, leaving you alone. With nothing better to do you explore the small space.
 
 The drawers are mostly empty and the books are blank and just for show. There is a computer under the small desk but it doesn't seem to be working right now.
 
@@ -177,7 +177,7 @@ Not wanting to push your luck, you quickly catch up and fall in behind $butler.n
 
 <<= $player.speak("Yes $owner.title.")>>
 
-<<= $owner.speak("Very good. You will answer to $butler.name after myself and my wife at all time. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he's not impressed, I'm not impressed. Is that understood?")>>
+<<= $owner.speak("Very good. You will answer to $butler.name after myself and my wife at all times. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he's not impressed, I'm not impressed. Is that understood?")>>
 
 <<= $player.speak("Yes $owner.title.")>>
 

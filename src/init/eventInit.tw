@@ -97,6 +97,7 @@
 	tags: ["NeedDaughter", "DaughterAppreciation1"]
 }))>>
 
+<!--
 <<= $mansion.addEvent("Foyer", new Event({
 	name: "daughterPath04IntroDate01", 
 	passage: "daughterPath04IntroDate01", 
@@ -104,6 +105,7 @@
 	repeats:false, 
 	tags: ["Thursday", "NeedDaughter", "DaughterAppreciation2"]
 }))>>
+-->
 
 <!-- Wife events -->
 
