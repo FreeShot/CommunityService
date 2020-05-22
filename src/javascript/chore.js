@@ -42,7 +42,8 @@ class Chore {
 		else if (!canDoChores)
 			htmlClass = 'chore-unavailable';
 
-		if (short) return `<span class="${htmlClass}">${this.name}</span>`
+		if (short && !this.done && !Story.get(State.passage).tags.includes("chore") && State.variables.mansion.currentEvent == "") return `<span class="chore-short ${htmlClass}">${State.variables.mansion.findRoom(this.room).getPassage(this.name)}</span>`;
+		if (short) return `<span class="${htmlClass}">${this.name}</span>`;
 
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",
