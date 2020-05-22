@@ -146,7 +146,7 @@ You can see $wife.name reclining on one of the lounge chairs with her feet up re
 
 [img[setup.ImagePath + "character/couples/wifeowner_lounge01.jpg"]]
 
-:: wifeLoungeBossy01 [noreturn chore]
+:: wifeCleaningBossy01A [noreturn chore]
 
 You about to get started when $wife.name walks into the room. You pasue for a moment waiting for her to react.
 
@@ -156,19 +156,57 @@ You jolt to a start and begin going about your tasks.
 
 <<= $wife.speak("That's it. Make sure you put your shoulder into this time.")>>
 
-<<if player.submission >= 20>>
+<<if $player.submission >= 20>>
 	<<= $player.speak("Yes $wife.title")>>
 <<else>>
 	You roll your eyes and keep at your current task.
 <</if>>
 
-When you are finished $wife.name tells you to stay put while she inspects your work.
-<<set $time.addTime({day:0, hour: 0, minute:15})>>
-She nods. <<= $wife.speak("This is satisfactory. See that you try and get things done more quickly though. The longer you take the harder it will be for me to present a clean house to our guests")>>
+<<= $wife.speak("No, no, no.")>>
+
+$wife.name marches over and grabs you by the shoulders.
+
+<<= $wife.speak("Like this.")>>
+
+She manuevers you so that one shoulder is back while your other arms is doing the work.
+
+<<= $wife.speak("And arch your back.")>>
+
+You feel her press her elbow into your lower forcing you to push you chest.
+
+<<= $wife.speak("Now hold that position while you work.")>>
+
+<<chooseOption "Maintain the pose.">>
+You hold the poistion as best you can. It's difficult hold you chest out in the awkward position. You don't really see how it's improving your work either but it does seem to not take as long.
+
+When you finish $wife.name inspects your work.
+
+She nods. <<= $wife.speak("This is satisfactory. See that you keep practicing. The longer you take the harder it will be for me to present a clean house to my guests.")>>
 
 With that $wife.name turns around and leave you to your duties.
 
-:: wifeLoungeBossy02 [noreturn chore]
+*****todo: increase cleaning skill
+<<set $time.addTime({day:0, hour: 0, minute:15})>>
+<<option "Just do it your way.">>
+You go back to the way you were already doing it. $wife.name watches you the whole time with her arms crossed but doesn't seem to be reacting otherwise.
+
+When you finish she inspects your work.
+
+<<= $wife.speak("This is satisfactory. Unfortunately it took far too long. I told you how to do it and you failed to follow my instructions.")>>
+
+She grabs you by the wrist and drags you to her wardrobe.
+
+<<link "Wait" "wifeCleaningBossy01B">>
+<<set $time.addTime({day:0, hour: 0, minute:30})>>
+<</link>>
+<<end>>
+<</chooseOption>>
+
+:: wifeCleaningBossy01B
+
+Player get's put in the body shaper for the rest of the day (burns more stamina)
+
+:: wifeCleaningBossy02 [noreturn chore]
 
 Every now and then you have some diffuclty getting to get some of the high up areas. You're on you tip toes right now trying to get to one of these trouble spot when you hear a cough behind you.
 

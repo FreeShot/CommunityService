@@ -1,9 +1,12 @@
 ::eventInit [event]
+
+<!-- Unique events -->
+
 <<= $mansion.addEvent("specialEvent", new Event({
-	name: "End of the week review", 
-	passage: "endOfWeekRecapStart", 
-	inline:false, 
-	repeats:true, 
+	name: "End of the week review",
+	passage: "endOfWeekRecapStart",
+	inline:false,
+	repeats:true,
 	tags: ["Sunday", "Evening"]
 }))>>
 
@@ -149,6 +152,14 @@
 	inline: true, 
 	repeats:true, 
 	tags: ["NeedWife", "NeedOwner"]
+}))>>
+
+<<= $mansion.addEvent("specialEvent", new Event({
+	name: "End of the week review",
+	passage: "endOfWeekRecapStart",
+	inline:false,
+	repeats:true,
+	tags: ["NeedWife"]
 }))>>
 
 <!-- Cook events -->
