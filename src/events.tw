@@ -74,7 +74,7 @@ You know $daughter.name is normally in her room right now. There's no answer so 
 
 She doesn't react to you entering so as you to go about your business and try not to distract her.
 
-:: choreEvent_DaughterTease01 [noreturn chore]
+:: daughterLaundryTease01 [noreturn chore]
 
 todo: trigger should be if the daughter acceptance is above a certain amount. Just after/at the end of when she's been in the gym
 
@@ -186,6 +186,7 @@ She nods. <<= $wife.speak("This is satisfactory. See that you keep practicing. T
 With that $wife.name turns around and leave you to your duties.
 
 *****todo: increase cleaning skill
+
 <<set $time.addTime({day:0, hour: 0, minute:15})>>
 <<option "Just do it your way.">>
 You go back to the way you were already doing it. $wife.name watches you the whole time with her arms crossed but doesn't seem to be reacting otherwise.
@@ -194,43 +195,93 @@ When you finish she inspects your work.
 
 <<= $wife.speak("This is satisfactory. Unfortunately it took far too long. I told you how to do it and you failed to follow my instructions.")>>
 
-She grabs you by the wrist and drags you to her wardrobe.
-
-<<link "Wait" "wifeCleaningBossy01B">>
+She grabs you by the wrist and <<link "drags you to the master wardrobe." "wifeCleaningBossy01B">>
 <<set $time.addTime({day:0, hour: 0, minute:30})>>
+
+*****todo: move player to the master bedroom
+
 <</link>>
 <<end>>
 <</chooseOption>>
 
 :: wifeCleaningBossy01B
 
-Player get's put in the body shaper for the rest of the day (burns more stamina)
+The wife stands you in the middle of the wardrobe.
 
-:: wifeCleaningBossy02 [noreturn chore]
+<<= $wife.speak("Top off now.")>> She says as she turn to grab something.
 
-Every now and then you have some diffuclty getting to get some of the high up areas. You're on you tip toes right now trying to get to one of these trouble spot when you hear a cough behind you.
+Knowing better than to talk back at this point you quickly take your top off. $wife.name comes back with a stiff black corset.
 
-$wife.name is standing at the entrance watching you.
+<<= $wife.speak("It seems you need more direct intervention to help you learn your role.")>>
+
+<<= $player.speak("But...")>>
+
+<<= $wife.speak("Quiet!")>>
+
+She wraps the stiff fabric around your waist and begin tightening the clasps. You have to suck in your breath when she pulls it far tighter than your waist would normally allow. ONce all the clasps are tightened she zips up the cover and locks it shut with a tiny pad lock.
+
+<<= $wife.speak("Nice and secure. Now, if you behave and get your chores done you can come see before you turn in to have it unlocked.")>>
+
+It only took minutes but she already has you on the ropes so you bow your head. <<= $player.speak("Yes $wife.title.")>>
+
+<<= $wife.speak("Good. Now back to work.")>>
+
+She walks past you and out of the room but not before swatting your ass, leaving it tingling.
+
+<<link "Get back to your chores." "MasterBdRm">>
+<<set $time.addTime({day:0, hour: 0, minute:10})>>
+<<= $player.inv.addItem($shop.getAsTemp("Black corset"), 1, true)>>
+<</link>>
+
+:: wifeCleaningBossy02A [noreturn chore]
+
+Every now and then you have some diffuclty getting to get some of the high up areas. You're on you tip toes right now trying to get to one of these trouble spots when you hear a cough behind you.
+
+$wife.name is standing at the entrance watching you thoughtfully.
 
 <<= $wife.speak("If you're stuggling because of your small stature we could always find something to assist.")>>
 
 <<= $player.speak("<i>Wow, she's actually suggesting soemthing to help.</i>")>>
 
-<<= $player.speak("A step ladder stool would be nice $wife.title.")>>
+<<= $player.speak("A step stool would be nice $wife.title.")>>
 
 <<= $wife.speak("Maybe. I don't see a need for something like that though. Shoes with a taller heel would suffice.")>>
 
-<<if player.feminity >= 40>>
-	<<= $player.speak("I guess that could help $wife.title")>>
-<<else>>
-	<<= $player.speak("Thank you $wife.title. But I think I can manage.")>>
+<<chooseOption "<<= $player.speak('I think I can manage $wife.title.')>>">>
 
-	<<= $wife.speak("See that you do or the decision will be made for you.")>>
+<<= $wife.speak("See that you do or the decision will be made for you.")>>
+
+With that she turns and leaves you to your chores.
+<<if $player.femininity >= 20>>
+<<option "<<= $player.speak('I guess that could help $wife.title.')>>">>
+
+<<link "<<= $wife.speak('Very well then. Follow me.')>>" "wifeCleaningBossy02B">><</link>>
 <</if>>
 
-With that she turns and leaves the room.
+:: wifeCleaningBossy02B
 
-:: wifeLaundryPlayerNude01 [noreturn chore]
+You fall in behind $wife.name as she walks to the Master Bedroom.
+
+<<= $wife.speak("Sit down and remove your shoes.")>>
+
+She goes into the wardrobe while you remove your shoes and set them to the side. $wife.name comes back with the pair of Black leather mary janes that she makes you wear for the party.
+
+<<= $player.speak("<i>Can I really say she's forcing me anymore?</i>")>>
+
+$wife.name slips the heels onto your feet and fastens the straps shut. You roll your toes enjoying the comfortable fit. The finishing touch is pair of small padlock on the straps.
+
+<<= $player.speak("Ah, $wife.title?")>>
+
+<<= $wife.speak("Don't worry. You can return to me at the end of the day to have them removed.")>>
+
+She stands up and you follow. Wearing heels still takes a little getting used to but you should be able to manage.
+
+<<link "Get back to your chores." "MasterBdRm">>
+<<set $time.addTime({day:0, hour: 0, minute:10})>>
+<<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
+<</link>>
+
+:: wifeLaundryPlayerNude01A [noreturn chore]
 
 Since you don't have any spare clothes that means you need to keep the one's you normally wear clean. You strip down and throw the few items you have in the wash and put it on a fast cycle.
 
@@ -250,9 +301,40 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 <<= $player.speak("But, my clothes...")>>
 
-<<= $wife.speak("I don't have time for this. Make yourself presentable and get to work!")>>
+<<= $wife.speak("I don't want to hear excuses!")>>
 
-$wife.name leaves the room. You clearly lost some credibility with that slip up.
+$wife.name grabs you by the wrist. You lose a hold the towel, leaving you naked as she drags to [[your room.|wifeLaundryPlayerNude01B]]
+<<= $player.unequip("All")>>
+
+:: wifeLaundryPlayerNude01B
+
+The small space feels even smaller with a second person here. $wife.name opens the wardrobe and pulls out the clothes that were left behind by the previous occupant and sets them on the bed.
+
+<<= $wife.speak("You have a whole other outfit and yet you stand around my home naked! Get dressed.")>>
+
+<<= $player.speak("But those are...")>>
+
+<<= $wife.speak("You can either wear these or go naked for the rest of the day. I can tell you my husband won't be impressed to find you in nothing but your birthday suit.")>>
+
+Reluctantly you slip into the item provided. The panties and jeans rest a little low on your hips so the topof your butt is barely peeking out.
+
+When you grab the shirt before the bra $wife.name speaks up again. <<= $wife.speak("Did I say you only had to wear some of it?")>>
+
+You drop the shirt and slip into the bra first. It sits loose against your flat chest but when you put the shirt on it creates a very distracting illusion of small breasts underneath. Lastly you put the pink sneakers on and stand up.
+
+<<= $wife.speak("Much better.")>>
+
+Without another word she turns and leaves you alone in the small room
+
+<<link "Get back to your chores." "PlayerBdRm">>
+/* Will change this to symply equip a set of clothes, like this it will be customisable */
+<<= $player.inv.addItem($shop.getAsTemp("Female cut T-shirt"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Tight jeans"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Plain white panties"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Plain white bra"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("White gym socks"), 1, true)>>
+<<= $player.inv.addItem($shop.getAsTemp("Flat shoes"), 1, true)>>
+<</link>>
 
 :: cookKitchenCutting01
 
@@ -261,6 +343,47 @@ You can see $cook.name is here going about his business. You're a little concern
 [img[setup.ImagePath + "character/cook/cutting01.gif"]]
 
 It gets you wondering where he learned those knife skills...
+
+:: cookKitchenCutting02
+
+You can see $cook.name is here going about his business. It's nice to stop every now and then to watch him work, almost like when you used to watch those videos online that show flowers growing or wood being carved
+
+[img[setup.ImagePath + "character/cook/cutting01.gif"]]
+
+$cook.name catches you staring at him while he works.
+
+<<= $cook.speak("If you're going to just stand there you might as well help out.")>>
+
+<<chooseOption "Assist $cook.name.">>
+<<= $player.speak("Sure.")>>
+
+$cook.name once again surprises you buy having a small work space set up for you in moments and a stack of vegetables in front of you. You begin cutting them but it doesn't take long before you hear $cook.name grumbling.
+
+<<= $cook.speak("You're not doing right. Here.")>>
+
+He walks around behind you and reaches around to grab your arms. You stiffen up as his chest presses against your back.
+
+<<= $cook.speak("You need to find a rythm.)>>
+
+$cook.name guides your hands as he quickly slices what's in front of you.
+
+<<= $cook.speak("Don't worry about the knife, worry about the food.")>>
+
+You notice his finger have slipped between yours and he's pressing against you more.
+
+[img[setup.ImagePath + "character/cook/cutting02.jpg"]]
+
+After a few minutes everything is done and $cook.name steps away.
+
+<<= $cook.speak("If you end hurting yourself just make sure any mess in my kitchen gets cleaned up.")>>
+
+***** todo: increase cooking skills
+<<set $cook.addAppreciation(1)>>
+
+<<option "Leave $cook.name to work.">>
+You shake your head to say no and $cook.name hurumphs.
+
+<<= $cook.speak("Then stop gawking. I'm sure you've got better things to do.")>>
 
 :: gardnerGardenBossy01
 
