@@ -1,3 +1,5 @@
+<!-- Daughter schedule events -->
+
 :: daughterGymSquat01 [noreturn chore]
 
 You hear loud grunting as you enter the room and can see $daughter.name in the middle of her workout. She's currently in the middle of a set of squats with heavy weights on her shoulders. It's a little embarassing seeing her lifting weights that you would probably struggle with. She spots you in the mirror and gives you a wink without missing a rep.
@@ -34,7 +36,7 @@ You jolt back to your senses when you realise you were still staring. <<= $playe
 
 <<= $daughter.speak("Suit yourself.")>>
 
-With that she dives forward and starts swimming laps and leaving to awkward go about your day.
+With that she dives forward and starts swimming laps and leaving you to awkwardly go about your day.
 
 :: daughterPoolSwimming02
 
@@ -116,6 +118,54 @@ You snatch up one of the nearby towels and quickly cover yourself.
 
 $daughter.name leaves and you hear her burst into laughter as soon as she's out of sight.
 
+<!-- Daughter interactive events -->
+
+:: daughterDaughterBdRmStudying03
+
+You enter $daughter.name's room. She's at her desk right now working on something but stops when she sees you come in.
+
+<<= $daughter.speak("He $player.name. Perfect timing, can you have a look at something for me?")>>
+
+<<chooseOption "Ah... sure">>
+
+<<= $daughter.speak("Awesome.")>>
+
+$daughter.name stands up and you sit down at her tablet. There's a lot of technical data on the screen and you recognise a few words but mostly it looks like a foreign language.
+
+<<= $daughter.speak("So I'm trying find way to increase protein absorption to assist with skeletal reshaping in...")>>
+
+$daughter.name starts talking but your can hardly under stand most of it. Aside from that she has already gotten very close. So much so that you can feel the warmth of her skin on your. You dfo your best to focus on what she is saying but you catch sight of something you can't resist.
+
+[img[setup.ImagePath + "character/daughter/studyflirt01.jpg"]]
+
+<<= $daughter.speak("Hello? Earth to $player.name.")>>
+
+You don't know how long you were staring but $daughter.name stands back with her hands on her hips.
+
+<<= $daughter.speak("Well, what do you think?")>>
+
+Everything she said either made no sense or you missed it completely. Your brain scramble for something to say.
+
+<<= $player.speak("I'm sorry. This is all really cool but I don't have a lot of time to study this kind of thing so I'm a little rusty.")>> You gesture to the cleaning products at the door.
+
+$daughter.name follows your gesture and then turns back. <<= $daughter.speak("That's ok. To be honest just saying it all out aloud helped clear it up anyway. Thanks.")>>
+
+She puts a hand you on the shoulder and smiles warmly. You just sit there a moment enjoying the friendly contact.
+
+<<= $daughter.speak("Uh. I kind of need my seat back.")>>
+
+You shoot up and nervously get back to what you are doing while $daughter.name giggles behind you.
+
+***** todo: increase arousal
+<<set $time.addTime({day:0, hour: 0, minute:10})>>
+<<option "Sorry. Duty calls.">>
+
+<<= $daughter.speak("Damn. I wish you had more free time.")>>
+
+$daughter.name gets back to what she was doing and you do the same.
+
+<!-- Wife schedule events -->
+
 :: wifeOffice01
 
 $wife.name is sitting at the desk with her tablet. She’s most likely checking documents for a community outreach program she helps run. Her business clothes and posture make her every bit the confident and driven business woman.
@@ -145,6 +195,8 @@ You hear the low hum of the treadmill as you enter the gym. $wife.name is joggin
 You can see $wife.name reclining on one of the lounge chairs with her feet up resting on $owner.name’s lap while he gently rubs her feet. They are both reading something on their tablets and pause every so often to chat about something they just found. It’s a little strange seeing the two rich and domineering people just sitting like a regular married couple.
 
 [img[setup.ImagePath + "character/couples/wifeowner_lounge01.jpg"]]
+
+<!-- Wife interactive events -->
 
 :: wifeCleaningBossy01A [noreturn chore]
 
@@ -320,7 +372,7 @@ Reluctantly you slip into the item provided. The panties and jeans rest a little
 
 When you grab the shirt before the bra $wife.name speaks up again. <<= $wife.speak("Did I say you only had to wear some of it?")>>
 
-You drop the shirt and slip into the bra first. It sits loose against your flat chest but when you put the shirt on it creates a very distracting illusion of small breasts underneath. Lastly you put the pink sneakers on and stand up.
+You drop the shirt and slip into the bra first. It sits loose against your flat chest but when you put the shirt on it creates a very distracting illusion of small breasts underneath. Lastly you slide the pink sneakers on and stand up.
 
 <<= $wife.speak("Much better.")>>
 
@@ -332,9 +384,10 @@ Without another word she turns and leaves you alone in the small room
 <<= $player.inv.addItem($shop.getAsTemp("Tight jeans"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Plain white panties"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Plain white bra"), 1, true)>>
-<<= $player.inv.addItem($shop.getAsTemp("White gym socks"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Flat shoes"), 1, true)>>
 <</link>>
+
+<!-- Cook schedule events -->
 
 :: cookKitchenCutting01
 
@@ -343,6 +396,8 @@ You can see $cook.name is here going about his business. You're a little concern
 [img[setup.ImagePath + "character/cook/cutting01.gif"]]
 
 It gets you wondering where he learned those knife skills...
+
+<!-- Cook interactive events -->
 
 :: cookKitchenCutting02
 
@@ -379,11 +434,14 @@ After a few minutes everything is done and $cook.name steps away.
 
 ***** todo: increase cooking skills
 <<set $cook.addAppreciation(1)>>
+<<set $time.addTime({day:0, hour: 0, minute:10})>>
 
 <<option "Leave $cook.name to work.">>
 You shake your head to say no and $cook.name hurumphs.
 
 <<= $cook.speak("Then stop gawking. I'm sure you've got better things to do.")>>
+
+<!-- Gardner schedule events -->
 
 :: gardnerGardenBossy01
 

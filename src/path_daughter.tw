@@ -207,31 +207,28 @@ You quickly weight up the pros and cons. On the one hand you'll be responsible f
 
 Judging from the look on $wife.name's face you get the feeling that you won't get this offer again.
 
-<<nobr>>
-<span id="firstdate01">
-	<<link "Agree.">>
-		<<replace "#firstdate01">>
-			Before you can finish agreeing $daughter.name claps her hands excitedly. <<= $daughter.speak("Awesome, it's a date then. I'll go get ready. Meet you at the door in a bit.")>><br>
-			<br>
-			$daughter.name rushes off to do whatever she was doing to get ready.<br>
-			<br>
-			<<= $player.speak("A date?")>> You stammer.<br>
-			<br>
-			<<= $wife.speak("Hmm, yes, about that.")>> $wife.name starts walking to the master bedroom. <<= $wife.speak("Follow me.")>><br>
-			<br>
-			[[Follow|daughterPath04IntroDate02]]
-		<</replace>>
-	<</link>><br>
+<<chooseOption "Agree.">>
+Before you can finish agreeing $daughter.name claps her hands excitedly. <<= $daughter.speak("Awesome, it's a date then. I'll go get ready. Meet you at the door in a bit.")>>
+
+$daughter.name rushes off to do whatever she was doing to get ready.
+
+<<= $player.speak("A date?")>> You stammer.
+
+<<= $wife.speak("Hmm, yes, about that.")>> $wife.name starts walking to the master bedroom. <<= $wife.speak("Follow me.")>>
+
+[[Follow|daughterPath04IntroDate02]]
+<<end>>
+<</chooseOption>>
+
 <!--	<<link "Disagree.">>
 		<<replace "#firstdate01">>
-			$daughter.name slumps at your response and is clearly upset but she leaves before you can say anything.<br>
-			<br>
-			<<= $wife.speak("A shame. Well back to work now.")>><br>
-			<br>
+			$daughter.name slumps at your response and is clearly upset but she leaves before you can say anything.
+			
+			<<= $wife.speak("A shame. Well back to work now.")>>
+			
 			$wife.name follows after $daughter.name leaving you to your chores.
 		<</replace>>
 	<</link>>-->
-</span><</nobr>><br>
 
 :: daughterPath04IntroDate02
 
