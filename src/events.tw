@@ -309,6 +309,8 @@ With that she turns and leaves you to your chores.
 
 <<link "<<= $wife.speak('Very well then. Follow me.')>>" "wifeCleaningBossy02B">><</link>>
 <</if>>
+<<end>>
+<</chooseOption>>
 
 :: wifeCleaningBossy02B
 
@@ -374,7 +376,7 @@ When you grab the shirt before the bra $wife.name speaks up again. <<= $wife.spe
 
 You drop the shirt and slip into the bra first. It sits loose against your flat chest but when you put the shirt on it creates a very distracting illusion of small breasts underneath. Lastly you slide the pink sneakers on and stand up.
 
-<<= $wife.speak("Much better.")>>
+<<= $wife.speak("Much better. Be sure you keep that on for the rest of the day.")>>
 
 Without another word she turns and leaves you alone in the small room
 
@@ -386,6 +388,47 @@ Without another word she turns and leaves you alone in the small room
 <<= $player.inv.addItem($shop.getAsTemp("Plain white bra"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Flat shoes"), 1, true)>>
 <</link>>
+
+:: wifeBedroomCleaning01
+
+trigger: randomly while cleaning any bedroom while the wife is home
+
+The bedroom are fortunately much easier to clean since they are smaller that main rooms. You're in the middle of tidying up when $wife.name walks in and looks around.
+
+<<= $wife.speak("Nope, this just isn't goood enough.")>> She grabs and points underneath the bed. <<= $wife.speak("You need to get right under the beds and clean there as well.")>>
+
+It looks like you're not getting out of this without doing what she says. You take the vacuum and and click it down so it will slide under the bed and get on your hands knees to finish the job.
+
+<<chooseOption "Put some effort in.">>
+
+You work as hard as you can to cover the whole area. It takes s while but when you're done $wife.name seems happy with your work.
+
+<<= $wife.speak("Make sure you keep putting that effort in.")>>
+
+She leaves the room so you can continue with your work.
+
+<<set $time.addTime({day:0, hour: 0, minute:10})>>
+<<option "Do it quickly.">>
+
+You run the vacuum over the floor as quickly as you can. About halfway through you hear $wife.name behind you.
+
+<<= $wife.speak("For goodness sake! Put some effort in.")>>
+
+You feel her put her heeled shoe on your butt and push you further under the bed. It's definitely easier to get the hard to reach places now. Just before you finish her foot slips and the narrow heel of her shoe pushes right up against your rear entrance.
+
+<<= $player.speak("Ow!")>>
+
+<<= $wife.speak("Hurry up and finish.")>> She keep her heel right where it loanded.
+
+<<= $player.speak("<i>Did she do that on purpose?</i>")>>
+
+You finish the job and $wife.name removes her foot.
+
+<<= $wife.speak("See that you don't waste my time with this in the future.")>>
+
+<<set $time.addTime({day:0, hour: 0, minute:15})>>
+<<end>>
+<</chooseOption>>
 
 <!-- Cook schedule events -->
 
@@ -420,15 +463,15 @@ He walks around behind you and reaches around to grab your arms. You stiffen up 
 
 <<= $cook.speak("You need to find a rythm.)>>
 
-$cook.name guides your hands as he quickly slices what's in front of you.
+$cook.name guides your hands as he quickly help you slice what's in front of you.
 
 <<= $cook.speak("Don't worry about the knife, worry about the food.")>>
 
-You notice his finger have slipped between yours and he's pressing against you more.
+You notice his finger have slipped between yours and he's pressing against you more in a very intimate way.
 
 [img[setup.ImagePath + "character/cook/cutting02.jpg"]]
 
-After a few minutes everything is done and $cook.name steps away.
+After a few minutes later everything is done and $cook.name steps away.
 
 <<= $cook.speak("If you end hurting yourself just make sure any mess in my kitchen gets cleaned up.")>>
 
@@ -440,6 +483,8 @@ After a few minutes everything is done and $cook.name steps away.
 You shake your head to say no and $cook.name hurumphs.
 
 <<= $cook.speak("Then stop gawking. I'm sure you've got better things to do.")>>
+<<end>>
+<</chooseOption>>
 
 <!-- Gardner schedule events -->
 
