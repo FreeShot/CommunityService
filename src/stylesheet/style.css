@@ -153,8 +153,7 @@ a:hover {
 }
 
 img {
-	max-width: 40%;
-	max-height: 20em;
+	max-width: 100%;
 	object-fit: contain;
 	border-radius: 15px;
 	border: solid 4px var(--link-color); 
@@ -271,4 +270,11 @@ img {
 .error, .error-view > .error-toggle, .error-source {
 	background-color: red;
 	color: white;
+}
+
+@media only screen and (min-width: 600px) {
+  img {
+	max-height: 10em;
+  	max-width: 40%;
+  }
 }
