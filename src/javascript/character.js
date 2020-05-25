@@ -86,18 +86,8 @@ class NPC extends Character {
 	// Class for the major npc
 	constructor(config) {
 		super(Object.assign({
-			schedule: [{
-				days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-				location: "",
-				start: {
-					hour: 0,
-					minute: 0
-				},
-				end: {
-					hour: 24,
-					minute: 0
-				}
-			}],
+			schedule: schedule.new(),
+			path: [],
 			appreciation: 0
 		}, config));
 	}
@@ -110,13 +100,6 @@ class NPC extends Character {
 	getAppreciation() {
 		// Returns string for displaying how much an npc likes you
 		return `<<scale ${this.appreciation} ${-100} ${100}>><</scale>>`;
-	}
-
-	get getLocation() {
-		// Returns the current location of the npc, takes use of the current time.
-		var schedule = this.schedule.find(
-			(ev) => ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end));
-		return schedule ? schedule.location : "";
 	}
 
 	// Used by twine

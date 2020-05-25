@@ -11,6 +11,17 @@
 
 <<return>>
 
+::changelog-V0.1.4 [changelog]
+!! V0.1.4
+!!! Main content
+- NPC now move arround much better
+
+!!! Other content
+- 
+
+!!! Bug fixes:
+- Fixed display for images on mobile
+
 ::changelog-V0.1.3 [changelog]
 !! V0.1.3
 !!! Main content

@@ -69,6 +69,7 @@ class Timer {
 		if (typeof timeEnd === "string")
 			timeEnd = this[timeEnd];
 
+		timeStart = timeStart || {hour: 0, minute: 0};
 		timeEnd = timeEnd || {hour : 24, minute : 0};
 		if (this.compareTime(timeEnd, timeStart) < 0)
 			return this.compareTime(timeStart) > -1 && this.compareTime(timeEnd) === -1;

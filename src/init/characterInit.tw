@@ -1,223 +1,97 @@
 ::characterInit [init]
 
-<<set $player to new Player({})>>
-<!--  NPC  -->
+<<script>>
+//-- PLAYER --------------------------------------------------------------------
 
-<<set $owner to new NPC({
-	name: "Mr Sono", 
+State.variables.player = new Player();
+
+//-- NPC -----------------------------------------------------------------------
+
+State.variables.owner = new NPC({
+	name: "Mr Sono",
 	color: {
-		light: "#2C302E", 
+		light: "#2C302E",
 		dark: "#555958"
-	}, 
-	title: "Sir", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 7, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Dining", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Office", 
-		start: {hour: 19, minute: 0}, 
-		end: {hour: 20, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Lounge", 
-		start: {hour: 20, minute: 0}, 
-		end: {hour: 22, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 22, minute: 0}, 
-		end: {hour: 24, minute: 0}
-	}
-]})>>
+	},
+	title: "Sir"
+});
+State.variables.owner.schedule.addPoint("Dining", {hour: 7, minute:0}, {hour: 7, minute: 30});
+State.variables.owner.schedule.addPoint("Office", {hour: 13, minute: 0}, {hour: 20, minute: 0});
+State.variables.owner.schedule.addPoint("MasterBdRm", {hour: 22, minute: 0}, {hour: 6, minute: 30});
 
-<<set $wife to new NPC({
+State.variables.wife = new NPC({
 	name: "Mrs Sono",
 	color: {
 		light: "#621708", 
 		dark: "#81412F"
 	}, 
-	title: "Ma'am", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 7, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Dining", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Office", 
-		start: {hour: 15, minute: 0}, 
-		end: {hour: 18, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Gym", 
-		start: {hour: 18, minute: 0}, 
-		end: {hour: 20, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Lounge", 
-		start: {hour: 20, minute: 0}, 
-		end: {hour: 22, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 22, minute: 0}, 
-		end: {hour: 24, minute: 0}
-	}
-]})>>
+	title: "Ma'am"
+});
 
-<<set $daughter to new NPC({
+State.variables.daughter = new NPC({
 	name: "Angeline", 
 	color: {
 		light: "#D0918A", 
 		dark: "#D0918A"
 	}, 
-	title: "Ms Sono", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "DaughterBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 7, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Dining", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Gym", 
-		start: {hour: 9, minute: 0}, 
-		end: {hour: 11, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Pool", 
-		start: {hour: 11, minute: 0}, 
-		end: {hour: 12, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Garden", 
-		start: {hour: 12, minute: 0}, 
-		end: {hour: 14, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "DaughterBdRm", 
-		start: {hour: 14, minute: 0}, 
-		end: {hour: 18, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Foyer", 
-		start: {hour: 18, minute: 0}, 
-		end: {hour: 19, minute: 0}
-	}
-]})>>
+	title: "Ms Sono"
+});
 
-<<set $son to new NPC({
+State.variables.son = new NPC({
 	name: "Mr Sono", 
 	color: {
 		light: "#69A8AD", 
 		dark: "#69A8AD"
 	}, 
 	title: "Mr Sono", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "SonBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 24, minute: 0}
-	}
-]})>>
+});
 
-<<set $butler to new NPC({
+State.variables.butler = new NPC({
 	name: "Mr Benson", 
 	color: {
 		light: "#634669", 
 		dark: "#634669"
 	}, 
 	title: "Mr Benson", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Kitchen", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Office", 
-		start: {hour: 18, minute: 0}, 
-		end: {hour: 22, minute: 0}
-	}
-]})>>
+});
 
-<<set $cook to new NPC({
+State.variables.cook = new NPC({
 	name: "Ivan", 
 	color: {
 		light: "#E2B05D", 
 		dark: "#F6C467"
 	}, 
-	title: "Cook", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Kitchen", 
-		start: {hour: 12, minute: 0}, 
-		end: {hour: 20, minute: 0}
-	}
-]})>>
+	title: "Cook"
+});
 
-<<set $gardner to new NPC({
+State.variables.gardner = new NPC({
 	name: "Juan", 
 	color: {
 		light: "#00916E", 
 		dark: "#00916E"
 	}, 
 	title: "Juan", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Garden", 
-		start: {hour: 6, minute: 0}, 
-		end: {hour: 12, minute: 0}
-	},
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-		location: "Pool",
-		start: {hour: 12, minute: 0},
-		end: {hour: 15, minute: 0}
-	}
-]})>>
+});
 
-<<set $caterer to new NPC({
+State.variables.caterer = new NPC({
 	name: "Mason", 
 	color: {
 		light: "#EE6123", 
 		dark: "#EE6123"
 	}, 
-	title: "Chef"})>>
+	title: "Chef"
+});
 
-<<set $suitor to new NPC({
+State.variables.suitor = new NPC({
 	name: "Rick", 
 	color: {
 		light: "#D08816", 
 		dark: "#D08816"
 	}, 
-	title: "Mr Stone"})>>
+	title: "Mr Stone"
+});
 
-<<set $npcList to [
+window.npcList = [
 	"owner", 
 	"wife", 
 	"daughter", 
@@ -227,6 +101,7 @@
 	"gardner", 
 	"caterer", 
 	"suitor"
-]>>
+];
 
-<<set $minorNPC to []>>
+State.variables.minorNPC = [];
+<</script>>
