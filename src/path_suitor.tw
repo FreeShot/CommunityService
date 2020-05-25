@@ -138,7 +138,7 @@ Without taking his hand off the man's shoulder $suitor.title guides him away and
 
 ::suitorPathIntroEnd1
 
-<<= $player.speak("Sorry $suitor.title but I reallyshould be getting back to work.")>>
+<<= $player.speak("Sorry $suitor.title but I really should be getting back to work.")>>
 
 <<= $suitor.speak("But I thought you had a interest in my work.")>> He looks genuinely confusded. 
 
