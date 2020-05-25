@@ -144,7 +144,7 @@ class Player extends Character {
 	constructor(config) {
 		super(Object.assign({
 			name: "Alex",
-			title: "Alex",
+			title: "servant",
 			femName: "Alice",
 			femininity: 0,
 			voice: {

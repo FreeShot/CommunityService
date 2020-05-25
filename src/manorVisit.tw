@@ -69,15 +69,15 @@ There is also a fenced off pool to the side with a pool house that looks like it
 
 <<= $player.speak("I wasn't going to use them...")>>, you mumble to yourself.
 
-Off on one of the far side, you see an elderly man working away.
+Off on one of the far side, you see a man working away in one of the gardens.
 
-<<= $butler.speak("That's $gardner.name. We won't bother him since he's busy at the moment but you will be expected to aide him. He's getting on in yeas so needs a young back to help.")>>
+<<= $butler.speak("That's $gardner.name. We won't bother him since he's busy at the moment but you will be expected to aide him. He's good at what he does but injured himself a while ago so needs a young back to help.")>>
 
-$butler.name glances at your slight frame and then back to Juan.
+$butler.name glances at your slight frame and then back to $gardner.name.
 
-<<= $butler.speak("But this will have to do.")>>
+<<= $butler.speak("Any help will do.")>>
 
-You watch as the old gardner drops what he is doing and grabs his back with one arm as if to emphasise the point.
+You watch as the grounds keeper drops what he is doing and grabs his back in pain as if to emphasise the point.
 
 <<= $butler.speak("Now follow me.")>>
 
@@ -139,7 +139,9 @@ $butler.name bows slightly and then continues [[showing you around the manor.|ma
 
 ::manorIntro07 [tutorial]
 <<= $mansion.display("PlayerBdRm")>>
-$butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
+Although there is a lot of space the layout is pretty easy to follow. It looks like any time you get lost you could jsut head to either the Upper or Lower Hall and you could find most of the other space there.
+
+Eventually $butler.name leads you to the back corridors and into a small living space.
 
 <<= $butler.speak("This is where you'll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.")>>
 
