@@ -24,17 +24,15 @@ pathfind.nextRoom = (start, end, cost) => {
 	return rooms[Math.floor(State.random() * rooms.length)];
 };
 
-pathfind.path = (start, room, tick) => {
+pathfind.path = (start, room) => {
 	var path = [];
-	var stop = 0;
 	var cost = pathfind.cost(start, room);
-	while (room != start || path.length < tick) {
+	while (room != start) {
 		path.unshift(room);
-		if (room !== start && tick > cost[room] && State.random() > 1 / (tick - path.length)) {
+		if (room !== start) {
 			cost = pathfind.cost(start, room);
 			room = pathfind.nextRoom(start, room, cost);
 		}
-		if (stop++ > 100) break;
 	}
 	path.unshift(room);
 	return path;
@@ -43,6 +41,8 @@ pathfind.path = (start, room, tick) => {
 window.schedule = {
 	new: (data) => Object.assign({
 		waypoints: [],
+		path: [],
+		currRoom: "PlayerBdRm",
 		addPoint: function(room, start, end) {
 			this.waypoints.push({
 				room: room,
@@ -54,9 +54,18 @@ window.schedule = {
 			var i = this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end));
 			return this.waypoints[i];
 		},
-		getLoc: function() {
-			var curr = this.curPoint()
-			if (curr) return curr.room;
+		nextPoint: function() {
+			return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
+		},
+		updatePath: function() {
+			var nextPoint = this.curPoint();
+			var path;
+			if (nextPoint !== undefined) {
+				path = pathfind.path(this.currRoom, nextPoint.room);
+			} else {
+				path = pathfind.path(this.currRoom, this.nextPoint().room);
+			}
+			this.currRoom = path.length > 1 ? path[1] : path[0];
 		}
 	}, data || {})
 };

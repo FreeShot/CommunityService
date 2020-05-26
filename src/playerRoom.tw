@@ -12,11 +12,9 @@ Desk
 <<set _event to $mansion.checkSpecialEvents()>>
 <<if _event !== "">>
 	<<= _event>>
-<<else>>
-	<<= console.log($time.inInterval("sleep", "wakeup"))>>
-	<<if $time.inInterval("sleep", "wakeup")>>
+<<elseif $time.inInterval("sleep", "wakeup")>>
 	[[Go to bed|sleep]]
-	<<else>>
+<<else>>
 	Got to the bathroom and:<br>
 	[[Shower|playerRoomShower]]<br><br>
 	Check the [[Wardrobe|playerRoomWardrobe]]<br>
@@ -32,7 +30,6 @@ Desk
 		<<goto `passage()`>>
 	<</link>>
 	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
-	<</if>>
 <</if>>
 <</nobr>>
 

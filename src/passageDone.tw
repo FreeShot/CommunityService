@@ -1,5 +1,5 @@
 ::PassageFooter [nodebug]
 
-<<= console.log($owner.schedule.curPoint())>>
+<<= $owner.schedule.updatePath();console.log($owner.schedule)>>
 
 <<if $debug>><<include 'debug-passage'>><</if>>

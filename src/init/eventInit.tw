@@ -154,14 +154,6 @@
 	tags: ["NeedWife", "NeedOwner"]
 }))>>
 
-<<= $mansion.addEvent("specialEvent", new Event({
-	name: "End of the week review",
-	passage: "endOfWeekRecapStart",
-	inline:false,
-	repeats:true,
-	tags: ["NeedWife"]
-}))>>
-
 <!-- Cook events -->
 
 <<= $mansion.addEvent("Kitchen", new Event({
