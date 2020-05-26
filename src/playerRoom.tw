@@ -29,7 +29,7 @@ Desk
 		<<= $time.setDate({day:0, hour:22, minute:0})>>
 		<<goto `passage()`>>
 	<</link>>
-	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
+	<<= $mansion.findRoom($player.currRoom).getAdjacentRooms()>>
 <</if>>
 <</nobr>>
 

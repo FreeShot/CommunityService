@@ -42,7 +42,6 @@ class Character {
 	constructor(config) {
 		this.name = '';
 		this.title = '';
-		this.currentRoom = '';
 		this.color = {};
 
 		Object.keys(config).forEach((pn) => this[pn] = clone(config[pn]), this);
@@ -138,7 +137,7 @@ class Player extends Character {
 				current: 10,
 				max: 10
 			},
-			currentRoom: "PlayerBdRm",
+			currRoom: "PlayerBdRm",
 			choresLate: 0,
 			money: 0,
 			bodyPart: {

@@ -15,7 +15,9 @@ State.variables.owner = new NPC({
 	},
 	title: "Sir"
 });
+State.variables.owner.schedule.currRoom = "MasterBdRm";
 State.variables.owner.schedule.addPoint("Dining", {hour: 7, minute:0}, {hour: 7, minute: 30});
+State.variables.owner.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 State.variables.owner.schedule.addPoint("Office", {hour: 13, minute: 0}, {hour: 20, minute: 0});
 State.variables.owner.schedule.addPoint("MasterBdRm", {hour: 22, minute: 0}, {hour: 6, minute: 30});
 
@@ -27,6 +29,11 @@ State.variables.wife = new NPC({
 	}, 
 	title: "Ma'am"
 });
+State.variables.wife.schedule.currRoom = "MasterBdRm";
+State.variables.wife.schedule.addPoint("Dining", {hour: 7, minute:0}, {hour: 7, minute: 30});
+State.variables.wife.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
+State.variables.wife.schedule.addPoint("Office", {hour: 13, minute: 0}, {hour: 20, minute: 0});
+State.variables.wife.schedule.addPoint("MasterBdRm", {hour: 22, minute: 0}, {hour: 6, minute: 30});
 
 State.variables.daughter = new NPC({
 	name: "Angeline", 
@@ -36,6 +43,8 @@ State.variables.daughter = new NPC({
 	}, 
 	title: "Ms Sono"
 });
+State.variables.daughter.schedule.currRoom = "DaughterBdRm";
+State.variables.daughter.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.son = new NPC({
 	name: "Mr Sono", 
@@ -45,6 +54,8 @@ State.variables.son = new NPC({
 	}, 
 	title: "Mr Sono", 
 });
+State.variables.son.schedule.currRoom = "SonBdRm";
+State.variables.son.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.butler = new NPC({
 	name: "Mr Benson", 
@@ -54,6 +65,8 @@ State.variables.butler = new NPC({
 	}, 
 	title: "Mr Benson", 
 });
+State.variables.butler.schedule.currRoom = "Lounge";
+State.variables.butler.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.cook = new NPC({
 	name: "Ivan", 
@@ -63,6 +76,8 @@ State.variables.cook = new NPC({
 	}, 
 	title: "Cook"
 });
+State.variables.cook.schedule.currRoom = "Kitchen";
+State.variables.cook.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.gardner = new NPC({
 	name: "Juan", 
@@ -72,6 +87,8 @@ State.variables.gardner = new NPC({
 	}, 
 	title: "Juan", 
 });
+State.variables.gardner.schedule.currRoom = "Garden";
+State.variables.gardner.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.caterer = new NPC({
 	name: "Mason", 
@@ -81,6 +98,8 @@ State.variables.caterer = new NPC({
 	}, 
 	title: "Chef"
 });
+State.variables.caterer.schedule.currRoom = undefined;
+State.variables.caterer.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.suitor = new NPC({
 	name: "Rick", 
@@ -90,6 +109,8 @@ State.variables.suitor = new NPC({
 	}, 
 	title: "Mr Stone"
 });
+State.variables.suitor.schedule.currRoom = undefined;
+State.variables.suitor.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 window.npcList = [
 	"owner", 

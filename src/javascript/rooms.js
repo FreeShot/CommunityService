@@ -78,14 +78,11 @@ class Room {
 	}
 
 	getAdjacentRooms() {
-		if (this.adjacentRooms.length > 0)
-			return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(this.adjacentRooms[i]).getPassage()}</li>`, `<ol>`) + "</ol>";
-		else
-			return "[[Go to your room|PlayerBdRm]]";
+		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
 	}
 
 	getPassage() {
-		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
+		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><<= $time.addTravelTime("${State.variables.player.currRoom}", $player.currRoom)>><</link>>`
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone, short) {

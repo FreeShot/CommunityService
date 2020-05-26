@@ -3,6 +3,7 @@
 <<set $debug to false>>
 <<set $firstTime to recall('firstTime', true)>><<= memorize('firstTime', false)>>
 
+<<set $lastTime to {abs: 0, rel: 0}>>
 <<set $time to new Timer({day: 2, time: {hour: 19, minute: 0}})>>
 
 <<set $flags to {

@@ -424,7 +424,6 @@ class Character {
 	constructor(config) {
 		this.name = '';
 		this.title = '';
-		this.currentRoom = '';
 		this.color = {};
 
 		Object.keys(config).forEach((pn) => this[pn] = clone(config[pn]), this);
@@ -520,7 +519,7 @@ class Player extends Character {
 				current: 10,
 				max: 10
 			},
-			currentRoom: "PlayerBdRm",
+			currRoom: "PlayerBdRm",
 			choresLate: 0,
 			money: 0,
 			bodyPart: {
@@ -1473,10 +1472,11 @@ pathfind.cost = (startName, endName, c, roomCost) => {
 pathfind.nextRoom = (start, end, cost) => {
 	var cost = cost || pathfind.cost(start, end);
 	var rooms = State.variables.mansion.findRoom(end).adjacentRooms.filter((newRoom) => cost[newRoom] === cost[end] - 1);
-	return rooms[Math.floor(State.random() * rooms.length)];
+	return rooms[Math.floor(State.random() * rooms.length)] || start;
 };
 
 pathfind.path = (start, room) => {
+	if (room === "FreeRoam") return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
 	var path = [];
 	var cost = pathfind.cost(start, room);
 	while (room != start) {
@@ -1494,7 +1494,7 @@ window.schedule = {
 	new: (data) => Object.assign({
 		waypoints: [],
 		path: [],
-		currRoom: "PlayerBdRm",
+		currRoom: undefined,
 		addPoint: function(room, start, end) {
 			this.waypoints.push({
 				room: room,
@@ -1510,16 +1510,28 @@ window.schedule = {
 			return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
 		},
 		updatePath: function() {
+			if (this.currRoom === undefined) return;
 			var nextPoint = this.curPoint();
 			var path;
 			if (nextPoint !== undefined) {
 				path = pathfind.path(this.currRoom, nextPoint.room);
 			} else {
-				path = pathfind.path(this.currRoom, this.nextPoint().room);
+				nextPoint === this.nextPoint;
+				if (nextPoint !== undefined)
+					path = pathfind.path(this.currRoom, nextPoint.room);
+				else
+					path = [this.currRoom];
 			}
 			this.currRoom = path.length > 1 ? path[1] : path[0];
+		},
+		estimateLoc: function() {
+			var loc = this.curPoint();
+			console.log(loc);
+			if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
+			else return State.variables.mansion.findRoom(loc.room).name;
 		}
-	}, data || {})
+	}, data || {}),
+	moveAll: function(tick) {while(tick > 0) {tick--; npcList.forEach((npc) => State.variables[npc].schedule.updatePath())}}
 };
 /* twine-user-script #11: "pronouns.js" */
 // Chapel's pronouns template
@@ -1944,14 +1956,11 @@ class Room {
 	}
 
 	getAdjacentRooms() {
-		if (this.adjacentRooms.length > 0)
-			return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(this.adjacentRooms[i]).getPassage()}</li>`, `<ol>`) + "</ol>";
-		else
-			return "[[Go to your room|PlayerBdRm]]";
+		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
 	}
 
 	getPassage() {
-		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
+		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><<= $time.addTravelTime("${State.variables.player.currRoom}", $player.currRoom)>><</link>>`
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone, short) {
@@ -2218,6 +2227,10 @@ class Timer {
 		this.time.minute %= 60;
 		this.day += (time.day || 0) + Math.floor(this.time.hour / 24);
 		this.time.hour %= 24;
+	}
+
+	addTravelTime(start, end){
+		this.addTime({minute: 10 * pathfind.path(start, end).length})
 	}
 
 	compareTime(time, time2) {
@@ -4082,7 +4095,9 @@ State.variables.owner = new NPC({
 	},
 	title: &quot;Sir&quot;
 });
+State.variables.owner.schedule.currRoom = &quot;MasterBdRm&quot;;
 State.variables.owner.schedule.addPoint(&quot;Dining&quot;, {hour: 7, minute:0}, {hour: 7, minute: 30});
+State.variables.owner.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 State.variables.owner.schedule.addPoint(&quot;Office&quot;, {hour: 13, minute: 0}, {hour: 20, minute: 0});
 State.variables.owner.schedule.addPoint(&quot;MasterBdRm&quot;, {hour: 22, minute: 0}, {hour: 6, minute: 30});
 
@@ -4094,6 +4109,11 @@ State.variables.wife = new NPC({
 	}, 
 	title: &quot;Ma&#39;am&quot;
 });
+State.variables.wife.schedule.currRoom = &quot;MasterBdRm&quot;;
+State.variables.wife.schedule.addPoint(&quot;Dining&quot;, {hour: 7, minute:0}, {hour: 7, minute: 30});
+State.variables.wife.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
+State.variables.wife.schedule.addPoint(&quot;Office&quot;, {hour: 13, minute: 0}, {hour: 20, minute: 0});
+State.variables.wife.schedule.addPoint(&quot;MasterBdRm&quot;, {hour: 22, minute: 0}, {hour: 6, minute: 30});
 
 State.variables.daughter = new NPC({
 	name: &quot;Angeline&quot;, 
@@ -4103,6 +4123,8 @@ State.variables.daughter = new NPC({
 	}, 
 	title: &quot;Ms Sono&quot;
 });
+State.variables.daughter.schedule.currRoom = &quot;DaughterBdRm&quot;;
+State.variables.daughter.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.son = new NPC({
 	name: &quot;Mr Sono&quot;, 
@@ -4112,6 +4134,8 @@ State.variables.son = new NPC({
 	}, 
 	title: &quot;Mr Sono&quot;, 
 });
+State.variables.son.schedule.currRoom = &quot;SonBdRm&quot;;
+State.variables.son.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.butler = new NPC({
 	name: &quot;Mr Benson&quot;, 
@@ -4121,6 +4145,8 @@ State.variables.butler = new NPC({
 	}, 
 	title: &quot;Mr Benson&quot;, 
 });
+State.variables.butler.schedule.currRoom = &quot;Lounge&quot;;
+State.variables.butler.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.cook = new NPC({
 	name: &quot;Ivan&quot;, 
@@ -4130,6 +4156,8 @@ State.variables.cook = new NPC({
 	}, 
 	title: &quot;Cook&quot;
 });
+State.variables.cook.schedule.currRoom = &quot;Kitchen&quot;;
+State.variables.cook.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.gardner = new NPC({
 	name: &quot;Juan&quot;, 
@@ -4139,6 +4167,8 @@ State.variables.gardner = new NPC({
 	}, 
 	title: &quot;Juan&quot;, 
 });
+State.variables.gardner.schedule.currRoom = &quot;Garden&quot;;
+State.variables.gardner.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.caterer = new NPC({
 	name: &quot;Mason&quot;, 
@@ -4148,6 +4178,8 @@ State.variables.caterer = new NPC({
 	}, 
 	title: &quot;Chef&quot;
 });
+State.variables.caterer.schedule.currRoom = undefined;
+State.variables.caterer.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 State.variables.suitor = new NPC({
 	name: &quot;Rick&quot;, 
@@ -4157,6 +4189,8 @@ State.variables.suitor = new NPC({
 	}, 
 	title: &quot;Mr Stone&quot;
 });
+State.variables.suitor.schedule.currRoom = undefined;
+State.variables.suitor.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 12, minute: 30});
 
 window.npcList = [
 	&quot;owner&quot;, 
@@ -5142,6 +5176,7 @@ State.variables.minorNPC = [];
 &lt;&lt;set $debug to false&gt;&gt;
 &lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
 
+&lt;&lt;set $lastTime to {abs: 0, rel: 0}&gt;&gt;
 &lt;&lt;set $time to new Timer({day: 2, time: {hour: 19, minute: 0}})&gt;&gt;
 
 &lt;&lt;set $flags to {
@@ -5520,7 +5555,11 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;Daily Chores
 &lt;&lt;= $mansion.displayChores(false, $flags.filterDone, true)&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td cospan=&quot;2&quot;&gt;Missed chores: $player.choresLate&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</tw-passagedata><tw-passagedata pid="176" name="CUFF" tags="noreturn mainMenu menu" position="725,2225" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
+&lt;/table&gt;
+
+&lt;&lt;for _npc range npcList&gt;&gt;
+_npc: &lt;&lt;= State.variables.owner.schedule.estimateLoc()&gt;&gt;&lt;br&gt;
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="176" name="CUFF" tags="noreturn mainMenu menu" position="725,2225" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
 [[Chore list|playerToDoList]]
@@ -5567,7 +5606,10 @@ _i: &lt;&lt;= $player.getStatBar(_i)&gt;&gt; (lvl &lt;&lt;= $player.getStat(_i)&
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="181" name="PassageFooter" tags="nodebug" position="100,2350" size="100,100">&lt;&lt;= $owner.schedule.updatePath();console.log($owner.schedule)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="181" name="PassageFooter" tags="nodebug" position="100,2350" size="100,100">&lt;&lt;= schedule.moveAll($lastTime.rel / 10)&gt;&gt;
+&lt;&lt;set _last = $lastTime.abs&gt;&gt;
+&lt;&lt;set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)&gt;&gt;
+&lt;&lt;set $lastTime.rel = $lastTime.abs - _last&gt;&gt;
 
 &lt;&lt;if $debug&gt;&gt;&lt;&lt;include &#39;debug-passage&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="182" name="daughterPath01Homedrunk" tags="noreturn chore" position="225,2350" size="100,100">Trigger: First Thursday night (last thing to happen before the player goes to bed)
 
@@ -6383,7 +6425,7 @@ Desk
 		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-	&lt;&lt;= $mansion.findRoom($player.currentRoom).getAdjacentRooms()&gt;&gt;
+	&lt;&lt;= $mansion.findRoom($player.currRoom).getAdjacentRooms()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
@@ -6447,7 +6489,7 @@ How to flirt with guests and comport yourself by keeping you chest out and chin 
 
 Halfway through your session you get this weird sense in the back of your shoulders, almost like someone is watching you. You feel the need to look at the fourth wall of your room and wink.
 &lt;&lt;set $time.addTime({hour:1})&gt;&gt;&lt;&lt;= $player.rest(5)&gt;&gt;
-&lt;&lt;return &#39;Back to the menu&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="217" name="RoomDescription" tags="room" position="850,2725" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currentRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="218" name="shopTest" tags="" position="975,2725" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;return &#39;Back to the menu&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="217" name="RoomDescription" tags="room" position="850,2725" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="218" name="shopTest" tags="" position="975,2725" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
 

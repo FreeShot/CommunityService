@@ -38,6 +38,10 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
+	addTravelTime(start, end){
+		this.addTime({minute: 10 * pathfind.path(start, end).length})
+	}
+
 	compareTime(time, time2) {
 		if (typeof time === "string")
 			time = this[time];

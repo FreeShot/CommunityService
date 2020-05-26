@@ -1,3 +1,3 @@
 ::RoomDescription [room]
 
-<<= $mansion.describeRoom($player.currentRoom)>>
+<<= $mansion.describeRoom($player.currRoom)>>

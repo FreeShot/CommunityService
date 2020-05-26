@@ -1,5 +1,8 @@
 ::PassageFooter [nodebug]
 
-<<= $owner.schedule.updatePath();console.log($owner.schedule)>>
+<<= schedule.moveAll($lastTime.rel / 10)>>
+<<set _last = $lastTime.abs>>
+<<set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)>>
+<<set $lastTime.rel = $lastTime.abs - _last>>
 
 <<if $debug>><<include 'debug-passage'>><</if>>

@@ -21,10 +21,11 @@ pathfind.cost = (startName, endName, c, roomCost) => {
 pathfind.nextRoom = (start, end, cost) => {
 	var cost = cost || pathfind.cost(start, end);
 	var rooms = State.variables.mansion.findRoom(end).adjacentRooms.filter((newRoom) => cost[newRoom] === cost[end] - 1);
-	return rooms[Math.floor(State.random() * rooms.length)];
+	return rooms[Math.floor(State.random() * rooms.length)] || start;
 };
 
 pathfind.path = (start, room) => {
+	if (room === "FreeRoam") return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
 	var path = [];
 	var cost = pathfind.cost(start, room);
 	while (room != start) {
@@ -42,7 +43,7 @@ window.schedule = {
 	new: (data) => Object.assign({
 		waypoints: [],
 		path: [],
-		currRoom: "PlayerBdRm",
+		currRoom: undefined,
 		addPoint: function(room, start, end) {
 			this.waypoints.push({
 				room: room,
@@ -58,14 +59,26 @@ window.schedule = {
 			return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
 		},
 		updatePath: function() {
+			if (this.currRoom === undefined) return;
 			var nextPoint = this.curPoint();
 			var path;
 			if (nextPoint !== undefined) {
 				path = pathfind.path(this.currRoom, nextPoint.room);
 			} else {
-				path = pathfind.path(this.currRoom, this.nextPoint().room);
+				nextPoint === this.nextPoint;
+				if (nextPoint !== undefined)
+					path = pathfind.path(this.currRoom, nextPoint.room);
+				else
+					path = [this.currRoom];
 			}
 			this.currRoom = path.length > 1 ? path[1] : path[0];
+		},
+		estimateLoc: function() {
+			var loc = this.curPoint();
+			console.log(loc);
+			if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
+			else return State.variables.mansion.findRoom(loc.room).name;
 		}
-	}, data || {})
+	}, data || {}),
+	moveAll: function(tick) {while(tick > 0) {tick--; npcList.forEach((npc) => State.variables[npc].schedule.updatePath())}}
 };
