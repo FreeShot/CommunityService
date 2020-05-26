@@ -85,7 +85,7 @@ class NPC extends Character {
 	// Class for the major npc
 	constructor(config) {
 		super(Object.assign({
-			schedule: schedule.new(),
+			schedule: new Schedule(),
 			path: [],
 			appreciation: 0
 		}, config));

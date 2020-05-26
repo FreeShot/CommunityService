@@ -39,46 +39,71 @@ pathfind.path = (start, room) => {
 	return path;
 };
 
-window.schedule = {
-	new: (data) => Object.assign({
-		waypoints: [],
-		path: [],
-		currRoom: undefined,
-		addPoint: function(room, start, end) {
-			this.waypoints.push({
-				room: room,
-				start: start,
-				end: end
-			});
-		},
-		curPoint: function() {
-			var i = this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end));
-			return this.waypoints[i];
-		},
-		nextPoint: function() {
-			return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
-		},
-		updatePath: function() {
-			if (this.currRoom === undefined) return;
-			var nextPoint = this.curPoint();
-			var path;
-			if (nextPoint !== undefined) {
+class Schedule {
+	constructor(config) {
+		this.waypoints = [];
+		this.path = [];
+		this.currRoom = undefined;
+
+		Object.keys(config || {}).forEach((pn) => this[pn] = clone(config[pn]), this);
+	}
+
+	addPoint(room, start, end) {
+		this.waypoints.push({
+			room: room, start: start, end: end
+		});
+	}
+
+	curPoint() {
+		return this.waypoints[this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end))];
+	}
+
+	nextPoint() {
+		return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
+	}
+	
+	updatePath() {
+		if (this.currRoom === undefined) return;
+		var nextPoint = this.curPoint();
+		var path;
+		if (nextPoint !== undefined) {
+			path = pathfind.path(this.currRoom, nextPoint.room);
+		} else {
+			nextPoint === this.nextPoint;
+			if (nextPoint !== undefined)
 				path = pathfind.path(this.currRoom, nextPoint.room);
-			} else {
-				nextPoint === this.nextPoint;
-				if (nextPoint !== undefined)
-					path = pathfind.path(this.currRoom, nextPoint.room);
-				else
-					path = [this.currRoom];
-			}
-			this.currRoom = path.length > 1 ? path[1] : path[0];
-		},
-		estimateLoc: function() {
-			var loc = this.curPoint();
-			console.log(loc);
-			if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
-			else return State.variables.mansion.findRoom(loc.room).name;
+			else
+				path = [this.currRoom];
 		}
-	}, data || {}),
-	moveAll: function(tick) {while(tick > 0) {tick--; npcList.forEach((npc) => State.variables[npc].schedule.updatePath())}}
+		this.currRoom = path.length > 1 ? path[1] : path[0];
+	}
+	
+	estimateLoc() {
+		var loc = this.curPoint();
+		if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
+		else return State.variables.mansion.findRoom(loc.room).name;
+	}
+
+	clone() {
+		return new Schedule(this);
+	}
+
+	// For twine
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Schedule($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Schedule', {
+	value: Schedule
+});
+
+window.schedule = function(tick) {
+	while(tick > 0) {
+		tick--; 
+		npcList.forEach((npc) => State.variables[npc].schedule.updatePath())
+	}
 };

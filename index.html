@@ -467,7 +467,7 @@ class NPC extends Character {
 	// Class for the major npc
 	constructor(config) {
 		super(Object.assign({
-			schedule: schedule.new(),
+			schedule: new Schedule(),
 			path: [],
 			appreciation: 0
 		}, config));
@@ -1490,48 +1490,73 @@ pathfind.path = (start, room) => {
 	return path;
 };
 
-window.schedule = {
-	new: (data) => Object.assign({
-		waypoints: [],
-		path: [],
-		currRoom: undefined,
-		addPoint: function(room, start, end) {
-			this.waypoints.push({
-				room: room,
-				start: start,
-				end: end
-			});
-		},
-		curPoint: function() {
-			var i = this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end));
-			return this.waypoints[i];
-		},
-		nextPoint: function() {
-			return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
-		},
-		updatePath: function() {
-			if (this.currRoom === undefined) return;
-			var nextPoint = this.curPoint();
-			var path;
-			if (nextPoint !== undefined) {
+class Schedule {
+	constructor(config) {
+		this.waypoints = [];
+		this.path = [];
+		this.currRoom = undefined;
+
+		Object.keys(config || {}).forEach((pn) => this[pn] = clone(config[pn]), this);
+	}
+
+	addPoint(room, start, end) {
+		this.waypoints.push({
+			room: room, start: start, end: end
+		});
+	}
+
+	curPoint() {
+		return this.waypoints[this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end))];
+	}
+
+	nextPoint() {
+		return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
+	}
+	
+	updatePath() {
+		if (this.currRoom === undefined) return;
+		var nextPoint = this.curPoint();
+		var path;
+		if (nextPoint !== undefined) {
+			path = pathfind.path(this.currRoom, nextPoint.room);
+		} else {
+			nextPoint === this.nextPoint;
+			if (nextPoint !== undefined)
 				path = pathfind.path(this.currRoom, nextPoint.room);
-			} else {
-				nextPoint === this.nextPoint;
-				if (nextPoint !== undefined)
-					path = pathfind.path(this.currRoom, nextPoint.room);
-				else
-					path = [this.currRoom];
-			}
-			this.currRoom = path.length > 1 ? path[1] : path[0];
-		},
-		estimateLoc: function() {
-			var loc = this.curPoint();
-			console.log(loc);
-			if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
-			else return State.variables.mansion.findRoom(loc.room).name;
+			else
+				path = [this.currRoom];
 		}
-	}, data || {}),
-	moveAll: function(tick) {while(tick > 0) {tick--; npcList.forEach((npc) => State.variables[npc].schedule.updatePath())}}
+		this.currRoom = path.length > 1 ? path[1] : path[0];
+	}
+	
+	estimateLoc() {
+		var loc = this.curPoint();
+		if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
+		else return State.variables.mansion.findRoom(loc.room).name;
+	}
+
+	clone() {
+		return new Schedule(this);
+	}
+
+	// For twine
+	toJSON() {
+        var ownData = {};
+        Object.keys(this).forEach(function (pn) {
+            ownData[pn] = clone(this[pn]);
+        }, this);
+        return JSON.reviveWrapper('new Schedule($ReviveData$)', ownData);
+	}
+}
+Object.defineProperty(window, 'Schedule', {
+	value: Schedule
+});
+
+window.schedule = function(tick) {
+	while(tick > 0) {
+		tick--; 
+		npcList.forEach((npc) => State.variables[npc].schedule.updatePath())
+	}
 };
 /* twine-user-script #11: "pronouns.js" */
 // Chapel's pronouns template
@@ -2230,7 +2255,7 @@ class Timer {
 	}
 
 	addTravelTime(start, end){
-		this.addTime({minute: 10 * pathfind.path(start, end).length})
+		this.addTime({minute: 5 * (pathfind.path(start, end).length - 1)})
 	}
 
 	compareTime(time, time2) {
@@ -5558,7 +5583,9 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;/table&gt;
 
 &lt;&lt;for _npc range npcList&gt;&gt;
-_npc: &lt;&lt;= State.variables.owner.schedule.estimateLoc()&gt;&gt;&lt;br&gt;
+&lt;&lt;if State.variables[_npc].schedule.currRoom !== undefined&gt;&gt;
+_npc: &lt;&lt;= State.variables[_npc].schedule.estimateLoc()&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="176" name="CUFF" tags="noreturn mainMenu menu" position="725,2225" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -5606,7 +5633,7 @@ _i: &lt;&lt;= $player.getStatBar(_i)&gt;&gt; (lvl &lt;&lt;= $player.getStat(_i)&
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="181" name="PassageFooter" tags="nodebug" position="100,2350" size="100,100">&lt;&lt;= schedule.moveAll($lastTime.rel / 10)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="181" name="PassageFooter" tags="nodebug" position="100,2350" size="100,100">&lt;&lt;= schedule($lastTime.rel / 5)&gt;&gt;
 &lt;&lt;set _last = $lastTime.abs&gt;&gt;
 &lt;&lt;set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)&gt;&gt;
 &lt;&lt;set $lastTime.rel = $lastTime.abs - _last&gt;&gt;

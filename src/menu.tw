@@ -16,7 +16,9 @@
 </table>
 
 <<for _npc range npcList>>
-_npc: <<= State.variables.owner.schedule.estimateLoc()>><br>
+<<if State.variables[_npc].schedule.currRoom !== undefined>>
+_npc: <<= State.variables[_npc].schedule.estimateLoc()>><br>
+<</if>>
 <</for>>
 
 ::CUFF [noreturn mainMenu menu]

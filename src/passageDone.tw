@@ -1,6 +1,6 @@
 ::PassageFooter [nodebug]
 
-<<= schedule.moveAll($lastTime.rel / 10)>>
+<<= schedule($lastTime.rel / 5)>>
 <<set _last = $lastTime.abs>>
 <<set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)>>
 <<set $lastTime.rel = $lastTime.abs - _last>>

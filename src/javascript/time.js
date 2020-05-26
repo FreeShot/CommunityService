@@ -39,7 +39,7 @@ class Timer {
 	}
 
 	addTravelTime(start, end){
-		this.addTime({minute: 10 * pathfind.path(start, end).length})
+		this.addTime({minute: 5 * (pathfind.path(start, end).length - 1)})
 	}
 
 	compareTime(time, time2) {
