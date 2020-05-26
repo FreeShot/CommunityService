@@ -69,7 +69,7 @@ class Schedule {
 		var nextPoint = this.curPoint() || this.nextPoint();
 		var path;
 		if (this.currRoom === "Void" && nextPoint !== "void") {
-			this.currRoom = "Lounge";
+			this.currRoom = "LowerHall";
 		}
 		if (nextPoint !== undefined) {
 			path = pathfind.path(this.currRoom, nextPoint.room);
