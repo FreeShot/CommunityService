@@ -1976,16 +1976,19 @@ class Room {
 		return str + (imgIndex < this.img.length ? `[>img[${this.getImgPath(imgIndex)}]]</span>` : "</span>");
 	}
 
-	generatePassage() {
-		return `${this.display(0)}<br>${this.getEvent()}<br>Chores: ${this.displayChores(undefined, State.variables.mansion.currentEvent === "", false)}<br>From here, you can go to ${this.getAdjacentRooms()}`;
-	}
-
 	getAdjacentRooms() {
 		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
 	}
 
 	getPassage() {
 		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><<= $time.addTravelTime("${State.variables.player.currRoom}", $player.currRoom)>><</link>>`
+	}
+
+	getNPC() {
+		var present = [...npcList].filter((npc) => State.variables[npc].schedule.currRoom === this.id);
+		if (present.length > 0)
+			return present.reduce((str, npc) => str + `<li>${State.variables[npc].name}</li>`, "In the room, you see: <ul>") + "</ul>";
+		else return "";
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone, short) {
@@ -6516,7 +6519,20 @@ How to flirt with guests and comport yourself by keeping you chest out and chin 
 
 Halfway through your session you get this weird sense in the back of your shoulders, almost like someone is watching you. You feel the need to look at the fourth wall of your room and wink.
 &lt;&lt;set $time.addTime({hour:1})&gt;&gt;&lt;&lt;= $player.rest(5)&gt;&gt;
-&lt;&lt;return &#39;Back to the menu&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="217" name="RoomDescription" tags="room" position="850,2725" size="100,100">&lt;&lt;= $mansion.describeRoom($player.currRoom)&gt;&gt;</tw-passagedata><tw-passagedata pid="218" name="shopTest" tags="" position="975,2725" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;return &#39;Back to the menu&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="217" name="RoomDescription" tags="room nobr" position="850,2725" size="100,100">&lt;&lt;= $mansion.findRoom($player.currRoom).display()&gt;&gt;&lt;br&gt;
+&lt;&lt;set _npc to $mansion.findRoom($player.currRoom).getNPC()&gt;&gt;
+&lt;&lt;if _npc !== &quot;&quot;&gt;&gt;
+&lt;&lt;= _npc&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;= $mansion.findRoom($player.currRoom).getEvent()&gt;&gt;
+&lt;br&gt;
+&lt;&lt;set _chores to $mansion.findRoom($player.currRoom).displayChores(true, true, false, false)&gt;&gt;
+&lt;&lt;if _chores !== &quot;&quot;&gt;&gt;
+Chores:
+&lt;&lt;= _chores&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;br&gt;
+From here, you can go to &lt;&lt;= $mansion.findRoom($player.currRoom).getAdjacentRooms()&gt;&gt;</tw-passagedata><tw-passagedata pid="218" name="shopTest" tags="" position="975,2725" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
 
