@@ -28,6 +28,7 @@ class Event {
 		return !this.tags.find((tag) => {
 			var tagTrue = tag[0] === "!";
 			var tagName = tagTrue ? tag.substr(1) : tag;
+			console.log(tagName, tagTrue, (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue);
 			return (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue
 		})
 	}

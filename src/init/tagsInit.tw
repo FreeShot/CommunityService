@@ -3,11 +3,11 @@
 <!--  Tags  -->
 
 <<set $tags to {
-	"NeedDaughter" : () => $player.currentRoom === $daughter.schedule.currRoom,
-	"NeedWife" : () => $player.currentRoom === $wife.schedule.currRoom,
-	"NeedOwner" : () => $player.currentRoom === $owner.schedule.currRoom,
-	"NeedCook" : () => $player.currentRoom === $cook.schedule.currRoom,
-	"NeedGardner" : () => $player.currentRoom === $gardner.schedule.currRoom,
+	"NeedDaughter" : () => $player.currRoom === $daughter.schedule.currRoom,
+	"NeedWife" : () => $player.currRoom === $wife.schedule.currRoom,
+	"NeedOwner" : () => $player.currRoom === $owner.schedule.currRoom,
+	"NeedCook" : () => $player.currRoom === $cook.schedule.currRoom,
+	"NeedGardner" : () => $player.currRoom === $gardner.schedule.currRoom,
 	"WeekEven" : () => $time.day % 14 >= 7,
 	"FirstWeek" : () => $time.day < 7,
 	"Monday" : () => $time.weekDayFormat == "Monday",

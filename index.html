@@ -935,6 +935,7 @@ class Event {
 		return !this.tags.find((tag) => {
 			var tagTrue = tag[0] === "!";
 			var tagName = tagTrue ? tag.substr(1) : tag;
+			console.log(tagName, tagTrue, (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue);
 			return (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue
 		})
 	}
@@ -1513,24 +1514,25 @@ class Schedule {
 	}
 	
 	updatePath() {
-		if (this.currRoom === undefined) return;
-		var nextPoint = this.curPoint();
+		if (this.currRoom === undefined) {
+			return;
+		}
+		var nextPoint = this.curPoint() || this.nextPoint();
 		var path;
+		if (this.currRoom === "Void" && nextPoint !== "void") {
+			this.currRoom = "Lounge";
+		}
 		if (nextPoint !== undefined) {
 			path = pathfind.path(this.currRoom, nextPoint.room);
-		} else {
-			nextPoint === this.nextPoint;
-			if (nextPoint !== undefined)
-				path = pathfind.path(this.currRoom, nextPoint.room);
-			else
-				path = [this.currRoom];
-		}
+		} else 
+			path = [this.currRoom];
 		this.currRoom = path.length > 1 ? path[1] : path[0];
 	}
 	
 	estimateLoc() {
+		if (this.currRoom === "Void") return "Away";
 		var loc = this.curPoint();
-		if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
+		if (loc === undefined || loc.room === "FreeRoam") return "Traveling"
 		else return State.variables.mansion.findRoom(loc.room).name;
 	}
 
@@ -5170,11 +5172,11 @@ State.variables.minorNPC = [];
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="156" name="tagsInit" tags="init" position="725,1975" size="100,100">&lt;!--  Tags  --&gt;
 
 &lt;&lt;set $tags to {
-	&quot;NeedDaughter&quot; : () =&gt; $player.currentRoom === $daughter.schedule.currRoom,
-	&quot;NeedWife&quot; : () =&gt; $player.currentRoom === $wife.schedule.currRoom,
-	&quot;NeedOwner&quot; : () =&gt; $player.currentRoom === $owner.schedule.currRoom,
-	&quot;NeedCook&quot; : () =&gt; $player.currentRoom === $cook.schedule.currRoom,
-	&quot;NeedGardner&quot; : () =&gt; $player.currentRoom === $gardner.schedule.currRoom,
+	&quot;NeedDaughter&quot; : () =&gt; $player.currRoom === $daughter.schedule.currRoom,
+	&quot;NeedWife&quot; : () =&gt; $player.currRoom === $wife.schedule.currRoom,
+	&quot;NeedOwner&quot; : () =&gt; $player.currRoom === $owner.schedule.currRoom,
+	&quot;NeedCook&quot; : () =&gt; $player.currRoom === $cook.schedule.currRoom,
+	&quot;NeedGardner&quot; : () =&gt; $player.currRoom === $gardner.schedule.currRoom,
 	&quot;WeekEven&quot; : () =&gt; $time.day % 14 &gt;= 7,
 	&quot;FirstWeek&quot; : () =&gt; $time.day &lt; 7,
 	&quot;Monday&quot; : () =&gt; $time.weekDayFormat == &quot;Monday&quot;,

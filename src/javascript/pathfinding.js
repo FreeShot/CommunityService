@@ -63,24 +63,25 @@ class Schedule {
 	}
 	
 	updatePath() {
-		if (this.currRoom === undefined) return;
-		var nextPoint = this.curPoint();
+		if (this.currRoom === undefined) {
+			return;
+		}
+		var nextPoint = this.curPoint() || this.nextPoint();
 		var path;
+		if (this.currRoom === "Void" && nextPoint !== "void") {
+			this.currRoom = "Lounge";
+		}
 		if (nextPoint !== undefined) {
 			path = pathfind.path(this.currRoom, nextPoint.room);
-		} else {
-			nextPoint === this.nextPoint;
-			if (nextPoint !== undefined)
-				path = pathfind.path(this.currRoom, nextPoint.room);
-			else
-				path = [this.currRoom];
-		}
+		} else 
+			path = [this.currRoom];
 		this.currRoom = path.length > 1 ? path[1] : path[0];
 	}
 	
 	estimateLoc() {
+		if (this.currRoom === "Void") return "Away";
 		var loc = this.curPoint();
-		if (loc === undefined || loc.room === "FreeRoam") {return "Traveling"}
+		if (loc === undefined || loc.room === "FreeRoam") return "Traveling"
 		else return State.variables.mansion.findRoom(loc.room).name;
 	}
 
