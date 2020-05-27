@@ -41,25 +41,37 @@ pathfind.path = (start, room) => {
 
 class Schedule {
 	constructor(config) {
-		this.waypoints = [];
+		this.waypoints = Array(7).fill([]);
 		this.path = [];
 		this.currRoom = undefined;
 
 		Object.keys(config || {}).forEach((pn) => this[pn] = clone(config[pn]), this);
 	}
 
-	addPoint(room, start, end) {
-		this.waypoints.push({
-			room: room, start: start, end: end
-		});
+	addPoint(room, start, end, week) {
+		(week || [0, 1, 2, 3, 4, 5, 6]).forEach((day) => {
+			if (start.hour * 60 + start.minute <= end.hour * 60 + end.minute) {
+				this.waypoints[day].push({
+					room: room, start: start, end: end
+				})
+			}
+			else {
+				this.waypoints[day].push({
+					room: room, start: start, end: {hour: 24, minute: 0}
+				});
+				this.waypoints[(day + 6) % 7].push({
+					room: room, start: {hour: 0, minute: 0}, end: end
+				});
+			}
+		})
 	}
 
 	curPoint() {
-		return this.waypoints[this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end))];
+		return this.waypoints[State.variables.time.day][this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end))];
 	}
 
 	nextPoint() {
-		return this.waypoints.find((wp) => State.variables.time.compareTime(wp.start) === -1);
+		return this.waypoints[State.variables.time.day].find((wp) => State.variables.time.compareTime(wp.start) === -1);
 	}
 	
 	updatePath() {
