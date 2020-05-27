@@ -59,11 +59,12 @@ class Schedule {
 				this.waypoints[day].push({
 					room: room, start: start, end: {hour: 24, minute: 0}
 				});
-				this.waypoints[(day + 6) % 7].push({
+				this.waypoints[(day + 1) % 7].push({
 					room: room, start: {hour: 0, minute: 0}, end: end
 				});
 			}
 		})
+		this.waypoints = this.waypoints.map((arr) => arr.sort((a, b) => (a.start.hour * 60 + a.minute) - (b.start.hour * 60 + b.minute)))
 	}
 
 	curPoint() {
@@ -80,10 +81,10 @@ class Schedule {
 		}
 		var nextPoint = this.curPoint() || this.nextPoint();
 		var path;
-		if (this.currRoom === "Void" && nextPoint !== "void") {
+		if (this.currRoom === "Void" && nextPoint !== "Void") {
 			this.currRoom = "LowerHall";
 		}
-		if (nextPoint !== undefined) {
+		if (nextPoint !== undefined && nextPoint.room !== "Void") {
 			path = pathfind.path(this.currRoom, nextPoint.room);
 		} else 
 			path = [this.currRoom];
@@ -91,9 +92,9 @@ class Schedule {
 	}
 	
 	estimateLoc() {
-		if (this.currRoom === "Void") return "Away";
 		var loc = this.curPoint();
-		if (loc === undefined || loc.room === "FreeRoam") return "Traveling"
+		if (loc.room === "Void") return "Away";
+		if (loc.room === "FreeRoam") return "Traveling"
 		else return State.variables.mansion.findRoom(loc.room).name;
 	}
 
