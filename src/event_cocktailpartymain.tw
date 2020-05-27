@@ -1,5 +1,4 @@
 ::mansionCPartySetup01 [event eventStart]
-TODO: Set all of the clothes for the player.
 
 It’s Saturday and today is $wife.name’s bi-weekly party so it’s time for you to take your role as $player.femName.
 
@@ -17,7 +16,7 @@ Knowing waiting for $wife.name to leave is pointless you undress in front of her
 
 <<= $wife.speak("Good girl.")>>
 
-Next she hands you your black lace panties. You slide them up over your legs so the rest on your hips. The thin lace hardly does anything to conceal the cage underneath. Thank goodness you’ll be wearing a dress.
+Next she hands you your black lace panties. You slide them up over your legs so they rest on your hips. The thin lace hardly does anything to conceal the cage underneath. Thank goodness you’ll be wearing a dress.
 
 $wife.name helps you with the rest of your outfit. The cincher, stockings and bra all go on first. She then provides a wig and does your make up. Finally you step into the dress and pull it up over your slim figure and put on shoes, bonnett and the choker.
 
