@@ -2,7 +2,7 @@
 
 <!-- Owner interactive events -->
 
-:: ownerBreakfastBossy01
+:: ownerBreakfastBossy01 [noreturn chore]
 
 $owner.name is in the dining room already as you and $butler.name start layout out breakfast. He doesn't acknowledge either of you and continues reading his tablet and $butler.name hands hims a cup of coffee with milk and two sugars which $owner.name takes as if expecting it right then.
 
@@ -41,31 +41,31 @@ Without a word $owner.name gets up and leaves with $butler.name right behind him
 
 <!-- Wife schedule events -->
 
-:: wifeOffice01
+:: wifeOffice01 [noreturn chore]
 
 $wife.name is sitting at the desk with her tablet. She’s most likely checking documents for a community outreach program she helps run. Her business clothes and posture make her every bit the confident and driven business woman.
 
 [img[setup.ImagePath + "character/wife/office_01.jpg"]]
 
-:: wifeGym01
+:: wifeGym01 [noreturn chore]
 
 $wife.name is in the gym going through her daily routine of cardio and light weight workout. She is on the bike at the moment and doesn’t even acknowledge you as you enter. The sheen of sweat glistening on her skin is very distracting.
 
 [img[setup.ImagePath + "character/wife/cardio01.jpg"]]
 
-:: wifeGym02
+:: wifeGym02 [noreturn chore]
 
 $wife.name is on the cable machine right now, working her shoulders and chest muscles. The defined lines of her body catch your eye and you can’t help but stare, and also feel a little jealous.
 
 [img[setup.ImagePath + "character/wife/cardio02.gif"]]
 
-:: wifeGym03
+:: wifeGym03 [noreturn chore]
 
 You hear the low hum of the treadmill as you enter the gym. $wife.name is jogging at a fast pace on the far side of the room. She breathing heavily but doesn't stop as you watch her. You doubt you could keep up that much effort with your current level of fitness.
 
 [img[setup.ImagePath + "character/wife/cardio03.gif"]]
 
-:: wifeOwnerLounge01
+:: wifeOwnerLounge01 [noreturn chore]
 
 You can see $wife.name reclining on one of the lounge chairs with her feet up resting on $owner.name’s lap while he gently rubs her feet. They are both reading something on their tablets and pause every so often to chat about something they just found. It’s a little strange seeing the two rich and domineering people just sitting like a regular married couple.
 
@@ -104,7 +104,7 @@ You feel her press her elbow into your lower forcing you to push you chest.
 <<= $wife.speak("Now hold that position while you work.")>>
 
 <<chooseOption "Maintain the pose.">>
-You hold the poistion as best you can. It's difficult hold you chest out in the awkward position. You don't really see how it's improving your work either but it does seem to not take as long.
+You hold the postion as best you can. It's difficult hold you chest out in the awkward position. You don't really see how it's improving your work either but it does seem to not take as long.
 
 When you finish $wife.name inspects your work.
 
@@ -128,7 +128,7 @@ She grabs you by the wrist and <<link "drags you to the master wardrobe." "wifeC
 <<end>>
 <</chooseOption>>
 
-:: wifeCleaningBossy01B
+:: wifeCleaningBossy01B [noreturn chore]
 
 The wife stands you in the middle of the wardrobe.
 
@@ -184,7 +184,7 @@ With that she turns and leaves you to your chores.
 <<end>>
 <</chooseOption>>
 
-:: wifeCleaningBossy02B
+:: wifeCleaningBossy02B [noreturn chore]
 
 You fall in behind $wife.name as she walks to the Master Bedroom.
 
@@ -232,7 +232,7 @@ You snatch up one of the nearby towels and quickly cover yourself.
 $wife.name grabs you by the wrist. You lose a hold the towel, leaving you naked as she drags to [[your room.|wifeLaundryPlayerNude01B]]
 <<= $player.unequip("All")>>
 
-:: wifeLaundryPlayerNude01B
+:: wifeLaundryPlayerNude01B [noreturn chore]
 
 The small space feels even smaller with a second person here. $wife.name opens the wardrobe and pulls out the clothes that were left behind by the previous occupant and sets them on the bed.
 
@@ -261,7 +261,7 @@ Without another word she turns and leaves you alone in the small room
 <<= $player.inv.addItem($shop.getAsTemp("Flat shoes"), 1, true)>>
 <</link>>
 
-:: wifeBedroomCleaning01
+:: wifeBedroomCleaning01 [noreturn chore]
 
 trigger: randomly while cleaning any bedroom while the wife is home
 
@@ -326,7 +326,7 @@ You back into the gym with you cleaning equipment and turn to see $daughter.name
 
 You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she's taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.
 
-:: daughterPoolSwimming01
+:: daughterPoolSwimming01 [noreturn chore]
 
 $daughter.name is relaxing in the warm water of the pool. She doesn't notice you at first and you catch yourself staring at her body, her swimsuit holding tight against it.
 
@@ -342,7 +342,7 @@ You jolt back to your senses when you realise you were still staring. <<= $playe
 
 With that she dives forward and starts swimming laps and leaving you to awkwardly go about your day.
 
-:: daughterPoolSwimming02
+:: daughterPoolSwimming02 [noreturn chore]
 
 When you get to the large pool you can see $daughter.name here swimming laps.
 
@@ -358,13 +358,13 @@ Your not a swimming expert but her pace seems pretty fast. It makes you wonder i
 
 $daughter.name walks over to where she put her towel. This time you catch yourself before you stare too long and then get back to your duties.
 
-:: daughterGardenReading01
+:: daughterGardenReading01 [noreturn chore]
 
 $daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and it glistens in the light.
 
 [img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]
 
-:: daughterDaughterBdRmStudying01
+:: daughterDaughterBdRmStudying01 [noreturn chore]
 
 You knock on the door to $daughter.name's room. She calls for you to come in. You head inside with your cleaning supplies and see $daughter.name is sitting at her computer wth her glasses on. Normally she'd tease you or say hi but it looks like she's pretty focused right now.
 
@@ -372,7 +372,7 @@ You knock on the door to $daughter.name's room. She calls for you to come in. Yo
 
 You do your best not to disturb her as you to go about your business.
 
-:: daughterDaughterBdRmStudying02
+:: daughterDaughterBdRmStudying02 [noreturn chore]
 
 You know $daughter.name is normally in her room right now. There's no answer so you poke head and see she is sitting on the floor at the base of her bed with her laptop in front of her.
 
@@ -424,7 +424,7 @@ $daughter.name leaves and you hear her burst into laughter as soon as she's out 
 
 <!-- Daughter interactive events -->
 
-:: daughterDaughterBdRmStudying03
+:: daughterDaughterBdRmStudying03 [noreturn chore]
 
 You enter $daughter.name's room. She's at her desk right now working on something but stops when she sees you come in.
 
@@ -470,7 +470,7 @@ $daughter.name gets back to what she was doing and you do the same.
 
 <!-- Cook schedule events -->
 
-:: cookKitchenCutting01
+:: cookKitchenCutting01 [noreturn chore]
 
 You can see $cook.name is here going about his business. You're a little concerned a stiff breeze might knock him over and it's slow going and he creeps around the room. Once he's back at the counter he completely changes pace. It's amazing watching him work though since he knows his setup like the back of his hand. He reaches for a knife without looking and immediately his speed changes and he has a plate of vegetables chopped in seconds.
 
@@ -480,7 +480,7 @@ It gets you wondering where he learned those knife skills...
 
 <!-- Cook interactive events -->
 
-:: cookKitchenCutting02
+:: cookKitchenCutting02 [noreturn chore]
 
 You can see $cook.name is here going about his business. It's nice to stop every now and then to watch him work, almost like when you used to watch those videos online that show flowers growing or wood being carved
 
@@ -526,7 +526,7 @@ You shake your head to say no and $cook.name hurumphs.
 
 <!-- Gardner schedule events -->
 
-:: gardnerGardenBossy01
+:: gardnerGardenBossy01 [noreturn chore]
 
 After you finish up sweeping you so to put the broom back in the shed. The shed is fairly spacious since it holds everything $gardner.name needs to keep the grounds looking good. It's very disorganised but he knows where everything goes so you try your best to keep things as is. The only issue is that he's fairly tall so you have to reach most for anything not pile against a wall.
 
@@ -564,13 +564,116 @@ You quickly pick up the broom and hang it on its hook before finishing up.
 <<end>>
 <</chooseOption>>
 
-:: gardnerPoolBossy01
+:: gardnerPoolBossy01 [noreturn chore]
 
 <!-- Player Solo Events -->
 
-:: gardenRelax01
+:: gardenRelax01 [noreturn chore]
 
 <!-- Group Events -->
 
-:: breakfastPJs01
+:: breakfastPJs01 [noreturn chore]
 
+<<= $wife.speak("Good morning dear.")>>
+
+$wife.name enteres the dining room and give $owner.name a quick peck on the cheek. She decided to come to breakfast still in her long silk dressing gown. The deep purple fabric shimmers as she takes a seat next to her husband. You come over to pour some tea when she gestures with her cup. As the steam rises you lose focus on the task for a moment. 
+
+$wife.name's dressing gown has come undone slightly and revealed her bosom underneath. She's wearing a lacey red bra underneath that's almost transparent making it revealing in a very sexy way.
+
+<<chooseOption "Keep looking.">>
+The sight is very enticing. You swear if you angle forward just a bit you might able to see a bit more. Unfortunately...
+
+<<= $wife.speak("Ouch!")>>
+
+The teacup clatters to the ground as $wife.name shakes her hand from where it overflowed and the hot water got on her. She looks at you and sands up, clearly furious.
+
+<<= $player.speak("<i>I'm dead.</i>")>>
+
+<<= $owner.speak("Dear.")>>
+
+You both tuRn to $owner.title. He's staring strait at you with that calm, intense look.
+
+<<= $owner.speak("I think you need to apologise $player.title.")>>
+
+<<= $wife.speak("Is that all?")>>
+
+$owner.title holds up his hand and gestures for you to apologise to $wife.name.
+
+<<= $player.speak("Sorry $wife.title.")>>
+
+<<= $owner.speak("No. On your knees.")>>
+
+$wife.name grins evily and your cheeks flush. If it was someone other than $owner.name you might protest but you know better.
+
+You drop to your knees and apologise again.
+
+<<= $owner.speak("Lower.")>> He says calmly.
+
+You bow slightly.
+
+<<= $owner.speak("Lower.")>>
+
+He continues until your head is touching the ground and you are prostrating in front of $wife.name.
+
+<<= $player.speak("Sorry $wife.title.")>>
+
+<<= $wife.speak("Don't worry about it $player.name.")>> She pats the back of your head gently with her foot. <<= $wife.speak("I'm sure you just did it for some attention but be sure you're more careful next time.")>>
+
+She sits back down and everyone else gets back to their breakfast as if nothing had happened. You, however are very careful to pay attention to what you are doing and shift nervously everytime $owner.title looks up.
+
+*****todo: auto fails weekly chores
+
+<<option "Pay attention.">>
+You decide to focus on what you are doing. The teacup is almost full and you manage to catch yourself before it spills over. You finish off by adding a dolop of cream and then continue serving the rest of breakfast.
+<</end>>
+<</chooseOption>>
+
+:: breakfastPJs02 [noreturn chore]
+
+Breakfast is almost halfway done when $daughter.name pads in to the room rubbing her eyes. It was clearly a long night her. Her blonde hair is bairly kept back in a loose ponytail and her eyes are bloodshot. This doesn't detract fromt he fact she's wearing nothing but a lacey black thong and a white tanks top that is so thin you can see the outline of her nipples underneath.
+
+<<= $wife.speak("$daughter.name, really?")>>
+
+$daughter.name mumbles something incoherant before sitting at the table. She quickly down a glass of juice and then begins to to devouring whatever is within her reach. $butler.name coughs from beside you and you jump a little before getting back to work.
+
+You bring another glass of juice over. $daughter.name takes a swig while her mouth is still half full of some pastry. One of the strap of her top has slid down her shoulder but you can't quite see anything from this angle.
+
+There are some plates nearby that are close enough to empty that you could clear them.
+
+<<chooseOption "Steal a glance as you do.">>
+You lean forward to reach for the plates. A glance to the side show the top has ridden down far enough that the hem is being just barely held up by her nippple. One small jostle is all it would take for it to...
+
+<<= $owner.speak("$player.title.")>>
+
+$owner.name is looking strait at you and you shoot back up strait.
+
+<<= $player.speak("Yes $owner.title.")>>
+
+He stares at you for a long moment, so long that you shift uncomfortabley. $owner.name turns to $wife.name.
+
+<<= $owner.speak("Take care of this little problem for the day before you leave dear.")>>
+
+$wife.name was watching silently eating her own food the whole time. She smiles at him and pats his cheek affectionately.
+
+<<= $wife.speak("Of course dear.")>> She stands up and $butler.name pulls her chair back quickly. <<= $wife.speak("Come with me $player.name.")>>
+
+You fall in behind her and she leads you to the master bedroom. You heart sinks as $wife.name walks into the dressing room and you realise what is about to happen. She pulls out the familiar pink cage.
+
+<<= $wife.speak("My husband really doesn't like people ogling his daughter. Come on.")>> She gestures for you to take you pants off.
+
+Once they are off $wife.name kneels down in fron of you. <<= $wife.speak("You know he wanted to keep it on you 24/7 but I managed to talk him out of it.")>> 
+
+<<= $player.speak("<i>Gee, thanks...</i>")>>
+
+<<= $player.speak("I can put it on myself $wife.title.")>>
+
+<<= $wife.speak("Hush.")>>She slips the plastc cage over your manhood and locks it shut with a click. <<= $wife.speak("There you go. Safely sealed away so you don't have any more naughty urges. You can come back for the key at the end of the day.")>>
+
+$wife.name stands and leaves you to pull your pants back up and hurry back the dining room.
+<<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
+<<option "Just clear the plates.">>
+You take the plates and put them on a tray before heading back to the kitchen.
+
+As you do you see $owner.name watching you from behind his tablet. You suspect you dodged a bullet on that one.
+<</end>>
+<</chooseOption>>

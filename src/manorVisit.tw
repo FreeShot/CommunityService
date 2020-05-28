@@ -151,13 +151,13 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 $butler.name closes the door behind you, leaving you alone. With nothing better to do you explore the small space.
 
-The drawers are mostly empty and the books are blank and just for show. There is a computer under the small desk but it doesn't seem to be working right now.
+The drawers are mostly empty and there are some magazines and books on the shelves. You have a quick look through them but they're mostly women's magazines. There is a computer under the small desk but it doesn't seem to be working right now.
 
 You investigate the and inside you find some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing.
 
 [[Warbrobe|playerRoomWardrobe]]
 
-There is a small attached bathroom. It doesn't have a lot of space either and the window is just for show but at least it looks like it's for your private use.
+There is a small attached bathroom. It doesn't have a lot of space either and the window is actually just a cleverly hidden light but at least it looks like it's for your private use.
 
 [img[setup.ImagePath + "estate/PlayerBdRm/Bathroom.jpg"]]
 
@@ -167,7 +167,7 @@ Overall it looks like cheap but well maintained student accomodation.
 
 ::manorIntro08 [tutorial]
 <<= $mansion.display("Office")>>
-At exactly 7pm, the door to your room opens and $butler.name walks in.
+You sit, bored, in the room for a few hours until at exactly 7pm, the door opens and $butler.name walks in.
 
 <<= $butler.speak("$owner.name is waiting for you in his office.")>>
 

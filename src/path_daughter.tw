@@ -95,6 +95,8 @@ You find yourself curious about what she spends her time reading so wander nearb
 You look down at your broom and then back up to her.
 
 <<chooseOption "She's just being nice.">>
+Despite ignoring the circumstance of your situation she is possibly the only person who isn't treating you like a slave, at least most of the time. There's nothing wrong with having a friendly conversation.
+
 <<= $player.speak("Well $daughter.title, I'm kinda in the middle of sweeping but the sun is out so I guess you're right.")>>
 
 She chuckles. <<= $daughter.speak("Yeah, someone needs to keep $gardner.name happy. Wouldn't want someone tripping over a stray blade of grass right?")>>
