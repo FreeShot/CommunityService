@@ -16,7 +16,7 @@
 </table>
 
 <<for _npc range npcList>>
-<<if State.variables[_npc].schedule.currRoom !== undefined>>
+<<if State.variables[_npc].displayPos && State.variables[_npc].schedule.currRoom !== "Void">>
 _npc: <<= State.variables[_npc].schedule.estimateLoc()>><br>
 <</if>>
 <</for>>

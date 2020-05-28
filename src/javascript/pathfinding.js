@@ -64,7 +64,7 @@ class Schedule {
 				});
 			}
 		})
-		this.waypoints = this.waypoints.map((arr) => arr.sort((a, b) => (a.start.hour * 60 + a.minute) - (b.start.hour * 60 + b.minute)))
+		this.waypoints = this.waypoints.map((arr) => arr.sort((a, b) => (b.start.hour * 60 + b.minute) - (a.start.hour * 60 + a.minute)))
 	}
 
 	curPoint() {

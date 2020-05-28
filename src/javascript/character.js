@@ -87,7 +87,8 @@ class NPC extends Character {
 		super(Object.assign({
 			schedule: new Schedule(),
 			path: [],
-			appreciation: 0
+			appreciation: 0,
+			displayPos: false
 		}, config));
 	}
 
