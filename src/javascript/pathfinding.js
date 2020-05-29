@@ -12,7 +12,6 @@ pathfind.cost = (startName, endName, c, roomCost) => {
 	if (startName === endName) {
 		return roomCost
 	}
-
 	return State.variables.mansion.findRoom(startName).adjacentRooms.reduce((roomCost, room) => {
 		return pathfind.cost(room, endName, c + 1, roomCost);
 	}, roomCost);
@@ -64,35 +63,39 @@ class Schedule {
 				});
 			}
 		})
-		this.waypoints = this.waypoints.map((arr) => arr.sort((a, b) => (b.start.hour * 60 + b.minute) - (a.start.hour * 60 + a.minute)))
+		this.waypoints = this.waypoints.map((arr) => arr.sort((a, b) => (a.start.hour * 60 + a.start.minute) - (b.start.hour * 60 + b.start.minute)))
 	}
 
 	curPoint() {
-		return this.waypoints[State.variables.time.day][this.waypoints.findIndex((wp) => State.variables.time.inInterval(wp.start, wp.end))];
+		return this.waypoints[State.variables.time.weekDay].find((wp) => State.variables.time.inInterval(wp.start, wp.end));
 	}
 
 	nextPoint() {
-		return this.waypoints[State.variables.time.day].find((wp) => State.variables.time.compareTime(wp.start) === -1);
+		return this.waypoints[State.variables.time.weekDay].find((wp) => State.variables.time.compareTime(wp.start) === -1) ||
+		this.waypoints[(State.variables.time.weekDay + 1) % 7][0];
 	}
 	
 	updatePath() {
-		if (this.currRoom === undefined) {
-			return;
-		}
-		var nextPoint = this.curPoint() || this.nextPoint();
+		//console.log(State.variables.time.time, this.curPoint(), this.nextPoint());
+		var nextPoint = this.curPoint() || this.nextPoint() || {room: "Void"};
 		var path;
-		if (this.currRoom === "Void" && nextPoint !== "Void") {
+		if (this.currRoom === "Void" && nextPoint.room !== "Void") {
 			this.currRoom = "LowerHall";
 		}
-		if (nextPoint !== undefined && nextPoint.room !== "Void") {
-			path = pathfind.path(this.currRoom, nextPoint.room);
+		if (nextPoint.room === "Void") {
+			// Special case where npc is away
+			if (this.currRoom === "Void" || this.currRoom === "LowerHall")
+				path = ["Void"]
+			else {
+				path = pathfind.path(this.currRoom, "LowerHall")
+			}
 		} else 
-			path = [this.currRoom];
+			path = pathfind.path(this.currRoom, nextPoint.room);
 		this.currRoom = path.length > 1 ? path[1] : path[0];
 	}
 	
 	estimateLoc() {
-		var loc = this.curPoint();
+		var loc = this.curPoint() || {room: "Void"};
 		if (loc.room === "Void") return "Away";
 		if (loc.room === "FreeRoam") return "Traveling"
 		else return State.variables.mansion.findRoom(loc.room).name;

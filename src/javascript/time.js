@@ -48,22 +48,14 @@ class Timer {
 		time2 = time2 || this.time;
 		var minuteTime = time.hour * 60 + time.minute;
 		var minuteTime2 = time2.hour * 60 + time2.minute;
-		var timeDif = minuteTime - minuteTime2;
-		if (timeDif == 0)
-			return 0;
-		else if (timeDif < 0)
-			return 1;
-		return -1;
+		return minuteTime - minuteTime2;
 	}
 
 	endsAfter(endTime, duration) {
 		if (typeof endTime === "string")
 			endTime = this[endTime];
-		let time = Object.assign({}, this.time);
-		time.minute += (duration.minute || 0);
-		time.hour += (duration.hour || 0) + Math.floor((duration.minute || 0) / 60);
-		time.minute %= 60;
-		return this.compareTime(endTime, time) === 1;
+		var time = (duration.hour + this.time.hour) * 60 + duration.minute + this.time.minute;
+		return endTime.hour * 60 + endTime.minute - time > 0;
 	}
 
 	inInterval(timeStart, timeEnd) {
@@ -75,9 +67,11 @@ class Timer {
 
 		timeStart = timeStart || {hour: 0, minute: 0};
 		timeEnd = timeEnd || {hour : 24, minute : 0};
-		if (this.compareTime(timeEnd, timeStart) < 0)
-			return this.compareTime(timeStart) > -1 && this.compareTime(timeEnd) === -1;
-		return this.compareTime(timeStart) > -1 || this.compareTime(timeEnd) === -1;
+
+		var time = this.time.hour * 60 + this.time.minute;
+		var t1 = timeStart.hour * 60 + timeStart.minute;
+		var t2 = timeEnd.hour * 60 + timeEnd.minute;
+		return t1 > t2 ? time >= t1 || time < t2 : time >= t1 && time < t2;
 	}
 
 	get weekDay() {

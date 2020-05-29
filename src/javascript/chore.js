@@ -37,7 +37,7 @@ class Chore {
 			htmlClass = 'chore-done';
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
 			htmlClass = 'chore-exhaused';
-		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1)
+		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0)
 			htmlClass = 'chore-not-time';
 		else if (!canDoChores)
 			htmlClass = 'chore-unavailable';

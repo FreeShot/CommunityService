@@ -1,8 +1,10 @@
 ::PassageFooter [nodebug]
 
+<<if (["init"].some(function(tag) {return tags().includes(tag)}) === false)>>
 <<= schedule($lastTime.rel / 5)>>
 <<set _last = $lastTime.abs>>
 <<set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)>>
 <<set $lastTime.rel = $lastTime.abs - _last>>
+<</if>>
 
 <<if $debug>><<include 'debug-passage'>><</if>>
