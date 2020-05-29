@@ -5,7 +5,7 @@ class Event {
 		this.inline = false; // If true, will be included in the current passage
 		this.repeats = false;
 		this.room = "";
-		this.tags = [] // add Tags here
+		this.tags; // add Tags here
 		this.priority = 0;
 
 		Object.keys(config).forEach((pn) => this[pn] = clone(config[pn]), this);
@@ -25,12 +25,7 @@ class Event {
 	}
 
 	active() {
-		return !this.tags.find((tag) => {
-			var tagTrue = tag[0] === "!";
-			var tagName = tagTrue ? tag.substr(1) : tag;
-			console.log(tagName, tagTrue, (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue);
-			return (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue
-		})
+		return window.tags.eval(this.tags.tag, this.tags.data, this.tags.expected)
 	}
 
 	clone() {

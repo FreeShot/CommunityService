@@ -25,5 +25,4 @@
 <<include "roomInit">>
 <<include "choresInit">>
 <<include "eventInit">>
-<<include "tagsInit">>
 <<include "bodyPartInit">>

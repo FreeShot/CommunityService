@@ -7,7 +7,10 @@
 	passage: "endOfWeekRecapStart",
 	inline:false,
 	repeats:true,
-	tags: ["Sunday", "Evening"]
+	tags: {tag: "every", data: [
+		{tag : "day", data: {day: "Sunday"}, expected: true},
+		{tag : "time", data: {time: "Evening"}, expected: true},
+	], expected: true}
 }))>>
 
 <<= $mansion.addEvent("specialEvent", new Event({
@@ -15,7 +18,11 @@
 	passage: "mansionCPartyIntro01",
 	inline: false,
 	repeats: false,
-	tags: ["!WeekEven", "Saturday", "Morning"]
+	tags: {tag: "every", data: [
+		{tag : "weekEven", data: {}, expected: false},
+		{tag : "day", data: {day: "Saturday"}, expected: true},
+		{tag : "time", data: {time: "Morning"}, expected: true},
+	], expected: true}
 }))>>
 
 <<= $mansion.addEvent("specialEvent", new Event({
@@ -23,7 +30,9 @@
 	passage: "therapistPathStart01",
 	inline: false,
 	repeats: false,
-	tags: ["therapyPathStart"]
+	tags: {
+		tag: "flag", data: {flag: "therapyPathStart", state: 1}, expected: true
+	}
 }))>>
 
 <!-- Daughter events -->
@@ -33,7 +42,9 @@
 	passage: "daughterGymSquat01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Gym", new Event({
@@ -41,7 +52,9 @@
 	passage: "daughterGymArms01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Gym", new Event({
@@ -49,7 +62,9 @@
 	passage: "daughterGymChinup01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Pool", new Event({
@@ -57,7 +72,9 @@
 	passage: "daughterPoolSwimming01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Pool", new Event({
@@ -65,7 +82,9 @@
 	passage: "daughterPoolSwimming02", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Garden", new Event({
@@ -73,7 +92,9 @@
 	passage: "daughterGardenReading01", 
 	inline:true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("DaughterBdRm", new Event({
@@ -81,7 +102,9 @@
 	passage: "daughterDaughterBdRmStudying01", 
 	inline:true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("DaughterBdRm", new Event({
@@ -89,7 +112,9 @@
 	passage: "daughterDaughterBdRmStudying02", 
 	inline:true, 
 	repeats:true, 
-	tags: ["NeedDaughter"]
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Garden", new Event({
@@ -97,7 +122,13 @@
 	passage: "daughterPath03GardenChatA", 
 	inline:true, 
 	repeats:false,
-	tags: ["NeedDaughter", "DaughterAppreciation1"]
+	tags: {
+		tag: "every", data: [{
+			tag: "isPresent", data: {npc: "daughter"}, expected: true
+		},{
+			tag: "appreciation", data: {value: 1}, expeceted: true
+		}], expected: true
+	}
 }))>>
 
 <!--
@@ -106,7 +137,15 @@
 	passage: "daughterPath04IntroDate01", 
 	inline:true, 
 	repeats:false, 
-	tags: ["Thursday", "NeedDaughter", "DaughterAppreciation2"]
+	tags: {
+		tag: "every", data: [{
+			tag: "day", data: {day: "Thursday"}, expected: true
+		},{
+			tag: "isPresent", data: {npc: "daughter"}, expected: true
+		},{
+			tag: "appreciation", data: {value: 2}, expeceted: true
+		}], expected: true
+	}
 }))>>
 -->
 
@@ -117,7 +156,9 @@
 	passage: "wifeOffice01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedWife"]
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Gym", new Event({
@@ -125,7 +166,9 @@
 	passage: "wifeGym01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedWife"]
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Gym", new Event({
@@ -133,7 +176,9 @@
 	passage: "wifeGym02", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedWife"]
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Gym", new Event({
@@ -141,7 +186,9 @@
 	passage: "wifeGym03", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedWife"]
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
 }))>>
 
 <!-- Group events -->
@@ -151,7 +198,13 @@
 	passage: "wifeOwnerLounge01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedWife", "NeedOwner"]
+	tags: {
+		tag: "every", data: [{
+			tag: "isPresent", data: {npc: "wife"}, expected: true
+		},{
+			tag: "isPresent", data: {npc: "owner"}, expected: true
+		}], expected: true
+	}
 }))>>
 
 <!-- Cook events -->
@@ -161,7 +214,9 @@
 	passage: "cookKitchenCutting01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedCook"]
+	tags: {
+		tag: "isPresent", data: {npc: "cook"}, expected: true
+	}
 }))>>
 
 <!-- Gardner events 
@@ -171,7 +226,9 @@
 	passage: "gardnerGardenBossy01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedGardner"]
+	tags: {
+		tag: "isPresent", data: {npc: "gardner"}, expected: true
+	}
 }))>>
 
 <<= $mansion.addEvent("Pool", new Event({
@@ -179,7 +236,9 @@
 	passage: "gardnerPoolBossy01", 
 	inline: true, 
 	repeats:true, 
-	tags: ["NeedGardner"]
+	tags: {
+		tag: "isPresent", data: {npc: "gardner"}, expected: true
+	}
 }))>>
 
 -->

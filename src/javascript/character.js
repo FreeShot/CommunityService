@@ -26,9 +26,7 @@ function createNPC(gender) {
 
 	values["age"] = Math.floor(State.random() * 30) + 20;
 
-	values["like"] = Object.keys(State.variables.npcLike).filter(function(el) {
-		return State.random() < 2 / (Object.keys(State.variables.npcLike).length);
-	});
+	values["like"] = {}; // TODO
 
 	values["appreciation"] = 0;
 	values["color"] = {};
@@ -347,7 +345,9 @@ class MinorNPC extends Character {
 
 	// Gets how many points this npc gives
 	getBonusPoint() {
-		return this.like.reduce((val, el) => val + State.variables.npcLike[el]() ? 5 : 0, 0);
+		// TODO
+		return 0;
+		return tageval(this.like, el.data, el.expected) * 5;
 	}
 
 	// For twine
