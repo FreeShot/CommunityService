@@ -1,6 +1,6 @@
 :: therapistPathStart01
 
-<<if $daughterDateIntro is true>>
+<<if $flags.daughterDate is 1>>
 
 Daughter date fall out from Wife and then check in with daughter about bill
 
@@ -16,6 +16,6 @@ Daughter date fall out from Wife and then check in with daughter about bill
 	tags: ["Monday", "Evening"]
 }))>>
 
-<<set $therapyPathStart to false>>
+<<set $flags.therapyPath to 2>>
 
 [[PlayerBdRm]]

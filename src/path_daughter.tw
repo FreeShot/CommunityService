@@ -338,8 +338,8 @@ She loops her arm in yours and you head out through the main doors for the first
 
 [[daughterDateSetup01]]
 
-<<set $daughterDateIntro to true>>
-<<set $therapyPathStart to true>>
+<<set $flags.daughterDate to 1>>
+<<set $flags.therapyPath to 1>>
 <<= $mansion.addEvent("Foyer", new Event({
 	name: "daughterDateSetup01", 
 	passage: "daughterDateSetup01", 

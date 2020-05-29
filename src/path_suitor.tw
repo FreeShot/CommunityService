@@ -292,12 +292,12 @@ You turn to leave when $suitor.name stops you with an out held hand. You turn ba
 
 $suitor.name gently places a hand on your shoulder and starts leaning towards you.
 
-[[Panic!|suitorPathIntro10][$suitorIntroPanic to true]]
-[[Stay calm.|suitorPathIntro10][$suitorIntroPanic to false]]
+[[Panic!|suitorPathIntro10][$flags.suitorIntroPanic to true]]
+[[Stay calm.|suitorPathIntro10][$flags.suitorIntroPanic to false]]
 
 ::suitorPathIntro10
 
-<<if $suitorIntroPanic is true>>
+<<if $flags.suitorIntroPanic is true>>
 	You quickly take a step back but he follows and you find yourself pinned between $suitor.name and the main doors.
 <<else>>
 	Your heart thumps in your chest hoping this is just a hug.
@@ -319,7 +319,7 @@ With that he lets himself out, [[leaving you alone in the foyer.|suitorPathIntro
 
 ::suitorPathIntro11
 
-Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He must've thought you being friendly was you returning the affection. Which it wasn't.
+Your brain is scrambled as you try to reign in your thoughts and process what just happened. The events of the evening quickly play through your mind and you realise he was flirting the whole time. He mussuitorIntroPanicsuitorIntroPanict've thought you being friendly was you returning the affection. Which it wasn't.
 
 You shift your hips again as you realise your caged member is pressing against the hard plastic after being brought to life by the kiss.
 
