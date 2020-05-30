@@ -12,4 +12,6 @@ Chores:
 <<= _chores>>
 <</if>>
 <br>
+<<if !$late>>
 From here, you can go to <<= $mansion.findRoom($player.currRoom).getAdjacentRooms()>>
+<</if>>

@@ -2028,8 +2028,8 @@ class Room {
 		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
 	}
 
-	getPassage() {
-		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><<= $time.addTravelTime("${State.variables.player.currRoom}", $player.currRoom)>><</link>>`
+	getPassage(display) {
+		return `<<link "${display || this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><<= $time.addTravelTime("${State.variables.player.currRoom}", $player.currRoom)>><</link>>`
 	}
 
 	getNPC() {
@@ -5811,8 +5811,10 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;&lt;else&gt;&gt;
 &lt;tr id=&quot;cuff&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;CUFF&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;/if&gt;&gt;
+&lt;&lt;if !$late&gt;&gt;
 &lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;Daily Chores
 &lt;&lt;= $mansion.displayChores(false, $flags.filterDone, true)&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;tr&gt;&lt;td cospan=&quot;2&quot;&gt;Missed chores: $player.choresLate&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
@@ -5867,7 +5869,14 @@ _i: &lt;&lt;= $player.getStatBar(_i)&gt;&gt; (lvl &lt;&lt;= $player.getStat(_i)&
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="181" name="PassageFooter" tags="nodebug" position="100,2350" size="100,100">&lt;&lt;if ([&quot;init&quot;].some(function(tag) {return tags().includes(tag)}) === false)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="181" name="PassageFooter" tags="nodebug" position="100,2350" size="100,100">&lt;&lt;if ![&quot;PlayerBdRm&quot;, &quot;sleep&quot;].includes(passage()) &amp;&amp; $mansion.currentEvent === &quot;&quot; &amp;&amp; $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
+&lt;&lt;set $late to true&gt;&gt;
+&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).getPassage(&quot;It&#39;s late. You&#39;d better go sleep&quot;)&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;set $late to false&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ([&quot;init&quot;].some(function(tag) {return tags().includes(tag)}) === false)&gt;&gt;
 &lt;&lt;= schedule($lastTime.rel / 5)&gt;&gt;
 &lt;&lt;set _last = $lastTime.abs&gt;&gt;
 &lt;&lt;set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)&gt;&gt;
@@ -6786,7 +6795,9 @@ Chores:
 &lt;&lt;= _chores&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;br&gt;
-From here, you can go to &lt;&lt;= $mansion.findRoom($player.currRoom).getAdjacentRooms()&gt;&gt;</tw-passagedata><tw-passagedata pid="222" name="shopTest" tags="" position="225,2850" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
+&lt;&lt;if !$late&gt;&gt;
+From here, you can go to &lt;&lt;= $mansion.findRoom($player.currRoom).getAdjacentRooms()&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="222" name="shopTest" tags="" position="225,2850" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
 

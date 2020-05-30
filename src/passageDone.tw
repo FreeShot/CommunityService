@@ -1,5 +1,12 @@
 ::PassageFooter [nodebug]
 
+<<if !["PlayerBdRm", "sleep"].includes(passage()) && $mansion.currentEvent === "" && $time.inInterval("sleep", "wakeup")>>
+<<set $late to true>>
+<<= $mansion.findRoom("PlayerBdRm").getPassage("It's late. You'd better go sleep")>>
+<<else>>
+<<set $late to false>>
+<</if>>
+
 <<if (["init"].some(function(tag) {return tags().includes(tag)}) === false)>>
 <<= schedule($lastTime.rel / 5)>>
 <<set _last = $lastTime.abs>>
