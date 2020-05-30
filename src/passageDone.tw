@@ -2,7 +2,7 @@
 
 <<if !["PlayerBdRm", "sleep"].includes(passage()) && $mansion.currentEvent === "" && $time.inInterval("sleep", "wakeup")>>
 <<set $late to true>>
-<<= $mansion.findRoom("PlayerBdRm").getPassage("It's late. You'd better go sleep")>>
+<<= $mansion.findRoom("PlayerBdRm").getPassage("Your CUFF buzzes on your wrist. You check and see it's time for you to return to your room and rest for the night.")>>
 <<else>>
 <<set $late to false>>
 <</if>>
