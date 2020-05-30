@@ -19,7 +19,7 @@ class Timer {
 		if (typeof time === "string")
 			time = this[time]
 		time = Object.assign({day:0, hour:0, minute:0}, time);
-		if (this.inInterval({hour: 0, minute: 0}, time))
+		if (this.compareTime(time) <= 0)
 			this.day = time.day != 0 ? time.day + 1 : this.day + 1
 		else {
 			this.day = time.day != 0 ? time.day : this.day;
@@ -38,6 +38,10 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
+	static toMinute(time) {
+		return ((time.day || 0) * 24 + (time.hour || 0)) * 60 + (time.minute || 0);
+	}
+
 	addTravelTime(start, end){
 		this.addTime({minute: 5 * (pathfind.path(start, end).length - 1)})
 	}
@@ -46,16 +50,13 @@ class Timer {
 		if (typeof time === "string")
 			time = this[time];
 		time2 = time2 || this.time;
-		var minuteTime = time.hour * 60 + time.minute;
-		var minuteTime2 = time2.hour * 60 + time2.minute;
-		return minuteTime - minuteTime2;
+		return Timer.toMinute(time) - Timer.toMinute(time2);
 	}
 
 	endsAfter(endTime, duration) {
 		if (typeof endTime === "string")
 			endTime = this[endTime];
-		var time = (duration.hour + this.time.hour) * 60 + duration.minute + this.time.minute;
-		return endTime.hour * 60 + endTime.minute - time > 0;
+		return Timer.toMinute(endTime) - Timer.toMinute(duration) < Timer.toMinute(this.time);
 	}
 
 	inInterval(timeStart, timeEnd) {
@@ -68,9 +69,10 @@ class Timer {
 		timeStart = timeStart || {hour: 0, minute: 0};
 		timeEnd = timeEnd || {hour : 24, minute : 0};
 
-		var time = this.time.hour * 60 + this.time.minute;
-		var t1 = timeStart.hour * 60 + timeStart.minute;
-		var t2 = timeEnd.hour * 60 + timeEnd.minute;
+		var time = Timer.toMinute(this.time);
+		var t1 = Timer.toMinute(timeStart);
+		var t2 = Timer.toMinute(timeEnd);
+
 		return t1 > t2 ? time >= t1 || time < t2 : time >= t1 && time < t2;
 	}
 
