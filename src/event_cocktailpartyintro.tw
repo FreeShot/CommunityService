@@ -792,6 +792,10 @@ You can see $owner.name lying asleep face down, clearly naked, and quicly follow
 	passage: "mansionCPartySetup01",
 	inline: true,
 	repeats: true,
-	tags: ["!WeekEven", "Saturday", "Morning"]
+	tags: {tag: "every", data: [
+		{tag : "weekEven", data: {}, expected: false},
+		{tag : "day", data: {day: "Saturday"}, expected: true},
+		{tag : "time", data: {time: "Morning"}, expected: true},
+	], expected: true}
 }))>>
 <</link>>

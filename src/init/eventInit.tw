@@ -126,7 +126,7 @@
 		tag: "every", data: [{
 			tag: "isPresent", data: {npc: "daughter"}, expected: true
 		},{
-			tag: "appreciation", data: {value: 1}, expeceted: true
+			tag: "appreciation", data: {npc: "daughter", value: 1}, expeceted: true
 		}], expected: true
 	}
 }))>>
@@ -143,7 +143,7 @@
 		},{
 			tag: "isPresent", data: {npc: "daughter"}, expected: true
 		},{
-			tag: "appreciation", data: {value: 2}, expeceted: true
+			tag: "appreciation", data: {npc: "daughter", value: 2}, expeceted: true
 		}], expected: true
 	}
 }))>>
