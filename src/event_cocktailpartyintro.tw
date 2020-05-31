@@ -488,7 +488,7 @@ You turn and look in one of the full length mirror. The cute gir you saw earlier
 [img[setup.ImagePath + "events/cocktailparty/maid_firstlook.jpg"]]
 
 <<chooseOption "Do a spin">>
-[img[setup.ImagePath + "items/wearables/dress/maid_twirl.gif"]]
+[img[setup.ImagePath + "items/wearables/dress/maid_twirl_01.gif"]]
 
 As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
 <</chooseOption>>

@@ -79,7 +79,7 @@ _i: <<= $player.getStatBar(_i)>> (lvl <<= $player.getStat(_i)>>)
 <li>You are NOT permitted to use any of the onsite facilities outside of you normal chores.</li>
 <</if>>
 <<if $flags.partyRule is true>>
-<li>$caterer.name will require you assistance at $wife.title's biweekly gathering. You must be in full uniform and assist guest as required.</li>
+<li>$caterer.name will require your assistance at $wife.name's biweekly gathering. You must be in full uniform and assist guest as required.</li>
 <</if>>
 <</nobr>>\
 </ol>

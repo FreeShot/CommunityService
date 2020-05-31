@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="166" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="166" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
@@ -4297,7 +4297,7 @@ State.variables.owner = new NPC({
 });
 State.variables.owner.schedule.currRoom = &quot;MasterBdRm&quot;;
 State.variables.owner.schedule.addPoint(&quot;Dining&quot;, {hour: 6, minute:0}, {hour: 8, minute: 0});
-State.variables.owner.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 18, minute: 0});
+State.variables.owner.schedule.addPoint(&quot;Void&quot;, {hour: 8, minute:0}, {hour: 18, minute: 0});
 State.variables.owner.schedule.addPoint(&quot;Office&quot;, {hour: 18, minute: 0}, {hour: 20, minute: 0});
 State.variables.owner.schedule.addPoint(&quot;Lounge&quot;, {hour: 20, minute: 0}, {hour: 22, minute: 0});
 State.variables.owner.schedule.addPoint(&quot;MasterBdRm&quot;, {hour: 22, minute: 0}, {hour: 6, minute: 0});
@@ -4313,7 +4313,7 @@ State.variables.wife = new NPC({
 });
 State.variables.wife.schedule.currRoom = &quot;MasterBdRm&quot;;
 State.variables.wife.schedule.addPoint(&quot;Dining&quot;, {hour: 6, minute:0}, {hour: 8, minute: 0});
-State.variables.wife.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute: 0}, {hour: 15, minute: 0});
+State.variables.wife.schedule.addPoint(&quot;Void&quot;, {hour: 8, minute: 0}, {hour: 15, minute: 0});
 State.variables.wife.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 15, minute: 0}, {hour: 16, minute: 0});
 State.variables.wife.schedule.addPoint(&quot;Office&quot;, {hour: 16, minute: 0}, {hour: 18, minute: 0});
 State.variables.wife.schedule.addPoint(&quot;Gym&quot;, {hour: 18, minute:0}, {hour: 20, minute: 0});
@@ -4362,7 +4362,7 @@ State.variables.butler = new NPC({
 State.variables.butler.schedule.currRoom = &quot;Lounge&quot;;
 State.variables.butler.schedule.addPoint(&quot;Void&quot;, {hour: 0, minute: 0}, {hour: 6, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;Dining&quot;, {hour: 6, minute:0}, {hour: 8, minute: 0});
-State.variables.butler.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 8, minute:0}, {hour: 18, minute: 0});
+State.variables.butler.schedule.addPoint(&quot;Void&quot;, {hour: 8, minute:0}, {hour: 18, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;Office&quot;, {hour: 18, minute: 0}, {hour: 20, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 20, minute:0}, {hour: 6, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;Void&quot;, {hour: 22, minute: 0}, {hour: 24, minute: 0});
@@ -5284,7 +5284,8 @@ State.variables.minorNPC = [];
 	], 
 	adjacentRooms: [
 		&quot;Lounge&quot;, 
-		&quot;Dining&quot;, 
+		&quot;Dining&quot;,
+		&quot;Garden&quot;, 
 		&quot;Foyer&quot;, 
 		&quot;LowerHall&quot;
 	]
@@ -5865,13 +5866,13 @@ _i: &lt;&lt;= $player.getStatBar(_i)&gt;&gt; (lvl &lt;&lt;= $player.getStat(_i)&
 &lt;li&gt;You are NOT permitted to use any of the onsite facilities outside of you normal chores.&lt;/li&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $flags.partyRule is true&gt;&gt;
-&lt;li&gt;$caterer.name will require you assistance at $wife.title&#39;s biweekly gathering. You must be in full uniform and assist guest as required.&lt;/li&gt;
+&lt;li&gt;$caterer.name will require your assistance at $wife.name&#39;s biweekly gathering. You must be in full uniform and assist guest as required.&lt;/li&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="181" name="PassageFooter" tags="nodebug" position="100,2350" size="100,100">&lt;&lt;if ![&quot;PlayerBdRm&quot;, &quot;sleep&quot;].includes(passage()) &amp;&amp; $mansion.currentEvent === &quot;&quot; &amp;&amp; $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
 &lt;&lt;set $late to true&gt;&gt;
-&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).getPassage(&quot;It&#39;s late. You&#39;d better go sleep&quot;)&gt;&gt;
+&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).getPassage(&quot;Your CUFF buzzes on your wrist. You check and see it&#39;s time for you to return to your room and rest for the night.&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;set $late to false&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -6689,14 +6690,14 @@ Desk
 	[[Shower|playerRoomShower]]&lt;br&gt;&lt;br&gt;
 	Check the [[Wardrobe|playerRoomWardrobe]]&lt;br&gt;
 	Use the [[Computer|playerRoomComputerMenu]]&lt;br&gt;
-	Read something from the [[bookshelf|playerRoomBookshelfMenu]]&lt;br&gt;
+	Read something from the [[Bookshelf|playerRoomBookshelfMenu]]&lt;br&gt;
 	[[Check your to do list.|playerToDoList]]&lt;br&gt;&lt;br&gt;
 	&lt;&lt;link &quot;Rest&quot;&gt;&gt;
 		&lt;&lt;set $time.addTime({day:0, hour:1, minute: 0})&gt;&gt;
 		&lt;&lt;set $player.rest()&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;br&gt;
-	&lt;&lt;link &quot;Hide until the end of the day.&quot;&gt;&gt;
+	&lt;&lt;link &quot;Stay here until the end of the day.&quot;&gt;&gt;
 		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
@@ -6768,7 +6769,9 @@ Halfway through your session you get this weird sense in the back of your should
 
 [[Provincial|playerRoomBookshelfProvincial]]
 [[Rouge|playerRoomBookshelfRouge]]
-[[Cheeky Lady|playerRoomBookshelfCheekyLady]]</tw-passagedata><tw-passagedata pid="218" name="playerRoomBookshelfProvincial" tags="playerRoom" position="975,2725" size="100,100">Still in dev
+[[Cheeky Lady|playerRoomBookshelfCheekyLady]]
+
+[[Step away from the shelf|PlayerBdRm]]</tw-passagedata><tw-passagedata pid="218" name="playerRoomBookshelfProvincial" tags="playerRoom" position="975,2725" size="100,100">Still in dev
 
 Fashion
 Entertainment
