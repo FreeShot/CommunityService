@@ -24,7 +24,9 @@ pathfind.nextRoom = (start, end, cost) => {
 };
 
 pathfind.path = (start, room) => {
-	if (room === "FreeRoam") return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
+	if (room === "FreeRoam") {
+		return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
+	}
 	var path = [];
 	var cost = pathfind.cost(start, room);
 	while (room != start) {
@@ -76,7 +78,6 @@ class Schedule {
 	}
 	
 	updatePath() {
-		//console.log(State.variables.time.time, this.curPoint(), this.nextPoint());
 		var nextPoint = this.curPoint() || this.nextPoint() || {room: "Void"};
 		var path;
 		if (this.currRoom === "Void" && nextPoint.room !== "Void") {
@@ -91,6 +92,10 @@ class Schedule {
 			}
 		} else 
 			path = pathfind.path(this.currRoom, nextPoint.room);
+		if (Timer.toMinute(State.variables.time.time) > State.variables.lastTime.tp + 60 && nextPoint.room === "FreeRoam" && State.random() > 0.5) {
+			State.variables.lastTime.tp = Timer.toMinute(State.variables.time.time);
+			path = [State.variables.player.currRoom];
+		}
 		this.currRoom = path.length > 1 ? path[1] : path[0];
 	}
 	

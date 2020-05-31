@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="166" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="166" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.theme-light {
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
@@ -1506,7 +1506,9 @@ pathfind.nextRoom = (start, end, cost) => {
 };
 
 pathfind.path = (start, room) => {
-	if (room === "FreeRoam") return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
+	if (room === "FreeRoam") {
+		return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
+	}
 	var path = [];
 	var cost = pathfind.cost(start, room);
 	while (room != start) {
@@ -1558,7 +1560,6 @@ class Schedule {
 	}
 	
 	updatePath() {
-		//console.log(State.variables.time.time, this.curPoint(), this.nextPoint());
 		var nextPoint = this.curPoint() || this.nextPoint() || {room: "Void"};
 		var path;
 		if (this.currRoom === "Void" && nextPoint.room !== "Void") {
@@ -1573,6 +1574,10 @@ class Schedule {
 			}
 		} else 
 			path = pathfind.path(this.currRoom, nextPoint.room);
+		if (Timer.toMinute(State.variables.time.time) > State.variables.lastTime.tp + 60 && nextPoint.room === "FreeRoam" && State.random() > 0.5) {
+			State.variables.lastTime.tp = Timer.toMinute(State.variables.time.time);
+			path = [State.variables.player.currRoom];
+		}
 		this.currRoom = path.length > 1 ? path[1] : path[0];
 	}
 	
@@ -2278,7 +2283,8 @@ window.tags = {
 			if (data.time === "Evening")
 				return State.variables.time.inInterval("sleep", "wakeup");
 		},
-		flag: (data) => (State.variables.flags[data.flag] === data.state)
+		flag: (data) => (State.variables.flags[data.flag] === data.state),
+		random: (data) => (State.random() > data.threshold)
 
 	},
 	eval: function(tag, data, expected) {
@@ -3068,7 +3074,7 @@ You turn and look in one of the full length mirror. The cute gir you saw earlier
 [img[setup.ImagePath + &quot;events/cocktailparty/maid_firstlook.jpg&quot;]]
 
 &lt;&lt;chooseOption &quot;Do a spin&quot;&gt;&gt;
-[img[setup.ImagePath + &quot;items/wearables/dress/maid_twirl.gif&quot;]]
+[img[setup.ImagePath + &quot;items/wearables/dress/maid_twirl_01.gif&quot;]]
 
 As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
 &lt;&lt;/chooseOption&gt;&gt;
@@ -5435,7 +5441,7 @@ State.variables.minorNPC = [];
 &lt;&lt;set $debug to false&gt;&gt;
 &lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
 
-&lt;&lt;set $lastTime to {abs: 0, rel: 0}&gt;&gt;
+&lt;&lt;set $lastTime to {abs: 0, rel: 0, tp: 0}&gt;&gt;
 &lt;&lt;set $time to new Timer({day: 2, time: {hour: 19, minute: 0}})&gt;&gt;
 
 &lt;&lt;set $flags to {
