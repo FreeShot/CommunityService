@@ -19,14 +19,14 @@ Desk
 	[[Shower|playerRoomShower]]<br><br>
 	Check the [[Wardrobe|playerRoomWardrobe]]<br>
 	Use the [[Computer|playerRoomComputerMenu]]<br>
-	Read something from the [[bookshelf|playerRoomBookshelfMenu]]<br>
+	Read something from the [[Bookshelf|playerRoomBookshelfMenu]]<br>
 	[[Check your to do list.|playerToDoList]]<br><br>
 	<<link "Rest">>
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>
 		<<goto `passage()`>>
 	<</link>><br>
-	<<link "Hide until the end of the day.">>
+	<<link "Stay here until the end of the day.">>
 		<<= $time.setDate({day:0, hour:22, minute:0})>>
 		<<goto `passage()`>>
 	<</link>>
@@ -125,6 +125,8 @@ You scan through the limited selection of reading material and decide to read...
 [[Provincial|playerRoomBookshelfProvincial]]
 [[Rouge|playerRoomBookshelfRouge]]
 [[Cheeky Lady|playerRoomBookshelfCheekyLady]]
+
+[[Step away from the shelf|PlayerBdRm]]
 
 :: playerRoomBookshelfProvincial [playerRoom]
 
