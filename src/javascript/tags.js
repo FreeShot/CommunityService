@@ -11,7 +11,8 @@ window.tags = {
 			if (data.time === "Evening")
 				return State.variables.time.inInterval("sleep", "wakeup");
 		},
-		flag: (data) => (State.variables.flags[data.flag] === data.state)
+		flag: (data) => (State.variables.flags[data.flag] === data.state),
+		random: (data) => (State.random() > data.threshold)
 
 	},
 	eval: function(tag, data, expected) {
