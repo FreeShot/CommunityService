@@ -1,4 +1,4 @@
-:: daughterPath01Homedrunk [noreturn chore]
+:: daughterPath01Homedrunk [noreturn chore] <!-- Random % chance when the player eneters the foyer - does not repeat -->
 
 Trigger: First Thursday night (last thing to happen before the player goes to bed)
 
@@ -40,7 +40,7 @@ She spots you standing nearby.
  
 $wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
 
-:: daughterPath02ServeA
+:: daughterPath02ServeA [] <!-- happens the 1st time the player serves the Daughter at the cocktail party - does not repeat -->
 
 <<= $daughter.speak("Hey $player.femName. You really are working this new look of yours.")>>
 
@@ -67,7 +67,7 @@ $daughter.name turns back to her conversation so you can continue serving.
 <<end>>
 <</chooseOption>>
 
-:: daughterPath02ServeB
+:: daughterPath02ServeB [] <!-- continues from previous passage -->
 
 <<= $player.speak("I'd take a case if I could get some of these eyes off me.")>>
 
@@ -83,7 +83,8 @@ You look at her wide eyed but before you can reply $daughter.name winks <</if>>a
 
 <<set $daughter.addAppreciation(1)>>
 
-:: daughterPath03GardenChatA [event]
+:: daughterPath03GardenChatA [event] <!-- happens the first time the player sees the Daughter in the Garden after they are nice to her in daughterPath02ServeA - does not repeat - should occur instead of daughterGardenReading01 one time and then the generic event should be happening again-->
+
 $daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
 
 [img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]
@@ -115,7 +116,7 @@ Not wanting to push your luck your go <<link "back to what you were doing." "ret
 <<end>>
 <</chooseOption>>
 
-:: daughterPath03GardenChatB
+:: daughterPath03GardenChatB [] <!-- continues from previous passage --> 
 
 <<= $player.speak("That's quite a pile you've built up $daughter.title.")>>
 
@@ -169,7 +170,7 @@ You smile and then get <<return "back to what you were doing.">>
 <!--<<set $daughter.addAppreciation(1)>>-->
 <<= $mansion.removeEvent("Garden", "daughterPath03GardenChatA")>>
 
-:: daughterPath04IntroDate01
+:: daughterPath04IntroDate01 [] <!-- requires being nice to the Daughter in daughterPath03GardenChatA and then seeing the Daughter in the Foyer -->
 
 You hear the sounds of $daughter.name and $wife.name arguing as they enter the room.
 
@@ -234,7 +235,7 @@ $daughter.name rushes off to do whatever she was doing to get ready.
 
 :: daughterPath04IntroDate02
 
-You follow $wife.name towards teh Master Bedroom
+You follow $wife.name towards the Master Bedroom
 
 <<= $wife.speak("$daughter.name will be in charge but if she gets into any sort of trouble you will be held accountable.")>>
 
@@ -348,7 +349,7 @@ She loops her arm in yours and you head out through the main doors for the first
 	tags: ["Thursday", "NeedDaughter"]
 }))>>
 
-:: daughterPath04IntroDate05
+:: daughterPath04IntroDate05 [] <!-- happens the first time the player leaves for the daughter date -->
 
 This is the first real chance you've had to check out the city since this whole mess started. $daughter.name calls a car and you are both picked up to be taken to the place she's chosen.
 
@@ -356,7 +357,7 @@ As you sit down she slides over next to you and keeps a hold of your arm. It fee
 
 The drive through the streets is so calming though. There's something about not being stuck in the same walls and being expected to be at everyone's beck and call that is really taking the edge off.
 
-:: daughterPath04IntroDate06
+:: daughterPath04IntroDate06 [] <!-- happens the first time the player returns from a daughter date -->
 
 You and $daughter.name stumble in through the main door and into the foyer. Everyone else is already asleep so there are only night lights on. As you walk her towards the stairs you both bump into one of the tables and it bangs agsint the wall.
 
@@ -378,7 +379,7 @@ Her eyes are lull with weariness and a hefty amount of liquor.
 
 Without warning $daughter.name leans forward and presses her mouth to yours. With the fog in your mind you don't think twice and embrace the kiss. Her soft lips part slightly and you mirror the action, as if you are both in perfect synch. One of her hands makes its way around your waist and grabs your rear. The other has already found its way to your chest and is massaging it gently. Despite $daughter.name's wandering hands the sweet and soft kiss feels far more chaste than a drunken make out session would ususally be.
 
-$daughter.name pulls away and smile. <<= $daughter.speak("Night $player.femName.")>>. With that she turns and quickly walks up the stairs with a lot more ease than you would expect given how much she's had to drink.
+$daughter.name pulls away and smiles. <<= $daughter.speak("Night $player.femName.")>>. With that she turns and quickly walks up the stairs with a lot more ease than you would expect given how much she's had to drink.
 
 Not thinking too much on it you turn and head back to your room and crash on the bed before you know it.
 
@@ -386,7 +387,7 @@ Not thinking too much on it you turn and head back to your room and crash on the
 
 <<= $time.setDate({day:0, hour: 2, minute:0})>>
 
-:: daughterPath04IntroDate07
+:: daughterPath04IntroDate07 [] <!-- happens the first time the player wakes up after a Daughter date -->
 
 [[PlayerBdRm]]
 
@@ -469,33 +470,3 @@ She's sending you to have sex with someone?
 With that she leaves you alone so you can go unlock yourself.
 
 Just leave the cage as is for now. They can go to one of the wardrobes or their room to remove it.
-
-:: choreEvent_DaughterChat02 [event]
-
-Trigger: player is in the same room in the house (not gym, garden, etc)
-
-As you are moving into the room $daughter.name arrives at the same time.
-
-She smiles at you and says. <<= $daughter.speak("Hey $player.name.")>>
-
-She walks and gives you a quick hug. <<= $daughter.speak("So what have you been up to?")>>
-
-<<= $player.speak("<i>I know she's being nice but come on.</i>")>>
-
-<<= $player.speak("Just cleaning, same as always.")>>
-
-<<= $daughter.speak("It must be boring.")>> $daughter.name looks you up and down. <<= $daughter.speak("You should really get into the gym every once in a while. You're all skin and bones.")>>
-
-<<= $player.speak("I'm in there plenty. Only to clean though.")>>
-
-<<if $daughter.acceptance >= 2>>
-	<<= $daughter.speak("I might talk to Mum about giving you gym privaliges. Then maybe we could work out together. We cen build your stamina up and get you away from the daily grind.")>>
-
-	You stammer for a moment at the opportunity for something new to do. <<= $player.speak("Uh... I mean... If you want. I would like that.")>> Never mind being close to $daughter.name in her gym clothes while you both work out.
-<<else>>
-	<<= $daughter.speak("Oh well. Chin up. I'm sure things will get better for you eventually.")>>
-
-	<<= $player.speak("Yeah. Sure.")>>
-<</if>>
-
-<<= $daughter.speak("Well. I'll talk to you later then.")>>
