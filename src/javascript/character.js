@@ -118,7 +118,23 @@ class Player extends Character {
 			name: "Alex",
 			title: "servant",
 			femName: "Alice",
-			femininity: 0,
+			femininity: {
+				current: 0,
+				absolute: 0
+			},
+			appearance: 0,
+			arousal: {
+				current: 0,
+				absolute: 0
+			},
+			submission: {
+				current: 0,
+				absolute: 0
+			},
+			boldness: {
+				current: 0,
+				absolute: 0
+			},
 			voice: {
 				current: 0,
 				absolute: 0
@@ -283,6 +299,30 @@ class Player extends Character {
 	raiseVoice(amnt) {
 		this.voice.current = amnt.tmp;
 		this.voice.absolute += amnt.abs;
+	}
+
+	// Raises femininty by amount
+	raiseFemininity(amnt) {
+		this.femininity.current = amnt.tmp;
+		this.femininity.absolute += amnt.abs;
+	}
+
+	// Raises arousal by amount
+	raiseArousal(amnt) {
+		this.arousal.current = amnt.tmp;
+		this.arousal.absolute += amnt.abs;
+	}
+
+	// Raises boldness by amount
+	raiseBoldness(amnt) {
+		this.boldness.current = amnt.tmp;
+		this.boldness.absolute += amnt.abs;
+	}
+
+	// Raises submission by amount
+	raiseSubmission(amnt) {
+		this.submission.current = amnt.tmp;
+		this.submission.absolute += amnt.abs;
 	}
 
 	// Returns the hair color
