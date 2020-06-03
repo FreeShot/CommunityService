@@ -345,7 +345,7 @@ Before you move, $wife.name pulls you up and turns you arround.
 ::mansionCPartyIntro15 [event]
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_firstlook.jpg"]]
 
-Standing in front of you, wearing demure black lingerie is onw of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
+Standing in front of you, wearing demure black lingerie is now one of the prettiest girls you've ever seen. Her slim legs look amazing with the black stockings hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks stand out on her pale skin. The <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
 
 The only problem is, that girl is you.
 
@@ -355,7 +355,7 @@ The only problem is, that girl is you.
 
 <<= $player.speak("This time..?")>>
 
-You can't finish as staring at your cute reflexion has had the exact reaction you'd expect and your hard on pops out of the top of the elastic of the panties.
+You can't finish as staring at your cute reflection has had the exact reaction you'd expect and your hard on pops out of the top of the elastic of the panties.
 
 <<chooseOption "Panic!">>
 You stand like a deer in headlight staring at $wife.name and your cheeks get even redder.
@@ -368,7 +368,7 @@ You cover yourself but all it did was draw $wife.name's attention.
 <</chooseOption>>
 
 ::mansionCPartyIntro16 [event]
-$wife.name leave again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflexion. It that girl wasn't you, you might stomack up the courrage to go talk to her.
+$wife.name leaves again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflection. It that girl wasn't you, you might stomack up the courrage to go talk to her.
 
 <<= $player.speak("Might as well...")>>
 

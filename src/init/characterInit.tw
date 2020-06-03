@@ -127,9 +127,9 @@ State.variables.caterer = new NPC({
 	title: "Chef",
 	displayPos: false
 });
-State.variables.caterer.schedule.currRoom = "Void";
+State.variables.caterer.schedule.currRoom = "Kitchen";
 //State.variables.caterer.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
-State.variables.caterer.schedule.addPoint("Void", {hour:12, minute: 30}, {hour: 8, minute:30});
+State.variables.caterer.schedule.addPoint("Void", {hour: 6, minute: 0}, {hour: 22, minute:0});
 
 State.variables.suitor = new NPC({
 	name: "Rick", 
@@ -140,9 +140,9 @@ State.variables.suitor = new NPC({
 	title: "Mr Stone",
 	displayPos: false
 });
-State.variables.suitor.schedule.currRoom = "Void";
+State.variables.suitor.schedule.currRoom = "Kitchen";
 //State.variables.suitor.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
-State.variables.caterer.schedule.addPoint("Void", {hour:12, minute: 30}, {hour: 8, minute:30});
+State.variables.suitor.schedule.addPoint("Void", {hour: 6, minute: 0}, {hour: 22, minute:0});
 
 window.npcList = [
 	"owner", 

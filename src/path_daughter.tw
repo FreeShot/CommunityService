@@ -1,4 +1,5 @@
-:: daughterPath01Homedrunk [noreturn chore] <!-- Random % chance when the player eneters the foyer - does not repeat -->
+:: daughterPath01Homedrunk [noreturn chore]
+<!-- Random % chance when the player eneters the foyer - does not repeat -->
 
 Trigger: First Thursday night (last thing to happen before the player goes to bed)
 
@@ -40,7 +41,8 @@ She spots you standing nearby.
  
 $wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
 
-:: daughterPath02ServeA [] <!-- happens the 1st time the player serves the Daughter at the cocktail party - does not repeat -->
+:: daughterPath02ServeA []
+<!-- happens the 1st time the player serves the Daughter at the cocktail party - does not repeat -->
 
 <<= $daughter.speak("Hey $player.femName. You really are working this new look of yours.")>>
 
@@ -67,7 +69,8 @@ $daughter.name turns back to her conversation so you can continue serving.
 <<end>>
 <</chooseOption>>
 
-:: daughterPath02ServeB [] <!-- continues from previous passage -->
+:: daughterPath02ServeB []
+<!-- continues from previous passage -->
 
 <<= $player.speak("I'd take a case if I could get some of these eyes off me.")>>
 
@@ -83,7 +86,8 @@ You look at her wide eyed but before you can reply $daughter.name winks <</if>>a
 
 <<set $daughter.addAppreciation(1)>>
 
-:: daughterPath03GardenChatA [event] <!-- happens the first time the player sees the Daughter in the Garden after they are nice to her in daughterPath02ServeA - does not repeat - should occur instead of daughterGardenReading01 one time and then the generic event should be happening again-->
+:: daughterPath03GardenChatA [event]
+<!-- happens the first time the player sees the Daughter in the Garden after they are nice to her in daughterPath02ServeA - does not repeat - should occur instead of daughterGardenReading01 one time and then the generic event should be happening again-->
 
 $daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
 
@@ -116,7 +120,8 @@ Not wanting to push your luck your go <<link "back to what you were doing." "ret
 <<end>>
 <</chooseOption>>
 
-:: daughterPath03GardenChatB [] <!-- continues from previous passage --> 
+:: daughterPath03GardenChatB []
+<!-- continues from previous passage --> 
 
 <<= $player.speak("That's quite a pile you've built up $daughter.title.")>>
 
@@ -170,7 +175,8 @@ You smile and then get <<return "back to what you were doing.">>
 <!--<<set $daughter.addAppreciation(1)>>-->
 <<= $mansion.removeEvent("Garden", "daughterPath03GardenChatA")>>
 
-:: daughterPath04IntroDate01 [] <!-- requires being nice to the Daughter in daughterPath03GardenChatA and then seeing the Daughter in the Foyer -->
+:: daughterPath04IntroDate01 []
+<!-- requires being nice to the Daughter in daughterPath03GardenChatA and then seeing the Daughter in the Foyer -->
 
 You hear the sounds of $daughter.name and $wife.name arguing as they enter the room.
 
@@ -349,7 +355,8 @@ She loops her arm in yours and you head out through the main doors for the first
 	tags: ["Thursday", "NeedDaughter"]
 }))>>
 
-:: daughterPath04IntroDate05 [] <!-- happens the first time the player leaves for the daughter date -->
+:: daughterPath04IntroDate05 []
+<!-- happens the first time the player leaves for the daughter date -->
 
 This is the first real chance you've had to check out the city since this whole mess started. $daughter.name calls a car and you are both picked up to be taken to the place she's chosen.
 
@@ -357,7 +364,8 @@ As you sit down she slides over next to you and keeps a hold of your arm. It fee
 
 The drive through the streets is so calming though. There's something about not being stuck in the same walls and being expected to be at everyone's beck and call that is really taking the edge off.
 
-:: daughterPath04IntroDate06 [] <!-- happens the first time the player returns from a daughter date -->
+:: daughterPath04IntroDate06 []
+<!-- happens the first time the player returns from a daughter date -->
 
 You and $daughter.name stumble in through the main door and into the foyer. Everyone else is already asleep so there are only night lights on. As you walk her towards the stairs you both bump into one of the tables and it bangs agsint the wall.
 
@@ -387,7 +395,8 @@ Not thinking too much on it you turn and head back to your room and crash on the
 
 <<= $time.setDate({day:0, hour: 2, minute:0})>>
 
-:: daughterPath04IntroDate07 [] <!-- happens the first time the player wakes up after a Daughter date -->
+:: daughterPath04IntroDate07 []
+<!-- happens the first time the player wakes up after a Daughter date -->
 
 [[PlayerBdRm]]
 

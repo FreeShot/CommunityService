@@ -118,23 +118,7 @@ class Player extends Character {
 			name: "Alex",
 			title: "servant",
 			femName: "Alice",
-			femininity: {
-				current: 0,
-				absolute: 0
-			},
-			appearance: 0,
-			arousal: {
-				current: 0,
-				absolute: 0
-			},
-			submission: {
-				current: 0,
-				absolute: 0
-			},
-			boldness: {
-				current: 0,
-				absolute: 0
-			},
+			femininity: 0,
 			voice: {
 				current: 0,
 				absolute: 0
@@ -143,6 +127,7 @@ class Player extends Character {
 				current: 10,
 				max: 10
 			},
+			sub
 			currRoom: "PlayerBdRm",
 			choresLate: 0,
 			money: 0,
@@ -305,12 +290,6 @@ class Player extends Character {
 	raiseFemininity(amnt) {
 		this.femininity.current = amnt.tmp;
 		this.femininity.absolute += amnt.abs;
-	}
-
-	// Raises arousal by amount
-	raiseArousal(amnt) {
-		this.arousal.current = amnt.tmp;
-		this.arousal.absolute += amnt.abs;
 	}
 
 	// Raises boldness by amount
