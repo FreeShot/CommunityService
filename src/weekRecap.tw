@@ -1,3 +1,20 @@
+::debtDescription
+
+Debt: 23456
+
+Weekly reduction: 100
+
+Bonuses
+
+Chore hard work: 50
+Cocktail Party good peformance: 25
+Daughter Date successful: 25
+
+Penalties
+
+Cocktail Party bad peformance: 50
+Daughter date failed: 100
+
 ::endOfWeekRecapStart [event]
 
 Before you turn in for the night you report to the study. $owner.name is sitting behind his desk with $butler.name standing patiently nearby.
