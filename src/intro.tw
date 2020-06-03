@@ -73,7 +73,7 @@ The box is still closed.
 
 <<= $player.speak("<i>$player.name, you idiot!</i> He didn't say.")>>
 
-<<= Character.speakAnonymous("So you're in the habit of taking strange packages from people you don't know?")>>
+<<= Character.speakAnonymous("So you're in the habit of taking strange packages from people you don't know?", "GoldenRod")>>
 
 You stand there, panicking and unsure of how to reposnd.
 
