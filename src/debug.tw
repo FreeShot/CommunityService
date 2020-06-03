@@ -2,17 +2,6 @@
 <hr>
 DEBUG
 
-Search variable: <<textbox '_value' ''>><<button "get">>
-<<replace '#story-variable'>><<debug _value>><</debug>>
-<</replace>>
-<</button>>
-
-<span id="story-variable"></span>
-
-<<link "addXP">>
-	<<= $player.levelUp('serving', 1)>>
-	<<goto `passage()`>>
-<</link>>
 <<link "Debug Skip Day">>
 	<<= $time.setDate("wakeup")>>
 	<<goto `passage()`>>
@@ -21,10 +10,21 @@ Search variable: <<textbox '_value' ''>><<button "get">>
 	<<= $time.setDate({day:0, hour:22, minute:0})>>
 	<<goto `passage()`>>
 <</link>>
-<<link "++ D app">>
+<<link "Increase Serving">>
+	<<= $player.levelUp('serving', 1)>>
+	<<goto `passage()`>>
+<</link>>
+<<link "Increase Daughter Appreciation">>
 	<<set $daughter.addAppreciation(1)>>
 	<<goto `passage()`>>
 <</link>>
+
+Search variable: <<textbox '_value' ''>><<button "get">>
+<<replace '#story-variable'>><<debug _value>><</debug>>
+<</replace>>
+<</button>>
+
+<span id="story-variable"></span>
 
 Current event: <<= $mansion.currentEvent>>
 
