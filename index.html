@@ -1574,7 +1574,7 @@ class Schedule {
 			}
 		} else 
 			path = pathfind.path(this.currRoom, nextPoint.room);
-		if (Timer.toMinute(State.variables.time.time) > State.variables.lastTime.tp + 30 && nextPoint.room === "FreeRoam" && State.random() > 0.5) {
+		if (Timer.toMinute(State.variables.time.time) > State.variables.lastTime.tp + 60 && nextPoint.room === "FreeRoam" && State.random() > 0.5) {
 			State.variables.lastTime.tp = Timer.toMinute(State.variables.time.time);
 			path = [State.variables.player.currRoom];
 		}
