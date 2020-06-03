@@ -30,8 +30,7 @@ increase or decrease acceptance?
 
 [[daughterDateCinema01]]
 
-:: daughterDateActivity01
-<!-- todo add interactions in the car -->
+:: daughterDateActivity01 [] <!-- todo: add interactions in the car -->
 
 A car is waiting downstairs and after getting in $daughter.name tells them where you are going. Both of you are int he back seat and a privacy screen keeps you separated from the driver. You look out of the corner of your eye and watch $daughter.name staring out the window.
 
@@ -49,8 +48,7 @@ You are pretty out of touch with anything going on outside of your role as a ser
 
 [[Go to the movies|daughterDateActivity01]]
 
-:: daughterDateCinema02
-<!-- todo: randomise between the movies -->
+:: daughterDateCinema02 [] <!-- todo: randomise between the movies -->
 
 The car drops you off on a back street and you follow $daughter.name down a side alley. It's a pretty quiet area but you can see entrances to a few quirky cafe's and other establishments. The entrance to the cinema is just a simple unassuming door but once you're inside the room open up into a Victorian style reception area.
 
@@ -70,7 +68,7 @@ You blush and follow her [[into the theater.|daughterDateCinemaHorror01]]
 You both step over to pick a few things and [[take them in with you.|daughterDateCinemaHorror01]]
 <<options "Pass on getting snacks this time.">>
 You decide against it and head [[inside the theater.|daughterDateCinemaHorror01]]
-<</if>> -->
+<</if>>
 <</end>>
 <</chooseOption>>
 
@@ -92,8 +90,8 @@ For a while not much else happens since it's mostly boring setup but right in th
 She reaches over your shoulder to hold you and pats you head with her other hand. <<= $daughter.speak("Don't worry, I've got you.")>>
 
 <<link "Be held by her." "daughterDateCinemaHorror02">>
-<<= $player.raiseFemininity({tmp:1})>>
-<<= $player.raiseSubmission({tmp:1})>>
+<<= $player.raiseFemininity({abs:1})>>
+<<= $player.raiseSubmission({abs:1})>>
 <</link>>
 <<option "That was awesome!">>
 <<= $player.speak("Yeah! More of that.")>>
@@ -115,7 +113,7 @@ You mind struggles with what you want to do for the next hour or so as you try a
 
 :: daughterDateCinemaHorror02
 
-It continues that way until the big finale and then the credits finally roll. You pull yourself away from $daughter.name, blushing slightly as she stands and smiles at you.
+It continues that way until the big finale and then the credit finally roll. You pull yourself away from $daughter.name, blushing slightly as she stands and smiles at you.
 
 <<link '<<= $daughter.speak("Lets go get a drink.")>>' "daughterDateContinued01">>
 

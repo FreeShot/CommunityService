@@ -1,5 +1,4 @@
-::suitorPathIntro01 []
-<!-- happens during the first cocktail party - does not repeat -->>
+::suitorPathIntro01 [] <!-- happens during the first cocktail party - does not repeat -->>
 
 $wife.name gestures for you to come over with your tray. She's standing with $owner.name and another man who stands out a bit as he isn't as dressed up as everyone else. He's wearing stylish jeans with plain shoes and nice t-shirt. There is a design on the shirt but it's half covered by his casual business jacket. He's staring right into your eyes as you walk over.
 
@@ -54,8 +53,7 @@ You leave and come back with the drink a few moments later.
 	<</link>>
 </span><</nobr>>
 
-::suitorPathIntro02 []
-<!-- happens as it's own party event if the player showed an interest in suitorPathIntro01 -->
+::suitorPathIntro02 [] <!-- happens as it's own party event if the player showed an interest in suitorPathIntro01 -->
 
 After taking  moment to catch your breath you start heading back to the kitchen. As you round a corner you bump into one of the guests. You know he's been drinking all night since you've been serving his drinks and dodging his groping hands.
 
@@ -138,8 +136,7 @@ Without taking his hand off the man's shoulder $suitor.title guides him away and
 [[Follow him to the study.|suitorPathIntro04]]
 [[Don't encourage this further.|suitorPathIntroEnd1]]
 
-::suitorPathIntroEnd1 []
-<!-- To do: minus points for leading him on then rejecting him and add a comment when being assessed -->
+::suitorPathIntroEnd1 [] <!-- To do: minus points for leading him on then rejecting him and add a comment when being assessed -->
 
 <<= $player.speak("Sorry $suitor.title but I really should be getting back to work.")>>
 
@@ -251,8 +248,7 @@ You start to pull away but $suitor.name holds onto your shoulder. <<= $suitor.sp
 
 The two of them start chatting as you head [[back to the kitchen.|mansionCPartyServing01]]
 
-::suitorPathIntro08 []
-<!-- happens at the end of the party if the player maintained teh auitor relationship -->
+::suitorPathIntro08 [] <!-- happens at the end of the party if the player maintained teh auitor relationship -->
 
 As evening winds down you're mostly stuck in the kitchen cleaning up with $caterer.name. People have been leaving for a while now and the estate is mostly empty.
 
