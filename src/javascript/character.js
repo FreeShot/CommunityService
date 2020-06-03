@@ -123,10 +123,6 @@ class Player extends Character {
 				absolute: 0
 			},
 			appearance: 0,
-			arousal: {
-				current: 0,
-				absolute: 0
-			},
 			submission: {
 				current: 0,
 				absolute: 0
@@ -142,6 +138,10 @@ class Player extends Character {
 			stamina: {
 				current: 10,
 				max: 10
+			},
+			arousal: {
+				current: 0,
+				max: 100
 			},
 			currRoom: "PlayerBdRm",
 			choresLate: 0,
@@ -250,6 +250,21 @@ class Player extends Character {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
 	}
 
+	// Returns the arousal bar for the player
+	getArousalBar() {
+		return `<<scale ${this.arousal.current} ${0} ${this.arousal.max}>><</scale>>`
+	}
+
+	// Adds some of the arousal to the player
+	increaseArousal(amnt) {
+		this.arousal.current = Math.min(this.arousal.current + (amnt || this.arousal.max), this.arousal.max);
+	}
+
+	// Uses some of the arousal
+	decreaseArousal(amnt) {
+		this.arousal.current = Math.max(this.arousal.current - amnt, 0);
+	}
+
 	// Returns the description of the bodypart
 	getDesc(bodyPart) {
 		return State.variables.bodyPart.desc[bodyPart][this.bodyPart[bodyPart] || 0];
@@ -305,12 +320,6 @@ class Player extends Character {
 	raiseFemininity(amnt) {
 		this.femininity.current = amnt.tmp;
 		this.femininity.absolute += amnt.abs;
-	}
-
-	// Raises arousal by amount
-	raiseArousal(amnt) {
-		this.arousal.current = amnt.tmp;
-		this.arousal.absolute += amnt.abs;
 	}
 
 	// Raises boldness by amount

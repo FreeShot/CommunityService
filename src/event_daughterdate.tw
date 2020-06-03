@@ -30,7 +30,8 @@ increase or decrease acceptance?
 
 [[daughterDateCinema01]]
 
-:: daughterDateActivity01 [] <!-- todo: add interactions in the car -->
+:: daughterDateActivity01 []
+<!-- todo: add interactions in the car -->
 
 A car is waiting downstairs and after getting in $daughter.name tells them where you are going. Both of you are int he back seat and a privacy screen keeps you separated from the driver. You look out of the corner of your eye and watch $daughter.name staring out the window.
 
@@ -48,7 +49,8 @@ You are pretty out of touch with anything going on outside of your role as a ser
 
 [[Go to the movies|daughterDateActivity01]]
 
-:: daughterDateCinema02 [] <!-- todo: randomise between the movies -->
+:: daughterDateCinema02 []
+<!-- todo: randomise between the movies -->
 
 The car drops you off on a back street and you follow $daughter.name down a side alley. It's a pretty quiet area but you can see entrances to a few quirky cafe's and other establishments. The entrance to the cinema is just a simple unassuming door but once you're inside the room open up into a Victorian style reception area.
 

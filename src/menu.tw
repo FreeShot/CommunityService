@@ -5,6 +5,7 @@
 <tr id="time"><td colspan="2"><<= $time.clock>></td></tr>
 <</if>>
 <tr id="stamina"><td colspan="2">Stamina: <<= $player.getStaminaBar()>></td></tr>
+<tr id="arousal"><td colspan="2">Arousal: <<= $player.getArousalBar()>></td></tr>
 <<if $flags.CUFF > 0 >>
 <tr id="cuff"><td colspan="2">[[CUFF]]</td></tr>
 <<else>>
