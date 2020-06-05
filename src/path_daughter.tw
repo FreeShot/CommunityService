@@ -226,6 +226,7 @@ $daughter.name rushes off to do whatever she was doing to get ready.
 <<= $wife.speak("Hmm, yes, about that.")>> $wife.name starts walking to the master bedroom. <<= $wife.speak("Follow me.")>>
 
 [[Follow|daughterPath04IntroDate02]]
+<<set $daughterDateIntro to true>>
 <<end>>
 <</chooseOption>>
 
@@ -343,7 +344,7 @@ She loops her arm in yours and you head out.
 
 She loops her arm in yours and you head out through the main doors for the first time since you arrived.
 
-[[daughterDateSetup01]]
+[[Continue.|daughterDateSetup01]]
 
 <<set $flags.daughterDate to 1>>
 <<set $flags.therapyPath to 1>>

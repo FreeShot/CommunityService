@@ -1,45 +1,18 @@
 :: daughterDateSetup01 [event eventStart]
 <<set $daughterDateStart to true>>
 
-"So what would you like to do? We can…"
+<<= $daughter.speak("So what would you like to do? We can…")>>
 
-> go to a club
-> see a movie
-> eat at a fancy restaurant
+<<link '<<= $daughter.speak("Go to the movies.")>>' "daughterDateActivity01">>
+<<set $flags.daughterDateEvent to 0>>
+<</link>>
+<<link '<<= $daughter.speak("Go to a club.")>>' "daughterDateActivity01">>
+<<set $flags.daughterDateEvent to 1>>
+<</link>>
 
-On choice
+:: daughterDateCinema01 []
 
-"Good choice. I know just the place."
-
-These can be repeatable
-
-On first - this will change after hypno. starts to be a role reversal
-
-will be a juggling act between keeping D happy and out of trouble
-Player is paying for everything too so they will have to balance that
-
-They will need to avoid arousal and drunkeness as much as possible
-High numbers there will reduce their better judgment
-Unlocks/locks certain option during the event depending on where they are at
-
-good result will get a better bonus and hopefully offset the night out
-
-possibly improve stats like stamina?
-
-increase or decrease acceptance?
-
-[[daughterDateCinema01]]
-
-:: daughterDateActivity01 []
-<!-- todo: add interactions in the car -->
-
-A car is waiting downstairs and after getting in $daughter.name tells them where you are going. Both of you are int he back seat and a privacy screen keeps you separated from the driver. You look out of the corner of your eye and watch $daughter.name staring out the window.
-
-[[daughterDateCinema02]]
-
-:: daughterDateCinema01
-
-<<= $daughter.speak("Sounds like fun. What movie do you want to see.")>>
+<<= $daughter.speak("Sounds like fun. What movie do you want to see?")>>
 
 You are pretty out of touch with anything going on outside of your role as a servant so you have no idea what there is available.
 
@@ -49,14 +22,26 @@ You are pretty out of touch with anything going on outside of your role as a ser
 
 [[Go to the movies|daughterDateActivity01]]
 
+:: daughterDateActivity01 []
+<!-- todo: add interactions in the car -->
+
+A car is waiting downstairs and after getting in $daughter.name tells them where you are going. Both of you are int he back seat and a privacy screen keeps you separated from the driver. You look out of the corner of your eye and watch $daughter.name staring at the city as it passes by.
+
+<<if $flags.daughterDateEvent is 0>>
+[[Arrive at you destination|daughterDateCinema02]]
+<<elseif $flags.daughterDateEvent is 1>>
+[[Arrive at you destination|daughterDateClub02]]
+<</if>>
+<<set $time.addTime({day:0, hour: 0, minute:30})>>
+
 :: daughterDateCinema02 []
 <!-- todo: randomise between the movies -->
 
-The car drops you off on a back street and you follow $daughter.name down a side alley. It's a pretty quiet area but you can see entrances to a few quirky cafe's and other establishments. The entrance to the cinema is just a simple unassuming door but once you're inside the room open up into a Victorian style reception area.
+The car drops you off on a back street and you follow $daughter.name down an alley. It's a pretty quiet area but you can see entrances to a few quirky cafe's and other establishments. The entrance to the cinema is just a simple unassuming door but once you're inside the room opens up into a Victorian style reception area.
 
 [img[setup.ImagePath + "events/daughterdate/theater_entrance_01.jpg"]]
 
-$daughter.name tells you to wait while she goes over and gets the tickets. You start walking inside but spy the confection stand.
+$daughter.name goes over and gets the tickets. You start walking inside and spy the confection stand nearby.
 
 <<chooseOption "Ask to get some snacks.">>
 <<= $player.speak("Should we get something.")>> You point $daughter.name at the food stand.
@@ -68,10 +53,10 @@ You blush and follow her [[into the theater.|daughterDateCinemaHorror01]]
 <<= $daughter.speak("Sure, why not.")>>
 
 You both step over to pick a few things and [[take them in with you.|daughterDateCinemaHorror01]]
-<<options "Pass on getting snacks this time.">>
-You decide against it and head [[inside the theater.|daughterDateCinemaHorror01]]
 <</if>>
-<</end>>
+<<option "Pass on getting snacks this time.">>
+You decide against it and head [[inside the theater.|daughterDateCinemaHorror01]]
+<<end>>
 <</chooseOption>>
 
 :: daughterDateCinemaHorror01
@@ -85,15 +70,16 @@ You both take your seats and the movie starts. Ominous music starts playing and 
 You lean back as the film rolls on and the person meets up with one of their friends and tries to describe what is going on. The friend keeps telling them to calm down when out of nowehere something rips them both out of frame and they scream.
 
 <<chooseOption "Ah! So scary!">>
-With a squeel of fright you grab the nearest person and bury your head in their shoulder.  Fortunately it was $daughter.name's arm and the smell of her purfume is conforting as you listen to the noises of the people being devoured. You peek at the screen as the scene changes to some more subdued before collecting yourself and pulling away. $daughter.name is smiling but still watching the movie.
+With a squeel of fright you grab the nearest person and bury your head in their shoulder.  Fortunately it was $daughter.name's arm and not some stranger. The smell of her purfume is comforting as you listen to the noises of the people being devoured. You peek at the screen as the scene changes to some more subdued before collecting yourself and pulling away. $daughter.name is smiling but still watching the movie.
 
 For a while not much else happens since it's mostly boring setup but right in the middle of a quiet conversation the creature snatches another peron out of nowhere and you're right back at $daughter.name's side clinging to her in fright.
 
 She reaches over your shoulder to hold you and pats you head with her other hand. <<= $daughter.speak("Don't worry, I've got you.")>>
 
 <<link "Be held by her." "daughterDateCinemaHorror02">>
-<<= $player.raiseFemininity({abs:1})>>
-<<= $player.raiseSubmission({abs:1})>>
+<<= $player.femininity += 1>>
+<<= $player.submission += 1>>
+<<= $player.increaseArousal(20)>>
 <</link>>
 <<option "That was awesome!">>
 <<= $player.speak("Yeah! More of that.")>>
@@ -101,25 +87,56 @@ She reaches over your shoulder to hold you and pats you head with her other hand
 There are a few shooshes from the crowd so you pipe down a bit. $daughter.name chuckles from next to you. You sit back to enjoy the movie but a few minutes later you feel $daughter.name's shoulder brush up against yours. You can see her hand resting on the arm of the seat.
 
 <<chooseOption "Make a move.">>
-With your heart thrumming in your chest sou slide you own hand over to brush against hers. Her fingers twitch against yours but she doesn't pull away. You gently hook one of her fingers with yours and she getnly rubs against it before pulling away. $daughter.name then slide one of her slim digits between yours. This strange game of cat mouse plays out like this. You both trying to ensare the other while still trying not to lose contact.
+With your heart thrumming in your chest sou slide you own hand over to brush against hers. Her fingers twitch against yours but she doesn't pull away. You gently hook one of her fingers with yours and she rubs against it before pulling away. $daughter.name then slides one of her slim digits between two of yours. This strange game of cat mouse plays out like this throughout the rest of movie. You both trying to ensare the other while still trying not to lose contact.
 
-[[Continue flirting awkwardly.|daughterDateCinemaHorror02]]
+<<link "Continue flirting awkwardly." "daughterDateCinemaHorror02">>
+<<= $player.boldness += 1>>
+<<= $player.increaseArousal(30)>>
+<</link>>
 <<option "Chicken out.">>
-You mind struggles with what you want to do for the next hour or so as you try and decide what to do but you always stop just short of taking any action.
+Your mind struggles with what you want to do for the next hour or so as you try and decide what to do but you always stop just short of taking any action.
 
 [[And so...|daughterDateCinemaHorror02]]
-<</end>>
+<<end>>
+<<end>>
 <</chooseOption>>
-<</end>>
 <</chooseOption>>
 
 :: daughterDateCinemaHorror02
 
 It continues that way until the big finale and then the credit finally roll. You pull yourself away from $daughter.name, blushing slightly as she stands and smiles at you.
 
-<<link '<<= $daughter.speak("Lets go get a drink.")>>' "daughterDateContinued01">>
+<<link '<<= $daughter.speak("Lets go get a drink.")>>' "daughterDateBar01">>
+<<set $time.addTime({day:0, hour: 2, minute: 0})>>
+<</link>>
 
-:: daughterDateContinued01
+:: daughterDateClub02
+
+[img[setup.ImagePath + "events/daughterdate/bestdanceever.gif"]]
+
+This happens and everyone is impressed. (placeholders can be fun too)
+<<set $time.addTime({day:0, hour: 2, minute: 0})>>
+[[daughterDateBar01]]
+
+:: daughterDateBar01
+
+You follow $daughter.name and eventually come to another hidden away venue. The small bar has a pretty good atmosphere with plenty of conversations going but not so loud you can't hear the person next to you. $daughter.name finds a booth to the side and once you sit down it could almost be a private bar with how it separates you both from the rest of the patrons. The dim but not dark lighting creates a very mellow atmosphere.
+
+[img[setup.ImagePath + "events/daughterdate/bar_01.jpg"]]
+
+<<= $daughter.speak("So what do you want to drink?")>>
+
+Options: 
+
+No drinking for you both
+Don't drink but don't stop her
+Drinks all around
+
+[[daughterDateFinale01]]
+
+:: daughterDateFinale01
+
+[[daughterDateFinish01]]
 
 :: daughterDateFinish01
 

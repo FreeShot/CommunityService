@@ -10,6 +10,14 @@ DEBUG
 	<<= $time.setDate({day:0, hour:22, minute:0})>>
 	<<goto `passage()`>>
 <</link>>
+<<link "Increase Arousal by 10">>
+	<<= $player.increaseArousal(10)>>
+	<<goto `passage()`>>
+<</link>>
+<<link "Reset Arousal">>
+	<<= $player.decreaseArousal()>>
+	<<goto `passage()`>>
+<</link>>
 <<link "Increase Serving">>
 	<<= $player.levelUp('serving', 1)>>
 	<<goto `passage()`>>
@@ -39,3 +47,4 @@ Current event: <<= $mansion.currentEvent>>
 Quick access to events:
 [[mansionCPartyIntro01]]
 [[mansionCPartySetup01]]
+[[daughterPath04IntroDate01]]
