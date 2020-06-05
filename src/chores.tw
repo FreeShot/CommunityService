@@ -51,7 +51,48 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 $gardner.name doesn't like you messing with the plants so all you can do here is sweep any debris off the paths and sitting areas.
 
+<<nobr>>
+	<<switch random(2)>>
+		<<case 1>>
+			<!-- Player is sweeping the Garden, Gardner is present and has a random % chance of occuring (todo: increase arousal) -->
 
+			After you finish up sweeping you so to put the broom back in the shed. The shed is fairly spacious since it holds everything $gardner.name needs to keep the grounds looking good. It's very disorganised but he knows where everything goes so you try your best to keep things as is. The only issue is that he's fairly tall so you have to reach most for anything not pile against a wall.<br>
+			<br>
+			You're reaching to put the broom back when you slip and tilt forward suddenly. You let go of the broom and brace yourself on the bench in front of you. The broom just barely catches the hook before it slips off and clatters into another pile of tools.<br>
+			<br>
+			$gardner.name is in the shed before you can even push away from the counter.<br>
+			<br>
+			<<= $gardner.speak("A little too difficult for you huh?")>><br>
+			<br>
+			<<= $player.speak("<i>How did he get in here so fast?</i>")>><br>
+			<br>
+			$gardner.name walks up behind you and reaches forward to grab the broom. <<= $gardner.speak("Here, let me help.")>><br>
+			<br>
+			<<chooseOption "Let him help.">>
+
+			His long arm grabs the broom handle but not before his chest presses up against your back. Positioned how you are it pushes you up against the counter. Given his size you would probably have a hard time getting free right now.<br>
+			<br>
+			<<= $gardner.speak("You know if this is too hard for you I can find something a bit easier?")>><br>
+			<br>
+			You can feel his warm breath on you ear and his crotch presses up against your butt. You're pretty sure that's not a flashlight in his pocket although it feels as hard as one.<br>
+			<br>
+			<<= $player.speak("Um... what you have me doing is ok.")>><br>
+			<br>
+			<<= $gardner.speak("Suit yourself.")>><br>
+			<br>
+			$gardner.name hangs up the broom and pushes away from you leaving you to finish up.<br>
+			<<set $gardner.addAppreciation(1)>>
+			<<= $player.increaseArousal(10)>>
+			<<option "Say you've got it.">>
+
+			<<= $gardner.speak("Suit yourself. Just be sure you don't make a mess.")>><br>
+			<br>
+			You quickly pick up the broom and hang it on its hook before finishing up.<br>
+			<<end>>
+			<</chooseOption>>
+		<<default>>
+	<</switch>>
+<</nobr>>
 
 :: kitchenDishes [noreturn chore]
 
@@ -91,7 +132,62 @@ You go through each room, stripping the beds, pillows and quilts and take it all
 
 With a heavy sigh, you spend time going through each room, taking the clothes discarded to hampers. Once you have everything you take it all back to the large laundry. You separate the items so you are washing the correct things together. Fortunately dry cleaning gets taken off site so you don’t have to learn that skill. Once it’s all ready you put each load into one of the machines with some laundry detergent, and then start the washing cycle. Once each cycle is done you put everything in the dryer before repeating the process. Once each load is done you have to fold everything neatly and sort it all into piles before putting it away.
 
-
+<<nobr>>
+	<<switch random(3)>>
+		<<case 1>>
+			Since you don't have any spare clothes that means you need to keep the one's you normally wear clean. You strip down and throw the few items you have in the wash and put it on a fast cycle.<br>
+			<br>
+			It doesn't take too long so you busy yourself folding the washing that's already clean.<br>
+			<br>
+			You bend down to put some of the linen away when the door to the laundry open.<br>
+			<br>
+			<<= $player.speak("<i>The lock you idiot!</i>")>><br>
+			<br>
+			You spin around and see $wife.name standing there, arms crossed and a furious look on her face.<br>
+			<br>
+			<<= $wife.speak("I come to check on you and find you like this?")>><br>
+			<br>
+			You snatch up one of the nearby towels and quickly cover yourself.<br>
+			<br>
+			<<= $wife.speak("It's a bit late for that isn't it?")>><br>
+			<br>
+			<<= $player.speak("But, my clothes...")>><br>
+			<br>
+			<<if $flags.partyRule is true>>
+				<<= $wife.speak("I don't want to hear excuses!")>><br>
+				<br>
+				$wife.name grabs you by the wrist. You lose a hold the towel, leaving you naked as she drags to [[your room.|wifeLaundryPlayerNude01B]]
+				<<= $player.unequip("All")>><br>
+			<<else>>
+				<<= $wife.speak("I don't want to hear excuses! If I keep finding you like this I might have to take matters into my own hands.")>><br>
+				<br>
+			<</if>>
+		<<case 2>>
+			Since you don't have any spare clothes that means you need to keep the one's you normally wear clean. You strip down and throw the few items you have in the wash and put it on a fast cycle.<br>
+			<br>
+			It doesn't take too long so you busy yourself folding the washing that's already clean.<br>
+			<br>
+			You bend down to put some of the linen away when the door to the laundry open.<br>
+			<br>
+			<<= $player.speak("<i>The lock you idiot!</i>")>><br>
+			<br>
+			You spin around and see $daughter.name standing there, trying to use her hand to cover her large smile as she snickers.<br>
+			<br>
+			<<= $daughter.speak("Um, I just wanted to stop in and say hi.")>><br>
+			<br>
+			<<= $player.speak("Aaah... Um.")>><br>
+			<br>
+			<<= $daughter.speak("Do you maybe want to cover up?")>><br>
+			<br>
+			You snatch up one of the nearby towels and quickly cover yourself.<br>
+			<br>
+			<<= $daughter.speak("You know what? That's ok. You look busy.")>><br>
+			<br>
+			$daughter.name leaves and you hear her burst into laughter as soon as she's out of sight.<br>
+			<br>
+		<<default>>
+	<</switch>>
+<</nobr>>
 
 :: loungeCleaning [noreturn chore]
 
@@ -337,7 +433,52 @@ Thers isn't a lot of room to work with so cleaning up is as simple as putting ev
 
 $gardner.name takes care of most of the pool maintenance so you just sweep the sitting area and make sure it is tidy.
 
-
+<<nobr>>
+	<<switch random(2)>>
+		<<case 1>>
+			$gardner.name is spraying down the windwos while you tidy up the leaves and other loose debris. It's seems a littel backwards for him to be doing this before you've finished sweeping but you're pretty sure if you question his method it will be followed by a talk about him being the grounds keeper and not you.<br>
+			<br>
+			You turn to grab you bag of clippings when a gush of water pours over you.<br>
+			<br>
+			<<= $gardner.speak("Woah! Watch it there.")>><br>
+			<br>
+			You're quickly soaked from head to toe in water with $gardner.name standing there and quickly turning his hose off.<br>
+			<br>
+			<<= $gardner.speak("Quick, come here and I'll dry you off.")>><br>
+			<br>
+			<<chooseOption "Let him help.">>
+			<<= $player.speak("Um... thanks.")>><br>
+			<br>
+			$gardner.name takes one of the nearby towels and wraps it around you. He pulls you very close as her rubs your shoulder and then wraps his arm around you to dry your back. You can smell fresh cut grass and flowers on his clothes. He keeps toweling you off and you jostle about in his strong embrace, eventually ending up pressed against his chest.<br>
+			<br>
+			<<= $player.speak("You're getting all wet.")>><br>
+			<br>
+			<<= $gardner.speak("That's ok. Just making sure you're comfortable.")>><br>
+			<br>
+			A particularly hard shove presses your against his groin and you can feel either the handle of one of his tools or...<br>
+			<br>
+			<<= $gardner.speak("There you go.")>> $gardner.name steps back.<br>
+			<br>
+			You're still a bit damp but he definitely helped.<br>
+			<br>
+			<<= $gardner.speak("Make sure you're more careful. We don't want you getting sick.")>><br>
+			<br>
+			<<= $player.speak("Sure.")>><br>
+			<br>
+			You pick up the broom and get back to work.
+			<<set $gardner.addAppreciation(1)>>
+			<<= $player.increaseArousal(10)>>
+			<<option "Just grab a towel and dry yourself.">>
+			Ignoring him you reach down to grab one of the towels laying nearby and just start drying yourself off as best you can.<br>
+			<br>
+			<<= $gardner.speak("Suit yourself. If you catch a chill it's not on me.")>><br>
+			<br>
+			$gardner.name keeps cleaning the windows while you dry off and then finish up what you were doing.<br>
+			<<end>>
+			<</chooseOption>>
+		<<default>>
+	<</switch>>
+<</nobr>>
 
 :: daughterBdRmcleaning [noreturn chore]
 

@@ -21,6 +21,7 @@ You feel something warm and firm press against the your womanhood before the fig
 <</if>>
 
 <<set $player.voice.current = $player.voice.absolute>>
+<<= $player.increaseArousal(5)>>
 
 ::wakeUp [sleep]
 
@@ -34,16 +35,144 @@ The CUFF alarm goes off at 6 am sharp and you quickly slap your hand to your wri
 <<else>>
 You head to your small bathroom and sit down to relieve yourself. After that you jump in the shower and quickly wash yourself before getting out and shaving. Once you're dressed you head out to the kitchen and start getting things ready for breakfast.<br>
 <br>
-$butler.name is already in there to help setup. Fortunately the family isn't particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.<br>
-<br>
-[img[setup.ImagePath + "events/chores/general_breakfast/bfast_continental01.jpg"]]<br>
-<br>
-$owner.name is first to the table as usual. $butler.name helps you bring out the coffee and tea. Over the next hour or two everyone in the estate spends time in the dining room eating and chatting about what they have planned for the day. You attend to anything unique they request until everyone is satisfied and leaves to go about their day. $butler.name leaves with $owner.name so you are alone to do the clean up.<br>
-<br>
-Once everything is tidy you grab a bite to eat and go back to your room.<br>
-<br>
-[[Return to your room.|PlayerBdRm]]
+<<nobr>>
+	<<switch random(3)>>
+		<<case 1>>
+			<<= $wife.speak("Good morning dear.")>><br>
+			<br>
+			$wife.name enteres the dining room and gives $owner.name a quick peck on the cheek. She decided to come to breakfast still in her long silk dressing gown. The deep purple fabric shimmers as she takes a seat next to her husband. You come over to pour some tea when she gestures with her cup. As the steam rises you lose focus on the task for a moment.<br>
+			<br>
+			$wife.name's dressing gown has come undone slightly and revealed her bosom underneath. She's wearing a lacey red bra underneath that's almost transparent making it revealing in a very sexy way.<br>
+			<br>
+			<<chooseOption "Keep looking.">>
+			The sight is very enticing. You swear if you angle forward just a bit you might able to see a bit more...<br>
+			<br>
+			<<= $player.speak("<i>Score!</i>")>><br>
+			<br>
+			Your catch sight of the dark outline of her nipple and watch as her her chest rises and falls with her breath. There's even a cute little freckle on one of them.
+			<br>
+			Unfortunately...<br>
+			<br>
+			<<= $wife.speak("Ouch!")>><br>
+			<br>
+			The teacup clatters to the ground as $wife.name shakes her hand from where it overflowed and the hot water got on her. She looks at you and sands up, clearly furious.<br>
+			<br>
+			<<= $player.speak("<i>I'm dead.</i>")>><br>
+			<br>
+			<<= $owner.speak("Dear.")>><br>
+			<br>
+			You both turn to $owner.title. He's staring strait at you with that calm, intense look.<br>
+			<br>
+			<<= $owner.speak("I think you need to apologise $player.title.")>><br>
+			<br>
+			<<= $wife.speak("Is that all?")>><br>
+			<br>
+			$owner.title holds up his hand and she stops any more arguement. He then gestures for you to apologise to $wife.name.<br>
+			<br>
+			<<= $player.speak("Sorry $wife.title.")>><br>
+			<br>
+			<<= $owner.speak("No. On your knees.")>><br>
+			<br>
+			$wife.name grins evily and your cheeks flush. If it was someone other than $owner.name you might protest but you know better.<br>
+			<br>
+			You drop to your knees and apologise again.<br>
+			<br>
+			<<= $owner.speak("Lower.")>> He says calmly.<br>
+			<br>
+			You bow slightly.<br>
+			<br>
+			<<= $owner.speak("Lower.")>><br>
+			<br>
+			He continues until your head is touching the ground and you are prostrating yourself in front of $wife.name.<br>
+			<br>
+			<<= $player.speak("Sorry $wife.title.")>><br>
+			<br>
+			<<= $wife.speak("Don't worry about it $player.name.")>> She pats the back of your head gently with her foot. <<= $wife.speak("I'm sure you just did it for some attention but be sure you're more careful next time.")>><br>
+			<br>
+			She sits back down and everyone else gets back to their breakfast as if nothing had happened. You, however are very careful to pay attention to what you are doing and shift nervously everytime $owner.title looks up until finally breakfast is over and you tidy up.<br>
+			<br>
+			[[Return to your room.|PlayerBdRm]]
+			<<= $player.increaseArousal(5)>>
+			<<set $player.submission += 1>>
+			<<option "Pay attention.">>
+			You decide to focus on what you are doing. The teacup is almost full and you manage to catch yourself before it spills over. You finish off by adding a dolop of cream and then continue serving the rest of breakfast.<br>
+			<br>
+			[[Return to your room.|PlayerBdRm]]
+			<</end>>
+			<</chooseOption>>
+		<<case 2>>
+			Breakfast is almost halfway done when $daughter.name pads in to the room rubbing her eyes. It was clearly a long night her. Her very messy  blonde hair is barely kept back in a loose ponytail and her eyes are completly bloodshot. This doesn't detract from the fact she's wearing nothing but a lacey black thong and a white tank top that is so thin you can see the outline of her nipples underneath.<br>
+			<br>
+			<<= $wife.speak("$daughter.name, really?")>><br>
+			<br>
+			$daughter.name mumbles something incoherant before sitting at the table. $wife.name rolls her eyes and gets back to her morning reading while $daughter.name quickly downs a glass of juice and then begins devouring whatever is within her reach. $butler.name coughs from beside you and you jump a little before getting back to work.<br>
+			<br>
+			You bring another glass of juice over. $daughter.name takes a swig while her mouth is still half full of some pastry. One of the strap of her top has slid down her shoulder but you can't quite see anything from this angle.<br>
+			<br>
+			There are some plates nearby that are close enough to empty that you could clear them.<br>
+			<br>
+			<<chooseOption "Steal a glance as you do.">>
+			You lean forward to reach for the plates. A glance to the side show the top has ridden down far enough that the hem is being just barely held up by her nippple. One small jostle is all it would take for it to...<br>
+			<br>
+			<<= $owner.speak("$player.title.")>><br>
+			<br>
+			$owner.name is looking right at you and you shoot back up strait.<br>
+			<br>
+			<<= $player.speak("Yes $owner.title?")>><br>
+			<br>
+			He stares at you for a long moment, so long that you shift uncomfortabley. $owner.name turns to $wife.name.<br>
+			<br>
+			<<if $flags.partyRule is true>>
+				<<= $owner.speak("Make sure this little problem is taken care of for the day before you leave dear.")>><br>
+				<br>
+				$wife.name was watching silently eating her own food the whole time. She smiles at him and pats his cheek affectionately.<br>
+				<br>
+				<<= $wife.speak("Of course dear.")>> She stands up and $butler.name pulls her chair back quickly. <<= $wife.speak("Come with me $player.name.")>><br>
+				<br>
+				You fall in behind her and she leads you to the master bedroom. You heart sinks as $wife.name walks into the dressing room and you realise what is about to happen. She pulls out the familiar pink cage.<br>
+				<br>
+				<<= $wife.speak("My husband really doesn't like people ogling his daughter. Come on.")>> She gestures for you to take you pants off.<br>
+				<br>
+				Once they are off $wife.name kneels down in fron of you. <<= $wife.speak("You know he wanted to keep it on you all day, everyday but I've managed to talk him out of it so far.")>><br>
+				<br>
+				<<= $player.speak("<i>Gee, thanks...</i>")>><br>
+				<br>
+				<<= $player.speak("I can put it on myself $wife.title.")>><br>
+				<br>
+				<<= $wife.speak("Hush.")>> She slips the plastic cage over your manhood and locks it shut with a click. <<= $wife.speak("There you go. Safely sealed away so you don't have any more naughty urges. You can come back for the key at the end of the day.")>><br>
+				<br>
+				$wife.name stands and leaves you to pull your pants back up and hurry back to the dining room and finish serving breakfast.<br>
+				<<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
+			<<else>>
+				<<= $owner.speak("See that you focus on your work.")>><br>
+				<br>
+				The threat is clear but $owner.name just goes back to his reading. You need to remember not to push your luck or else you might find out the consequences next time.<br>
+			<</if>>
+			<br>
+			<<= $player.increaseArousal(5)>>
+			<<set $player.submission += 1>>
+			[[Return to your room.|PlayerBdRm]]
+			<<option "Just clear the plates.">>
+			You take the plates and put them on a tray before heading back to the kitchen.<br>
+			<br>
+			As you do you see $owner.name watching you from behind his tablet. You suspect you dodged a bullet on that one.<br>
+			<br>
+			[[Return to your room.|PlayerBdRm]]
+			<</end>>
+			<</chooseOption>>
+		<<default>>
+			$butler.name is already in there to help setup. Fortunately the family isn't particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.<br>
+			<br>
+			[img[setup.ImagePath + "events/chores/general_breakfast/bfast_continental01.jpg"]]<br>
+			<br>
+			$owner.name is first to the table as usual. $butler.name helps you bring out the coffee and tea. Over the next hour or two everyone in the estate spends time in the dining room eating and chatting about what they have planned for the day. You attend to anything unique they request until everyone is satisfied and leaves to go about their day. $butler.name leaves with $owner.name so you are alone to do the clean up.<br>
+			<br>
+			Once everything is tidy you grab a bite to eat and go back to your room.<br>
+			<br>
+			[[Return to your room.|PlayerBdRm]]
+	<</switch>>
 <<= $time.addTime({hour: 2, minute:0})>>
+<</nobr>>
 <</if>>
 <</nobr>>
 

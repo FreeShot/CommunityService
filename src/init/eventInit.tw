@@ -35,6 +35,48 @@
 	}
 }))>>
 
+<!-- Wife schedule events -->
+
+<<= $mansion.addEvent("Office", new Event({
+	name: "wifeOffice01", 
+	passage: "wifeOffice01", 
+	inline: true, 
+	repeats:true, 
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
+}))>>
+
+<<= $mansion.addEvent("Gym", new Event({
+	name: "wifeGym01", 
+	passage: "wifeGym01", 
+	inline: true, 
+	repeats:true, 
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
+}))>>
+
+<<= $mansion.addEvent("Gym", new Event({
+	name: "wifeGym02", 
+	passage: "wifeGym02", 
+	inline: true, 
+	repeats:true, 
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
+}))>>
+
+<<= $mansion.addEvent("Gym", new Event({
+	name: "wifeGym03", 
+	passage: "wifeGym03", 
+	inline: true, 
+	repeats:true, 
+	tags: {
+		tag: "isPresent", data: {npc: "wife"}, expected: true
+	}
+}))>>
+
 <!-- Daughter events -->
 
 <<= $mansion.addEvent("Gym", new Event({
@@ -149,48 +191,6 @@
 }))>>
 -->
 
-<!-- Wife events -->
-
-<<= $mansion.addEvent("Office", new Event({
-	name: "wifeOffice01", 
-	passage: "wifeOffice01", 
-	inline: true, 
-	repeats:true, 
-	tags: {
-		tag: "isPresent", data: {npc: "wife"}, expected: true
-	}
-}))>>
-
-<<= $mansion.addEvent("Gym", new Event({
-	name: "wifeGym01", 
-	passage: "wifeGym01", 
-	inline: true, 
-	repeats:true, 
-	tags: {
-		tag: "isPresent", data: {npc: "wife"}, expected: true
-	}
-}))>>
-
-<<= $mansion.addEvent("Gym", new Event({
-	name: "wifeGym02", 
-	passage: "wifeGym02", 
-	inline: true, 
-	repeats:true, 
-	tags: {
-		tag: "isPresent", data: {npc: "wife"}, expected: true
-	}
-}))>>
-
-<<= $mansion.addEvent("Gym", new Event({
-	name: "wifeGym03", 
-	passage: "wifeGym03", 
-	inline: true, 
-	repeats:true, 
-	tags: {
-		tag: "isPresent", data: {npc: "wife"}, expected: true
-	}
-}))>>
-
 <!-- Group events -->
 
 <<= $mansion.addEvent("Lounge", new Event({
@@ -219,7 +219,7 @@
 	}
 }))>>
 
-<!-- Gardner events 
+<!-- Gardner events
 
 <<= $mansion.addEvent("Garden", new Event({
 	name: "gardnerGardenBossy01", 
@@ -241,4 +241,4 @@
 	}
 }))>>
 
--->
+ -->

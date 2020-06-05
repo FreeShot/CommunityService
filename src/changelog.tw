@@ -4,6 +4,7 @@
 <!-- Versioning system: MAJOR.MINOR.FIX -->
 !V0.X.X
 !!V0.1.X - Getting to know each other
+<<include "changelog-V0.2.0">>
 <<include "changelog-V0.1.3">>
 <<include "changelog-V0.1.2">>
 <<include "changelog-V0.1.1">>
@@ -11,16 +12,20 @@
 
 <<return>>
 
-::changelog-V0.1.4 [changelog]
+::changelog-V0.2.0 [changelog]
 !! V0.1.4
 !!! Main content
-- NPC now move arround much better
+- NPC's now move around much better.
 
 !!! Other content
-- 
+- Variable breakfast events.
+- Random events during chores.
+- Some choices now affect the player.
+	Changes are still superficial for now but give you an idea of how different actions affect the game.
+- You can now fap in game!
 
 !!! Bug fixes:
-- Fixed display for images on mobile
+- Fixed display for images on mobile.
 
 ::changelog-V0.1.3 [changelog]
 !! V0.1.3

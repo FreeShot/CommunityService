@@ -101,9 +101,12 @@ The guide become more unorthodox from this point. You always find yourself wonde
 How to flirt with guests and comport yourself by keeping you chest out and chin up. A big part of the second half focuses around the "Four bees of serving."
 
 	- Be pleasant, it’s your role to present a sweet and friendly demeanor.
+
 	- Be attentive, constantly scan the room, and if a guest needs attention it is your role to assist them in any way they desire.
+
 	- Be patient, never interrupt a conversation, you are to be seen not heard. Wait for a guest to address you before asking what they would like from you.
-	- Be discreet, don’t have audible conversations with other servers in earshot of guests. Gossip is encouraged of course but only if it is to embarrass yourself or get the attention of a guest.
+
+	- Be discreet, don’t have audible conversations with other servers within earshot of guests. Gossip is encouraged of course but only if it is to embarrass yourself or get the attention of a guest.
 
 <<return 'Back to the menu'>>
 
@@ -153,3 +156,4 @@ Still in dev
 Lady porn
 
 <<return 'Put it back on the shelf'>>
+<<= $player.increaseArousal(5)>>

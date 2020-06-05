@@ -265,12 +265,14 @@ You drop the shirt and slip into the bra first. It sits loose against your flat 
 Without another word she turns and leaves you alone in the small room
 
 <<link "Get back to your chores." "PlayerBdRm">>
-/* Will change this to symply equip a set of clothes, like this it will be customisable */
+<!-- Currently broken. 
+/* Will change this to simply equip a set of clothes, like this it will be customisable */
 <<= $player.inv.addItem($shop.getAsTemp("Female cut T-shirt"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Tight jeans"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Plain white panties"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Plain white bra"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Flat shoes"), 1, true)>>
+-->
 <</link>>
 
 :: wifeBedroomCleaning01 [noreturn chore]
@@ -278,9 +280,9 @@ Without another word she turns and leaves you alone in the small room
 
 trigger: randomly while cleaning any bedroom while the wife is home
 
-The bedroom are fortunately much easier to clean since they are smaller that main rooms. You're in the middle of tidying up when $wife.name walks in and looks around.
+The bedroom are fortunately much easier to clean since they are smaller than the main rooms. You're in the middle of tidying up when $wife.name walks in and looks around.
 
-<<= $wife.speak("Nope, this just isn't goood enough.")>> She grabs and points underneath the bed. <<= $wife.speak("You need to get right under the beds and clean there as well.")>>
+<<= $wife.speak("Nope, this just isn't goood enough.")>> She grabs you and points underneath the bed. <<= $wife.speak("You need to get right under the beds and clean there as well.")>>
 
 It looks like you're not getting out of this without doing what she says. You take the vacuum and and click it down so it will slide under the bed and get on your hands knees to finish the job.
 
@@ -558,7 +560,7 @@ $cook.name guides your hands as he quickly help you slice what's in front of you
 
 <<= $cook.speak("Don't worry about the knife, worry about the food.")>>
 
-You notice his finger have slipped between yours and he's pressing against you more in a very intimate way.
+You notice his fingers have slipped between yours and he's pressing against you more in a very intimate way.
 
 [img[setup.ImagePath + "character/cook/cutting02.jpg"]]
 
@@ -576,8 +578,10 @@ You shake your head to say no and $cook.name hurumphs.
 
 <!-- Gardner schedule events -->
 
+["Main Menu", "Backgrounds", "Settings", "Music", "Time", "Dropdown Select", "Capture"].random()
+
 :: gardnerGardenBossy01 [noreturn chore]
-<!-- Player is sweeping the Garden, Gardner is present and has a random % chance of occuring (todo: increase arousal) -->
+<!-- Player is sweeping the Garden, Gardner is present and has a random % chance of occuring -->
 
 After you finish up sweeping you so to put the broom back in the shed. The shed is fairly spacious since it holds everything $gardner.name needs to keep the grounds looking good. It's very disorganised but he knows where everything goes so you try your best to keep things as is. The only issue is that he's fairly tall so you have to reach most for anything not pile against a wall.
 
@@ -605,6 +609,7 @@ You can feel his warm breath on you ear and his crotch presses up against your b
 
 $gardner.name hangs up the broom and pushes away from you leaving you to finish up.
 <<set $gardner.addAppreciation(1)>>
+<<= $player.increaseArousal(10)>>
 <<option "Say you've got it.">>
 
 <<= $gardner.speak("Suit yourself. Just be sure you don't make a mess.")>>
@@ -614,7 +619,49 @@ You quickly pick up the broom and hang it on its hook before finishing up.
 <</chooseOption>>
 
 :: gardnerPoolBossy01 [noreturn chore]
-<!--  -->
+<!-- Player is sweeping the Pool, Gardner is present and has a random % chance of occuring -->
+
+$gardner.name is spraying down the windwos while you tidy up the leaves and other loose debris. It's seems a littel backwards for him to be doing this before you've finished sweeping but you're pretty sure if you question his method it will be followed by a talk about him being the grounds keeper and not you.
+
+You turn to grab you bag of clippings when a gush of water pours over you.
+
+<<= $gardner.speak("Woah! Watch it there.")>>
+
+You're quickly soaked from head to toe in water with $gardner.name standing there and quickly turning his hose off.
+
+<<= $gardner.speak("Quick, come here and I'll dry you off.")>>
+
+<<chooseOption "Let him help.">>
+<<= $player.speak("Um... thanks.")>>
+
+$gardner.name takes one of the nearby towels and wraps it around you. He pulls you very close as her rubs your shoulder and then wraps his arm around you to dry your back. You can smell fresh cut grass and flowers on his clothes. He keeps toweling you off and you jostle about in his strong embrace. Eventually  you end pressed up against his chest.
+
+<<= $player.speak("You're getting all wet.")>>
+
+<<= $gardner.speak("That's ok. Just making sure you're comfortable.")>>
+
+A particularly hard shove presses your against his groin and you can feel either the handle of one of his tools or...
+
+<<= $gardner.speak("There you go.")>> $gardner.name steps back.
+
+You're still a bit damp but he definitely helped.
+
+<<= $gardner.speak("Make sure you're more careful. We don't want you getting sick.")>>
+
+<<= $player.speak("Sure.")>>
+
+You pick up the broom and get back to work.
+
+<<set $gardner.addAppreciation(1)>>
+<<= $player.increaseArousal(10)>>
+<<option "Just grab a towel and dry yourself.">>
+Ignoring him you reach down to grab one of the towels laying nearby and just start drying yourself off as best you can.
+
+<<= $gardner.speak("Suit yourself. If you catch a chill it's not on me.")>>
+
+$gardner.name keeps cleaning the windows while you dry off and then finish up what you were doing.
+<<end>>
+<</chooseOption>>
 
 <!-- Player Solo Events -->
 
