@@ -37,7 +37,12 @@ After three, long hours $butler.name comes back to the dining room. He finished 
 <<= $butler.speak("$owner.title.")>> He taps his wrist.
 
 Without a word $owner.name gets up and leaves with $butler.name right behind him. Once they are both gone you drop the tray to the table and relax your sore muscles. You'll be doing your best not spill a tray again.
+
+<<link "Return to your room." "PlayerBdRm">>
 <<set $time.addTime({day:0, hour: 1, minute: 0})>>
+<<set $player.submission += 1>>
+<<= $player.increaseArousal(5)>>
+<</link>>
 <</chooseOption>>
 
 <!-- Wife schedule events -->
@@ -738,9 +743,16 @@ He continues until your head is touching the ground and you are prostrating your
 <<= $wife.speak("Don't worry about it $player.name.")>> She pats the back of your head gently with her foot. <<= $wife.speak("I'm sure you just did it for some attention but be sure you're more careful next time.")>>
 
 She sits back down and everyone else gets back to their breakfast as if nothing had happened. You, however are very careful to pay attention to what you are doing and shift nervously everytime $owner.title looks up.
+
+<<link "Return to your room." "PlayerBdRm">>
+<<set $time.addTime({day:0, hour: 1, minute: 0})>>
+<<set $player.submission += 1>>
+<<= $player.increaseArousal(5)>>
+<</link>>
 <<option "Pay attention.">>
 You decide to focus on what you are doing. The teacup is almost full and you manage to catch yourself before it spills over. You finish off by adding a dolop of cream and then continue serving the rest of breakfast.
-<</end>>
+[[Return to your room.|PlayerBdRm]]
+<<end>>
 <</chooseOption>>
 
 :: breakfastPJs02 [noreturn chore]
@@ -786,10 +798,14 @@ Once they are off $wife.name kneels down in fron of you. <<= $wife.speak("You kn
 <<= $wife.speak("Hush.")>>She slips the plastc cage over your manhood and locks it shut with a click. <<= $wife.speak("There you go. Safely sealed away so you don't have any more naughty urges. You can come back for the key at the end of the day.")>>
 
 $wife.name stands and leaves you to pull your pants back up and hurry back the dining room.
+<<link "Return to your room." "PlayerBdRm">>
 <<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
+<<= $player.increaseArousal(10)>>
+<</link>>
 <<option "Just clear the plates.">>
 You take the plates and put them on a tray before heading back to the kitchen.
 
 As you do you see $owner.name watching you from behind his tablet. You suspect you dodged a bullet on that one.
-<</end>>
+[[Return to your room.|PlayerBdRm]]
+<<end>>
 <</chooseOption>>
