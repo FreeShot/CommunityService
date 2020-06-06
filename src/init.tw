@@ -16,7 +16,9 @@
 	therapyPath : 0,
 	daugherDate: 0,
 	suitorIntroPanic: null,
-	kissedSuitor: false
+	kissedSuitor: false,
+	cpartyBonus: false,
+	cpartyPenalty: false
 }>>
 
 <<set $bluePinkGradient to ["#0200b8","#0501b8","#0701b7","#0901b7","#0b01b7","#0e02b7","#1002b7","#1202b6","#1403b6","#1703b6","#1903b6","#1b04b6","#1e04b6","#2004b5","#2204b5","#2405b5","#2705b5","#2905b5","#2b06b4","#2e06b4","#3006b4","#3207b4","#3407b4","#3707b3","#3907b3","#3b08b3","#3d08b3","#4008b3","#4209b3","#4409b2","#4709b2","#490ab2","#4b0ab2","#4d0ab2","#500ab1","#520bb1","#540bb1","#570bb1","#590cb1","#5b0cb0","#5d0cb0","#600cb0","#620db0","#640db0","#660db0","#690eaf","#6b0eaf","#6d0eaf","#700faf","#720faf","#740fae","#760fae","#7910ae","#7b10ae","#7d10ae","#8011ad","#8211ad","#8411ad","#8612ad","#8912ad","#8b12ad","#8d12ac","#8f13ac","#9213ac","#9413ac","#9614ac","#9914ab","#9b14ab","#9d14ab","#9f15ab","#a215ab","#a415aa","#a616aa","#a916aa","#ab16aa","#ad17aa","#af17aa","#b217a9","#b417a9","#b618a9","#b818a9","#bb18a9","#bd19a8","#bf19a8","#c219a8","#c41aa8","#c61aa8","#c81aa7","#cb1aa7","#cd1ba7","#cf1ba7","#d21ba7","#d41ca7","#d61ca6","#d81ca6","#db1da6","#dd1da6","#df1da6","#e11da5","#e41ea5"]>>

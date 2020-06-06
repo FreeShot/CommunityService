@@ -17,10 +17,13 @@
 !! V0.2.0
 !!! Main content
 - NPC's now move around much better.
+- Repeated failure to complete your chores gets the first real bad end.
 
 !!! Other content
+- You can now see your debt.
 - Variable breakfast events.
-- Random events during chores.
+- More random events.
+- More player stats added in the CUFF.
 - Some choices now affect the player and NPC stats.
 	Changes are still superficial for now but give you an idea of how different actions affect the game.
 

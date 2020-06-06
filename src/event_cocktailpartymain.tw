@@ -313,11 +313,11 @@ Your score base: <<= $eventInfo.score>>
 Your score final: <<= _final_score>> (expected at least <<= $lastEvents.mean("CParty")>>)
 
 <<if _final_score > $lastEvents.mean("CParty")>>
-<<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>>
+<<= $wife.speak("You worked so hard last night I'm half tempted to leave it on just to keep you focused.")>><<set $flags.cpartyBonus to true>>
 <<elseif _final_score > 0.9 * $lastEvents.mean("CParty")>>
 <<= $wife.speak("Your performance was mediocre last night, I'm half tempted to leave it on until you do better as a motivation.")>>
 <<else>>
-<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>><<set $wife.addAppreciation(1)>>
+<<= $wife.speak("Given your poor performance last night I'm half tempted to leave it on just to keep you focused.")>><<set $wife.addAppreciation(1)>><<set $flags.cpartyPenalty to true>>
 <</if>>
 
 $wife.name pulls out a key and starts twirling it on her finger.
