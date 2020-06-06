@@ -127,8 +127,8 @@ class Player extends Character {
 				absolute: 0
 			},
 			stamina: {
-				current: 10,
-				max: 10
+				current: 100,
+				max: 100
 			},
 			arousal: {
 				current: 0,
@@ -136,6 +136,7 @@ class Player extends Character {
 			},
 			currRoom: "PlayerBdRm",
 			choresLate: 0,
+			debt: 23456,
 			money: 0,
 			bodyPart: {
 				"hairColor": 0,
@@ -150,7 +151,8 @@ class Player extends Character {
 				serving: {level:1, xp: 0},
 				cleaning: {level:1, xp: 0},
 				fitness: {level:1, xp: 0}
-			}
+			},
+			weeksFailed: 0
 		}, config));
 	}
 

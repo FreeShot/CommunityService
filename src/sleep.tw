@@ -36,7 +36,7 @@ The CUFF alarm goes off at 6 am sharp and you quickly slap your hand to your wri
 You head to your small bathroom and sit down to relieve yourself. After that you jump in the shower and quickly wash yourself before getting out and shaving. Once you're dressed you head out to the kitchen and start getting things ready for breakfast.<br>
 <br>
 <<nobr>>
-	<<switch random(3)>>
+	<<switch random(4)>>
 		<<case 1>>
 			<<= $wife.speak("Good morning dear.")>><br>
 			<br>
@@ -112,53 +112,88 @@ You head to your small bathroom and sit down to relieve yourself. After that you
 			There are some plates nearby that are close enough to empty that you could clear them.<br>
 			<br>
 			<<chooseOption "Steal a glance as you do.">>
-			You lean forward to reach for the plates. A glance to the side show the top has ridden down far enough that the hem is being just barely held up by her nippple. One small jostle is all it would take for it to...<br>
-			<br>
-			<<= $owner.speak("$player.title.")>><br>
-			<br>
-			$owner.name is looking right at you and you shoot back up strait.<br>
-			<br>
-			<<= $player.speak("Yes $owner.title?")>><br>
-			<br>
-			He stares at you for a long moment, so long that you shift uncomfortabley. $owner.name turns to $wife.name.<br>
-			<br>
-			<<if $flags.partyRule is true>>
-				<<= $owner.speak("Make sure this little problem is taken care of for the day before you leave dear.")>><br>
+				You lean forward to reach for the plates. A glance to the side show the top has ridden down far enough that the hem is being just barely held up by her nippple. One small jostle is all it would take for it to...<br>
 				<br>
-				$wife.name was watching silently eating her own food the whole time. She smiles at him and pats his cheek affectionately.<br>
+				<<= $owner.speak("$player.title.")>><br>
 				<br>
-				<<= $wife.speak("Of course dear.")>> She stands up and $butler.name pulls her chair back quickly. <<= $wife.speak("Come with me $player.name.")>><br>
+				$owner.name is looking right at you and you shoot back up strait.<br>
 				<br>
-				You fall in behind her and she leads you to the master bedroom. You heart sinks as $wife.name walks into the dressing room and you realise what is about to happen. She pulls out the familiar pink cage.<br>
+				<<= $player.speak("Yes $owner.title?")>><br>
 				<br>
-				<<= $wife.speak("My husband really doesn't like people ogling his daughter. Come on.")>> She gestures for you to take you pants off.<br>
+				He stares at you for a long moment, so long that you shift uncomfortabley. $owner.name turns to $wife.name.<br>
 				<br>
-				Once they are off $wife.name kneels down in fron of you. <<= $wife.speak("You know he wanted to keep it on you all day, everyday but I've managed to talk him out of it so far.")>><br>
+				<<if $flags.partyRule is true>>
+					<<= $owner.speak("Make sure this little problem is taken care of for the day before you leave dear.")>><br>
+					<br>
+					$wife.name was watching silently eating her own food the whole time. She smiles at him and pats his cheek affectionately.<br>
+					<br>
+					<<= $wife.speak("Of course dear.")>> She stands up and $butler.name pulls her chair back quickly. <<= $wife.speak("Come with me $player.name.")>><br>
+					<br>
+					You fall in behind her and she leads you to the master bedroom. You heart sinks as $wife.name walks into the dressing room and you realise what is about to happen. She pulls out the familiar pink cage.<br>
+					<br>
+					<<= $wife.speak("My husband really doesn't like people ogling his daughter. Come on.")>> She gestures for you to take you pants off.<br>
+					<br>
+					Once they are off $wife.name kneels down in fron of you. <<= $wife.speak("You know he wanted to keep it on you all day, everyday but I've managed to talk him out of it so far.")>><br>
+					<br>
+					<<= $player.speak("<i>Gee, thanks...</i>")>><br>
+					<br>
+					<<= $player.speak("I can put it on myself $wife.title.")>><br>
+					<br>
+					<<= $wife.speak("Hush.")>> She slips the plastic cage over your manhood and locks it shut with a click. <<= $wife.speak("There you go. Safely sealed away so you don't have any more naughty urges. You can come back for the key at the end of the day.")>><br>
+					<br>
+					$wife.name stands and leaves you to pull your pants back up and hurry back to the dining room and finish serving breakfast.<br>
+					<<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
+				<<else>>
+					<<= $owner.speak("See that you focus on your work.")>><br>
+					<br>
+					The threat is clear but $owner.name just goes back to his reading. You need to remember not to push your luck or else you might find out the consequences next time.<br>
+				<</if>>
 				<br>
-				<<= $player.speak("<i>Gee, thanks...</i>")>><br>
-				<br>
-				<<= $player.speak("I can put it on myself $wife.title.")>><br>
-				<br>
-				<<= $wife.speak("Hush.")>> She slips the plastic cage over your manhood and locks it shut with a click. <<= $wife.speak("There you go. Safely sealed away so you don't have any more naughty urges. You can come back for the key at the end of the day.")>><br>
-				<br>
-				$wife.name stands and leaves you to pull your pants back up and hurry back to the dining room and finish serving breakfast.<br>
-				<<= $player.inv.addItem($shop.getAsTemp("Pink chastity cage"), 1, true)>>
-			<<else>>
-				<<= $owner.speak("See that you focus on your work.")>><br>
-				<br>
-				The threat is clear but $owner.name just goes back to his reading. You need to remember not to push your luck or else you might find out the consequences next time.<br>
-			<</if>>
-			<br>
-			<<= $player.increaseArousal(5)>>
-			<<set $player.submission += 1>>
-			[[Return to your room.|PlayerBdRm]]
+				<<= $player.increaseArousal(5)>>
+				<<set $player.submission += 1>>
+				[[Return to your room.|PlayerBdRm]]
 			<<option "Just clear the plates.">>
-			You take the plates and put them on a tray before heading back to the kitchen.<br>
+				You take the plates and put them on a tray before heading back to the kitchen.<br>
+				<br>
+				As you do you see $owner.name watching you from behind his tablet. You suspect you dodged a bullet on that one.<br>
+				<br>
+				[[Return to your room.|PlayerBdRm]]
+			<</chooseOption>>
+		<<case 3>>
+			$owner.name is in the dining room already as you and $butler.name start layout out breakfast. He doesn't acknowledge either of you and continues reading his tablet. $butler.name hands hims a cup of coffee with milk and two sugars which $owner.name takes as if expecting it right then.<br>
 			<br>
-			As you do you see $owner.name watching you from behind his tablet. You suspect you dodged a bullet on that one.<br>
+			<<= $butler.speak("Your preferences today $owner.title?")>><br>
 			<br>
-			[[Return to your room.|PlayerBdRm]]
-			<</end>>
+			<<= $owner.speak("Just the usual please $butler.name.")>><br>
+			<br>
+			You have a platter of fruit in your hands, not really paying attention to them, when you accidentllay put one of the trays down too hard. Some of the fruit spills off and both $butler.name and $owner.name look up.<br>
+			<br>
+			<<= $butler.speak("Be sure that doesn't stain the upholstery and replace that fruit.")>><br>
+			<br>
+			<<= $owner.speak("It's ok $butler.name.")>> $butler.name quickly stops berrating you and looks to $owner.name. <<= $owner.speak("You know what. I've changed my mind. I think I'll have some fruit instead. Come here with that tray $player.title.")>><br>
+			<br>
+			$owner.name crooks his finger and points to the space beside him. He doesn't give you orders very often but you know when he does disobeying has drastic consequences.<br>
+			<br>
+			<<chooseOption "Do as he says.">>
+				<<= $player.speak("Yes $owner.title.")>><br>
+				<br>
+				You go to pick up the spilled fruit but $owner.name just gestures for you to leave it. Without a word $butler.name comes over and clears the mess instead. You approach with what's left on the tray and stand beside $owner.name.<br>
+				<br>
+				Rather than filling the empty plate in front of him $owner.name just picks a piece from the platter and starts eating it. You go to put the tray down next to him.<br>
+				<br>
+				<<= $owner.speak("Don't. Move.")>><br>
+				<br>
+				You stop halfway to putting the tray down, unsure of of what to do. $owner.name gestures for you to stand up with the platter still in your hand and takes another piece.<br>
+				<br>
+				That's how you stay, standing there like a human side table while $owner.name slowly picks from the tray and skims through his tablet while $butler.name serves everyone else during the morning meal. The other residents don't really give you a second thought as they see what $owner.name has you doing. You never realised how demeaning such a simple task could be and your cheeks flush at the humiliation.<br>
+				<br>
+				After three, long hours $butler.name comes back to the dining room. He finished clearing the rest of the table about fourty mintues ago but you've had to stay here the whole time. Your arms started aching at around the one hour mark.<br>
+				<br>
+				<<= $butler.speak("$owner.title.")>> He taps his wrist.<br>
+				<br>
+				Without a word $owner.name gets up and leaves with $butler.name right behind him. Once they are both gone you drop the tray to the table and relax your sore muscles. You'll be doing your best not spill a tray again.<br>
+				<<set $time.addTime({day:0, hour: 1, minute: 0})>>
+				<<set $player.submission += 1>>
 			<</chooseOption>>
 		<<default>>
 			$butler.name is already in there to help setup. Fortunately the family isn't particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.<br>

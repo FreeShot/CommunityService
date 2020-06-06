@@ -5,7 +5,6 @@
 <tr id="time"><td colspan="2"><<= $time.clock>></td></tr>
 <</if>>
 <tr id="stamina"><td colspan="2">Stamina: <<= $player.getStaminaBar()>></td></tr>
-<tr id="arousal"><td colspan="2">Arousal: <<= $player.getArousalBar()>></td></tr>
 <<if $flags.CUFF > 0 >>
 <tr id="cuff"><td colspan="2">[[CUFF]]</td></tr>
 <<else>>
@@ -24,12 +23,14 @@ _npc: <<= State.variables[_npc].schedule.estimateLoc()>><br>
 <</if>>
 <</for>>
 
+<!-- <tr id="arousal"><td colspan="2">Arousal: <<= $player.getArousalBar()>></td></tr> -->
+
 ::CUFF [noreturn mainMenu menu]
 <<if $flags.CUFF === 1>>
 <<= Character.speakAnonymous("Cuff must be initialised by the owner.", "orange")>>
 <<else>>
 [[Chore list|playerToDoList]]
-[[Skills|skills]]
+[[Player Attributes|skills]]
 [[Inventory|inventory]]
 [[Description|playerDescription]]
 [[Rules|rules]]
@@ -55,6 +56,21 @@ _npc: <<= State.variables[_npc].schedule.estimateLoc()>><br>
 <<for _i range Object.keys($player.stats)>>
 _i: <<= $player.getStatBar(_i)>> (lvl <<= $player.getStat(_i)>>)
 <</for>>
+
+!!Stats:
+Player Name: <<if $flags.partyRule is true>>$player.femName<<else>>$player.name<</if>>
+
+Debt: $player.debt cr
+Money: $player.money cr
+
+Femininity: $player.femininity
+Appearance: $player.appearance
+Submission: $player.submission
+Boldness: $player.boldness
+
+Stamina: $player.stamina.current
+Arousal: $player.arousal.current
+
 [[Return|$return]]
 
 ::inventory [noreturn menu]

@@ -159,6 +159,42 @@
 	}
 }))>>
 
+<<= $mansion.addEvent("DaughterBdRm", new Event({
+	name: "daughterDaughterBdRmStudying02", 
+	passage: "daughterDaughterBdRmStudying02", 
+	inline:true, 
+	repeats:true, 
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
+}))>>
+
+<<= $mansion.addEvent("DaughterBdRm", new Event({
+	name: "daughterDaughterBdRmStudying03", 
+	passage: "daughterDaughterBdRmStudying03", 
+	inline:true, 
+	repeats:true,
+	tags: {
+		tag: "every", data: [{
+			tag: "isPresent", data: {npc: "daughter"}, expected: true
+		},{
+			tag: "appreciation", data: {npc: "daughter", value: 1}, expeceted: true
+		}], expected: true
+	}
+}))>>
+
+<<= $mansion.addEvent("Lounge", new Event({
+	name: "choreEvent_DaughterChat02", 
+	passage: "choreEvent_DaughterChat02", 
+	inline:true, 
+	repeats:true, 
+	tags: {
+		tag: "isPresent", data: {npc: "daughter"}, expected: true
+	}
+}))>>
+
+<!-- Daughter story events -->
+
 <<= $mansion.addEvent("Garden", new Event({
 	name: "daughterPath03GardenChatA", 
 	passage: "daughterPath03GardenChatA", 
@@ -168,7 +204,7 @@
 		tag: "every", data: [{
 			tag: "isPresent", data: {npc: "daughter"}, expected: true
 		},{
-			tag: "appreciation", data: {npc: "daughter", value: 1}, expeceted: true
+			tag: "appreciation", data: {npc: "daughter", value: 1}, expected: true
 		}], expected: true
 	}
 }))>>
@@ -212,6 +248,16 @@
 <<= $mansion.addEvent("Kitchen", new Event({
 	name: "cookKitchenCutting01", 
 	passage: "cookKitchenCutting01", 
+	inline: true, 
+	repeats:true, 
+	tags: {
+		tag: "isPresent", data: {npc: "cook"}, expected: true
+	}
+}))>>
+
+<<= $mansion.addEvent("Kitchen", new Event({
+	name: "cookKitchenCutting02", 
+	passage: "cookKitchenCutting02", 
 	inline: true, 
 	repeats:true, 
 	tags: {

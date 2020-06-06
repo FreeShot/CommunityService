@@ -65,14 +65,14 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 	microEventCount: 2,
 	events: [
 		{name: "Circulate some hors d'oeuvres", passage: "mansionCPartyStaring01", npc: []},
-		{name: "Serve the lady on the lounge", passage: "mansionCPartyStaring02", npc: ["female"]},
-		{name: "Serve a man in the back", passage: "mansionCPartyGroping01a", npc: ["any"]},
+		{name: "Serve the lady on the lounge", passage: "mansionCPartyStaring02", npc: []},
+		{name: "Serve a man in the back", passage: "mansionCPartyGroping01a", npc: []},
 		{name: "Get another tray of food", passage: "mansionCPartyCage01", npc: []},
 		{name: "Go refill your tray", passage: "mansionCPartyCage02", npc: []},
-		{name: "Approach the people eyeing your tray", passage: "mansionCPartySocialListen01", npc: ["any", "any"]},
-		{name: "Serve the the nearby couple", passage: "mansionCPartySocialListen02", npc: ["any", "any"]},
-		{name: "Clear some of the tables", passage: "mansionCPartySocialListen03", npc: ["any", "any"]},
-		{name: "Tidy the side rooms", passage: "mansionCPartySocialListen04", npc: ["any", "any"]}
+		{name: "Approach the people eyeing your tray", passage: "mansionCPartySocialListen01", npc: []},
+		{name: "Serve the the nearby couple", passage: "mansionCPartySocialListen02", npc: []},
+		{name: "Clear some of the tables", passage: "mansionCPartySocialListen03", npc: []},
+		{name: "Tidy the side rooms", passage: "mansionCPartySocialListen04", npc: []}
 	],
 	active : [],
 	getNpc: function(npcType) {

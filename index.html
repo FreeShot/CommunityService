@@ -509,8 +509,8 @@ class Player extends Character {
 				absolute: 0
 			},
 			stamina: {
-				current: 10,
-				max: 10
+				current: 100,
+				max: 100
 			},
 			arousal: {
 				current: 0,
@@ -518,6 +518,7 @@ class Player extends Character {
 			},
 			currRoom: "PlayerBdRm",
 			choresLate: 0,
+			debt: 23456,
 			money: 0,
 			bodyPart: {
 				"hairColor": 0,
@@ -532,7 +533,8 @@ class Player extends Character {
 				serving: {level:1, xp: 0},
 				cleaning: {level:1, xp: 0},
 				fitness: {level:1, xp: 0}
-			}
+			},
+			weeksFailed: 0
 		}, config));
 	}
 
@@ -2446,9 +2448,8 @@ Object.defineProperty(window, 'Timer', {
 !!! Other content
 - Variable breakfast events.
 - Random events during chores.
-- Some choices now affect the player.
+- Some choices now affect the player and NPC stats.
 	Changes are still superficial for now but give you an idea of how different actions affect the game.
-- You can now fap in game!
 
 !!! Bug fixes:
 - Fixed display for images on mobile.</tw-passagedata><tw-passagedata pid="3" name="changelog-V0.1.3" tags="changelog" position="350,100" size="100,100">!! V0.1.3
@@ -2498,7 +2499,9 @@ Object.defineProperty(window, 'Timer', {
 !!! Bug fixes:
 - None, it&#39;s the first release
 
-test change</tw-passagedata><tw-passagedata pid="7" name="foyerCleaning" tags="noreturn chore" position="850,100" size="100,100">&lt;&lt;include &quot;foyerDusting&quot;&gt;&gt;
+test change</tw-passagedata><tw-passagedata pid="7" name="foyerCleaning" tags="noreturn chore" position="850,100" size="100,100">wifeCleaningBossy01A
+
+&lt;&lt;include &quot;foyerDusting&quot;&gt;&gt;
 
 &lt;&lt;include &quot;foyerSweepMop&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="foyerDusting" tags="noreturn chore" position="975,100" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
@@ -2510,52 +2513,14 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 You take the duster from your collection of cleaning supplies and start going over the hall. Once the tables and other surface are done you carefully run the duster over the paintings lining the walls. You use a cloth to clean the gaps in the moulded frames as well.</tw-passagedata><tw-passagedata pid="12" name="hallSweepMop" tags="noreturn chore" position="225,225" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_mopping/mopping_2.jpg&quot;]]
 
-You sweep the floor carefully, making sure to get into all the nooks and crannies. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the hall with a pleasant aroma.</tw-passagedata><tw-passagedata pid="13" name="gardenCleaning" tags="noreturn chore" position="350,225" size="100,100">&lt;&lt;include &quot;gardenSweep&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="gardenSweep" tags="noreturn chore" position="475,225" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sweeping/sweeping_2.jpg&quot;]]
+You sweep the floor carefully, making sure to get into all the nooks and crannies. Once that is done you fill the mop bucket up with water and some cleaning solution. You go over the surface with some floor wax, to create a shiny finish and it fills the hall with a pleasant aroma.</tw-passagedata><tw-passagedata pid="13" name="gardenCleaning" tags="noreturn chore" position="350,225" size="100,100">&lt;&lt;switch random(2)&gt;&gt;
+	&lt;&lt;case 1&gt;&gt;
+		&lt;&lt;include &quot;gardnerGardenBossy01&quot;&gt;&gt;
+	&lt;&lt;default&gt;&gt;
+		&lt;&lt;include &quot;gardenSweep&quot;&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="gardenSweep" tags="noreturn chore" position="475,225" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sweeping/sweeping_2.jpg&quot;]]
 
-$gardner.name doesn&#39;t like you messing with the plants so all you can do here is sweep any debris off the paths and sitting areas.
-
-&lt;&lt;nobr&gt;&gt;
-	&lt;&lt;switch random(2)&gt;&gt;
-		&lt;&lt;case 1&gt;&gt;
-			&lt;!-- Player is sweeping the Garden, Gardner is present and has a random % chance of occuring (todo: increase arousal) --&gt;
-
-			After you finish up sweeping you so to put the broom back in the shed. The shed is fairly spacious since it holds everything $gardner.name needs to keep the grounds looking good. It&#39;s very disorganised but he knows where everything goes so you try your best to keep things as is. The only issue is that he&#39;s fairly tall so you have to reach most for anything not pile against a wall.&lt;br&gt;
-			&lt;br&gt;
-			You&#39;re reaching to put the broom back when you slip and tilt forward suddenly. You let go of the broom and brace yourself on the bench in front of you. The broom just barely catches the hook before it slips off and clatters into another pile of tools.&lt;br&gt;
-			&lt;br&gt;
-			$gardner.name is in the shed before you can even push away from the counter.&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;= $gardner.speak(&quot;A little too difficult for you huh?&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;= $player.speak(&quot;&lt;i&gt;How did he get in here so fast?&lt;/i&gt;&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			$gardner.name walks up behind you and reaches forward to grab the broom. &lt;&lt;= $gardner.speak(&quot;Here, let me help.&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;chooseOption &quot;Let him help.&quot;&gt;&gt;
-
-			His long arm grabs the broom handle but not before his chest presses up against your back. Positioned how you are it pushes you up against the counter. Given his size you would probably have a hard time getting free right now.&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;= $gardner.speak(&quot;You know if this is too hard for you I can find something a bit easier?&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			You can feel his warm breath on you ear and his crotch presses up against your butt. You&#39;re pretty sure that&#39;s not a flashlight in his pocket although it feels as hard as one.&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;= $player.speak(&quot;Um... what you have me doing is ok.&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;= $gardner.speak(&quot;Suit yourself.&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			$gardner.name hangs up the broom and pushes away from you leaving you to finish up.&lt;br&gt;
-			&lt;&lt;set $gardner.addAppreciation(1)&gt;&gt;
-			&lt;&lt;= $player.increaseArousal(10)&gt;&gt;
-			&lt;&lt;option &quot;Say you&#39;ve got it.&quot;&gt;&gt;
-
-			&lt;&lt;= $gardner.speak(&quot;Suit yourself. Just be sure you don&#39;t make a mess.&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			You quickly pick up the broom and hang it on its hook before finishing up.&lt;br&gt;
-			&lt;&lt;end&gt;&gt;
-			&lt;&lt;/chooseOption&gt;&gt;
-		&lt;&lt;default&gt;&gt;
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="kitchenDishes" tags="noreturn chore" position="600,225" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dishes/dishes_1.jpg&quot;]]
+$gardner.name doesn&#39;t like you messing with the plants so all you can do here is sweep any debris off the paths and sitting areas.</tw-passagedata><tw-passagedata pid="15" name="kitchenDishes" tags="noreturn chore" position="600,225" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dishes/dishes_1.jpg&quot;]]
 
 You run the water until it&#39;s piping hot and then add dish soap to get a good amount of suds. After you rinse each dish you then scrub with a rough sponge until there is no residue. You rinse both sides again with more hot water then put each item on the dish rack. A little while later the rack is full of sparkling clean tableware, cookware and utensils. When you&#39;re done washing, you dry everything with a fresh dish towel and then put it all away in its proper place.</tw-passagedata><tw-passagedata pid="16" name="kitchenClean" tags="noreturn chore" position="725,225" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_sink/sink_1.jpg&quot;]]
 
@@ -2642,11 +2607,52 @@ You take the duster from your collection of cleaning supplies and start going ov
 
 Before you can start you move the furniture out of the way and then sweep the floor in sections. The table to too big to move on your own so you have to lift the edge of the rug underneath and clean where you can reach. It&#39;s diffuclt to manage the rug and your broom at the same time but you get the job done. Once the floors are swept you fill the mop bucket up with water and some cleaning solution and repeat the process again. You use a rag to take care of any tough stains, it’s hard work but you’re confident it gets the job done.</tw-passagedata><tw-passagedata pid="27" name="diningWindows" tags="noreturn chore" position="850,350" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_windows/windows_1.jpg&quot;]]
 
-Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="28" name="masterBdRmCleaning" tags="noreturn chore" position="975,350" size="100,100">&lt;&lt;include &quot;masterBdRmDusting&quot;&gt;&gt;
+Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="28" name="masterBdRmCleaning" tags="noreturn chore" position="975,350" size="100,100">&lt;&lt;nobr&gt;&gt;
+	&lt;&lt;switch random(2)&gt;&gt;
+		&lt;&lt;case 1&gt;&gt;
+			The bedrooms are fortunately much easier to clean since they are smaller than the main rooms. You&#39;re in the middle of tidying up when $wife.name walks in and looks around.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $wife.speak(&quot;Nope, this just isn&#39;t goood enough.&quot;)&gt;&gt; She grabs you and points underneath the bed. &lt;&lt;= $wife.speak(&quot;You need to get right under the beds and clean there as well.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			It looks like you&#39;re not getting out of this without doing what she says. You take the vacuum and and click it down so it will slide under the bed and get on your hands knees to finish the job.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;chooseOption &quot;Put some effort in.&quot;&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				You work as hard as you can to cover the whole area. It takes s while but when you&#39;re done $wife.name seems happy with your work.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $wife.speak(&quot;Make sure you keep the rest of the cleaning up to this standard.&quot;)&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				She leaves the room so you can continue with your work.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;set $time.addTime({day:0, hour: 0, minute: 10})&gt;&gt;&lt;br&gt;
+				&lt;&lt;set $player.submission += 1&gt;&gt;
+			&lt;&lt;option &quot;Do it quickly.&quot;&gt;&gt;&lt;br&gt;
+				You run the vacuum over the floor as quickly as you can. About halfway through you hear $wife.name behind you.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $wife.speak(&quot;For goodness sake! Put some effort in.&quot;)&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				You feel her put her heeled shoe on your butt and push you further under the bed. It&#39;s definitely easier to get the hard to reach places now. Just before you finish her foot slips and the narrow heel of her shoe pushes right up against your rear entrance.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $player.speak(&quot;Ow!&quot;)&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $wife.speak(&quot;Hurry up and finish.&quot;)&gt;&gt; She keep her heel right where it loanded.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $player.speak(&quot;&lt;i&gt;Did she do that on purpose?&lt;/i&gt;&quot;)&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				You finish the job and $wife.name removes her foot.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $wife.speak(&quot;See that you don&#39;t waste my time with this in the future.&quot;)&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;set $time.addTime({day:0, hour: 0, minute: 20})&gt;&gt;&lt;br&gt;
+				&lt;&lt;set $player.boldness += 1&gt;&gt;
+			&lt;&lt;end&gt;&gt;
+			&lt;&lt;/chooseOption&gt;&gt;
+		&lt;&lt;default&gt;&gt;
+			&lt;&lt;include &quot;masterBdRmDusting&quot;&gt;&gt;
 
-&lt;&lt;include &quot;masterBdRmVacuum&quot;&gt;&gt;
+			&lt;&lt;include &quot;masterBdRmVacuum&quot;&gt;&gt;
 
-&lt;&lt;include &quot;masterBdRmWindows&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="masterBdRmDusting" tags="noreturn chore" position="1100,350" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
+			&lt;&lt;include &quot;masterBdRmWindows&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="masterBdRmDusting" tags="noreturn chore" position="1100,350" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
 You take the duster from your collection of cleaning supplies and start going over the room making sure to get ever chair frames and table. The lamp shades and curtains require a softer touch.</tw-passagedata><tw-passagedata pid="30" name="masterBdRmVacuum" tags="noreturn chore" position="1225,350" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_vacuum/vacuum_1.jpg&quot;]]
 
@@ -3986,15 +3992,18 @@ $wife.name is sitting at the desk with her tablet. She’s most likely checking 
 
 $wife.name is in the gym going through her daily routine of cardio and light weight workout. She is on the bike at the moment and doesn’t even acknowledge you as you enter. The sheen of sweat glistening on her skin is very distracting.
 
-[img[setup.ImagePath + &quot;character/wife/cardio01.jpg&quot;]]</tw-passagedata><tw-passagedata pid="127" name="wifeGym02" tags="noreturn chore" position="850,1600" size="100,100">&lt;!-- Requires wife in the Gym --&gt;
+[img[setup.ImagePath + &quot;character/wife/cardio01.jpg&quot;]]
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="wifeGym02" tags="noreturn chore" position="850,1600" size="100,100">&lt;!-- Requires wife in the Gym --&gt;
 
 $wife.name is on the cable machine right now, working her shoulders and chest muscles. The defined lines of her body catch your eye and you can’t help but stare, and also feel a little jealous.
 
-[img[setup.ImagePath + &quot;character/wife/cardio02.gif&quot;]]</tw-passagedata><tw-passagedata pid="128" name="wifeGym03" tags="noreturn chore" position="975,1600" size="100,100">&lt;!-- Requires wife in the Gym --&gt;
+[img[setup.ImagePath + &quot;character/wife/cardio02.gif&quot;]]
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="128" name="wifeGym03" tags="noreturn chore" position="975,1600" size="100,100">&lt;!-- Requires wife in the Gym --&gt;
 
 You hear the low hum of the treadmill as you enter the gym. $wife.name is jogging at a fast pace on the far side of the room. She breathing heavily but doesn&#39;t stop as you watch her. You doubt you could keep up that much effort with your current level of fitness.
 
-[img[setup.ImagePath + &quot;character/wife/cardio03.gif&quot;]]</tw-passagedata><tw-passagedata pid="129" name="wifeOwnerLounge01" tags="noreturn chore" position="1100,1600" size="100,100">&lt;!-- Requires wife in the Lounge with the Owner (they are both set to this location anyway so using either of them will work) --&gt;
+[img[setup.ImagePath + &quot;character/wife/cardio03.gif&quot;]]
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="wifeOwnerLounge01" tags="noreturn chore" position="1100,1600" size="100,100">&lt;!-- Requires wife in the Lounge with the Owner (they are both set to this location anyway so using either of them will work) --&gt;
 
 You can see $wife.name reclining on one of the lounge chairs with her feet up resting on $owner.name’s lap while he gently rubs her feet. They are both reading something on their tablets and pause every so often to chat about something they just found. It’s a little strange seeing the two rich and domineering people just sitting like a regular married couple.
 
@@ -4080,6 +4089,7 @@ She walks past you and out of the room but not before swatting your ass, leaving
 &lt;&lt;link &quot;Get back to your chores.&quot; &quot;MasterBdRm&quot;&gt;&gt;
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:10})&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black corset&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.increaseArousal(15)&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="132" name="wifeCleaningBossy02A" tags="noreturn chore" position="225,1725" size="100,100">&lt;!-- Randomly while the player is cleaning any room other than a bedroom and the wife is not in the Void --&gt;
 
 Every now and then you have some diffuclty getting to get some of the high up areas. You&#39;re on you tip toes right now trying to get to one of these trouble spots when you hear a cough behind you.
@@ -4126,6 +4136,8 @@ She stands up and you follow. Wearing heels still takes a little getting used to
 &lt;&lt;link &quot;Get back to your chores.&quot; &quot;MasterBdRm&quot;&gt;&gt;
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:10})&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
+&lt;&lt;= $player.femininity += 1&gt;&gt;
+&lt;&lt;= $player.submission += 1&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="134" name="wifeLaundryPlayerNude01A" tags="noreturn chore" position="475,1725" size="100,100">&lt;!-- When the player is doing the Laundry and the Wife enters the room --&gt;
 
 Since you don&#39;t have any spare clothes that means you need to keep the one&#39;s you normally wear clean. You strip down and throw the few items you have in the wash and put it on a fast cycle.
@@ -4170,7 +4182,7 @@ You drop the shirt and slip into the bra first. It sits loose against your flat 
 Without another word she turns and leaves you alone in the small room
 
 &lt;&lt;link &quot;Get back to your chores.&quot; &quot;PlayerBdRm&quot;&gt;&gt;
-&lt;!-- Currently broken. 
+&lt;!-- Currently broken.
 /* Will change this to simply equip a set of clothes, like this it will be customisable */
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Female cut T-shirt&quot;), 1, true)&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Tight jeans&quot;), 1, true)&gt;&gt;
@@ -4178,9 +4190,10 @@ Without another word she turns and leaves you alone in the small room
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Plain white bra&quot;), 1, true)&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Flat shoes&quot;), 1, true)&gt;&gt;
 --&gt;
+&lt;&lt;= $player.increaseArousal(15)&gt;&gt;
+&lt;&lt;= $player.femininity += 5&gt;&gt;
+&lt;&lt;= $player.submission += 5&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="136" name="wifeBedroomCleaning01" tags="noreturn chore" position="725,1725" size="100,100">&lt;!-- When the player is cleaning the Master Bedroom and the Wife enters the room --&gt;
-
-trigger: randomly while cleaning any bedroom while the wife is home
 
 The bedroom are fortunately much easier to clean since they are smaller than the main rooms. You&#39;re in the middle of tidying up when $wife.name walks in and looks around.
 
@@ -4216,6 +4229,7 @@ You finish the job and $wife.name removes her foot.
 &lt;&lt;= $wife.speak(&quot;See that you don&#39;t waste my time with this in the future.&quot;)&gt;&gt;
 
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:15})&gt;&gt;
+&lt;&lt;= $player.increaseArousal(5)&gt;&gt;
 &lt;&lt;end&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;
 
@@ -4223,19 +4237,22 @@ You finish the job and $wife.name removes her foot.
 
 You hear loud grunting as you enter the room and can see $daughter.name in the middle of her workout. She&#39;s currently in the middle of a set of squats with heavy weights on her shoulders. It&#39;s a little embarassing seeing her lifting weights that you would probably struggle with. She spots you in the mirror and gives you a wink without missing a rep.
 
-[img[setup.ImagePath + &quot;character/daughter/gym_barbellsquat01.gif&quot;]]</tw-passagedata><tw-passagedata pid="138" name="daughterGymArms01" tags="noreturn chore" position="975,1725" size="100,100">&lt;!-- Requires daughter in the Gym --&gt;
+[img[setup.ImagePath + &quot;character/daughter/gym_barbellsquat01.gif&quot;]]
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="138" name="daughterGymArms01" tags="noreturn chore" position="975,1725" size="100,100">&lt;!-- Requires daughter in the Gym --&gt;
 
 As you enter the room you see $daughter.name in the middle of her workout. She&#39;s lying on one of the benches lifting a barbell behind her head. You&#39;re a bit jealous seeing her do excercises that you doubt you could ever even attempt. From this angle you can see right down her top and the light sheen of sweat on her breasts.
 
 [img[setup.ImagePath + &quot;character/daughter/gym_overheadcurl01.gif&quot;]]
 
-You so distracted that you miss a step. There&#39;s a loud crash as one of your bucket goes tumbling over. $daughter.name looks at you from her position ont he bench. You wait for her to call you out for being a perve but she just smiles devilishly and goes back to finishing her set.</tw-passagedata><tw-passagedata pid="139" name="daughterGymChinup01" tags="noreturn chore" position="1100,1725" size="100,100">&lt;!-- Requires daughter in the Gym --&gt;
+You so distracted that you miss a step. There&#39;s a loud crash as one of your bucket goes tumbling over. $daughter.name looks at you from her position ont he bench. You wait for her to call you out for being a perve but she just smiles devilishly and goes back to finishing her set.
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="139" name="daughterGymChinup01" tags="noreturn chore" position="1100,1725" size="100,100">&lt;!-- Requires daughter in the Gym --&gt;
 
 You back into the gym with you cleaning equipment and turn to see $daughter.name. She has her back to you and is currenlty halfway through a set of chin ups. Her skin is gleaming with sweat and her well defined shoulder muscles are straining with the effort. 
 
 [img[setup.ImagePath + &quot;character/daughter/gym_chinups01.gif&quot;]]
 
-You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she&#39;s taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.</tw-passagedata><tw-passagedata pid="140" name="daughterPoolSwimming01" tags="noreturn chore" position="1225,1725" size="100,100">&lt;!-- Requires daughter in the Pool --&gt;
+You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she&#39;s taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="140" name="daughterPoolSwimming01" tags="noreturn chore" position="1225,1725" size="100,100">&lt;!-- Requires daughter in the Pool --&gt;
 
 $daughter.name is relaxing in the warm water of the pool. She doesn&#39;t notice you at first and you catch yourself staring at her body, her swimsuit holding tight against it.
 
@@ -4249,7 +4266,8 @@ You jolt back to your senses when you realise you were still staring. &lt;&lt;= 
 
 &lt;&lt;= $daughter.speak(&quot;Suit yourself.&quot;)&gt;&gt;
 
-With that she dives forward and starts swimming laps and leaving you to awkwardly go about your day.</tw-passagedata><tw-passagedata pid="141" name="daughterPoolSwimming02" tags="noreturn chore" position="100,1850" size="100,100">&lt;!-- Requires daughter in the Pool --&gt;
+With that she dives forward and starts swimming laps and leaving you to awkwardly go about your day.
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="141" name="daughterPoolSwimming02" tags="noreturn chore" position="100,1850" size="100,100">&lt;!-- Requires daughter in the Pool --&gt;
 
 When you get to the large pool you can see $daughter.name here swimming laps.
 
@@ -4263,11 +4281,13 @@ Your not a swimming expert but her pace seems pretty fast. It makes you wonder i
 
 &lt;&lt;= $daughter.speak(&quot;Pity.&quot;)&gt;&gt;
 
-$daughter.name walks over to where she put her towel. This time you catch yourself before you stare too long and then get back to your duties.</tw-passagedata><tw-passagedata pid="142" name="daughterGardenReading01" tags="noreturn chore" position="225,1850" size="100,100">&lt;!-- Requires daughter in the Garden (Need to make sure this doesn&#39;t interrupt the special event in the Daughter Path) --&gt;
+$daughter.name walks over to where she put her towel. This time you catch yourself before you stare too long and then get back to your duties.
+&lt;&lt;= $player.increaseArousal(10)&gt;&gt;</tw-passagedata><tw-passagedata pid="142" name="daughterGardenReading01" tags="noreturn chore" position="225,1850" size="100,100">&lt;!-- Requires daughter in the Garden (Need to make sure this doesn&#39;t interrupt the special event in the Daughter Path) --&gt;
 
 $daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she&#39;s wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and it glistens in the light.
 
-[img[setup.ImagePath + &quot;character/daughter/garden_reading_01.jpg&quot;]]</tw-passagedata><tw-passagedata pid="143" name="daughterDaughterBdRmStudying01" tags="noreturn chore" position="350,1850" size="100,100">&lt;!-- Requires daughter in the DaughterBdRm --&gt;
+[img[setup.ImagePath + &quot;character/daughter/garden_reading_01.jpg&quot;]]
+&lt;&lt;= $player.increaseArousal(5)&gt;&gt;</tw-passagedata><tw-passagedata pid="143" name="daughterDaughterBdRmStudying01" tags="noreturn chore" position="350,1850" size="100,100">&lt;!-- Requires daughter in the DaughterBdRm --&gt;
 
 You knock on the door to $daughter.name&#39;s room. She calls for you to come in. You head inside with your cleaning supplies and see $daughter.name is sitting at her computer wth her glasses on. Normally she&#39;d tease you or say hi but it looks like she&#39;s pretty focused right now.
 
@@ -4293,7 +4313,8 @@ You stand stock still as she throws them to you. Some of the items land on your 
 
 It takes a long few minutes for your brain to reboot.
 
-&lt;&lt;= $player.speak(&quot;What the hell just happened?&quot;)&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="daughterLaundryPlayerNude01" tags="noreturn chore" position="725,1850" size="100,100">&lt;!--
+&lt;&lt;= $player.speak(&quot;What the hell just happened?&quot;)&gt;&gt;
+&lt;&lt;= $player.increaseArousal(25)&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="daughterLaundryPlayerNude01" tags="noreturn chore" position="725,1850" size="100,100">&lt;!--
 &lt;!-- When the player is doing the Laundry and the Daughter enters the room --&gt; --&gt;
 
 Since you don&#39;t have any spare clothes that means you need to keep the one&#39;s you normally wear clean. You strip down and throw the few items you have in the wash and put it on a fast cycle.
@@ -4414,19 +4435,19 @@ $cook.name once again surprises you buy having a small work space set up for you
 
 He walks around behind you and reaches around to grab your arms. You stiffen up as his chest presses against your back.
 
-&lt;&lt;= $cook.speak(&quot;You need to find a rythm.)&gt;&gt;
+&lt;&lt;= $cook.speak(&quot;You need to find a rythm.&quot;)&gt;&gt;
 
 $cook.name guides your hands as he quickly help you slice what&#39;s in front of you.
 
 &lt;&lt;= $cook.speak(&quot;Don&#39;t worry about the knife, worry about the food.&quot;)&gt;&gt;
 
-You notice his fingers have slipped between yours and he&#39;s pressing against you more in a very intimate way.
+You notice his fingers have slipped between yours and he&#39;s pressing against you in a very intimate way.
 
 [img[setup.ImagePath + &quot;character/cook/cutting02.jpg&quot;]]
 
-After a few minutes later everything is done and $cook.name steps away.
+After few minutes everything is done and $cook.name steps away.
 
-&lt;&lt;= $cook.speak(&quot;If you end hurting yourself just make sure any mess in my kitchen gets cleaned up.&quot;)&gt;&gt;
+&lt;&lt;= $cook.speak(&quot;If you end up hurting yourself just make sure any mess in my kitchen gets cleaned up.&quot;)&gt;&gt;
 &lt;&lt;set $cook.addAppreciation(1)&gt;&gt;
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:10})&gt;&gt;
 &lt;&lt;option &quot;Leave $cook.name to work.&quot;&gt;&gt;
@@ -4825,7 +4846,7 @@ State.variables.minorNPC = [];
 		{name: &quot;foyerSweepMop&quot;, weight: 2}, 
 		{name: &quot;foyerDusting&quot;, weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;LowerHall&quot;, new Chore({
 	name: &quot;Clean Hall&quot;, 
@@ -4835,7 +4856,7 @@ State.variables.minorNPC = [];
 		{name: &quot;hallDusting&quot;, weight: 2}, 
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({
 	name: &quot;Clean Upper Hall&quot;, 
@@ -4845,7 +4866,7 @@ State.variables.minorNPC = [];
 		{name: &quot;hallDusting&quot;, weight: 2}, 
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [4])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({
 	name: &quot;Clean Garden&quot;, 
@@ -4854,7 +4875,7 @@ State.variables.minorNPC = [];
 		{name: &quot;gardenCleaning&quot;, weight:1}, 
 		{name: &quot;gardenSweep&quot;, weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [5])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Pool&quot;, new Chore({
 	name: &quot;Clean Pool&quot;, 
@@ -4863,7 +4884,7 @@ State.variables.minorNPC = [];
 		{name: &quot;poolCleaning&quot;, weight:1}, 
 		{name: &quot;poolSweep&quot;, weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [5])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Do the dishes in the kitchen&quot;,
@@ -4871,7 +4892,7 @@ State.variables.minorNPC = [];
 	passages: [
 		{name: &quot;kitchenDishes&quot;, weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [2])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Clean the kitchen&quot;, 
@@ -4880,7 +4901,7 @@ State.variables.minorNPC = [];
 		{name: &quot;kitchenClean&quot;, weight: 1},
 		{name: &quot;kitchenSweepMop&quot;, weight: 1}
 	], 
-	staminaCost: 1,
+	staminaCost: 10,
 }), [2])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
 	name: &quot;Wash Linen in the laundry&quot;, 
@@ -4888,7 +4909,7 @@ State.variables.minorNPC = [];
 	passages:[
 		{name: &quot;laundryLinen&quot;, weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [2])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
 	name: &quot;Wash Clothes in the laundry&quot;, 
@@ -4896,7 +4917,7 @@ State.variables.minorNPC = [];
 	passages:[
 		{name: &quot;laundryClothes&quot;, weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [2])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Lounge&quot;, new Chore({
 	name: &quot;Clean Lounge&quot;, 
@@ -4929,7 +4950,7 @@ State.variables.minorNPC = [];
 		{name: &quot;masterBdRmVacuum&quot;, weight: 2}, 
 		{name: &quot;masterBdRmWindows&quot;, weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [3])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
 	name: &quot;Clean Master Bathroom&quot;, 
@@ -4953,7 +4974,7 @@ State.variables.minorNPC = [];
 		{name: &quot;officeVacuum&quot;, weight: 2}, 
 		{name: &quot;officeWindows&quot;, weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({
 	name: &quot;Clean Gym&quot;, 
@@ -4965,15 +4986,6 @@ State.variables.minorNPC = [];
 	], 
 	staminaCost: 2, 
 }), [5])&gt;&gt;
-&lt;&lt;= $mansion.addChore(&quot;SonBdRm&quot;, new Chore({
-	name: &quot;Check the door (upper hall)&quot;, 
-	duration: {minute: 5}, 
-	passages:[
-		{name: &quot;sonBdRmCleaning&quot;, weight:1}, 
-		{name: &quot;sonBdRmLocked&quot;, weight: 1}
-	], 
-	staminaCost: 0, 
-}), [4])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({
 	name: &quot;Tidy your room&quot;, 
 	duration: {hour: 1}, 
@@ -4981,7 +4993,7 @@ State.variables.minorNPC = [];
 		{name: &quot;playerBdRmCleaning&quot;, weight:1}, 
 		{name: &quot;playerBdRmClean&quot;, weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
 	name: &quot;Clean the daughter&#39;s bedroom&quot;, 
@@ -4992,7 +5004,7 @@ State.variables.minorNPC = [];
 		{name: &quot;daughterBdRmVacuum&quot;, weight: 2}, 
 		{name: &quot;daughterBdRmWindows&quot;, weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [4])&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({
 	name: &quot;Clean the guest room&quot;, 
@@ -5003,7 +5015,7 @@ State.variables.minorNPC = [];
 		{name: &quot;guestRmVacuum&quot;, weight: 2}, 
 		{name: &quot;guestRmWindows&quot;, weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [4])&gt;&gt;</tw-passagedata><tw-passagedata pid="160" name="eventInit" tags="event" position="1225,1975" size="100,100">&lt;!-- Unique events --&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
@@ -5163,6 +5175,42 @@ State.variables.minorNPC = [];
 	}
 }))&gt;&gt;
 
+&lt;&lt;= $mansion.addEvent(&quot;DaughterBdRm&quot;, new Event({
+	name: &quot;daughterDaughterBdRmStudying02&quot;, 
+	passage: &quot;daughterDaughterBdRmStudying02&quot;, 
+	inline:true, 
+	repeats:true, 
+	tags: {
+		tag: &quot;isPresent&quot;, data: {npc: &quot;daughter&quot;}, expected: true
+	}
+}))&gt;&gt;
+
+&lt;&lt;= $mansion.addEvent(&quot;DaughterBdRm&quot;, new Event({
+	name: &quot;daughterDaughterBdRmStudying03&quot;, 
+	passage: &quot;daughterDaughterBdRmStudying03&quot;, 
+	inline:true, 
+	repeats:true,
+	tags: {
+		tag: &quot;every&quot;, data: [{
+			tag: &quot;isPresent&quot;, data: {npc: &quot;daughter&quot;}, expected: true
+		},{
+			tag: &quot;appreciation&quot;, data: {npc: &quot;daughter&quot;, value: 1}, expeceted: true
+		}], expected: true
+	}
+}))&gt;&gt;
+
+&lt;&lt;= $mansion.addEvent(&quot;Lounge&quot;, new Event({
+	name: &quot;choreEvent_DaughterChat02&quot;, 
+	passage: &quot;choreEvent_DaughterChat02&quot;, 
+	inline:true, 
+	repeats:true, 
+	tags: {
+		tag: &quot;isPresent&quot;, data: {npc: &quot;daughter&quot;}, expected: true
+	}
+}))&gt;&gt;
+
+&lt;!-- Daughter story events --&gt;
+
 &lt;&lt;= $mansion.addEvent(&quot;Garden&quot;, new Event({
 	name: &quot;daughterPath03GardenChatA&quot;, 
 	passage: &quot;daughterPath03GardenChatA&quot;, 
@@ -5172,7 +5220,7 @@ State.variables.minorNPC = [];
 		tag: &quot;every&quot;, data: [{
 			tag: &quot;isPresent&quot;, data: {npc: &quot;daughter&quot;}, expected: true
 		},{
-			tag: &quot;appreciation&quot;, data: {npc: &quot;daughter&quot;, value: 1}, expeceted: true
+			tag: &quot;appreciation&quot;, data: {npc: &quot;daughter&quot;, value: 1}, expected: true
 		}], expected: true
 	}
 }))&gt;&gt;
@@ -5216,6 +5264,16 @@ State.variables.minorNPC = [];
 &lt;&lt;= $mansion.addEvent(&quot;Kitchen&quot;, new Event({
 	name: &quot;cookKitchenCutting01&quot;, 
 	passage: &quot;cookKitchenCutting01&quot;, 
+	inline: true, 
+	repeats:true, 
+	tags: {
+		tag: &quot;isPresent&quot;, data: {npc: &quot;cook&quot;}, expected: true
+	}
+}))&gt;&gt;
+
+&lt;&lt;= $mansion.addEvent(&quot;Kitchen&quot;, new Event({
+	name: &quot;cookKitchenCutting02&quot;, 
+	passage: &quot;cookKitchenCutting02&quot;, 
 	inline: true, 
 	repeats:true, 
 	tags: {
@@ -6190,7 +6248,6 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;tr id=&quot;time&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;&lt;&lt;= $time.clock&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;tr id=&quot;stamina&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;Stamina: &lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr id=&quot;arousal&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;Arousal: &lt;&lt;= $player.getArousalBar()&gt;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;if $flags.CUFF &gt; 0 &gt;&gt;
 &lt;tr id=&quot;cuff&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;[[CUFF]]&lt;/td&gt;&lt;/tr&gt;
 &lt;&lt;else&gt;&gt;
@@ -6207,11 +6264,13 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;&lt;if State.variables[_npc].displayPos &amp;&amp; State.variables[_npc].schedule.currRoom !== &quot;Void&quot;&gt;&gt;
 _npc: &lt;&lt;= State.variables[_npc].schedule.estimateLoc()&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="182" name="CUFF" tags="noreturn mainMenu menu" position="225,2350" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+
+&lt;!-- &lt;tr id=&quot;arousal&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;Arousal: &lt;&lt;= $player.getArousalBar()&gt;&gt;&lt;/td&gt;&lt;/tr&gt; --&gt;</tw-passagedata><tw-passagedata pid="182" name="CUFF" tags="noreturn mainMenu menu" position="225,2350" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
 [[Chore list|playerToDoList]]
-[[Skills|skills]]
+[[Player Attributes|skills]]
 [[Inventory|inventory]]
 [[Description|playerDescription]]
 [[Rules|rules]]
@@ -6231,6 +6290,21 @@ _npc: &lt;&lt;= State.variables[_npc].schedule.estimateLoc()&gt;&gt;&lt;br&gt;
 &lt;&lt;for _i range Object.keys($player.stats)&gt;&gt;
 _i: &lt;&lt;= $player.getStatBar(_i)&gt;&gt; (lvl &lt;&lt;= $player.getStat(_i)&gt;&gt;)
 &lt;&lt;/for&gt;&gt;
+
+!!Stats:
+Player Name: &lt;&lt;if $flags.partyRule is true&gt;&gt;$player.femName&lt;&lt;else&gt;&gt;$player.name&lt;&lt;/if&gt;&gt;
+
+Debt: $player.debt cr
+Money: $player.money cr
+
+Femininity: $player.femininity
+Appearance: $player.appearance
+Submission: $player.submission
+Boldness: $player.boldness
+
+Stamina: $player.stamina.current
+Arousal: $player.arousal.current
+
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="185" name="inventory" tags="noreturn menu" position="600,2350" size="100,100">&lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equipped&quot;], undefined, &quot;Currently wearing&quot;, false)&gt;&gt;
 
 &lt;&lt;= $player.inv.listItem(&quot;$player.inv&quot;, [&quot;equippable&quot;], undefined, &quot;Wardrobe&quot;, false)&gt;&gt;
@@ -7226,7 +7300,7 @@ You feel something warm and firm press against the your womanhood before the fig
 You head to your small bathroom and sit down to relieve yourself. After that you jump in the shower and quickly wash yourself before getting out and shaving. Once you&#39;re dressed you head out to the kitchen and start getting things ready for breakfast.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;nobr&gt;&gt;
-	&lt;&lt;switch random(3)&gt;&gt;
+	&lt;&lt;switch random(4)&gt;&gt;
 		&lt;&lt;case 1&gt;&gt;
 			&lt;&lt;= $wife.speak(&quot;Good morning dear.&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
@@ -7302,53 +7376,88 @@ You head to your small bathroom and sit down to relieve yourself. After that you
 			There are some plates nearby that are close enough to empty that you could clear them.&lt;br&gt;
 			&lt;br&gt;
 			&lt;&lt;chooseOption &quot;Steal a glance as you do.&quot;&gt;&gt;
-			You lean forward to reach for the plates. A glance to the side show the top has ridden down far enough that the hem is being just barely held up by her nippple. One small jostle is all it would take for it to...&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;= $owner.speak(&quot;$player.title.&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			$owner.name is looking right at you and you shoot back up strait.&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;= $player.speak(&quot;Yes $owner.title?&quot;)&gt;&gt;&lt;br&gt;
-			&lt;br&gt;
-			He stares at you for a long moment, so long that you shift uncomfortabley. $owner.name turns to $wife.name.&lt;br&gt;
-			&lt;br&gt;
-			&lt;&lt;if $flags.partyRule is true&gt;&gt;
-				&lt;&lt;= $owner.speak(&quot;Make sure this little problem is taken care of for the day before you leave dear.&quot;)&gt;&gt;&lt;br&gt;
+				You lean forward to reach for the plates. A glance to the side show the top has ridden down far enough that the hem is being just barely held up by her nippple. One small jostle is all it would take for it to...&lt;br&gt;
 				&lt;br&gt;
-				$wife.name was watching silently eating her own food the whole time. She smiles at him and pats his cheek affectionately.&lt;br&gt;
+				&lt;&lt;= $owner.speak(&quot;$player.title.&quot;)&gt;&gt;&lt;br&gt;
 				&lt;br&gt;
-				&lt;&lt;= $wife.speak(&quot;Of course dear.&quot;)&gt;&gt; She stands up and $butler.name pulls her chair back quickly. &lt;&lt;= $wife.speak(&quot;Come with me $player.name.&quot;)&gt;&gt;&lt;br&gt;
+				$owner.name is looking right at you and you shoot back up strait.&lt;br&gt;
 				&lt;br&gt;
-				You fall in behind her and she leads you to the master bedroom. You heart sinks as $wife.name walks into the dressing room and you realise what is about to happen. She pulls out the familiar pink cage.&lt;br&gt;
+				&lt;&lt;= $player.speak(&quot;Yes $owner.title?&quot;)&gt;&gt;&lt;br&gt;
 				&lt;br&gt;
-				&lt;&lt;= $wife.speak(&quot;My husband really doesn&#39;t like people ogling his daughter. Come on.&quot;)&gt;&gt; She gestures for you to take you pants off.&lt;br&gt;
+				He stares at you for a long moment, so long that you shift uncomfortabley. $owner.name turns to $wife.name.&lt;br&gt;
 				&lt;br&gt;
-				Once they are off $wife.name kneels down in fron of you. &lt;&lt;= $wife.speak(&quot;You know he wanted to keep it on you all day, everyday but I&#39;ve managed to talk him out of it so far.&quot;)&gt;&gt;&lt;br&gt;
+				&lt;&lt;if $flags.partyRule is true&gt;&gt;
+					&lt;&lt;= $owner.speak(&quot;Make sure this little problem is taken care of for the day before you leave dear.&quot;)&gt;&gt;&lt;br&gt;
+					&lt;br&gt;
+					$wife.name was watching silently eating her own food the whole time. She smiles at him and pats his cheek affectionately.&lt;br&gt;
+					&lt;br&gt;
+					&lt;&lt;= $wife.speak(&quot;Of course dear.&quot;)&gt;&gt; She stands up and $butler.name pulls her chair back quickly. &lt;&lt;= $wife.speak(&quot;Come with me $player.name.&quot;)&gt;&gt;&lt;br&gt;
+					&lt;br&gt;
+					You fall in behind her and she leads you to the master bedroom. You heart sinks as $wife.name walks into the dressing room and you realise what is about to happen. She pulls out the familiar pink cage.&lt;br&gt;
+					&lt;br&gt;
+					&lt;&lt;= $wife.speak(&quot;My husband really doesn&#39;t like people ogling his daughter. Come on.&quot;)&gt;&gt; She gestures for you to take you pants off.&lt;br&gt;
+					&lt;br&gt;
+					Once they are off $wife.name kneels down in fron of you. &lt;&lt;= $wife.speak(&quot;You know he wanted to keep it on you all day, everyday but I&#39;ve managed to talk him out of it so far.&quot;)&gt;&gt;&lt;br&gt;
+					&lt;br&gt;
+					&lt;&lt;= $player.speak(&quot;&lt;i&gt;Gee, thanks...&lt;/i&gt;&quot;)&gt;&gt;&lt;br&gt;
+					&lt;br&gt;
+					&lt;&lt;= $player.speak(&quot;I can put it on myself $wife.title.&quot;)&gt;&gt;&lt;br&gt;
+					&lt;br&gt;
+					&lt;&lt;= $wife.speak(&quot;Hush.&quot;)&gt;&gt; She slips the plastic cage over your manhood and locks it shut with a click. &lt;&lt;= $wife.speak(&quot;There you go. Safely sealed away so you don&#39;t have any more naughty urges. You can come back for the key at the end of the day.&quot;)&gt;&gt;&lt;br&gt;
+					&lt;br&gt;
+					$wife.name stands and leaves you to pull your pants back up and hurry back to the dining room and finish serving breakfast.&lt;br&gt;
+					&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Pink chastity cage&quot;), 1, true)&gt;&gt;
+				&lt;&lt;else&gt;&gt;
+					&lt;&lt;= $owner.speak(&quot;See that you focus on your work.&quot;)&gt;&gt;&lt;br&gt;
+					&lt;br&gt;
+					The threat is clear but $owner.name just goes back to his reading. You need to remember not to push your luck or else you might find out the consequences next time.&lt;br&gt;
+				&lt;&lt;/if&gt;&gt;
 				&lt;br&gt;
-				&lt;&lt;= $player.speak(&quot;&lt;i&gt;Gee, thanks...&lt;/i&gt;&quot;)&gt;&gt;&lt;br&gt;
-				&lt;br&gt;
-				&lt;&lt;= $player.speak(&quot;I can put it on myself $wife.title.&quot;)&gt;&gt;&lt;br&gt;
-				&lt;br&gt;
-				&lt;&lt;= $wife.speak(&quot;Hush.&quot;)&gt;&gt; She slips the plastic cage over your manhood and locks it shut with a click. &lt;&lt;= $wife.speak(&quot;There you go. Safely sealed away so you don&#39;t have any more naughty urges. You can come back for the key at the end of the day.&quot;)&gt;&gt;&lt;br&gt;
-				&lt;br&gt;
-				$wife.name stands and leaves you to pull your pants back up and hurry back to the dining room and finish serving breakfast.&lt;br&gt;
-				&lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Pink chastity cage&quot;), 1, true)&gt;&gt;
-			&lt;&lt;else&gt;&gt;
-				&lt;&lt;= $owner.speak(&quot;See that you focus on your work.&quot;)&gt;&gt;&lt;br&gt;
-				&lt;br&gt;
-				The threat is clear but $owner.name just goes back to his reading. You need to remember not to push your luck or else you might find out the consequences next time.&lt;br&gt;
-			&lt;&lt;/if&gt;&gt;
-			&lt;br&gt;
-			&lt;&lt;= $player.increaseArousal(5)&gt;&gt;
-			&lt;&lt;set $player.submission += 1&gt;&gt;
-			[[Return to your room.|PlayerBdRm]]
+				&lt;&lt;= $player.increaseArousal(5)&gt;&gt;
+				&lt;&lt;set $player.submission += 1&gt;&gt;
+				[[Return to your room.|PlayerBdRm]]
 			&lt;&lt;option &quot;Just clear the plates.&quot;&gt;&gt;
-			You take the plates and put them on a tray before heading back to the kitchen.&lt;br&gt;
+				You take the plates and put them on a tray before heading back to the kitchen.&lt;br&gt;
+				&lt;br&gt;
+				As you do you see $owner.name watching you from behind his tablet. You suspect you dodged a bullet on that one.&lt;br&gt;
+				&lt;br&gt;
+				[[Return to your room.|PlayerBdRm]]
+			&lt;&lt;/chooseOption&gt;&gt;
+		&lt;&lt;case 3&gt;&gt;
+			$owner.name is in the dining room already as you and $butler.name start layout out breakfast. He doesn&#39;t acknowledge either of you and continues reading his tablet. $butler.name hands hims a cup of coffee with milk and two sugars which $owner.name takes as if expecting it right then.&lt;br&gt;
 			&lt;br&gt;
-			As you do you see $owner.name watching you from behind his tablet. You suspect you dodged a bullet on that one.&lt;br&gt;
+			&lt;&lt;= $butler.speak(&quot;Your preferences today $owner.title?&quot;)&gt;&gt;&lt;br&gt;
 			&lt;br&gt;
-			[[Return to your room.|PlayerBdRm]]
-			&lt;&lt;/end&gt;&gt;
+			&lt;&lt;= $owner.speak(&quot;Just the usual please $butler.name.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			You have a platter of fruit in your hands, not really paying attention to them, when you accidentllay put one of the trays down too hard. Some of the fruit spills off and both $butler.name and $owner.name look up.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $butler.speak(&quot;Be sure that doesn&#39;t stain the upholstery and replace that fruit.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;= $owner.speak(&quot;It&#39;s ok $butler.name.&quot;)&gt;&gt; $butler.name quickly stops berrating you and looks to $owner.name. &lt;&lt;= $owner.speak(&quot;You know what. I&#39;ve changed my mind. I think I&#39;ll have some fruit instead. Come here with that tray $player.title.&quot;)&gt;&gt;&lt;br&gt;
+			&lt;br&gt;
+			$owner.name crooks his finger and points to the space beside him. He doesn&#39;t give you orders very often but you know when he does disobeying has drastic consequences.&lt;br&gt;
+			&lt;br&gt;
+			&lt;&lt;chooseOption &quot;Do as he says.&quot;&gt;&gt;
+				&lt;&lt;= $player.speak(&quot;Yes $owner.title.&quot;)&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				You go to pick up the spilled fruit but $owner.name just gestures for you to leave it. Without a word $butler.name comes over and clears the mess instead. You approach with what&#39;s left on the tray and stand beside $owner.name.&lt;br&gt;
+				&lt;br&gt;
+				Rather than filling the empty plate in front of him $owner.name just picks a piece from the platter and starts eating it. You go to put the tray down next to him.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $owner.speak(&quot;Don&#39;t. Move.&quot;)&gt;&gt;&lt;br&gt;
+				&lt;br&gt;
+				You stop halfway to putting the tray down, unsure of of what to do. $owner.name gestures for you to stand up with the platter still in your hand and takes another piece.&lt;br&gt;
+				&lt;br&gt;
+				That&#39;s how you stay, standing there like a human side table while $owner.name slowly picks from the tray and skims through his tablet while $butler.name serves everyone else during the morning meal. The other residents don&#39;t really give you a second thought as they see what $owner.name has you doing. You never realised how demeaning such a simple task could be and your cheeks flush at the humiliation.&lt;br&gt;
+				&lt;br&gt;
+				After three, long hours $butler.name comes back to the dining room. He finished clearing the rest of the table about fourty mintues ago but you&#39;ve had to stay here the whole time. Your arms started aching at around the one hour mark.&lt;br&gt;
+				&lt;br&gt;
+				&lt;&lt;= $butler.speak(&quot;$owner.title.&quot;)&gt;&gt; He taps his wrist.&lt;br&gt;
+				&lt;br&gt;
+				Without a word $owner.name gets up and leaves with $butler.name right behind him. Once they are both gone you drop the tray to the table and relax your sore muscles. You&#39;ll be doing your best not spill a tray again.&lt;br&gt;
+				&lt;&lt;set $time.addTime({day:0, hour: 1, minute: 0})&gt;&gt;
+				&lt;&lt;set $player.submission += 1&gt;&gt;
 			&lt;&lt;/chooseOption&gt;&gt;
 		&lt;&lt;default&gt;&gt;
 			$butler.name is already in there to help setup. Fortunately the family isn&#39;t particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.&lt;br&gt;

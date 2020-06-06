@@ -55,6 +55,7 @@ $wife.name is sitting at the desk with her tablet. She’s most likely checking 
 $wife.name is in the gym going through her daily routine of cardio and light weight workout. She is on the bike at the moment and doesn’t even acknowledge you as you enter. The sheen of sweat glistening on her skin is very distracting.
 
 [img[setup.ImagePath + "character/wife/cardio01.jpg"]]
+<<= $player.increaseArousal(10)>>
 
 :: wifeGym02 [noreturn chore]
 <!-- Requires wife in the Gym -->
@@ -62,6 +63,7 @@ $wife.name is in the gym going through her daily routine of cardio and light wei
 $wife.name is on the cable machine right now, working her shoulders and chest muscles. The defined lines of her body catch your eye and you can’t help but stare, and also feel a little jealous.
 
 [img[setup.ImagePath + "character/wife/cardio02.gif"]]
+<<= $player.increaseArousal(10)>>
 
 :: wifeGym03 [noreturn chore]
 <!-- Requires wife in the Gym -->
@@ -69,6 +71,7 @@ $wife.name is on the cable machine right now, working her shoulders and chest mu
 You hear the low hum of the treadmill as you enter the gym. $wife.name is jogging at a fast pace on the far side of the room. She breathing heavily but doesn't stop as you watch her. You doubt you could keep up that much effort with your current level of fitness.
 
 [img[setup.ImagePath + "character/wife/cardio03.gif"]]
+<<= $player.increaseArousal(10)>>
 
 :: wifeOwnerLounge01 [noreturn chore]
 <!-- Requires wife in the Lounge with the Owner (they are both set to this location anyway so using either of them will work) -->
@@ -90,11 +93,15 @@ You jolt to a start and begin going about your tasks.
 
 <<= $wife.speak("That's it. Make sure you put your shoulder into this time.")>>
 
+<<nobr>>
 <<if $player.submission >= 20>>
-	<<= $player.speak("Yes $wife.title")>>
+	<<= $player.speak("Yes $wife.title")>><br>
+	<br>
+	You do as she says but after a few moments she speaks up again.<br>
 <<else>>
-	You roll your eyes and keep at your current task.
+	You roll your eyes and keep at your current task.<br>
 <</if>>
+<</nobr>>
 
 <<= $wife.speak("No, no, no.")>>
 
@@ -111,16 +118,15 @@ You feel her press her elbow into your lower forcing you to push you chest.
 <<= $wife.speak("Now hold that position while you work.")>>
 
 <<chooseOption "Maintain the pose.">>
-You hold the postion as best you can. It's difficult hold you chest out in the awkward position. You don't really see how it's improving your work either but it does seem to not take as long.
+You hold the postion as best you can. It's difficult hold you chest out in the awkward position and you're probably tiring out faster than you would normally. You don't really see how it's improving your work either but by the time you're finished it didn't take as long as it did last time.
 
 When you finish $wife.name inspects your work.
 
 She nods. <<= $wife.speak("This is satisfactory. See that you keep practicing. The longer you take the harder it will be for me to present a clean house to my guests.")>>
 
 With that $wife.name turns around and leave you to your duties.
-
-*****todo: increase cleaning skill
-
+<<= $player.levelUp('cleaning', {5})>>
+<<= $player.useStamina(10)>>
 <<set $time.addTime({day:0, hour: 0, minute:15})>>
 <<option "Just do it your way.">>
 You go back to the way you were already doing it. $wife.name watches you the whole time with her arms crossed but doesn't seem to be reacting otherwise.
@@ -131,6 +137,7 @@ When you finish she inspects your work.
 
 She grabs you by the wrist and <<link "drags you to the master wardrobe." "wifeCleaningBossy01B">>
 <<set $time.addTime({day:0, hour: 0, minute:30})>>
+<<set $player.boldness += 1>>
 <</link>>
 <<end>>
 <</chooseOption>>
@@ -150,7 +157,7 @@ Knowing better than to talk back at this point you quickly take your top off. $w
 
 <<= $wife.speak("Quiet!")>>
 
-She wraps the stiff fabric around your waist and begin tightening the clasps. You have to suck in your breath when she pulls it far tighter than your waist would normally allow. ONce all the clasps are tightened she zips up the cover and locks it shut with a tiny pad lock.
+She wraps the stiff fabric around your waist and begin tightening the clasps. You have to suck in your breath when she pulls it far tighter than your waist would normally allow. Once all the clasps are tightened she zips up the cover and locks it shut with a tiny pad lock.
 
 <<= $wife.speak("Nice and secure. Now, if you behave and get your chores done you can come see before you turn in to have it unlocked.")>>
 
@@ -163,6 +170,7 @@ She walks past you and out of the room but not before swatting your ass, leaving
 <<link "Get back to your chores." "MasterBdRm">>
 <<set $time.addTime({day:0, hour: 0, minute:10})>>
 <<= $player.inv.addItem($shop.getAsTemp("Black corset"), 1, true)>>
+<<= $player.increaseArousal(15)>>
 <</link>>
 
 :: wifeCleaningBossy02A [noreturn chore]
@@ -190,7 +198,6 @@ With that she turns and leaves you to your chores.
 
 <<link "<<= $wife.speak('Very well then. Follow me.')>>" "wifeCleaningBossy02B">><</link>>
 <</if>>
-<<end>>
 <</chooseOption>>
 
 :: wifeCleaningBossy02B [noreturn chore]
@@ -215,6 +222,8 @@ She stands up and you follow. Wearing heels still takes a little getting used to
 <<link "Get back to your chores." "MasterBdRm">>
 <<set $time.addTime({day:0, hour: 0, minute:10})>>
 <<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
+<<= $player.femininity += 1>>
+<<= $player.submission += 1>>
 <</link>>
 
 :: wifeLaundryPlayerNude01A [noreturn chore]
@@ -265,7 +274,7 @@ You drop the shirt and slip into the bra first. It sits loose against your flat 
 Without another word she turns and leaves you alone in the small room
 
 <<link "Get back to your chores." "PlayerBdRm">>
-<!-- Currently broken. 
+<!-- Currently broken.
 /* Will change this to simply equip a set of clothes, like this it will be customisable */
 <<= $player.inv.addItem($shop.getAsTemp("Female cut T-shirt"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Tight jeans"), 1, true)>>
@@ -273,12 +282,15 @@ Without another word she turns and leaves you alone in the small room
 <<= $player.inv.addItem($shop.getAsTemp("Plain white bra"), 1, true)>>
 <<= $player.inv.addItem($shop.getAsTemp("Flat shoes"), 1, true)>>
 -->
+<<= $player.increaseArousal(15)>>
+<<= $player.femininity += 5>>
+<<= $player.submission += 5>>
 <</link>>
+
+
 
 :: wifeBedroomCleaning01 [noreturn chore]
 <!-- When the player is cleaning the Master Bedroom and the Wife enters the room -->
-
-trigger: randomly while cleaning any bedroom while the wife is home
 
 The bedroom are fortunately much easier to clean since they are smaller than the main rooms. You're in the middle of tidying up when $wife.name walks in and looks around.
 
@@ -294,7 +306,8 @@ You work as hard as you can to cover the whole area. It takes s while but when y
 
 She leaves the room so you can continue with your work.
 
-<<set $time.addTime({day:0, hour: 0, minute:10})>>
+<<set $time.addTime({day:0, hour: 0, minute: 10})>>
+<<set $player.submission += 1>>
 <<option "Do it quickly.">>
 
 You run the vacuum over the floor as quickly as you can. About halfway through you hear $wife.name behind you.
@@ -313,7 +326,9 @@ You finish the job and $wife.name removes her foot.
 
 <<= $wife.speak("See that you don't waste my time with this in the future.")>>
 
-<<set $time.addTime({day:0, hour: 0, minute:15})>>
+<<set $time.addTime({day:0, hour: 0, minute: 20})>><br>
+<<set $player.boldness += 1>>
+<<= $player.increaseArousal(5)>>
 <<end>>
 <</chooseOption>>
 
@@ -325,6 +340,7 @@ You finish the job and $wife.name removes her foot.
 You hear loud grunting as you enter the room and can see $daughter.name in the middle of her workout. She's currently in the middle of a set of squats with heavy weights on her shoulders. It's a little embarassing seeing her lifting weights that you would probably struggle with. She spots you in the mirror and gives you a wink without missing a rep.
 
 [img[setup.ImagePath + "character/daughter/gym_barbellsquat01.gif"]]
+<<= $player.increaseArousal(10)>>
 
 :: daughterGymArms01 [noreturn chore]
 <!-- Requires daughter in the Gym -->
@@ -334,6 +350,7 @@ As you enter the room you see $daughter.name in the middle of her workout. She's
 [img[setup.ImagePath + "character/daughter/gym_overheadcurl01.gif"]]
 
 You so distracted that you miss a step. There's a loud crash as one of your bucket goes tumbling over. $daughter.name looks at you from her position ont he bench. You wait for her to call you out for being a perve but she just smiles devilishly and goes back to finishing her set.
+<<= $player.increaseArousal(10)>>
 
 :: daughterGymChinup01 [noreturn chore]
 <!-- Requires daughter in the Gym -->
@@ -343,6 +360,7 @@ You back into the gym with you cleaning equipment and turn to see $daughter.name
 [img[setup.ImagePath + "character/daughter/gym_chinups01.gif"]]
 
 You look down at your thin arms and wonder if you could even complete one chin up. $daughter.name drops to the ground after finsihing the set and turns around to grab her drink. As she's taking a long sip she turns slightly to let some of the water spalsh against her chest before feining surpsrise and wiping it away with her towel. She gives you a wink before turning around and starting another set.
+<<= $player.increaseArousal(10)>>
 
 :: daughterPoolSwimming01 [noreturn chore]
 <!-- Requires daughter in the Pool -->
@@ -360,6 +378,7 @@ You jolt back to your senses when you realise you were still staring. <<= $playe
 <<= $daughter.speak("Suit yourself.")>>
 
 With that she dives forward and starts swimming laps and leaving you to awkwardly go about your day.
+<<= $player.increaseArousal(10)>>
 
 :: daughterPoolSwimming02 [noreturn chore]
 <!-- Requires daughter in the Pool -->
@@ -377,6 +396,7 @@ Your not a swimming expert but her pace seems pretty fast. It makes you wonder i
 <<= $daughter.speak("Pity.")>>
 
 $daughter.name walks over to where she put her towel. This time you catch yourself before you stare too long and then get back to your duties.
+<<= $player.increaseArousal(10)>>
 
 :: daughterGardenReading01 [noreturn chore]
 <!-- Requires daughter in the Garden (Need to make sure this doesn't interrupt the special event in the Daughter Path) -->
@@ -384,6 +404,7 @@ $daughter.name walks over to where she put her towel. This time you catch yourse
 $daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and it glistens in the light.
 
 [img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]
+<<= $player.increaseArousal(5)>>
 
 :: daughterDaughterBdRmStudying01 [noreturn chore]
 <!-- Requires daughter in the DaughterBdRm -->
@@ -419,6 +440,7 @@ You stand stock still as she throws them to you. Some of the items land on your 
 It takes a long few minutes for your brain to reboot.
 
 <<= $player.speak("What the hell just happened?")>>
+<<= $player.increaseArousal(25)>>
 
 :: daughterLaundryPlayerNude01 [noreturn chore]
 <!--
@@ -554,19 +576,19 @@ $cook.name once again surprises you buy having a small work space set up for you
 
 He walks around behind you and reaches around to grab your arms. You stiffen up as his chest presses against your back.
 
-<<= $cook.speak("You need to find a rythm.)>>
+<<= $cook.speak("You need to find a rythm.")>>
 
 $cook.name guides your hands as he quickly help you slice what's in front of you.
 
 <<= $cook.speak("Don't worry about the knife, worry about the food.")>>
 
-You notice his fingers have slipped between yours and he's pressing against you more in a very intimate way.
+You notice his fingers have slipped between yours and he's pressing against you in a very intimate way.
 
 [img[setup.ImagePath + "character/cook/cutting02.jpg"]]
 
-After a few minutes later everything is done and $cook.name steps away.
+After few minutes everything is done and $cook.name steps away.
 
-<<= $cook.speak("If you end hurting yourself just make sure any mess in my kitchen gets cleaned up.")>>
+<<= $cook.speak("If you end up hurting yourself just make sure any mess in my kitchen gets cleaned up.")>>
 <<set $cook.addAppreciation(1)>>
 <<set $time.addTime({day:0, hour: 0, minute:10})>>
 <<option "Leave $cook.name to work.">>
@@ -618,6 +640,7 @@ You quickly pick up the broom and hang it on its hook before finishing up.
 <<end>>
 <</chooseOption>>
 
+
 :: gardnerPoolBossy01 [noreturn chore]
 <!-- Player is sweeping the Pool, Gardner is present and has a random % chance of occuring -->
 
@@ -642,11 +665,7 @@ $gardner.name takes one of the nearby towels and wraps it around you. He pulls y
 
 A particularly hard shove presses your against his groin and you can feel either the handle of one of his tools or...
 
-<<= $gardner.speak("There you go.")>> $gardner.name steps back.
-
-You're still a bit damp but he definitely helped.
-
-<<= $gardner.speak("Make sure you're more careful. We don't want you getting sick.")>>
+<<= $gardner.speak("There you go.")>> $gardner.name abruptly steps back leaving you dryer and a little confused. <<= $gardner.speak("Make sure you're more careful. We don't want you getting sick.")>>
 
 <<= $player.speak("Sure.")>>
 
