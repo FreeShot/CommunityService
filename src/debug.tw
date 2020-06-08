@@ -25,7 +25,7 @@ DEBUG
 <<link "Increase Daughter Appreciation">>
 	<<set $daughter.addAppreciation(1)>>
 	<<goto `passage()`>>
-<</link>>
+<</link>> Current: $daughter.appreciation
 
 Search variable: <<textbox '_value' ''>><<button "get">>
 <<replace '#story-variable'>><<debug _value>><</debug>>
@@ -37,14 +37,14 @@ Search variable: <<textbox '_value' ''>><<button "get">>
 Current event: <<= $mansion.currentEvent>>
 
 <hr>
+Quick access to events:
+[[mansionCPartyIntro01]]
+[[mansionCPartySetup01]]
+[[daughterPath04IntroDate01]]
+
+<hr>
 <<include playerDescription>>
 
 <<for _npc_name range $npcList>> <<set _npc to State.variables[_npc_name]>>
 <<capture [_npc_name, _npc]>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
 <</for>>
-
-<hr>
-Quick access to events:
-[[mansionCPartyIntro01]]
-[[mansionCPartySetup01]]
-[[daughterPath04IntroDate01]]

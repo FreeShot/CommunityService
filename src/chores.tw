@@ -101,7 +101,7 @@ You go through each room, stripping the beds, pillows and quilts and take it all
 <<switch random(3)>>
 	<<case 1>>
 		<<include "daughterLaundryPlayerNude01">>
-	<<case 1>>
+	<<case 2>>
 		<<include "wifeLaundryPlayerNude01A">>
 	<<default>>
 		<<include "laundryClothesDefault">>
@@ -121,13 +121,12 @@ With a heavy sigh, you spend time going through each room, taking the clothes di
 <<switch random(2)>>
 	<<case 1>>
 		<<include "wifeCleaningBossy02A">>
-	<<Default>>
+	<<default>>
 		<<include "loungeDusting">>
-
 		<<include "loungeSweepMop">>
-
 		<<include "loungeWindows">>
 <</switch>>
+
 
 :: loungeDusting [noreturn chore]
 
@@ -158,7 +157,7 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 <<switch random(2)>>
 	<<case 1>>
 		<<include "wifeCleaningBossy01A">>
-	<<Default>>
+	<<default>>
 		<<include "diningDusting">>
 
 		<<include "diningSweepMop">>

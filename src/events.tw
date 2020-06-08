@@ -130,9 +130,9 @@ When you finish $wife.name inspects your work.
 She nods. <<= $wife.speak("This is satisfactory. See that you keep practicing. The longer you take the harder it will be for me to present a clean house to my guests.")>>
 
 With that $wife.name turns around and leave you to your duties.
-<<= $player.levelUp('cleaning', {5})>>
-<<= $player.useStamina(10)>>
 <<set $time.addTime({day:0, hour: 0, minute:15})>>
+<<= $player.levelUp('cleaning', 5)>>
+<<= $player.useStamina(20)>>
 <<option "Just do it your way.">>
 You go back to the way you were already doing it. $wife.name watches you the whole time with her arms crossed but doesn't seem to be reacting otherwise.
 
@@ -172,7 +172,7 @@ It only took minutes but she already has you on the ropes so you bow your head. 
 
 She walks past you and out of the room but not before swatting your ass, leaving it tingling.
 
-<<link "Get back to your chores." "MasterBdRm">>
+<<link "Get back to your chores." "PlayerBdRm">>
 <<set $time.addTime({day:0, hour: 0, minute:10})>>
 <<= $player.inv.addItem($shop.getAsTemp("Black corset"), 1, true)>>
 <<= $player.increaseArousal(15)>>
@@ -198,11 +198,9 @@ $wife.name is standing at the entrance watching you thoughtfully.
 <<= $wife.speak("See that you do or the decision will be made for you.")>>
 
 With that she turns and leaves you to your chores.
-<<if $player.femininity >= 20>>
 <<option "<<= $player.speak('I guess that could help $wife.title.')>>">>
-
 <<link "<<= $wife.speak('Very well then. Follow me.')>>" "wifeCleaningBossy02B">><</link>>
-<</if>>
+<<end>>
 <</chooseOption>>
 
 :: wifeCleaningBossy02B [noreturn chore]
@@ -224,7 +222,7 @@ $wife.name slips the heels onto your feet and fastens the straps shut. You roll 
 
 She stands up and you follow. Wearing heels still takes a little getting used to but you should be able to manage.
 
-<<link "Get back to your chores." "MasterBdRm">>
+<<link "Get back to your chores." "PlayerBdRm">>
 <<set $time.addTime({day:0, hour: 0, minute:10})>>
 <<= $player.inv.addItem($shop.getAsTemp("Black leather mary jane heels"), 1, true)>>
 <<= $player.femininity += 1>>
@@ -543,7 +541,6 @@ You shoot up and nervously get back to what you are doing while $daughter.name g
 
 <<set $time.addTime({day:0, hour: 0, minute:10})>>
 <<option "Sorry. Duty calls.">>
-
 <<= $daughter.speak("Damn. I wish you had more free time.")>>
 
 $daughter.name gets back to what she was doing and you do the same.

@@ -143,7 +143,6 @@ Drinks all around
 Date stuff happens
 
 Date ending is variable "date" type ending
-First one will always end in a drunk kiss
 
 <<if $daughterDateIntro is true>>
 	[[daughterPath04IntroDate06]]

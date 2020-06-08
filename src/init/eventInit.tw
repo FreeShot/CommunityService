@@ -160,16 +160,6 @@
 }))>>
 
 <<= $mansion.addEvent("DaughterBdRm", new Event({
-	name: "daughterDaughterBdRmStudying02", 
-	passage: "daughterDaughterBdRmStudying02", 
-	inline:true, 
-	repeats:true, 
-	tags: {
-		tag: "isPresent", data: {npc: "daughter"}, expected: true
-	}
-}))>>
-
-<<= $mansion.addEvent("DaughterBdRm", new Event({
 	name: "daughterDaughterBdRmStudying03", 
 	passage: "daughterDaughterBdRmStudying03", 
 	inline:true, 
@@ -209,7 +199,6 @@
 	}
 }))>>
 
-<!--
 <<= $mansion.addEvent("Foyer", new Event({
 	name: "daughterPath04IntroDate01", 
 	passage: "daughterPath04IntroDate01", 
@@ -221,11 +210,10 @@
 		},{
 			tag: "isPresent", data: {npc: "daughter"}, expected: true
 		},{
-			tag: "appreciation", data: {npc: "daughter", value: 2}, expeceted: true
+			tag: "appreciation", data: {npc: "daughter", value: 1}, expeceted: true
 		}], expected: true
 	}
 }))>>
--->
 
 <!-- Group events -->
 

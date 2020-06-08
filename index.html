@@ -2535,7 +2535,7 @@ You sweep the floor carefully, making sure to get into the counter corners and i
 You go through each room, stripping the beds, pillows and quilts and take it all to the laundry. You throw it all into one of the machines along with detergent and heavy duty stain remover before starting the cycle. While it is all washing you take fresh linen and remake all the beds. Once each load is clean and dried you fold and store it all in the nearby cupboards.</tw-passagedata><tw-passagedata pid="19" name="laundryClothes" tags="noreturn chore" position="1100,225" size="100,100">&lt;&lt;switch random(3)&gt;&gt;
 	&lt;&lt;case 1&gt;&gt;
 		&lt;&lt;include &quot;daughterLaundryPlayerNude01&quot;&gt;&gt;
-	&lt;&lt;case 1&gt;&gt;
+	&lt;&lt;case 2&gt;&gt;
 		&lt;&lt;include &quot;wifeLaundryPlayerNude01A&quot;&gt;&gt;
 	&lt;&lt;default&gt;&gt;
 		&lt;&lt;include &quot;laundryClothesDefault&quot;&gt;&gt;
@@ -2544,11 +2544,9 @@ You go through each room, stripping the beds, pillows and quilts and take it all
 With a heavy sigh, you spend time going through each room, taking the clothes discarded to hampers. Once you have everything you take it all back to the large laundry. You separate the items so you are washing the correct things together. Fortunately dry cleaning gets taken off site so you don’t have to learn that skill. Once it’s all ready you put each load into one of the machines with some laundry detergent, and then start the washing cycle. Once each cycle is done you put everything in the dryer before repeating the process. Once each load is done you have to fold everything neatly and sort it all into piles before putting it away.</tw-passagedata><tw-passagedata pid="21" name="loungeCleaning" tags="noreturn chore" position="100,350" size="100,100">&lt;&lt;switch random(2)&gt;&gt;
 	&lt;&lt;case 1&gt;&gt;
 		&lt;&lt;include &quot;wifeCleaningBossy02A&quot;&gt;&gt;
-	&lt;&lt;Default&gt;&gt;
+	&lt;&lt;default&gt;&gt;
 		&lt;&lt;include &quot;loungeDusting&quot;&gt;&gt;
-
 		&lt;&lt;include &quot;loungeSweepMop&quot;&gt;&gt;
-
 		&lt;&lt;include &quot;loungeWindows&quot;&gt;&gt;
 &lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="loungeDusting" tags="noreturn chore" position="225,350" size="100,100">[img[setup.ImagePath + &quot;events/chores/general_dusting/dusting_1.jpg&quot;]]
 
@@ -2559,7 +2557,7 @@ Before you can start you move the furniture out of the way and then sweep the fl
 Taking some windows cleaner you go over the large window with a clean cloth, making sure to polish it until they are crystal clear.</tw-passagedata><tw-passagedata pid="25" name="diningCleaning" tags="noreturn chore" position="600,350" size="100,100">&lt;&lt;switch random(2)&gt;&gt;
 	&lt;&lt;case 1&gt;&gt;
 		&lt;&lt;include &quot;wifeCleaningBossy01A&quot;&gt;&gt;
-	&lt;&lt;Default&gt;&gt;
+	&lt;&lt;default&gt;&gt;
 		&lt;&lt;include &quot;diningDusting&quot;&gt;&gt;
 
 		&lt;&lt;include &quot;diningSweepMop&quot;&gt;&gt;
@@ -2679,7 +2677,7 @@ DEBUG
 &lt;&lt;link &quot;Increase Daughter Appreciation&quot;&gt;&gt;
 	&lt;&lt;set $daughter.addAppreciation(1)&gt;&gt;
 	&lt;&lt;goto `passage()`&gt;&gt;
-&lt;&lt;/link&gt;&gt;
+&lt;&lt;/link&gt;&gt; Current: $daughter.appreciation
 
 Search variable: &lt;&lt;textbox &#39;_value&#39; &#39;&#39;&gt;&gt;&lt;&lt;button &quot;get&quot;&gt;&gt;
 &lt;&lt;replace &#39;#story-variable&#39;&gt;&gt;&lt;&lt;debug _value&gt;&gt;&lt;&lt;/debug&gt;&gt;
@@ -2691,17 +2689,17 @@ Search variable: &lt;&lt;textbox &#39;_value&#39; &#39;&#39;&gt;&gt;&lt;&lt;butt
 Current event: &lt;&lt;= $mansion.currentEvent&gt;&gt;
 
 &lt;hr&gt;
+Quick access to events:
+[[mansionCPartyIntro01]]
+[[mansionCPartySetup01]]
+[[daughterPath04IntroDate01]]
+
+&lt;hr&gt;
 &lt;&lt;include playerDescription&gt;&gt;
 
 &lt;&lt;for _npc_name range $npcList&gt;&gt; &lt;&lt;set _npc to State.variables[_npc_name]&gt;&gt;
 &lt;&lt;capture [_npc_name, _npc]&gt;&gt;&lt;&lt;= _npc.speak(&quot;_npc.name (_npc.title): &lt;&lt;= _npc.getAppreciation()&gt;&gt; (_npc.appreciation), current room: &lt;&lt;= _npc.getLocation&gt;&gt;&quot;)&gt;&gt;&lt;&lt;/capture&gt;&gt;
-&lt;&lt;/for&gt;&gt;
-
-&lt;hr&gt;
-Quick access to events:
-[[mansionCPartyIntro01]]
-[[mansionCPartySetup01]]
-[[daughterPath04IntroDate01]]</tw-passagedata><tw-passagedata pid="62" name="EndHomeSweetHome" tags="ending" position="225,850" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="EndHomeSweetHome" tags="ending" position="225,850" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry, not interested.&quot;)&gt;&gt;
 
 &lt;&lt;= Character.speakAnonymous(&quot;Oh come on just hear me out...&quot;, &quot;Peru&quot;)&gt;&gt;
 
@@ -3478,15 +3476,15 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 	stage: 5,
 	microEventCount: 2,
 	events: [
-		{name: &quot;Circulate some hors d&#39;oeuvres&quot;, passage: &quot;mansionCPartyStaring01&quot;, npc: []},
-		{name: &quot;Serve the lady on the lounge&quot;, passage: &quot;mansionCPartyStaring02&quot;, npc: []},
-		{name: &quot;Serve a man in the back&quot;, passage: &quot;mansionCPartyGroping01a&quot;, npc: []},
-		{name: &quot;Get another tray of food&quot;, passage: &quot;mansionCPartyCage01&quot;, npc: []},
-		{name: &quot;Go refill your tray&quot;, passage: &quot;mansionCPartyCage02&quot;, npc: []},
-		{name: &quot;Approach the people eyeing your tray&quot;, passage: &quot;mansionCPartySocialListen01&quot;, npc: []},
-		{name: &quot;Serve the the nearby couple&quot;, passage: &quot;mansionCPartySocialListen02&quot;, npc: []},
-		{name: &quot;Clear some of the tables&quot;, passage: &quot;mansionCPartySocialListen03&quot;, npc: []},
-		{name: &quot;Tidy the side rooms&quot;, passage: &quot;mansionCPartySocialListen04&quot;, npc: []}
+		{name: &quot;Circulate some hors d&#39;oeuvres&quot;, passage: &quot;mansionCPartyStaring01&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Serve the lady on the lounge&quot;, passage: &quot;mansionCPartyStaring02&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Serve a man in the back&quot;, passage: &quot;mansionCPartyGroping01a&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Get another tray of food&quot;, passage: &quot;mansionCPartyCage01&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Go refill your tray&quot;, passage: &quot;mansionCPartyCage02&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Approach the people eyeing your tray&quot;, passage: &quot;mansionCPartySocialListen01&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Serve the the nearby couple&quot;, passage: &quot;mansionCPartySocialListen02&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Clear some of the tables&quot;, passage: &quot;mansionCPartySocialListen03&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Tidy the side rooms&quot;, passage: &quot;mansionCPartySocialListen04&quot;, npc: [&quot;any&quot;]}
 	],
 	active : [],
 	getNpc: function(npcType) {
@@ -3553,7 +3551,7 @@ You quickly move away to escape his gaze.
 &lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="104" name="mansionCPartyStaring02" tags="event" position="475,1350" size="100,100">You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
-&lt;&lt;= $eventInfo.active.speak(&quot;Thank you so much. You must tell me how you keep your skin so soft.&quot;)&gt;&gt; She caresses your arm for a few seconds longer. &lt;&lt;= $eventInfo.active.speak(&quot;It&#39;s like touching silk.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Thank you so much. You must tell me how you keep your skin so soft.&quot;)&gt;&gt; She caresses your arm for a few seconds longer. &lt;&lt;= Character.speakAnonymous(&quot;It&#39;s like touching silk.&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;Um, thank you.&quot;)&gt;&gt;
 
@@ -3578,7 +3576,7 @@ The guest is staring at you with the barest hint of alarm.
 &lt;&lt;chooseOption &quot;Appologise.&quot;&gt;&gt;
 You swallow and say. &lt;&lt;= $player.speak(&quot;Sorry sir. You startled me is all.&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active.speak(&quot;Not a problem.&quot;)&gt;&gt; The person smiles smugly. &lt;&lt;= $eventInfo.active.speak(&quot;Now fetch my drink like a good girl.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Not a problem.&quot;)&gt;&gt; The person smiles smugly. &lt;&lt;= Character.speakAnonymous(&quot;Now fetch my drink like a good girl.&quot;)&gt;&gt;
 
 You receive another quick slap on the butt to send you on your way.
 
@@ -3594,7 +3592,7 @@ You stare at $wife.name for a moment and simply turn around and walk away. You s
 [[Back to serving|mansionCPartyServing01]]
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="mansionCPartyCage01" tags="event" position="850,1350" size="100,100">$caterer.name pushes forward a fresh tray for you to collect.
 
-&lt;&lt;= $caterer.speak(&quot;Come on girl.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Come on girl.&quot;)&gt;&gt;
 
 You lean forward to grab it and your hips bump against the counter. You gasp as the plastic cage is pushed into your crotch reminding you of your current situation down there. It gets shifted into an uncomfortable position.
 
@@ -3620,25 +3618,25 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="109" name="mansionCPartySocialListen01" tags="event" position="1100,1350" size="100,100">Guests are taking items from your tray as you move through the crowd. They are pretty much ignoring the fact you are standing there as they carry on their conversations. One in particular gets your interest.
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;Have you seen the latest reports on PharmaTech&#39;s stock?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Have you seen the latest reports on PharmaTech&#39;s stock?&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[1].speak(&quot;Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn&#39;t even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She&#39;s much better at following instructions now.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn&#39;t even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She&#39;s much better at following instructions now.&quot;)&gt;&gt;
 
 &lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="110" name="mansionCPartySocialListen02" tags="" position="1225,1350" size="100,100">A guest gestures for you to bring your tray over. You approach and they start examining the hors d&#39;oeuvres while continuing their conversation.
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;Did you hear the news about $suitor.name?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Did you hear the news about $suitor.name?&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[1].speak(&quot;No, what happened?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;No, what happened?&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;It seems he&#39;s dismissed another servant.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;It seems he&#39;s dismissed another servant.&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[1].speak(&quot;How long did this one last? 2 weeks?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;How long did this one last? 2 weeks?&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.&quot;)&gt;&gt;
 
 Both of them start laughing, though you&#39;re not sure why it&#39;s funny.
 
@@ -3646,27 +3644,27 @@ Both of them start laughing, though you&#39;re not sure why it&#39;s funny.
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="111" name="mansionCPartySocialListen03" tags="" position="100,1475" size="100,100">You&#39;re picking up some empty glasses from an end table when you overhear some of the guests talking from around the corner.
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It&#39;s amazing how such a bright mind can have such a wild side.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It&#39;s amazing how such a bright mind can have such a wild side.&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[1].speak(&quot;Yes, did you hear she&#39;s been brought back home by security several times since she got back into town.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Yes, did you hear she&#39;s been brought back home by security several times since she got back into town.&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;She definitely likes blowing off steam after being cooped up here all the time on her own. It&#39;s a bit sad really.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;She definitely likes blowing off steam after being cooped up here all the time on her own. It&#39;s a bit sad really.&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[1].speak(&quot;The emergency response units would say that&#39;s putting it mildly.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;The emergency response units would say that&#39;s putting it mildly.&quot;)&gt;&gt;
 
 &lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
-[[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="112" name="mansionCPartySocialListen04" tags="" position="225,1475" size="100,100">You go to one of the aloves and are collecting some of the discarded food and rubbish. These don&#39;t really seem to care much about what they&#39;re eating and you find plenty of half eaten food. While you are busy you hear some voices from around a corner.
+[[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="112" name="mansionCPartySocialListen04" tags="" position="225,1475" size="100,100">You go to one of the alcoves and are collecting some of the discarded food and rubbish. These don&#39;t really seem to care much about what they&#39;re eating and you find plenty of half eaten food. While you are busy you hear some voices from around a corner.
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;Have you seen $owner.name&#39;s latest acquisition?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Have you seen $owner.name&#39;s latest acquisition?&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[1].speak(&quot;Hm, I most certainly have. $wife.name has already been putting some work in to her. She already created quite the beauty. Watching the way that maid&#39;s skirt bounces on that cute ass is definitely the highlight of my night so far&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Hm, I most certainly have. $wife.name has already been putting some work into her. She already created quite the beauty. Watching the way that maid&#39;s skirt bounces on that cute ass is definitely the highlight of my night so far&quot;)&gt;&gt;
 
 Your cheeks flush red as you realise, they are talking about you. Fortunately, they don&#39;t seem to know you are there so you do your best to keep it that way.
 
-&lt;&lt;= $eventInfo.active[0].speak(&quot;How long do you think it will take before she becomes the focal point of these parties?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;How long do you think it will take before she becomes the focal point of these parties?&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active[1].speak(&quot;Knowing how quickly $wife.name works not long at all.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Knowing how quickly $wife.name works not long at all.&quot;)&gt;&gt;
 
 //CLANG!//
 
@@ -3950,9 +3948,9 @@ When you finish $wife.name inspects your work.
 She nods. &lt;&lt;= $wife.speak(&quot;This is satisfactory. See that you keep practicing. The longer you take the harder it will be for me to present a clean house to my guests.&quot;)&gt;&gt;
 
 With that $wife.name turns around and leave you to your duties.
-&lt;&lt;= $player.levelUp(&#39;cleaning&#39;, {5})&gt;&gt;
-&lt;&lt;= $player.useStamina(10)&gt;&gt;
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:15})&gt;&gt;
+&lt;&lt;= $player.levelUp(&#39;cleaning&#39;, 5)&gt;&gt;
+&lt;&lt;= $player.useStamina(20)&gt;&gt;
 &lt;&lt;option &quot;Just do it your way.&quot;&gt;&gt;
 You go back to the way you were already doing it. $wife.name watches you the whole time with her arms crossed but doesn&#39;t seem to be reacting otherwise.
 
@@ -3989,7 +3987,7 @@ It only took minutes but she already has you on the ropes so you bow your head. 
 
 She walks past you and out of the room but not before swatting your ass, leaving it tingling.
 
-&lt;&lt;link &quot;Get back to your chores.&quot; &quot;MasterBdRm&quot;&gt;&gt;
+&lt;&lt;link &quot;Get back to your chores.&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:10})&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black corset&quot;), 1, true)&gt;&gt;
 &lt;&lt;= $player.increaseArousal(15)&gt;&gt;
@@ -4012,11 +4010,9 @@ $wife.name is standing at the entrance watching you thoughtfully.
 &lt;&lt;= $wife.speak(&quot;See that you do or the decision will be made for you.&quot;)&gt;&gt;
 
 With that she turns and leaves you to your chores.
-&lt;&lt;if $player.femininity &gt;= 20&gt;&gt;
 &lt;&lt;option &quot;&lt;&lt;= $player.speak(&#39;I guess that could help $wife.title.&#39;)&gt;&gt;&quot;&gt;&gt;
-
 &lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Very well then. Follow me.&#39;)&gt;&gt;&quot; &quot;wifeCleaningBossy02B&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;end&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="wifeCleaningBossy02B" tags="noreturn chore" position="600,1725" size="100,100">&lt;!-- continues from previous passage --&gt;
 
 You fall in behind $wife.name as she walks to the Master Bedroom.
@@ -4035,7 +4031,7 @@ $wife.name slips the heels onto your feet and fastens the straps shut. You roll 
 
 She stands up and you follow. Wearing heels still takes a little getting used to but you should be able to manage.
 
-&lt;&lt;link &quot;Get back to your chores.&quot; &quot;MasterBdRm&quot;&gt;&gt;
+&lt;&lt;link &quot;Get back to your chores.&quot; &quot;PlayerBdRm&quot;&gt;&gt;
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:10})&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black leather mary jane heels&quot;), 1, true)&gt;&gt;
 &lt;&lt;= $player.femininity += 1&gt;&gt;
@@ -4307,7 +4303,6 @@ You shoot up and nervously get back to what you are doing while $daughter.name g
 
 &lt;&lt;set $time.addTime({day:0, hour: 0, minute:10})&gt;&gt;
 &lt;&lt;option &quot;Sorry. Duty calls.&quot;&gt;&gt;
-
 &lt;&lt;= $daughter.speak(&quot;Damn. I wish you had more free time.&quot;)&gt;&gt;
 
 $daughter.name gets back to what she was doing and you do the same.
@@ -4632,7 +4627,7 @@ State.variables.wife.schedule.addPoint(&quot;Lounge&quot;, {hour: 20, minute: 0}
 State.variables.wife.schedule.addPoint(&quot;MasterBdRm&quot;, {hour: 22, minute: 0}, {hour: 6, minute: 0});
 
 State.variables.daughter = new NPC({
-	name: &quot;Angeline&quot;, 
+	name: &quot;Angeline&quot;,
 	color: {
 		light: &quot;#D0918A&quot;, 
 		dark: &quot;#D0918A&quot;
@@ -4647,7 +4642,9 @@ State.variables.daughter.schedule.addPoint(&quot;Gym&quot;, {hour: 9, minute:0},
 State.variables.daughter.schedule.addPoint(&quot;Pool&quot;, {hour: 11, minute:0}, {hour: 12, minute: 0});
 State.variables.daughter.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 12, minute:0}, {hour: 13, minute: 0});
 State.variables.daughter.schedule.addPoint(&quot;Garden&quot;, {hour: 13, minute:0}, {hour: 15, minute: 0});
-State.variables.daughter.schedule.addPoint(&quot;DaughterBdRm&quot;, {hour: 15, minute:0}, {hour: 6, minute: 0});
+State.variables.daughter.schedule.addPoint(&quot;DaughterBdRm&quot;, {hour: 15, minute:0}, {hour: 18, minute: 0});
+State.variables.daughter.schedule.addPoint(&quot;Foyer&quot;, {hour: 18, minute:0}, {hour: 19, minute: 0});
+State.variables.daughter.schedule.addPoint(&quot;Void&quot;, {hour: 19, minute:0}, {hour: 6, minute: 0});
 
 State.variables.son = new NPC({
 	name: &quot;Mr Sono&quot;, 
@@ -4671,12 +4668,11 @@ State.variables.butler = new NPC({
 	displayPos: true
 });
 State.variables.butler.schedule.currRoom = &quot;Lounge&quot;;
-State.variables.butler.schedule.addPoint(&quot;Void&quot;, {hour: 0, minute: 0}, {hour: 6, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;Dining&quot;, {hour: 6, minute:0}, {hour: 8, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;Void&quot;, {hour: 8, minute:0}, {hour: 18, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;Office&quot;, {hour: 18, minute: 0}, {hour: 20, minute: 0});
 State.variables.butler.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 20, minute:0}, {hour: 6, minute: 0});
-State.variables.butler.schedule.addPoint(&quot;Void&quot;, {hour: 22, minute: 0}, {hour: 24, minute: 0});
+State.variables.butler.schedule.addPoint(&quot;Void&quot;, {hour: 22, minute: 0}, {hour: 6, minute: 0});
 
 State.variables.cook = new NPC({
 	name: &quot;Ivan&quot;, 
@@ -5087,16 +5083,6 @@ State.variables.minorNPC = [];
 }))&gt;&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;DaughterBdRm&quot;, new Event({
-	name: &quot;daughterDaughterBdRmStudying02&quot;, 
-	passage: &quot;daughterDaughterBdRmStudying02&quot;, 
-	inline:true, 
-	repeats:true, 
-	tags: {
-		tag: &quot;isPresent&quot;, data: {npc: &quot;daughter&quot;}, expected: true
-	}
-}))&gt;&gt;
-
-&lt;&lt;= $mansion.addEvent(&quot;DaughterBdRm&quot;, new Event({
 	name: &quot;daughterDaughterBdRmStudying03&quot;, 
 	passage: &quot;daughterDaughterBdRmStudying03&quot;, 
 	inline:true, 
@@ -5136,7 +5122,6 @@ State.variables.minorNPC = [];
 	}
 }))&gt;&gt;
 
-&lt;!--
 &lt;&lt;= $mansion.addEvent(&quot;Foyer&quot;, new Event({
 	name: &quot;daughterPath04IntroDate01&quot;, 
 	passage: &quot;daughterPath04IntroDate01&quot;, 
@@ -5148,11 +5133,10 @@ State.variables.minorNPC = [];
 		},{
 			tag: &quot;isPresent&quot;, data: {npc: &quot;daughter&quot;}, expected: true
 		},{
-			tag: &quot;appreciation&quot;, data: {npc: &quot;daughter&quot;, value: 2}, expeceted: true
+			tag: &quot;appreciation&quot;, data: {npc: &quot;daughter&quot;, value: 1}, expeceted: true
 		}], expected: true
 	}
 }))&gt;&gt;
---&gt;
 
 &lt;!-- Group events --&gt;
 
