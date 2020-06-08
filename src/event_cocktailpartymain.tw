@@ -66,7 +66,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 	events: [
 		{name: "Circulate some hors d'oeuvres", passage: "mansionCPartyStaring01", npc: ["any"]},
 		{name: "Serve the lady on the lounge", passage: "mansionCPartyStaring02", npc: ["any"]},
-		{name: "Serve a man in the back", passage: "mansionCPartyGroping01a", npc: ["any"]},
+		{name: "Serve the man in the back", passage: "mansionCPartyGroping01a", npc: ["any"]},
 		{name: "Get another tray of food", passage: "mansionCPartyCage01", npc: ["any"]},
 		{name: "Go refill your tray", passage: "mansionCPartyCage02", npc: ["any"]},
 		{name: "Approach the people eyeing your tray", passage: "mansionCPartySocialListen01", npc: ["any"]},
@@ -149,7 +149,7 @@ You quickly move away to escape his gaze.
 
 ::mansionCPartyStaring02 [event]
 You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
-<<= Character.speakAnonymous("Thank you so much. You must tell me how you keep your skin so soft.")>> She caresses your arm for a few seconds longer. <<= Character.speakAnonymous("It's like touching silk.")>>
+<<= Character.speakAnonymous("Thank you so much. You must tell me how you keep your skin so soft.", "Maroon")>> She caresses your arm for a few seconds longer. <<= Character.speakAnonymous("It's like touching silk.", "Maroon")>>
 
 <<= $player.speak("Um, thank you.")>>
 
@@ -162,7 +162,7 @@ You politely pull away and hurry back to the bar to pick up some more drinks.
 ::mansionCPartyGroping01a [event]
 <<= $player.speak("Can I get you something?")>>
 
-<<= $eventInfo.active.speak("One scotch on the rock's and make it snappy.")>>
+<<= Character.speakAnonymous("One scotch on the rock's and make it snappy.", "MediumSlateBlue")>>
 
 You turn away to retrieve the guest's drink and then feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
 
@@ -180,7 +180,7 @@ The guest is staring at you with the barest hint of alarm.
 <<chooseOption "Appologise.">>
 You swallow and say. <<= $player.speak("Sorry sir. You startled me is all.")>>
 
-<<= Character.speakAnonymous("Not a problem.")>> The person smiles smugly. <<= Character.speakAnonymous("Now fetch my drink like a good girl.")>>
+<<= Character.speakAnonymous("Not a problem.", "OrangeRed")>> The person smiles smugly. <<= Character.speakAnonymous("Now fetch my drink like a good girl.", "OrangeRed")>>
 
 You receive another quick slap on the butt to send you on your way.
 
@@ -199,7 +199,7 @@ You stare at $wife.name for a moment and simply turn around and walk away. You s
 ::mansionCPartyCage01 [event]
 $caterer.name pushes forward a fresh tray for you to collect.
 
-<<= Character.speakAnonymous("Come on girl.")>>
+<<= $caterer.speak("Come on girl.")>>
 
 You lean forward to grab it and your hips bump against the counter. You gasp as the plastic cage is pushed into your crotch reminding you of your current situation down there. It gets shifted into an uncomfortable position.
 
@@ -232,11 +232,11 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 ::mansionCPartySocialListen01 [event]
 Guests are taking items from your tray as you move through the crowd. They are pretty much ignoring the fact you are standing there as they carry on their conversations. One in particular gets your interest.
 
-<<= Character.speakAnonymous("Have you seen the latest reports on PharmaTech's stock?")>>
+<<= Character.speakAnonymous("Have you seen the latest reports on PharmaTech's stock?", "DarkMagenta")>>
 
-<<= Character.speakAnonymous("Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.")>>
+<<= Character.speakAnonymous("Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.", "GoldenRod")>>
 
-<<= Character.speakAnonymous("The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn't even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She's much better at following instructions now.")>>
+<<= Character.speakAnonymous("The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn't even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She's much better at following instructions now.", "DarkMagenta")>>
 
 <<= $eventInfo.addPoint(25)>>
 
@@ -245,15 +245,15 @@ Guests are taking items from your tray as you move through the crowd. They are p
 ::mansionCPartySocialListen02
 A guest gestures for you to bring your tray over. You approach and they start examining the hors d'oeuvres while continuing their conversation.
 
-<<= Character.speakAnonymous("Did you hear the news about $suitor.name?")>>
+<<= Character.speakAnonymous("Did you hear the news about $suitor.name?", "GoldenRod")>>
 
-<<= Character.speakAnonymous("No, what happened?")>>
+<<= Character.speakAnonymous("No, what happened?", "Tomato")>>
 
-<<= Character.speakAnonymous("It seems he's dismissed another servant.")>>
+<<= Character.speakAnonymous("It seems he's dismissed another servant.", "GoldenRod")>>
 
-<<= Character.speakAnonymous("How long did this one last? 2 weeks?")>>
+<<= Character.speakAnonymous("How long did this one last? 2 weeks?", "Tomato")>>
 
-<<= Character.speakAnonymous("Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.")>>
+<<= Character.speakAnonymous("Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.", "GoldenRod")>>
 
 Both of them start laughing, though you're not sure why it's funny.
 
@@ -264,13 +264,13 @@ Both of them start laughing, though you're not sure why it's funny.
 ::mansionCPartySocialListen03
 You're picking up some empty glasses from an end table when you overhear some of the guests talking from around the corner.
 
-<<= Character.speakAnonymous("I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It's amazing how such a bright mind can have such a wild side.")>>
+<<= Character.speakAnonymous("I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It's amazing how such a bright mind can have such a wild side.", "Tomato")>>
 
-<<= Character.speakAnonymous("Yes, did you hear she's been brought back home by security several times since she got back into town.")>>
+<<= Character.speakAnonymous("Yes, did you hear she's been brought back home by security several times since she got back into town.", "Crimson")>>
 
-<<= Character.speakAnonymous("She definitely likes blowing off steam after being cooped up here all the time on her own. It's a bit sad really.")>>
+<<= Character.speakAnonymous("She definitely likes blowing off steam after being cooped up here all the time on her own. It's a bit sad really.", "Tomato")>>
 
-<<= Character.speakAnonymous("The emergency response units would say that's putting it mildly.")>>
+<<= Character.speakAnonymous("The emergency response units would say that's putting it mildly.", "Crimson")>>
 
 <<= $eventInfo.addPoint(25)>>
 
@@ -279,15 +279,15 @@ You're picking up some empty glasses from an end table when you overhear some of
 ::mansionCPartySocialListen04
 You go to one of the alcoves and are collecting some of the discarded food and rubbish. These don't really seem to care much about what they're eating and you find plenty of half eaten food. While you are busy you hear some voices from around a corner.
 
-<<= Character.speakAnonymous("Have you seen $owner.name's latest acquisition?")>>
+<<= Character.speakAnonymous("Have you seen $owner.name's latest acquisition?", "OrangeRed")>>
 
-<<= Character.speakAnonymous("Hm, I most certainly have. $wife.name has already been putting some work into her. She already created quite the beauty. Watching the way that maid's skirt bounces on that cute ass is definitely the highlight of my night so far")>>
+<<= Character.speakAnonymous("Hm, I most certainly have. $wife.name has already been putting some work into her. She already created quite the beauty. Watching the way that maid's skirt bounces on that cute ass is definitely the highlight of my night so far", "Maroon")>>
 
 Your cheeks flush red as you realise, they are talking about you. Fortunately, they don't seem to know you are there so you do your best to keep it that way.
 
-<<= Character.speakAnonymous("How long do you think it will take before she becomes the focal point of these parties?")>>
+<<= Character.speakAnonymous("How long do you think it will take before she becomes the focal point of these parties?", "OrangeRed")>>
 
-<<= Character.speakAnonymous("Knowing how quickly $wife.name works not long at all.")>>
+<<= Character.speakAnonymous("Knowing how quickly $wife.name works not long at all.", "Maroon")>>
 
 //CLANG!//
 

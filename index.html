@@ -3478,7 +3478,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 	events: [
 		{name: &quot;Circulate some hors d&#39;oeuvres&quot;, passage: &quot;mansionCPartyStaring01&quot;, npc: [&quot;any&quot;]},
 		{name: &quot;Serve the lady on the lounge&quot;, passage: &quot;mansionCPartyStaring02&quot;, npc: [&quot;any&quot;]},
-		{name: &quot;Serve a man in the back&quot;, passage: &quot;mansionCPartyGroping01a&quot;, npc: [&quot;any&quot;]},
+		{name: &quot;Serve the man in the back&quot;, passage: &quot;mansionCPartyGroping01a&quot;, npc: [&quot;any&quot;]},
 		{name: &quot;Get another tray of food&quot;, passage: &quot;mansionCPartyCage01&quot;, npc: [&quot;any&quot;]},
 		{name: &quot;Go refill your tray&quot;, passage: &quot;mansionCPartyCage02&quot;, npc: [&quot;any&quot;]},
 		{name: &quot;Approach the people eyeing your tray&quot;, passage: &quot;mansionCPartySocialListen01&quot;, npc: [&quot;any&quot;]},
@@ -3551,7 +3551,7 @@ You quickly move away to escape his gaze.
 &lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="104" name="mansionCPartyStaring02" tags="event" position="475,1350" size="100,100">You lean down to offer the drink to the lady on the lounge. She takes it and gives you a gentle rub on your arm.
-&lt;&lt;= Character.speakAnonymous(&quot;Thank you so much. You must tell me how you keep your skin so soft.&quot;)&gt;&gt; She caresses your arm for a few seconds longer. &lt;&lt;= Character.speakAnonymous(&quot;It&#39;s like touching silk.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Thank you so much. You must tell me how you keep your skin so soft.&quot;, &quot;Maroon&quot;)&gt;&gt; She caresses your arm for a few seconds longer. &lt;&lt;= Character.speakAnonymous(&quot;It&#39;s like touching silk.&quot;, &quot;Maroon&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;Um, thank you.&quot;)&gt;&gt;
 
@@ -3561,7 +3561,7 @@ You politely pull away and hurry back to the bar to pick up some more drinks.
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="105" name="mansionCPartyGroping01a" tags="event" position="600,1350" size="100,100">&lt;&lt;= $player.speak(&quot;Can I get you something?&quot;)&gt;&gt;
 
-&lt;&lt;= $eventInfo.active.speak(&quot;One scotch on the rock&#39;s and make it snappy.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;One scotch on the rock&#39;s and make it snappy.&quot;, &quot;MediumSlateBlue&quot;)&gt;&gt;
 
 You turn away to retrieve the guest&#39;s drink and then feel a hard pinch on your rear end. Even through the skirt was in the way it still hurt like hell.
 
@@ -3576,7 +3576,7 @@ The guest is staring at you with the barest hint of alarm.
 &lt;&lt;chooseOption &quot;Appologise.&quot;&gt;&gt;
 You swallow and say. &lt;&lt;= $player.speak(&quot;Sorry sir. You startled me is all.&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;Not a problem.&quot;)&gt;&gt; The person smiles smugly. &lt;&lt;= Character.speakAnonymous(&quot;Now fetch my drink like a good girl.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Not a problem.&quot;, &quot;OrangeRed&quot;)&gt;&gt; The person smiles smugly. &lt;&lt;= Character.speakAnonymous(&quot;Now fetch my drink like a good girl.&quot;, &quot;OrangeRed&quot;)&gt;&gt;
 
 You receive another quick slap on the butt to send you on your way.
 
@@ -3592,7 +3592,7 @@ You stare at $wife.name for a moment and simply turn around and walk away. You s
 [[Back to serving|mansionCPartyServing01]]
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="mansionCPartyCage01" tags="event" position="850,1350" size="100,100">$caterer.name pushes forward a fresh tray for you to collect.
 
-&lt;&lt;= Character.speakAnonymous(&quot;Come on girl.&quot;)&gt;&gt;
+&lt;&lt;= $caterer.speak(&quot;Come on girl.&quot;)&gt;&gt;
 
 You lean forward to grab it and your hips bump against the counter. You gasp as the plastic cage is pushed into your crotch reminding you of your current situation down there. It gets shifted into an uncomfortable position.
 
@@ -3618,25 +3618,25 @@ You blush and feel an uncomfortable twitch in your loins, reminding you again of
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="109" name="mansionCPartySocialListen01" tags="event" position="1100,1350" size="100,100">Guests are taking items from your tray as you move through the crowd. They are pretty much ignoring the fact you are standing there as they carry on their conversations. One in particular gets your interest.
 
-&lt;&lt;= Character.speakAnonymous(&quot;Have you seen the latest reports on PharmaTech&#39;s stock?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Have you seen the latest reports on PharmaTech&#39;s stock?&quot;, &quot;DarkMagenta&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Yes, it seems their stock keeps going up every since the borders were opened. It seems their body treatments are particularly popular amongst the wealthy of other countries.&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn&#39;t even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She&#39;s much better at following instructions now.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;The tailored effects are quite impressive. I volunteered one of my servants to test their skin softening treatments. Poor thing had some pock marks on her back and chest she hadn&#39;t even noticed before. She was reluctant to go but as soon as she returned I could see the improvements in her appearance. The mental side effects have also been beneficial to her overall attitude as a servant. She&#39;s much better at following instructions now.&quot;, &quot;DarkMagenta&quot;)&gt;&gt;
 
 &lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="110" name="mansionCPartySocialListen02" tags="" position="1225,1350" size="100,100">A guest gestures for you to bring your tray over. You approach and they start examining the hors d&#39;oeuvres while continuing their conversation.
 
-&lt;&lt;= Character.speakAnonymous(&quot;Did you hear the news about $suitor.name?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Did you hear the news about $suitor.name?&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;No, what happened?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;No, what happened?&quot;, &quot;Tomato&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;It seems he&#39;s dismissed another servant.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;It seems he&#39;s dismissed another servant.&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;How long did this one last? 2 weeks?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;How long did this one last? 2 weeks?&quot;, &quot;Tomato&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Not even that. At the rate he goes through stock the whole country will run out and will have to start pulling them from the labour camps.&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
 Both of them start laughing, though you&#39;re not sure why it&#39;s funny.
 
@@ -3644,27 +3644,27 @@ Both of them start laughing, though you&#39;re not sure why it&#39;s funny.
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="111" name="mansionCPartySocialListen03" tags="" position="100,1475" size="100,100">You&#39;re picking up some empty glasses from an end table when you overhear some of the guests talking from around the corner.
 
-&lt;&lt;= Character.speakAnonymous(&quot;I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It&#39;s amazing how such a bright mind can have such a wild side.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;I was talking to our host about their daughter earlier. Of course she only talked about her highs marks in her studies. There was no talk of her party habits though. It&#39;s amazing how such a bright mind can have such a wild side.&quot;, &quot;Tomato&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;Yes, did you hear she&#39;s been brought back home by security several times since she got back into town.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Yes, did you hear she&#39;s been brought back home by security several times since she got back into town.&quot;, &quot;Crimson&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;She definitely likes blowing off steam after being cooped up here all the time on her own. It&#39;s a bit sad really.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;She definitely likes blowing off steam after being cooped up here all the time on her own. It&#39;s a bit sad really.&quot;, &quot;Tomato&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;The emergency response units would say that&#39;s putting it mildly.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;The emergency response units would say that&#39;s putting it mildly.&quot;, &quot;Crimson&quot;)&gt;&gt;
 
 &lt;&lt;= $eventInfo.addPoint(25)&gt;&gt;
 
 [[Back to serving|mansionCPartyServing01]]</tw-passagedata><tw-passagedata pid="112" name="mansionCPartySocialListen04" tags="" position="225,1475" size="100,100">You go to one of the alcoves and are collecting some of the discarded food and rubbish. These don&#39;t really seem to care much about what they&#39;re eating and you find plenty of half eaten food. While you are busy you hear some voices from around a corner.
 
-&lt;&lt;= Character.speakAnonymous(&quot;Have you seen $owner.name&#39;s latest acquisition?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Have you seen $owner.name&#39;s latest acquisition?&quot;, &quot;OrangeRed&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;Hm, I most certainly have. $wife.name has already been putting some work into her. She already created quite the beauty. Watching the way that maid&#39;s skirt bounces on that cute ass is definitely the highlight of my night so far&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Hm, I most certainly have. $wife.name has already been putting some work into her. She already created quite the beauty. Watching the way that maid&#39;s skirt bounces on that cute ass is definitely the highlight of my night so far&quot;, &quot;Maroon&quot;)&gt;&gt;
 
 Your cheeks flush red as you realise, they are talking about you. Fortunately, they don&#39;t seem to know you are there so you do your best to keep it that way.
 
-&lt;&lt;= Character.speakAnonymous(&quot;How long do you think it will take before she becomes the focal point of these parties?&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;How long do you think it will take before she becomes the focal point of these parties?&quot;, &quot;OrangeRed&quot;)&gt;&gt;
 
-&lt;&lt;= Character.speakAnonymous(&quot;Knowing how quickly $wife.name works not long at all.&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Knowing how quickly $wife.name works not long at all.&quot;, &quot;Maroon&quot;)&gt;&gt;
 
 //CLANG!//
 
@@ -3833,7 +3833,6 @@ Drinks all around
 [[daughterDateFinale01]]</tw-passagedata><tw-passagedata pid="123" name="daughterDateFinale01" tags="" position="350,1600" size="100,100">[[daughterDateFinish01]]</tw-passagedata><tw-passagedata pid="124" name="daughterDateFinish01" tags="" position="475,1600" size="100,100">Date stuff happens
 
 Date ending is variable &quot;date&quot; type ending
-First one will always end in a drunk kiss
 
 &lt;&lt;if $daughterDateIntro is true&gt;&gt;
 	[[daughterPath04IntroDate06]]
@@ -4643,8 +4642,7 @@ State.variables.daughter.schedule.addPoint(&quot;Pool&quot;, {hour: 11, minute:0
 State.variables.daughter.schedule.addPoint(&quot;FreeRoam&quot;, {hour: 12, minute:0}, {hour: 13, minute: 0});
 State.variables.daughter.schedule.addPoint(&quot;Garden&quot;, {hour: 13, minute:0}, {hour: 15, minute: 0});
 State.variables.daughter.schedule.addPoint(&quot;DaughterBdRm&quot;, {hour: 15, minute:0}, {hour: 18, minute: 0});
-State.variables.daughter.schedule.addPoint(&quot;Foyer&quot;, {hour: 18, minute:0}, {hour: 19, minute: 0});
-State.variables.daughter.schedule.addPoint(&quot;Void&quot;, {hour: 19, minute:0}, {hour: 6, minute: 0});
+State.variables.daughter.schedule.addPoint(&quot;Void&quot;, {hour: 18, minute:0}, {hour: 6, minute: 0});
 
 State.variables.son = new NPC({
 	name: &quot;Mr Sono&quot;, 
@@ -5764,7 +5762,7 @@ State.variables.minorNPC = [];
 		&quot;UpperHall&quot;
 	]
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="165" name="StoryInit" tags="nodebug init" position="600,2100" size="100,100">&lt;&lt;set $version to &quot;V0.1.4&quot;&gt;&gt;
-&lt;&lt;set $debug to true&gt;&gt;
+&lt;&lt;set $debug to false&gt;&gt;
 &lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
 
 &lt;&lt;set $lastTime to {abs: 0, rel: 0, tp: 0}&gt;&gt;
