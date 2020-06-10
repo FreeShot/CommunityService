@@ -3110,7 +3110,9 @@ $wife.name stands up angrily. &lt;&lt;= $wife.speak(&quot;Excuse me?&quot;)&gt;&
 
 &lt;&lt;= $wife.speak(&quot;No, servant, I&#39;m not crazy and you&#39;d better watch your tone. You&#39;re already walking on thin ice and don&#39;t think I haven&#39;t noticed you not addressing me as $wife.title this entire time.&quot;)&gt;&gt;
 
-[[Back off|mansionCPartyIntro18]]
+&lt;&lt;link &quot;Back off&quot; &quot;mansionCPartyIntro18&quot;&gt;&gt;
+&lt;&lt;= $player.boldness += 5&gt;&gt;
+&lt;&lt;/link&gt;&gt;
 &lt;&lt;default&gt;&gt; or [[Back off|mansionCPartyIntro18]]
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="mansionCPartyIntro18" tags="event" position="225,1100" size="100,100">&lt;&lt;= $player.speak(&quot;Sorry. It&#39;s just that it realy hurts.&quot;)&gt;&gt; You shrink back a little and look away from her.
 
@@ -3158,6 +3160,7 @@ You turn and look in one of the full length mirror. The cute gir you saw earlier
 [img[setup.ImagePath + &quot;items/wearables/dress/maid_twirl_01.gif&quot;]]
 
 As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
+&lt;&lt;= $player.femininity += 1&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Well? Thoughts? I won&#39;t ask for your opinion much so make the most of it.&quot;)&gt;&gt;
@@ -3166,14 +3169,14 @@ As you spin around, the skirt and apron do a cute little twirl with you. $wife.n
 &lt;&lt;= $player.speak(&quot;It&#39;s fine, I guess... $wife.title.&quot;)&gt;&gt;
 
 She seems happy with that response.
-
+&lt;&lt;= $player.femininity += 1&gt;&gt;
 &lt;&lt;option &quot;Get me out of this stuff.&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;If I didn&#39;t have to be doing this, I wouldn&#39;t.&quot;)&gt;&gt;
 
 &lt;&lt;= $wife.speak(&quot;Wouldn&#39;t what?&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;Wouldn&#39;t, $wife.title&quot;)&gt;&gt;
-
+&lt;&lt;= $player.femininity -= 1&gt;&gt;
 &lt;&lt;end&gt;&gt;&lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Better. Oh, one more thing.&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro20&quot;&gt;&gt;
 &lt;&lt;= $player.raiseVoice({tmp:100, abs:1})&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Stylised maid outfit&quot;), 1, true)&gt;&gt;
@@ -3200,7 +3203,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 
 &lt;&lt;option &quot;Submissively.&quot;&gt;&gt;
 You grab your mouth and throat in shock.
-
+&lt;&lt;= $player.submission += 1&gt;&gt;
 &lt;&lt;end&gt;&gt;
 &lt;&lt;link &quot;&lt;&lt;= $wife.speak(&#39;Now, about your name...&#39;)&gt;&gt;&quot; &quot;mansionCPartyIntro21&quot;&gt;&gt;
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Black choker&quot;), 1, true)&gt;&gt;
@@ -3282,7 +3285,7 @@ He demonstrates for you and then hands you the tray back. You hold it with one h
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;What a jerk&lt;/i&gt;&quot;)&gt;&gt;
 
 &lt;&lt;= $caterer.speak(&quot;You still need the other hand behind your back though.&quot;)&gt;&gt;
-
+&lt;&lt;= $player.levelUp(&#39;serving&#39;, 1)&gt;&gt;
 &lt;&lt;end&gt;&gt;
 [[Continue practicing|mansionCPartyIntro25]]
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="mansionCPartyIntro25" tags="event" position="1100,1100" size="100,100">&lt;&lt;= $caterer.speak(&quot;I&#39;ll load you up with something that won&#39;t break and you can practice for a while.&quot;)&gt;&gt;
@@ -3315,7 +3318,7 @@ After the lesson, he has you do some basic tidy work while he fininshes his prep
 &lt;&lt;= $player.speak(&quot;Um, thank you $daughter.title.&quot;)&gt;&gt;
 
 $daughter.name walks up to you and grabs you by the waist to check you out. She leans in to wisper in your ears.
-
+&lt;&lt;= $player.submission += 1&gt;&gt;
 &lt;&lt;option &quot;Get snarky.&quot;&gt;&gt;
 &lt;&lt;= $player.speak(&quot;Oh please, if I didn&#39;t have to do this, I wouldn&#39;t be.&quot;)&gt;&gt;
 
@@ -3326,7 +3329,7 @@ You start to bristle a bit but it reminds you of your place. $daughter.name star
 &lt;&lt;= $daughter.speak(&quot;It&#39;s ok. I kind of like it.&quot;)&gt;&gt;
 
 $daughter.name walks up to you leans in to whisper in your ears.
-
+&lt;&lt;= $player.boldness += 1&gt;&gt;
 &lt;&lt;end&gt;&gt;
 &lt;&lt;= $daughter.speak(&quot;You can call me $daughter.name. Just when it&#39;s us girls though. Ok $player.femName?&quot;)&gt;&gt;
 
@@ -3382,6 +3385,7 @@ You wipe the cage clean with some tissues and then remove the wig and make-up. Y
 
 &lt;&lt;link &quot;Sleep&quot; &quot;sleep&quot;&gt;&gt;
 &lt;&lt;= $player.unequip(&quot;All&quot;, [&quot;toy-front&quot;])&gt;&gt;&lt;&lt;= $player.inv.removeTmp(true)&gt;&gt;
+&lt;&lt;= $player.femininity += 1&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="mansionCPartyIntro32" tags="event" position="725,1225" size="100,100">You wake up with a jolt. The early morning light is only barely visible through your window so you only have the dim light of your lamp but with thankfully there is no one looming over the top of you. You pull off your sheets and see your member is still there, still locked in the pink cage.
 
 &lt;&lt;= $player.speak(&quot;Just a dream.&quot;)&gt;&gt;

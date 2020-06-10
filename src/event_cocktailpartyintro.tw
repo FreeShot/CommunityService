@@ -437,7 +437,9 @@ $wife.name stands up angrily. <<= $wife.speak("Excuse me?")>>
 
 <<= $wife.speak("No, servant, I'm not crazy and you'd better watch your tone. You're already walking on thin ice and don't think I haven't noticed you not addressing me as $wife.title this entire time.")>>
 
-[[Back off|mansionCPartyIntro18]]
+<<link "Back off" "mansionCPartyIntro18">>
+<<= $player.boldness += 5>>
+<</link>>
 <<default>> or [[Back off|mansionCPartyIntro18]]
 <</chooseOption>>
 
@@ -491,6 +493,7 @@ You turn and look in one of the full length mirror. The cute gir you saw earlier
 [img[setup.ImagePath + "items/wearables/dress/maid_twirl_01.gif"]]
 
 As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
+<<= $player.femininity += 1>>
 <</chooseOption>>
 
 <<= $wife.speak("Well? Thoughts? I won't ask for your opinion much so make the most of it.")>>
@@ -499,14 +502,14 @@ As you spin around, the skirt and apron do a cute little twirl with you. $wife.n
 <<= $player.speak("It's fine, I guess... $wife.title.")>>
 
 She seems happy with that response.
-
+<<= $player.femininity += 1>>
 <<option "Get me out of this stuff.">>
 <<= $player.speak("If I didn't have to be doing this, I wouldn't.")>>
 
 <<= $wife.speak("Wouldn't what?")>>
 
 <<= $player.speak("Wouldn't, $wife.title")>>
-
+<<= $player.femininity -= 1>>
 <<end>><<link "<<= $wife.speak('Better. Oh, one more thing.')>>" "mansionCPartyIntro20">>
 <<= $player.raiseVoice({tmp:100, abs:1})>>
 <<= $player.inv.addItem($shop.getAsTemp("Stylised maid outfit"), 1, true)>>
@@ -536,7 +539,7 @@ It smells like sour oranges, and, knowing there is no way around it, you down th
 
 <<option "Submissively.">>
 You grab your mouth and throat in shock.
-
+<<= $player.submission += 1>>
 <<end>>
 <<link "<<= $wife.speak('Now, about your name...')>>" "mansionCPartyIntro21">>
 <<= $player.inv.addItem($shop.getAsTemp("Black choker"), 1, true)>>
@@ -630,7 +633,7 @@ He demonstrates for you and then hands you the tray back. You hold it with one h
 <<= $player.speak("<i>What a jerk</i>")>>
 
 <<= $caterer.speak("You still need the other hand behind your back though.")>>
-
+<<= $player.levelUp('serving', 1)>>
 <<end>>
 [[Continue practicing|mansionCPartyIntro25]]
 <</chooseOption>>
@@ -669,7 +672,7 @@ You're busy polishing the silver wear when $daughter.name comes into the kitchen
 <<= $player.speak("Um, thank you $daughter.title.")>>
 
 $daughter.name walks up to you and grabs you by the waist to check you out. She leans in to wisper in your ears.
-
+<<= $player.submission += 1>>
 <<option "Get snarky.">>
 <<= $player.speak("Oh please, if I didn't have to do this, I wouldn't be.")>>
 
@@ -680,7 +683,7 @@ You start to bristle a bit but it reminds you of your place. $daughter.name star
 <<= $daughter.speak("It's ok. I kind of like it.")>>
 
 $daughter.name walks up to you leans in to whisper in your ears.
-
+<<= $player.boldness += 1>>
 <<end>>
 <<= $daughter.speak("You can call me $daughter.name. Just when it's us girls though. Ok $player.femName?")>>
 
@@ -751,6 +754,7 @@ You wipe the cage clean with some tissues and then remove the wig and make-up. Y
 
 <<link "Sleep" "sleep">>
 <<= $player.unequip("All", ["toy-front"])>><<= $player.inv.removeTmp(true)>>
+<<= $player.femininity += 1>>
 <</link>>
 
 ::mansionCPartyIntro32 [event]

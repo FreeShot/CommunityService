@@ -1,5 +1,5 @@
 ::StoryInit [nodebug init]
-<<set $version to "V0.1.4">>
+<<set $version to "V0.2.0">>
 <<set $debug to false>>
 <<set $firstTime to recall('firstTime', true)>><<= memorize('firstTime', false)>>
 
