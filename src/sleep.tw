@@ -21,6 +21,7 @@ You feel something warm and firm press against the your womanhood before the fig
 <</if>>
 
 <<set $player.voice.current = $player.voice.absolute>>
+<<= $player.increaseArousal(5)>>
 
 ::wakeUp [sleep]
 
@@ -34,16 +35,27 @@ The CUFF alarm goes off at 6 am sharp and you quickly slap your hand to your wri
 <<else>>
 You head to your small bathroom and sit down to relieve yourself. After that you jump in the shower and quickly wash yourself before getting out and shaving. Once you're dressed you head out to the kitchen and start getting things ready for breakfast.<br>
 <br>
-$butler.name is already in there to help setup. Fortunately the family isn't particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.<br>
-<br>
-[img[setup.ImagePath + "events/chores/general_breakfast/bfast_continental01.jpg"]]<br>
-<br>
-$owner.name is first to the table as usual. $butler.name helps you bring out the coffee and tea. Over the next hour or two everyone in the estate spends time in the dining room eating and chatting about what they have planned for the day. You attend to anything unique they request until everyone is satisfied and leaves to go about their day. $butler.name leaves with $owner.name so you are alone to do the clean up.<br>
-<br>
-Once everything is tidy you grab a bite to eat and go back to your room.<br>
-<br>
-[[Return to your room.|PlayerBdRm]]
+<<nobr>>
+	<<switch random(4)>>
+		<<case 1>>
+			<<include "breakfastPJs01">>
+		<<case 2>>
+			<<include "breakfastPJs02">>
+		<<case 3>>
+			<<include "ownerBreakfastBossy01">>
+		<<default>>
+			$butler.name is already in there to help setup. Fortunately the family isn't particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.<br>
+			<br>
+			[img[setup.ImagePath + "events/chores/general_breakfast/bfast_continental01.jpg"]]<br>
+			<br>
+			$owner.name is first to the table as usual. $butler.name helps you bring out the coffee and tea. Over the next hour or two everyone in the estate spends time in the dining room eating and chatting about what they have planned for the day. You attend to anything unique they request until everyone is satisfied and leaves to go about their day. $butler.name leaves with $owner.name so you are alone to do the clean up.<br>
+			<br>
+			Once everything is tidy you grab a bite to eat and go back to your room.<br>
+			<br>
+			[[Return to your room.|PlayerBdRm]]
+	<</switch>>
 <<= $time.addTime({hour: 2, minute:0})>>
+<</nobr>>
 <</if>>
 <</nobr>>
 

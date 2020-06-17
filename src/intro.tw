@@ -73,7 +73,11 @@ The box is still closed.
 
 <<= $player.speak("<i>$player.name, you idiot!</i> He didn't say.")>>
 
-<<= Character.speakAnonymous("So you're in the habit of taking strange packages from people you don't know? Please follow us son.", "GoldenRod")>>
+<<= Character.speakAnonymous("So you're in the habit of taking strange packages from people you don't know?", "GoldenRod")>>
+
+You stand there, panicking and unsure of how to reposnd.
+
+<<= Character.speakAnonymous("Please follow us son.", "GoldenRod")>>
 
 <<chooseOption "Follow the guard">>
 <<goto "Intro4">>
@@ -84,9 +88,9 @@ You start running and try to make a break for it, but the guards are ready for i
 <</chooseOption>>
 
 ::Intro4 [intro tutorial]
-The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive fine.
+The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive 23456cr fine!
 
-There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You're on your own.
+You don't know the currency exchange rate but you know you definitely can't afford it. There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You're on your own.
 
 You are currently in a meeting room with your Sentencing Officer waiting to find out what they will do with you. A tall dominering man who looks in his fifties. He's the only one you're allowed to talk with at this point since the trial is already over.
 

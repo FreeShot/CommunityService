@@ -119,16 +119,24 @@ class Player extends Character {
 			title: "servant",
 			femName: "Alice",
 			femininity: 0,
+			appearance: 0,
+			submission: 0,
+			boldness: 0,
 			voice: {
 				current: 0,
 				absolute: 0
 			},
 			stamina: {
-				current: 10,
-				max: 10
+				current: 100,
+				max: 100
+			},
+			arousal: {
+				current: 0,
+				max: 100
 			},
 			currRoom: "PlayerBdRm",
 			choresLate: 0,
+			debt: 23456,
 			money: 0,
 			bodyPart: {
 				"hairColor": 0,
@@ -143,7 +151,8 @@ class Player extends Character {
 				serving: {level:1, xp: 0},
 				cleaning: {level:1, xp: 0},
 				fitness: {level:1, xp: 0}
-			}
+			},
+			weeksFailed: 0
 		}, config));
 	}
 
@@ -232,6 +241,21 @@ class Player extends Character {
 	// Uses some of the stamina
 	useStamina(amnt) {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
+	}
+
+	// Returns the arousal bar for the player
+	getArousalBar() {
+		return `<<scale ${this.arousal.current} ${0} ${this.arousal.max}>><</scale>>`
+	}
+
+	// Adds some of the arousal to the player
+	increaseArousal(amnt) {
+		this.arousal.current = Math.min(this.arousal.current + (amnt || this.arousal.max), this.arousal.max);
+	}
+
+	// Uses some of the arousal
+	decreaseArousal(amnt) {
+		this.arousal.current = Math.max(this.arousal.current - amnt, 0);
 	}
 
 	// Returns the description of the bodypart
