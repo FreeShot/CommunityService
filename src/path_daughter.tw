@@ -368,17 +368,15 @@ The drive through the streets is so calming though. There's something about not 
 :: daughterPath04IntroDate06 []
 <!-- happens the first time the player returns from a daughter date -->
 
-You and $daughter.name stumble in through the main door and into the foyer. Everyone else is already asleep so there are only night lights on. As you walk her towards the stairs you both bump into one of the tables and it bangs agsint the wall.
+You and $daughter.name come in through the main door and into the foyer. Everyone else is already asleep so there are only a few dim lights filtering from in from outside. As you walk her towards the stairs you both bump into one of the tables and it bangs against the wall.
 
-$daughter.name  presses a finger to her mouth. <<= $daughter.speak("Shhhhhhhh.")>>
+$daughter.name presses a finger to her mouth. <<= $daughter.speak("Shhhhhhhh.")>>
 
-<<= $player.speak("You shhhhhhhh.")>> There's a bit more of a slur to your voice than you would like.
+<<= $player.speak("You shhhhhhhh.")>>
 
-You both manage to steer to the stair case leading up stairs.
+You both grin playfully as you steer through the darkness and $daughter.name says. <<= $daughter.speak("Don't forget that you don't get to tell me what to do. No matter how cute you are.")>> She boops you on the nose.
 
-$daughter.name stops you. <<= $daughter.speak("Heeeey. You don't get to tell me what to do. No matter how cute you are.")>>. She boops you on the nose.
-
-Her eyes are lull with weariness and a hefty amount of liquor.
+You both stand there for a moment in silence.
 
  <<= $daughter.speak("It's nice... having a friend in the house to hang out with.")>>
 
@@ -386,18 +384,24 @@ Her eyes are lull with weariness and a hefty amount of liquor.
 
  <<= $daughter.speak("Aaaaww. You're sweet $player.femName.")>>
 
-Without warning $daughter.name leans forward and presses her mouth to yours. With the fog in your mind you don't think twice and embrace the kiss. Her soft lips part slightly and you mirror the action, as if you are both in perfect synch. One of her hands makes its way around your waist and grabs your rear. The other has already found its way to your chest and is massaging it gently. Despite $daughter.name's wandering hands the sweet and soft kiss feels far more chaste than a drunken make out session would ususally be.
+Without warning $daughter.name leans forward and presses her mouth to yours. You body reacts on it's own you and embrace the kiss without realising. Her soft lips part slightly and you mirror the action, as if you are both in perfect synch. One of her hands makes its way around your waist and grabs your rear. The other has already found its way to your chest and is massaging it gently. Despite $daughter.name's wandering hands the sweet and soft kiss feels far more chaste than you were expecting it to be.
 
-$daughter.name pulls away and smiles. <<= $daughter.speak("Night $player.femName.")>>. With that she turns and quickly walks up the stairs with a lot more ease than you would expect given how much she's had to drink.
+$daughter.name pulls away and smiles. <<= $daughter.speak("Night $player.femName.")>>. With that she turns and quickly walks up the stairs.
 
-Not thinking too much on it you turn and head back to your room and crash on the bed before you know it.
+Not thinking too much on it you turn and head back to your room.
 
 [[sleep]]
 
-<<= $time.setDate({day:0, hour: 2, minute:0})>>
+<<= $time.setDate({day:0, hour: 23, minute:0})>>
+<<= $player.increaseArousal(50)>>
 
 :: daughterPath04IntroDate07 []
 <!-- happens the first time the player wakes up after a Daughter date -->
+
+
+<<set $player.rest(50)>>
+<<= $mansion.resetChores()>>
+
 
 [[PlayerBdRm]]
 
@@ -409,7 +413,7 @@ Quickly scanning through your credit history you see a huge number of charges la
 
 She made you pay for the whole thing.
 
-> on talking to *d* after this (on time only)
+> on talking to *d* after this (one time only)
 
 "You made me pay for everything last night!"
 
@@ -446,37 +450,12 @@ D path stays open
 
 "I guess it was kind of fun. It was nice to get out of here too."
 
-"Awesome!" *d* runs up and gives you a warm hug. You just stand there like a stunned animal. Her hips press against you, reminding you of the plastic still tight around your cock.
+"Awesome!" d runs up and gives you a warm hug. You just stand there like a stunned animal. Her hips press against you, reminding you of the plastic still tight around your cock.
 
 "Well just let me know we you want to head out again. Mother will probably only allow me to go out with you on a Friday and Saturday so just find me then."
 
 She bounces away like a ball of joy leaving you to your duties.
 
-Either way
-> see *w* for the key
+::daughterPath04IntroDate000
 
-You find *w* and ask her for the key. She pulls it off of her necklace and hands it to you.
-
-"You hold onto everything for now."
-
-"Thanks *w*."
-
-"I suspect you'll need it again. Given that kiss you shared with my daughter last night I doubt *o* will leave you two alone without it."
-
-"But… um.. It was just."
-
-"I know what it was. You were making out with my daughter." She has her arms crossed and it's clear she's going to take no excuse.
-
-In head - "Fuck."
-
-"Well if I'm going to keep this quiet I suggest we do something about your pent up urges." She glances at your crotch for a moment. "I'm sending you to spend some time with a friend of mine. She'll help relieve any pent up frustration."
-
-She's sending you to have sex with someone?
-
-"I'll make a weekly appointment starting tomorrow. Be sure you don't miss it or there will be severe consequences."
-
-"Yes *w*."
-
-With that she leaves you alone so you can go unlock yourself.
-
-Just leave the cage as is for now. They can go to one of the wardrobes or their room to remove it.
+> see w for the key

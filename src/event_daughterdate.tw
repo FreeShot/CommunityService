@@ -1,14 +1,17 @@
 :: daughterDateSetup01 [event eventStart]
 <<set $daughterDateStart to true>>
+<<set $daughterDateDrinking to 0>>
 
 <<= $daughter.speak("So what would you like to do? We can…")>>
 
-<<link '<<= $daughter.speak("Go to the movies.")>>' "daughterDateActivity01">>
+<<link '<<= $daughter.speak("Go to the movies.")>>' "daughterDateCinema01">>
 <<set $flags.daughterDateEvent to 0>>
 <</link>>
-<<link '<<= $daughter.speak("Go to a club.")>>' "daughterDateActivity01">>
+<!--
+<<link '<<= $daughter.speak("Go dancing at a bar.")>>' "daughterDateDancing01">>
 <<set $flags.daughterDateEvent to 1>>
 <</link>>
+-->
 
 :: daughterDateCinema01 []
 
@@ -22,16 +25,32 @@ You are pretty out of touch with anything going on outside of your role as a ser
 
 [[Go to the movies|daughterDateActivity01]]
 
+:: daughterDateDancing01
+
+<<= $daughter.speak("Sounds like fun. I know just the place.")>>
+
+You have no idea where to go in the city so just end up following $daughter.name's lead.
+
+<<= $player.speak("What sort of club is it?")>>
+
+<<= $daughter.speak("Don't worry, you'll see.")>>
+
+[[Go to the club|daughterDateActivity01]]
+
 :: daughterDateActivity01 []
 <!-- todo: add interactions in the car -->
 
 A car is waiting downstairs and after getting in $daughter.name tells them where you are going. Both of you are int he back seat and a privacy screen keeps you separated from the driver. You look out of the corner of your eye and watch $daughter.name staring at the city as it passes by.
 
-<<if $flags.daughterDateEvent is 0>>
 [[Arrive at you destination|daughterDateCinema02]]
+
+<!--
+<<if $flags.daughterDateEvent is 0>>
+
 <<elseif $flags.daughterDateEvent is 1>>
 [[Arrive at you destination|daughterDateClub02]]
 <</if>>
+-->
 <<set $time.addTime({day:0, hour: 0, minute:30})>>
 
 :: daughterDateCinema02 []
@@ -41,7 +60,11 @@ The car drops you off on a back street and you follow $daughter.name down an all
 
 [img[setup.ImagePath + "events/daughterdate/theater_entrance_01.jpg"]]
 
-$daughter.name goes over and gets the tickets. You start walking inside and spy the confection stand nearby.
+$daughter.name goes over and gets the tickets and comes back.
+
+<<= $daughter.speak("They only do double features here but the seats are really comfy so it's like watching a movie at home.")>>
+
+You start following her inside and spy the confection stand nearby.
 
 <<chooseOption "Ask to get some snacks.">>
 <<= $player.speak("Should we get something.")>> You point $daughter.name at the food stand.
@@ -104,21 +127,22 @@ Your mind struggles with what you want to do for the next hour or so as you try 
 
 :: daughterDateCinemaHorror02
 
-It continues that way until the big finale and then the credit finally roll. You pull yourself away from $daughter.name, blushing slightly as she stands and smiles at you.
+It continues that way until the big finale and then the credits finally roll. You pull yourself away from $daughter.name, blushing slightly as she stands and smiles at you.
 
-<<link '<<= $daughter.speak("Lets go get a drink.")>>' "daughterDateBar01">>
-<<set $time.addTime({day:0, hour: 2, minute: 0})>>
+<<link '<<= $daughter.speak("Well that was fun but we should probably head back.")>>' "daughterDateFinale01">>
+<<set $time.addTime({day:0, hour: 5, minute: 0})>>
 <</link>>
 
-:: daughterDateClub02
+:: daughterDateDancing02
 
 [img[setup.ImagePath + "events/daughterdate/bestdanceever.gif"]]
 
 This happens and everyone is impressed. (placeholders can be fun too)
 <<set $time.addTime({day:0, hour: 2, minute: 0})>>
-[[daughterDateBar01]]
+Some time later you both decide to [[call it a night.|daughterDateFinale01]]
 
-:: daughterDateBar01
+:: daughterDateBar02
+<!-- todo: add random events (friends, flirting, etc) -->
 
 You follow $daughter.name and eventually come to another hidden away venue. The small bar has a pretty good atmosphere with plenty of conversations going but not so loud you can't hear the person next to you. $daughter.name finds a booth to the side and once you sit down it could almost be a private bar with how it separates you both from the rest of the patrons. The dim but not dark lighting creates a very mellow atmosphere.
 
@@ -126,23 +150,123 @@ You follow $daughter.name and eventually come to another hidden away venue. The 
 
 <<= $daughter.speak("So what do you want to drink?")>>
 
-Options: 
+<<chooseOption "No drinking for you both.">>
+<<= $player.speak("I think we should take it easy don't you? If we end drinking it might get me into trouble with your mum right?")>>
 
-No drinking for you both
-Don't drink but don't stop her
-Drinks all around
+$daughter.name pouts and gets an annoyed look on her face. <<= $daughter.speak("Stop being such a wuss. Is poor little baby scared of big bad $wife.name?")>>
 
-[[daughterDateFinale01]]
+You're never quite sure how to take $daughter.name when she talks to you like this.
+
+[[Fumble for a response|daughterDateBarSober01]]
+<<option "Don't drink but don't stop her.">>
+<<= $player.speak("Just something non-alcoholic for me.")>>
+
+$daughter.name pouts. <<= $daughter.speak("But I wanted you to have some fun with me.")>>
+
+Her hand runs along the hem of her skirt of she says that as if to draw your attention to it. Your mind races. It would only take one wrong move for it to give you a view of what's hidden underneath. Your cage twitches and you shift in your seat uncomfortably.
+
+<<link "Before you can can change your mind." "daughterDateBarDaughterDrunk01">>
+<<set $daughterDateDrinking to 1>>
+<</link>>
+<<option "Drinks all around.">>
+
+<<link "Party. Is. On." "daughterDateBarBothDrunk01">>
+<<set $daughterDateDrinking to 2>>
+<</link>>
+<<end>>
+<</chooseOption>>
+
+:: daughterDateBarBothDrunk01
+<!-- todo: increase arousal high. debt goes up instead of down (random amount) -->
+
+
+
+[[Get krunk!|daughterDateBar03]]
+
+:: daughterDateBarDaughterDrunk01
+<!-- todo: increase arousal medium. you keep d under control. debt doesn't change -->
+
+One of the servers comes over and $daughter.name pulls her hand away. <<= $daughter.speak("Oh well. Your loss.")>>
+
+She turns away and orders some drinks and food.
+
+[[Enjoy the night |daughterDateBar03]]
+
+:: daughterDateBarSober01
+
+<!-- todo: increase arousal low. debt goes down (set amount)-->>
+
+You aren't sure how to respond to that. You're here to stop $daughter.name from getting into trouble but you can't exactly tell her what to so.
+
+<<= $player.speak("But ah. I thought you might...")>>
+
+<<= $daughter.speak("Hahahaha!")>> $daughter.name's facade cracks and she burst into laughter.
+
+You blush at being the butt of another joke you don't get and look around as a few people stare. $daughter.name stops laughing and wipes away a tear.
+
+<<= $daughter.speak("Ah, you should see your face.")>> She reaches out and pinch your cheek playfully until you bat it away. <<= $daughter.speak("I'm just messing with you.")>>
+
+A server comes over and asks for you orders.
+
+<<= $daughter.speak("Two Blue Cow energy drinks please and can we get a share plate too?")>> $daughter.name scans her PDA to pay for everything and the server goes to get your order.
+
+[[Enjoy the atmosphere.|daughterDateBar03]]
+
+:: daughterDateBar03
+
+As the night goes on you both sit chatting and generally having a good time. It's nice to be out of the estate and eventually you relax enough to forget about your situation and just enjoy $daughter.name company. You both still don't have a lot in common but $daughter.name seems to be good at just engaging you.
+
+<<= $daughter.speak("Oh! I love this song!")>>
+
+$daughter.name stands up and grabs your arm.
+
+<<chooseOption "Go dancing.">>
+You let $daughter.name pull you up onto the dancing floor. 
+
+[[Get your groove on.|daughterDateBarDancing01]]
+<<option "Shake your head.">>
+You shake you head awkwardly.
+
+$daughter.name just rolls her eyes and heads over to the dance floor anyway leaving [[you alone at the table.|daughterDateBar04]]
+<<end>>
+<</chooseOption>>
+
+:: daughterDateBar04
+<!-- todo: add pictures/gifs of dancing. arousal ++ boldness -- -->
+
+$daughter.name spends the most of the rest of the night there and never seems to run out of energy.
+<<if $daughterDateDrinking >= 2>>
+You sit alone drinking your drink and enjoying the buzz of the alcohol. Time runs away from you and you aren't sure how many you've had. There are loud shout and noise at one point but you're too deep in your stupour to pay attention. 
+<<elseif $daughterDateDrinking >= 1>>
+One of the server's keeps bringing her drinks but fortunately you manage to intercept and switch around a few of them without her noticing so she doesn't get anywhere near as crazy as she normally would.
+<<else>>
+You watch her she flows around the dance floor gracefully swaying and moving to the music. She still has artelaly good time and you're surprised she can get so wild when drinking so much if she has this much fun sober.
+<</if>>
+Eventually $daughter.name has had enough so she joins you back in the booth.
+<<if $daughterDateDrinking >= 2>>
+She slumps against you and gets very close your face almost as if she's about to say something. Your head lulls a little as you turn to face her. Before any words are said she just goes back to order another round and you happily join her.
+<<elseif $daughterDateDrinking >= 1>>
+She slumps against you and gets very close your face almost as if she's about to say something. You heart starts beating faster. You can smell the alcohol on her breath but her moist lips aren't far from yours. If you just leaned forward a little.
+
+$daughter.name abruptly turns and shouts out <<= $daughter.speak("Another round bar keep!")>>
+
+She slump back against you, this time facing away. You subtley gesture to the server to make it half strength and they nod knowingly.
+<<else>>
+She scooches in close to you before putting and arm around your shoulders and resting her head against yours.
+
+<<= $daughter.speak("I think I'll resting here a little bit.")>>
+<</if>>
+Some time later you both decide to [[call it a night.|daughterDateFinale01]]
+
+:: daughterDateBarDancing01
+
+She immediately gets into a groove with you nearby and unsure what to do.
+
+Some time later you both decide to [[call it a night.|daughterDateFinale01]]
 
 :: daughterDateFinale01
 
-[[daughterDateFinish01]]
-
-:: daughterDateFinish01
-
-Date stuff happens
-
-Date ending is variable "date" type ending
+You and $daughter.name find your way to a car and eventually get back to the estate.
 
 <<if $daughterDateIntro is true>>
 	[[daughterPath04IntroDate06]]
@@ -151,3 +275,4 @@ Date ending is variable "date" type ending
 <</if>>
 
 ::daughterDateMorning01
+

@@ -16,6 +16,16 @@ Before you can speak $daughter.name shoves you down to the ground. You roll onto
 You feel something warm and firm press against the your womanhood before the figure thrusts forwards and...
 
 [[Start the next day|mansionCPartyIntro32]]
+<<elseif $daughterDateIntro is true>>
+When you get to your room you flop onto the bed. The thump makes you acutley aware of the hard plastic of the cage. You quickly roll over and pull down your pants to remove it but realise it's locked and you don't have a key. After the goodnight kiss your trapped member is straining to get a erect but the pink prison is preventing it.
+
+You reach down and fiddle with the cage for a moment in an effort to remove it. All this does is prove it is locked tight with no chance of coming off. To make things worse the jostling of the cage made the pressure even more intense as your body reacts to your trying to play with yourself.
+
+Defeated, you turn the light out and do you best to fall asleep. No position is comfotable though as your thoughts drifts back to $daughter.name, how she looked in that outfit, the kiss you shared, the sway of her hips as she walked up the stairs.
+
+It's some time before you're able to drift off but your sexy dreams provide little sanctuary.
+
+[[Start the next day|daughterPath04IntroDate07]]
 <<else>>
 [[Start the next day|wakeUp]]
 <</if>>

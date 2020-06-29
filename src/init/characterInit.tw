@@ -88,6 +88,19 @@ State.variables.butler.schedule.addPoint("Office", {hour: 18, minute: 0}, {hour:
 State.variables.butler.schedule.addPoint("FreeRoam", {hour: 20, minute:0}, {hour: 6, minute: 0});
 State.variables.butler.schedule.addPoint("Void", {hour: 22, minute: 0}, {hour: 6, minute: 0});
 
+State.variables.therapist = new NPC({
+	name: "Liv",
+	color: {
+		light: "#621708", 
+		dark: "#81412F"
+	}, 
+	title: "Dr Miller",
+	displayPos: true
+});
+State.variables.therapist.schedule.currRoom = "Void";
+//State.variables.therapist.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
+State.variables.therapist.schedule.addPoint("Void", {hour:12, minute: 30}, {hour: 8, minute:30});
+
 State.variables.cook = new NPC({
 	name: "Ivan", 
 	color: {
