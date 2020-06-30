@@ -57,6 +57,7 @@ class Mansion {
 	}
 
 	resetChores() {
+		if (this.currentEvent != "") return;
 		this.rooms.forEach(
 		    function(room) {room.resetChores()}
 		);
