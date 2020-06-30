@@ -44,7 +44,7 @@ She hands you a bottle of tonic.
 
 You down the sour smelling liquid and wince as it burns your throat.
 
-<<= $player.speak("Eh hem.")>> You clear your throat and the noise is decidely more feminine. Looks like you're $player.famName again.
+<<= $player.speak("Eh hem.")>> You clear your throat and the noise is decidely more feminine. Looks like you're $player.femName again.
 
 <<= $wife.speak("Well $player.femName. Off you go.")>>
 
