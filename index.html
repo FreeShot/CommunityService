@@ -2096,7 +2096,7 @@ class Room {
 		return this.chores.reduce((str, chore) => {
 			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
 			if (choreDo === "") return str;
-			return `${str}<li class="choreUILink">${canDoChores ? choreDo : this.getPassage(chore.name)}</li>`;
+			return `${str}<li class="choreUILink">${canDoChores || chore.done ? choreDo : this.getPassage(chore.name)}</li>`;
 		}, "");
 
 		if (this.chores.length > 0) {
@@ -6302,11 +6302,13 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;tr&gt;&lt;td cospan=&quot;2&quot;&gt;Missed chores: $player.choresLate&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
+&lt;&lt;if $flags.CUFF &gt; 2&gt;&gt;
 &lt;&lt;for _npc range npcList&gt;&gt;
 &lt;&lt;if State.variables[_npc].displayPos &amp;&amp; State.variables[_npc].schedule.currRoom !== &quot;Void&quot;&gt;&gt;
 _npc: &lt;&lt;= State.variables[_npc].schedule.estimateLoc()&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;!-- &lt;tr id=&quot;arousal&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;Arousal: &lt;&lt;= $player.getArousalBar()&gt;&gt;&lt;/td&gt;&lt;/tr&gt; --&gt;</tw-passagedata><tw-passagedata pid="191" name="CUFF" tags="noreturn mainMenu menu" position="100,2475" size="100,100">&lt;&lt;if $flags.CUFF === 1&gt;&gt;
 &lt;&lt;= Character.speakAnonymous(&quot;Cuff must be initialised by the owner.&quot;, &quot;orange&quot;)&gt;&gt;

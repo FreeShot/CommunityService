@@ -17,11 +17,13 @@
 <tr><td cospan="2">Missed chores: $player.choresLate</td></tr>
 </table>
 
+<<if $flags.CUFF > 2>>
 <<for _npc range npcList>>
 <<if State.variables[_npc].displayPos && State.variables[_npc].schedule.currRoom !== "Void">>
 _npc: <<= State.variables[_npc].schedule.estimateLoc()>><br>
 <</if>>
 <</for>>
+<</if>>
 
 <!-- <tr id="arousal"><td colspan="2">Arousal: <<= $player.getArousalBar()>></td></tr> -->
 
