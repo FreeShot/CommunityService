@@ -9,9 +9,9 @@
 		{name: "foyerSweepMop", weight: 2}, 
 		{name: "foyerDusting", weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])>>
-<<= $mansion.addChore("Hall", new Chore({
+<<= $mansion.addChore("LowerHall", new Chore({
 	name: "Clean Hall", 
 	duration: {hour: 1}, 
 	passages:[
@@ -19,7 +19,7 @@
 		{name: "hallDusting", weight: 2}, 
 		{name: "hallSweepMop", weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])>>
 <<= $mansion.addChore("UpperHall", new Chore({
 	name: "Clean Upper Hall", 
@@ -29,7 +29,7 @@
 		{name: "hallDusting", weight: 2}, 
 		{name: "hallSweepMop", weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [4])>>
 <<= $mansion.addChore("Garden", new Chore({
 	name: "Clean Garden", 
@@ -38,7 +38,7 @@
 		{name: "gardenCleaning", weight:1}, 
 		{name: "gardenSweep", weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [5])>>
 <<= $mansion.addChore("Pool", new Chore({
 	name: "Clean Pool", 
@@ -47,7 +47,7 @@
 		{name: "poolCleaning", weight:1}, 
 		{name: "poolSweep", weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [5])>>
 <<= $mansion.addChore("Kitchen", new Chore({
 	name: "Do the dishes in the kitchen",
@@ -55,7 +55,7 @@
 	passages: [
 		{name: "kitchenDishes", weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [2])>>
 <<= $mansion.addChore("Kitchen", new Chore({
 	name: "Clean the kitchen", 
@@ -64,7 +64,7 @@
 		{name: "kitchenClean", weight: 1},
 		{name: "kitchenSweepMop", weight: 1}
 	], 
-	staminaCost: 1,
+	staminaCost: 10,
 }), [2])>>
 <<= $mansion.addChore("Laundry", new Chore({
 	name: "Wash Linen in the laundry", 
@@ -72,7 +72,7 @@
 	passages:[
 		{name: "laundryLinen", weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [2])>>
 <<= $mansion.addChore("Laundry", new Chore({
 	name: "Wash Clothes in the laundry", 
@@ -80,7 +80,7 @@
 	passages:[
 		{name: "laundryClothes", weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [2])>>
 <<= $mansion.addChore("Lounge", new Chore({
 	name: "Clean Lounge", 
@@ -113,7 +113,7 @@
 		{name: "masterBdRmVacuum", weight: 2}, 
 		{name: "masterBdRmWindows", weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [3])>>
 <<= $mansion.addChore("MasterBathRm", new Chore({
 	name: "Clean Master Bathroom", 
@@ -137,7 +137,7 @@
 		{name: "officeVacuum", weight: 2}, 
 		{name: "officeWindows", weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])>>
 <<= $mansion.addChore("Gym", new Chore({
 	name: "Clean Gym", 
@@ -149,15 +149,6 @@
 	], 
 	staminaCost: 2, 
 }), [5])>>
-<<= $mansion.addChore("SonBdRm", new Chore({
-	name: "Check the door (upper hall)", 
-	duration: {minute: 5}, 
-	passages:[
-		{name: "sonBdRmCleaning", weight:1}, 
-		{name: "sonBdRmLocked", weight: 1}
-	], 
-	staminaCost: 0, 
-}), [4])>>
 <<= $mansion.addChore("PlayerBdRm", new Chore({
 	name: "Tidy your room", 
 	duration: {hour: 1}, 
@@ -165,7 +156,7 @@
 		{name: "playerBdRmCleaning", weight:1}, 
 		{name: "playerBdRmClean", weight: 1}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [1])>>
 <<= $mansion.addChore("DaughterBdRm", new Chore({
 	name: "Clean the daughter's bedroom", 
@@ -176,7 +167,7 @@
 		{name: "daughterBdRmVacuum", weight: 2}, 
 		{name: "daughterBdRmWindows", weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [4])>>
 <<= $mansion.addChore("GuestRm", new Chore({
 	name: "Clean the guest room", 
@@ -187,5 +178,5 @@
 		{name: "guestRmVacuum", weight: 2}, 
 		{name: "guestRmWindows", weight: 2}
 	], 
-	staminaCost: 1, 
+	staminaCost: 10, 
 }), [4])>>

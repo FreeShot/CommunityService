@@ -149,13 +149,30 @@ a {
 	color: var(--link-color);
 }
 
+li .chore-short a {
+	padding: 5px;
+	border: solid 0px var(--link-color);
+	color: var(--link-color);
+}
+
+!li .chore-short a {
+	border: solid 1px var(--link-color);
+	border-radius: 5px;
+	color: var(--link-color);
+	margin-top: 5px;
+}
+
+!li .short.done a {
+	border: solid 0px var(--story-text);
+	color: var(--story-text);
+}
+
 a:hover {
 	color: var(--link-hover-color);
 }
 
 img {
-	max-width: 40%;
-	max-height: 20em;
+	max-width: 100%;
 	object-fit: contain;
 	border-radius: 15px;
 	border: solid 4px var(--link-color); 
@@ -276,4 +293,11 @@ img {
 .error, .error-view > .error-toggle, .error-source {
 	background-color: red;
 	color: white;
+}
+
+@media only screen and (min-width: 600px) {
+  img {
+	max-height: 10em;
+  	max-width: 40%;
+  }
 }

@@ -5,7 +5,7 @@ class Event {
 		this.inline = false; // If true, will be included in the current passage
 		this.repeats = false;
 		this.room = "";
-		this.tags = [] // add Tags here
+		this.tags; // add Tags here
 		this.priority = 0;
 
 		Object.keys(config).forEach((pn) => this[pn] = clone(config[pn]), this);
@@ -19,18 +19,13 @@ class Event {
 			return `<<include "${this.passage}">>`;
 		} else {
 			if (!this.repeats)
-				return `<<link "${this.name}" "${this.passage}">>$mansion.removeEvent("${this.room}","${this.name}")<</link>>`;
+				return `<<link "${this.name}" "${this.passage}">><<= $mansion.removeEvent("${this.room}","${this.name}")>><</link>>`;
 			return `<<link "${this.name}" "${this.passage}">><</link>>`;
 		}
 	}
 
-	active(canSelfActivate) {
-		if ((canSelfActivate || false) && State.random() < State.variables.eventForceActive) return true;
-		return !this.tags.find((tag) => {
-			var tagTrue = tag[0] === "!";
-			var tagName = tagTrue ? tag.substr(1) : tag;
-			return (State.variables.tags[tagName] || (() => (State.variables.flags[tagName])))() === tagTrue
-		})
+	active() {
+		return window.tags.eval(this.tags.tag, this.tags.data, this.tags.expected)
 	}
 
 	clone() {

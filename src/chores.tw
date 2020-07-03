@@ -1,7 +1,12 @@
 ::foyerCleaning [noreturn chore]
-<<include "foyerDusting">>
 
-<<include "foyerSweepMop">>
+<<switch random(2)>>
+	<<case 1>>
+		<<include "wifeCleaningBossy01A">>
+	<<default>>
+		<<include "foyerDusting">>
+		<<include "foyerSweepMop">>
+<</switch>>
 
 ::foyerDusting [noreturn chore]
 
@@ -43,7 +48,13 @@ You sweep the floor carefully, making sure to get into all the nooks and crannie
 
 :: gardenCleaning [noreturn chore]
 
-<<include "gardenSweep">>
+<<switch random(2)>>
+	<<case 1>>
+		<<include "gardnerGardenBossy01">>
+	<<default>>
+		<<include "gardenSweep">>
+<</switch>>
+
 
 :: gardenSweep [noreturn chore]
 
@@ -87,19 +98,35 @@ You go through each room, stripping the beds, pillows and quilts and take it all
 
 :: laundryClothes [noreturn chore]
 
+<<switch random(3)>>
+	<<case 1>>
+		<<include "daughterLaundryPlayerNude01">>
+	<<case 2>>
+		<<include "wifeLaundryPlayerNude01A">>
+	<<default>>
+		<<include "laundryClothesDefault">>
+<</switch>>
+
+:: laundryClothesDefault
+
 [img[setup.ImagePath + "events/chores/general_laundry/laundry_clothes_1.jpg"]]
 
 With a heavy sigh, you spend time going through each room, taking the clothes discarded to hampers. Once you have everything you take it all back to the large laundry. You separate the items so you are washing the correct things together. Fortunately dry cleaning gets taken off site so you don’t have to learn that skill. Once it’s all ready you put each load into one of the machines with some laundry detergent, and then start the washing cycle. Once each cycle is done you put everything in the dryer before repeating the process. Once each load is done you have to fold everything neatly and sort it all into piles before putting it away.
 
 
 
+
 :: loungeCleaning [noreturn chore]
 
-<<include "loungeDusting">>
+<<switch random(2)>>
+	<<case 1>>
+		<<include "wifeCleaningBossy02A">>
+	<<default>>
+		<<include "loungeDusting">>
+		<<include "loungeSweepMop">>
+		<<include "loungeWindows">>
+<</switch>>
 
-<<include "loungeSweepMop">>
-
-<<include "loungeWindows">>
 
 :: loungeDusting [noreturn chore]
 
@@ -127,11 +154,16 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 :: diningCleaning [noreturn chore]
 
-<<include "diningDusting">>
+<<switch random(2)>>
+	<<case 1>>
+		<<include "wifeCleaningBossy01A">>
+	<<default>>
+		<<include "diningDusting">>
 
-<<include "diningSweepMop">>
+		<<include "diningSweepMop">>
 
-<<include "diningWindows">>
+		<<include "diningWindows">>
+<</switch>>
 
 :: diningDusting [noreturn chore]
 
@@ -157,13 +189,19 @@ Taking some windows cleaner you go over the large window with a clean cloth, mak
 
 
 
+
 :: masterBdRmCleaning [noreturn chore]
 
-<<include "masterBdRmDusting">>
+<<switch random(2)>>
+	<<case 1>>
+		<<include "wifeBedroomCleaning01">>
+	<<default>>
+		<<include "masterBdRmDusting">>
 
-<<include "masterBdRmVacuum">>
+		<<include "masterBdRmVacuum">>
 
-<<include "masterBdRmWindows">>
+		<<include "masterBdRmWindows">>
+<</switch>>
 
 :: masterBdRmDusting [noreturn chore]
 
@@ -329,15 +367,18 @@ Thers isn't a lot of room to work with so cleaning up is as simple as putting ev
 
 :: poolCleaning [noreturn chore]
 
-<<include "poolSweep">>
+<<switch random(2)>>
+	<<case 1>>
+		<<include "gardnerPoolBossy01">>
+	<<default>>
+		<<include "poolSweep">>
+<</switch>>
 
 :: poolSweep [noreturn chore]
 
 [img[setup.ImagePath + "events/chores/general_sweeping/sweeping_2.jpg"]]
 
 $gardner.name takes care of most of the pool maintenance so you just sweep the sitting area and make sure it is tidy.
-
-
 
 :: daughterBdRmcleaning [noreturn chore]
 

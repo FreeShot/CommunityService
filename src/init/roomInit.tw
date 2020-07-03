@@ -17,12 +17,12 @@
 		"Kitchen", 
 		"Dining", 
 		"UpperHall", 
-		"Hall"
+		"LowerHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
-	name: "Hall", 
-	id: "Hall", 
+	name: "Lower Hall", 
+	id: "LowerHall", 
 	adjacentRooms: [
 		"Foyer", 
 		"MasterBdRm", 
@@ -32,7 +32,8 @@
 		"Kitchen", 
 		"Dining", 
 		"Garden", 
-		"Lounge"
+		"Lounge",
+		"UpperHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
@@ -42,7 +43,8 @@
 		"Foyer", 
 		"SonBdRm", 
 		"DaughterBdRm", 
-		"GuestRm"
+		"GuestRm",
+		"LowerHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
@@ -60,7 +62,7 @@
 		"Kitchen", 
 		"Laundry", 
 		"Gym", 
-		"Hall"
+		"LowerHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
@@ -71,9 +73,10 @@
 	], 
 	adjacentRooms: [
 		"Lounge", 
-		"Dining", 
+		"Dining",
+		"Garden", 
 		"Foyer", 
-		"Hall"
+		"LowerHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
@@ -83,7 +86,7 @@
 		"Laundry.jpg"
 	], 
 	adjacentRooms: [
-		"Hall", 
+		"LowerHall", 
 		"Garden"
 	]
 }))>>
@@ -97,7 +100,7 @@
 		"Foyer", 
 		"Kitchen", 
 		"Dining", 
-		"Hall", 
+		"LowerHall", 
 		"Garden"
 	]
 }))>>
@@ -110,7 +113,7 @@
 	adjacentRooms: [
 		"Foyer", 
 		"Kitchen", 
-		"Hall", 
+		"LowerHall", 
 		"Lounge", 
 		"Garden"
 	]
@@ -126,7 +129,7 @@
 	], 
 	adjacentRooms: [
 		"MasterBathRm", 
-		"Hall"
+		"LowerHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
@@ -146,7 +149,7 @@
 		"Office.jpg"
 	], 
 	adjacentRooms: [
-		"Hall"
+		"LowerHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
@@ -156,7 +159,7 @@
 		"Bedroom.jpg"
 	], 
 	adjacentRooms: [
-		"Hall"
+		"LowerHall"
 	]
 }))>>
 <<= $mansion.addRoom(new Room({

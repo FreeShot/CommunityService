@@ -1,42 +1,29 @@
 window.ClothesSlots = ["wig", "shirt", "pants", "underwear", "bra", "hoisery", "shoe", "accessory-head", "accessory-neck", "toy-front", "toy-back"];
 
-function createNPC(gender) {
-	// Creates the values for a random npc of specified gender
+window.npc = {
+	baseNPC : {
+		gender: "male",
+		title: "Mr",
+		name: "James",
+		lastName: "Walls",
+		age: 50,
+		like: {tag: "count", data: [], expected: true},
+		color: {light: "#FFFFFF", dark: "#FFFFFF"}
+	},
+	generateNPC: function(gender) {
+		var npc = this.baseNPC;
+		npc.gender = gender ? "male" : "female";
+		npc.title = gender ? "Mr" : "Mrs";
+		npc.name = (gender ? ["James", "Joseff", "Jack", "John", "Hugo", "Leo", "Vincent"] : ["Lea", "Marie", "Aurora", "Fiona", "Maeve", "Jade", "Amber", "Liya", "Velma", "Nana"]).random()
+		npc.lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"].random();
+		npc.age = Math.floor(State.random() * 30) + 20;
 
-	// TODO CLEAN UP THIS MESS
-	// Note from 03/07/2020 --> I really really don't wanna, but I'll have to do it soonish
-	
-	var values = {};
+		npc.like.data = null // DOD
 
-	values["gender"] = (gender) ? 'male' : 'female';
-	values["title"] = (gender) ? "Mr" : "Mrs";
-
-	var names;
-	if (gender)
-		names = ["James", "Joseff", "Jack", "John", "Hugo", "Leo", "Vincent"];
-	else
-		names = ["Lea", "Marie", "Aurora", "Fiona", "Maeve", "Jade", "Amber", "Liya", "Velma", "Nana"];
-	var lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"];
-
-	var index = Math.floor(State.random() * names.length);
-	values["name"] = names[index];
-
-	index = Math.floor(State.random() * lastName.length);
-	lastName = lastName[index];
-	values["name"] += " " + lastName;
-	values["title"] += " " + lastName;
-
-	values["age"] = Math.floor(State.random() * 30) + 20;
-
-	values["like"] = Object.keys(State.variables.npcLike).filter(function(el) {
-		return State.random() < 2 / (Object.keys(State.variables.npcLike).length);
-	});
-
-	values["appreciation"] = 0;
-	values["color"] = {};
-	values["color"]["light"] = `#${(State.random() * 0xFFFFFF << 0).toString(16)}`;
-	values["color"]["dark"] = values["color"]["light"];
-	return values;
+		npc.color.light = this.npc.getColor();
+		npc.color.dark = npc.color.light;
+		return npc
+	}
 }
 
 class Character {
@@ -44,7 +31,6 @@ class Character {
 	constructor(config) {
 		this.name = '';
 		this.title = '';
-		this.currentRoom = '';
 		this.color = {};
 
 		Object.keys(config).forEach((pn) => this[pn] = clone(config[pn]), this);
@@ -88,19 +74,10 @@ class NPC extends Character {
 	// Class for the major npc
 	constructor(config) {
 		super(Object.assign({
-			schedule: [{
-				days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-				location: "",
-				start: {
-					hour: 0,
-					minute: 0
-				},
-				end: {
-					hour: 24,
-					minute: 0
-				}
-			}],
-			appreciation: 0
+			schedule: new Schedule(),
+			path: [],
+			appreciation: 0,
+			displayPos: false
 		}, config));
 	}
 
@@ -112,13 +89,6 @@ class NPC extends Character {
 	getAppreciation() {
 		// Returns string for displaying how much an npc likes you
 		return `<<scale ${this.appreciation} ${-100} ${100}>><</scale>>`;
-	}
-
-	get getLocation() {
-		// Returns the current location of the npc, takes use of the current time.
-		var schedule = this.schedule.find(
-			(ev) => ev.days.includes(State.variables.time.weekDayFormat.slice(0, 2)) && State.variables.time.inInterval(ev.start, ev.end));
-		return schedule ? schedule.location : "";
 	}
 
 	// Used by twine
@@ -146,19 +116,27 @@ class Player extends Character {
 	constructor(config) {
 		super(Object.assign({
 			name: "Alex",
-			title: "Alex",
+			title: "servant",
 			femName: "Alice",
 			femininity: 0,
+			appearance: 0,
+			submission: 0,
+			boldness: 0,
 			voice: {
 				current: 0,
 				absolute: 0
 			},
 			stamina: {
-				current: 10,
-				max: 10
+				current: 100,
+				max: 100
 			},
-			currentRoom: "PlayerBdRm",
+			arousal: {
+				current: 0,
+				max: 100
+			},
+			currRoom: "PlayerBdRm",
 			choresLate: 0,
+			debt: 23456,
 			money: 0,
 			bodyPart: {
 				"hairColor": 0,
@@ -173,7 +151,8 @@ class Player extends Character {
 				serving: {level:1, xp: 0},
 				cleaning: {level:1, xp: 0},
 				fitness: {level:1, xp: 0}
-			}
+			},
+			weeksFailed: 0
 		}, config));
 	}
 
@@ -262,6 +241,21 @@ class Player extends Character {
 	// Uses some of the stamina
 	useStamina(amnt) {
 		this.stamina.current = Math.max(this.stamina.current - amnt, 0);
+	}
+
+	// Returns the arousal bar for the player
+	getArousalBar() {
+		return `<<scale ${this.arousal.current} ${0} ${this.arousal.max}>><</scale>>`
+	}
+
+	// Adds some of the arousal to the player
+	increaseArousal(amnt) {
+		this.arousal.current = Math.min(this.arousal.current + (amnt || this.arousal.max), this.arousal.max);
+	}
+
+	// Uses some of the arousal
+	decreaseArousal(amnt) {
+		this.arousal.current = Math.max(this.arousal.current - amnt, 0);
 	}
 
 	// Returns the description of the bodypart
@@ -356,17 +350,15 @@ Object.defineProperty(window, 'Player', {
 
 class MinorNPC extends Character {
 	// Minor npc generated for events
-	constructor() {
-		do {
-		var values = createNPC();
-		} while (State.variables.minorNPC.find((el) => el.title === values.title))
-
+	constructor(values) {
 		super(values);
 	}
 
 	// Gets how many points this npc gives
 	getBonusPoint() {
-		return this.like.reduce((val, el) => val + State.variables.npcLike[el]() ? 5 : 0, 0);
+		// TODO
+		return 0;
+		return tageval(this.like, el.data, el.expected) * 5;
 	}
 
 	// For twine
@@ -388,17 +380,65 @@ Object.defineProperty(window, 'MinorNPC', {
 	value: MinorNPC
 });
 
-// updates the list and active npc with some new npc
-window.generateNPC = function(list, activeNPC, nb) {
-	if (settings.maxNPC <= list.length || (list.length > 1 && State.random() > 0.5)) {
-		var index = Math.floor(State.random() * list.length);
-		if (!activeNPC.includes(index)) {
-			activeNPC.push(index);
+window.npc = {
+	baseNPC : {
+		gender: "male",
+		title: "Mr",
+		name: "James",
+		lastName: "Walls",
+		age: 50,
+		like: {tag: "count", data: [], expected: true},
+		color: {light: "#FFFFFF", dark: "#FFFFFF"}
+	},
+	generateNPC: function(gender) {
+		var npc = this.baseNPC;
+		npc.gender = gender ? "male" : "female";
+		npc.title = gender ? "Mr" : "Mrs";
+		npc.name = (gender ? ["James", "Joseff", "Jack", "John", "Hugo", "Leo", "Vincent"] : ["Lea", "Marie", "Aurora", "Fiona", "Maeve", "Jade", "Amber", "Liya", "Velma", "Nana"]).random()
+		npc.lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"].random();
+		npc.age = Math.floor(State.random() * 30) + 20;
+
+		var tags = [
+			{tag: "bodyPart", data: {bodyPart: "hairLength", value: 0}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "hairLength", value: 1}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "hairLength", value: 2}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "hairColor", value: 0}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "hairColor", value: 1}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "hairColor", value: 2}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "hairColor", value: 3}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "eyeColor", value: 0}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "eyeColor", value: 1}, expected: true},
+			{tag: "bodyPart", data: {bodyPart: "eyeColor", value: 2}, expected: true},
+		];
+
+		npc.like.data = tags.filter((tag) => State.random() < 0.3); // TODO
+
+		npc.color.light = this.getColor();
+		npc.color.dark = npc.color.light;
+		return npc
+	},
+	getColor: function() {
+		var letters = '0123456789ABCDEF'.split('');
+    	var color = '#';
+    	for (var i = 0; i < 6; i++ ) {
+    	    color += letters[Math.round(Math.random() * letters.length - 1)];
+    	}
+    	return color;
+	},
+	createNPC: function(list, activeNPC, nb) {
+		if (settings.maxNPC <= list.length || (list.length > 1 && State.random() > 0.5)) {
+			var index = Math.floor(State.random() * list.length);
+			if (!activeNPC.includes(index)) {
+				activeNPC.push(index);
+			} else {
+				this.createNPC(list, activeNPC, nb / settings.npcPerEvent < 0.5);
+			}
 		} else {
-			generateNPC(list, activeNPC, nb / settings.npcPerEvent < 0.5);
+			do {
+				var values = this.generateNPC(State.random() > 0.5);
+			} while (State.variables.minorNPC.find((el) => el.title === values.title))
+			list.push(new MinorNPC(values));
+			activeNPC.push(list.length - 1);
 		}
-	} else {
-		list.push(new MinorNPC());
-		activeNPC.push(list.length - 1);
 	}
 }

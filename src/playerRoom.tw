@@ -12,27 +12,25 @@ Desk
 <<set _event to $mansion.checkSpecialEvents()>>
 <<if _event !== "">>
 	<<= _event>>
-<<else>>
-	<<= console.log($time.inInterval("sleep", "wakeup"))>>
-	<<if $time.inInterval("sleep", "wakeup")>>
+<<elseif $time.inInterval("sleep", "wakeup")>>
 	[[Go to bed|sleep]]
-	<<else>>
+<<else>>
 	Got to the bathroom and:<br>
 	[[Shower|playerRoomShower]]<br><br>
 	Check the [[Wardrobe|playerRoomWardrobe]]<br>
 	Use the [[Computer|playerRoomComputerMenu]]<br>
+	Read something from the [[Bookshelf|playerRoomBookshelfMenu]]<br>
 	[[Check your to do list.|playerToDoList]]<br><br>
 	<<link "Rest">>
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>
 		<<goto `passage()`>>
 	<</link>><br>
-	<<link "Hide until the end of the day.">>
+	<<link "Stay here until the end of the day.">>
 		<<= $time.setDate({day:0, hour:22, minute:0})>>
 		<<goto `passage()`>>
 	<</link>>
-	<<= $mansion.findRoom($player.currentRoom).getAdjacentRooms()>>
-	<</if>>
+	<<= $mansion.findRoom($player.currRoom).getAdjacentRooms()>>
 <</if>>
 <</nobr>>
 
@@ -73,7 +71,7 @@ Games:
 
 [[Stop using the computer|PlayerBdRm]]
 
-:: playerRoomComputerCleaning
+:: playerRoomComputerCleaning [playerRoom]
 
 You load up the tutorial titled "Cleaning For The Delicate House Maid"
 
@@ -92,7 +90,7 @@ It's also seems unsually thorough on the methods for keeping your apron pure whi
 <<set $time.addTime({hour:1})>>
 <<= $player.levelUp("cleaning", 1)>>
 
-:: playerRoomComputerServing
+:: playerRoomComputerServing [playerRoom]
 
 You load up "Etiquette Tips For Submissive Servers"
 
@@ -103,19 +101,59 @@ The guide become more unorthodox from this point. You always find yourself wonde
 How to flirt with guests and comport yourself by keeping you chest out and chin up. A big part of the second half focuses around the "Four bees of serving."
 
 	- Be pleasant, it’s your role to present a sweet and friendly demeanor.
+
 	- Be attentive, constantly scan the room, and if a guest needs attention it is your role to assist them in any way they desire.
+
 	- Be patient, never interrupt a conversation, you are to be seen not heard. Wait for a guest to address you before asking what they would like from you.
-	- Be discreet, don’t have audible conversations with other servers in earshot of guests. Gossip is encouraged of course but only if it is to embarrass yourself or get the attention of a guest.
+
+	- Be discreet, don’t have audible conversations with other servers within earshot of guests. Gossip is encouraged of course but only if it is to embarrass yourself or get the attention of a guest.
 
 <<return 'Back to the menu'>>
 
 <<set $time.addTime({hour:1})>>
 <<= $player.levelUp("serving", 1)>>
 
-:: playerRoomComputerGame
+:: playerRoomComputerGame [playerRoom]
 
 You load up the game and begin to play. It's mostly a choose you own adventure type story about a man who must navigate the day to day life of managing a household. It's an ok game with a few bugs. The chore system is a bit too grindy and some of the NPC descriptions are a bit flat but other than that it's fun to play.
 
 Halfway through your session you get this weird sense in the back of your shoulders, almost like someone is watching you. You feel the need to look at the fourth wall of your room and wink.
 <<set $time.addTime({hour:1})>><<= $player.rest(5)>>
 <<return 'Back to the menu'>>
+
+:: playerRoomBookshelfMenu [playerRoom]
+
+You scan through the limited selection of reading material and decide to read...
+
+[[Provincial|playerRoomBookshelfProvincial]]
+[[Rouge|playerRoomBookshelfRouge]]
+[[Cheeky Lady|playerRoomBookshelfCheekyLady]]
+
+[[Step away from the shelf|PlayerBdRm]]
+
+:: playerRoomBookshelfProvincial [playerRoom]
+
+Still in dev
+
+Fashion
+Entertainment
+
+<<return 'Put it back on the shelf'>>
+
+:: playerRoomBookshelfRouge [playerRoom]
+
+Still in dev
+
+Make up
+Gossip
+
+<<return 'Put it back on the shelf'>>
+
+:: playerRoomBookshelfCheekyLady [playerRoom]
+
+Still in dev
+
+Lady porn
+
+<<return 'Put it back on the shelf'>>
+<<= $player.increaseArousal(5)>>

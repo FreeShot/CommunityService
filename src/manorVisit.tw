@@ -1,13 +1,13 @@
 ::manorIntro01 [tutorial]
-You're taken to a car and then driven through the city to the highrise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting arround dressed in a suit, his hands behind his back and a plane disintrested look on his face.
+You're taken to a car and then driven through the city to the high-rise area and eventually stopped in front of one of the tall buildings. Your guard walks you to the elevator and presses the button to the top floor. The doors open to a foyer with an older man waiting around dressed in a suit, his hands behind his back and a plain disinterested look on his face.
 
 <<= Character.speakAnonymous("State correction here with your new servant.","DarkGoldenRod")>>
 
 The guard shoves you forward.
 
-The man looks you up and down. The appraising stare makes you feel unconfortable, as if you were examined like stock on a farm.
+The man looks you up and down. The appraising stare makes you feel uncomfortable, as if you were examined like stock on a farm.
 
-He looks back to the guard with out even adressing you. <<= $butler.speak("Quite.")>> The older man gestures to your cuff. <<= $butler.speak("If you please.")>>
+He looks back to the guard with out even adressing you. <<= $butler.speak("Of course.")>> The older man gestures to your CUFF. <<= $butler.speak("If you please.")>>
 
 The guard grabs it. <<= Character.speakAnonymous("Welcome to your new home, kid.","DarkGoldenRod")>>
 
@@ -69,21 +69,21 @@ There is also a fenced off pool to the side with a pool house that looks like it
 
 <<= $player.speak("I wasn't going to use them...")>>, you mumble to yourself.
 
-Off on one of the far side, you see an elderly man working away.
+Off on one of the far side, you see a man working away in one of the gardens.
 
-<<= $butler.speak("That's $gardner.name. We won't bother him since he's busy at the moment but you will be expected to aide him. He's getting on in yeas so needs a young back to help.")>>
+<<= $butler.speak("That's $gardner.name. We won't bother him since he's busy at the moment but you will be expected to aide him. He's good at what he does but injured himself a while ago so needs a young back to help.")>>
 
-$butler.name glances at your slight frame and then back to Juan.
+$butler.name glances at your slight frame and then back to $gardner.name.
 
-<<= $butler.speak("But this will have to do.")>>
+<<= $butler.speak("Any help will do.")>>
 
-You watch as the old gardner drops what he is doing and grabs his back with one arm as if to emphasise the point.
+You watch as the grounds keeper drops what he is doing and grabs his back in pain as if to emphasise the point.
 
 <<= $butler.speak("Now follow me.")>>
 
 $butler.name walks back inside, through the kitchen and back to the foyer.
 
-<<= $butler.speak("As you can see, the estate is expansive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lowe floor. I'll show you the upstairs rooms.")>>
+<<= $butler.speak("As you can see, the estate is expansive. Until you get familiar with it, just return to the foyer as it leads to most areas on the lower floor. I'll show you the upstairs rooms.")>>
 
 Follow $butler.name up the stairs to the [[Upper Hall|manorIntro06]]
 
@@ -103,7 +103,7 @@ $butler.name bows slightly to each woman.
 
 <<= $butler.speak("I would like to introduce $player.name. This is the new servant for the contract $owner.title acquired recently.")>>
 
-<<= $daughter.speak("Well, well. What a cutie.")>> The younger daughter grins and winks as whe looks at you up and down.
+<<= $daughter.speak("Well, well. What a cutie.")>> The younger daughter grins and winks as she looks at you up and down.
 
 $wife.name walks towards you. You hold out your hand, but she ignores it and walks around and examines you. You shift nervously.
 
@@ -139,7 +139,9 @@ $butler.name bows slightly and then continues [[showing you around the manor.|ma
 
 ::manorIntro07 [tutorial]
 <<= $mansion.display("PlayerBdRm")>>
-$butler.name continues showing you around the manor and eventually leads you to the back corridors and into a small living space.
+Although there is a lot of space the layout is pretty easy to follow. It looks like any time you get lost you could jsut head to either the Upper or Lower Hall and you could find most of the other space there.
+
+Eventually $butler.name leads you to the back corridors and into a small living space.
 
 <<= $butler.speak("This is where you'll be staying from now on. You can do what you want with this space, but you are expected to keep it clean to the same standards as the rest of the estate.")>>
 
@@ -147,15 +149,15 @@ At first glance it seems like a nice room. It's defienitely not large, with just
 
 <<= $butler.speak("You can stay there for now. I will come and collect you when $owner.name is ready to meet you.")>>
 
-$butler.name closes the door behind you, leaving you alone. With nothing better to do you explorer the small space.
+$butler.name closes the door behind you, leaving you alone. With nothing better to do you explore the small space.
 
-The drawers are mostly empty and the books are blank and just for show. There is a computer under the small desk but it doesn't seem to be working right now.
+The drawers are mostly empty and there are some magazines and books on the shelves. You have a quick look through them but they're mostly women's magazines. There is a computer under the small desk but it doesn't seem to be working right now.
 
 You investigate the and inside you find some items left by the last person who stayed here. Unfortunately, it all looks like women's clothing.
 
 [[Warbrobe|playerRoomWardrobe]]
 
-There is a small attached bathroom. It doesn't have a lot of space either and the window is just for show but at least it looks like it's for your private use.
+There is a small attached bathroom. It doesn't have a lot of space either and the window is actually just a cleverly hidden light but at least it looks like it's for your private use.
 
 [img[setup.ImagePath + "estate/PlayerBdRm/Bathroom.jpg"]]
 
@@ -165,7 +167,7 @@ Overall it looks like cheap but well maintained student accomodation.
 
 ::manorIntro08 [tutorial]
 <<= $mansion.display("Office")>>
-At exactly 7pm, the door to your room opens and $butler.name walks in.
+You sit, bored, in the room for a few hours until at exactly 7pm, the door opens and $butler.name walks in.
 
 <<= $butler.speak("$owner.name is waiting for you in his office.")>>
 
@@ -177,7 +179,7 @@ Not wanting to push your luck, you quickly catch up and fall in behind $butler.n
 
 <<= $player.speak("Yes $owner.title.")>>
 
-<<= $owner.speak("Very good. You will answer to $butler.name after myself and my wife at all time. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he's not impressed, I'm not impressed. Is that understood?")>>
+<<= $owner.speak("Very good. You will answer to $butler.name after myself and my wife at all times. I expect you to adjust to this life quickly and up to his standards. Your weekly performance will be assessed based on his report. That means if he's not impressed, I'm not impressed. Is that understood?")>>
 
 <<= $player.speak("Yes $owner.title.")>>
 
