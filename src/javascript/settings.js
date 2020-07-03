@@ -41,7 +41,7 @@ var settingThemeHandler = () => {	// cache the jQuery-wrapped <html> element
 	var $html = $("html");
 
 	// remove any existing theme class
-	$html.removeClass("theme-dark theme-light");
+	$html.removeClass("theme-dark theme-light theme-green");
 
 	// switch on the theme name to add the requested theme class
 	switch (settings.theme) {
@@ -51,6 +51,8 @@ var settingThemeHandler = () => {	// cache the jQuery-wrapped <html> element
 	case "theme-light":
 		$html.addClass("theme-light");
 		break;
+	case "theme-green":
+		$html.addClass("theme-green");
 	default:
 		$html.addClass("theme-dark");
 		break;
@@ -58,7 +60,7 @@ var settingThemeHandler = () => {	// cache the jQuery-wrapped <html> element
 };
 Setting.addList("theme", {
 	label    : "Choose a theme.",
-	list     : ["theme-dark", "theme-light"], // TODO - add auto switching as an option
+	list     : ["theme-dark", "theme-light", "theme-green"], // TODO - add auto switching as an option
 	default  : "theme-light",
 	onInit   : settingThemeHandler,
 	onChange : settingThemeHandler

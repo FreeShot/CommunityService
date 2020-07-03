@@ -36,6 +36,25 @@
 	--tooltip-comment-bg: #2D2A36;
 }
 
+.theme-green {
+	--story-bg: #000401;
+	--story-text: #F0F7EE;
+	--ui-bg: #020D04;
+	--ui-bg-hover: #30312D;
+	--ui-bg-active: #0A3318;
+	--ui-text: #518244;
+	--ui-border: #298c7d;
+	--link-color: #AA211F;	
+	--link-hover-color: #C68589;
+	--title-color: #42BFDD;
+	--tooltip-warning: #FFD131;
+	--tooltip-warning-bg: #A76E1C;
+	--tooltip-info: #82C1D8;
+	--tooltip-info-bg: #214365;
+	--tooltip-comment: #D3D3D3;
+	--tooltip-comment-bg: #2D2A36;
+}
+
 body {
 	background-color: var(--story-bg);
 	color: var(--story-text);
