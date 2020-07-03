@@ -2245,13 +2245,13 @@ Setting.addToggle("tips", {
 	label    : "Displays the tips",
 	default  : true
 });
-/*
+
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
 	default  : false,
 	onChange : () => State.variables.debug = settings.debug
 });
-*/
+
 
 
 Config.history.maxStates = 20;
@@ -5909,7 +5909,7 @@ State.variables.minorNPC = [];
 		&quot;UpperHall&quot;
 	]
 }))&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="StoryInit" tags="nodebug init" position="225,2225" size="100,100">&lt;&lt;set $version to &quot;V0.2.0&quot;&gt;&gt;
-&lt;&lt;set $debug to true&gt;&gt;
+&lt;&lt;set $debug to false&gt;&gt;
 &lt;&lt;set $firstTime to recall(&#39;firstTime&#39;, true)&gt;&gt;&lt;&lt;= memorize(&#39;firstTime&#39;, false)&gt;&gt;
 
 &lt;&lt;set $lastTime to {abs: 0, rel: 0, tp: 0}&gt;&gt;
