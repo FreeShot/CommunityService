@@ -84,15 +84,15 @@ class Room {
 			return "[[Go to your room|PlayerBdRm]]";
 	}
 
-	getPassage() {
-		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
+	getPassage(text) {
+		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone, short) {
 		return this.chores.reduce((str, chore) => {
 			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
 			if (choreDo === "") return str;
-			return `${str}<li>${choreDo}</li>`;
+			return `${str}<li class="choreUILink">${canDoChores ? choreDo : this.getPassage(chore.name)}</li>`;
 		}, "");
 
 		if (this.chores.length > 0) {

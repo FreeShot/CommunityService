@@ -350,6 +350,10 @@ img {
 	content: "Comment: ";
 }
 
+.choreUILink a {
+	border: none;
+}
+
 /* DEBUG CSS */
 
 .error, .error-view > .error-toggle, .error-source {
@@ -362,6 +366,8 @@ function createNPC(gender) {
 	// Creates the values for a random npc of specified gender
 
 	// TODO CLEAN UP THIS MESS
+	// Note from 03/07/2020 --> I really really don't wanna, but I'll have to do it soonish
+	
 	var values = {};
 
 	values["gender"] = (gender) ? 'male' : 'female';
@@ -1871,15 +1877,15 @@ class Room {
 			return "[[Go to your room|PlayerBdRm]]";
 	}
 
-	getPassage() {
-		return `<<link "${this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
+	getPassage(text) {
+		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone, short) {
 		return this.chores.reduce((str, chore) => {
 			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
 			if (choreDo === "") return str;
-			return `${str}<li>${choreDo}</li>`;
+			return `${str}<li class="choreUILink">${canDoChores ? choreDo : this.getPassage(chore.name)}</li>`;
 		}, "");
 
 		if (this.chores.length > 0) {
@@ -3503,7 +3509,7 @@ She takes a breath dips under the water. When she comes back up and open her eye
 
 &lt;&lt;= $daughter.speak(&quot;Care to join me?&quot;)&gt;&gt;
 
-You jolt back to your senses when you realise you were still staring. &lt;&lt;= $name.speak(&quot;Um. I have to, uh.&quot;)&gt;&gt;
+You jolt back to your senses when you realise you were still staring. &lt;&lt;= $player.speak(&quot;Um. I have to, uh.&quot;)&gt;&gt;
 
 &lt;&lt;= $daughter.speak(&quot;Suit yourself.&quot;)&gt;&gt;
 

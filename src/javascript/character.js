@@ -4,6 +4,8 @@ function createNPC(gender) {
 	// Creates the values for a random npc of specified gender
 
 	// TODO CLEAN UP THIS MESS
+	// Note from 03/07/2020 --> I really really don't wanna, but I'll have to do it soonish
+	
 	var values = {};
 
 	values["gender"] = (gender) ? 'male' : 'female';

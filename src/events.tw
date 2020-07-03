@@ -30,7 +30,7 @@ She takes a breath dips under the water. When she comes back up and open her eye
 
 <<= $daughter.speak("Care to join me?")>>
 
-You jolt back to your senses when you realise you were still staring. <<= $name.speak("Um. I have to, uh.")>>
+You jolt back to your senses when you realise you were still staring. <<= $player.speak("Um. I have to, uh.")>>
 
 <<= $daughter.speak("Suit yourself.")>>
 

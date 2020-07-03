@@ -248,6 +248,10 @@ img {
 	content: "Comment: ";
 }
 
+.choreUILink a {
+	border: none;
+}
+
 /* DEBUG CSS */
 
 .error, .error-view > .error-toggle, .error-source {
