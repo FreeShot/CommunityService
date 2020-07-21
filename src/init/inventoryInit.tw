@@ -191,7 +191,7 @@
 	tags: ["hoisery", "equippable"],
 	femininity: 20,
 	price: 0,
-	img: "items/wearables/hoisery/stockings_01.jpg"
+	img: "items/wearables/hosiery/stockings_01.jpg"
 }, 1)>>
 
 <!-- Shoes -->
@@ -256,7 +256,15 @@
 	tags: ["toy-front", "equippable"],
 	femininity: 5,
 	price: 0,
-	img: "items/wearables/toy/cage_01.jpg"
+	img: "items/wearables/toys/cage_01.jpg"
+}, 1)>>
+
+<<= $shop.addItem("Toys", {
+	name: "Slim pink chastity cage",
+	tags: ["toy-front", "equippable"],
+	femininity: 5,
+	price: 0,
+	img: "items/wearables/toys/cage_02.jpg"
 }, 1)>>
 
 <!-- Items (non wearables) -->
