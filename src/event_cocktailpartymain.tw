@@ -105,7 +105,7 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 <</if>>
 <<= $eventInfo.npc = []>>
 <<for _i = 0; _i < settings.npcPerEvent; _i++>>
-<<= generateNPC($minorNPC, $eventInfo.npc, _i)>>
+<<= npc.generateNPC($minorNPC, $eventInfo.npc, _i)>>
 <</for>>
 <<= console.log($eventInfo)>>
 <<goto "mansionCPartyServing01">>

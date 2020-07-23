@@ -52,6 +52,7 @@ class Inventory {
 		this.items[i].count -= amount || 1;
 		var item = this.items[i].item.clone();
 		this.items = this.items.filter((el) => el.count > 0);
+		return item;
 	}
 
 	getAsTemp(itemName) {
@@ -65,7 +66,8 @@ class Inventory {
 	}
 
 	removeTmp(keepEquipped) {
-		this.items.filter((el) => !el.item.tags.includes("tmp") || (keepEquipped && el.item.tags.includes("equipped")));
+		console.log("Keep equipped", keepEquipped);
+		this.items = this.items.filter((el) => (!el.item.tags.includes("tmp")) || (keepEquipped && el.item.tags.includes("equipped")));
 	}
 
 	findItemIndex(item) {

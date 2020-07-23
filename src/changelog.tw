@@ -3,6 +3,12 @@
 
 <!-- Versioning system: MAJOR.MINOR.FIX -->
 !V0.X.X
+<<<<<<< Updated upstream
+=======
+!!V0.2.X - They have personalities now!
+<<include "changelog-V0.2.1">>
+<<include "changelog-V0.2.0">>
+>>>>>>> Stashed changes
 !!V0.1.X - Getting to know each other
 <<include "changelog-V0.1.3">>
 <<include "changelog-V0.1.2">>
@@ -11,6 +17,38 @@
 
 <<return>>
 
+<<<<<<< Updated upstream
+=======
+::changelog-V0.2.1 [changelog]
+!! V0.2.1
+!!! Main content
+
+!!! Other content
+- New green theme, activate it in the settings
+!!! Bugfixes
+- Chore cause game over
+- Links missing on the sidebar
+- $name is undefined in the pool events
+- Chores are not sized properly in the sidebar
+
+::changelog-V0.2.0 [changelog]
+!! V0.2.0
+!!! Main content
+- NPC's now move around much better.
+- Repeated failure to complete your chores gets the first real bad end.
+
+!!! Other content
+- You can now see your debt.
+- Variable breakfast events.
+- More random events.
+- More player stats added in the CUFF.
+- Some choices now affect the player and NPC stats.
+	Changes are still superficial for now but give you an idea of how different actions affect the game.
+
+!!! Bug fixes:
+- Fixed display for images on mobile.
+
+>>>>>>> Stashed changes
 ::changelog-V0.1.3 [changelog]
 !! V0.1.3
 !!! Main content

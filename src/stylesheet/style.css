@@ -190,6 +190,10 @@ img {
 	text-align: center;
 }
 
+.item-display.item-tag-tmp {
+	border-color: var(--title-color);
+}
+
 .item-display-img {
 	height: 100%;
 }

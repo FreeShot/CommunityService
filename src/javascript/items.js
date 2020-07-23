@@ -1,7 +1,7 @@
 class Item {
 	constructor (config) {
 		this.name = "Unnamed item";
-		this.tags = [];
+		this.tags = []; // Must not contain any spaces
 		this.price = 0;
 		this.femininity = 0;
 		this.img = null;
@@ -12,7 +12,7 @@ class Item {
 	}
 
 	description(count, parent, canEquip) {
-		var str = "<div class='item-display'>";
+		var str = `<div class='item-display ${this.tags.reduce((str, tag) => `${str} item-tag-${tag}`,"")}'>`;
 
 		// Adds name and image if any
 		str += `<div class='item-display-name'>${this.name}</div>`;
