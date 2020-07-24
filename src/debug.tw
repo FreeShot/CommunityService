@@ -2,17 +2,6 @@
 <hr>
 DEBUG
 
-Search variable: <<textbox '_value' ''>><<button "get">>
-<<replace '#story-variable'>><<debug _value>><</debug>>
-<</replace>>
-<</button>>
-
-<span id="story-variable"></span>
-
-<<link "addXP">>
-	<<= $player.levelUp('serving', 1)>>
-	<<goto `passage()`>>
-<</link>>
 <<link "Debug Skip Day">>
 	<<= $time.setDate("wakeup")>>
 	<<goto `passage()`>>
@@ -21,12 +10,37 @@ Search variable: <<textbox '_value' ''>><<button "get">>
 	<<= $time.setDate({day:0, hour:22, minute:0})>>
 	<<goto `passage()`>>
 <</link>>
-<<link "++ D app">>
-	<<set $daughter.addAppreciation(1)>>
+<<link "Increase Arousal by 10">>
+	<<= $player.increaseArousal(10)>>
 	<<goto `passage()`>>
 <</link>>
+<<link "Reset Arousal">>
+	<<= $player.decreaseArousal()>>
+	<<goto `passage()`>>
+<</link>>
+<<link "Increase Serving">>
+	<<= $player.levelUp('serving', 1)>>
+	<<goto `passage()`>>
+<</link>>
+<<link "Increase Daughter Appreciation">>
+	<<set $daughter.addAppreciation(1)>>
+	<<goto `passage()`>>
+<</link>> Current: $daughter.appreciation
+
+Search variable: <<textbox '_value' ''>><<button "get">>
+<<replace '#story-variable'>><<debug _value>><</debug>>
+<</replace>>
+<</button>>
+
+<span id="story-variable"></span>
 
 Current event: <<= $mansion.currentEvent>>
+
+<hr>
+Quick access to events:
+[[mansionCPartyIntro01]]
+[[mansionCPartySetup01]]
+[[daughterPath04IntroDate01]]
 
 <hr>
 <<include playerDescription>>
@@ -34,8 +48,3 @@ Current event: <<= $mansion.currentEvent>>
 <<for _npc_name range npcList>> <<set _npc to State.variables[_npc_name]>>
 <<capture [_npc_name, _npc]>><<= _npc.speak("_npc.name (_npc.title): <<= _npc.getAppreciation()>> (_npc.appreciation), current room: <<= _npc.getLocation>>")>><</capture>>
 <</for>>
-
-<hr>
-Quick access to events:
-[[mansionCPartyIntro01]]
-[[mansionCPartySetup01]]

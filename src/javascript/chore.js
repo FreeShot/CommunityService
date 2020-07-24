@@ -37,12 +37,13 @@ class Chore {
 			htmlClass = 'chore-done';
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
 			htmlClass = 'chore-exhaused';
-		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) === -1)
+		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0)
 			htmlClass = 'chore-not-time';
 		else if (!canDoChores)
 			htmlClass = 'chore-unavailable';
 
-		if (short) return `<span class="${htmlClass}">${this.name}</span>`
+		if (short && !this.done && !Story.get(State.passage).tags.includes("chore") && State.variables.mansion.currentEvent == "") return `<span class="chore-short ${htmlClass}">${State.variables.mansion.findRoom(this.room).getPassage(this.name)}</span>`;
+		if (short) return `<span class="${htmlClass}">${this.name}</span>`;
 
 		return String.format(
 			"<span class='{0}'>{1} {2} {3} {4}</span>",

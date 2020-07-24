@@ -1,223 +1,163 @@
 ::characterInit [init]
 
-<<set $player to new Player({})>>
-<!--  NPC  -->
+<<script>>
+//-- PLAYER --------------------------------------------------------------------
 
-<<set $owner to new NPC({
-	name: "Mr Sono", 
+State.variables.player = new Player();
+
+//-- NPC -----------------------------------------------------------------------
+
+State.variables.owner = new NPC({
+	name: "Mr Sono",
 	color: {
-		light: "#2C302E", 
+		light: "#2C302E",
 		dark: "#555958"
-	}, 
-	title: "Sir", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 7, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Dining", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Office", 
-		start: {hour: 19, minute: 0}, 
-		end: {hour: 20, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Lounge", 
-		start: {hour: 20, minute: 0}, 
-		end: {hour: 22, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 22, minute: 0}, 
-		end: {hour: 24, minute: 0}
-	}
-]})>>
+	},
+	title: "Sir",
+	displayPos: true
+});
+State.variables.owner.schedule.currRoom = "MasterBdRm";
+State.variables.owner.schedule.addPoint("Dining", {hour: 6, minute:0}, {hour: 8, minute: 0});
+State.variables.owner.schedule.addPoint("Void", {hour: 8, minute:0}, {hour: 18, minute: 0});
+State.variables.owner.schedule.addPoint("Office", {hour: 18, minute: 0}, {hour: 20, minute: 0});
+State.variables.owner.schedule.addPoint("Lounge", {hour: 20, minute: 0}, {hour: 22, minute: 0});
+State.variables.owner.schedule.addPoint("MasterBdRm", {hour: 22, minute: 0}, {hour: 6, minute: 0});
 
-<<set $wife to new NPC({
+State.variables.wife = new NPC({
 	name: "Mrs Sono",
 	color: {
 		light: "#621708", 
 		dark: "#81412F"
 	}, 
-	title: "Ma'am", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 7, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Dining", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Office", 
-		start: {hour: 15, minute: 0}, 
-		end: {hour: 18, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Gym", 
-		start: {hour: 18, minute: 0}, 
-		end: {hour: 20, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Lounge", 
-		start: {hour: 20, minute: 0}, 
-		end: {hour: 22, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "MasterBdRm", 
-		start: {hour: 22, minute: 0}, 
-		end: {hour: 24, minute: 0}
-	}
-]})>>
+	title: "Ma'am",
+	displayPos: true
+});
+State.variables.wife.schedule.currRoom = "MasterBdRm";
+State.variables.wife.schedule.addPoint("Dining", {hour: 6, minute:0}, {hour: 8, minute: 0});
+State.variables.wife.schedule.addPoint("Void", {hour: 8, minute: 0}, {hour: 15, minute: 0});
+State.variables.wife.schedule.addPoint("FreeRoam", {hour: 15, minute: 0}, {hour: 16, minute: 0});
+State.variables.wife.schedule.addPoint("Office", {hour: 16, minute: 0}, {hour: 18, minute: 0});
+State.variables.wife.schedule.addPoint("Gym", {hour: 18, minute:0}, {hour: 20, minute: 0});
+State.variables.wife.schedule.addPoint("Lounge", {hour: 20, minute: 0}, {hour: 22, minute: 0});
+State.variables.wife.schedule.addPoint("MasterBdRm", {hour: 22, minute: 0}, {hour: 6, minute: 0});
 
-<<set $daughter to new NPC({
-	name: "Angeline", 
+State.variables.daughter = new NPC({
+	name: "Angeline",
 	color: {
 		light: "#D0918A", 
 		dark: "#D0918A"
 	}, 
-	title: "Ms Sono", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "DaughterBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 7, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Dining", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Gym", 
-		start: {hour: 9, minute: 0}, 
-		end: {hour: 11, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Pool", 
-		start: {hour: 11, minute: 0}, 
-		end: {hour: 12, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Garden", 
-		start: {hour: 12, minute: 0}, 
-		end: {hour: 14, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "DaughterBdRm", 
-		start: {hour: 14, minute: 0}, 
-		end: {hour: 18, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Foyer", 
-		start: {hour: 18, minute: 0}, 
-		end: {hour: 19, minute: 0}
-	}
-]})>>
+	title: "Ms Sono",
+	displayPos: true
+});
+State.variables.daughter.schedule.currRoom = "DaughterBdRm";
+State.variables.daughter.schedule.addPoint("Dining", {hour: 6, minute:0}, {hour: 8, minute: 0});
+State.variables.daughter.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 9, minute: 0});
+State.variables.daughter.schedule.addPoint("Gym", {hour: 9, minute:0}, {hour: 11, minute: 0});
+State.variables.daughter.schedule.addPoint("Pool", {hour: 11, minute:0}, {hour: 12, minute: 0});
+State.variables.daughter.schedule.addPoint("FreeRoam", {hour: 12, minute:0}, {hour: 13, minute: 0});
+State.variables.daughter.schedule.addPoint("Garden", {hour: 13, minute:0}, {hour: 15, minute: 0});
+State.variables.daughter.schedule.addPoint("DaughterBdRm", {hour: 15, minute:0}, {hour: 18, minute: 0});
+State.variables.daughter.schedule.addPoint("Void", {hour: 18, minute:0}, {hour: 6, minute: 0});
 
-<<set $son to new NPC({
+State.variables.son = new NPC({
 	name: "Mr Sono", 
 	color: {
 		light: "#69A8AD", 
 		dark: "#69A8AD"
 	}, 
-	title: "Mr Sono", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "SonBdRm", 
-		start: {hour: 0, minute: 0}, 
-		end: {hour: 24, minute: 0}
-	}
-]})>>
+	title: "Mr Sono",
+	displayPos: false
+});
+State.variables.son.schedule.currRoom = "SonBdRm";
+State.variables.son.schedule.addPoint("Void", {hour: 0, minute:0}, {hour: 24, minute: 0});
 
-<<set $butler to new NPC({
+State.variables.butler = new NPC({
 	name: "Mr Benson", 
 	color: {
 		light: "#634669", 
 		dark: "#634669"
 	}, 
-	title: "Mr Benson", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Kitchen", 
-		start: {hour: 7, minute: 0}, 
-		end: {hour: 8, minute: 0}
-	},{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Office", 
-		start: {hour: 18, minute: 0}, 
-		end: {hour: 22, minute: 0}
-	}
-]})>>
+	title: "Mr Benson",
+	displayPos: true
+});
+State.variables.butler.schedule.currRoom = "Lounge";
+State.variables.butler.schedule.addPoint("Dining", {hour: 6, minute:0}, {hour: 8, minute: 0});
+State.variables.butler.schedule.addPoint("Void", {hour: 8, minute:0}, {hour: 18, minute: 0});
+State.variables.butler.schedule.addPoint("Office", {hour: 18, minute: 0}, {hour: 20, minute: 0});
+State.variables.butler.schedule.addPoint("FreeRoam", {hour: 20, minute:0}, {hour: 6, minute: 0});
+State.variables.butler.schedule.addPoint("Void", {hour: 22, minute: 0}, {hour: 6, minute: 0});
 
-<<set $cook to new NPC({
+State.variables.therapist = new NPC({
+	name: "Liv",
+	color: {
+		light: "#621708", 
+		dark: "#81412F"
+	}, 
+	title: "Dr Miller",
+	displayPos: true
+});
+State.variables.therapist.schedule.currRoom = "Void";
+//State.variables.therapist.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
+State.variables.therapist.schedule.addPoint("Void", {hour:12, minute: 30}, {hour: 8, minute:30});
+
+State.variables.cook = new NPC({
 	name: "Ivan", 
 	color: {
 		light: "#E2B05D", 
 		dark: "#F6C467"
 	}, 
-	title: "Cook", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Kitchen", 
-		start: {hour: 12, minute: 0}, 
-		end: {hour: 20, minute: 0}
-	}
-]})>>
+	title: "Cook",
+	displayPos: true
+});
+State.variables.cook.schedule.currRoom = "Kitchen";
+State.variables.cook.schedule.addPoint("Kitchen", {hour: 12, minute:0}, {hour: 16, minute: 0});
+State.variables.cook.schedule.addPoint("FreeRoam", {hour: 16, minute:0}, {hour: 17, minute: 0});
+State.variables.cook.schedule.addPoint("Kitchen", {hour: 17, minute:0}, {hour: 20, minute: 0});
+State.variables.cook.schedule.addPoint("Void", {hour: 20, minute: 0}, {hour: 12, minute: 0});
 
-<<set $gardner to new NPC({
+State.variables.gardner = new NPC({
 	name: "Juan", 
 	color: {
 		light: "#00916E", 
 		dark: "#00916E"
 	}, 
-	title: "Juan", 
-	schedule: [
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"], 
-		location: "Garden", 
-		start: {hour: 6, minute: 0}, 
-		end: {hour: 12, minute: 0}
-	},
-	{
-		days: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-		location: "Pool",
-		start: {hour: 12, minute: 0},
-		end: {hour: 15, minute: 0}
-	}
-]})>>
+	title: "Juan",
+	displayPos: true
+});
+State.variables.gardner.schedule.currRoom = "Garden";
+State.variables.gardner.schedule.addPoint("Garden", {hour: 6, minute:0}, {hour: 12, minute: 0});
+State.variables.gardner.schedule.addPoint("FreeRoam", {hour: 12, minute:0}, {hour: 13, minute: 0});
+State.variables.gardner.schedule.addPoint("Pool", {hour: 13, minute:0}, {hour: 15, minute: 0});
+State.variables.gardner.schedule.addPoint("Void", {hour: 15, minute:0}, {hour: 6, minute: 0});
 
-<<set $caterer to new NPC({
+State.variables.caterer = new NPC({
 	name: "Mason", 
 	color: {
 		light: "#EE6123", 
 		dark: "#EE6123"
 	}, 
-	title: "Chef"})>>
+	title: "Chef",
+	displayPos: false
+});
+State.variables.caterer.schedule.currRoom = "Void";
+//State.variables.caterer.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
+State.variables.caterer.schedule.addPoint("Void", {hour:12, minute: 30}, {hour: 8, minute:30});
 
-<<set $suitor to new NPC({
+State.variables.suitor = new NPC({
 	name: "Rick", 
 	color: {
 		light: "#D08816", 
 		dark: "#D08816"
 	}, 
-	title: "Mr Stone"})>>
+	title: "Mr Stone",
+	displayPos: false
+});
+State.variables.suitor.schedule.currRoom = "Void";
+//State.variables.suitor.schedule.addPoint("FreeRoam", {hour: 8, minute:0}, {hour: 12, minute: 30});
+State.variables.caterer.schedule.addPoint("Void", {hour:12, minute: 30}, {hour: 8, minute:30});
 
-<<set $npcList to [
+window.npcList = [
 	"owner", 
 	"wife", 
 	"daughter", 
@@ -227,6 +167,7 @@
 	"gardner", 
 	"caterer", 
 	"suitor"
-]>>
+];
 
-<<set $minorNPC to []>>
+State.variables.minorNPC = [];
+<</script>>

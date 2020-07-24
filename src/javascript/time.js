@@ -19,7 +19,7 @@ class Timer {
 		if (typeof time === "string")
 			time = this[time]
 		time = Object.assign({day:0, hour:0, minute:0}, time);
-		if (this.inInterval({hour: 0, minute: 0}, time))
+		if (this.compareTime(time) <= 0)
 			this.day = time.day != 0 ? time.day + 1 : this.day + 1
 		else {
 			this.day = time.day != 0 ? time.day : this.day;
@@ -38,28 +38,25 @@ class Timer {
 		this.time.hour %= 24;
 	}
 
+	static toMinute(time) {
+		return ((time.day || 0) * 24 + (time.hour || 0)) * 60 + (time.minute || 0);
+	}
+
+	addTravelTime(start, end){
+		this.addTime({minute: 5 * (pathfind.path(start, end).length - 1)})
+	}
+
 	compareTime(time, time2) {
 		if (typeof time === "string")
 			time = this[time];
 		time2 = time2 || this.time;
-		var minuteTime = time.hour * 60 + time.minute;
-		var minuteTime2 = time2.hour * 60 + time2.minute;
-		var timeDif = minuteTime - minuteTime2;
-		if (timeDif == 0)
-			return 0;
-		else if (timeDif < 0)
-			return 1;
-		return -1;
+		return Timer.toMinute(time) - Timer.toMinute(time2);
 	}
 
 	endsAfter(endTime, duration) {
 		if (typeof endTime === "string")
 			endTime = this[endTime];
-		let time = Object.assign({}, this.time);
-		time.minute += (duration.minute || 0);
-		time.hour += (duration.hour || 0) + Math.floor((duration.minute || 0) / 60);
-		time.minute %= 60;
-		return this.compareTime(endTime, time) === 1;
+		return Timer.toMinute(endTime) - Timer.toMinute(duration) < Timer.toMinute(this.time);
 	}
 
 	inInterval(timeStart, timeEnd) {
@@ -69,10 +66,14 @@ class Timer {
 		if (typeof timeEnd === "string")
 			timeEnd = this[timeEnd];
 
+		timeStart = timeStart || {hour: 0, minute: 0};
 		timeEnd = timeEnd || {hour : 24, minute : 0};
-		if (this.compareTime(timeEnd, timeStart) < 0)
-			return this.compareTime(timeStart) > -1 && this.compareTime(timeEnd) === -1;
-		return this.compareTime(timeStart) > -1 || this.compareTime(timeEnd) === -1;
+
+		var time = Timer.toMinute(this.time);
+		var t1 = Timer.toMinute(timeStart);
+		var t2 = Timer.toMinute(timeEnd);
+
+		return t1 > t2 ? time >= t1 || time < t2 : time >= t1 && time < t2;
 	}
 
 	get weekDay() {

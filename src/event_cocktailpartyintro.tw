@@ -345,7 +345,7 @@ Before you move, $wife.name pulls you up and turns you arround.
 ::mansionCPartyIntro15 [event]
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_firstlook.jpg"]]
 
-Standing in front of you, wearing demure black lingerie is onw of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush giving her cheeks a hint of pink on her pale skin. The <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
+Standing in front of you, wearing demure black lingerie is one of the prettiest girls you've ever seen. Her slim legs look amazing with the black stocking hugging them and the body shaper is squeezing her waist just tight enough to give a hint of curves to her narrow hips. The lacey bra hides away her small breasts as if encouraging someone to unwrap them. Her face has subtle make up done, with smoky eye shadow, glossy lips and a hint of blush contrasting her cheeks with soft pink against her pale skin. The <<= $player.inv.filter(["wig", "equipped"])[0].item.color>> chin length bangs makes her face pop even more and the ponytail begs someone to caress her thin neck.
 
 The only problem is, that girl is you.
 
@@ -355,7 +355,7 @@ The only problem is, that girl is you.
 
 <<= $player.speak("This time..?")>>
 
-You can't finish as staring at your cute reflexion has had the exact reaction you'd expect and your hard on pops out of the top of the elastic of the panties.
+You can't finish as staring at your cute reflection has had the exact reaction you'd expect and your hard on pops out of the top of the elastic of the panties.
 
 <<chooseOption "Panic!">>
 You stand like a deer in headlight staring at $wife.name and your cheeks get even redder.
@@ -368,7 +368,7 @@ You cover yourself but all it did was draw $wife.name's attention.
 <</chooseOption>>
 
 ::mansionCPartyIntro16 [event]
-$wife.name leave again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflexion. It that girl wasn't you, you might stomack up the courrage to go talk to her.
+$wife.name leaves again and you hastily tuck your penis back into the silk panties. You're alone and staring at your cute reflection. If that girl wasn't you, you might stomach up the courage to go talk to her.
 
 <<= $player.speak("Might as well...")>>
 
@@ -407,7 +407,7 @@ With one hand behind your head, you put the other on your hips before cocking th
 <<append "#maiddressing5_action">>
 [img[setup.ImagePath + "events/cocktailparty/cocktailparty_turn.jpg"]]
 
-Looking back over your shoulder, the ponytail flicks out of the way. The pale skim of your back is complemented by the dark lingerie. The modest silk panties cover your butt just enougth but still show the hint of your cheeks underneath. The shaper and stockings create a sexy little squeeze at their edges to show you at least have a little muscle.
+Looking back over your shoulder, the ponytail flicks out of the way. The pale skin of your back is complemented by the dark lingerie. The modest silk panties cover your butt just enough but still show the hint of your cheeks underneath. The shaper and stockings create a sexy little squeeze at their edges to show you at least have a little muscle.
 
 
 <</append>>
@@ -437,7 +437,9 @@ $wife.name stands up angrily. <<= $wife.speak("Excuse me?")>>
 
 <<= $wife.speak("No, servant, I'm not crazy and you'd better watch your tone. You're already walking on thin ice and don't think I haven't noticed you not addressing me as $wife.title this entire time.")>>
 
-[[Back off|mansionCPartyIntro18]]
+<<link "Back off" "mansionCPartyIntro18">>
+<<= $player.boldness += 5>>
+<</link>>
 <<default>> or [[Back off|mansionCPartyIntro18]]
 <</chooseOption>>
 
@@ -464,7 +466,7 @@ You hear a little click as the cage locks in place and the she pulls your pantie
 
 <<= $player.speak("<i>All night? It's still morning though.</i>")>>
 
-<<= $wife.speak("The only way anyone will find ouy is if they get handsy. Now, knowing some of my guests, that's possible but at least we're reducing the risk so don't let that stop you from leaning into any stray hands if you want to.")>>
+<<= $wife.speak("The only way anyone will find out is if they get handsy. Now, knowing some of my guests, that's possible but at least we're reducing the risk so don't let that stop you from leaning into any stray hands if you want to.")>>
 
 <<= $player.speak("Why would I do that $wife.title")>>
 
@@ -488,7 +490,7 @@ You turn and look in one of the full length mirror. The cute gir you saw earlier
 [img[setup.ImagePath + "events/cocktailparty/maid_firstlook.jpg"]]
 
 <<chooseOption "Do a spin">>
-[img[setup.ImagePath + "items/wearables/dress/maid_twirl.gif"]]
+[img[setup.ImagePath + "items/wearables/dress/maid_twirl_01.gif"]]
 
 As you spin around, the skirt and apron do a cute little twirl with you. $wife.name smiles devilishly. She seems to appreciate how into the role you are getting.
 <<set $player.femininity++>>
@@ -631,7 +633,7 @@ He demonstrates for you and then hands you the tray back. You hold it with one h
 <<= $player.speak("<i>What a jerk</i>")>>
 
 <<= $caterer.speak("You still need the other hand behind your back though.")>>
-
+<<= $player.levelUp('serving', 1)>>
 <<end>>
 [[Continue practicing|mansionCPartyIntro25]]
 <</chooseOption>>
@@ -641,7 +643,7 @@ He demonstrates for you and then hands you the tray back. You hold it with one h
 
 [img[setup.ImagePath + "events/cocktailparty/serving_tray01.jpg"]]
 
-He loads the tray with some plastic and metal usensils he's not using and then set about walking back and forth around the open space in the kitchen sitting room. It's a little hard at first and you drop everything a few times. The first time you dropped something, you tried to bend down normally but the skirt started to rid up as you spread your knees. Instead you have to eep your legs together and kneel to the side to stop anyone from seeing the silk panties hiding your caged member. You catch a few of the workers stopping to stare when you do this and realise it's a very delicate and ladylike pose. When you stand back up, you feel your crotch twich unconfortably against its restaints.
+He loads the tray with some plastic and metal usensils he's not using and then set about walking back and forth around the open space in the kitchen sitting room. It's a little hard at first and you drop everything a few times. The first time you dropped something, you tried to bend down normally but the skirt started to ride up as you spread your knees. Instead you have to keep your legs together and kneel to the side to stop anyone from seeing the silk panties hiding your caged member. You catch a few of the workers stopping to stare when you do this and realise it's a very delicate and ladylike pose. When you stand back up, you feel your crotch twich unconfortably against its restaints.
 
 <<= $player.speak("<i>It's just my blood pumping from being nervous</i>")>>
 
@@ -794,6 +796,10 @@ You can see $owner.name lying asleep face down, clearly naked, and quicly follow
 	passage: "mansionCPartySetup01",
 	inline: true,
 	repeats: true,
-	tags: ["!WeekEven", "Saturday", "Morning"]
+	tags: {tag: "every", data: [
+		{tag : "weekEven", data: {}, expected: false},
+		{tag : "day", data: {day: "Saturday"}, expected: true},
+		{tag : "time", data: {time: "Morning"}, expected: true},
+	], expected: true}
 }))>>
 <</link>>

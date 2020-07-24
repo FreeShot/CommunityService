@@ -73,16 +73,10 @@ class Room {
 		return str + (imgIndex < this.img.length ? `[>img[${this.getImgPath(imgIndex)}]]</span>` : "</span>");
 	}
 
-	generatePassage() {
-		return `${this.display(0)}<br>${this.getEvent()}<br>Chores: ${this.displayChores(undefined, State.variables.mansion.currentEvent === "", false)}<br>From here, you can go to ${this.getAdjacentRooms()}`;
+	getAdjacentRooms() {
+		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
 	}
 
-	getAdjacentRooms() {
-		if (this.adjacentRooms.length > 0)
-			return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(this.adjacentRooms[i]).getPassage()}</li>`, `<ol>`) + "</ol>";
-		else
-			return "[[Go to your room|PlayerBdRm]]";
-	}
 
 	getPassage(text) {
 		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`

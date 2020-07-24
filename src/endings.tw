@@ -19,3 +19,15 @@ The next few years are spent working off your debt. The work is back breaking an
 Years later your sentence ends and you are shipped back to your home country without much fuss but you have no one to meet and nowehere to stay. With no money and no prospects the future doesn't look great.
 
 Maybe I should've chosen [[Indentured Servitude|Intro5]] instead?
+
+:: endChoresFailed01 [gameover]
+
+<<= $owner.speak("Your continued failure to meet my generous expectations has gone on long enough. I have chosen to forfeit your debt back to the state.")>> It seems everything else was just him crossing off his checklist until he got to this. <<= $owner.speak("You can come in now.")>>
+
+$owner.name calls out behind you and two of the security personelle come in and take you by your arms.
+
+<<= $owner.speak("Dismissed.")>>
+
+$owner.name waves you away. You shout at to him to let you go and then beg to be given another chance as you're dragged out to the foyer and through the main door but it's too late. One bad decision after another has led you here and you aren't sure what will happen to you now. Whatever it is it won't be good.
+
+!GAME OVER

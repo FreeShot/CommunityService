@@ -14,6 +14,7 @@
 <<= $shop.addCategory("Toys")>>
 <<= $shop.addCategory("Items")>>
 
+<!-- Wigs -->
 
 <<= $shop.addItem("Wig", {
 	name: "Short Black Wig",
@@ -112,6 +113,8 @@
 	length: "long"
 }, 1)>>
 
+<!-- Underwear -->
+
 <<= $shop.addItem("Underwear", {
 	name: "Pink stripped panties",
 	tags: ["underwear", "equipped"],
@@ -126,6 +129,8 @@
 	price: 0,
 	img: "items/wearables/panties/lace_01.jpg"
 }, 1)>>
+
+<!-- Bras -->
 
 <<= $shop.addItem("Bra", {
 	name: "Pink stripped bra",
@@ -142,6 +147,8 @@
 	img: "items/wearables/bra/lace_01.jpg"
 }, 1)>>
 
+<!-- Tops -->
+
 <<= $shop.addItem("Top", {
 	name: "Black camisole",
 	tags: ["shirt", "equippable"],
@@ -149,6 +156,8 @@
 	price: 0,
 	img: "items/wearables/tops/top_02.jpg"
 }, 1)>>
+
+<!-- Dresses -->
 
 <<= $shop.addItem("Dress", {
 	name: "Black summer dress",
@@ -165,6 +174,8 @@
 	img: "items/wearables/dress/maid_01.jpg"
 }, 1)>>
 
+<!-- Bottoms -->
+
 <<= $shop.addItem("Bottom", {
 	name: "Tartan school skirt",
 	tags: ["pants", "equippable"],
@@ -173,13 +184,17 @@
 	img: "items/wearables/bottoms/skirt_02.jpg"
 }, 1)>>
 
+<!-- Hosiery -->
+
 <<= $shop.addItem("Hoisery", {
 	name: "Black Stockings with garter belt",
 	tags: ["hoisery", "equippable"],
 	femininity: 20,
 	price: 0,
-	img: "items/wearables/hoisery/stockings_01.jpg"
+	img: "items/wearables/hosiery/stockings_01.jpg"
 }, 1)>>
+
+<!-- Shoes -->
 
 <<= $shop.addItem("Shoes", {
 	name: "Black leather mary jane heels",
@@ -203,6 +218,8 @@
 	img: "items/wearables/shoes/heels_03.jpg"
 }, 1)>>
 
+<!-- Accessories -->
+
 <<= $shop.addItem("Accessory", {
 	name: "Maid headdress",
 	tags: ["accessory-head", "equippable"],
@@ -224,14 +241,33 @@
 	price: 0,
 	img: "items/wearables/accessories/choker_02.jpg"
 }, 1)>>
+<<= $shop.addItem("Accessory", {
+	name: "Black corset",
+	tags: ["bra", "equipped"],
+	femininity: 15,
+	price: 0,
+	img: "items/wearables/accessories/corset_01.jpg"
+}, 1)>>
+
+<!-- Toys -->
 
 <<= $shop.addItem("Toys", {
 	name: "Pink chastity cage",
 	tags: ["toy-front", "equippable"],
 	femininity: 5,
 	price: 0,
-	img: "items/wearables/toy/cage_01.jpg"
+	img: "items/wearables/toys/cage_01.jpg"
 }, 1)>>
+
+<<= $shop.addItem("Toys", {
+	name: "Slim pink chastity cage",
+	tags: ["toy-front", "equippable"],
+	femininity: 5,
+	price: 0,
+	img: "items/wearables/toys/cage_02.jpg"
+}, 1)>>
+
+<!-- Items (non wearables) -->
 
 <<= $shop.addItem("Items", {
 	name: "Basic razor",
