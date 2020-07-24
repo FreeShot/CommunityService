@@ -28,6 +28,7 @@
 - Chores are not sized properly in the sidebar
 - Clothes where duplicating when repeating events that give some temporary clothes
 - Return button inside the CUFF did not return to the CUFF menu
+- Fixed some images that didn't display well
 
 ::changelog-V0.2.0 [changelog]
 !! V0.2.0
