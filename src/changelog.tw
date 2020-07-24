@@ -21,12 +21,14 @@
 
 !!! Other content
 - New green theme, activate it in the settings
+- Clothes that are lended to you will display differently in the inventory
 !!! Bugfixes
 - Chore cause game over
 - Links missing on the sidebar
 - $name is undefined in the pool events
 - Chores are not sized properly in the sidebar
 - Clothes where duplicating when repeating events that give some temporary clothes
+- Return button inside the CUFF did not return to the CUFF menu
 
 ::changelog-V0.2.0 [changelog]
 !! V0.2.0

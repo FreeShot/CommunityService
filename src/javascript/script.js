@@ -6,9 +6,11 @@ $(document).on(':passageinit', (ev) => (settings.nsfw) ? $("html").removeClass("
 
 $(document).on(':passagestart', (ev) => {
 	if (!ev.passage.tags.includes('noreturn')) {
-		State.variables.return = ev.passage.title;
-		if (!ev.passage.tags.includes('mainMenu'))
+		if (!ev.passage.tags.includes('mainMenu')) {
 			State.variables.exitMenu = ev.passage.title;
+		} else {
+			State.variables.return = ev.passage.title;
+		}
 	}
 	if (ev.passage.tags.includes('eventStart')) // Stores the last event
 		State.variables.mansion.currentEvent = ev.passage.title;
