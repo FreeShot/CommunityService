@@ -76,13 +76,13 @@ Setting.addToggle("tips", {
 	label    : "Displays the tips",
 	default  : true
 });
-/*
+
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
 	default  : false,
 	onChange : () => State.variables.debug = settings.debug
 });
-*/
+
 
 
 Config.history.maxStates = 20;

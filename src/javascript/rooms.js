@@ -86,7 +86,7 @@ class Room {
 		return this.chores.reduce((str, chore) => {
 			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
 			if (choreDo === "") return str;
-			return `${str}<li class="choreUILink">${canDoChores ? choreDo : this.getPassage(chore.name)}</li>`;
+			return `${str}<li class="choreUILink">${canDoChores || chore.done ? choreDo : this.getPassage(chore.name)}</li>`;
 		}, "");
 
 		if (this.chores.length > 0) {
