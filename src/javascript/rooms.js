@@ -77,6 +77,9 @@ class Room {
 		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
 	}
 
+	//getNPC() {
+	//	return npcList.filter((npc) => State.variables[npc].schedule.currRoom === this.id);
+	//}
 
 	getPassage(text) {
 		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`

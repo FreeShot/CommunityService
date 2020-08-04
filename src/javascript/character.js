@@ -5,6 +5,7 @@ function createNPC(gender) {
 
 	// TODO CLEAN UP THIS MESS
 	// Note from 03/07/2020 --> I really really don't wanna, but I'll have to do it soonish
+	// Note from 25/07/2020 --> Still don't want, what am I doing with my life
 	
 	var values = {};
 

@@ -67,10 +67,11 @@ Setting.addList("theme", {
 });
 
 
-Setting.addHeader("Misc", "For all the settings that don't have their place in other parts");
-Setting.addToggle("nsfw", {
-	label    : "Displays NSFW images",
-	default  : true
+Setting.addHeader("Misc", "");
+Setting.addToggle("No images", {
+	label    : "Hides all images from the game",
+	default  : false,
+	onChange : () => $("html").toggleClass("no-images")
 });
 Setting.addToggle("tips", {
 	label    : "Displays the tips",

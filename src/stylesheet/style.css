@@ -60,6 +60,10 @@ body {
 	color: var(--story-text);
 }
 
+html.no-images img {
+	display: none;
+}
+
 #ui-bar, 
 #ui-dialog-title, 
 #ui-dialog-body {
