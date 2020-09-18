@@ -1,0 +1,73 @@
+::sleep [sleep Save]
+[img[setup.ImagePath + "events/sleep/sleep1.jpg"]]
+
+You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
+<<if $mansion.currentEvent.startsWith("mansionCParty")>>
+There's a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
+
+<<= $daughter.speak("Come on. I have a surprise for you.")>>
+
+You glance down and see she is in a thin night dress and your mind races at the possibilities. $daughter.name takes you hand and leads you through the mansion. You're too busy watching her nightie bounce up and down to pay much attention to where you are going. She leads you through a door and turns to close it behind you. The room is dark and you can hardly see the details.
+
+Before you can speak $daughter.name shoves you down to the ground. You roll onto your back and see her shadowy form reach down towards you. Fingers slip into the waist of your panties and start pulling them over your svelte thighs, past your ankles before tossing them to the side. The hands start spreading your knees as the figure leans over the top of you.
+
+<<= $suitor.speak("I can't wait to be inside of you.")>>
+
+You feel something warm and firm press against your womanhood before the figure thrusts forwards and...
+
+[[Start the next day|mansionCPartyIntro32]]
+<<elseif $daughterDateIntro is true>>
+When you get to your room you flop onto the bed. The thump makes you acutley aware of the hard plastic of the cage. You quickly roll over and pull down your pants to remove it but realise it's locked and you don't have a key. After the goodnight kiss your trapped member is straining to get a erect but the pink prison is preventing it.
+
+You reach down and fiddle with the cage for a moment in an effort to remove it. All this does is prove it is locked tight with no chance of coming off. To make things worse the jostling of the cage made the pressure even more intense as your body reacts to your trying to play with yourself.
+
+Defeated, you turn the light out and do you best to fall asleep. No position is comfotable though as your thoughts drifts back to $daughter.name, how she looked in that outfit, the kiss you shared, the sway of her hips as she walked up the stairs.
+
+It's some time before you're able to drift off but your sexy dreams provide little sanctuary.
+
+[[Start the next day|daughterPath04IntroDate07]]
+<<else>>
+[[Start the next day|wakeUp]]
+<</if>>
+
+<<set $player.voice.current = $player.voice.absolute>>
+<<= $player.increaseArousal(5)>>
+
+::wakeUp [sleep]
+
+The CUFF alarm goes off at 6 am sharp and you quickly slap your hand to your wrist and set it to snooze. It's not long before the room lights start to come on forcing you to get up and start the day.
+
+<<nobr>>
+<<= $time.setDate("wakeup")>>
+<<set _event to $mansion.checkSpecialEvents()>>
+<<if _event != "">>
+	<<= _event>>
+<<else>>
+You head to your small bathroom and sit down to relieve yourself. After that you jump in the shower and quickly wash yourself before getting out and shaving. Once you're dressed you head out to the kitchen and start getting things ready for breakfast.<br>
+<br>
+<<nobr>>
+	<<switch random(4)>>
+		<<case 1>>
+			<<include "breakfastPJs01">>
+		<<case 2>>
+			<<include "breakfastPJs02">>
+		<<case 3>>
+			<<include "ownerBreakfastBossy01">>
+		<<default>>
+			$butler.name is already in there to help setup. Fortunately the family isn't particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.<br>
+			<br>
+			[img[setup.ImagePath + "events/chores/general_breakfast/bfast_continental01.jpg"]]<br>
+			<br>
+			$owner.name is first to the table as usual. $butler.name helps you bring out the coffee and tea. Over the next hour or two everyone in the estate spends time in the dining room eating and chatting about what they have planned for the day. You attend to anything unique they request until everyone is satisfied and leaves to go about their day. $butler.name leaves with $owner.name so you are alone to do the clean up.<br>
+			<br>
+			Once everything is tidy you grab a bite to eat and go back to your room.<br>
+			<br>
+			[[Return to your room.|PlayerBdRm]]
+	<</switch>>
+<<= $time.addTime({hour: 2, minute:0})>>
+<</nobr>>
+<</if>>
+<</nobr>>
+
+<<set $player.rest()>>
+<<= $mansion.resetChores()>>

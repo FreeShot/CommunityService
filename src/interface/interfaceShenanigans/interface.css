@@ -15,7 +15,7 @@
 	--story-fg: #E6F9FF;
 	--story-bg: #0A131F;
 
-	--story-emphasis: #0A1524;
+	--story-emphasis: #386480;
 
 	--story-accent: #C7BBB7;
 }
@@ -215,4 +215,8 @@ body, #main-story {
 	border-radius: 1rem;
 
 	padding: 2rem;
+}
+
+.warning a {
+	color:  var(--ui-bg);
 }

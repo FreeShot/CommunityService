@@ -1,0 +1,153 @@
+::Intro1 [intro tutorial]
+
+As far as you can remember, your early childhood was fairly normal with two loving parents, but you tragically lost them in an accident. You didn't have any other relatives, so you were raised in foster care. It wasn't a perfect upbrining, but you got by.
+
+At one point, you were lucky enough to get accepted on a scholarship to a prestigious academy. It was a great opportunity so you took it. For the last few months, you've been on an exchange trip overseas to a small country that recently opened up its borders after a long period of isolationism.
+
+They were well known for being the foremost experts in medical and computer technology. You're not sure if you got as much from it as you could have but it was a great trip and now you're looking forward to going home.
+
+The driver taking you to your airport lets everyone know that they'll be taking a quick break soon. After pulling into a nearby road stop, you get out to strech your legs  and grab a bite to eat.
+
+You were enjoying your snack when a shady looking man took the seat accross from you.
+
+<<= Character.speakAnonymous("Hey kid, you look like a smart person ready to make some money. I'm wondering if you wouldn't mind helping me out getting this package to some friend of mine.", "Peru")>>
+
+He holds out a plain brown box in front of you. It's clear this person is up to no good.
+
+[img[setup.ImagePath + "items/general/brownbox.jpg"]]
+
+<<= Character.speakAnonymous("The address is on the box and if you do, my friend will be really thankfull and pay you a big chunk of change for your trouble.", "Peru")>>
+
+The man is rubbing his fingers together with a sly smile.
+
+[[Sounds like a good deal to me.|Intro2]]
+[[Nope. Stranger danger.|EndHomeSweetHome]]
+
+::Intro2 [intro tutorial]
+<<= $player.speak("Sure. I can help you out.")>>
+
+<<= Character.speakAnonymous("Great! you're a life saver. Have a safe trip.","Peru")>>
+
+With that, the man hands over the package.
+
+The package looks ordinary enough. You give it a shake, but don't hear anything inside. It's best to leave it alone since it might be something private.
+
+<<= $player.speak("What's in...")>>
+
+You look up, but the man is already getting into a nearby car and driving away.
+
+You srug before finishing your food and getting back on the bus and you [[continue your trip to the airport|Intro3]]
+
+::Intro3 [intro tutorial]
+You get to the airport later that day. There have been a lot of visitors since the borders were opened so the queue for security is long. You play with your queue. Half an hour layer, you finally reach the front.
+
+It doesn't take long to reach the airport and get to the security check-in. You hadn't really thought much about the box until you're putting it on the conveyor for the x-ray machine along with the rest of your suff. One of the gard waves at you through the metal detector. While you're waiting at the other end, an old lady in front of you drops her bag so you duck down to pick it.
+
+<<= Character.speakAnonymous("Oh why, thank you, young man.","YellowGreen")>>
+
+She smiles warmly as you hand her the bag and then rejoins her group.
+
+When you turn back to the conveyor, a security guard is standing there holding the brown box you were given earlier in the day.
+
+<<= Character.speakAnonymous("I this package yours son?", "GoldenRod")>>
+
+His face is pretty neutral.
+
+<<= $player.speak("Um, yes.")>>
+
+<<= Character.speakAnonymous("Please step to the side sir.", "GoldenRod")>>
+
+You move to grab your other bag, but another guard picks it up for you. You follow the guards directions and can see now there are two other more nearby, so they are surrounding you. They arren't particulary close, but it's clear running wouln't be a good option.
+
+<<= Character.speakAnonymous("You know smuggling is illegal, right?", "GoldenRod")>>
+
+<<= $player.speak("Yes.")>>
+
+<<= Character.speakAnonymous("Then why where you trying to get this out of the country?", "GoldenRod")>>
+
+The box is still closed.
+
+<<= $player.speak("I don't even know what's in there. Some guy asked me to deliver it to his friend back home.")>>
+
+<<= Character.speakAnonymous("What's his name?", "GoldenRod")>>
+
+<<= $player.speak("<i>$player.name, you idiot!</i> He didn't say.")>>
+
+<<= Character.speakAnonymous("So you're in the habit of taking strange packages from people you don't know?", "GoldenRod")>>
+
+You stand there, panicking and unsure of how to reposnd.
+
+<<= Character.speakAnonymous("Please follow us son.", "GoldenRod")>>
+
+<<chooseOption "Follow the guard">>
+<<goto "Intro4">>
+<<option "Make a run for it">>
+You start running and try to make a break for it, but the guards are ready for it. They quickly tackle you to the ground and have you restrained in no time.
+
+[[Get taken away.|Intro4]]
+<</chooseOption>>
+
+::Intro4 [intro tutorial]
+The next few days are a whirlwind as some of the most efficient judicial systems in the world throw the book at you. You are quickly found guilty of attempted smuggling and are given a massive 23456cr fine!
+
+You don't know the currency exchange rate but you know you definitely can't afford it. There is a strict no extradition policy and your home country is hesitant to help as the power this small country wields is considerable. You're on your own.
+
+You are currently in a meeting room with your Sentencing Officer waiting to find out what they will do with you. A tall dominering man who looks in his fifties. He's the only one you're allowed to talk with at this point since the trial is already over.
+
+<<= Character.speakAnonymous("You're in a tight bind here young man. The courts have already assessed your finances and we know you can't pay your fine.", "DarkGoldenRod")>>
+
+To the mans credit he has been making a sincere effort to help but he can only do so much.
+
+<<= Character.speakAnonymous("Given that this is your first offence I'm willing to offer you two options. First, we could ship you off to a labour camp. It's hard work but you're guaranteed to pay off you debt in a few years. You'll answer to the state though so don't think it will be easy.", "DarkGoldenRod")>>
+
+One of the reasons this county was isolated from the rest of the world is its policies on slavery and indentured servitude.
+
+<<= Character.speakAnonymous("Second you could agree to indentured servitude. You'll be signed over to an owner and you'll work for them. You'll work off your debt eventually but it's dependant on how well your owner thinks you are doing so you need to make sure they're happy.", "DarkGoldenRod")>>
+
+Having anyone being in control of your life doesn't sound great.
+
+<<= Character.speakAnonymous("Well. I'll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?", "DarkGoldenRod")>>
+
+::Intro5 [intro tutorial]
+The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled <b>Private Indenture Contract</b>.
+
+<<= Character.speakAnonymous("This is a standard private contract but has a few addendums from your potential owner. If you want this deal you'll need to sign it and then you will become their ward. If you see any discrepancies in your personal details please correct them before signing.", "DarkGoldenRod")>>
+
+You scan through the document making note of the main clauses:
+		
+<ul>
+<li>As per the Servant Rights Act you forfeit all rights to your Owner up to a minimum standard.</li>
+<li>The State Repayment Plan requires you to meet a weekly quota to repay your debt.</li>
+<li>The Owner Protection Clause  allows the value of the work completed to be determined by the Owner.</li>
+<li>The Community Protection Act requires you to be restricted to your household at all times unless under Owner supervision or the Owner grants you special permission to leave.</li>
+</ul>
+
+It goes further into all the laws regulation but the bottom line is if you want this deal you have to sign.
+		
+The last section shows your personal information.
+
+<div id="player-customisation-form">\
+<h3>Personnal information of the <em>Indured Servant</em></h3>
+Name: <<textbox "$player.name" $player.name "Intro6" true>>
+</div>
+
+[[Sign the contract|Intro6][$flags.CUFF++]]
+
+::Intro6 [intro tutorial]
+You sign your rights away and with that you are now an indentured servant. You know enough to know this basically makes you a slave with a few basic human rights but that's it.
+
+The Sentencing Officer takes away the contract a woman comes in with a box. She doesn’t saying anything as she sits next to you and pulls you hand over.
+
+<<= Character.speakAnonymous("You'll be tagged with a personal Correction Update and Flagging Flexile.", "DarkGoldenRod")>> 
+
+The Sentencing Officer pulls out a book and slides it over to you with the acronym CUFF on the front. 
+
+<<= Character.speakAnonymous("This has all the information you need to know about the device but basically it lets us or your owner track you and your progress.", "DarkGoldenRod")>>
+
+The woman wraps a black band around your wrist and uses a tool to press button which forces the two ends to fuse together.
+
+<<= Character.speakAnonymous("It links to your debt account and can be used to withdraw funds. Make sure you use this carefully though and any purchase made while a servant will be added to your debt. A few other features to note are the instant messaging system and scheduler to help you and your owner keep track of any assigned tasks.", "DarkGoldenRod")>>
+
+With the formalities complete you get taken away so you can be sent to your owners. You ask about your things before leaving and get told they will kept by the state until the debt is paid off. Looks like you're stuck with only the clothes on your back for now.
+
+[[Be taken to your owner.|manorIntro01]]

@@ -1,0 +1,9 @@
+::shopTest
+
+<<= $shop.name>>
+<<= $shop.listItem()>>
+
+
+<<= $player.inv.listItem("$player.inv")>>
+
+<<return>>

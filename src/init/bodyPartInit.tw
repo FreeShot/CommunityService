@@ -1,0 +1,41 @@
+::bodyPartInit [init]
+
+<!-- todo -->
+
+<<set $bodyPart to {
+	desc: {
+		hairColor : [
+			"brown", "black", "brown", "aubrun"
+		],
+		hairLength : [
+			"short", "medium", "long"
+		],
+		eyeColor : [
+			"blue", "brown", "black"
+		],
+		face: [
+			"Your face is fairly plain and ordinary, almost like a blank slate. You don't exactly turn any heads which is probably why you've never been on a date before."
+		],
+		lips: [
+			"You have flat, average lips."
+		],
+		skin: [
+			"Your skin is pale with a smattering of blemishes on it. There's one the stands out more that the rest that you really wish you could get rid of."
+		],
+		chest: [
+			"You don't really exercise so your chest isn't much to look at."
+		],
+		butt: [
+			"Your butt barely has any definition. Maybe if you exercised, but as it is, some might even call it flat."
+		],
+		hips: [
+			"Yep. One set of skinny hips."
+		],
+		crotch: [
+			"You would call your penis average. At least that's what you tell yourself."
+		],
+		legs: [
+			"Your skinny legs have a fair amount of hair on them. There's barely any hint of muscle."
+		]
+	}
+}>>

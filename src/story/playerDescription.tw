@@ -1,0 +1,41 @@
+::playerDescription [nobr noreturn menu]
+
+You are <<= $player.name>>.<br>
+<<if $player.isHidden("hair") === undefined>>
+  You have
+<<else>>
+  You wear a <<= $player.isHidden("hair")>> hiding your
+<</if>>
+<<= $player.getDesc("hairLength")>> <<= $player.getDesc("hairColor")>> hairs. <<if $player.hasEquipped("accessory-head")>>On your head rests a <<= $player.hasEquipped("accessory-head")>><</if>>
+
+<br>
+
+You have <<= $player.getDesc("eyeColor")>> eyes. <br>
+
+<<= $player.getDesc("face")>>
+<<= $player.getDesc("lips")>> 
+<<if $player.hasEquipped("accessory-neck")>> On your neck rests a <<= $player.hasEquipped("accessory-neck")>>.<</if>> <br>
+<<= $player.getDesc("skin")>> <br>
+<<= $player.getDesc("chest")>> <br>
+<<= $player.getDesc("butt")>> <br>
+<<= $player.getDesc("hips")>> <br>
+<<= $player.getDesc("crotch")>> <br>
+<<= $player.getDesc("legs")>> <br>
+
+<<for _bp range ["chest", "crotch", "legs"]>>
+  <<if $player.isHidden(_bp) !== undefined>>
+    Your _bp is hidden by your <<= $player.isHidden(_bp)>>.
+  <<else>>
+    Your _bp is exposed for anyone to see.
+  <</if>>
+  <br>
+<</for>>
+
+<<if $player.hasEquipped(["toy-front"])>>
+You are currently using a <<= $player.inv.filter(["toy-front", "equipped"])[0].item.name>>.
+<</if>>
+<<if $player.hasEquipped(["toy-back"])>>
+You are currently using a <<= $player.inv.filter(["toy-back", "equipped"])[0].item.name>>.
+<</if>>
+<br>
+[[Return|$return]]

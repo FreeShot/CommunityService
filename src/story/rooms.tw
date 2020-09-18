@@ -1,0 +1,17 @@
+::RoomDescription [room nobr]
+<<= $mansion.findRoom($player.currRoom).display()>><br>
+<<set _npc to $mansion.findRoom($player.currRoom).getNPC()>>
+<<if _npc !== "">>
+<<= _npc>>
+<</if>>
+<<= $mansion.findRoom($player.currRoom).getEvent()>>
+<br>
+<<set _chores to $mansion.findRoom($player.currRoom).displayChores(true, true, false, false)>>
+<<if _chores !== "">>
+Chores:
+<<= _chores>>
+<</if>>
+<br>
+<<if !$late>>
+From here, you can go to <<= $mansion.findRoom($player.currRoom).getAdjacentRooms()>>
+<</if>>

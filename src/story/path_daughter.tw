@@ -1,0 +1,461 @@
+:: daughterPath01Homedrunk [noreturn chore]
+<!-- Random % chance when the player eneters the foyer - does not repeat -->
+
+Trigger: First Thursday night (last thing to happen before the player goes to bed)
+
+As you are finishing up in the Foyer you hear the buzzer for the main door rings. Before you can answer it $wife.name storms into view, clearly furious.
+ 
+<<= $wife.speak("That damned girl will be the death of me!")>>
+ 
+She abruptly opens the door and you can see $daughter.name with two security guards standing on either side of her. You can tell by her swaying back and forth that the guards are clearly the only thing keeping her upright.
+ 
+<<= $wife.speak("For goodness sake $daughter.name.")>> $wife.name grabs $daughter.name arm and pulls her inside.
+ 
+<<= $daughter.speak("Heeeeey. Easy.")>> Her slurred speech pretty much confirms she is drunk.
+ 
+<<= $wife.speak("Thank you gentlemen. You're dismissed.")>>
+ 
+$wife.name slams the door shut.
+ 
+<<= $wife.speak("Drunk again? Really?")>>
+ 
+<<= $daughter.speak("It was just some cocktails with my friends. We didn't do anything.")>>
+ 
+<<= $wife.speak("You almost set a bar on fire! I had hoped your education would train you out of that kind of behaviour but you've gone strait back into your old habits.")>>
+ 
+$daughter.name yanks her arm free and stumbles a bit. <<= $daughter.speak("I finished my degree. What more do you want? I just wana have fun!")>>
+ 
+<<= $wife.speak("I won't talk to you like this. Go upstairs and sleep it off.")>>
+
+$wife.name points to the stairs.
+ 
+<<= $daughter.speak("Aaaaw. But I'm not sleepy.")>> $daughter.name still turns anyway and starts stumbling forwards.
+ 
+She spots you standing nearby.
+ 
+<<= $daughter.speak("Heeeey $player.name. Look at you. All cute and domesticated.")>> She stumbles over and squeezes your cheeks. <<speak $daughter.speak("I could just gobble you up.")>>
+ 
+<<= $wife.speak("$daughter.name!")>>
+ 
+<<= $daughter.speak("Fine.")>> $daughter.name lets go and heads up the stairs.
+ 
+$wife.name starts heading back into the estate. <<= $wife.speak("This is the last time.")>> She grumbles to herself.
+
+:: daughterPath02ServeA []
+<!-- happens the 1st time the player serves the Daughter at the cocktail party - does not repeat -->
+
+<<= $daughter.speak("Hey $player.femName. You really are working this new look of yours.")>>
+
+She leans in a bit closer.
+
+<<= $daughter.speak("I think I'm getting a little jealous of all the eyes on that cute butt of yours.")>>
+
+Blushing furiously you reach down to fix the hem of your skirt as if ready for it to fly up at any moment to reveal what's underneath then.
+
+<<chooseOption "Get annoyed.">>
+<<= $player.speak("The sooner I get out of this damned dress the better.")>>
+
+<<= $daughter.speak("Oh well. Maybe you'll get used to it or just learn to take a compliment.")>>
+
+$daughter.name turns back to her conversation so you can continue serving.
+
+<<link "<<= $wife.speak('Continue serving')>>" "mansionCPartyServing01">><</link>>
+<<option "Thank her... begrudgingly.">>
+<<= $player.speak("Thank you $daughter.title. I guess.")>>
+
+<<= $daughter.speak("Come on. Just $daughter.name. To be honest I kind of wish we could get out of here and go to a pub for a beer.")>>
+
+<<link "I'd drink more than a beer if I could." "daughterPath02ServeB">><</link>>
+<<end>>
+<</chooseOption>>
+
+:: daughterPath02ServeB []
+<!-- continues from previous passage -->
+
+<<= $player.speak("I'd take a case if I could get some of these eyes off me.")>>
+
+$daughter.name laughs. <<= $daughter.speak("I should sneak you out of here sometime. Although I think the eyes wouldn't stop staring at a cutey like you.")>>
+
+You roll your eyes but she just chuckles <<if $suitor.appreciation >= 1>> and leans forwards to whisper.
+
+<<= $daughter.speak("Just between us girls, I caught $suitor.name checking you out before and he's not easy to impress, trust me.")>>
+
+You look at her wide eyed but before you can reply $daughter.name winks <</if>>and turns back to her conversation to leave you to your duties.
+
+[[Continue serving|mansionCPartyServing01]]
+
+<<set $daughter.addAppreciation(1)>>
+
+:: daughterPath03GardenChatA [event]
+<!-- happens the first time the player sees the Daughter in the Garden after they are nice to her in daughterPath02ServeA - does not repeat - should occur instead of daughterGardenReading01 one time and then the generic event should be happening again-->
+
+$daughter.name is resting under some shade with a small picnic and a pile of books nearby. The casual white dress she's wearing that flows down her toned body and stops just above her knees to show off her calves. This is one of the few times your see her wearing glasses as well. She has her long blonde hair loose and the light makes it glisten.
+
+[img[setup.ImagePath + "character/daughter/garden_reading_01.jpg"]]
+
+You find yourself curious about what she spends her time reading so wander nearby. $daughter.name looks up at you through her glasses and her face brightens.
+
+<<= $daughter.speak("Hey $player.name. Out here to enjoy the sun?")>>
+
+You look down at your broom and then back up to her.
+
+<<chooseOption "She's just being nice.">>
+Despite ignoring the circumstance of your situation she is possibly the only person who isn't treating you like a slave, at least most of the time. There's nothing wrong with having a friendly conversation.
+
+<<= $player.speak("Well $daughter.title, I'm kinda in the middle of sweeping but the sun is out so I guess you're right.")>>
+
+She chuckles. <<= $daughter.speak("Yeah, someone needs to keep $gardner.name happy. Wouldn't want someone tripping over a stray blade of grass right?")>>
+
+<<= $player.speak("Heh. Yeah he really takes this garden seriously.")>>
+
+You gesture to the stack of books on her blanket.
+
+<<link "<<= $player.speak('A little light reading?')>>" "daughterPath03GardenChatB">><</link>>
+<<option "She's either oblivious or making fun of you.">>
+<<= $player.speak("It's either sweeping or prison. Not a lot of choice really.")>>
+
+$daughter.name frouns <<= $daughter.speak("I'm surprised you're so snarky about a little sweeping if those are your options.")>> She snaps her book closed and begins packing up her little picnic. <<= $daughter.speak("You could try to make the most of it by trying to enjoy what you have. Maybe you should get back to work and remember your situation could get a lot worse if you keep up that attitude.")>>
+
+Not wanting to push your luck your go <<link "back to what you were doing." "return">><</link>>
+<<end>>
+<</chooseOption>>
+
+:: daughterPath03GardenChatB []
+<!-- continues from previous passage --> 
+
+<<= $player.speak("That's quite a pile you've built up $daughter.title.")>>
+
+<<= $daughter.speak("Come on $player.name, just call me $daughter.name.")>>
+
+<<= $player.speak("Ok, $daughter.name.")>>
+
+<<= $daughter.speak("Care to join me for a bit?")>>
+
+You look around to see if anyone is watching.
+
+<<= $daughter.speak("Oh don't worry. The big bad won't be home for hours.")>> She pats the spot next to her on the blanket.
+
+With one more glance around you put the broom down and take a seat next to her.
+
+<<= $daughter.speak("It's about my degree.")>>
+
+<<= $player.speak("Huh?")>>
+
+<<= $daughter.speak("The books. I'm keeping up my reading.")>>
+
+<<= $player.speak("What ldid you get your degree in?")>>
+
+<<= $daughter.speak("Advanced Biomedicine and Genetic Mechanics.")>>
+
+<<= $player.speak("Holy crap!")>>
+
+<<= $daughter.speak("Yeah, I know. Not what you were thinking about me right? People see me and think rich girl with good looks who couldn't possibly have a brain.")>>
+
+<<= $player.speak("Well sort of but I'm just impressed because you're so young. That sounds like the kind of thing most people spend their lives trying to accomplish.")>>
+
+<<= $daughter.speak("Well people keep telling me I was some kind of prodigy. To be honest having such a head start because of Dad did help. I got all the tutors and resources I needed. Not like some other people.")>>
+
+$daughter.name seems thoughful, almost as if she regrets having such an advantage. <<= $player.speak("Well some people are lucky but the ones that make it are usually the ones that make the best of the lucky shots they have.")>>
+
+She smiles again and brushes a stray hair behind her ear. <<= $daughter.speak("That's nice of you to say.")>>
+
+There's a moment of awkward silence before she continues. <<= $daughter.speak("So tell me about where you're from.")>>
+
+You both begin trading details of your homes and upbringing. There aren't many parallels but $daughter.name is so easy to talk to you find yourself getting swept up in the conversation. Besides, it's just nice to be chatting with someone close your own age for once.
+
+After a while the sound of laughter dies down and it's time to get back to what you were doing.
+
+<<= $player.speak("Well thanks for the chat but duty calls.")>>
+
+<<= $daughter.speak("No problem. It's nice to have someone to just talk with.")>>
+
+You smile and then get <<return "back to what you were doing.">>
+
+<<set $time.addTime({day:0, hour: 0, minute:30})>>
+<!--<<set $daughter.addAppreciation(1)>>-->
+<<= $mansion.removeEvent("Garden", "daughterPath03GardenChatA")>>
+
+:: daughterPath04IntroDate01 []
+<!-- requires being nice to the Daughter in daughterPath03GardenChatA and then seeing the Daughter in the Foyer -->
+
+You hear the sounds of $daughter.name and $wife.name arguing as they enter the room.
+
+<<= $daughter.speak("You can't just keep me locked up here!")>>
+
+<<= $wife.speak("I'm pretty sure I can. Every time you leave this estate to go out for the night security has to carry you back home.")>>
+
+<<= $daughter.speak("I can figure out a way past them and you know it you might as well just let me go out.")>>
+
+$wife.name has her hands on her hips and is about to reply when she spots you. She thinks for a moment and then smiles.
+
+<<= $player.speak("<i>This can't be good.</i>")>>
+
+<<= $wife.speak("How about a compromise?")>>
+
+$daughter.name seems suspicous. <<= $daughter.speak("I'm listening.")>>
+
+<<= $wife.speak("I'll let you go out and have fun with no security to keep watch. But you have to take a chaperone.")>>
+
+<<= $daughter.speak("How is that any different to having security with me?")>>
+
+<<= $wife.speak("Because this chaperone can't tell you what to do but will have hell to pay if you get in trouble.")>> $wife.name gestures at you and $daughter.name follows her gaze before smiling as well.
+
+<<= $daughter.speak("I can live with that.")>>
+
+<<= $player.speak("<i>That's probably worse.</i>")>>
+
+<<= $wife.speak("$player.name come over here.")>>
+
+You approach $wife.name and $daughter.name.
+ 
+<<= $player.speak("Yes $wife.title.")>>
+
+<<= $wife.speak("It seems you have an opportunity to improve your situation. $daughter.name has been getting into trouble of late and I would like you to escort her out tonight and keep her out of trouble. If you do I will consider it as a bonus to your debt. What do you say?")>>
+
+You quickly weight up the pros and cons. On the one hand you'll be responsible for keeping $daughter.name from partying too hard without even being able to tell her what to do. On the other it's a chance to get out and relax for a night and possibly even be rewarded for it. That and $daughter.name seems like the closest thing you have to a friend here.
+
+Judging from the look on $wife.name's face you get the feeling that you won't get this offer again.
+
+<<chooseOption "Agree.">>
+Before you can finish agreeing $daughter.name claps her hands excitedly. <<= $daughter.speak("Awesome, it's a date then. I'll go get ready. Meet you at the door in a bit.")>>
+
+$daughter.name rushes off to do whatever she was doing to get ready.
+
+<<= $player.speak("A date?")>> You stammer.
+
+<<= $wife.speak("Hmm, yes, about that.")>> $wife.name starts walking to the master bedroom. <<= $wife.speak("Follow me.")>>
+
+[[Follow|daughterPath04IntroDate02]]
+<<set $daughterDateIntro to true>>
+<<end>>
+<</chooseOption>>
+
+<!--	<<link "Disagree.">>
+		<<replace "#firstdate01">>
+			$daughter.name slumps at your response and is clearly upset but she leaves before you can say anything.
+			
+			<<= $wife.speak("A shame. Well back to work now.")>>
+			
+			$wife.name follows after $daughter.name leaving you to your chores.
+		<</replace>>
+	<</link>>-->
+
+:: daughterPath04IntroDate02
+
+You follow $wife.name towards the Master Bedroom
+
+<<= $wife.speak("$daughter.name will be in charge but if she gets into any sort of trouble you will be held accountable.")>>
+
+<<= $player.speak("How can I keep her out of trouble if she's in charge?")>>
+
+<<= $wife.speak("You'll have to figure something out.")>>
+
+<<= $wife.speak("Now about this <i>date</i>. My husband has raised concerns about his daughter living under the same roof as a horny boy.")>>
+
+<<= $player.speak("<i>I'm not that bad.</i>")>>
+
+<<= $wife.speak("I've been managing to stave him off for you so far but I think you spending a night out with $daughter.name may be a problem.")>>
+
+You both enter the walk in closet. $wife.name opens one of teh cupboards and pulls out a pink box.
+
+<<= $wife.speak("If you don't want to raise suspicions you have one option.")>>
+
+She reaches into the box and her hand comes back out with the pink chastity cage dangling on one finger.
+
+<<= $player.speak("Um...")>>
+
+<<= $wife.speak("This is non-negotiable.")>> The look on her face makes it clear there will be major consequences if you don't put it on.
+
+She puts the cage down and box down, making sure to take the key with her, and walks past you.
+
+<<= $wife.speak("Enjoy your evening.")>>
+
+[[Stare at it like it will bite you.|daughterPath04IntroDate03a]]
+[[Reluctantly put it on.|daughterPath04IntroDate03b]]
+
+:: daughterPath04IntroDate03a
+
+You start at the small piece of pink plastic for a moment. It's tiny but terrifying at the same time.
+
+[img[setup.ImagePath + "items/wearables/toys/cage_02.jpg"]]
+
+<<= $player.speak("How many of these things does she have?")>>
+
+The cage just sits there, mocking you.
+
+<<= $player.speak("I only have to wear it one night.")>>
+
+You drop your pants and slip the cool plastic on. It's a little difficult because you are semi hard but eventually your slip your member into the sleeve and then clip the base around yourself before snapping it closed. The lock engages itself before you can second guess the choice and like that your masculinity is sealed away until $wife.name releases you.
+
+You tug at it in a half hearted attempt to remove it but the cage is shut tight.
+
+It still feels alien but as the hard plastic warms up there is a slight tingle of familiarity.
+
+<<= $player.speak("I only have to wear it one night. Then it's coming straight off.")>>
+
+You're not sure who you are trying to convince.
+
+[[Head to the door|daughterPath04IntroDate04]]
+<<set $daughterFirstDateWaited to true>>
+
+:: daughterPath04IntroDate03b
+
+Knowing there is no other way, you drop your pants and pick the small piece of plastic up.
+
+[img[setup.ImagePath + "items/wearables/toys/cage_02.jpg"]]
+
+<<= $player.speak("<i>It's kind of small. Why does she have more than one?</i>")>>
+
+You begin putting it on. It's a little difficult because you are semi hard but eventually you slip your member into the sleeve. You feel a weird mixture of relief and aprehension at finding it a little difficult to fit into the plastic tube. Once you have it setttled you clip the base around yourself before snapping it closed. The lock engages itself before you can second guess the choice and like that your masculinity is sealed away until $wife.name releases you.
+
+It still feels alien but as the hard plastic warms up there is a slight tingle of familiarity.
+
+<<= $player.speak("I only have to wear it one night. Then it's coming straight off.")>>
+
+You're not sure who you are trying to convince.
+
+[[Head to the door|daughterPath04IntroDate04]]
+
+:: daughterPath04IntroDate04
+
+<<if $daughterFirstDateWaited is true>> 
+You pull your clothes back up and head the main entrance.
+
+You find $daughter.name is already waiting as you arrive.
+
+[img[setup.ImagePath + "events/daughterdate/firstdate_dress01.jpg"]]
+
+You miss a beat as you see she is wearing one of the smallest cocktail dresses you've ever seen. It reaches down to just above mid-thigh and the cut shows plenty of cleavage. You feel your cock twitch in its cage as it tries and fails to get erect forcing you to shift uncomfortably.
+
+<<= $daughter.speak("What took you so long? Come on.")>>
+<<else>>
+You head to the foyer and wait for $daughter.name.
+
+Eventually she walks around the corner and cocks her hips to one side.
+
+[img[setup.ImagePath + "events/daughterdate/firstdate_dress01.jpg"]]
+
+Your jaw drops as you see she is wearing one of the smallest cocktail dresses you've ever seen. It reaches down to just above mid-thigh and the cut shows plenty of cleavage. You feel your cock twitch in its cage as it tries and fails to get erect forcing you to shift uncomfortably.
+
+<<= $daughter.speak("I know right?")>>
+
+She loops her arm in yours and you head out.
+<</if>>
+
+She loops her arm in yours and you head out through the main doors for the first time since you arrived.
+
+[[Continue.|daughterDateSetup01]]
+
+<<set $flags.daughterDate to 1>>
+<<set $flags.therapyPath to 1>>
+<<= $mansion.addEvent("Foyer", new Event({
+	name: "daughterDateSetup01", 
+	passage: "daughterDateSetup01", 
+	inline:true, 
+	repeats:true, 
+	tags: ["Thursday", "NeedDaughter"]
+}))>>
+
+:: daughterPath04IntroDate05 []
+<!-- happens the first time the player leaves for the daughter date -->
+
+This is the first real chance you've had to check out the city since this whole mess started. $daughter.name calls a car and you are both picked up to be taken to the place she's chosen.
+
+As you sit down she slides over next to you and keeps a hold of your arm. It feels good to have an attractive woman on your arm but your restrained member keeps reminding you of its presense.
+
+The drive through the streets is so calming though. There's something about not being stuck in the same walls and being expected to be at everyone's beck and call that is really taking the edge off.
+
+:: daughterPath04IntroDate06 []
+<!-- happens the first time the player returns from a daughter date -->
+
+You and $daughter.name come in through the main door and into the foyer. Everyone else is already asleep so there are only a few dim lights filtering from in from outside. As you walk her towards the stairs you both bump into one of the tables and it bangs against the wall.
+
+$daughter.name presses a finger to her mouth. <<= $daughter.speak("Shhhhhhhh.")>>
+
+<<= $player.speak("You shhhhhhhh.")>>
+
+You both grin playfully as you steer through the darkness and $daughter.name says. <<= $daughter.speak("Don't forget that you don't get to tell me what to do. No matter how cute you are.")>> She boops you on the nose.
+
+You both stand there for a moment in silence.
+
+ <<= $daughter.speak("It's nice... having a friend in the house to hang out with.")>>
+
+ You rub your CUFF and reply. <<= $player.speak("Yeah. I liked it. Despite everything.")>>
+
+ <<= $daughter.speak("Aaaaww. You're sweet $player.femName.")>>
+
+Without warning $daughter.name leans forward and presses her mouth to yours. You body reacts on it's own you and embrace the kiss without realising. Her soft lips part slightly and you mirror the action, as if you are both in perfect synch. One of her hands makes its way around your waist and grabs your rear. The other has already found its way to your chest and is massaging it gently. Despite $daughter.name's wandering hands the sweet and soft kiss feels far more chaste than you were expecting it to be.
+
+$daughter.name pulls away and smiles. <<= $daughter.speak("Night $player.femName.")>>. With that she turns and quickly walks up the stairs.
+
+Not thinking too much on it you turn and head back to your room.
+
+[[sleep]]
+
+<<= $time.setDate({day:0, hour: 23, minute:0})>>
+<<= $player.increaseArousal(50)>>
+
+:: daughterPath04IntroDate07 []
+<!-- happens the first time the player wakes up after a Daughter date -->
+
+
+<<set $player.rest(50)>>
+<<= $mansion.resetChores()>>
+
+
+[[PlayerBdRm]]
+
+You scan your cuff to check your current quota before starting the day and see you've lost XXXX credits.
+
+"What the fuck!?"
+
+Quickly scanning through your credit history you see a huge number of charges last night from all the places you went to with $daughter.name.
+
+She made you pay for the whole thing.
+
+> on talking to *d* after this (one time only)
+
+"You made me pay for everything last night!"
+
+"Of course. You took me out on a date."
+
+"That's not the point. You know what kind of situation I'm in. I thought we were… well, at least friends."
+
+"We are. That's why I got you out of the house for a bit to relax. That's at least worth a night out."
+
+"You should have checked with me first."
+
+"Oh well. If it's too much to ask I guess we can just not go out again." You feel a bit of regret at that, both for losing a bit of freedom and for how sad she seems. "I'll have tell mother that you can't take me out anymore."
+
+In head "Oh no."
+
+"Wait."
+
+"Yeah?"
+
+If she tells *w* about this then there's no telling how she will react. *d* looks really disappointed as well. Do really want to lose the only person who's treating you decently.
+
+Option
+> Hell no! I need to pay off my debt.
+
+Closes daughter path
+
+"Never mind."
+
+*d* heads out of the room and leaves you to your duties. You find out later that she decided to get her own place and start her career. Both of you cross paths every now and again but the relationship is never the same.
+
+> You guys are sort of friends. Maybe you'll have to work a bit harder to afford a bit of freedom?
+
+D path stays open
+
+"I guess it was kind of fun. It was nice to get out of here too."
+
+"Awesome!" d runs up and gives you a warm hug. You just stand there like a stunned animal. Her hips press against you, reminding you of the plastic still tight around your cock.
+
+"Well just let me know we you want to head out again. Mother will probably only allow me to go out with you on a Friday and Saturday so just find me then."
+
+She bounces away like a ball of joy leaving you to your duties.
+
+::daughterPath04IntroDate000
+
+> see w for the key

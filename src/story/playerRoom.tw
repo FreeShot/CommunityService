@@ -1,0 +1,159 @@
+::PlayerBdRm [playerRoom room]
+<<= $mansion.display("PlayerBdRm")>>
+
+A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
+
+Its furnishings are plain with little to no decorations.
+
+Desk
+	There is nothing here at the moment
+	
+<<nobr>>
+<<set _event to $mansion.checkSpecialEvents()>>
+<<if _event !== "">>
+	<<= _event>>
+<<elseif $time.inInterval("sleep", "wakeup")>>
+	[[Go to bed|sleep]]
+<<else>>
+	Got to the bathroom and:<br>
+	[[Shower|playerRoomShower]]<br><br>
+	Check the [[Wardrobe|playerRoomWardrobe]]<br>
+	Use the [[Computer|playerRoomComputerMenu]]<br>
+	Read something from the [[Bookshelf|playerRoomBookshelfMenu]]<br>
+	[[Check your to do list.|playerToDoList]]<br><br>
+	<<link "Rest">>
+		<<set $time.addTime({day:0, hour:1, minute: 0})>>
+		<<set $player.rest()>>
+		<<goto `passage()`>>
+	<</link>><br>
+	<<link "Stay here until the end of the day.">>
+		<<= $time.setDate({day:0, hour:22, minute:0})>>
+		<<goto `passage()`>>
+	<</link>>
+	<<= $mansion.findRoom($player.currRoom).getAdjacentRooms()>>
+<</if>>
+<</nobr>>
+
+<<= $mansion.findRoom("PlayerBdRm").displayChores("", true)>>
+<<if $time.compareTime({hour:18, minute:0}) === 1>>
+<<= $time.setDate({hour:22})>>
+<</if>>
+
+::playerRoomShower [playerRoom]
+<<tooltips "comment">>
+At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player's personnal hygene.
+<</tooltips>>
+[img[setup.ImagePath + "events/bath_routine/shower01.gif"]]
+
+You turn on the warm stream of water and step into the shower. You soap up and wash yourself clean. This moment of relaxation feels great, almost as if your worreis are washing away with the water.
+<<set $time.addTime({hour:0, minute: 15})>><<= $player.rest(5)>>
+<<return 'Finish'>>
+
+::playerRoomWardrobe [playerRoom]
+<<= $player.inv.listItem("$player.inv", ["equipped"], undefined, "Currently wearing", $mansion.currentEvent === "")>>
+
+<<= $player.inv.listItem("$player.inv", ["equippable"], undefined, "Wardrobe", $mansion.currentEvent === "")>>
+
+<<return 'Finish'>>
+
+:: playerRoomComputerMenu [playerRoom]
+
+The computer has a pretty basic setup and your access is limited.
+
+Training:
+
+	[[Cleaning For The Delicate House Maid (read for 1 hour)|playerRoomComputerCleaning]]
+	[[Etiquette Tips For Submissive Servers (read for 1 hour)|playerRoomComputerServing]]
+
+Games: 
+
+	[[Household (play for 1 hour)|playerRoomComputerGame]]
+
+[[Stop using the computer|PlayerBdRm]]
+
+:: playerRoomComputerCleaning [playerRoom]
+
+You load up the tutorial titled "Cleaning For The Delicate House Maid"
+
+<<= $player.speak("<i>Why can't it just say How to Clean?</i>")>>
+
+It has a lot of general tips and tricks such as the difference between "zone cleaning" and "task cleaning", always working top to bottom and left to right. The further you read to more in depth the information gets right down to the different components of the cleaning products you should use.
+
+Throughout the guide you see example of the different method. Each one has a picture of a woman in a cute maid outfit. The hem line of the skirt is a little high and you can see the tops of her stockings in some pictures. This usually in the section about how to present yourself, the proper work attire and how to under stand the needs of your host. It's all a bit more risqué than you would expect a professional guide to be but you enjoy looking at the alluring model anyway.
+
+It's also seems unsually thorough on the methods for keeping your apron pure white at all times.
+
+<<= $player.speak("<i>Maybe I should get my own apron...</i>")>>
+
+<<return 'Back to the menu'>>
+
+<<set $time.addTime({hour:1})>>
+<<= $player.levelUp("cleaning", 1)>>
+
+:: playerRoomComputerServing [playerRoom]
+
+You load up "Etiquette Tips For Submissive Servers"
+
+The training manual runs you through all the best practices when performing table service. Serve from a guest’s left, using your left hand, and clear from their right, using your right hand. Don’t let a wine, beer, or spirits bottle touch the glass you’re pouring into. Never reach across a guest to serve another guest unless you are flirting with them and wish to present your bosom.
+
+The guide become more unorthodox from this point. You always find yourself wondering who the hell wrote them.
+
+How to flirt with guests and comport yourself by keeping you chest out and chin up. A big part of the second half focuses around the "Four bees of serving."
+
+	- Be pleasant, it’s your role to present a sweet and friendly demeanor.
+
+	- Be attentive, constantly scan the room, and if a guest needs attention it is your role to assist them in any way they desire.
+
+	- Be patient, never interrupt a conversation, you are to be seen not heard. Wait for a guest to address you before asking what they would like from you.
+
+	- Be discreet, don’t have audible conversations with other servers within earshot of guests. Gossip is encouraged of course but only if it is to embarrass yourself or get the attention of a guest.
+
+<<return 'Back to the menu'>>
+
+<<set $time.addTime({hour:1})>>
+<<= $player.levelUp("serving", 1)>>
+
+:: playerRoomComputerGame [playerRoom]
+
+You load up the game and begin to play. It's mostly a choose you own adventure type story about a man who must navigate the day to day life of managing a household. It's an ok game with a few bugs. The chore system is a bit too grindy and some of the NPC descriptions are a bit flat but other than that it's fun to play.
+
+Halfway through your session you get this weird sense in the back of your shoulders, almost like someone is watching you. You feel the need to look at the fourth wall of your room and wink.
+<<set $time.addTime({hour:1})>><<= $player.rest(5)>>
+<<return 'Back to the menu'>>
+
+:: playerRoomBookshelfMenu [playerRoom]
+
+You scan through the limited selection of reading material and decide to read...
+
+[[Provincial|playerRoomBookshelfProvincial]]
+[[Rouge|playerRoomBookshelfRouge]]
+[[Cheeky Lady|playerRoomBookshelfCheekyLady]]
+
+[[Step away from the shelf|PlayerBdRm]]
+
+:: playerRoomBookshelfProvincial [playerRoom]
+
+Still in dev
+
+Fashion
+Entertainment
+
+<<return 'Put it back on the shelf'>>
+
+:: playerRoomBookshelfRouge [playerRoom]
+
+Still in dev
+
+Make up
+Gossip
+
+<<return 'Put it back on the shelf'>>
+
+:: playerRoomBookshelfCheekyLady [playerRoom]
+
+Still in dev
+
+Lady porn
+
+<<return 'Put it back on the shelf'>>
+<<= $player.increaseArousal(5)>>
