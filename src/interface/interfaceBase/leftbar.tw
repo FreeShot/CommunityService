@@ -1,0 +1,46 @@
+::left-bar [nobr]
+
+<div id="title-story">
+	<h1 id="game-title"><<= storyInfo.mainTitle>></h1>
+	<h2 id="game-subtitle"><<= storyInfo.subtitle>> - <<= storyInfo.version>></h2>
+</div>
+<div id="info-navigation">
+	<span id="nav-left"><<navMenu "Back" -1>><</navMenu>>
+	</span>
+	<span id="naf-right"><<navMenu "Next" 1>><</navMenu>>
+	</span>
+</div>
+<div id="info-display">
+	<div class="ui-menu" id="character-info">
+		<<include "staff-finder">>
+	</div>
+	<div class="ui-menu hidden" id="self-info">
+		<<include "personnal-info">>
+	</div>
+	<div class="ui-menu hidden" id="chores-info">
+		<<include "chores-info">>
+	</div>
+</div>
+<div id="cuff-button">
+	<<button "CUFF" "cuff">>
+		<!-- Button to access the cuff, might remove it and move it to the side -->
+	<</button>>
+</div>
+<div id="menu-buttons">
+	<div id="saves">
+		<<link "SAVES">>
+			<<set UI.saves()>>
+		<</link>>
+	</div>
+	<div id="changelog">[[CHANGELOG|changelog]]</div>
+	<div id="settings">
+		<<link "SETTINGS">>
+			<<set UI.settings()>>
+		<</link>>
+	</div>
+	<div id="restart">
+		<<link "RESTART">>
+			<<set UI.restart()>>
+		<</link>>
+	</div>
+</div>

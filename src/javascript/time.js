@@ -1,70 +1,83 @@
-setup.ImagePath = "img/";
-setup.SoundPath = "sound/";
-
 class Timer {
-	constructor (config) {
-		this.time = {hour : 0, minute : 0};
+	constructor(config) {
+		this.time = {hour: 0, minute: 0};
 		this.day = 0;
-		this.days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+		this.days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-		this.wakeup = {hour: 6, minute: 0};
-		this.sleep = {hour: 22, minute: 0};
-
+		this.savedTime = {
+			wakeup: {hour: 6, minute: 0},
+			sleep: {hour: 22, minute: 0}
+		};
+	
 		Object.keys(config).forEach(function (pn) {
 			this[pn] = clone(config[pn]);
 		}, this);
 	}
 
 	setDate(time) {
+		// Grabs preset
 		if (typeof time === "string")
-			time = this[time]
+			time = this.savedTime[time];
+
+		// Fills missing data
 		time = Object.assign({day:0, hour:0, minute:0}, time);
-		if (this.compareTime(time) <= 0)
-			this.day = time.day != 0 ? time.day + 1 : this.day + 1
-		else {
-			this.day = time.day != 0 ? time.day : this.day;
-		}
-		this.time.hour = time.hour;
-		this.time.minute = time.minute;
+
+		// Set day if specified. If time is later than now, adds one day
+		this.day = (time.day != 0 ? time.day : this.day) + (this.compareTime(time) > 0 ? 0 : 1);
+		
+		// Set hour and minute
+		this.time = {hour: time.hour, minute: time.minute};
 	}
 
 	addTime(time) {
+		// Grabs preset
 		if (typeof time === "string")
-			time = this[time];
+			time = this.savedTime[time];
+
+		// Adds minutes if exists
 		this.time.minute += (time.minute || 0);
+
+		// Adds hours + overflowing minutes
 		this.time.hour += (time.hour || 0) + Math.floor(this.time.minute / 60);
+
+		// Fixes the overflowing minutes:
 		this.time.minute %= 60;
+
+		// Adds day + overflowing hours
 		this.day += (time.day || 0) + Math.floor(this.time.hour / 24);
+
+		// Fixes the overflowing hours
 		this.time.hour %= 24;
 	}
 
 	static toMinute(time) {
-		return ((time.day || 0) * 24 + (time.hour || 0)) * 60 + (time.minute || 0);
+		return ((time.day || 0) * 24 + (time.hour || 0)) * 60 + time.minute;
 	}
 
-	addTravelTime(start, end){
+	addTravelTime(start, end) {
 		this.addTime({minute: 5 * (pathfind.path(start, end).length - 1)})
 	}
 
 	compareTime(time, time2) {
 		if (typeof time === "string")
-			time = this[time];
+			time = this.savedTime[time];
+
 		time2 = time2 || this.time;
 		return Timer.toMinute(time) - Timer.toMinute(time2);
 	}
 
 	endsAfter(endTime, duration) {
 		if (typeof endTime === "string")
-			endTime = this[endTime];
+			endTime = this.savedTime[time];
 		return Timer.toMinute(endTime) - Timer.toMinute(duration) < Timer.toMinute(this.time);
 	}
 
 	inInterval(timeStart, timeEnd) {
 		if (typeof timeStart === "string")
-			timeStart = this[timeStart];
+			timeStart = this.savedTime[timeStart];
 
 		if (typeof timeEnd === "string")
-			timeEnd = this[timeEnd];
+			timeEnd = this.savedTime[timeEnd];
 
 		timeStart = timeStart || {hour: 0, minute: 0};
 		timeEnd = timeEnd || {hour : 24, minute : 0};
@@ -88,8 +101,12 @@ class Timer {
 		return Timer.getTime(this.time);
 	}
 
+	generateClock() {
+		drawClock(this.time);
+	}
+
 	static getTime(time) {
-		return `${time.hour !== undefined ? ("0" + time.hour).slice(-2) : "00"}:${time.minute !== undefined ? ("0" + time.minute).slice(-2) : "00"}`
+		return `${("0" + (time.hour || "0")).slice(-2)}:${("0" + (time.minute || "0")).slice(-2)}`
 	}
 
 	clone() {

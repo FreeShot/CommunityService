@@ -1,0 +1,85 @@
+::personnal-info [nobr]
+
+<h1 class="tab-title">Personal Info</h1>
+
+<table id="personal-info-table">
+	<tr>
+		<td>Stamina</td>
+		<td colspan="2">#####-----</td>
+	</tr>
+	<tr>
+		<td>Arousal</td>
+		<td colspan="2">#####-----</td>
+	</tr>
+	<tr>
+		<td>Serving</td>
+		<td>#####-----</td>
+		<td>(Lvl 1)</td>
+	</tr>
+	<tr>
+		<td>Cleaning</td>
+		<td>#####-----</td>
+		<td>(Lvl 1)</td>
+	</tr>
+	<tr>
+		<td>Fitness</td>
+		<td>#####-----</td>
+		<td>(Lvl 1)</td>
+	</tr>
+	<tr>
+		<td>Debt</td>
+		<td colspan="2">100,000,000</td>
+	</tr>
+	<tr>
+		<td>Money</td>
+		<td colspan="2">100</td>
+	</tr>
+	<tr>
+		<td>Femininity</td>
+		<td colspan="2">0</td>
+	</tr>
+	<tr>
+		<td>Appearance</td>
+		<td colspan="2">0</td>
+	</tr>
+	<tr>
+		<td>Submission</td>
+		<td colspan="2">0</td>
+	</tr>
+	<tr>
+		<td>Boldness</td>
+		<td colspan="2">0</td>
+	</tr>
+</table>
+
+::staff-finder [nobr]
+<h1 class="tab-title">Staff finder</h1>
+<table>
+	<tr>
+		<td>Character A</td>
+		<td>LOCATION </td>
+	</tr>
+	<tr>
+		<td>Character B</td>
+		<td>TRAVELING </td>
+	</tr>
+	<tr>
+		<td>Character C</td>
+		<td>TRAVELING </td>
+	</tr>
+</table>
+
+::chores-info [nobr]
+<h1 class="tab-title">Chores</h1>
+<table>
+	<tr>
+		<td>Chore name</td>
+		<td>Location 1</td>
+		<td>DONE</td>
+	</tr>
+	<tr>
+		<td>Chore name</td>
+		<td>Location 2</td>
+		<td>TO DO</td>
+	</tr>
+</table>

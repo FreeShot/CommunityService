@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kumbh+Sans:wght@300&family=Roboto+Mono:wght@300&display=swap');
+
+:root {
+	font-size: max(min(1.5vw, 19px), 12px);
+	
+	--ui-left: 20rem;
+	--ui-right: 10rem;
+	--story-margin: 7rem;
+
+	--ui-fg: #E6F9FF;
+	--ui-bg: #0F1C2E;
+	--ui-border: #254355;
+	--ui-border-alt: #1F3847;
+
+	--story-fg: #E6F9FF;
+	--story-bg: #0A131F;
+
+	--story-emphasis: #0A1524;
+
+	--story-accent: #C7BBB7;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+button {
+	border: solid 0.1rem var(--ui-border);
+	border-radius: 0.3rem;
+	background-color: var(--ui-bg);	
+}
+
+button:hover {
+	background-color: var(--ui-border-alt);
+}
+
+/* DISPLAY */
+
+.hidden {
+	display: none;
+}
+
+/* DIALOG */
+
+#ui-dialog-title {
+	background-color: var(--ui-border-alt); 
+}
+
+#ui-dialog-body, button[aria-disabled=""] {
+	background-color: var(--ui-bg);
+}
+
+/* STORY BARS */
+
+#left-bar, #right-bar {
+	margin: 0px;
+	padding: 0.2rem;
+	position: fixed;
+}
+
+#left-bar {
+	left: 0;
+	height: 99vh;
+	width: var(--ui-left);
+
+	color: var(--ui-fg);
+	background-color: var(--ui-bg);
+	border-right: solid 0.2rem var(--ui-border);
+	border-bottom: solid 0.2rem var(--ui-border);
+}
+
+#right-bar {
+	right: 0;
+	width: var(--ui-right);
+
+	color: var(--ui-fg);
+	background-color: var(--ui-bg);
+	border-left: solid 0.2rem var(--ui-border);
+	border-bottom: solid 0.2rem var(--ui-border);
+	border-bottom-left-radius: 10%;
+}
+
+/* LEFT BAR */
+
+#title-story {
+	margin: 0.2rem 0.2rem 2rem 0.2rem;
+}
+
+#game-title {
+	color: #6290C8;
+
+	margin: 0;
+	font-family: 'Anton', sans-serif;
+	font-size: 2rem;
+}
+
+#game-subtitle {
+	color: #6290C8;
+
+	margin: 0.2rem 0 0 0;
+	font-family: 'Kumbh Sans', sans-serif;
+	font-size: 0.5rem;
+}
+
+#info-navigation {
+	margin: 0.2rem;
+}
+
+.nav-button, #cuff-button button {
+	min-width: 48%;
+
+	background-color: var(--ui-border);
+	color: var(--ui-fg);
+	border: solid 0.2rem var(--ui-border);
+	border-radius: 0.5rem;
+}
+
+.nav-button:hover, #cuff-button button:hover {
+	background: none;
+	border: solid 0.2rem var(--ui-fg);
+	border-radius: 0.4rem;
+}
+
+.ui-menu {
+	margin: 0.2rem;
+	padding: 0.8rem;
+
+	border: dashed 0.2rem var(--ui-bg);
+	background-color: var(--ui-border);
+	border-radius: 0.4rem;
+}
+
+.ui-menu table {
+	width: 100%;
+}
+
+.ui-menu table tr, .ui-menu table td {
+	padding: 0.4rem;
+}
+
+.ui-menu table tr:nth-child(even) {
+	background-color: var(--ui-border-alt);
+}
+
+#cuff-button button {
+	margin-top: 0.8rem;
+	width: 100%;
+	height: 2rem;
+}
+
+#menu-buttons {
+	position: absolute;
+	bottom: 0.4rem;
+
+	margin: 0.2rem;
+}
+
+/* RIGHT BAR */
+
+#clock, #clock-img img {
+	width: var(--ui-right);
+	height: var(--ui-right);
+	object-fit: cover;
+	object-position: 0 0;
+}
+
+#clock-text {
+	text-align: center;
+	padding: 0.4rem;
+
+	font-size: 2rem;
+	font-family: 'Roboto Mono', monospace;
+}
+
+#location {
+	text-align: center;
+	padding: 0.2rem;
+}
+
+/* PASSAGES */
+
+.passage {
+	padding: 2rem;
+}
+
+#passages {
+	margin: 0 var(--ui-right) 0 var(--ui-left);
+	padding: 0 var(--story-margin);
+}
+
+body, #main-story {
+	background-color: var(--story-bg);
+	color: var(--story-fg);
+}
+
+/* MAIN STORY */
+
+.title h1 {
+	font-size: 5rem;
+	margin: 0;
+
+	color: var(--story-accent);
+}
+
+.title h2 {
+	margin-top: 0;
+	font-size: 2rem;
+
+	color: var(--story-accent);
+}
+
+.warning {
+	background-color: var(--story-emphasis);
+	border: solid 0.2rem var(--story-fg);
+	border-radius: 1rem;
+
+	padding: 2rem;
+}

@@ -1,0 +1,14 @@
+::StoryInit
+<<set window.storyInfo = {
+	mainTitle: "Community Service",
+	subtitle: "By Freeshot and Yaflow",
+	version: "V1.0.0",
+}>>
+
+<<set $firstTime to recall('firstTime', true)>><<= memorize('firstTime', false)>>
+
+<<set $time to new Timer({day: 2, time: {hour: 19, minute: 0}})>>
+<<set $clockImg to "">>
+<<set $menu to 0>>
+
+<<set $currentPassage to "Start">>
