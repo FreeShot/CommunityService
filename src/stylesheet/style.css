@@ -1,4 +1,4 @@
-.theme-light {
+/* .theme-light {
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
@@ -55,6 +55,10 @@
 	--tooltip-comment-bg: #2D2A36;
 }
 
+*/
+
+/*
+
 body {
 	background-color: var(--story-bg);
 	color: var(--story-text);
@@ -86,7 +90,7 @@ html.no-images img {
 }
 
 #ui-dialog-body button.enabled,
-#ui-dialog-body.settings button[id|="setting-control"].enabled { /* Some buttons are extra pissy about when to be selected*/
+#ui-dialog-body.settings button[id|="setting-control"].enabled {
 	background: var(--ui-bg-active);
 }
 
@@ -110,8 +114,6 @@ html.no-images img {
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 20px;
-	/*margin-left:-25px; 
-    margin-right:-25px;*/
 }
 
 #menuInfo tr + tr {
@@ -236,8 +238,6 @@ img {
 	color: var(--link-color);
 }
 
-/* Main menu */
-
 #game-title-info {
 	margin-top: 60px;
 	text-align: center;
@@ -295,8 +295,6 @@ img {
 .choreUILink a {
 	border: none;
 }
-
-/* DEBUG CSS */
 
 .error, .error-view > .error-toggle, .error-source {
 	background-color: red;

@@ -55,7 +55,11 @@ class Character {
 	}
 
 	colorTheme(index) {
-		return this.color[settings.theme][index || 0] || this.color["theme-dark"][index || 0];
+		//console.log( this.color[settings.theme.substring(6)]);
+		var color = this.color[settings.theme.substring(6)] || this.color["theme-dark"];
+		if (typeof color === "string")
+			return color
+		else return color[index];
 	}
 
 	static speakAnonymous(text, color) {
@@ -130,7 +134,7 @@ class Player extends Character {
 			title: "servant",
 			femName: "Alice",
 			color: {
-				"theme-dark" : [[53,124,217], [223,121,189]]
+				"dark" : [[53,124,217], [223,121,189]]
 			},
 			femininity: 0,
 			appearance: 0,
@@ -240,6 +244,10 @@ class Player extends Character {
 	// Returns the stamina bar for the player
 	getStaminaBar() {
 		return `<<scale ${this.stamina.current} ${0} ${this.stamina.max}>><</scale>>`
+	}
+
+	getArousalBar() {
+		return `<<scale ${this.arousal.current} ${0} ${this.arousal.max}>><</scale>>`
 	}
 
 	// Checks if the player has enough stamina

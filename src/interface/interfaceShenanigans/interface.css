@@ -18,10 +18,17 @@
 	--story-emphasis: #386480;
 
 	--story-accent: #C7BBB7;
+
+	--link-color: #F5E663;
+	--link-hover: #AD9C0B;
 }
 
 html {
 	scroll-behavior: smooth;
+}
+
+html.no-images img {
+	display: none;
 }
 
 button {
@@ -36,6 +43,20 @@ button:hover {
 
 img {
 	max-width: 50%;
+	object-fit: contain;
+	border-radius: 15px;
+	border: solid 4px var(--link-color); 
+}
+
+a {
+	color: var(--link-color);
+	border: solid 1px var(--link-color);
+	border-radius: 0.5rem;
+	padding: 0.25rem;
+}
+
+a:hover {
+	color: var(--link-hover);
 }
 
 /* DISPLAY */
@@ -159,6 +180,10 @@ img {
 	margin: 0.2rem;
 }
 
+#menu-buttons a {
+	border: none;
+}
+
 /* RIGHT BAR */
 
 #location {
@@ -171,6 +196,7 @@ img {
 	object-fit: cover;
 	object-position: 0 0;
 	max-width: 100%;
+	border: none;
 }
 
 #clock-time {
@@ -232,6 +258,46 @@ body, #main-story {
 	padding: 2rem;
 }
 
-.warning a {
-	color:  var(--ui-bg);
+/* SHOP */
+
+.shop-display {
+	display: grid;
+	grid-template-columns: auto;
+	grid-row-gap: 10px;
+}
+
+.inventory-display {
+	display: grid;
+	grid-template-columns: repeat(var(--inventoryRow), 1fr);
+	grid-column: 1fr;
+	grid-gap: 10px 10px;
+}
+
+.inventory-name {
+	grid-column: 1 / span var(--inventoryRow);
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+	padding: auto auto;
+}
+
+.item-display, .inventory-display-empty {
+	display: grid;
+	grid-template-columns: 1;
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+}
+
+.item-display.item-tag-tmp {
+	border-color: var(--title-color);
+}
+
+.item-display-img {
+	height: 100%;
+}
+
+.estateRoom {
+	font-size: 32px;
+	color: var(--link-color);
 }

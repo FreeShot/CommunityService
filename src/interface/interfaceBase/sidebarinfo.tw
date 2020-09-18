@@ -9,23 +9,15 @@
 	</tr>
 	<tr>
 		<td>Arousal</td>
-		<td colspan="2">$player.arousal.current</td>
+		<td colspan="2"><<= $player.getArousalBar()>></td>
 	</tr>
+	<<for _i range Object.keys($player.stats)>>
 	<tr>
-		<td>Serving</td>
-		<td>$player.stats.serving.xp</td>
-		<td>(Lvl $player.stats.serving.level)</td>
+		<td>_i</td>
+		<td><<= $player.getStatBar(_i)>></td>
+		<td>(lvl <<= $player.getStat(_i)>>)</td>
 	</tr>
-	<tr>
-		<td>Cleaning</td>
-		<td>$player.stats.cleaning.xp</td>
-		<td>(Lvl $player.stats.cleaning.level)</td>
-	</tr>
-	<tr>
-		<td>Fitness</td>
-		<td>$player.stats.fitness.xp</td>
-		<td>(Lvl $player.stats.fitness.level)</td>
-	</tr>
+	<</for>>
 	<tr>
 		<td>Debt</td>
 		<td colspan="2">$player.debt</td>

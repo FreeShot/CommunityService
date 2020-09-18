@@ -121,10 +121,17 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 	--story-emphasis: #386480;
 
 	--story-accent: #C7BBB7;
+
+	--link-color: #F5E663;
+	--link-hover: #AD9C0B;
 }
 
 html {
 	scroll-behavior: smooth;
+}
+
+html.no-images img {
+	display: none;
 }
 
 button {
@@ -139,6 +146,20 @@ button:hover {
 
 img {
 	max-width: 50%;
+	object-fit: contain;
+	border-radius: 15px;
+	border: solid 4px var(--link-color); 
+}
+
+a {
+	color: var(--link-color);
+	border: solid 1px var(--link-color);
+	border-radius: 0.5rem;
+	padding: 0.25rem;
+}
+
+a:hover {
+	color: var(--link-hover);
 }
 
 /* DISPLAY */
@@ -262,6 +283,10 @@ img {
 	margin: 0.2rem;
 }
 
+#menu-buttons a {
+	border: none;
+}
+
 /* RIGHT BAR */
 
 #location {
@@ -274,6 +299,7 @@ img {
 	object-fit: cover;
 	object-position: 0 0;
 	max-width: 100%;
+	border: none;
 }
 
 #clock-time {
@@ -335,11 +361,51 @@ body, #main-story {
 	padding: 2rem;
 }
 
-.warning a {
-	color:  var(--ui-bg);
+/* SHOP */
+
+.shop-display {
+	display: grid;
+	grid-template-columns: auto;
+	grid-row-gap: 10px;
+}
+
+.inventory-display {
+	display: grid;
+	grid-template-columns: repeat(var(--inventoryRow), 1fr);
+	grid-column: 1fr;
+	grid-gap: 10px 10px;
+}
+
+.inventory-name {
+	grid-column: 1 / span var(--inventoryRow);
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+	padding: auto auto;
+}
+
+.item-display, .inventory-display-empty {
+	display: grid;
+	grid-template-columns: 1;
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+}
+
+.item-display.item-tag-tmp {
+	border-color: var(--title-color);
+}
+
+.item-display-img {
+	height: 100%;
+}
+
+.estateRoom {
+	font-size: 32px;
+	color: var(--link-color);
 }
 /* twine-user-stylesheet #2: "style.css" */
-.theme-light {
+/* .theme-light {
 	--story-bg: #E8DFDB;
 	--story-text: #19231A;
 	--ui-bg: #D8CBC7;
@@ -396,6 +462,10 @@ body, #main-story {
 	--tooltip-comment-bg: #2D2A36;
 }
 
+*/
+
+/*
+
 body {
 	background-color: var(--story-bg);
 	color: var(--story-text);
@@ -427,7 +497,7 @@ html.no-images img {
 }
 
 #ui-dialog-body button.enabled,
-#ui-dialog-body.settings button[id|="setting-control"].enabled { /* Some buttons are extra pissy about when to be selected*/
+#ui-dialog-body.settings button[id|="setting-control"].enabled {
 	background: var(--ui-bg-active);
 }
 
@@ -451,8 +521,6 @@ html.no-images img {
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 20px;
-	/*margin-left:-25px; 
-    margin-right:-25px;*/
 }
 
 #menuInfo tr + tr {
@@ -577,8 +645,6 @@ img {
 	color: var(--link-color);
 }
 
-/* Main menu */
-
 #game-title-info {
 	margin-top: 60px;
 	text-align: center;
@@ -636,8 +702,6 @@ img {
 .choreUILink a {
 	border: none;
 }
-
-/* DEBUG CSS */
 
 .error, .error-view > .error-toggle, .error-source {
 	background-color: red;
@@ -769,7 +833,11 @@ class Character {
 	}
 
 	colorTheme(index) {
-		return this.color[settings.theme][index || 0] || this.color["theme-dark"][index || 0];
+		//console.log( this.color[settings.theme.substring(6)]);
+		var color = this.color[settings.theme.substring(6)] || this.color["theme-dark"];
+		if (typeof color === "string")
+			return color
+		else return color[index];
 	}
 
 	static speakAnonymous(text, color) {
@@ -844,7 +912,7 @@ class Player extends Character {
 			title: "servant",
 			femName: "Alice",
 			color: {
-				"theme-dark" : [[53,124,217], [223,121,189]]
+				"dark" : [[53,124,217], [223,121,189]]
 			},
 			femininity: 0,
 			appearance: 0,
@@ -954,6 +1022,10 @@ class Player extends Character {
 	// Returns the stamina bar for the player
 	getStaminaBar() {
 		return `<<scale ${this.stamina.current} ${0} ${this.stamina.max}>><</scale>>`
+	}
+
+	getArousalBar() {
+		return `<<scale ${this.arousal.current} ${0} ${this.arousal.max}>><</scale>>`
 	}
 
 	// Checks if the player has enough stamina
@@ -1235,7 +1307,7 @@ class Chore {
 			this.done ? "" : `(To do beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
 			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
 			canDoChores && !this.done && htmlClass === "chore" ? String.format(
-				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currentRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
+				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
 				this.passage,
 				this.room,
 				this.staminaCost,
@@ -2475,12 +2547,12 @@ class Room {
 		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
 	}
 
-	//getNPC() {
-	//	return npcList.filter((npc) => State.variables[npc].schedule.currRoom === this.id);
-	//}
+	getNPC() {
+		return npcList.filter((npc) => State.variables[npc].schedule.currRoom === this.id);
+	}
 
 	getPassage(text) {
-		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currentRoom to "${this.id}">><</link>>`
+		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><</link>>`
 	}
 
 	displayChores(displayTitle, canDoChores, filterDone, short) {
@@ -4243,23 +4315,15 @@ State.variables.minorNPC = [];
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Arousal&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;$player.arousal.current&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;&lt;&lt;= $player.getArousalBar()&gt;&gt;&lt;/td&gt;
 	&lt;/tr&gt;
+	&lt;&lt;for _i range Object.keys($player.stats)&gt;&gt;
 	&lt;tr&gt;
-		&lt;td&gt;Serving&lt;/td&gt;
-		&lt;td&gt;$player.stats.serving.xp&lt;/td&gt;
-		&lt;td&gt;(Lvl $player.stats.serving.level)&lt;/td&gt;
+		&lt;td&gt;_i&lt;/td&gt;
+		&lt;td&gt;&lt;&lt;= $player.getStatBar(_i)&gt;&gt;&lt;/td&gt;
+		&lt;td&gt;(lvl &lt;&lt;= $player.getStat(_i)&gt;&gt;)&lt;/td&gt;
 	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Cleaning&lt;/td&gt;
-		&lt;td&gt;$player.stats.cleaning.xp&lt;/td&gt;
-		&lt;td&gt;(Lvl $player.stats.cleaning.level)&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Fitness&lt;/td&gt;
-		&lt;td&gt;$player.stats.fitness.xp&lt;/td&gt;
-		&lt;td&gt;(Lvl $player.stats.fitness.level)&lt;/td&gt;
-	&lt;/tr&gt;
+	&lt;&lt;/for&gt;&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Debt&lt;/td&gt;
 		&lt;td colspan=&quot;2&quot;&gt;$player.debt&lt;/td&gt;
