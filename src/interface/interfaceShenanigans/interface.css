@@ -34,6 +34,10 @@ button:hover {
 	background-color: var(--ui-border-alt);
 }
 
+img {
+	max-width: 50%;
+}
+
 /* DISPLAY */
 
 .hidden {
@@ -157,11 +161,22 @@ button:hover {
 
 /* RIGHT BAR */
 
+#location {
+	margin: 0.5rem 2rem;
+}
+
 #clock, #clock-img img {
 	width: var(--ui-right);
 	height: var(--ui-right);
 	object-fit: cover;
 	object-position: 0 0;
+	max-width: 100%;
+}
+
+#clock-time {
+	text-align: center;
+	font-size: 1rem;
+	font-family: "Roboto Mono", monospace;
 }
 
 #clock-text {

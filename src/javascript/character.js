@@ -1,3 +1,46 @@
+window.ClothesSlots = ["wig", "shirt", "pants", "underwear", "bra", "hoisery", "shoe", "accessory-head", "accessory-neck", "toy-front", "toy-back"];
+
+function createNPC(gender) {
+	// Creates the values for a random npc of specified gender
+
+	// TODO CLEAN UP THIS MESS
+	// Note from 03/07/2020 --> I really really don't wanna, but I'll have to do it soonish
+	// Note from 25/07/2020 --> Still don't want, what am I doing with my life
+	// Note from 18/09/2020 --> Still no, but I really feel like it's the next thing I have to do
+
+	var values = {};
+
+	values["gender"] = (gender) ? 'male' : 'female';
+	values["title"] = (gender) ? "Mr" : "Mrs";
+
+	var names;
+	if (gender)
+		names = ["James", "Joseff", "Jack", "John", "Hugo", "Leo", "Vincent"];
+	else
+		names = ["Lea", "Marie", "Aurora", "Fiona", "Maeve", "Jade", "Amber", "Liya", "Velma", "Nana"];
+	var lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"];
+
+	var index = Math.floor(State.random() * names.length);
+	values["name"] = names[index];
+
+	index = Math.floor(State.random() * lastName.length);
+	lastName = lastName[index];
+	values["name"] += " " + lastName;
+	values["title"] += " " + lastName;
+
+	values["age"] = Math.floor(State.random() * 30) + 20;
+
+	values["like"] = Object.keys(State.variables.npcLike).filter(function(el) {
+		return State.random() < 2 / (Object.keys(State.variables.npcLike).length);
+	});
+
+	values["appreciation"] = 0;
+	values["color"] = {};
+	values["color"]["light"] = `#${(State.random() * 0xFFFFFF << 0).toString(16)}`;
+	values["color"]["dark"] = values["color"]["light"];
+	return values;
+}
+
 class Character {
 	constructor(config) {
 		this.name = "";

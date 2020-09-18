@@ -4,8 +4,9 @@
 <div id="timeDisplay">
 	<div id="clock-img">[img[$clockImg]]</div>
 	<div id="clock-text"><<= Timer.getTime($time.time)>></div>
+	<div id="clock-time"><<= $time.weekDayFormat>><br>(Day <<= $time.day>>)</div>
 </div>
 <div id="location">
-	LOCATION
+	<<= $mansion.findRoom($player.currRoom).name>>
 </div>
 <</if>>

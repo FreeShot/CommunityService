@@ -100,7 +100,8 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="21" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kumbh+Sans:wght@300&family=Roboto+Mono:wght@300&display=swap');
+	<!-- UUID://F27062CA-5A07-4478-873B-12A1026BEEAA// --><tw-storydata name="Community Service" startnode="21" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="F27062CA-5A07-4478-873B-12A1026BEEAA" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "interface.css" */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kumbh+Sans:wght@300&family=Roboto+Mono:wght@300&display=swap');
 
 :root {
 	font-size: max(min(1.5vw, 19px), 12px);
@@ -134,6 +135,10 @@ button {
 
 button:hover {
 	background-color: var(--ui-border-alt);
+}
+
+img {
+	max-width: 50%;
 }
 
 /* DISPLAY */
@@ -259,11 +264,22 @@ button:hover {
 
 /* RIGHT BAR */
 
+#location {
+	margin: 0.5rem 2rem;
+}
+
 #clock, #clock-img img {
 	width: var(--ui-right);
 	height: var(--ui-right);
 	object-fit: cover;
 	object-position: 0 0;
+	max-width: 100%;
+}
+
+#clock-time {
+	text-align: center;
+	font-size: 1rem;
+	font-family: "Roboto Mono", monospace;
 }
 
 #clock-text {
@@ -321,6 +337,318 @@ body, #main-story {
 
 .warning a {
 	color:  var(--ui-bg);
+}
+/* twine-user-stylesheet #2: "style.css" */
+.theme-light {
+	--story-bg: #E8DFDB;
+	--story-text: #19231A;
+	--ui-bg: #D8CBC7;
+	--ui-bg-hover: #C4B7B3;
+	--ui-bg-active: #7A6E6B;
+	--ui-text: #33673B;
+	--ui-border: #565857;
+	--link-color: #CC3F0C;
+	--link-hover-color: #8A2006;
+	--title-color: #66C3FF;
+	--tooltip-warning: #FFD131;
+	--tooltip-warning-bg: #A76E1C;
+	--tooltip-info: #214365;
+	--tooltip-info-bg: #82C1D8;
+	--tooltip-comment: #D3D3D3;
+	--tooltip-comment-bg: #2D2A36;
+}
+
+.theme-dark {
+	--story-bg: #040403;
+	--story-text: #F0F7EE;
+	--ui-bg: #191A16;
+	--ui-bg-hover: #30312D;
+	--ui-bg-active: #5E5F5B;
+	--ui-text: #ACD5A1;
+	--ui-border: #339989;
+	--link-color: #E17A79;
+	--link-hover-color: #D15159;
+	--title-color: #42BFDD;
+	--tooltip-warning: #FFD131;
+	--tooltip-warning-bg: #A76E1C;
+	--tooltip-info: #82C1D8;
+	--tooltip-info-bg: #214365;
+	--tooltip-comment: #D3D3D3;
+	--tooltip-comment-bg: #2D2A36;
+}
+
+.theme-green {
+	--story-bg: #000401;
+	--story-text: #F0F7EE;
+	--ui-bg: #020D04;
+	--ui-bg-hover: #30312D;
+	--ui-bg-active: #0A3318;
+	--ui-text: #518244;
+	--ui-border: #298c7d;
+	--link-color: #AA211F;	
+	--link-hover-color: #C68589;
+	--title-color: #42BFDD;
+	--tooltip-warning: #FFD131;
+	--tooltip-warning-bg: #A76E1C;
+	--tooltip-info: #82C1D8;
+	--tooltip-info-bg: #214365;
+	--tooltip-comment: #D3D3D3;
+	--tooltip-comment-bg: #2D2A36;
+}
+
+body {
+	background-color: var(--story-bg);
+	color: var(--story-text);
+}
+
+html.no-images img {
+	display: none;
+}
+
+#ui-bar, 
+#ui-dialog-title, 
+#ui-dialog-body {
+	background: var(--ui-bg);
+	color: var(--ui-text);
+}
+
+#ui-dialog-body select, 
+#ui-dialog-body button,
+#ui-dialog-body.settings button[id|="setting-control"] {
+	background: var(--ui-bg);
+	color: var(--ui-text);
+	border-color: var(--ui-border);
+}
+
+#ui-dialog-body select:hover, 
+#ui-dialog-body button:hover,
+#ui-dialog-body.settings button[id|="setting-control"]:hover {
+	background: var(--ui-bg-hover);
+}
+
+#ui-dialog-body button.enabled,
+#ui-dialog-body.settings button[id|="setting-control"].enabled { /* Some buttons are extra pissy about when to be selected*/
+	background: var(--ui-bg-active);
+}
+
+#menu li a {
+	color: var(--ui-text);
+}
+
+#ui-bar-history [id|="history"] {
+	color: var(--ui-text);
+	background-color: var(--story-bg);
+}
+
+#ui-bar-history [id|="history"]:disabled {
+	color: var(--link-color);
+	background-color: var(--ui-bg);
+	border-width: 0px;
+}
+
+#menuInfo {
+	text-align: center;
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 20px;
+	/*margin-left:-25px; 
+    margin-right:-25px;*/
+}
+
+#menuInfo tr + tr {
+	border-top: solid 2px var(--ui-text);
+}
+
+#time td {
+	font-size: 30px;
+	background-color: #580C0E;
+	color: #C85A63;
+	padding: 0px;
+	margin: 0px 40px;
+	border-radius: 10px;
+	border: solid 2px #C85A63;
+}
+
+#cuff a {
+	font-size: 20px;
+	color: var(--ui-text);
+	padding: 10px;
+	margin: 0px;
+	border: dotted 2px var(--ui-text);
+	border-radius: 10px;
+}
+
+#cuff a:hover {
+	padding: 5px;
+	margin: 5px;
+}
+
+input, hr {
+	color: var(--link-color);
+}
+
+a {
+	padding: 5px;
+	border: solid 1px var(--link-color);
+	border-radius: 5px;
+	color: var(--link-color);
+}
+
+li .chore-short a {
+	padding: 5px;
+	border: solid 0px var(--link-color);
+	color: var(--link-color);
+}
+
+!li .chore-short a {
+	border: solid 1px var(--link-color);
+	border-radius: 5px;
+	color: var(--link-color);
+	margin-top: 5px;
+}
+
+!li .short.done a {
+	border: solid 0px var(--story-text);
+	color: var(--story-text);
+}
+
+a:hover {
+	color: var(--link-hover-color);
+}
+
+img {
+	max-width: 100%;
+	object-fit: contain;
+	border-radius: 15px;
+	border: solid 4px var(--link-color); 
+}
+
+.shop-display {
+	display: grid;
+	grid-template-columns: auto;
+	grid-row-gap: 10px;
+}
+
+.inventory-display {
+	display: grid;
+	grid-template-columns: repeat(var(--inventoryRow), 1fr);
+	grid-column: 1fr;
+	grid-gap: 10px 10px;
+}
+
+.inventory-name {
+	grid-column: 1 / span var(--inventoryRow);
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+	padding: auto auto;
+}
+
+.item-display, .inventory-display-empty {
+	display: grid;
+	grid-template-columns: 1;
+	border: dotted 2px var(--link-color);
+	border-radius: 30px;
+	text-align: center;
+}
+
+.item-display.item-tag-tmp {
+	border-color: var(--title-color);
+}
+
+.item-display-img {
+	height: 100%;
+}
+
+.item-display-button button, .chore-button a, .toggleButton button{
+	background: var(--link-color-hover);
+	color: var(--link-color);
+	border: solid 2px var(--link-color);
+	border-radius: 5px;
+	margin: 5px;
+}
+
+.chore-done:before {
+	content: "\2713 "
+}
+
+.estateRoom {
+	font-size: 32px;
+	color: var(--link-color);
+}
+
+/* Main menu */
+
+#game-title-info {
+	margin-top: 60px;
+	text-align: center;
+}
+
+#game-title {
+	font-size: 40px;
+	line-height: 0;
+}
+
+#game-author {
+	padding-top: 0;
+	font-size: 10px;
+}
+
+.warning {
+	border: dashed 5px var(--link-color);
+	border-radius: 50px;
+	padding: 30px;
+}
+
+.tooltip-warning {
+	color: var(--tooltip-warning);
+	background-color: var(--tooltip-warning-bg);
+	border: dashed 2px var(--tooltip-warning);
+	border-radius: 30px;
+	padding: 20px;
+}
+.tooltip-warning:before {
+	content: "Warning: ";
+}
+
+.tooltip-info {
+	color: var(--tooltip-info);
+	background-color: var(--tooltip-info-bg);
+	border: dashed 2px var(--tooltip-info);
+	border-radius: 30px;
+	padding: 20px;
+}
+.tooltip-info:before {
+	content: "Info: ";
+}
+
+.tooltip-comment {
+	color: var(--tooltip-comment);
+	background-color: var(--tooltip-comment-bg);
+	border: dashed 2px var(--tooltip-comment);
+	border-radius: 30px;
+	padding: 20px;
+}
+.tooltip-comment:before {
+	content: "Comment: ";
+}
+
+.choreUILink a {
+	border: none;
+}
+
+/* DEBUG CSS */
+
+.error, .error-view > .error-toggle, .error-source {
+	background-color: red;
+	color: white;
+}
+
+@media only screen and (min-width: 600px) {
+  img {
+	max-height: 10em;
+  	max-width: 40%;
+  }
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "changelog.js" */
 Macro.add("generateChangelog", {
 	skipargs: true,
@@ -384,6 +712,49 @@ window.navMenu = function(increase) {
 	$('.ui-menu:nth-child(' + (State.variables.menu + 1)+ ')').removeClass("hidden");
 };
 /* twine-user-script #4: "character.js" */
+window.ClothesSlots = ["wig", "shirt", "pants", "underwear", "bra", "hoisery", "shoe", "accessory-head", "accessory-neck", "toy-front", "toy-back"];
+
+function createNPC(gender) {
+	// Creates the values for a random npc of specified gender
+
+	// TODO CLEAN UP THIS MESS
+	// Note from 03/07/2020 --> I really really don't wanna, but I'll have to do it soonish
+	// Note from 25/07/2020 --> Still don't want, what am I doing with my life
+	// Note from 18/09/2020 --> Still no, but I really feel like it's the next thing I have to do
+
+	var values = {};
+
+	values["gender"] = (gender) ? 'male' : 'female';
+	values["title"] = (gender) ? "Mr" : "Mrs";
+
+	var names;
+	if (gender)
+		names = ["James", "Joseff", "Jack", "John", "Hugo", "Leo", "Vincent"];
+	else
+		names = ["Lea", "Marie", "Aurora", "Fiona", "Maeve", "Jade", "Amber", "Liya", "Velma", "Nana"];
+	var lastName = ["Walls", "Barker", "O'Connor", "Thomas", "Short", "Beard", "Simon", "Knott", "Robins", "Moody", "Cullen", "Morris", "Dilon"];
+
+	var index = Math.floor(State.random() * names.length);
+	values["name"] = names[index];
+
+	index = Math.floor(State.random() * lastName.length);
+	lastName = lastName[index];
+	values["name"] += " " + lastName;
+	values["title"] += " " + lastName;
+
+	values["age"] = Math.floor(State.random() * 30) + 20;
+
+	values["like"] = Object.keys(State.variables.npcLike).filter(function(el) {
+		return State.random() < 2 / (Object.keys(State.variables.npcLike).length);
+	});
+
+	values["appreciation"] = 0;
+	values["color"] = {};
+	values["color"]["light"] = `#${(State.random() * 0xFFFFFF << 0).toString(16)}`;
+	values["color"]["dark"] = values["color"]["light"];
+	return values;
+}
+
 class Character {
 	constructor(config) {
 		this.name = "";
@@ -3210,6 +3581,9 @@ State.variables.minorNPC = [];
 &lt;&lt;set $clockImg to &quot;&quot;&gt;&gt;
 &lt;&lt;set $menu to 0&gt;&gt;
 
+&lt;&lt;set $exitMenu to &quot;Start&quot;&gt;&gt;
+&lt;&lt;set $return to &quot;CUFF&quot;&gt;&gt;
+
 &lt;&lt;set $currentPassage to &quot;Start&quot;&gt;&gt;
 
 &lt;&lt;set $flags to {
@@ -3829,7 +4203,7 @@ State.variables.minorNPC = [];
 	&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&quot;cuff-button&quot;&gt;
-	&lt;&lt;button &quot;CUFF&quot; &quot;cuff&quot;&gt;&gt;
+	&lt;&lt;button &quot;CUFF&quot; &quot;CUFF&quot;&gt;&gt;
 		&lt;!-- Button to access the cuff, might remove it and move it to the side --&gt;
 	&lt;&lt;/button&gt;&gt;
 &lt;/div&gt;
@@ -3855,59 +4229,60 @@ State.variables.minorNPC = [];
 &lt;div id=&quot;timeDisplay&quot;&gt;
 	&lt;div id=&quot;clock-img&quot;&gt;[img[$clockImg]]&lt;/div&gt;
 	&lt;div id=&quot;clock-text&quot;&gt;&lt;&lt;= Timer.getTime($time.time)&gt;&gt;&lt;/div&gt;
+	&lt;div id=&quot;clock-time&quot;&gt;&lt;&lt;= $time.weekDayFormat&gt;&gt;&lt;br&gt;(Day &lt;&lt;= $time.day&gt;&gt;)&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&quot;location&quot;&gt;
-	LOCATION
+	&lt;&lt;= $mansion.findRoom($player.currRoom).name&gt;&gt;
 &lt;/div&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="personnal-info" tags="nobr" position="850,225" size="100,100">&lt;h1 class=&quot;tab-title&quot;&gt;Personal Info&lt;/h1&gt;
 
 &lt;table id=&quot;personal-info-table&quot;&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Stamina&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;#####-----&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;&lt;&lt;= $player.getStaminaBar()&gt;&gt;&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Arousal&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;#####-----&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;$player.arousal.current&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Serving&lt;/td&gt;
-		&lt;td&gt;#####-----&lt;/td&gt;
-		&lt;td&gt;(Lvl 1)&lt;/td&gt;
+		&lt;td&gt;$player.stats.serving.xp&lt;/td&gt;
+		&lt;td&gt;(Lvl $player.stats.serving.level)&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Cleaning&lt;/td&gt;
-		&lt;td&gt;#####-----&lt;/td&gt;
-		&lt;td&gt;(Lvl 1)&lt;/td&gt;
+		&lt;td&gt;$player.stats.cleaning.xp&lt;/td&gt;
+		&lt;td&gt;(Lvl $player.stats.cleaning.level)&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Fitness&lt;/td&gt;
-		&lt;td&gt;#####-----&lt;/td&gt;
-		&lt;td&gt;(Lvl 1)&lt;/td&gt;
+		&lt;td&gt;$player.stats.fitness.xp&lt;/td&gt;
+		&lt;td&gt;(Lvl $player.stats.fitness.level)&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Debt&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;100,000,000&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;$player.debt&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Money&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;100&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;$player.money&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Femininity&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;0&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;$player.femininity&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Appearance&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;0&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;$player.appearance&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Submission&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;0&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;$player.submission&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;Boldness&lt;/td&gt;
-		&lt;td colspan=&quot;2&quot;&gt;0&lt;/td&gt;
+		&lt;td colspan=&quot;2&quot;&gt;$player.boldness&lt;/td&gt;
 	&lt;/tr&gt;
 &lt;/table&gt;</tw-passagedata><tw-passagedata pid="18" name="staff-finder" tags="nobr" position="975,225" size="100,100">&lt;h1 class=&quot;tab-title&quot;&gt;Staff finder&lt;/h1&gt;
 &lt;table&gt;
@@ -3950,7 +4325,27 @@ Here is the [[changelog]] for the current version of the game.
 Feel free to &lt;a href=&quot;https://discord.gg/c7pP7mY&quot;&gt;join our discord&lt;/a&gt;
 &lt;/div&gt;
 
-[[Start the game|Intro1]]</tw-passagedata><tw-passagedata pid="22" name="foyerCleaning" tags="noreturn chore" position="225,350" size="100,100">&lt;&lt;switch random(2)&gt;&gt;
+[[Start the game|Intro1]]
+&lt;&lt;if !$firstTime&gt;&gt;
+&lt;&lt;link &quot;Skip the introduction (Start with the default character)&quot; &quot;PlayerBdRm&quot;&gt;&gt;
+&lt;&lt;set $flags to {
+	CUFF : 3,
+	manorIntro : 1
+}&gt;&gt;
+&lt;&lt;= $time.setDate({day: 2, hour: 22, minute: 0})&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;chooseOption &quot;Skip the introduction (Start with the default character)&quot;&gt;&gt;
+Are you sure you want to skip the intro (Not recommended for first timers)?
+&lt;&lt;link &quot;Yes&quot; &quot;PlayerBdRm&quot;&gt;&gt;
+&lt;&lt;set $flags to {
+	CUFF : 3,
+	manorIntro : 1
+}&gt;&gt;
+&lt;&lt;= $time.setDate({day: 2, hour: 22, minute: 0})&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;/chooseOption&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="foyerCleaning" tags="noreturn chore" position="225,350" size="100,100">&lt;&lt;switch random(2)&gt;&gt;
 	&lt;&lt;case 1&gt;&gt;
 		&lt;&lt;include &quot;wifeCleaningBossy01A&quot;&gt;&gt;
 	&lt;&lt;default&gt;&gt;
@@ -6144,7 +6539,7 @@ She smiles warmly as you hand her the bag and then rejoins her group.
 
 When you turn back to the conveyor, a security guard is standing there holding the brown box you were given earlier in the day.
 
-&lt;&lt;= Character.speakAnonymous(&quot;I this package yours son?&quot;, &quot;GoldenRod&quot;)&gt;&gt;
+&lt;&lt;= Character.speakAnonymous(&quot;Is this package yours son?&quot;, &quot;GoldenRod&quot;)&gt;&gt;
 
 His face is pretty neutral.
 

@@ -22,7 +22,7 @@
 	</div>
 </div>
 <div id="cuff-button">
-	<<button "CUFF" "cuff">>
+	<<button "CUFF" "CUFF">>
 		<!-- Button to access the cuff, might remove it and move it to the side -->
 	<</button>>
 </div>

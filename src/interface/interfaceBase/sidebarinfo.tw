@@ -5,50 +5,50 @@
 <table id="personal-info-table">
 	<tr>
 		<td>Stamina</td>
-		<td colspan="2">#####-----</td>
+		<td colspan="2"><<= $player.getStaminaBar()>></td>
 	</tr>
 	<tr>
 		<td>Arousal</td>
-		<td colspan="2">#####-----</td>
+		<td colspan="2">$player.arousal.current</td>
 	</tr>
 	<tr>
 		<td>Serving</td>
-		<td>#####-----</td>
-		<td>(Lvl 1)</td>
+		<td>$player.stats.serving.xp</td>
+		<td>(Lvl $player.stats.serving.level)</td>
 	</tr>
 	<tr>
 		<td>Cleaning</td>
-		<td>#####-----</td>
-		<td>(Lvl 1)</td>
+		<td>$player.stats.cleaning.xp</td>
+		<td>(Lvl $player.stats.cleaning.level)</td>
 	</tr>
 	<tr>
 		<td>Fitness</td>
-		<td>#####-----</td>
-		<td>(Lvl 1)</td>
+		<td>$player.stats.fitness.xp</td>
+		<td>(Lvl $player.stats.fitness.level)</td>
 	</tr>
 	<tr>
 		<td>Debt</td>
-		<td colspan="2">100,000,000</td>
+		<td colspan="2">$player.debt</td>
 	</tr>
 	<tr>
 		<td>Money</td>
-		<td colspan="2">100</td>
+		<td colspan="2">$player.money</td>
 	</tr>
 	<tr>
 		<td>Femininity</td>
-		<td colspan="2">0</td>
+		<td colspan="2">$player.femininity</td>
 	</tr>
 	<tr>
 		<td>Appearance</td>
-		<td colspan="2">0</td>
+		<td colspan="2">$player.appearance</td>
 	</tr>
 	<tr>
 		<td>Submission</td>
-		<td colspan="2">0</td>
+		<td colspan="2">$player.submission</td>
 	</tr>
 	<tr>
 		<td>Boldness</td>
-		<td colspan="2">0</td>
+		<td colspan="2">$player.boldness</td>
 	</tr>
 </table>
 

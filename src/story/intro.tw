@@ -49,7 +49,7 @@ She smiles warmly as you hand her the bag and then rejoins her group.
 
 When you turn back to the conveyor, a security guard is standing there holding the brown box you were given earlier in the day.
 
-<<= Character.speakAnonymous("I this package yours son?", "GoldenRod")>>
+<<= Character.speakAnonymous("Is this package yours son?", "GoldenRod")>>
 
 His face is pretty neutral.
 

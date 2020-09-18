@@ -12,6 +12,9 @@
 <<set $clockImg to "">>
 <<set $menu to 0>>
 
+<<set $exitMenu to "Start">>
+<<set $return to "CUFF">>
+
 <<set $currentPassage to "Start">>
 
 <<set $flags to {
