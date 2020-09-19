@@ -32,36 +32,24 @@ class Chore {
 		if (skipChores() || (this.done && filterDone) || !this.todo)
 			return "";
 
-		var htmlClass = "chore";
-		if (this.done)
-			htmlClass = 'chore-done';
-		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
-			htmlClass = 'chore-exhaused';
-		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0)
-			htmlClass = 'chore-not-time';
-		else if (!canDoChores)
-			htmlClass = 'chore-unavailable';
+		var chorebutton;
+		if (State.variables.player.currRoom === this.room && !this.done) 
+			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp('cleaning', ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage()}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom("${this.room}").findChore("${this.name}").done = true>><</link>>`
+		else if (!canDoChores || this.done)
+			chorebutton = this.name;
+		else
+			chorebutton = State.variables.mansion.findRoom(this.room).getPassage(this.name);
 
-		if (short && !this.done && !Story.get(State.passage).tags.includes("chore") && State.variables.mansion.currentEvent == "") return `<span class="chore-short ${htmlClass}">${State.variables.mansion.findRoom(this.room).getPassage(this.name)}</span>`;
-		if (short) return `<span class="${htmlClass}">${this.name}</span>`;
+		var status = "";
+		if (this.done) status = "DONE";
+		else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) status = "TOO TIRED";
+		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0) status = "WRONG TIME";
+		
+		if (short) return `<li>${chorebutton} : ${status}</li>`;
 
-		return String.format(
-			"<span class='{0}'>{1} {2} {3} {4}</span>",
-			htmlClass,
-			this.name,
-			this.done ? "" : `(To do beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
-			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
-			canDoChores && !this.done && htmlClass === "chore" ? String.format(
-				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
-				this.passage,
-				this.room,
-				this.staminaCost,
-				this.duration,
-				this.name,
-				this.xp,
-				State.variables.mansion.findRoom(this.room).getPassage()
-			) : ""
-		);
+		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.findRoom(this.room).name}</td><td>${status}</td></tr>`
+
+		return choreContent;
 	}
 
 	reset() {

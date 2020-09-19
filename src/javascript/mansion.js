@@ -28,17 +28,8 @@ class Mansion {
 		return this.findRoom(roomID).generatePassage();
 	}
 
-	displayChores(canDoChores, filterDone, short) {
-		var str = "<ol>";
-		var hasChores = false;
-		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone, short || false);
-			if (roomChores != undefined && roomChores !== "") {
-				str += roomChores;
-				hasChores = true;
-			}
-		}
-		return hasChores ? (`${str}</ol>`) : "No chores right now !!";
+	displayChores(canDoChores, filterDone) {
+		return this.rooms.reduce((str, room) => str + room.displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
 	}
 
 	addRoom(room) {

@@ -153,6 +153,7 @@ class Player extends Character {
 				max: 100
 			},
 			currRoom: "PlayerBdRm",
+			lastRoom: "PlayerBdRm",
 			choresLate: 0,
 			debt: 23456,
 			money: 0,
@@ -172,6 +173,12 @@ class Player extends Character {
 			},
 			weeksFailed: 0
 		}, config));
+	}
+
+	moveTime() {
+		var time = (pathfind.path(this.lastRoom, this.currRoom).length - 1) * 5;
+		State.variables.time.addTime({minute: time});
+		this.lastRoom = this.currRoom;
 	}
 
 	// Equips item of name 'itemName'. If bypassFemininty is true, skips the check for femininity (usefull for events)

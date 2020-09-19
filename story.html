@@ -283,7 +283,7 @@ a:hover {
 	margin: 0.2rem;
 }
 
-#menu-buttons a {
+#left-bar a {
 	border: none;
 }
 
@@ -931,6 +931,7 @@ class Player extends Character {
 				max: 100
 			},
 			currRoom: "PlayerBdRm",
+			lastRoom: "PlayerBdRm",
 			choresLate: 0,
 			debt: 23456,
 			money: 0,
@@ -950,6 +951,12 @@ class Player extends Character {
 			},
 			weeksFailed: 0
 		}, config));
+	}
+
+	moveTime() {
+		var time = (pathfind.path(this.lastRoom, this.currRoom).length - 1) * 5;
+		State.variables.time.addTime({minute: time});
+		this.lastRoom = this.currRoom;
 	}
 
 	// Equips item of name 'itemName'. If bypassFemininty is true, skips the check for femininity (usefull for events)
@@ -1287,36 +1294,24 @@ class Chore {
 		if (skipChores() || (this.done && filterDone) || !this.todo)
 			return "";
 
-		var htmlClass = "chore";
-		if (this.done)
-			htmlClass = 'chore-done';
-		else if (!State.variables.player.hasEnoughStamina(this.staminaCost))
-			htmlClass = 'chore-exhaused';
-		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0)
-			htmlClass = 'chore-not-time';
-		else if (!canDoChores)
-			htmlClass = 'chore-unavailable';
+		var chorebutton;
+		if (State.variables.player.currRoom === this.room && !this.done) 
+			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp('cleaning', ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage()}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom("${this.room}").findChore("${this.name}").done = true>><</link>>`
+		else if (!canDoChores || this.done)
+			chorebutton = this.name;
+		else
+			chorebutton = State.variables.mansion.findRoom(this.room).getPassage(this.name);
 
-		if (short && !this.done && !Story.get(State.passage).tags.includes("chore") && State.variables.mansion.currentEvent == "") return `<span class="chore-short ${htmlClass}">${State.variables.mansion.findRoom(this.room).getPassage(this.name)}</span>`;
-		if (short) return `<span class="${htmlClass}">${this.name}</span>`;
+		var status = "";
+		if (this.done) status = "DONE";
+		else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) status = "TOO TIRED";
+		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0) status = "WRONG TIME";
+		
+		if (short) return `<li>${chorebutton} : ${status}</li>`;
 
-		return String.format(
-			"<span class='{0}'>{1} {2} {3} {4}</span>",
-			htmlClass,
-			this.name,
-			this.done ? "" : `(To do beween: ${Timer.getTime(this.time.start)} to ${Timer.getTime(this.time.end)}. Duration: ${Timer.getTime(this.duration)})`,
-			{"chore-done" : "[DONE]", "chore-exhaused" : "[TOO TIRED]", "chore-not-time" : "[NOT THE RIGHT TIME]", "chore": "", "chore-unavailable": ""}[htmlClass],
-			canDoChores && !this.done && htmlClass === "chore" ? String.format(
-				"<span class='chore-button'><<link 'Start chore' \"{0}\">><<= $player.levelUp('cleaning', {5})>><<set $aPsgText to `{6}`>><<= $player.currRoom=`{1}`>><<set $player.useStamina({2})>><<= $time.addTime({3})>><<= $mansion.findRoom('{1}').findChore(\"{4}\").done = true>><</link>></span>",
-				this.passage,
-				this.room,
-				this.staminaCost,
-				this.duration,
-				this.name,
-				this.xp,
-				State.variables.mansion.findRoom(this.room).getPassage()
-			) : ""
-		);
+		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.findRoom(this.room).name}</td><td>${status}</td></tr>`
+
+		return choreContent;
 	}
 
 	reset() {
@@ -1882,6 +1877,14 @@ Macro.add("chooseOption", {
 		return $(this.output).wiki(`<span id='${id}'>${str}${def}</span>`)
 	}
 });
+
+Macro.add("listChores", {
+	tags: [],
+	handler: function () {
+		console.log(State.variables.mansion.displayChores(this.args[0] || true, State.variables.flags.filterDone));
+		$(this.output).wiki("<table>" + State.variables.mansion.displayChores(this.args[0] || true, State.variables.flags.filterDone) + "</table>");
+	}
+});
 /* twine-user-script #12: "mansion.js" */
 class Mansion {
 	constructor(config) {
@@ -1913,17 +1916,8 @@ class Mansion {
 		return this.findRoom(roomID).generatePassage();
 	}
 
-	displayChores(canDoChores, filterDone, short) {
-		var str = "<ol>";
-		var hasChores = false;
-		for (var i = 0; i < this.rooms.length; i++) {
-			var roomChores = this.rooms[i].displayChores(undefined, canDoChores && this.currentEvent == "", filterDone, short || false);
-			if (roomChores != undefined && roomChores !== "") {
-				str += roomChores;
-				hasChores = true;
-			}
-		}
-		return hasChores ? (`${str}</ol>`) : "No chores right now !!";
+	displayChores(canDoChores, filterDone) {
+		return this.rooms.reduce((str, room) => str + room.displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
 	}
 
 	addRoom(room) {
@@ -2555,27 +2549,12 @@ class Room {
 		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><</link>>`
 	}
 
-	displayChores(displayTitle, canDoChores, filterDone, short) {
-		return this.chores.reduce((str, chore) => {
-			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
-			if (choreDo === "") return str;
-			return `${str}<li class="choreUILink">${canDoChores || chore.done ? choreDo : this.getPassage(chore.name)}</li>`;
-		}, "");
-
-		if (this.chores.length > 0) {
-			var title = `${((displayTitle || true) ? this.name : "")}<ol>`;
-			var str = "";
-			for (var i = 0; i < this.chores.length; i++) {
-				var chore = this.chores[i].do(canDoChores, filterDone || false);
-				if (chore != "")
-					str += `<li>${chore}</li>`;
-			}
-			if (str === "")
-				return str
-			return `${title}${str}</ol>`
-		} else
-			return ""
-	}
+	displayChores(canDoChores, filterDone) {
+        return this.chores.reduce((str, chore) => {
+            var choreDo = chore.do(canDoChores, filterDone||false);
+            return `${str}${choreDo}`;
+        }, "");
+    }
 
 	clone() {
         return new Room(this);
@@ -2597,7 +2576,7 @@ Object.defineProperty(window, 'Room', {
 //importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
 
-$(document).on(':passageinit', (ev) => (settings.nsfw) ? $("html").removeClass("hidden") : $("html").addClass("hidden"));
+$(document).on(':passageinit', (ev) => (settings.nsfw) ? $("html").removeClass("no-images") : $("html").addClass("no-images"));
 
 $(document).on(':passagestart', (ev) => {
 	if (!ev.passage.tags.includes('noreturn')) {
@@ -4397,18 +4376,16 @@ State.variables.minorNPC = [];
 		&lt;td&gt;TRAVELING &lt;/td&gt;
 	&lt;/tr&gt;
 &lt;/table&gt;</tw-passagedata><tw-passagedata pid="19" name="chores-info" tags="nobr" position="1100,225" size="100,100">&lt;h1 class=&quot;tab-title&quot;&gt;Chores&lt;/h1&gt;
-&lt;table&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Chore name&lt;/td&gt;
-		&lt;td&gt;Location 1&lt;/td&gt;
-		&lt;td&gt;DONE&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Chore name&lt;/td&gt;
-		&lt;td&gt;Location 2&lt;/td&gt;
-		&lt;td&gt;TO DO&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;</tw-passagedata><tw-passagedata pid="20" name="StoryInterface" tags="" position="1225,225" size="100,100">&lt;div id=&quot;interface&quot;&gt;
+&lt;span class=&quot;toggleButton&quot;&gt;&lt;&lt;button &quot;Filter done&quot;&gt;&gt;
+	&lt;&lt;set $flags.filterDone = !$flags.filterDone&gt;&gt;
+	&lt;&lt;replace &#39;#to_do-list&#39;&gt;&gt;
+	&lt;&lt;listChores&gt;&gt;&lt;&lt;/listChores&gt;&gt;
+	&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;span id=&quot;to_do-list&quot;&gt;
+	&lt;&lt;listChores&gt;&gt;&lt;&lt;/listChores&gt;&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="20" name="StoryInterface" tags="" position="1225,225" size="100,100">&lt;div id=&quot;interface&quot;&gt;
 	&lt;div id=&quot;main-story&quot;&gt;
 		&lt;div id=&quot;ui&quot;&gt;
 			&lt;div id=&quot;left-bar&quot; data-passage=&quot;left-bar&quot;&gt;&lt;/div&gt;
@@ -6988,17 +6965,19 @@ Arousal: $player.arousal.current
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
 [[Return|$return]]</tw-passagedata><tw-passagedata pid="200" name="PassageFooter" tags="nodebug" position="1225,2475" size="100,100">&lt;&lt;if ![&quot;PlayerBdRm&quot;, &quot;sleep&quot;, &quot;gameover&quot;, &quot;event&quot;].includes(passage()) &amp;&amp; $mansion.currentEvent === &quot;&quot; &amp;&amp; $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
-&lt;&lt;set $late to true&gt;&gt;
-&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).getPassage(&quot;Your CUFF buzzes on your wrist. You check and see it&#39;s time for you to return to your room and rest for the night.&quot;)&gt;&gt;
+	&lt;&lt;set $late to true&gt;&gt;
+	&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).getPassage(&quot;Your CUFF buzzes on your wrist. You check and see it&#39;s time for you to return to your room and rest for the night.&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
-&lt;&lt;set $late to false&gt;&gt;
+	&lt;&lt;set $late to false&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;&lt;set $player.moveTime()&gt;&gt;
+
 &lt;&lt;if ([&quot;init&quot;].some(function(tag) {return tags().includes(tag)}) === false)&gt;&gt;
-&lt;&lt;= schedule($lastTime.rel / 5)&gt;&gt;
-&lt;&lt;set _last = $lastTime.abs&gt;&gt;
-&lt;&lt;set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)&gt;&gt;
-&lt;&lt;set $lastTime.rel = $lastTime.abs - _last&gt;&gt;
+	&lt;&lt;set schedule($lastTime.rel / 5)&gt;&gt;
+	&lt;&lt;set _last = $lastTime.abs&gt;&gt;
+	&lt;&lt;set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)&gt;&gt;
+	&lt;&lt;set $lastTime.rel = $lastTime.abs - _last&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $debug&gt;&gt;&lt;&lt;include &#39;debug-passage&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="201" name="daughterPath01Homedrunk" tags="noreturn chore" position="100,2600" size="100,100">&lt;!-- Random % chance when the player eneters the foyer - does not repeat --&gt;

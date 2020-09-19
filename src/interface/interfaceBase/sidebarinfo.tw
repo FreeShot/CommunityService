@@ -63,15 +63,13 @@
 
 ::chores-info [nobr]
 <h1 class="tab-title">Chores</h1>
-<table>
-	<tr>
-		<td>Chore name</td>
-		<td>Location 1</td>
-		<td>DONE</td>
-	</tr>
-	<tr>
-		<td>Chore name</td>
-		<td>Location 2</td>
-		<td>TO DO</td>
-	</tr>
-</table>
+<span class="toggleButton"><<button "Filter done">>
+	<<set $flags.filterDone = !$flags.filterDone>>
+	<<replace '#to_do-list'>>
+	<<listChores>><</listChores>>
+	<</replace>>
+<</button>>
+</span>
+<span id="to_do-list">
+	<<listChores>><</listChores>>
+</span>

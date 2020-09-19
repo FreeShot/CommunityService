@@ -85,27 +85,12 @@ class Room {
 		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><</link>>`
 	}
 
-	displayChores(displayTitle, canDoChores, filterDone, short) {
-		return this.chores.reduce((str, chore) => {
-			var choreDo = chore.do(canDoChores, filterDone||false, short||false);
-			if (choreDo === "") return str;
-			return `${str}<li class="choreUILink">${canDoChores || chore.done ? choreDo : this.getPassage(chore.name)}</li>`;
-		}, "");
-
-		if (this.chores.length > 0) {
-			var title = `${((displayTitle || true) ? this.name : "")}<ol>`;
-			var str = "";
-			for (var i = 0; i < this.chores.length; i++) {
-				var chore = this.chores[i].do(canDoChores, filterDone || false);
-				if (chore != "")
-					str += `<li>${chore}</li>`;
-			}
-			if (str === "")
-				return str
-			return `${title}${str}</ol>`
-		} else
-			return ""
-	}
+	displayChores(canDoChores, filterDone) {
+        return this.chores.reduce((str, chore) => {
+            var choreDo = chore.do(canDoChores, filterDone||false);
+            return `${str}${choreDo}`;
+        }, "");
+    }
 
 	clone() {
         return new Room(this);
