@@ -27,10 +27,6 @@ html {
 	scroll-behavior: smooth;
 }
 
-html.no-images img {
-	display: none;
-}
-
 button {
 	border: solid 0.1rem var(--ui-border);
 	border-radius: 0.3rem;
@@ -59,10 +55,34 @@ a:hover {
 	color: var(--link-hover);
 }
 
+sup {
+	vertical-align: super;
+	position: inherit;
+}
+
 /* DISPLAY */
 
-.hidden {
+.hidden, .tooltip {
 	display: none;
+}
+
+tr:hover .toolti/*p*/ {
+    display: block;
+    position: fixed;
+    left: var(--ui-left);
+    right: var(--ui-right);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: auto;
+}
+
+.tooltip-content {
+	position: relative;
+	left: 0; right: 0; top: 2rem; margin: auto; padding: auto;
+    padding: 5rem;
+    border: solid 5px var(--ui-bg);
+    border-radius: 20px;
 }
 
 /* DIALOG */
@@ -263,20 +283,20 @@ body, #main-story {
 .shop-display {
 	display: grid;
 	grid-template-columns: auto;
-	grid-row-gap: 10px;
+	grid-row-gap: 0.2rem;
 }
 
 .inventory-display {
 	display: grid;
 	grid-template-columns: repeat(var(--inventoryRow), 1fr);
 	grid-column: 1fr;
-	grid-gap: 10px 10px;
+	grid-gap: 0.2rem 0.2rem;
 }
 
 .inventory-name {
 	grid-column: 1 / span var(--inventoryRow);
-	border: dotted 2px var(--link-color);
-	border-radius: 30px;
+	border: dotted 0.2rem var(--link-color);
+	border-radius: 0.5rem;
 	text-align: center;
 	padding: auto auto;
 }
@@ -284,8 +304,8 @@ body, #main-story {
 .item-display, .inventory-display-empty {
 	display: grid;
 	grid-template-columns: 1;
-	border: dotted 2px var(--link-color);
-	border-radius: 30px;
+	border: dotted 0.2rem var(--link-color);
+	border-radius: 0.5rem;
 	text-align: center;
 }
 
@@ -298,6 +318,6 @@ body, #main-story {
 }
 
 .estateRoom {
-	font-size: 32px;
+	font-size: 3rem;
 	color: var(--link-color);
 }

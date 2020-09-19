@@ -48,10 +48,7 @@
 <h1 class="tab-title">Staff finder</h1>
 <table>
 	<<for _npc range npcList>>
-		<tr>
-			<td><<= State.variables[_npc].name>></td>
-			<td><<= State.variables[_npc].schedule.estimateLoc()>></td>
-		</tr>
+		<<= State.variables[_npc].getSidebar()>>
 	<</for>>
 </table>
 

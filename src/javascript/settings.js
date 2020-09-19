@@ -63,24 +63,14 @@ var settingThemeHandler = () => {	// cache the jQuery-wrapped <html> element
 };
 Setting.addList("theme", {
 	label    : "Choose a theme.",
-	list     : ["theme-dark", "theme-light", "theme-green"], // TODO - add auto switching as an option
-	default  : "theme-light",
+	list     : ["theme-dark"], // TODO - add auto switching as an option
+	default  : "theme-dark",
 	onInit   : settingThemeHandler,
 	onChange : settingThemeHandler
 });
 
 
 Setting.addHeader("Misc", "");
-Setting.addToggle("No images", {
-	label    : "Hides all images from the game",
-	default  : false,
-	onInit   : () => $("html").addClass("no-images"),
-	onChange : () => $("html").toggleClass("no-images")
-});
-Setting.addToggle("tips", {
-	label    : "Displays the tips",
-	default  : true
-});
 
 Setting.addToggle("debug", {
 	label    : "Displays the debugger",
