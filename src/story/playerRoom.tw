@@ -34,9 +34,9 @@ Desk
 <</if>>
 <</nobr>>
 
-<<= $mansion.findRoom("PlayerBdRm").displayChores("", true)>>
+<<= $mansion.findRoom("PlayerBdRm").displayChores(true, false, true)>>
 <<if $time.compareTime({hour:18, minute:0}) === 1>>
-<<= $time.setDate({hour:22})>>
+<<set $time.setDate({hour:22})>>
 <</if>>
 
 ::playerRoomShower [playerRoom]

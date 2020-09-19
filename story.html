@@ -1289,7 +1289,7 @@ class Chore {
 		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:22, minute:0}}};
 	}
 
-	do(canDoChores, filterDone, short) {
+	do(canDoChores, filterDone, hidelocation) {
 		// Chore is waiting to be reset
 		if (skipChores() || (this.done && filterDone) || !this.todo)
 			return "";
@@ -1302,12 +1302,12 @@ class Chore {
 		else
 			chorebutton = State.variables.mansion.findRoom(this.room).getPassage(this.name);
 
-		var status = "";
+		var status = "TO DO";
 		if (this.done) status = "DONE";
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) status = "TOO TIRED";
 		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0) status = "WRONG TIME";
 		
-		if (short) return `<li>${chorebutton} : ${status}</li>`;
+		if (hidelocation) return `<li>${chorebutton} : ${status}</li>`;
 
 		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.findRoom(this.room).name}</td><td>${status}</td></tr>`
 
@@ -2549,9 +2549,9 @@ class Room {
 		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><</link>>`
 	}
 
-	displayChores(canDoChores, filterDone) {
+	displayChores(canDoChores, filterDone, hidelocation) {
         return this.chores.reduce((str, chore) => {
-            var choreDo = chore.do(canDoChores, filterDone||false);
+            var choreDo = chore.do(canDoChores, filterDone||false, hidelocation||false);
             return `${str}${choreDo}`;
         }, "");
     }
@@ -7802,9 +7802,9 @@ Desk
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(&quot;&quot;, true)&gt;&gt;
+&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(true, false, true)&gt;&gt;
 &lt;&lt;if $time.compareTime({hour:18, minute:0}) === 1&gt;&gt;
-&lt;&lt;= $time.setDate({hour:22})&gt;&gt;
+&lt;&lt;set $time.setDate({hour:22})&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="231" name="playerRoomShower" tags="playerRoom" position="100,2975" size="100,100">&lt;&lt;tooltips &quot;comment&quot;&gt;&gt;
 At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player&#39;s personnal hygene.
 &lt;&lt;/tooltips&gt;&gt;

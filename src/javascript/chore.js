@@ -27,7 +27,7 @@ class Chore {
 		this.time = {...this.time, ...{start:{hour: 6, minute: 0}, end:{hour:22, minute:0}}};
 	}
 
-	do(canDoChores, filterDone, short) {
+	do(canDoChores, filterDone, hidelocation) {
 		// Chore is waiting to be reset
 		if (skipChores() || (this.done && filterDone) || !this.todo)
 			return "";
@@ -40,12 +40,12 @@ class Chore {
 		else
 			chorebutton = State.variables.mansion.findRoom(this.room).getPassage(this.name);
 
-		var status = "";
+		var status = "TO DO";
 		if (this.done) status = "DONE";
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) status = "TOO TIRED";
 		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0) status = "WRONG TIME";
 		
-		if (short) return `<li>${chorebutton} : ${status}</li>`;
+		if (hidelocation) return `<li>${chorebutton} : ${status}</li>`;
 
 		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.findRoom(this.room).name}</td><td>${status}</td></tr>`
 
