@@ -4,6 +4,7 @@
 	<h1 id="game-title"><<= storyInfo.mainTitle>></h1>
 	<h2 id="game-subtitle"><<= storyInfo.subtitle>> - <<= storyInfo.version>></h2>
 </div>
+<<if $flags.CUFF >= 2>>
 <div id="info-navigation">
 	<span id="nav-left"><<navMenu "Back" -1>><</navMenu>>
 	</span>
@@ -11,11 +12,11 @@
 	</span>
 </div>
 <div id="info-display">
-	<div class="ui-menu" id="character-info">
-		<<include "staff-finder">>
-	</div>
 	<div class="ui-menu hidden" id="self-info">
 		<<include "personnal-info">>
+	</div>
+	<div class="ui-menu" id="character-info">
+		<<include "staff-finder">>
 	</div>
 	<div class="ui-menu hidden" id="chores-info">
 		<<include "chores-info">>
@@ -26,6 +27,7 @@
 		<!-- Button to access the cuff, might remove it and move it to the side -->
 	<</button>>
 </div>
+<</if>>
 <div id="menu-buttons">
 	<div id="saves">
 		<<link "SAVES">>

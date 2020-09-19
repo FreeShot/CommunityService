@@ -47,18 +47,12 @@
 ::staff-finder [nobr]
 <h1 class="tab-title">Staff finder</h1>
 <table>
-	<tr>
-		<td>Character A</td>
-		<td>LOCATION </td>
-	</tr>
-	<tr>
-		<td>Character B</td>
-		<td>TRAVELING </td>
-	</tr>
-	<tr>
-		<td>Character C</td>
-		<td>TRAVELING </td>
-	</tr>
+	<<for _npc range npcList>>
+		<tr>
+			<td><<= State.variables[_npc].name>></td>
+			<td><<= State.variables[_npc].schedule.estimateLoc()>></td>
+		</tr>
+	<</for>>
 </table>
 
 ::chores-info [nobr]

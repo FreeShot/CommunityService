@@ -2682,6 +2682,7 @@ Setting.addHeader("Misc", "");
 Setting.addToggle("No images", {
 	label    : "Hides all images from the game",
 	default  : false,
+	onInit   : () => $("html").addClass("no-images"),
 	onChange : () => $("html").toggleClass("no-images")
 });
 Setting.addToggle("tips", {
@@ -4270,6 +4271,7 @@ State.variables.minorNPC = [];
 	&lt;h1 id=&quot;game-title&quot;&gt;&lt;&lt;= storyInfo.mainTitle&gt;&gt;&lt;/h1&gt;
 	&lt;h2 id=&quot;game-subtitle&quot;&gt;&lt;&lt;= storyInfo.subtitle&gt;&gt; - &lt;&lt;= storyInfo.version&gt;&gt;&lt;/h2&gt;
 &lt;/div&gt;
+&lt;&lt;if $flags.CUFF &gt;= 2&gt;&gt;
 &lt;div id=&quot;info-navigation&quot;&gt;
 	&lt;span id=&quot;nav-left&quot;&gt;&lt;&lt;navMenu &quot;Back&quot; -1&gt;&gt;&lt;&lt;/navMenu&gt;&gt;
 	&lt;/span&gt;
@@ -4277,11 +4279,11 @@ State.variables.minorNPC = [];
 	&lt;/span&gt;
 &lt;/div&gt;
 &lt;div id=&quot;info-display&quot;&gt;
-	&lt;div class=&quot;ui-menu&quot; id=&quot;character-info&quot;&gt;
-		&lt;&lt;include &quot;staff-finder&quot;&gt;&gt;
-	&lt;/div&gt;
 	&lt;div class=&quot;ui-menu hidden&quot; id=&quot;self-info&quot;&gt;
 		&lt;&lt;include &quot;personnal-info&quot;&gt;&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;ui-menu&quot; id=&quot;character-info&quot;&gt;
+		&lt;&lt;include &quot;staff-finder&quot;&gt;&gt;
 	&lt;/div&gt;
 	&lt;div class=&quot;ui-menu hidden&quot; id=&quot;chores-info&quot;&gt;
 		&lt;&lt;include &quot;chores-info&quot;&gt;&gt;
@@ -4292,6 +4294,7 @@ State.variables.minorNPC = [];
 		&lt;!-- Button to access the cuff, might remove it and move it to the side --&gt;
 	&lt;&lt;/button&gt;&gt;
 &lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;div id=&quot;menu-buttons&quot;&gt;
 	&lt;div id=&quot;saves&quot;&gt;
 		&lt;&lt;link &quot;SAVES&quot;&gt;&gt;
@@ -4363,18 +4366,12 @@ State.variables.minorNPC = [];
 	&lt;/tr&gt;
 &lt;/table&gt;</tw-passagedata><tw-passagedata pid="18" name="staff-finder" tags="nobr" position="975,225" size="100,100">&lt;h1 class=&quot;tab-title&quot;&gt;Staff finder&lt;/h1&gt;
 &lt;table&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Character A&lt;/td&gt;
-		&lt;td&gt;LOCATION &lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Character B&lt;/td&gt;
-		&lt;td&gt;TRAVELING &lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Character C&lt;/td&gt;
-		&lt;td&gt;TRAVELING &lt;/td&gt;
-	&lt;/tr&gt;
+	&lt;&lt;for _npc range npcList&gt;&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;&lt;= State.variables[_npc].name&gt;&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;&lt;= State.variables[_npc].schedule.estimateLoc()&gt;&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;&lt;/for&gt;&gt;
 &lt;/table&gt;</tw-passagedata><tw-passagedata pid="19" name="chores-info" tags="nobr" position="1100,225" size="100,100">&lt;h1 class=&quot;tab-title&quot;&gt;Chores&lt;/h1&gt;
 &lt;span class=&quot;toggleButton&quot;&gt;&lt;&lt;button &quot;Filter done&quot;&gt;&gt;
 	&lt;&lt;set $flags.filterDone = !$flags.filterDone&gt;&gt;

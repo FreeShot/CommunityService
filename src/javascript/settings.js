@@ -74,6 +74,7 @@ Setting.addHeader("Misc", "");
 Setting.addToggle("No images", {
 	label    : "Hides all images from the game",
 	default  : false,
+	onInit   : () => $("html").addClass("no-images"),
 	onChange : () => $("html").toggleClass("no-images")
 });
 Setting.addToggle("tips", {
