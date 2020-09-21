@@ -198,7 +198,7 @@
 	]
 }))>>
 <<= $mansion.addRoom(new Room({
-	name: "Daughter's bedroom", 
+	name: "Daughter\'s bedroom", 
 	id: "DaughterBdRm", 
 	img: [
 		"Bedroom.jpg", 

@@ -34,7 +34,7 @@ class Chore {
 
 		var chorebutton;
 		if (State.variables.player.currRoom === this.room && !this.done) 
-			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp('cleaning', ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage()}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom("${this.room}").findChore("${this.name}").done = true>><</link>>`
+			chorebutton = `<<link \"${this.name.replace("\'", "\\'")}\" \"${this.passage}\">><<set $player.levelUp(\"cleaning\", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage().replace("\'", "\\'")}'>><<set $player.currRoom=\"${this.room}\">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom(\"${this.room}\").findChore(\"${this.name.replace("\'", "\\'")}\").done = true>><</link>>`
 		else if (!canDoChores || this.done)
 			chorebutton = this.name;
 		else

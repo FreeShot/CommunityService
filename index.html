@@ -1331,7 +1331,7 @@ class Chore {
 
 		var chorebutton;
 		if (State.variables.player.currRoom === this.room && !this.done) 
-			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp('cleaning', ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage()}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom("${this.room}").findChore("${this.name}").done = true>><</link>>`
+			chorebutton = `<<link \"${this.name.replace("\'", "\\'")}\" \"${this.passage}\">><<set $player.levelUp(\"cleaning\", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage().replace("\'", "\\'")}'>><<set $player.currRoom=\"${this.room}\">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom(\"${this.room}\").findChore(\"${this.name.replace("\'", "\\'")}\").done = true>><</link>>`
 		else if (!canDoChores || this.done)
 			chorebutton = this.name;
 		else
@@ -2581,7 +2581,8 @@ class Room {
 	}
 
 	getPassage(text) {
-		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><</link>>`
+		var id = this.id.replace("\'", "\\'");
+		return `<<link \"${text||this.name}\" \"${Story.has(this.id) ? this.id : "RoomDescription"}\">><<set $player.currRoom to \"${id}\">><</link>>`
 	}
 
 	displayChores(canDoChores, filterDone, hidelocation) {
@@ -4268,7 +4269,7 @@ State.variables.minorNPC = [];
 	]
 }))&gt;&gt;
 &lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Daughter&#39;s bedroom&quot;, 
+	name: &quot;Daughter\&#39;s bedroom&quot;, 
 	id: &quot;DaughterBdRm&quot;, 
 	img: [
 		&quot;Bedroom.jpg&quot;, 
@@ -4673,7 +4674,7 @@ A few days later you&#39;re back home in your room thinking about the great trip
 
 Your mind wanders back to that shady guy you met before leaving. It was definitely a bad idea given the airport security but you can&#39;t help but wonder what would&#39;ve happened if you wanted to [[Take that package.|Intro2]]</tw-passagedata><tw-passagedata pid="79" name="EndHardLabour" tags="ending" position="1100,975" size="100,100">The Sentencing Officer goes through the formal paper work with you and hands you over to the state.
 
-It deosn&#39;t take long for you to be stripped of all your belongs and sent to the camp. The conditions are hard and the only news from home is from your academy. You have forfeited your scholarship and been expelled.
+It deosn&#39;t take long for you to be stripped of all your belongs and sent to the camp. The conditions are hard and the only news from home is from your academy. You have your scholarship and been expelled.
 
 The next few years are spent working off your debt. The work is back breaking and none of the other workers are particularly friendly given that they are all criminals. All alone you&#39;re easy pickings for the gangs and other low lifes of the camp. You eventually get taken in by one group but you just end up being their play thing and are passed around like a toy.
 

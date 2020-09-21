@@ -82,7 +82,8 @@ class Room {
 	}
 
 	getPassage(text) {
-		return `<<link "${text||this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">><</link>>`
+		var id = this.id.replace("\'", "\\'");
+		return `<<link \"${text||this.name}\" \"${Story.has(this.id) ? this.id : "RoomDescription"}\">><<set $player.currRoom to \"${id}\">><</link>>`
 	}
 
 	displayChores(canDoChores, filterDone, hidelocation) {
