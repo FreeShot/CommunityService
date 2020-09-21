@@ -5,6 +5,6 @@ $(document).on(':passageend', function (ev) {
 	$('.ui-menu:nth-child(' + (State.variables.menu + 1) + ')').removeClass("hidden");
 });
 
-Config.saves.isAllowed = () => {
+/*Config.saves.isAllowed = () => {
 	!Story.get(State.passage).tags.includes("nosave")
-}
+}*/

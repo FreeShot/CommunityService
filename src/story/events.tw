@@ -601,8 +601,9 @@ You shake your head to say no and $cook.name hurumphs.
 <</chooseOption>>
 
 <!-- Gardner schedule events -->
-
+<!--
 ["Main Menu", "Backgrounds", "Settings", "Music", "Time", "Dropdown Select", "Capture"].random()
+-->
 
 :: gardnerGardenBossy01 [noreturn chore]
 <!-- Player is sweeping the Garden, Gardner is present and has a random % chance of occuring -->

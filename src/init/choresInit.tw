@@ -159,7 +159,7 @@
 	staminaCost: 10, 
 }), [1])>>
 <<= $mansion.addChore("DaughterBdRm", new Chore({
-	name: "Clean the daughter's bedroom", 
+	name: "Clean the daughter\'s bedroom", 
 	duration: {hour: 1}, 
 	passages:[
 		{name: "daughterBdRmcleaning", weight:1}, 

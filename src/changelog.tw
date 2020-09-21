@@ -3,13 +3,11 @@
 
 <<back>>
 
-::changelog-0.2.1 [changelog]
+::changelog-1.0.0 [changelog]
 !!!! Main content
-
+	- New layout, still a work in progress
 !!!! Other content
-	- New green theme, activate it in the settings
 	- Clothes that are lended to you will display differently in the inventory
-	- Added button to hide all images
 !!!! Bugfixes
 	- Chore cause game over
 	- Links missing on the sidebar
