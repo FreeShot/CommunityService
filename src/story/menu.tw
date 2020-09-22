@@ -1,69 +1,13 @@
-::todo [nodebug nobr]
-<table id="menuInfo">
-<<if $flags.manorIntro > 0>>
-<tr id="date"><td colspan="2">Day <<= $time.day + 1>>: $time.weekDayFormat</td></tr>
-<tr id="time"><td colspan="2"><<= $time.clock>></td></tr>
-<</if>>
-<tr id="stamina"><td colspan="2">Stamina: <<= $player.getStaminaBar()>></td></tr>
-<<if $flags.CUFF > 0 >>
-<tr id="cuff"><td colspan="2">[[CUFF]]</td></tr>
-<<else>>
-<tr id="cuff"><td colspan="2">CUFF</td></tr>
-<</if>>
-<<if !$late>>
-<tr><td colspan="2">Daily Chores
-<<= $mansion.displayChores(false, $flags.filterDone, true)>></td></tr>
-<</if>>
-<tr><td cospan="2">Missed chores: $player.choresLate</td></tr>
-</table>
-
 ::CUFF [mainMenu menu]
 <<if $flags.CUFF === 1>>
 <<= Character.speakAnonymous("Cuff must be initialised by the owner.", "orange")>>
 <<else>>
-[[Chore list|playerToDoList]]
-[[Player Attributes|skills]]
 [[Inventory|inventory]]
 [[Description|playerDescription]]
 [[Rules|rules]]
 <</if>>
 
 [[Return|$exitMenu]]
-
-::playerToDoList [noreturn menu]
-<span class="toggleButton"><<button "Filter done">></span>
-<<set $flags.filterDone = !$flags.filterDone>>
-<<replace '#to_do-list'>>
-<<= $mansion.displayChores(false, $flags.filterDone)>>
-<</replace>>
-<</button>>
-<span id='to_do-list'>
-<<= $mansion.displayChores(false, $flags.filterDone)>>
-</span>
-
-[[Return|$return]]
-
-::skills [noreturn menu]
-!!Skills:
-<<for _i range Object.keys($player.stats)>>
-_i: <<= $player.getStatBar(_i)>> (lvl <<= $player.getStat(_i)>>)
-<</for>>
-
-!!Stats:
-Player Name: <<if $flags.partyRule is true>>$player.femName<<else>>$player.name<</if>>
-
-Debt: $player.debt cr
-Money: $player.money cr
-
-Femininity: $player.femininity
-Appearance: $player.appearance
-Submission: $player.submission
-Boldness: $player.boldness
-
-Stamina: $player.stamina.current
-Arousal: $player.arousal.current
-
-[[Return|$return]]
 
 ::inventory [noreturn menu]
 <<= $player.inv.listItem("$player.inv", ["equipped"], undefined, "Currently wearing", false)>>

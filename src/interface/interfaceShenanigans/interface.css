@@ -151,8 +151,8 @@ tr:hover .toolti/*p*/ {
 	margin: 0.2rem;
 }
 
-.nav-button, #cuff-button button {
-	min-width: 48%;
+.nav-button, .nav-button button, #cuff-button button {
+	min-width: 46%;
 
 	background-color: var(--ui-border);
 	color: var(--ui-fg);

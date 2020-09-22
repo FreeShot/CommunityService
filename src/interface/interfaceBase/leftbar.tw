@@ -5,22 +5,8 @@
 	<h2 id="game-subtitle"><<= storyInfo.subtitle>> - <<= storyInfo.version>></h2>
 </div>
 <<if $flags.CUFF >= 2>>
-<div id="info-navigation">
-	<span id="nav-left"><<navMenu "Back" -1>><</navMenu>>
-	</span>
-	<span id="naf-right"><<navMenu "Next" 1>><</navMenu>>
-	</span>
-</div>
-<div id="info-display">
-	<div class="ui-menu hidden" id="self-info">
-		<<include "personnal-info">>
-	</div>
-	<div class="ui-menu" id="character-info">
-		<<include "staff-finder">>
-	</div>
-	<div class="ui-menu hidden" id="chores-info">
-		<<include "chores-info">>
-	</div>
+<div id="menu-navigation">
+	<<include "menunav">>
 </div>
 <div id="cuff-button">
 	<<button "CUFF" "CUFF">>
@@ -45,4 +31,15 @@
 			<<set UI.restart()>>
 		<</link>>
 	</div>
+</div>
+
+::menunav [nobr]
+<div id="info-navigation">
+	<span id="nav-left"><<navMenu -1>><</navMenu>>
+	</span>
+	<span id="nav-right"><<navMenu 1>><</navMenu>>
+	</span>
+</div>
+<div id="info-display">
+	<<displaymenu $navIndex>><</displaymenu>>
 </div>

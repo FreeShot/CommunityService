@@ -5,12 +5,18 @@
 	version: "V1.0.0",
 }>>
 
+<<set $menuList to [
+	{name: "Personnal info", passage: "personnal-info", id: "self-info"},
+	{name: "Staff finder", passage: "staff-finder", id: "character-info"},
+	{name: "Chores", passage: "chores-info", id:"chores-info"}
+]>>
+<<set $navIndex to 0>>
+
 <<set $firstTime to recall('firstTime', true)>><<= memorize('firstTime', false)>>
 
 <<set $lastTime to {hour: 0, minute: 0}>>
 <<set $time to new Timer({day: 2, time: {hour: 19, minute: 0}})>>
 <<set $clockImg to "">>
-<<set $menu to 0>>
 
 <<set $exitMenu to "Start">>
 <<set $return to "CUFF">>

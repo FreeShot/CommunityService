@@ -19,8 +19,7 @@ Desk
 	[[Shower|playerRoomShower]]<br><br>
 	Check the [[Wardrobe|playerRoomWardrobe]]<br>
 	Use the [[Computer|playerRoomComputerMenu]]<br>
-	Read something from the [[Bookshelf|playerRoomBookshelfMenu]]<br>
-	[[Check your to do list.|playerToDoList]]<br><br>
+	Read something from the [[Bookshelf|playerRoomBookshelfMenu]]<br><br>
 	<<link "Rest">>
 		<<set $time.addTime({day:0, hour:1, minute: 0})>>
 		<<set $player.rest()>>

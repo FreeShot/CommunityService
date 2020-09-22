@@ -40,7 +40,7 @@ class Chore {
 		else
 			chorebutton = State.variables.mansion.findRoom(this.room).getPassage(this.name);
 
-		var status = hidelocation ? "TO DO" : "";
+		var status = "";
 		if (this.done) status = "DONE";
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) status = "TOO TIRED";
 		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0) status = "WRONG TIME";

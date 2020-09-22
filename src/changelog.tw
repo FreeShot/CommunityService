@@ -85,3 +85,8 @@
 	- Bugs for your entertainement
 !!!! Bug fixes:
 	- None, it's the first release
+	HOTFIX : Fixed bug with one chore, wrong folder for the images and misssing macro
+	HOTFIX : Made links quicker
+	HOTFIX : Fixed saves
+	HOTFIX : Autosave now works only when sleeping
+	HOTFIX : New names for each tiles instead of "back" and "next" on the buttons

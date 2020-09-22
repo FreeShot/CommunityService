@@ -27,6 +27,10 @@
 		<td colspan="2">$player.money</td>
 	</tr>
 	<tr>
+		<td>Missed chores</td>
+		<td colspan="2">$player.choresLate</td>
+	</tr>
+	<tr>
 		<td>Femininity</td>
 		<td colspan="2">$player.femininity</td>
 	</tr>

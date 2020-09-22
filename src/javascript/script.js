@@ -31,3 +31,5 @@ window.rememberScore = (score, event) => {
 }
 
 window.process = (str) => Scripting.evalTwineScript(str);
+
+Config.saves.autosave = ["Save"];

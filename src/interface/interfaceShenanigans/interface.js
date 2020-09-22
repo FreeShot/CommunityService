@@ -2,15 +2,21 @@ Macro.add("navMenu", {
 	skipargs: true,
 	tags: [],
 	handler: function() {
-		$(this.output).wiki(`<button class="nav-button" onclick="navMenu(${this.args[1]})">${this.args[0]}</button>`);
+		var list = State.variables.menuList;
+		var index = State.variables.navIndex + this.args[0];
+		if (index < 0) index += list.length;
+		else if (index >= list.length) index -= list.length;
+		$(this.output).wiki(`<span class="nav-button"><<button "${list[index].name}">><<set $navIndex = ${index}>><<replace "#menu-navigation">><<include "menunav">><</replace>><</button>></span>`);
 	}
 });
 
-window.navMenu = function(increase) {
-	State.variables.menu += increase;
-
-	State.variables.menu %= $("#info-display").children().length;
-	if (State.variables.menu < 0) State.variables.menu += $("#info-display").children().length;
-	$(".ui-menu").addClass("hidden");
-	$('.ui-menu:nth-child(' + (State.variables.menu + 1)+ ')').removeClass("hidden");
-};
+Macro.add("displaymenu", {
+	skipargs: true,
+	tags: [],
+	handler: function () {
+		var list = State.variables.menuList;
+		var index = State.variables.navIndex;
+		console.log(index, list);
+		$(this.output).wiki(`<div class="ui-menu" id="${list[index].id}"><<include "${list[index].passage}">></div>`)
+	}
+});

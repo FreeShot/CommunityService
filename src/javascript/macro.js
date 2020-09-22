@@ -78,7 +78,6 @@ Macro.add("chooseOption", {
 Macro.add("listChores", {
 	tags: [],
 	handler: function () {
-		console.log(State.variables.mansion.displayChores(this.args[0] || true, State.variables.flags.filterDone));
 		$(this.output).wiki("<table>" + State.variables.mansion.displayChores(this.args[0] || true, State.variables.flags.filterDone) + "</table>");
 	}
 });
