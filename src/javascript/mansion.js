@@ -1,87 +1,53 @@
 class Mansion {
 	constructor(config) {
-		this.rooms = [];
-		this.events = []; // Special Events
-		this.currentEvent = "";
-		this.choresGroup = {};
+		this.rooms = {};
+		this.events = {};
+		this.currentEvent = new Event({});
 
-		if (config != {}) {
-			Object.keys(config).forEach(function (pn) {
-        	    this[pn] = clone(config[pn]);
-        	}, this);
-		}
-	}
-
-	endEvent() {
-		this.currentEvent = "";
-	}
-
-	findRoom(roomID) {
-		return this.rooms.find((element) => element.id === roomID);
-	}
-
-	display(roomID, imgIndex) {
-		return this.findRoom(roomID).display(imgIndex);
-	}
-
-	describeRoom(roomID) {
-		return this.findRoom(roomID).generatePassage();
-	}
-
-	displayChores(canDoChores, filterDone) {
-		return this.rooms.reduce((str, room) => str + room.displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
-	}
-
-	addRoom(room) {
-		this.rooms.push(room);
-	}
-
-	addChore(roomID, chore, groups) {
-		var groups = groups || ["default"]; 
-		groups.forEach(function(group) {
-			if (this.choresGroup[group] !== undefined)
-				this.choresGroup[group].push({name: chore.name, room: roomID});
-			else
-				this.choresGroup[group] = [{name: chore.name, room: roomID}];
+		Object.keys(config).forEach(function (key) {
+			this[key] = clone(config[key]);
 		}, this);
-		this.findRoom(roomID).addChore(chore.clone());
+	}
+
+	addChore(room, chore) {
+		this.rooms[room].addChore(chore);
+	}
+
+	chooseChores(min, max) {
+		var max = max || 7;
+		var min = min || 5;
+
+		function random(min, max) {
+			return Math.floor(Math.random() * (max - min) + min);
+		}
+
+		for (var choreCount = random(min, max); choreCount > 0; choreCount--) {
+			var room = Object.values(this.rooms)[random(0, Object.values(this.rooms).length - 1)];
+			room.chores[random(0, room.chores.length - 1)].todo = true;
+			this.rooms[room.id] = room;
+		}
 	}
 
 	resetChores() {
-		if (this.currentEvent != "") return;
-		this.rooms.forEach(
-		    function(room) {room.resetChores()}
-		);
-		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
-		this.choresGroup[i].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
-		}, this);
-		var j = i; 
-		while (j === i) 
-			j = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
-		this.choresGroup[j].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.5;
-		}, this);
+		return Object.keys(this.rooms).reduce((missed, room) => missed + this.rooms[room].chores.reduce((m, chore) => m + chore.reset(), 0), 0)
 	}
 
-	addEvent(roomID, event) {
-		if (roomID === "specialEvent") {
-			event.room = roomID;
-			this.events.push(event);
-		} else {
-			this.findRoom(roomID).addEvent(event.clone());
-		}
+	addEvent(category, event) {
+		if (this.events[category]) this.events[category].push(event);
+		else this.events[category] = [event];
 	}
 
-	removeEvent(roomID, eventName) {
-		if (roomID === "specialEvent")
-			this.events = this.events.filter((em) => em.name !== eventName);
-		else
-			this.findRoom(roomID).events.filter((em) => em.name !== eventName);
+	displayChores(canDoChores, filterDone) {
+		return Object.keys(this.rooms).reduce((str, room) => str + this.rooms[room].displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
 	}
 
-	checkSpecialEvents() {
-		return this.events.reduce((str, ev) => ev.active(false) ? str += ev.playEvent() : str, "");
+	checkEvent(trigger) {
+		var playEvent = undefined;
+		var events = this.events;
+		["specialEvent"].concat(trigger || []).find(function(category) {
+				playEvent = events[category] ? events[category].find((event) => event.active) : undefined
+		});
+		return playEvent
 	}
 
 	clone() {

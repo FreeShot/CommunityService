@@ -55,7 +55,6 @@ class Character {
 	}
 
 	colorTheme(index) {
-		//console.log( this.color[settings.theme.substring(6)]);
 		var color = this.color[settings.theme.substring(6)] || this.color["theme-dark"];
 		if (typeof color === "string")
 			return color
@@ -366,7 +365,6 @@ class Player extends Character {
 	// Returns the voice color (TO BE CHANGED)
 	get getColor() {
 		var ratio = this.femininity / 100;
-		console.log(ratio);
 
 		function pickHex(color1, color2, weight) {
 			var w1 = (weight * 2) /2;

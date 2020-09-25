@@ -2,7 +2,7 @@
 [img[setup.ImagePath + "events/sleep/sleep1.jpg"]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
-<<if $mansion.currentEvent.startsWith("mansionCParty")>>
+<<if $mansion.currentEvent.name.startsWith("mansionCParty")>>
 There's a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
 
 <<= $daughter.speak("Come on. I have a surprise for you.")>>
@@ -39,9 +39,9 @@ The CUFF alarm goes off at 6 am sharp and you quickly slap your hand to your wri
 
 <<nobr>>
 <<= $time.setDate("wakeup")>>
-<<set _event to $mansion.checkSpecialEvents()>>
-<<if _event != "">>
-	<<= _event>>
+<<set _event to $mansion.checkEvent()>>
+<<if _event>>
+	<<= _event.playEvent()>>
 <<else>>
 You head to your small bathroom and sit down to relieve yourself. After that you jump in the shower and quickly wash yourself before getting out and shaving. Once you're dressed you head out to the kitchen and start getting things ready for breakfast.<br>
 <br>
@@ -70,4 +70,5 @@ You head to your small bathroom and sit down to relieve yourself. After that you
 <</nobr>>
 
 <<set $player.rest()>>
-<<= $mansion.resetChores()>>
+<<set $player.choresLate = $mansion.resetChores()>>
+<<set $mansion.chooseChores()>>

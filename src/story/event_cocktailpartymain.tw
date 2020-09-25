@@ -57,7 +57,6 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 <<silently>>
 /* Used to generate npcs and other stuff needed for the party */
 <<if $eventInfo === undefined>>
-<<= console.log("UNDEFINED EVENT INFO")>>
 <<set $eventInfo to {
 	npc: [],
 	score: 0,
@@ -88,7 +87,6 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 	},
 	addPoint: function(nb) {
 		var arr;
-		console.log(this.active);
 		if (this.active === undefined) {
 			arr = [];
 		} else if (typeof this.active === String) {
@@ -106,7 +104,6 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 <<for _i = 0; _i < settings.npcPerEvent; _i++>>
 <<= npc.generateNPC($minorNPC, $eventInfo.npc, _i)>>
 <</for>>
-<<= console.log($eventInfo)>>
 <<goto "mansionCPartyServing01">>
 <</silently>>
 

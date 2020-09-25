@@ -769,7 +769,6 @@ Macro.add("generateChangelog", {
 });
 /* twine-user-script #2: "passagestuff.js" */
 $(document).on(':passageend', function (ev) {
-	console.log(State.variables.time);
 	State.variables.time.generateClock();
 });
 
@@ -795,7 +794,6 @@ Macro.add("displaymenu", {
 	handler: function () {
 		var list = State.variables.menuList;
 		var index = State.variables.navIndex;
-		console.log(index, list);
 		$(this.output).wiki(`<div class="ui-menu" id="${list[index].id}"><<include "${list[index].passage}">></div>`)
 	}
 });
@@ -857,7 +855,6 @@ class Character {
 	}
 
 	colorTheme(index) {
-		//console.log( this.color[settings.theme.substring(6)]);
 		var color = this.color[settings.theme.substring(6)] || this.color["theme-dark"];
 		if (typeof color === "string")
 			return color
@@ -1168,7 +1165,6 @@ class Player extends Character {
 	// Returns the voice color (TO BE CHANGED)
 	get getColor() {
 		var ratio = this.femininity / 100;
-		console.log(ratio);
 
 		function pickHex(color1, color2, weight) {
 			var w1 = (weight * 2) /2;
@@ -1335,7 +1331,7 @@ class Chore {
 
 		var chorebutton;
 		if (State.variables.player.currRoom === this.room && !this.done) 
-			chorebutton = `<<link \"${this.name.replace("\'", "\\'")}\" \"${this.passage}\">><<set $player.levelUp(\"cleaning\", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage().replace("\'", "\\'")}'>><<set $player.currRoom=\"${this.room}\">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom(\"${this.room}\").findChore(\"${this.name.replace("\'", "\\'")}\").done = true>><</link>>`
+			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp("cleaning", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.rooms[this.room].passage}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.rooms["${this.room}"].findChore("${this.name}").done = true>><</link>>`
 		else if (!canDoChores || this.done)
 			chorebutton = this.name;
 		else
@@ -1354,10 +1350,12 @@ class Chore {
 	}
 
 	reset() {
+		var cost = 0;
 		if (!skipChores())
-			State.variables.player.choresLate += !this.done && this.todo ? 1 : 0;
+			cost = !this.done && this.todo ? 1 : 0;
 		this.done = false;
 		this.todo = false;
+		return cost;
 	}
 
 	get getDuration() {
@@ -1492,7 +1490,7 @@ class Event {
 		this.passage = ''; // Passage in which it starts
 		this.inline = false; // If true, will be included in the current passage
 		this.repeats = false;
-		this.room = "";
+		this.category = "";
 		this.tags; // add Tags here
 		this.priority = 0;
 
@@ -1502,17 +1500,15 @@ class Event {
 	playEvent(debug) {
 		if (this.inline) {
 			if (!this.repeats) {
-				State.variables.mansion.removeEvent(this.room, this.name);
+				State.variables.mansion.removeEvent(this.category, this.name);
 			}
 			return `<<include "${this.passage}">>`;
 		} else {
-			if (!this.repeats)
-				return `<<link "${this.name}" "${this.passage}">><<= $mansion.removeEvent("${this.room}","${this.name}")>><</link>>`;
-			return `<<link "${this.name}" "${this.passage}">><</link>>`;
+			return `<<link "${this.name}" "${this.passage}">>${this.repeats ? "" : `<<set $mansion.removeEvent("${this.category}","${this.name}")>>`}<</link>>`;
 		}
 	}
 
-	active() {
+	get active() {
 		return window.tags.eval(this.tags.tag, this.tags.data, this.tags.expected)
 	}
 
@@ -1600,7 +1596,6 @@ class Inventory {
 	}
 
 	removeTmp(keepEquipped) {
-		console.log("Keep equipped", keepEquipped);
 		this.items = this.items.filter((el) => (!el.item.tags.includes("tmp")) || (keepEquipped && el.item.tags.includes("equipped")));
 	}
 
@@ -1926,88 +1921,54 @@ Macro.add("listChores", {
 /* twine-user-script #12: "mansion.js" */
 class Mansion {
 	constructor(config) {
-		this.rooms = [];
-		this.events = []; // Special Events
-		this.currentEvent = "";
-		this.choresGroup = {};
+		this.rooms = {};
+		this.events = {};
+		this.currentEvent = new Event({});
 
-		if (config != {}) {
-			Object.keys(config).forEach(function (pn) {
-        	    this[pn] = clone(config[pn]);
-        	}, this);
-		}
-	}
-
-	endEvent() {
-		this.currentEvent = "";
-	}
-
-	findRoom(roomID) {
-		return this.rooms.find((element) => element.id === roomID);
-	}
-
-	display(roomID, imgIndex) {
-		return this.findRoom(roomID).display(imgIndex);
-	}
-
-	describeRoom(roomID) {
-		return this.findRoom(roomID).generatePassage();
-	}
-
-	displayChores(canDoChores, filterDone) {
-		return this.rooms.reduce((str, room) => str + room.displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
-	}
-
-	addRoom(room) {
-		this.rooms.push(room);
-	}
-
-	addChore(roomID, chore, groups) {
-		var groups = groups || ["default"]; 
-		groups.forEach(function(group) {
-			if (this.choresGroup[group] !== undefined)
-				this.choresGroup[group].push({name: chore.name, room: roomID});
-			else
-				this.choresGroup[group] = [{name: chore.name, room: roomID}];
+		Object.keys(config).forEach(function (key) {
+			this[key] = clone(config[key]);
 		}, this);
-		this.findRoom(roomID).addChore(chore.clone());
+	}
+
+	addChore(room, chore) {
+		this.rooms[room].addChore(chore);
+	}
+
+	chooseChores(min, max) {
+		var max = max || 7;
+		var min = min || 5;
+
+		function random(min, max) {
+			return Math.floor(Math.random() * (max - min) + min);
+		}
+
+		for (var choreCount = random(min, max); choreCount > 0; choreCount--) {
+			var room = Object.values(this.rooms)[random(0, Object.values(this.rooms).length - 1)];
+			room.chores[random(0, room.chores.length - 1)].todo = true;
+			this.rooms[room.id] = room;
+		}
 	}
 
 	resetChores() {
-		if (this.currentEvent != "") return;
-		this.rooms.forEach(
-		    function(room) {room.resetChores()}
-		);
-		var i = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
-		this.choresGroup[i].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= true;
-		}, this);
-		var j = i; 
-		while (j === i) 
-			j = Object.keys(this.choresGroup)[Math.floor(State.random() * Object.keys(this.choresGroup).length)];
-		this.choresGroup[j].forEach(function(chore) {
-			this.findRoom(chore.room).chores.find(function(c) {return c.name === chore.name}).todo |= State.random() > 0.5;
-		}, this);
+		return Object.keys(this.rooms).reduce((missed, room) =>  missed + this.rooms[room].chores.reduce((m, chore) => m + chore.reset(), 0), 0)
 	}
 
-	addEvent(roomID, event) {
-		if (roomID === "specialEvent") {
-			event.room = roomID;
-			this.events.push(event);
-		} else {
-			this.findRoom(roomID).addEvent(event.clone());
-		}
+	addEvent(category, event) {
+		if (this.events[category]) this.events[category].push(event);
+		else this.events[category] = [event];
 	}
 
-	removeEvent(roomID, eventName) {
-		if (roomID === "specialEvent")
-			this.events = this.events.filter((em) => em.name !== eventName);
-		else
-			this.findRoom(roomID).events.filter((em) => em.name !== eventName);
+	displayChores(canDoChores, filterDone) {
+		return Object.keys(this.rooms).reduce((str, room) => str + this.rooms[room].displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
 	}
 
-	checkSpecialEvents() {
-		return this.events.reduce((str, ev) => ev.active(false) ? str += ev.playEvent() : str, "");
+	checkEvent(trigger) {
+		var playEvent = undefined;
+		var events = this.events;
+		["specialEvent"].concat(trigger || []).find(function(category) {
+				playEvent = events[category] ? events[category].find((event) => event.active) : undefined
+		});
+		return playEvent
 	}
 
 	clone() {
@@ -2040,20 +2001,20 @@ pathfind.cost = (startName, endName, c, roomCost) => {
 	if (startName === endName) {
 		return roomCost
 	}
-	return State.variables.mansion.findRoom(startName).adjacentRooms.reduce((roomCost, room) => {
+	return State.variables.mansion.rooms[startName].adjacentRooms.reduce((roomCost, room) => {
 		return pathfind.cost(room, endName, c + 1, roomCost);
 	}, roomCost);
 };
 
 pathfind.nextRoom = (start, end, cost) => {
 	var cost = cost || pathfind.cost(start, end);
-	var rooms = State.variables.mansion.findRoom(end).adjacentRooms.filter((newRoom) => cost[newRoom] === cost[end] - 1);
+	var rooms = State.variables.mansion.rooms[end].adjacentRooms.filter((newRoom) => cost[newRoom] === cost[end] - 1);
 	return rooms[Math.floor(State.random() * rooms.length)] || start;
 };
 
 pathfind.path = (start, room) => {
 	if (room === "FreeRoam") {
-		return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
+		return [State.random() > 0.5 ? State.variables.mansion.rooms[start].adjacentRooms.random() : start];
 	}
 	var path = [];
 	var cost = pathfind.cost(start, room);
@@ -2131,7 +2092,7 @@ class Schedule {
 		var loc = this.curPoint() || {room: "Void"};
 		if (loc.room === "Void") return "Away";
 		if (loc.room === "FreeRoam") return "Traveling"
-		else return State.variables.mansion.findRoom(loc.room).name;
+		else return State.variables.mansion.rooms[loc.room].name;
 	}
 
 	clone() {
@@ -2505,7 +2466,7 @@ class Room {
 		this.name = '';
 		this.chores = [];
 		this.events = [];
-		this.img = [];
+		this.img = undefined;
 		this.id = '';
 		this.adjacentRooms = [];
 
@@ -2523,77 +2484,41 @@ class Room {
 		this.chores.push(chore);
 	}
 
-	addEvent(event) {
-		event.room = this.name;
-		this.events.push(event);
-		this.events.sort((a, b) => {
-			if (a.priority > b.priority) return -1;
-			else if (a.priority === b.priority) return 0;
-			else return 1;
-		});
-	}
-
-	removeEvent(eventName) {
-		this.events = this.events.filter((em) => em.name != eventName);
-	}
-
-	getEvent() {
-		var activeEvents = Array.from(this.events);
-		activeEvents = activeEvents.filter((el) => el.active(true));
-		if (activeEvents.length > 0) {
-			var totalWeight = activeEvents.reduce((totalWeight, el) => totalWeight + 1 << el.priority, 0);
-
-			var i = 0;
-			for (var eventPicked = Math.floor(State.random() * totalWeight); eventPicked > 0; eventPicked -= 1 << activeEvents[i].priority)
-				i++;
-			return activeEvents[i].playEvent(true);
-		} 
-		else
-			return "";
-	}
-
-	addEventCondition(event, fun) {
-		this.events.find((em) => em.name == event).setCondition(fun)
-	}
-
 	findChore(choreName) {
 		return this.chores.find((el) => el.name === choreName);
 	}
 
-	resetChores() {
-		for (var i = 0; i < this.chores.length; i++)
-			this.chores[i].reset()
-	}
-
-	getImgPath(imgIndex) {
-		return `${setup.ImagePath}estate/${this.id}/${this.img[imgIndex]}`; 
-	}
-
-	display(imgIndex) {
-		var imgIndex = imgIndex || 0;
-		var str = `<span class='estateRoom'>${this.name}`;
-		return str + (imgIndex < this.img.length ? `[>img[${this.getImgPath(imgIndex)}]]</span>` : "</span>");
-	}
-
-	getAdjacentRooms() {
-		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
-	}
-
-	getNPC() {
-		return npcList.filter((npc) => State.variables[npc].schedule.currRoom === this.id);
-	}
-
-	getPassage(text) {
-		var id = this.id.replace("\'", "\\'");
-		return `<<link \"${text||this.name}\" \"${Story.has(this.id) ? this.id : "RoomDescription"}\">><<set $player.currRoom to \"${id}\">><</link>>`
-	}
-
 	displayChores(canDoChores, filterDone, hidelocation) {
         return this.chores.reduce((str, chore) => {
-            var choreDo = chore.do(canDoChores, filterDone||false, hidelocation||false);
+            var choreDo = chore.do(canDoChores, filterDone||false, hidelocation||true);
             return `${str}${choreDo}`;
         }, "");
     }
+
+    get npc() {
+    	return npcList.filter((npc) => State.variables[npc].schedule.currRoom === this.id);
+    }
+
+	passage(linkContent, callback) {
+		// Returns the link to said room's main passage
+		return `<<link "${linkContent || this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">>${callback || ""}<</link>>`
+	}
+
+	get adjacentRoomsLink() {
+		// Returns a list of rooms that are link to said room
+		var mansion = State.variables.mansion;
+		return this.adjacentRooms.reduce((str, room, i) => str + `<li>${mansion.rooms[room].passage()}</li>`, "<ol>") + "</ol>";
+	}
+
+	get header() {
+		// The header for a room, includes title and picture
+		return `<span class="estateRoom">${this.name}${this.picture}</span>`
+	}
+
+	get picture() {
+		// The picture for said room, if it exists
+		return this.img ? `[>img[${setup.ImagePath}estate/${this.id}/${this.img}]]` : "";
+	}
 
 	clone() {
         return new Room(this);
@@ -3244,7 +3169,7 @@ State.variables.minorNPC = [];
 		{name: &quot;foyerDusting&quot;, weight: 2}
 	], 
 	staminaCost: 10, 
-}), [1])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;LowerHall&quot;, new Chore({
 	name: &quot;Clean Hall&quot;, 
 	duration: {hour: 1}, 
@@ -3254,7 +3179,7 @@ State.variables.minorNPC = [];
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 10, 
-}), [1])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;UpperHall&quot;, new Chore({
 	name: &quot;Clean Upper Hall&quot;, 
 	duration: {hour: 1}, 
@@ -3264,7 +3189,7 @@ State.variables.minorNPC = [];
 		{name: &quot;hallSweepMop&quot;, weight: 2}
 	], 
 	staminaCost: 10, 
-}), [4])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Garden&quot;, new Chore({
 	name: &quot;Clean Garden&quot;, 
 	duration: {hour: 1}, 
@@ -3273,7 +3198,7 @@ State.variables.minorNPC = [];
 		{name: &quot;gardenSweep&quot;, weight: 1}
 	], 
 	staminaCost: 10, 
-}), [5])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Pool&quot;, new Chore({
 	name: &quot;Clean Pool&quot;, 
 	duration: {hour: 1}, 
@@ -3282,7 +3207,7 @@ State.variables.minorNPC = [];
 		{name: &quot;poolSweep&quot;, weight: 1}
 	], 
 	staminaCost: 10, 
-}), [5])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Do the dishes in the kitchen&quot;,
 	duration: {minute: 30}, 
@@ -3290,7 +3215,7 @@ State.variables.minorNPC = [];
 		{name: &quot;kitchenDishes&quot;, weight: 1}
 	], 
 	staminaCost: 10, 
-}), [2])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Kitchen&quot;, new Chore({
 	name: &quot;Clean the kitchen&quot;, 
 	duration: {minute:30}, 
@@ -3299,7 +3224,7 @@ State.variables.minorNPC = [];
 		{name: &quot;kitchenSweepMop&quot;, weight: 1}
 	], 
 	staminaCost: 10,
-}), [2])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
 	name: &quot;Wash Linen in the laundry&quot;, 
 	duration: {hour: 1}, 
@@ -3307,7 +3232,7 @@ State.variables.minorNPC = [];
 		{name: &quot;laundryLinen&quot;, weight: 1}
 	], 
 	staminaCost: 10, 
-}), [2])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Laundry&quot;, new Chore({
 	name: &quot;Wash Clothes in the laundry&quot;, 
 	duration: {hour: 1}, 
@@ -3315,7 +3240,7 @@ State.variables.minorNPC = [];
 		{name: &quot;laundryClothes&quot;, weight: 1}
 	], 
 	staminaCost: 10, 
-}), [2])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Lounge&quot;, new Chore({
 	name: &quot;Clean Lounge&quot;, 
 	duration: {hour: 2}, 
@@ -3326,7 +3251,7 @@ State.variables.minorNPC = [];
 		{name: &quot;loungeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), [3])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Dining&quot;, new Chore({
 	name: &quot;Clean Dining Room&quot;, 
 	duration: {hour: 2}, 
@@ -3337,7 +3262,7 @@ State.variables.minorNPC = [];
 		{name: &quot;diningWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), [3])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBdRm&quot;, new Chore({
 	name: &quot;Clean Master Bedroom&quot;, 
 	duration: {hour: 1},
@@ -3348,7 +3273,7 @@ State.variables.minorNPC = [];
 		{name: &quot;masterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 10, 
-}), [3])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;MasterBathRm&quot;, new Chore({
 	name: &quot;Clean Master Bathroom&quot;, 
 	duration: {hour: 1}, 
@@ -3361,7 +3286,7 @@ State.variables.minorNPC = [];
 		{name: &quot;masterBathRmBath&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), [3])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Office&quot;, new Chore({
 	name: &quot;Clean Office&quot;, 
 	duration: {hour: 1}, 
@@ -3372,7 +3297,7 @@ State.variables.minorNPC = [];
 		{name: &quot;officeWindows&quot;, weight: 2}
 	], 
 	staminaCost: 10, 
-}), [1])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;Gym&quot;, new Chore({
 	name: &quot;Clean Gym&quot;, 
 	duration: {hour: 2}, 
@@ -3382,7 +3307,7 @@ State.variables.minorNPC = [];
 		{name: &quot;gymWindows&quot;, weight: 2}
 	], 
 	staminaCost: 2, 
-}), [5])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;PlayerBdRm&quot;, new Chore({
 	name: &quot;Tidy your room&quot;, 
 	duration: {hour: 1}, 
@@ -3391,7 +3316,7 @@ State.variables.minorNPC = [];
 		{name: &quot;playerBdRmClean&quot;, weight: 1}
 	], 
 	staminaCost: 10, 
-}), [1])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;DaughterBdRm&quot;, new Chore({
 	name: &quot;Clean the daughter\&#39;s bedroom&quot;, 
 	duration: {hour: 1}, 
@@ -3402,7 +3327,7 @@ State.variables.minorNPC = [];
 		{name: &quot;daughterBdRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 10, 
-}), [4])&gt;&gt;
+}))&gt;&gt;
 &lt;&lt;= $mansion.addChore(&quot;GuestRm&quot;, new Chore({
 	name: &quot;Clean the guest room&quot;, 
 	duration: {hour: 1}, 
@@ -3413,7 +3338,7 @@ State.variables.minorNPC = [];
 		{name: &quot;guestRmWindows&quot;, weight: 2}
 	], 
 	staminaCost: 10, 
-}), [4])&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="eventInit" tags="event" position="100,225" size="100,100">&lt;!-- Unique events --&gt;
+}))&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="eventInit" tags="event" position="100,225" size="100,100">&lt;!-- Unique events --&gt;
 
 &lt;&lt;= $mansion.addEvent(&quot;specialEvent&quot;, new Event({
 	name: &quot;End of the week review&quot;,
@@ -4089,225 +4014,181 @@ State.variables.minorNPC = [];
 	img: &quot;items/wearables/shoes/flats_01.jpg&quot;
 }, 1)&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="roomInit" tags="init" position="475,225" size="100,100">&lt;!--  Mansion  --&gt;
 
-&lt;&lt;set $mansion to new Mansion({})&gt;&gt;
-
-&lt;!--  Rooms  --&gt;
-
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Foyer&quot;, 
-	id: &quot;Foyer&quot;, 
-	img: [
-		&quot;Foyer.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;Lounge&quot;, 
-		&quot;Kitchen&quot;, 
-		&quot;Dining&quot;, 
-		&quot;UpperHall&quot;, 
-		&quot;LowerHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Lower Hall&quot;, 
-	id: &quot;LowerHall&quot;, 
-	adjacentRooms: [
-		&quot;Foyer&quot;, 
-		&quot;MasterBdRm&quot;, 
-		&quot;Office&quot;, 
-		&quot;PlayerBdRm&quot;, 
-		&quot;Laundry&quot;, 
-		&quot;Kitchen&quot;, 
-		&quot;Dining&quot;, 
-		&quot;Garden&quot;, 
-		&quot;Lounge&quot;,
-		&quot;UpperHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Upper Hall&quot;, 
-	id: &quot;UpperHall&quot;, 
-	adjacentRooms: [
-		&quot;Foyer&quot;, 
-		&quot;SonBdRm&quot;, 
-		&quot;DaughterBdRm&quot;, 
-		&quot;GuestRm&quot;,
-		&quot;LowerHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Garden&quot;, 
-	id: &quot;Garden&quot;, 
-	img: [
-		&quot;Garden1.jpg&quot;, 
-		&quot;Garden2.jpg&quot;, 
-		&quot;Garden3.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;Lounge&quot;, 
-		&quot;Pool&quot;, 
-		&quot;Dining&quot;, 
-		&quot;Kitchen&quot;, 
-		&quot;Laundry&quot;, 
-		&quot;Gym&quot;, 
-		&quot;LowerHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Kitchen&quot;, 
-	id: &quot;Kitchen&quot;, 
-	img: [
-		&quot;Kitchen.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;Lounge&quot;, 
-		&quot;Dining&quot;,
-		&quot;Garden&quot;, 
-		&quot;Foyer&quot;, 
-		&quot;LowerHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Laundry&quot;, 
-	id: &quot;Laundry&quot;, 
-	img: [
-		&quot;Laundry.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;LowerHall&quot;, 
-		&quot;Garden&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Lounge&quot;, 
-	id: &quot;Lounge&quot;, 
-	img: [
-		&quot;Lounge.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;Foyer&quot;, 
-		&quot;Kitchen&quot;, 
-		&quot;Dining&quot;, 
-		&quot;LowerHall&quot;, 
-		&quot;Garden&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Dining Room&quot;, 
-	id: &quot;Dining&quot;, 
-	img: [
-		&quot;Dining.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;Foyer&quot;, 
-		&quot;Kitchen&quot;, 
-		&quot;LowerHall&quot;, 
-		&quot;Lounge&quot;, 
-		&quot;Garden&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Master bedroom&quot;, 
-	id: &quot;MasterBdRm&quot;, 
-	img: [
-		&quot;Bedroom.jpg&quot;, 
-		&quot;Bathroom.jpg&quot;, 
-		&quot;Closet1.jpg&quot;, 
-		&quot;Closet2.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;MasterBathRm&quot;, 
-		&quot;LowerHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Master bathroom&quot;, 
-	id: &quot;MasterBathRm&quot;, 
-	img: [
-		&quot;Bathroom.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;MasterBdRm&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Office&quot;, 
-	id: &quot;Office&quot;, 
-	img: [
-		&quot;Office.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;LowerHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Your bedroom&quot;, 
-	id: &quot;PlayerBdRm&quot;, 
-	img: [
-		&quot;Bedroom.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;LowerHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Pool&quot;, 
-	id: &quot;Pool&quot;, 
-	img: [
-		&quot;Pool.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;Garden&quot;, 
-		&quot;Gym&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Gym&quot;, 
-	id: &quot;Gym&quot;, 
-	img: [
-		&quot;Gym1.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;Garden&quot;, 
-		&quot;Pool&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Mystery room&quot;, 
-	id: &quot;SonBdRm&quot;, 
-	img: [
-		&quot;Locked.jpg&quot;, 
-		&quot;Bedroom.jpg&quot;, 
-		&quot;Bathroom.jpg&quot;, 
-		&quot;Closet.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;UpperHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Daughter\&#39;s bedroom&quot;, 
-	id: &quot;DaughterBdRm&quot;, 
-	img: [
-		&quot;Bedroom.jpg&quot;, 
-		&quot;Bathroom.jpg&quot;, 
-		&quot;Closet.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;UpperHall&quot;
-	]
-}))&gt;&gt;
-&lt;&lt;= $mansion.addRoom(new Room({
-	name: &quot;Guest room&quot;, 
-	id: &quot;GuestRm&quot;, 
-	img: [
-		&quot;Bedroom.jpg&quot;, 
-		&quot;Bathroom.jpg&quot;, 
-		&quot;Closet.jpg&quot;
-	], 
-	adjacentRooms: [
-		&quot;UpperHall&quot;
-	]
-}))&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="infoCharacter" tags="nobr" position="600,225" size="100,100">&lt;h1&gt;&lt;&lt;= State.variables[_npc].name&gt;&gt;&lt;/h1&gt;
+&lt;&lt;set $mansion to new Mansion({rooms: {
+	Foyer : new Room({
+		name: &quot;Foyer&quot;,
+		id: &quot;Foyer&quot;,
+		img: [&quot;Foyer.jpg&quot;],
+		adjacentRooms: [
+			&quot;Lounge&quot;,
+			&quot;Kitchen&quot;,
+			&quot;Dining&quot;,
+			&quot;UpperHall&quot;,
+			&quot;LowerHall&quot;
+		]
+	}),
+	LowerHall : new Room({
+		name: &quot;Lower Hall&quot;,
+		id: &quot;LowerHall&quot;, 
+		adjacentRooms: [
+			&quot;Foyer&quot;, 
+			&quot;MasterBdRm&quot;, 
+			&quot;Office&quot;, 
+			&quot;PlayerBdRm&quot;, 
+			&quot;Laundry&quot;, 
+			&quot;Kitchen&quot;, 
+			&quot;Dining&quot;, 
+			&quot;Garden&quot;, 
+			&quot;Lounge&quot;,
+			&quot;UpperHall&quot;
+		]
+	}),
+	UpperHall: new Room({
+		name: &quot;Upper Hall&quot;, 
+		id: &quot;UpperHall&quot;, 
+		adjacentRooms: [
+			&quot;Foyer&quot;, 
+			&quot;SonBdRm&quot;, 
+			&quot;DaughterBdRm&quot;, 
+			&quot;GuestRm&quot;,
+			&quot;LowerHall&quot;
+		]
+	}),
+	Garden: new Room({
+		name: &quot;Garden&quot;, 
+		id: &quot;Garden&quot;, 
+		img: [&quot;Garden1.jpg&quot;, &quot;Garden2.jpg&quot;, &quot;Garden3.jpg&quot;], 
+		adjacentRooms: [
+			&quot;Lounge&quot;, 
+			&quot;Pool&quot;, 
+			&quot;Dining&quot;, 
+			&quot;Kitchen&quot;, 
+			&quot;Laundry&quot;, 
+			&quot;Gym&quot;, 
+			&quot;LowerHall&quot;
+		]
+	}),
+	Kitchen: new Room({
+		name: &quot;Kitchen&quot;, 
+		id: &quot;Kitchen&quot;, 
+		img: [&quot;Kitchen.jpg&quot;], 
+		adjacentRooms: [
+			&quot;Lounge&quot;, 
+			&quot;Dining&quot;,
+			&quot;Garden&quot;, 
+			&quot;Foyer&quot;, 
+			&quot;LowerHall&quot;
+		]
+	}),
+	Laundry: new Room({
+		name: &quot;Laundry&quot;, 
+		id: &quot;Laundry&quot;, 
+		img: [&quot;Laundry.jpg&quot;], 
+		adjacentRooms: [
+			&quot;LowerHall&quot;, 
+			&quot;Garden&quot;
+		]
+	}),
+	Lounge: new Room({
+		name: &quot;Lounge&quot;, 
+		id: &quot;Lounge&quot;, 
+		img: [&quot;Lounge.jpg&quot;], 
+		adjacentRooms: [
+			&quot;Foyer&quot;, 
+			&quot;Kitchen&quot;, 
+			&quot;Dining&quot;, 
+			&quot;LowerHall&quot;, 
+			&quot;Garden&quot;
+		]
+	}),
+	Dining: new Room({
+		name: &quot;Dining Room&quot;, 
+		id: &quot;Dining&quot;, 
+		img: [&quot;Dining.jpg&quot;], 
+		adjacentRooms: [
+			&quot;Foyer&quot;, 
+			&quot;Kitchen&quot;, 
+			&quot;LowerHall&quot;, 
+			&quot;Lounge&quot;, 
+			&quot;Garden&quot;
+		]
+	}),
+	MasterBdRm: new Room({
+		name: &quot;Master bedroom&quot;, 
+		id: &quot;MasterBdRm&quot;, 
+		img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet1.jpg&quot;, &quot;Closet2.jpg&quot;], 
+		adjacentRooms: [
+			&quot;MasterBathRm&quot;, 
+			&quot;LowerHall&quot;
+		]
+	}),
+	MasterBathRm: new Room({
+		name: &quot;Master bathroom&quot;, 
+		id: &quot;MasterBathRm&quot;, 
+		img: [&quot;Bathroom.jpg&quot;], 
+		adjacentRooms: [
+			&quot;MasterBdRm&quot;
+		]
+	}),
+	Office: new Room({
+		name: &quot;Office&quot;, 
+		id: &quot;Office&quot;, 
+		img: [&quot;Office.jpg&quot;], 
+		adjacentRooms: [
+			&quot;LowerHall&quot;
+		]
+	}),
+	PlayerBdRm: new Room({
+		name: &quot;Your bedroom&quot;, 
+		id: &quot;PlayerBdRm&quot;, 
+		img: [&quot;Bedroom.jpg&quot;], 
+		adjacentRooms: [
+			&quot;LowerHall&quot;
+		]
+	}),
+	Pool: new Room({
+		name: &quot;Pool&quot;, 
+		id: &quot;Pool&quot;, 
+		img: [&quot;Pool.jpg&quot;], 
+		adjacentRooms: [
+			&quot;Garden&quot;, 
+			&quot;Gym&quot;
+		]
+	}),
+	Gym: new Room({
+		name: &quot;Gym&quot;, 
+		id: &quot;Gym&quot;,
+	img: [&quot;Gym1.jpg&quot;], 
+		adjacentRooms: [
+			&quot;Garden&quot;, 
+			&quot;Pool&quot;
+		]
+	}),
+	SonBdRm: new Room({
+		name: &quot;Mystery room&quot;, 
+		id: &quot;SonBdRm&quot;, 
+		img: [&quot;Locked.jpg&quot;, &quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;], 
+		adjacentRooms: [
+			&quot;UpperHall&quot;
+		]
+	}),
+	DaughterBdRm: new Room({
+		name: &quot;Daughter &amp;apos;s bedroom&quot;, 
+		id: &quot;DaughterBdRm&quot;, 
+		img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;], 
+		adjacentRooms: [
+			&quot;UpperHall&quot;
+		]
+	}),
+	GuestRm: new Room({
+		name: &quot;Guest room&quot;, 
+		id: &quot;GuestRm&quot;, 
+		img: [&quot;Bedroom.jpg&quot;, &quot;Bathroom.jpg&quot;, &quot;Closet.jpg&quot;], 
+		adjacentRooms: [
+			&quot;UpperHall&quot;
+		]
+	})
+}})&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="infoCharacter" tags="nobr" position="600,225" size="100,100">&lt;h1&gt;&lt;&lt;= State.variables[_npc].name&gt;&gt;&lt;/h1&gt;
 &lt;table&gt;
 	&lt;tr&gt;
 		&lt;th&gt;Appreciation of you&lt;/th&gt;
@@ -4382,7 +4263,7 @@ State.variables.minorNPC = [];
 	&lt;div id=&quot;clock-time&quot;&gt;&lt;&lt;= $time.weekDayFormat&gt;&gt;&lt;br&gt;(Day &lt;&lt;= $time.day&gt;&gt;)&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&quot;location&quot;&gt;
-	&lt;&lt;= $mansion.findRoom($player.currRoom).name&gt;&gt;
+	&lt;&lt;= $mansion.rooms[$player.currRoom].name&gt;&gt;
 &lt;/div&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="personnal-info" tags="nobr" position="1100,225" size="100,100">&lt;h1 class=&quot;tab-title&quot;&gt;Personal Info&lt;/h1&gt;
 
@@ -5452,7 +5333,6 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 [[Start serving at the party|mansionCPartyInit]]</tw-passagedata><tw-passagedata pid="118" name="mansionCPartyInit" tags="event nobr" position="975,1475" size="100,100">&lt;&lt;silently&gt;&gt;
 /* Used to generate npcs and other stuff needed for the party */
 &lt;&lt;if $eventInfo === undefined&gt;&gt;
-&lt;&lt;= console.log(&quot;UNDEFINED EVENT INFO&quot;)&gt;&gt;
 &lt;&lt;set $eventInfo to {
 	npc: [],
 	score: 0,
@@ -5483,7 +5363,6 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 	},
 	addPoint: function(nb) {
 		var arr;
-		console.log(this.active);
 		if (this.active === undefined) {
 			arr = [];
 		} else if (typeof this.active === String) {
@@ -5501,7 +5380,6 @@ You turn and head towards the kitchen where $caterer.name has just arrived and i
 &lt;&lt;for _i = 0; _i &lt; settings.npcPerEvent; _i++&gt;&gt;
 &lt;&lt;= npc.generateNPC($minorNPC, $eventInfo.npc, _i)&gt;&gt;
 &lt;&lt;/for&gt;&gt;
-&lt;&lt;= console.log($eventInfo)&gt;&gt;
 &lt;&lt;goto &quot;mansionCPartyServing01&quot;&gt;&gt;
 &lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="mansionCPartyServing01" tags="event" position="1100,1475" size="100,100">&lt;h1&gt;At the party&lt;/h1&gt;
 &lt;span id=&quot;party-description&quot;&gt;
@@ -5809,8 +5687,6 @@ With your heart thrumming in your chest sou slide you own hand over to brush aga
 Your mind struggles with what you want to do for the next hour or so as you try and decide what to do but you always stop just short of taking any action.
 
 [[And so...|daughterDateCinemaHorror02]]
-&lt;&lt;end&gt;&gt;
-&lt;&lt;end&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="138" name="daughterDateCinemaHorror02" tags="" position="975,1725" size="100,100">It continues that way until the big finale and then the credits finally roll. You pull yourself away from $daughter.name, blushing slightly as she stands and smiles at you.
 
@@ -6978,7 +6854,7 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;/ol&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="199" name="PassageFooter" tags="nodebug" position="1100,2475" size="100,100">&lt;&lt;if ![&quot;PlayerBdRm&quot;, &quot;sleep&quot;, &quot;gameover&quot;, &quot;event&quot;].includes(passage()) &amp;&amp; $mansion.currentEvent === &quot;&quot; &amp;&amp; $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="199" name="PassageFooter" tags="nodebug nobr" position="1100,2475" size="100,100">&lt;&lt;if ![&quot;PlayerBdRm&quot;, &quot;sleep&quot;, &quot;gameover&quot;, &quot;event&quot;].includes(passage()) &amp;&amp; $mansion.currentEvent === &quot;&quot; &amp;&amp; $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
 	&lt;&lt;set $late to true&gt;&gt;
 	&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).getPassage(&quot;Your CUFF buzzes on your wrist. You check and see it&#39;s time for you to return to your room and rest for the night.&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -6987,12 +6863,10 @@ $butler.name leads you back to your &lt;&lt;link &quot;small living space&quot;&
 
 &lt;&lt;set $player.moveTime()&gt;&gt;
 
-&lt;&lt;if ([&quot;init&quot;].some(function(tag) {return tags().includes(tag)}) === false)&gt;&gt;
-	&lt;&lt;set schedule($lastTime.rel / 5)&gt;&gt;
-	&lt;&lt;set _last = $lastTime.abs&gt;&gt;
-	&lt;&lt;set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)&gt;&gt;
-	&lt;&lt;set $lastTime.rel = $lastTime.abs - _last&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;set schedule($lastTime.rel / 5)&gt;&gt;
+&lt;&lt;set _last = $lastTime.abs&gt;&gt;
+&lt;&lt;set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)&gt;&gt;
+&lt;&lt;set $lastTime.rel = $lastTime.abs - _last&gt;&gt;
 
 &lt;&lt;if $debug&gt;&gt;&lt;&lt;include &#39;debug-passage&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="200" name="daughterPath01Homedrunk" tags="noreturn chore" position="1225,2475" size="100,100">&lt;!-- Random % chance when the player eneters the foyer - does not repeat --&gt;
 
@@ -7784,7 +7658,7 @@ You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-front&quot;, &
 You are currently using a &lt;&lt;= $player.inv.filter([&quot;toy-back&quot;, &quot;equipped&quot;])[0].item.name&gt;&gt;.
 &lt;&lt;/if&gt;&gt;
 &lt;br&gt;
-[[Return|$return]]</tw-passagedata><tw-passagedata pid="229" name="PlayerBdRm" tags="playerRoom room" position="1100,2850" size="100,100">&lt;&lt;= $mansion.display(&quot;PlayerBdRm&quot;)&gt;&gt;
+[[Return|$return]]</tw-passagedata><tw-passagedata pid="229" name="PlayerBdRm" tags="playerRoom room" position="1100,2850" size="100,100">&lt;&lt;= $mansion.rooms[&quot;PlayerBdRm&quot;].header&gt;&gt;
 
 A simple room with a single bed, wardrobe, desk and a small adjoined bathroom.
 
@@ -7794,9 +7668,9 @@ Desk
 	There is nothing here at the moment
 	
 &lt;&lt;nobr&gt;&gt;
-&lt;&lt;set _event to $mansion.checkSpecialEvents()&gt;&gt;
-&lt;&lt;if _event !== &quot;&quot;&gt;&gt;
-	&lt;&lt;= _event&gt;&gt;
+&lt;&lt;set _event to $mansion.checkEvent([&quot;playerBdRm&quot;])&gt;&gt;
+&lt;&lt;if _event&gt;&gt;
+	&lt;&lt;= _event.playEvent()&gt;&gt;
 &lt;&lt;elseif $time.inInterval(&quot;sleep&quot;, &quot;wakeup&quot;)&gt;&gt;
 	[[Go to bed|sleep]]
 &lt;&lt;else&gt;&gt;
@@ -7814,11 +7688,11 @@ Desk
 		&lt;&lt;= $time.setDate({day:0, hour:22, minute:0})&gt;&gt;
 		&lt;&lt;goto `passage()`&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-	&lt;&lt;= $mansion.findRoom($player.currRoom).getAdjacentRooms()&gt;&gt;
+	&lt;&lt;= $mansion.rooms[$player.currRoom].adjacentRoomsLink&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;= $mansion.findRoom(&quot;PlayerBdRm&quot;).displayChores(true, false, true)&gt;&gt;
+&lt;&lt;= $mansion.rooms[&quot;PlayerBdRm&quot;].displayChores(true, false, true)&gt;&gt;
 &lt;&lt;if $time.compareTime({hour:18, minute:0}) === 1&gt;&gt;
 &lt;&lt;set $time.setDate({hour:22})&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="230" name="playerRoomShower" tags="playerRoom" position="1225,2850" size="100,100">At the moment, the shower is only used as a way to gain some stamina back without taking too much time. Later, it will be changed to raise the player&#39;s personnal hygene.
@@ -7901,21 +7775,26 @@ Gossip
 Lady porn
 
 &lt;&lt;return &#39;Put it back on the shelf&#39;&gt;&gt;
-&lt;&lt;= $player.increaseArousal(5)&gt;&gt;</tw-passagedata><tw-passagedata pid="240" name="RoomDescription" tags="room nobr" position="1225,2975" size="100,100">&lt;&lt;= $mansion.findRoom($player.currRoom).display()&gt;&gt;&lt;br&gt;
-&lt;&lt;set _npc to $mansion.findRoom($player.currRoom).getNPC()&gt;&gt;
-&lt;&lt;if _npc !== &quot;&quot;&gt;&gt;
-&lt;&lt;= _npc&gt;&gt;
+&lt;&lt;= $player.increaseArousal(5)&gt;&gt;</tw-passagedata><tw-passagedata pid="240" name="RoomDescription" tags="room nobr" position="1225,2975" size="100,100">&lt;&lt;= $mansion.rooms[$player.currRoom].header&gt;&gt;&lt;br&gt;
+&lt;&lt;set _npcpresent to $mansion.rooms[$player.currRoom].npc&gt;&gt;
+&lt;&lt;if _npcpresent != &quot;&quot;&gt;&gt;
+In this room, there are:
+&lt;ul&gt;
+&lt;&lt;for _npc range _npcpresent&gt;&gt;
+	&lt;li&gt;&lt;&lt;= State.variables[_npc].name&gt;&gt;&lt;/li&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;/ul&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;= $mansion.findRoom($player.currRoom).getEvent()&gt;&gt;
+&lt;&lt;= _evnt = $mansion.checkEvent([$player.currRoom]); _evnt ? _evnt.playEvent() : &quot;&quot;&gt;&gt;
 &lt;br&gt;
-&lt;&lt;set _chores to $mansion.findRoom($player.currRoom).displayChores(true, true, false, false)&gt;&gt;
+&lt;&lt;set _chores to $mansion.rooms[$player.currRoom].displayChores(true, false, true)&gt;&gt;
 &lt;&lt;if _chores !== &quot;&quot;&gt;&gt;
 Chores:
 &lt;&lt;= _chores&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;br&gt;
 &lt;&lt;if !$late&gt;&gt;
-From here, you can go to &lt;&lt;= $mansion.findRoom($player.currRoom).getAdjacentRooms()&gt;&gt;
+From here, you can go to &lt;&lt;= $mansion.rooms[$player.currRoom].adjacentRoomsLink&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="241" name="shopTest" tags="" position="100,3100" size="100,100">&lt;&lt;= $shop.name&gt;&gt;
 &lt;&lt;= $shop.listItem()&gt;&gt;
 
@@ -7925,7 +7804,7 @@ From here, you can go to &lt;&lt;= $mansion.findRoom($player.currRoom).getAdjace
 &lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="242" name="sleep" tags="sleep Save" position="225,3100" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
-&lt;&lt;if $mansion.currentEvent.startsWith(&quot;mansionCParty&quot;)&gt;&gt;
+&lt;&lt;if $mansion.currentEvent.name.startsWith(&quot;mansionCParty&quot;)&gt;&gt;
 There&#39;s a knock on your door later that night. You groggily answer it to find $daughter.name standing there.
 
 &lt;&lt;= $daughter.speak(&quot;Come on. I have a surprise for you.&quot;)&gt;&gt;
@@ -7958,9 +7837,9 @@ It&#39;s some time before you&#39;re able to drift off but your sexy dreams prov
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;= $time.setDate(&quot;wakeup&quot;)&gt;&gt;
-&lt;&lt;set _event to $mansion.checkSpecialEvents()&gt;&gt;
-&lt;&lt;if _event != &quot;&quot;&gt;&gt;
-	&lt;&lt;= _event&gt;&gt;
+&lt;&lt;set _event to $mansion.checkEvent()&gt;&gt;
+&lt;&lt;if _event&gt;&gt;
+	&lt;&lt;= _event.playEvent()&gt;&gt;
 &lt;&lt;else&gt;&gt;
 You head to your small bathroom and sit down to relieve yourself. After that you jump in the shower and quickly wash yourself before getting out and shaving. Once you&#39;re dressed you head out to the kitchen and start getting things ready for breakfast.&lt;br&gt;
 &lt;br&gt;
@@ -7989,7 +7868,8 @@ You head to your small bathroom and sit down to relieve yourself. After that you
 &lt;&lt;/nobr&gt;&gt;
 
 &lt;&lt;set $player.rest()&gt;&gt;
-&lt;&lt;= $mansion.resetChores()&gt;&gt;</tw-passagedata><tw-passagedata pid="244" name="debtDescription" tags="" position="475,3100" size="100,100">Debt: 23456
+&lt;&lt;set $player.choresLate = $mansion.resetChores()&gt;&gt;
+&lt;&lt;set $mansion.chooseChores()&gt;&gt;</tw-passagedata><tw-passagedata pid="244" name="debtDescription" tags="" position="475,3100" size="100,100">Debt: 23456
 
 Weekly reduction: 100
 

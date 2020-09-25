@@ -16,7 +16,6 @@ Macro.add("displaymenu", {
 	handler: function () {
 		var list = State.variables.menuList;
 		var index = State.variables.navIndex;
-		console.log(index, list);
 		$(this.output).wiki(`<div class="ui-menu" id="${list[index].id}"><<include "${list[index].passage}">></div>`)
 	}
 });

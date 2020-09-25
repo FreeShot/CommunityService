@@ -66,7 +66,6 @@ class Inventory {
 	}
 
 	removeTmp(keepEquipped) {
-		console.log("Keep equipped", keepEquipped);
 		this.items = this.items.filter((el) => (!el.item.tags.includes("tmp")) || (keepEquipped && el.item.tags.includes("equipped")));
 	}
 

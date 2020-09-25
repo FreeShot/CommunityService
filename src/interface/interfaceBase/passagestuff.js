@@ -1,5 +1,4 @@
 $(document).on(':passageend', function (ev) {
-	console.log(State.variables.time);
 	State.variables.time.generateClock();
 });
 

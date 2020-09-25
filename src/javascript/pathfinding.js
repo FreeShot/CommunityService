@@ -12,20 +12,20 @@ pathfind.cost = (startName, endName, c, roomCost) => {
 	if (startName === endName) {
 		return roomCost
 	}
-	return State.variables.mansion.findRoom(startName).adjacentRooms.reduce((roomCost, room) => {
+	return State.variables.mansion.rooms[startName].adjacentRooms.reduce((roomCost, room) => {
 		return pathfind.cost(room, endName, c + 1, roomCost);
 	}, roomCost);
 };
 
 pathfind.nextRoom = (start, end, cost) => {
 	var cost = cost || pathfind.cost(start, end);
-	var rooms = State.variables.mansion.findRoom(end).adjacentRooms.filter((newRoom) => cost[newRoom] === cost[end] - 1);
+	var rooms = State.variables.mansion.rooms[end].adjacentRooms.filter((newRoom) => cost[newRoom] === cost[end] - 1);
 	return rooms[Math.floor(State.random() * rooms.length)] || start;
 };
 
 pathfind.path = (start, room) => {
 	if (room === "FreeRoam") {
-		return [State.random() > 0.5 ? State.variables.mansion.findRoom(start).adjacentRooms.random() : start];
+		return [State.random() > 0.5 ? State.variables.mansion.rooms[start].adjacentRooms.random() : start];
 	}
 	var path = [];
 	var cost = pathfind.cost(start, room);
@@ -103,7 +103,7 @@ class Schedule {
 		var loc = this.curPoint() || {room: "Void"};
 		if (loc.room === "Void") return "Away";
 		if (loc.room === "FreeRoam") return "Traveling"
-		else return State.variables.mansion.findRoom(loc.room).name;
+		else return State.variables.mansion.rooms[loc.room].name;
 	}
 
 	clone() {

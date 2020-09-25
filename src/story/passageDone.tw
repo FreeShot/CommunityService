@@ -1,4 +1,4 @@
-::PassageFooter [nodebug]
+::PassageFooter [nodebug nobr]
 
 <<if !["PlayerBdRm", "sleep", "gameover", "event"].includes(passage()) && $mansion.currentEvent === "" && $time.inInterval("sleep", "wakeup")>>
 	<<set $late to true>>
@@ -9,11 +9,9 @@
 
 <<set $player.moveTime()>>
 
-<<if (["init"].some(function(tag) {return tags().includes(tag)}) === false)>>
-	<<set schedule($lastTime.rel / 5)>>
-	<<set _last = $lastTime.abs>>
-	<<set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)>>
-	<<set $lastTime.rel = $lastTime.abs - _last>>
-<</if>>
+<<set schedule($lastTime.rel / 5)>>
+<<set _last = $lastTime.abs>>
+<<set $lastTime.abs = (($time.day * 24 + $time.time.hour) * 60 + $time.time.minute)>>
+<<set $lastTime.rel = $lastTime.abs - _last>>
 
 <<if $debug>><<include 'debug-passage'>><</if>>

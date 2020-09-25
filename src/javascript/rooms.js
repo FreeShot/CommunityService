@@ -3,7 +3,7 @@ class Room {
 		this.name = '';
 		this.chores = [];
 		this.events = [];
-		this.img = [];
+		this.img = undefined;
 		this.id = '';
 		this.adjacentRooms = [];
 
@@ -21,77 +21,41 @@ class Room {
 		this.chores.push(chore);
 	}
 
-	addEvent(event) {
-		event.room = this.name;
-		this.events.push(event);
-		this.events.sort((a, b) => {
-			if (a.priority > b.priority) return -1;
-			else if (a.priority === b.priority) return 0;
-			else return 1;
-		});
-	}
-
-	removeEvent(eventName) {
-		this.events = this.events.filter((em) => em.name != eventName);
-	}
-
-	getEvent() {
-		var activeEvents = Array.from(this.events);
-		activeEvents = activeEvents.filter((el) => el.active(true));
-		if (activeEvents.length > 0) {
-			var totalWeight = activeEvents.reduce((totalWeight, el) => totalWeight + 1 << el.priority, 0);
-
-			var i = 0;
-			for (var eventPicked = Math.floor(State.random() * totalWeight); eventPicked > 0; eventPicked -= 1 << activeEvents[i].priority)
-				i++;
-			return activeEvents[i].playEvent(true);
-		} 
-		else
-			return "";
-	}
-
-	addEventCondition(event, fun) {
-		this.events.find((em) => em.name == event).setCondition(fun)
-	}
-
 	findChore(choreName) {
 		return this.chores.find((el) => el.name === choreName);
 	}
 
-	resetChores() {
-		for (var i = 0; i < this.chores.length; i++)
-			this.chores[i].reset()
-	}
-
-	getImgPath(imgIndex) {
-		return `${setup.ImagePath}estate/${this.id}/${this.img[imgIndex]}`; 
-	}
-
-	display(imgIndex) {
-		var imgIndex = imgIndex || 0;
-		var str = `<span class='estateRoom'>${this.name}`;
-		return str + (imgIndex < this.img.length ? `[>img[${this.getImgPath(imgIndex)}]]</span>` : "</span>");
-	}
-
-	getAdjacentRooms() {
-		return this.adjacentRooms.reduce((str, room, i) => `${str}<li>${State.variables.mansion.findRoom(room).getPassage()}</li>`, `<ol>`) + "</ol>";
-	}
-
-	getNPC() {
-		return npcList.filter((npc) => State.variables[npc].schedule.currRoom === this.id);
-	}
-
-	getPassage(text) {
-		var id = this.id.replace("\'", "\\'");
-		return `<<link \"${text||this.name}\" \"${Story.has(this.id) ? this.id : "RoomDescription"}\">><<set $player.currRoom to \"${id}\">><</link>>`
-	}
-
 	displayChores(canDoChores, filterDone, hidelocation) {
         return this.chores.reduce((str, chore) => {
-            var choreDo = chore.do(canDoChores, filterDone||false, hidelocation||false);
+            var choreDo = chore.do(canDoChores, filterDone||false, hidelocation||true);
             return `${str}${choreDo}`;
         }, "");
     }
+
+    get npc() {
+    	return npcList.filter((npc) => State.variables[npc].schedule.currRoom === this.id);
+    }
+
+	passage(linkContent, callback) {
+		// Returns the link to said room's main passage
+		return `<<link "${linkContent || this.name}" "${Story.has(this.id) ? this.id : "RoomDescription"}">><<set $player.currRoom to "${this.id}">>${callback || ""}<</link>>`
+	}
+
+	get adjacentRoomsLink() {
+		// Returns a list of rooms that are link to said room
+		var mansion = State.variables.mansion;
+		return this.adjacentRooms.reduce((str, room, i) => str + `<li>${mansion.rooms[room].passage()}</li>`, "<ol>") + "</ol>";
+	}
+
+	get header() {
+		// The header for a room, includes title and picture
+		return `<span class="estateRoom">${this.name}${this.picture}</span>`
+	}
+
+	get picture() {
+		// The picture for said room, if it exists
+		return this.img ? `[>img[${setup.ImagePath}estate/${this.id}/${this.img}]]` : "";
+	}
 
 	clone() {
         return new Room(this);

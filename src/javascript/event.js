@@ -4,7 +4,7 @@ class Event {
 		this.passage = ''; // Passage in which it starts
 		this.inline = false; // If true, will be included in the current passage
 		this.repeats = false;
-		this.room = "";
+		this.category = "";
 		this.tags; // add Tags here
 		this.priority = 0;
 
@@ -14,17 +14,15 @@ class Event {
 	playEvent(debug) {
 		if (this.inline) {
 			if (!this.repeats) {
-				State.variables.mansion.removeEvent(this.room, this.name);
+				State.variables.mansion.removeEvent(this.category, this.name);
 			}
 			return `<<include "${this.passage}">>`;
 		} else {
-			if (!this.repeats)
-				return `<<link "${this.name}" "${this.passage}">><<= $mansion.removeEvent("${this.room}","${this.name}")>><</link>>`;
-			return `<<link "${this.name}" "${this.passage}">><</link>>`;
+			return `<<link "${this.name}" "${this.passage}">>${this.repeats ? "" : `<<set $mansion.removeEvent("${this.category}","${this.name}")>>`}<</link>>`;
 		}
 	}
 
-	active() {
+	get active() {
 		return window.tags.eval(this.tags.tag, this.tags.data, this.tags.expected)
 	}
 

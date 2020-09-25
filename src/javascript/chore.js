@@ -34,7 +34,7 @@ class Chore {
 
 		var chorebutton;
 		if (State.variables.player.currRoom === this.room && !this.done) 
-			chorebutton = `<<link \"${this.name.replace("\'", "\\'")}\" \"${this.passage}\">><<set $player.levelUp(\"cleaning\", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.findRoom(this.room).getPassage().replace("\'", "\\'")}'>><<set $player.currRoom=\"${this.room}\">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.findRoom(\"${this.room}\").findChore(\"${this.name.replace("\'", "\\'")}\").done = true>><</link>>`
+			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp("cleaning", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.rooms[this.room].passage}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.rooms["${this.room}"].findChore("${this.name}").done = true>><</link>>`
 		else if (!canDoChores || this.done)
 			chorebutton = this.name;
 		else
@@ -53,10 +53,12 @@ class Chore {
 	}
 
 	reset() {
+		var cost = 0;
 		if (!skipChores())
-			State.variables.player.choresLate += !this.done && this.todo ? 1 : 0;
+			cost = !this.done && this.todo ? 1 : 0;
 		this.done = false;
 		this.todo = false;
+		return cost;
 	}
 
 	get getDuration() {
