@@ -187,7 +187,7 @@ $wife.name is standing at the entrance watching you thoughtfully.
 
 <<= $wife.speak("If you're stuggling because of your small stature we could always find something to assist.")>>
 
-<<= $player.speak("<i>Wow, she's actually suggesting soemthing to help.</i>")>>
+<<= $player.speak("<i>Wow, she's actually suggesting something to help.</i>")>>
 
 <<= $player.speak("A step stool would be nice $wife.title.")>>
 
@@ -578,7 +578,7 @@ $cook.name once again surprises you buy having a small work space set up for you
 
 He walks around behind you and reaches around to grab your arms. You stiffen up as his chest presses against your back.
 
-<<= $cook.speak("You need to find a rythm.")>>
+<<= $cook.speak("You need to find a rhythm.")>>
 
 $cook.name guides your hands as he quickly help you slice what's in front of you.
 
@@ -756,7 +756,7 @@ You decide to focus on what you are doing. The teacup is almost full and you man
 :: breakfastPJs02 [noreturn chore]
 <!-- Random % chance during [wakeUp] -->
 
-Breakfast is almost halfway done when $daughter.name pads in to the room rubbing her eyes. It was clearly a long night her. Her blonde hair is bairly kept back in a loose ponytail and her eyes are bloodshot. This doesn't detract fromt he fact she's wearing nothing but a lacey black thong and a white tanks top that is so thin you can see the outline of her nipples underneath.
+Breakfast is almost halfway done when $daughter.name pads in to the room rubbing her eyes. It was clearly a long night her. Her blonde hair is barely kept back in a loose ponytail and her eyes are bloodshot. This doesn't detract from the fact she's wearing nothing but a lacy black thong and a white tank top that is so thin you can see the outline of her nipples underneath.
 
 <<= $wife.speak("$daughter.name, really?")>>
 
