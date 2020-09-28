@@ -14,7 +14,7 @@
 	<<for _i range Object.keys($player.stats)>>
 	<tr>
 		<td>_i</td>
-		<td><<= $player.getStatBar(_i)>></td>
+		<td><<= $player.getStatBar(_i).replace(/^\w/, (c) => c.toUpperCase());>></td>
 		<td>(lvl <<= $player.getStat(_i)>>)</td>
 	</tr>
 	<</for>>

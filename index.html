@@ -104,9 +104,9 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Kumbh+Sans:wght@300&family=Roboto+Mono:wght@300&display=swap');
 
 :root {
-	font-size: max(min(1.5vw, 19px), 12px);
+	font-size: max(min(1.3vw, 19px), 12px);
 	
-	--ui-left: 20rem;
+	--ui-left: 15rem;
 	--ui-right: 10rem;
 	--story-margin: 7rem;
 
@@ -169,17 +169,6 @@ sup {
 	display: none;
 }
 
-tr:hover .toolti/*p*/ {
-    display: block;
-    position: fixed;
-    left: var(--ui-left);
-    right: var(--ui-right);
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    padding: auto;
-}
-
 .tooltip-content {
 	position: relative;
 	left: 0; right: 0; top: 2rem; margin: auto; padding: auto;
@@ -210,6 +199,7 @@ tr:hover .toolti/*p*/ {
 	left: 0;
 	height: 99vh;
 	width: var(--ui-left);
+	font-size: 0.75rem;
 
 	color: var(--ui-fg);
 	background-color: var(--ui-bg);
@@ -280,10 +270,11 @@ tr:hover .toolti/*p*/ {
 
 .ui-menu table {
 	width: 100%;
+	padding: 1rem;
 }
 
-.ui-menu table tr, .ui-menu table td {
-	padding: 0.4rem;
+.ui-menu table tr, .ui-menu table tr td {
+	padding: 0.3rem 0.1rem;
 }
 
 .ui-menu table tr:nth-child(even) {
@@ -1950,7 +1941,7 @@ class Mansion {
 	}
 
 	resetChores() {
-		return Object.keys(this.rooms).reduce((missed, room) =>  missed + this.rooms[room].chores.reduce((m, chore) => m + chore.reset(), 0), 0)
+		return Object.keys(this.rooms).reduce((missed, room) => missed + this.rooms[room].chores.reduce((m, chore) => m + chore.reset(), 0), 0)
 	}
 
 	addEvent(category, event) {
@@ -4279,7 +4270,7 @@ State.variables.minorNPC = [];
 	&lt;&lt;for _i range Object.keys($player.stats)&gt;&gt;
 	&lt;tr&gt;
 		&lt;td&gt;_i&lt;/td&gt;
-		&lt;td&gt;&lt;&lt;= $player.getStatBar(_i)&gt;&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;&lt;= $player.getStatBar(_i).replace(/^\w/, (c) =&gt; c.toUpperCase());&gt;&gt;&lt;/td&gt;
 		&lt;td&gt;(lvl &lt;&lt;= $player.getStat(_i)&gt;&gt;)&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;&lt;/for&gt;&gt;
