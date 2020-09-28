@@ -62,7 +62,7 @@ $wife.name drags you towards the [[Master Bedroom|mansionCPartyIntro04]]
 
 <<= $player.speak("But it wasn't me! I got shoved...")>> Your heat is thrumming in your chest at the mention of the camps. From the few stories you've head about them over the last week, they're pretty severe with gangs and cruel guards that treat their charges like cattle.
 
-<<= $wife.speak("I don't want to hear your weak exuses.")>> You've never realised you could feel this small, but $wife.name was holding all the cards. <<= $wife.speak("The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away, but this will have to do. I couldn't have someone in your state around the guests. If you agree and do a good job, I'll pretend this whole mess never happened. What do you say? It's either this or I hand you over to the state.")>>
+<<= $wife.speak("I don't want to hear your weak excuses.")>> You've never realised you could feel this small, but $wife.name was holding all the cards. <<= $wife.speak("The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away, but this will have to do. I couldn't have someone in your state around the guests. If you agree and do a good job, I'll pretend this whole mess never happened. What do you say? It's either this or I hand you over to the state.")>>
 
 [[Agree to serve a the party. It's the only real option you have.|mansionCPartyIntro05]]
 
@@ -130,7 +130,7 @@ $wife.name puts the items on top of your normal clothes. <<= $wife.speak("We nee
 ::mansionCPartyIntro08 [event]
 $wife.name pulls out a razor and some shaving butter. She start rubbing the oil all over your legs.
 
-<<= $wife.speak("Hmm. It's nice a sparse already. Convenient.")>>
+<<= $wife.speak("Hmm. It's nice and sparse already. Convenient.")>>
 
 She then begins softly running the razor in lines down your thigh. The feel of her hands rubbing oil over your legs and now the razor is definetly having an effect on other parts of your body. You try to shift your seat and make room for your growing arousal.
 
