@@ -11,7 +11,7 @@ In this room, there are:
 <</if>>
 <<= _evnt = $mansion.checkEvent([$player.currRoom]); _evnt ? _evnt.playEvent() : "">>
 <br>
-<<set _chores to $mansion.rooms[$player.currRoom].displayChores(true, false, true)>>
+<<set _chores to $mansion.rooms[$player.currRoom].displayChores(true, false, false)>>
 <<if _chores !== "">>
 Chores:
 <<= _chores>>

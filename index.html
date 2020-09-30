@@ -1288,7 +1288,7 @@ window.npc = {
 /* twine-user-script #5: "chore.js" */
 function skipChores() {
 	// Checks if the chores are counted during the reset
-	return State.variables.time.day === 0 || State.variables.mansion.currentEvent !== "";
+	return State.variables.time.day === 0 || State.variables.mansion.currentEvent.name !== "";
 }
 
 class Chore {
@@ -1322,20 +1322,20 @@ class Chore {
 
 		var chorebutton;
 		if (State.variables.player.currRoom === this.room && !this.done) 
-			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp("cleaning", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.rooms[this.room].passage}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.rooms["${this.room}"].findChore("${this.name}").done = true>><</link>>`
+			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp("cleaning", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.rooms[this.room].passage()}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.rooms["${this.room}"].findChore("${this.name}").done = true>><</link>>`
 		else if (!canDoChores || this.done)
 			chorebutton = this.name;
 		else
-			chorebutton = State.variables.mansion.findRoom(this.room).getPassage(this.name);
+			chorebutton = State.variables.mansion.rooms[this.room].passage(this.name);
 
 		var status = "";
 		if (this.done) status = "DONE";
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) status = "TOO TIRED";
 		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0) status = "WRONG TIME";
 		
-		if (hidelocation) return `<li>${chorebutton} : ${status}</li>`;
+		if (!hidelocation) return `<li>${chorebutton} : ${status}</li>`;
 
-		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.findRoom(this.room).name}</td><td>${status}</td></tr>`
+		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.rooms[this.room].name}</td><td>${status}</td></tr>`
 
 		return choreContent;
 	}
@@ -1950,7 +1950,7 @@ class Mansion {
 	}
 
 	displayChores(canDoChores, filterDone) {
-		return Object.keys(this.rooms).reduce((str, room) => str + this.rooms[room].displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
+		return Object.values(this.rooms).reduce((str, room) => str + room.displayChores(canDoChores && this.currentEvent.name === "", filterDone, true), "") || "No chores now"
 	}
 
 	checkEvent(trigger) {
@@ -2526,7 +2526,19 @@ class Room {
 Object.defineProperty(window, 'Room', {
     value : Room
 });
-/* twine-user-script #16: "script.js" */
+/* twine-user-script #16: "saves.js" */
+Config.saves.version = 0;
+Config.saves.slots = 8;
+Config.history.maxStates = 1;
+
+Config.saves.onLoad = function (save) {
+	return save;
+}
+
+Config.saves.onSave = function (save, details) {
+	return save;
+};
+/* twine-user-script #17: "script.js" */
 // Adds Icons
 //importScripts("https://kit.fontawesome.com/7a29cd6e9e.js");
 importScripts("https://leaverou.github.io/stretchy/stretchy.min.js");
@@ -2562,9 +2574,10 @@ window.rememberScore = (score, event) => {
 window.process = (str) => Scripting.evalTwineScript(str);
 
 Config.saves.autosave = ["Save"];
-/* twine-user-script #17: "settings.js" */
+/* twine-user-script #18: "settings.js" */
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
+Config.saves.autoload = "prompt";
 
 Setting.addHeader("NPC", "Anything that influence the generation of NPCs.");
 Setting.addList("maxNPC", {
@@ -2647,7 +2660,7 @@ Setting.addToggle("debug", {
 
 Config.history.maxStates = 20;
 Config.passages.transitionOut = 10;
-/* twine-user-script #18: "shop.js" */
+/* twine-user-script #19: "shop.js" */
 class Shop {
 	constructor (config) {
 		this.categories = [];
@@ -2710,7 +2723,11 @@ class Shop {
 Object.defineProperty(window, 'Shop', {
     value : Shop
 });
-/* twine-user-script #19: "tags.js" */
+/* twine-user-script #20: "specialEventMoves.js" */
+Config.navigation.override = function (dest) {
+	// Do here some special navigation
+};
+/* twine-user-script #21: "tags.js" */
 window.tags = {
 	base: {
 		isPresent: (data) => State.variables.player.currRoom === State.variables[data.npc].schedule.currRoom,
@@ -2743,7 +2760,7 @@ window.tags = {
 		}
 	}
 };
-/* twine-user-script #20: "time.js" */
+/* twine-user-script #22: "time.js" */
 class Timer {
 	constructor(config) {
 		this.time = {hour: 0, minute: 0};
@@ -3642,8 +3659,6 @@ State.variables.minorNPC = [];
 	cpartyBonus: false,
 	cpartyPenalty: false
 }&gt;&gt;
-
-&lt;&lt;set $bluePinkGradient to [&quot;#0200b8&quot;,&quot;#0501b8&quot;,&quot;#0701b7&quot;,&quot;#0901b7&quot;,&quot;#0b01b7&quot;,&quot;#0e02b7&quot;,&quot;#1002b7&quot;,&quot;#1202b6&quot;,&quot;#1403b6&quot;,&quot;#1703b6&quot;,&quot;#1903b6&quot;,&quot;#1b04b6&quot;,&quot;#1e04b6&quot;,&quot;#2004b5&quot;,&quot;#2204b5&quot;,&quot;#2405b5&quot;,&quot;#2705b5&quot;,&quot;#2905b5&quot;,&quot;#2b06b4&quot;,&quot;#2e06b4&quot;,&quot;#3006b4&quot;,&quot;#3207b4&quot;,&quot;#3407b4&quot;,&quot;#3707b3&quot;,&quot;#3907b3&quot;,&quot;#3b08b3&quot;,&quot;#3d08b3&quot;,&quot;#4008b3&quot;,&quot;#4209b3&quot;,&quot;#4409b2&quot;,&quot;#4709b2&quot;,&quot;#490ab2&quot;,&quot;#4b0ab2&quot;,&quot;#4d0ab2&quot;,&quot;#500ab1&quot;,&quot;#520bb1&quot;,&quot;#540bb1&quot;,&quot;#570bb1&quot;,&quot;#590cb1&quot;,&quot;#5b0cb0&quot;,&quot;#5d0cb0&quot;,&quot;#600cb0&quot;,&quot;#620db0&quot;,&quot;#640db0&quot;,&quot;#660db0&quot;,&quot;#690eaf&quot;,&quot;#6b0eaf&quot;,&quot;#6d0eaf&quot;,&quot;#700faf&quot;,&quot;#720faf&quot;,&quot;#740fae&quot;,&quot;#760fae&quot;,&quot;#7910ae&quot;,&quot;#7b10ae&quot;,&quot;#7d10ae&quot;,&quot;#8011ad&quot;,&quot;#8211ad&quot;,&quot;#8411ad&quot;,&quot;#8612ad&quot;,&quot;#8912ad&quot;,&quot;#8b12ad&quot;,&quot;#8d12ac&quot;,&quot;#8f13ac&quot;,&quot;#9213ac&quot;,&quot;#9413ac&quot;,&quot;#9614ac&quot;,&quot;#9914ab&quot;,&quot;#9b14ab&quot;,&quot;#9d14ab&quot;,&quot;#9f15ab&quot;,&quot;#a215ab&quot;,&quot;#a415aa&quot;,&quot;#a616aa&quot;,&quot;#a916aa&quot;,&quot;#ab16aa&quot;,&quot;#ad17aa&quot;,&quot;#af17aa&quot;,&quot;#b217a9&quot;,&quot;#b417a9&quot;,&quot;#b618a9&quot;,&quot;#b818a9&quot;,&quot;#bb18a9&quot;,&quot;#bd19a8&quot;,&quot;#bf19a8&quot;,&quot;#c219a8&quot;,&quot;#c41aa8&quot;,&quot;#c61aa8&quot;,&quot;#c81aa7&quot;,&quot;#cb1aa7&quot;,&quot;#cd1ba7&quot;,&quot;#cf1ba7&quot;,&quot;#d21ba7&quot;,&quot;#d41ca7&quot;,&quot;#d61ca6&quot;,&quot;#d81ca6&quot;,&quot;#db1da6&quot;,&quot;#dd1da6&quot;,&quot;#df1da6&quot;,&quot;#e11da5&quot;,&quot;#e41ea5&quot;]&gt;&gt;
 
 &lt;&lt;include &quot;characterInit&quot;&gt;&gt;
 &lt;&lt;include &quot;clothesInit&quot;&gt;&gt;
@@ -4627,7 +4642,7 @@ $wife.name drags you towards the [[Master Bedroom|mansionCPartyIntro04]]</tw-pas
 
 &lt;&lt;= $player.speak(&quot;But it wasn&#39;t me! I got shoved...&quot;)&gt;&gt; Your heat is thrumming in your chest at the mention of the camps. From the few stories you&#39;ve head about them over the last week, they&#39;re pretty severe with gangs and cruel guards that treat their charges like cattle.
 
-&lt;&lt;= $wife.speak(&quot;I don&#39;t want to hear your weak exuses.&quot;)&gt;&gt; You&#39;ve never realised you could feel this small, but $wife.name was holding all the cards. &lt;&lt;= $wife.speak(&quot;The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away, but this will have to do. I couldn&#39;t have someone in your state around the guests. If you agree and do a good job, I&#39;ll pretend this whole mess never happened. What do you say? It&#39;s either this or I hand you over to the state.&quot;)&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;I don&#39;t want to hear your weak excuses.&quot;)&gt;&gt; You&#39;ve never realised you could feel this small, but $wife.name was holding all the cards. &lt;&lt;= $wife.speak(&quot;The only solution is that you take over serving duties at the party tonight. I was originally going to hide you away, but this will have to do. I couldn&#39;t have someone in your state around the guests. If you agree and do a good job, I&#39;ll pretend this whole mess never happened. What do you say? It&#39;s either this or I hand you over to the state.&quot;)&gt;&gt;
 
 [[Agree to serve a the party. It&#39;s the only real option you have.|mansionCPartyIntro05]]</tw-passagedata><tw-passagedata pid="86" name="mansionCPartyIntro05" tags="event" position="725,1100" size="100,100">&lt;&lt;= $wife.speak(&quot;Exellent. Not that you have a choice though. Who knows, if you like it, we might make this part of your normal duties. Now we can&#39;t have you dressed like this so stay there while I get you something to wear.&quot;)&gt;&gt;
 
@@ -4682,7 +4697,7 @@ $wife.name puts the items on top of your normal clothes. &lt;&lt;= $wife.speak(&
 &lt;&lt;= $player.inv.addItem($shop.getAsTemp(&quot;Lacey black silk panties&quot;), 1, true)&gt;&gt;
 &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="mansionCPartyIntro08" tags="event" position="1100,1100" size="100,100">$wife.name pulls out a razor and some shaving butter. She start rubbing the oil all over your legs.
 
-&lt;&lt;= $wife.speak(&quot;Hmm. It&#39;s nice a sparse already. Convenient.&quot;)&gt;&gt;
+&lt;&lt;= $wife.speak(&quot;Hmm. It&#39;s nice and sparse already. Convenient.&quot;)&gt;&gt;
 
 She then begins softly running the razor in lines down your thigh. The feel of her hands rubbing oil over your legs and now the razor is definetly having an effect on other parts of your body. You try to shift your seat and make room for your growing arousal.
 
@@ -5952,7 +5967,7 @@ $wife.name is standing at the entrance watching you thoughtfully.
 
 &lt;&lt;= $wife.speak(&quot;If you&#39;re stuggling because of your small stature we could always find something to assist.&quot;)&gt;&gt;
 
-&lt;&lt;= $player.speak(&quot;&lt;i&gt;Wow, she&#39;s actually suggesting soemthing to help.&lt;/i&gt;&quot;)&gt;&gt;
+&lt;&lt;= $player.speak(&quot;&lt;i&gt;Wow, she&#39;s actually suggesting something to help.&lt;/i&gt;&quot;)&gt;&gt;
 
 &lt;&lt;= $player.speak(&quot;A step stool would be nice $wife.title.&quot;)&gt;&gt;
 
@@ -6287,7 +6302,7 @@ $cook.name once again surprises you buy having a small work space set up for you
 
 He walks around behind you and reaches around to grab your arms. You stiffen up as his chest presses against your back.
 
-&lt;&lt;= $cook.speak(&quot;You need to find a rythm.&quot;)&gt;&gt;
+&lt;&lt;= $cook.speak(&quot;You need to find a rhythm.&quot;)&gt;&gt;
 
 $cook.name guides your hands as he quickly help you slice what&#39;s in front of you.
 
@@ -6449,7 +6464,7 @@ You decide to focus on what you are doing. The teacup is almost full and you man
 &lt;&lt;end&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="181" name="breakfastPJs02" tags="noreturn chore" position="100,2350" size="100,100">&lt;!-- Random % chance during [wakeUp] --&gt;
 
-Breakfast is almost halfway done when $daughter.name pads in to the room rubbing her eyes. It was clearly a long night her. Her blonde hair is bairly kept back in a loose ponytail and her eyes are bloodshot. This doesn&#39;t detract fromt he fact she&#39;s wearing nothing but a lacey black thong and a white tanks top that is so thin you can see the outline of her nipples underneath.
+Breakfast is almost halfway done when $daughter.name pads in to the room rubbing her eyes. It was clearly a long night her. Her blonde hair is barely kept back in a loose ponytail and her eyes are bloodshot. This doesn&#39;t detract from the fact she&#39;s wearing nothing but a lacy black thong and a white tank top that is so thin you can see the outline of her nipples underneath.
 
 &lt;&lt;= $wife.speak(&quot;$daughter.name, really?&quot;)&gt;&gt;
 
@@ -7711,9 +7726,9 @@ Games:
 
 &lt;&lt;= $player.speak(&quot;&lt;i&gt;Why can&#39;t it just say How to Clean?&lt;/i&gt;&quot;)&gt;&gt;
 
-It has a lot of general tips and tricks such as the difference between &quot;zone cleaning&quot; and &quot;task cleaning&quot;, always working top to bottom and left to right. The further you read to more in depth the information gets right down to the different components of the cleaning products you should use.
+It has a lot of general tips and tricks such as the difference between &quot;zone cleaning&quot; and &quot;task cleaning&quot;, always working top to bottom and left to right. The further you read, the more in depth the information gets, right down to the different components of the cleaning products you should use.
 
-Throughout the guide you see example of the different method. Each one has a picture of a woman in a cute maid outfit. The hem line of the skirt is a little high and you can see the tops of her stockings in some pictures. This usually in the section about how to present yourself, the proper work attire and how to under stand the needs of your host. It&#39;s all a bit more risqué than you would expect a professional guide to be but you enjoy looking at the alluring model anyway.
+Throughout the guide you see examples of the different movements yous hould use to clean. Strangely most of them advise restricting movement of the knees, saying you should bend at the hips as much as possible. The reason starts to become obivous as each one has a picture of a woman in a cute maid outfit. The hem line of the skirt is a little high and you can see the tops of her stockings in some pictures. These pictures get even more revealing in the section about how to present yourself, the proper work attire, and how to understand the needs of your host. It&#39;s all a bit more risqué than you would expect a professional guide to be but you enjoy looking at the alluring model anyway.
 
 It&#39;s also seems unsually thorough on the methods for keeping your apron pure white at all times.
 
@@ -7778,7 +7793,7 @@ In this room, there are:
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;= _evnt = $mansion.checkEvent([$player.currRoom]); _evnt ? _evnt.playEvent() : &quot;&quot;&gt;&gt;
 &lt;br&gt;
-&lt;&lt;set _chores to $mansion.rooms[$player.currRoom].displayChores(true, false, true)&gt;&gt;
+&lt;&lt;set _chores to $mansion.rooms[$player.currRoom].displayChores(true, false, false)&gt;&gt;
 &lt;&lt;if _chores !== &quot;&quot;&gt;&gt;
 Chores:
 &lt;&lt;= _chores&gt;&gt;

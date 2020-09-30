@@ -1,6 +1,6 @@
 function skipChores() {
 	// Checks if the chores are counted during the reset
-	return State.variables.time.day === 0 || State.variables.mansion.currentEvent !== "";
+	return State.variables.time.day === 0 || State.variables.mansion.currentEvent.name !== "";
 }
 
 class Chore {
@@ -34,20 +34,20 @@ class Chore {
 
 		var chorebutton;
 		if (State.variables.player.currRoom === this.room && !this.done) 
-			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp("cleaning", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.rooms[this.room].passage}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.rooms["${this.room}"].findChore("${this.name}").done = true>><</link>>`
+			chorebutton = `<<link "${this.name}" "${this.passage}">><<set $player.levelUp("cleaning", ${this.xp})>><<set $aPsgText to '${State.variables.mansion.rooms[this.room].passage()}'>><<set $player.currRoom="${this.room}">><<set $time.addTime(${JSON.stringify(this.duration)})>><<set $mansion.rooms["${this.room}"].findChore("${this.name}").done = true>><</link>>`
 		else if (!canDoChores || this.done)
 			chorebutton = this.name;
 		else
-			chorebutton = State.variables.mansion.findRoom(this.room).getPassage(this.name);
+			chorebutton = State.variables.mansion.rooms[this.room].passage(this.name);
 
 		var status = "";
 		if (this.done) status = "DONE";
 		else if (!State.variables.player.hasEnoughStamina(this.staminaCost)) status = "TOO TIRED";
 		else if (State.variables.time.endsAfter(this.time.end, this.duration) || State.variables.time.compareTime(this.time.start) > 0) status = "WRONG TIME";
 		
-		if (hidelocation) return `<li>${chorebutton} : ${status}</li>`;
+		if (!hidelocation) return `<li>${chorebutton} : ${status}</li>`;
 
-		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.findRoom(this.room).name}</td><td>${status}</td></tr>`
+		var choreContent = `<tr><td>${chorebutton}</td><td>${State.variables.mansion.rooms[this.room].name}</td><td>${status}</td></tr>`
 
 		return choreContent;
 	}

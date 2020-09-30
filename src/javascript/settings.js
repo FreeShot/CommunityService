@@ -1,5 +1,6 @@
 setup.ImagePath = "img/";
 setup.SoundPath = "sound/";
+Config.saves.autoload = "prompt";
 
 Setting.addHeader("NPC", "Anything that influence the generation of NPCs.");
 Setting.addList("maxNPC", {

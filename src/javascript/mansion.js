@@ -38,7 +38,7 @@ class Mansion {
 	}
 
 	displayChores(canDoChores, filterDone) {
-		return Object.keys(this.rooms).reduce((str, room) => str + this.rooms[room].displayChores(canDoChores && this.currentEvent == "", filterDone), "") || "No chores now"
+		return Object.values(this.rooms).reduce((str, room) => str + room.displayChores(canDoChores && this.currentEvent.name === "", filterDone, true), "") || "No chores now"
 	}
 
 	checkEvent(trigger) {
