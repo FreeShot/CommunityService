@@ -1,31 +1,439 @@
-::StoryInit [nodebug init]
-<<set $version to "V0.2.0">>
-<<set $firstTime to recall('firstTime', true)>><<= memorize('firstTime', false)>>
+::StoryInit
 
-<<set $lastTime to {abs: 0, rel: 0, tp: 0}>>
-<<set $time to new Timer({day: 2, time: {hour: 19, minute: 0}})>>
+<<set setup.rooms = [
+	{ // 0
+		name: "Foyer",
+		adjacent: 150,
+		chores: [
+			{
+				name: "Clean foyer",
+				passages: [
+					"foyerCleaning",
+					"foyerSweepMop",
+					"foyerDusting"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 1
+		name: "Lower hall",
+		adjacent: 3573,
+		chores: [
+			{
+				name: "Clean hall",
+				passages: [
+					"hallCleaning",
+					"hallDusting",
+					"hallSweepMop"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 2
+		name: "Upper Hall",
+		adjacent: 114691,
+		chores: [
+			{
+				name: "Clean upper hall",
+				passages: [
+					"hallCleaning",
+					"hallDusting",
+					"hallSweepMop"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 3
+		name: "Garden",
+		img: "Garden1.jpg",
+		adjacent: 12530,
+		chores: [
+			{
+				name: "Clean garden",
+				passages: [
+					"gardenCleaning",
+					"gardenSweep"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 4
+		name: "Kitchen",
+		img: "Kitchen/Kitchen.jpg",
+		adjacent: 203,
+		chores: [
+			{
+				name: "Do the dishes",
+				passages: [
+					"kitchenDishes"
+				],
+				duration: 30,
+				stamina: 10
+			},
+			{
+				name: "Clean the kitchen",
+				passages: [
+					"kitchenClean",
+					"kitchenSweepMop"
+				],
+				duration: 30,
+				stamina: 10
+			}
+		]
+	},
+	{ // 5
+		name: "Laundry",
+		img: "Laundry/Laundry.jpg",
+		adjacent: 10,
+		chores: [
+			{
+				name: "Wash linen in the laundry",
+				passages: [
+					"laundryLinen"
+				],
+				duration: 60,
+				stamina: 10
+			},
+			{
+				name: "Wash clothes in the laundry",
+				passages: [
+					"laundryClothes"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 6
+		name: "Lounge",
+		img: "Lounge/Lounge.jpg",
+		adjacent: 155,
+		chores: [
+			{
+				name: "Clean lounge",
+				duration: 120,
+				passages: [
+					"loungeCleaning",
+					"loungeDusting",
+					"loungeSweepMop",
+					"loungeWindows"
+				],
+				stamina: 2
+			}
+		]
+	},
+	{ // 7
+		name: "Dining room",
+		img: "Dining/Dining.jpg",
+		adjacent: 91,
+		chores: [
+			{
+				name: "Clean dining room",
+				passages: [
+					"diningCleaning",
+					"diningDusting",
+					"diningSweepMop",
+					"diningWindows"
+				],
+				duration: 120,
+				stamina: 2
+			}
+		]
+	},
+	{ // 8
+		name: "Master bedroom",
+		img: "MasterBdRm/Bedroom.jpg",
+		adjacent: 514,
+		chores: [
+			{
+				name: "Clean master bedroom",
+				passages: [
+					"masterBdRmCleaning",
+					"masterBdRmDusting",
+					"masterBdRmVacuum",
+					"masterBdRmWindows"
+				],
+				duration: 60,
+				stamina: 2
+			}
+		]
+	},
+	{ // 9
+		name: "Master bathroom",
+		img: "MasterBathRm/Bathroom.jpg",
+		adjacent: 256,
+		chores: [
+			{
+				name: "Clean master bathroom",
+				passages: [
+					"masterBathRmCleaning",
+					"masterBathRmSweepMop",
+					"masterBathRmSink",
+					"masterBathRmToilet",
+					"masterBathRmShower",
+					"masterBathRmBath"
+				],
+				duration: 60,
+				stamina: 2
+			}
+		]
+	},
+	{ // 10
+		name: "Office",
+		img: "Office/Office.jpg",
+		adjacent: 2,
+		chores: [
+			{
+				name: "Clean office",
+				passages: [
+					"officeCleaning",
+					"officeDusting",
+					"officeVacuum",
+					"officeWindows"
+				],
+				duration: 60,
+				stamina: 2
+			}
+		]
+	},
+	{ // 11
+		name: "Your bedroom",
+		img: "PlayerBdRm/Bedroom.jpg",
+		adjacent: 2,
+		chores: [
+			{
+				name: "Tidy your room",
+				passages: [
+					"playerBdRmCleaning",
+					"playerBdRmClean"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 12
+		name: "Pool",
+		img: "Pool/Pool.jpg",
+		adjacent: 8200,
+		chores: [
+			{
+				name: "Clean pool",
+				passages: [
+					"poolCleaning",
+					"poolSweep"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 13
+		name: "Gym",
+		img: "Gym/Gym1.jpg",
+		adjacent: 4104,
+		chores: [
+			{
+				name: "Gym",
+				passages: [
+					"gymCleaning",
+					"gymSweepMop",
+					"gymWindows"
+				],
+				duration: 120,
+				stamina: 2
+			}
+		]
+	},
+	{ // 14
+		name: "Mystery room",
+		img: "SonBdRm/Locked.jpg",
+		adjacent: 4,
+		chores: []
+	},
+	{ // 15
+		name: "Daughter&apos;s bedroom",
+		img: "DaughterBdRm/Bedroom.jpg",
+		adjacent: 4,
+		chores: [
+			{
+				name: "Clean the daughter&apos;s bedroom",
+				passages: [
+					"daughterBdRmCleaning",
+					"daughterBdRmDusting",
+					"daughterBdRmVacuum",
+					"daughterBdRmWindows"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	},
+	{ // 16
+		name: "Guest room",
+		img: "GuestRm/Bedroom.jpg",
+		adjacent: 4,
+		chores: [
+			{
+				name: "Clean the guest room",
+				passages: [
+					"guestRmCleaning",
+					"guestRmDusting",
+					"guestRmVacuum",
+					"guestRmWindows"
+				],
+				duration: 60,
+				stamina: 10
+			}
+		]
+	}
+]>>
 
-<<set $flags to {
-	CUFF : 0,
-	manorIntro : 0,
-	partyRule : false,
-	gymUnlocked : false,
-	wardrobeEdit : true,
-	filterDone: false,
-	therapyPath : 0,
-	daugherDate: 0,
-	suitorIntroPanic: null,
-	kissedSuitor: false,
-	cpartyBonus: false,
-	cpartyPenalty: false
+<<set setup.npc = [
+	{
+		name: "Mr Sono",
+		title: "Sir",
+		schedule: [
+			{room: 7, start: 360},
+			{room: -1, start: 480},
+			{room: 10, start: 180},
+			{room: 6, start: 1200},
+			{room: 8, start: 1320}
+		]
+	},
+	{
+		name: "Mrs Sono",
+		title: "Ma&apos;am",
+		schedule: [
+			{room: 7, start: 360},
+			{room: -1, start: 480},
+			{room: -2, start: 900},
+			{room: 10, start: 960},
+			{room: 6, start: 1200},
+			{room: 8, start: 1320}
+		]
+	},
+	{
+		name: "Angeline",
+		title: "Ms Sono",
+		schedule: [
+			{room: 7, start: 360},
+			{room: -2, start: 480},
+			{room: 13, start: 540},
+			{room: 12, start: 660},
+			{room: -2, start: 720},
+			{room: 15, start: 900}
+		]
+	},
+	{
+		name: "Mr Sono",
+		title: "Mr Sono",
+		schedule: []
+	},
+	{
+		name: "Mr benson",
+		title: "Mr benson",
+		schedule: [
+			{room: 7, start: 360},
+			{room: -2, start: 480},
+			{room: 10, start: 1080},
+			{room: -2, start: 1200},
+			{room: -1, start: 1320}
+		]
+	},
+	{
+		name: "Liv",
+		title: "Dr Miller",
+		schedule: []
+	},
+	{
+		name: "Ivan",
+		title: "Cook",
+		schedule: [
+			{room: 4, start: 720},
+			{room: -1, start: 960},
+			{room: 4, start: 1020},
+			{room: -1, start: 1200}
+		]
+	},
+	{
+		name: "Juan",
+		title: "Juan",
+		schedule: [
+			{room: 3, start: 360},
+			{room: -1, start: 720},
+			{room: 12, start: 780},
+			{room: -1, start: 900}
+		]
+	},
+	{
+		name: "Mason",
+		title: "Chef",
+		schedule: []
+	},
+	{
+		name: "Rick",
+		title: "Mr Stone",
+		schedule: []
+	}
+]>>
+
+<<set setup.npcLookup = [
+	"owner", 
+	"wife", 
+	"daughter", 
+	"son", 
+	"butler", 
+	"therapist", 
+	"cook", 
+	"gardner", 
+	"caterer", 
+	"suitor"
+]>>
+
+<<set $npcAppreciation = [
+	0, // Owner 
+	0, // Wife
+	0, // Daughter
+	0, // Son
+	0, // Butler
+	0, // Therapist
+	0, // Cook
+	0, // Gardner
+	0, // Caterer
+	0  // Suitor
+]>>
+
+<<set $player = {
+	name: "Alex",
+	fname: "Alex",
+	title: "servant",
+	femininity: 0,
+	color: [[53, 124, 217], [223, 121, 189]],
+	voice: [0, 0], // Current - absolute
+	stamina: [100, 100],
+	arousal: [100, 100],
+	currRoom: 11,
+	lastRoom: 11,
+	debt: 100000,
+	money: 0,
+	stats: {
+		"serving": 1,
+		"cleaning": 1,
+		"fitness": 1
+	},
+	choreFailed: 0,
+	weekFailed: 0
 }>>
 
-<<set $bluePinkGradient to ["#0200b8","#0501b8","#0701b7","#0901b7","#0b01b7","#0e02b7","#1002b7","#1202b6","#1403b6","#1703b6","#1903b6","#1b04b6","#1e04b6","#2004b5","#2204b5","#2405b5","#2705b5","#2905b5","#2b06b4","#2e06b4","#3006b4","#3207b4","#3407b4","#3707b3","#3907b3","#3b08b3","#3d08b3","#4008b3","#4209b3","#4409b2","#4709b2","#490ab2","#4b0ab2","#4d0ab2","#500ab1","#520bb1","#540bb1","#570bb1","#590cb1","#5b0cb0","#5d0cb0","#600cb0","#620db0","#640db0","#660db0","#690eaf","#6b0eaf","#6d0eaf","#700faf","#720faf","#740fae","#760fae","#7910ae","#7b10ae","#7d10ae","#8011ad","#8211ad","#8411ad","#8612ad","#8912ad","#8b12ad","#8d12ac","#8f13ac","#9213ac","#9413ac","#9614ac","#9914ab","#9b14ab","#9d14ab","#9f15ab","#a215ab","#a415aa","#a616aa","#a916aa","#ab16aa","#ad17aa","#af17aa","#b217a9","#b417a9","#b618a9","#b818a9","#bb18a9","#bd19a8","#bf19a8","#c219a8","#c41aa8","#c61aa8","#c81aa7","#cb1aa7","#cd1ba7","#cf1ba7","#d21ba7","#d41ca7","#d61ca6","#d81ca6","#db1da6","#dd1da6","#df1da6","#e11da5","#e41ea5"]>>
+<<set $currentChores = setup.setChores(0.4)>>
 
-<<include "DocumentationInit">>
-<<include "characterInit">>
-<<include "clothesInit">>
-<<include "roomInit">>
-<<include "choresInit">>
-<<include "eventInit">>
-<<include "bodyPartInit">>
+<<set $time = {day: 0, minute: 0}>>

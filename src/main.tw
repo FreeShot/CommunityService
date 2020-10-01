@@ -1,12 +1,6 @@
 ::StoryTitle [nodebug]
 Community Service
 
-::StorySubtitle [nodebug]
-Version $version
-
-::StoryAuthor [nodebug]
-By FreeShot and Yaflow
-
 ::StoryData
 {
 	"ifid": "F27062CA-5A07-4478-873B-12A1026BEEAA",
@@ -14,35 +8,8 @@ By FreeShot and Yaflow
 }
 
 ::Start [startPassage]
-<div id='game-title-info'><span id='game-title'>Community Service</span>
-<span id='game-author'>A game by FreeShot and Yaflow</span></div>
 
-<div class="warning">\
-This game is intended for a mature audience. If you are too young, please <a class="link-internal" href="https://www.google.fr">leave.</a>
-
-Here is the [[changelog]] for the current version of the game.
-
-Feel free to <a href="https://discord.gg/c7pP7mY">join our discord</a>
-</div>
-<<tooltips "info" "disable-tips">><</tooltips>>
-[[Start the game|Intro1]]
-<<if !$firstTime>>
-<<link "Skip the introduction (Start with the default character)" "PlayerBdRm">>
-<<set $flags to {
-	CUFF : 3,
-	manorIntro : 1
-}>>
-<<= $time.setDate({day: 2, hour: 22, minute: 0})>>
-<</link>>
-<<else>>
-<<chooseOption "Skip the introduction (Start with the default character)">>
-Are you sure you want to skip the intro (Not recommended for first timers)?
-<<link "Yes" "PlayerBdRm">>
-<<set $flags to {
-	CUFF : 3,
-	manorIntro : 1
-}>>
-<<= $time.setDate({day: 2, hour: 22, minute: 0})>>
-<</link>>
-<</chooseOption>>
-<</if>>	
+<<for _i = 0; _i < 100; _i++>>
+<<= setup.character.speak(setup.player.getColor(), "This is me saying something")>>
+<<set $player.femininity++>>
+<</for>>
