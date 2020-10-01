@@ -141,8 +141,10 @@ setup.locationNpc = function(name) {
 	var currRoom = setup.npc[name].schedule[scheduleNow].room;
 	var nextRoom = setup.npc[name].schedule[scheduleNext].room;
 
-	if(currRoom < 0) currRoom = 0;
-	if(nextRoom < 0) nextRoom = 0;
+	if(currRoom === -2) currRoom = 0;
+	else if(currRoom === -1) currRoom = random(0, setup.rooms.length);
+	if(nextRoom === -2) nextRoom = 0;
+	else if(nextRoom === -1) nextRoom = random(0, setup.rooms.length);
 
 	var path = setup.pathfind.buildPath(currRoom, nextRoom);
 
