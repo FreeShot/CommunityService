@@ -15,5 +15,5 @@ setup.player = {
 		console.log(pickHex(player.color[0], player.color[1], ratio));
 		return pickHex(player.color[0], player.color[1], ratio).reduce((color, canal) => color + canal.toString(16), "#");
 	},
-	speak: (text) => setup.character.speak(setup.player.getColor(), text);
+	speak: (text) => setup.character.speak(setup.player.getColor(), text)
 }

@@ -9,7 +9,6 @@ Community Service
 
 ::Start [startPassage]
 
-<<for _i = 0; _i < 100; _i++>>
-<<= setup.character.speak(setup.player.getColor(), "This is me saying something")>>
-<<set $player.femininity++>>
-<</for>>
+TODO: Main menu
+
+[[Intro1]]
