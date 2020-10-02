@@ -33,3 +33,7 @@ setup.locationNpc = function(name) {
 	}
 	return room;
 }
+
+setup.speakNpc = function(id, text) {
+	return setup.character.speak(setup.npc[id].color, text);
+}

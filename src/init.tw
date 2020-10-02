@@ -307,7 +307,8 @@
 			{room: 10, start: 180},
 			{room: 6, start: 1200},
 			{room: 8, start: 1320}
-		]
+		],
+		color: "#555958"
 	},
 	{
 		name: "Mrs Sono",
@@ -319,7 +320,8 @@
 			{room: 10, start: 960},
 			{room: 6, start: 1200},
 			{room: 8, start: 1320}
-		]
+		],
+		color: "#621708"
 	},
 	{
 		name: "Angeline",
@@ -331,12 +333,14 @@
 			{room: 12, start: 660},
 			{room: -2, start: 720},
 			{room: 15, start: 900}
-		]
+		],
+		color: "#D0918A"
 	},
 	{
 		name: "Mr Sono",
 		title: "Mr Sono",
-		schedule: []
+		schedule: [],
+		color: "#69A8AD"
 	},
 	{
 		name: "Mr benson",
@@ -347,12 +351,14 @@
 			{room: 10, start: 1080},
 			{room: -2, start: 1200},
 			{room: -1, start: 1320}
-		]
+		],
+		color: "#634669"
 	},
 	{
 		name: "Liv",
 		title: "Dr Miller",
-		schedule: []
+		schedule: [],
+		color: "#621708"
 	},
 	{
 		name: "Ivan",
@@ -362,7 +368,8 @@
 			{room: -1, start: 960},
 			{room: 4, start: 1020},
 			{room: -1, start: 1200}
-		]
+		],
+		color: "#E2B05D"
 	},
 	{
 		name: "Juan",
@@ -372,17 +379,20 @@
 			{room: -1, start: 720},
 			{room: 12, start: 780},
 			{room: -1, start: 900}
-		]
+		],
+		color: "#00916E"
 	},
 	{
 		name: "Mason",
 		title: "Chef",
-		schedule: []
+		schedule: [],
+		color: "#EE6123"
 	},
 	{
 		name: "Rick",
 		title: "Mr Stone",
-		schedule: []
+		schedule: [],
+		color: "#D08816"
 	}
 ]>>
 
