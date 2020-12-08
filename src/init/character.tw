@@ -1,0 +1,72 @@
+:: Init Character
+<<set $owner to new Character(
+    "Mr Sono",
+    "Sir",
+    "#555958"
+)>>
+
+<<set $wife to new Character(
+    "Mrs Sono",
+    "Ma'am",
+    "#81412F"
+)>>
+
+<<set $daughter to new Character(
+    "Angeline",
+    "Ms Sono",
+    "#D0918A"
+)>>
+
+<<set $son to new Character(
+    "Mr Sono",
+    "Mr Sono",
+    "#69A8AD"
+)>>
+
+<<set $butler to new Character(
+    "Mr Benson",
+    "Mr Benson",
+    "#634669"
+)>>
+
+<<set $therapist to new Character(
+    "Liv",
+    "Dr Miller",
+    "#81412F"
+)>>
+
+<<set $cook to new Character(
+    "Ivan",
+    "Cook",
+    "#F6C467"
+)>>
+
+<<set $gardner to new Character(
+    "Juan",
+    "Juan",
+    "#00916E"
+)>>
+
+<<set $caterer to new Character(
+    "Mason",
+    "Chef",
+    "#EE6123"
+)>>
+
+<<set $suitor to new Character(
+    "Rick",
+    "Mr Stone",
+    "#D08816"
+)>>
+
+<<set setup.npcList = [
+	"owner", 
+	"wife", 
+	"daughter", 
+	"son", 
+	"butler", 
+	"cook", 
+	"gardner", 
+	"caterer", 
+	"suitor"
+]>>

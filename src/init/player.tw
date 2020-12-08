@@ -1,0 +1,2 @@
+:: Init Player
+<<set $player = new Player()>>

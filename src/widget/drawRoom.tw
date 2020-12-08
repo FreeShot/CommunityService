@@ -1,0 +1,7 @@
+:: widget drawRoom [widget nobr]
+<<widget "drawRoom">>
+
+<h1>$args[0]</h1>
+[>img[setup.ImagePath + "estate/" + $args[0]]]
+
+<</widget>>

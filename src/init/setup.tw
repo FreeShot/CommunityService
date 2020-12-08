@@ -1,0 +1,2 @@
+:: Init Setup
+<<set setup.ImagePath = "./img/">>
