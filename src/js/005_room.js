@@ -1,10 +1,11 @@
 window.Room = class Room extends Serializable {
-    constructor(id, name = id, adjacent = [], img = "") {
+    constructor(id, name = id, adjacent = [], chores = [], img = "") {
         super();
 
         this.id = id;
         this.name = name;
         this.adjacent = adjacent;
+        this.chores = chores;
         this.img = img;
     }
 

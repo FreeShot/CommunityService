@@ -36,11 +36,7 @@ After three, long hours $butler.name comes back to the dining room. He finished 
 
 Without a word $owner.name gets up and leaves with $butler.name right behind him. Once they are both gone you drop the tray to the table and relax your sore muscles. You'll be doing your best not spill a tray again.
 
-<<link "Return to your room." "PlayerBdRm">>
-<<set $time.addTime(0, 1, 0)>>
 <<set $player.submission += 1>>
-<<= $player.increaseArousal(5)>>
-<</link>>
 <</chooseOption>>
 
 :: breakfast default

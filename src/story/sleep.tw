@@ -1,21 +1,28 @@
-:: sleep [save]
+:: sleep [save sleep]
 [img[setup.ImagePath + "events/sleep/sleep1.jpg"]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It's been a long day so it's not long before you drift off to sleep.
 
 ## Todo events
 
-[[ Start the next day | wake up ][$time.hour = 6; $time.minute = 0]]
+<<link "Start the next day" "wake up">>
+    <<set $player.missedChores += Chore.getStats().missed>>
+    <<set $player.rest()>>
+    <<set $time.hour = 6>>
+    <<set $time.minute = 0>>
+<</link>>
 
-## Todo voice and arousal
-
-:: wake up
+:: wake up [sleep]
 The CUFF alarm goes off at 6am sharp and you quickly slap your had to your wrist and set it to snooze. It's not long before the room lights start to come on, forcing you to get up and start the day.
 
 ## Todo events ?
 
 You head to your small bathroom and sit down to relieve yourself. After that, you jump in the shower and quickly wash yourself before getting out and shaving. Once you're dressed, you head out to the kitchen and start getting things ready for breakfast.
 
-<<include either("breakfast 1", "breakfast 2", "breakfast bossy 1", "breakfast default")>>
+<<set _breakfast to either("breakfast bossy 1", "breakfast default")>>\
+<<include _breakfast>>
 
-[[ Return to your room | Your room ][$time.addTime(0, 1, 0)]]
+<<link "Return to your room" "Your room">>
+    <<set $time.addTime(0, 1, 0)>>
+    <<set Chore.planDay()>>
+<</link>>

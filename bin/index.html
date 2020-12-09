@@ -189,10 +189,14 @@ window.Player = class Player extends Character {
 
         this.stamina = {cur: 100, max: 100};
         this.arousal = {cur:   0, max: 100};
+
+        this.missedChores = 0;
     }
 
-    rest(amnt = this.stamina.max) {
-        this.stamina.cur = Math.min(this.stamina.max, amnt + this.stamina.cur)
+    rest(amnt = this.stamina.max, resetVoice = true) {
+        this.stamina.cur = Math.min(this.stamina.max, amnt + this.stamina.cur);
+        if (resetVoice)
+           this.voice.cur = this.voice.abs;
     }
 
     get color() {
@@ -275,12 +279,13 @@ window.Time = class Time extends Serializable {
 }
 /* twine-user-script #6: "005_room.js" */
 window.Room = class Room extends Serializable {
-    constructor(id, name = id, adjacent = [], img = "") {
+    constructor(id, name = id, adjacent = [], chores = [], img = "") {
         super();
 
         this.id = id;
         this.name = name;
         this.adjacent = adjacent;
+        this.chores = chores;
         this.img = img;
     }
 
@@ -333,7 +338,63 @@ window.Room = class Room extends Serializable {
 
     get type() {return "Room"}
 }
-/* twine-user-script #7: "chooseLink.js" */
+/* twine-user-script #7: "006_chores.js" */
+window.Chore = class Chore extends Serializable {
+    constructor(name, duration, passages) {
+        super();
+
+        this.name = name;
+        this.duration = duration;
+        this.passages = passages;
+
+        this.done = false;
+        this.todo = false;
+    }
+
+    static getChores(todoOnly = false) {
+        var chores = Object.values(State.variables.roomList)
+            .flatMap(room => room.chores);
+        if (todoOnly) return chores.filter(chore => chore.todo);
+        return chores;
+    }
+
+    static getStats() {
+        var chores = Chore.getChores(true);
+
+        var stats = {
+            done: 0,
+            missed: 0
+        }
+
+        chores.forEach(chore => {
+            if (chore.done)
+                stats.done++;
+            else
+                stats.missed++;
+        })
+
+        return stats;
+    }
+
+    static planDay(nbChore = 5) {
+        var chores = Chore.getChores();
+        chores.forEach(chore => {
+            chore.todo = false;
+            chore.done = false;
+        });
+
+        while (nbChore >= 0) {
+            either(chores).todo = true;
+            chores = chores.filter(chore => !chores.todo);
+            nbChore--;
+        }
+    }
+
+    get type() {
+        return "Chore";
+    }
+}
+/* twine-user-script #8: "chooseLink.js" */
 Macro.add("chooseOption", {
     tags: ["option", "end", "default"],
     handler: function() {
@@ -358,7 +419,7 @@ Macro.add("chooseOption", {
 		return $(this.output).wiki(`<span id='${id}'>${str}${def}</span>`) 
     }
 })
-/* twine-user-script #8: "speak.js" */
+/* twine-user-script #9: "speak.js" */
 Macro.add("speak", {
     tags: [],
     handler: function() {
@@ -375,7 +436,16 @@ Macro.add("speak", {
 })</script><tw-passagedata pid="1" name="StoryCaption" tags="" position="100,100" size="100,100">Week &lt;&lt;print $time.week&gt;&gt;
 &lt;&lt;print $time.weekDay&gt;&gt;
 
-&lt;&lt;print $time.clock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Init Character" tags="" position="225,100" size="100,100">&lt;&lt;set $owner to new Character(
+&lt;&lt;print $time.clock&gt;&gt;
+
+Missed chores: &lt;&lt;print $player.missedChores&gt;&gt;
+
+Chores:
+&lt;ul&gt;\
+&lt;&lt;for _chore range Chore.getChores(true)&gt;&gt;\
+    &lt;li&gt;&lt;&lt;print _chore.name&gt;&gt;&lt;/li&gt;\
+&lt;&lt;/for&gt;&gt;\
+&lt;/ul&gt;\</tw-passagedata><tw-passagedata pid="2" name="Init Character" tags="" position="225,100" size="100,100">&lt;&lt;set $owner to new Character(
     &quot;Mr Sono&quot;,
     &quot;Sir&quot;,
     &quot;#555958&quot;
@@ -464,6 +534,17 @@ Macro.add("speak", {
         &quot;Dining&quot;,
         &quot;UpperHall&quot;,
         &quot;LowerHall&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean foyer&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;foyer cleaning&quot;,
+                &quot;foyer sweeping&quot;,
+                &quot;foyer dusting&quot;
+            ]
+        )
     ], &quot;Foyer.jpg&quot;),
     &quot;LowerHall&quot; : new Room(&quot;LowerHall&quot;, &quot;Lower Hall&quot;, [
         &quot;Foyer&quot;,
@@ -476,6 +557,17 @@ Macro.add("speak", {
         &quot;Garden&quot;,
         &quot;Lounge&quot;,
         &quot;UpperHall&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean Hall&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;hall cleaning&quot;,
+                &quot;hall sweeping&quot;,
+                &quot;hall dusting&quot;
+            ]
+        )
     ]),
     &quot;UpperHall&quot; : new Room(&quot;UpperHall&quot;, &quot;Upper Hall&quot;, [
         &quot;Foyer&quot;,
@@ -483,6 +575,17 @@ Macro.add("speak", {
         &quot;DaughterBdRm&quot;,
         &quot;GuestRm&quot;,
         &quot;LowerHall&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean upper hall&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;hall cleaning&quot;,
+                &quot;hall sweeping&quot;,
+                &quot;hall dusting&quot;
+            ]
+        )
     ]),
     &quot;Garden&quot; : new Room(&quot;Garden&quot;, &quot;Garden&quot;, [
         &quot;Lounge&quot;,
@@ -491,6 +594,16 @@ Macro.add("speak", {
         &quot;Kitchen&quot;,
         &quot;Gym&quot;,
         &quot;LowerHall&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean garden&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;garden cleaning&quot;,
+                &quot;garden sweeping&quot;
+            ]
+        )
     ], &quot;Garden1.jpg&quot;),
     &quot;Kitchen&quot; : new Room(&quot;Kitchen&quot;, &quot;Kitchen&quot;, [
         &quot;Lounge&quot;,
@@ -498,10 +611,43 @@ Macro.add("speak", {
         &quot;Garden&quot;,
         &quot;Foyer&quot;,
         &quot;LowerHall&quot;
+    ],
+    [
+        new Chore(
+            &quot;Do the dishes&quot;,
+            new Time(0, 0, 30),
+            [
+                &quot;kitchen dishes&quot;
+            ]
+        ),
+        new Chore(
+            &quot;Clean the kitchen&quot;,
+            new Time(0, 0, 30),
+            [
+                &quot;kitchen cleaning&quot;,
+                &quot;kitchen sweeping&quot;
+            ]
+        )
     ], &quot;Kitchen.jpg&quot;),
-    &quot;Laundry&quot; : new Room(&quot;Lounge&quot;, &quot;Lounge&quot;, [
+    &quot;Laundry&quot; : new Room(&quot;Laundry&quot;, &quot;Laundry&quot;, [
         &quot;LowerHall&quot;,
         &quot;Garden&quot;
+    ],
+    [
+        new Chore(
+            &quot;Wash the clothes&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;laundry clothes&quot;
+            ]
+        ),
+        new Chore(
+            &quot;Wash linen&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;laundry linen&quot;
+            ]
+        )
     ], &quot;Laundry.jpg&quot;),
     &quot;Lounge&quot; : new Room(&quot;Lounge&quot;, &quot;Lounge&quot;, [
         &quot;Foyer&quot;,
@@ -509,6 +655,18 @@ Macro.add("speak", {
         &quot;Dining&quot;,
         &quot;LowerHall&quot;,
         &quot;Garden&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean lounge&quot;,
+            new Time(0, 2, 0),
+            [
+                &quot;lounge cleaning&quot;,
+                &quot;lounge sweeping&quot;,
+                &quot;lounge dusting&quot;,
+                &quot;lounge windows&quot;
+            ]
+        )
     ], &quot;Lounge.jpg&quot;),
     &quot;Dining&quot; : new Room(&quot;Dining&quot;, &quot;Dining Room&quot;, [
         &quot;Foyer&quot;,
@@ -516,36 +674,143 @@ Macro.add("speak", {
         &quot;Dining&quot;,
         &quot;LowerHall&quot;,
         &quot;Garden&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean dining&quot;,
+            new Time(0, 2, 0),
+            [
+                &quot;dining cleaning&quot;,
+                &quot;dining sweeping&quot;,
+                &quot;dining dusting&quot;,
+                &quot;dining windows&quot;
+            ]
+        )
     ], &quot;Dining.jpg&quot;),
     &quot;MasterBdRm&quot; : new Room(&quot;MasterBdRm&quot;, &quot;Master bedroom&quot;, [
         &quot;MasterBathRm&quot;,
         &quot;LowerHall&quot;
+    ], 
+    [
+        new Chore(
+            &quot;Clean the master bedroom&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;masterBdRm cleaning&quot;,
+                &quot;masterBdRm vacuum&quot;,
+                &quot;masterBdRm dusting&quot;,
+                &quot;masterBdRm windows&quot;
+            ]
+        )
     ], &quot;Bedroom.jpg&quot;),
     &quot;MasterBathRm&quot; : new Room(&quot;MasterBathRm&quot;, &quot;Master bathroom&quot;, [
         &quot;MasterBdRm&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean the master bathroom&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;masterBathRm cleaning&quot;,
+                &quot;masterBathRm sweeping&quot;,
+                &quot;masterBathRm sink&quot;,
+                &quot;masterBathRm shower&quot;,
+                &quot;masterBathRm bath&quot;
+            ]
+        )
     ], &quot;Bathroom.jpg&quot;),
     &quot;Office&quot; : new Room(&quot;Office&quot;, &quot;Office&quot;, [
         &quot;LowerHall&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean the office&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;office cleaning&quot;,
+                &quot;office vacuum&quot;,
+                &quot;office dusting&quot;,
+                &quot;office windows&quot;
+            ]
+        )
     ], &quot;Office.jpg&quot;),
     &quot;PlayerBdRm&quot; : new Room(&quot;PlayerBdRm&quot;, &quot;Your room&quot;, [
         &quot;LowerHall&quot;
+    ],
+    [
+        new Chore(
+            &quot;Tidy your room&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;playerBdRm cleaning&quot;,
+                &quot;playerBdRm clean&quot;
+            ]
+        )
     ], &quot;Bedroom.jpg&quot;),
     &quot;Pool&quot; : new Room(&quot;Pool&quot;, &quot;Pool&quot;, [
         &quot;Garden&quot;,
         &quot;Gym&quot;
+    ],
+    [
+        new Chore(
+            &quot;Clean pool&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;pool cleaning&quot;,
+                &quot;pool sweeping&quot;
+            ]
+        )
     ], &quot;Pool.jpg&quot;),
     &quot;Gym&quot; : new Room(&quot;Gym&quot;, &quot;Gym&quot;, [
         &quot;Garden&quot;,
         &quot;Pool&quot;
+    ], 
+    [
+        new Chore(
+            &quot;Clean the gym&quot;,
+            new Time(0, 2, 0),
+            [
+                &quot;gym cleaning&quot;,
+                &quot;gym sweep&quot;,
+                &quot;gym windows&quot;
+            ]
+        )
     ], &quot;Gym1.jpg&quot;),
     &quot;SonBdRm&quot; : new Room(&quot;SonBdRm&quot;, &quot;Mystery Room&quot;, [
         &quot;UpperHall&quot;
+    ], 
+    [
+
     ], &quot;Locked.jpg&quot;),
     &quot;DaughterBdRm&quot; : new Room(&quot;DautherBdRm&quot;, &quot;Daughter\&#39;s bedroom&quot;, [
         &quot;UpperHall&quot;
+    ], 
+    [
+        new Chore(
+            &quot;Clean the daughter\&#39;s bedroom&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;daughterBdRm cleaning&quot;,
+                &quot;daughterBdRm vacuum&quot;,
+                &quot;daughterBdRm dusting&quot;,
+                &quot;daughterBdRm windows&quot;
+            ]
+        )
     ], &quot;Bedroom.jpg&quot;),
     &quot;GuestRm&quot; : new Room(&quot;GuestRm&quot;, &quot;Guest room&quot;, [
         &quot;UpperHall&quot;
+    ], 
+    [
+        new Chore(
+            &quot;Clean the guest room&quot;,
+            new Time(0, 1, 0),
+            [
+                &quot;guestRm cleaning&quot;,
+                &quot;guestRm vacuum&quot;,
+                &quot;guestRm dusting&quot;,
+                &quot;guestRm windows&quot;
+            ]
+        )
     ], &quot;Bedroom.jpg&quot;)
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Init Setup" tags="" position="725,100" size="100,100">&lt;&lt;set setup.ImagePath = &quot;./img/&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="Start" tags="" position="850,100" size="100,100">&lt;h1 class=&quot;title&quot;&gt;Community Service&lt;/h1&gt;
 &lt;h2 class=&quot;subsitle&quot;&gt;A game by FreeShot and Yaflow&lt;/h2&gt;
@@ -594,11 +859,7 @@ After three, long hours $butler.name comes back to the dining room. He finished 
 
 Without a word $owner.name gets up and leaves with $butler.name right behind him. Once they are both gone you drop the tray to the table and relax your sore muscles. You&#39;ll be doing your best not spill a tray again.
 
-&lt;&lt;link &quot;Return to your room.&quot; &quot;PlayerBdRm&quot;&gt;&gt;
-&lt;&lt;set $time.addTime(0, 1, 0)&gt;&gt;
 &lt;&lt;set $player.submission += 1&gt;&gt;
-&lt;&lt;= $player.increaseArousal(5)&gt;&gt;
-&lt;&lt;/link&gt;&gt;
 &lt;&lt;/chooseOption&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="breakfast default" tags="" position="100,225" size="100,100">$butler.name is already in there to help setup. Fortunately the family isn&#39;t particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.
 
 [img[setup.ImagePath + &quot;events/chores/general_breakfast/bfast_continental01.jpg&quot;]]
@@ -943,7 +1204,7 @@ Desk: There is nothing here at the moment
     &lt;br&gt;
     [[ Stay here until the end of the day | $passage ][ $time.hour = 22; $time.minute = 0 ]]
     &lt;br&gt;
-    ## Todo: chores
+    &lt;&lt;listChores&gt;&gt;
 
     &lt;&lt;linkRoom&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -955,25 +1216,32 @@ Desk: There is nothing here at the moment
 
 ## Add events
 
-## Add chores
+&lt;&lt;listChores&gt;&gt;
 
-&lt;&lt;linkRoom&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="sleep" tags="save" position="975,350" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
+&lt;&lt;linkRoom&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="sleep" tags="save sleep" position="975,350" size="100,100">[img[setup.ImagePath + &quot;events/sleep/sleep1.jpg&quot;]]
 
 You turn in for the night and try to get some rest. You shut the lights off and tuck yourself under the sheets. It&#39;s been a long day so it&#39;s not long before you drift off to sleep.
 
 ## Todo events
 
-[[ Start the next day | wake up ][$time.hour = 6; $time.minute = 0]]
-
-## Todo voice and arousal</tw-passagedata><tw-passagedata pid="29" name="wake up" tags="" position="1100,350" size="100,100">The CUFF alarm goes off at 6am sharp and you quickly slap your had to your wrist and set it to snooze. It&#39;s not long before the room lights start to come on, forcing you to get up and start the day.
+&lt;&lt;link &quot;Start the next day&quot; &quot;wake up&quot;&gt;&gt;
+    &lt;&lt;set $player.missedChores += Chore.getStats().missed&gt;&gt;
+    &lt;&lt;set $player.rest()&gt;&gt;
+    &lt;&lt;set $time.hour = 6&gt;&gt;
+    &lt;&lt;set $time.minute = 0&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="wake up" tags="sleep" position="1100,350" size="100,100">The CUFF alarm goes off at 6am sharp and you quickly slap your had to your wrist and set it to snooze. It&#39;s not long before the room lights start to come on, forcing you to get up and start the day.
 
 ## Todo events ?
 
 You head to your small bathroom and sit down to relieve yourself. After that, you jump in the shower and quickly wash yourself before getting out and shaving. Once you&#39;re dressed, you head out to the kitchen and start getting things ready for breakfast.
 
-&lt;&lt;include either(&quot;breakfast 1&quot;, &quot;breakfast 2&quot;, &quot;breakfast bossy 1&quot;, &quot;breakfast default&quot;)&gt;&gt;
+&lt;&lt;set _breakfast to either(&quot;breakfast bossy 1&quot;, &quot;breakfast default&quot;)&gt;&gt;\
+&lt;&lt;include _breakfast&gt;&gt;
 
-[[ Return to your room | Your room ][$time.addTime(0, 1, 0)]]</tw-passagedata><tw-passagedata pid="30" name="PassageHeader" tags="" position="1225,350" size="100,100">&lt;&lt;set $passage to passage()&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="widget drawRoom" tags="widget nobr" position="100,475" size="100,100">&lt;&lt;widget &quot;drawRoom&quot;&gt;&gt;
+&lt;&lt;link &quot;Return to your room&quot; &quot;Your room&quot;&gt;&gt;
+    &lt;&lt;set $time.addTime(0, 1, 0)&gt;&gt;
+    &lt;&lt;set Chore.planDay()&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="PassageHeader" tags="" position="1225,350" size="100,100">&lt;&lt;set $passage to passage()&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="widget drawRoom" tags="widget nobr" position="100,475" size="100,100">&lt;&lt;widget &quot;drawRoom&quot;&gt;&gt;
 &lt;&lt;set _r to $roomList[$args[0]]&gt;&gt;
 &lt;h1&gt;&lt;&lt;= _r.name&gt;&gt;&lt;/h1&gt;
 &lt;&lt;if _r.img != &quot;&quot;&gt;&gt;[&gt;img[_r.imgPath]]&lt;&lt;/if&gt;&gt;
@@ -994,6 +1262,25 @@ From here you can go to:
         &lt;&lt;/capture&gt;&gt;
     &lt;&lt;/for&gt;&gt;
 &lt;/ul&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;listChores&quot;&gt;&gt;
+&lt;&lt;set _r to $roomList[$currentRoom]&gt;&gt;
+&lt;&lt;set _c to _r.chores.filter(chore =&gt; chore.todo)&gt;&gt;
+Chores to to here:
+&lt;&lt;if _c.length === 0&gt;&gt;
+None
+&lt;&lt;else&gt;&gt;
+&lt;ul&gt;
+    &lt;&lt;for _chore range _c&gt;&gt;
+        &lt;&lt;capture _chore&gt;&gt;
+            &lt;li&gt;
+                &lt;&lt;link _chore.name&gt;&gt;&lt;&lt;/link&gt;&gt;
+            &lt;/li&gt;
+        &lt;&lt;/capture&gt;&gt;
+    &lt;&lt;/for&gt;&gt;
+&lt;/ul&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/widget&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */

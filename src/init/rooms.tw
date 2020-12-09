@@ -8,6 +8,17 @@
         "Dining",
         "UpperHall",
         "LowerHall"
+    ],
+    [
+        new Chore(
+            "Clean foyer",
+            new Time(0, 1, 0),
+            [
+                "foyer cleaning",
+                "foyer sweeping",
+                "foyer dusting"
+            ]
+        )
     ], "Foyer.jpg"),
     "LowerHall" : new Room("LowerHall", "Lower Hall", [
         "Foyer",
@@ -20,6 +31,17 @@
         "Garden",
         "Lounge",
         "UpperHall"
+    ],
+    [
+        new Chore(
+            "Clean Hall",
+            new Time(0, 1, 0),
+            [
+                "hall cleaning",
+                "hall sweeping",
+                "hall dusting"
+            ]
+        )
     ]),
     "UpperHall" : new Room("UpperHall", "Upper Hall", [
         "Foyer",
@@ -27,6 +49,17 @@
         "DaughterBdRm",
         "GuestRm",
         "LowerHall"
+    ],
+    [
+        new Chore(
+            "Clean upper hall",
+            new Time(0, 1, 0),
+            [
+                "hall cleaning",
+                "hall sweeping",
+                "hall dusting"
+            ]
+        )
     ]),
     "Garden" : new Room("Garden", "Garden", [
         "Lounge",
@@ -35,6 +68,16 @@
         "Kitchen",
         "Gym",
         "LowerHall"
+    ],
+    [
+        new Chore(
+            "Clean garden",
+            new Time(0, 1, 0),
+            [
+                "garden cleaning",
+                "garden sweeping"
+            ]
+        )
     ], "Garden1.jpg"),
     "Kitchen" : new Room("Kitchen", "Kitchen", [
         "Lounge",
@@ -42,10 +85,43 @@
         "Garden",
         "Foyer",
         "LowerHall"
+    ],
+    [
+        new Chore(
+            "Do the dishes",
+            new Time(0, 0, 30),
+            [
+                "kitchen dishes"
+            ]
+        ),
+        new Chore(
+            "Clean the kitchen",
+            new Time(0, 0, 30),
+            [
+                "kitchen cleaning",
+                "kitchen sweeping"
+            ]
+        )
     ], "Kitchen.jpg"),
-    "Laundry" : new Room("Lounge", "Lounge", [
+    "Laundry" : new Room("Laundry", "Laundry", [
         "LowerHall",
         "Garden"
+    ],
+    [
+        new Chore(
+            "Wash the clothes",
+            new Time(0, 1, 0),
+            [
+                "laundry clothes"
+            ]
+        ),
+        new Chore(
+            "Wash linen",
+            new Time(0, 1, 0),
+            [
+                "laundry linen"
+            ]
+        )
     ], "Laundry.jpg"),
     "Lounge" : new Room("Lounge", "Lounge", [
         "Foyer",
@@ -53,6 +129,18 @@
         "Dining",
         "LowerHall",
         "Garden"
+    ],
+    [
+        new Chore(
+            "Clean lounge",
+            new Time(0, 2, 0),
+            [
+                "lounge cleaning",
+                "lounge sweeping",
+                "lounge dusting",
+                "lounge windows"
+            ]
+        )
     ], "Lounge.jpg"),
     "Dining" : new Room("Dining", "Dining Room", [
         "Foyer",
@@ -60,35 +148,142 @@
         "Dining",
         "LowerHall",
         "Garden"
+    ],
+    [
+        new Chore(
+            "Clean dining",
+            new Time(0, 2, 0),
+            [
+                "dining cleaning",
+                "dining sweeping",
+                "dining dusting",
+                "dining windows"
+            ]
+        )
     ], "Dining.jpg"),
     "MasterBdRm" : new Room("MasterBdRm", "Master bedroom", [
         "MasterBathRm",
         "LowerHall"
+    ], 
+    [
+        new Chore(
+            "Clean the master bedroom",
+            new Time(0, 1, 0),
+            [
+                "masterBdRm cleaning",
+                "masterBdRm vacuum",
+                "masterBdRm dusting",
+                "masterBdRm windows"
+            ]
+        )
     ], "Bedroom.jpg"),
     "MasterBathRm" : new Room("MasterBathRm", "Master bathroom", [
         "MasterBdRm"
+    ],
+    [
+        new Chore(
+            "Clean the master bathroom",
+            new Time(0, 1, 0),
+            [
+                "masterBathRm cleaning",
+                "masterBathRm sweeping",
+                "masterBathRm sink",
+                "masterBathRm shower",
+                "masterBathRm bath"
+            ]
+        )
     ], "Bathroom.jpg"),
     "Office" : new Room("Office", "Office", [
         "LowerHall"
+    ],
+    [
+        new Chore(
+            "Clean the office",
+            new Time(0, 1, 0),
+            [
+                "office cleaning",
+                "office vacuum",
+                "office dusting",
+                "office windows"
+            ]
+        )
     ], "Office.jpg"),
     "PlayerBdRm" : new Room("PlayerBdRm", "Your room", [
         "LowerHall"
+    ],
+    [
+        new Chore(
+            "Tidy your room",
+            new Time(0, 1, 0),
+            [
+                "playerBdRm cleaning",
+                "playerBdRm clean"
+            ]
+        )
     ], "Bedroom.jpg"),
     "Pool" : new Room("Pool", "Pool", [
         "Garden",
         "Gym"
+    ],
+    [
+        new Chore(
+            "Clean pool",
+            new Time(0, 1, 0),
+            [
+                "pool cleaning",
+                "pool sweeping"
+            ]
+        )
     ], "Pool.jpg"),
     "Gym" : new Room("Gym", "Gym", [
         "Garden",
         "Pool"
+    ], 
+    [
+        new Chore(
+            "Clean the gym",
+            new Time(0, 2, 0),
+            [
+                "gym cleaning",
+                "gym sweep",
+                "gym windows"
+            ]
+        )
     ], "Gym1.jpg"),
     "SonBdRm" : new Room("SonBdRm", "Mystery Room", [
         "UpperHall"
+    ], 
+    [
+
     ], "Locked.jpg"),
     "DaughterBdRm" : new Room("DautherBdRm", "Daughter\'s bedroom", [
         "UpperHall"
+    ], 
+    [
+        new Chore(
+            "Clean the daughter\'s bedroom",
+            new Time(0, 1, 0),
+            [
+                "daughterBdRm cleaning",
+                "daughterBdRm vacuum",
+                "daughterBdRm dusting",
+                "daughterBdRm windows"
+            ]
+        )
     ], "Bedroom.jpg"),
     "GuestRm" : new Room("GuestRm", "Guest room", [
         "UpperHall"
+    ], 
+    [
+        new Chore(
+            "Clean the guest room",
+            new Time(0, 1, 0),
+            [
+                "guestRm cleaning",
+                "guestRm vacuum",
+                "guestRm dusting",
+                "guestRm windows"
+            ]
+        )
     ], "Bedroom.jpg")
 }>>

@@ -21,3 +21,22 @@ From here you can go to:
     <</for>>
 </ul>
 <</widget>>
+
+<<widget "listChores">>
+<<set _r to $roomList[$currentRoom]>>
+<<set _c to _r.chores.filter(chore => chore.todo)>>
+Chores to to here:
+<<if _c.length === 0>>
+None
+<<else>>
+<ul>
+    <<for _chore range _c>>
+        <<capture _chore>>
+            <li>
+                <<link _chore.name>><</link>>
+            </li>
+        <</capture>>
+    <</for>>
+</ul>
+<</if>>
+<</widget>>

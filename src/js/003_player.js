@@ -16,10 +16,14 @@ window.Player = class Player extends Character {
 
         this.stamina = {cur: 100, max: 100};
         this.arousal = {cur:   0, max: 100};
+
+        this.missedChores = 0;
     }
 
-    rest(amnt = this.stamina.max) {
-        this.stamina.cur = Math.min(this.stamina.max, amnt + this.stamina.cur)
+    rest(amnt = this.stamina.max, resetVoice = true) {
+        this.stamina.cur = Math.min(this.stamina.max, amnt + this.stamina.cur);
+        if (resetVoice)
+           this.voice.cur = this.voice.abs;
     }
 
     get color() {

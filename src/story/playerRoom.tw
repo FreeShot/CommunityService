@@ -23,7 +23,7 @@ Desk: There is nothing here at the moment
     <br>
     [[ Stay here until the end of the day | $passage ][ $time.hour = 22; $time.minute = 0 ]]
     <br>
-    ## Todo: chores
+    <<listChores>>
 
     <<linkRoom>>
 <</if>>

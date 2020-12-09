@@ -3,3 +3,12 @@ Week <<print $time.week>>
 <<print $time.weekDay>>
 
 <<print $time.clock>>
+
+Missed chores: <<print $player.missedChores>>
+
+Chores:
+<ul>\
+<<for _chore range Chore.getChores(true)>>\
+    <li><<print _chore.name>></li>\
+<</for>>\
+</ul>\
