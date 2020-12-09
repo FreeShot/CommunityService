@@ -1,0 +1,5 @@
+:: StoryCaption
+Week <<print $time.week>>
+<<print $time.weekDay>>
+
+<<print $time.clock>>

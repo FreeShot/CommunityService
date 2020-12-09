@@ -1,0 +1,2 @@
+:: PassageHeader
+<<set $passage to passage()>>

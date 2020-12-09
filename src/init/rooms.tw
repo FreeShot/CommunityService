@@ -1,0 +1,94 @@
+:: Init Room
+
+<<set $currentRoom to "PlayerBdRm">>
+<<set $roomList to {
+    "Foyer" : new Room("Foyer", "Foyer", [
+        "Lounge",
+        "Kitchen",
+        "Dining",
+        "UpperHall",
+        "LowerHall"
+    ], "Foyer.jpg"),
+    "LowerHall" : new Room("LowerHall", "Lower Hall", [
+        "Foyer",
+        "MasterBdRm",
+        "Office",
+        "PlayerBdRm",
+        "Laundry",
+        "Kitchen",
+        "Dining",
+        "Garden",
+        "Lounge",
+        "UpperHall"
+    ]),
+    "UpperHall" : new Room("UpperHall", "Upper Hall", [
+        "Foyer",
+        "SonBdRm",
+        "DaughterBdRm",
+        "GuestRm",
+        "LowerHall"
+    ]),
+    "Garden" : new Room("Garden", "Garden", [
+        "Lounge",
+        "Pool",
+        "Dining",
+        "Kitchen",
+        "Gym",
+        "LowerHall"
+    ], "Garden1.jpg"),
+    "Kitchen" : new Room("Kitchen", "Kitchen", [
+        "Lounge",
+        "Dining",
+        "Garden",
+        "Foyer",
+        "LowerHall"
+    ], "Kitchen.jpg"),
+    "Laundry" : new Room("Lounge", "Lounge", [
+        "LowerHall",
+        "Garden"
+    ], "Laundry.jpg"),
+    "Lounge" : new Room("Lounge", "Lounge", [
+        "Foyer",
+        "Kitchen",
+        "Dining",
+        "LowerHall",
+        "Garden"
+    ], "Lounge.jpg"),
+    "Dining" : new Room("Dining", "Dining Room", [
+        "Foyer",
+        "Kitchen",
+        "Dining",
+        "LowerHall",
+        "Garden"
+    ], "Dining.jpg"),
+    "MasterBdRm" : new Room("MasterBdRm", "Master bedroom", [
+        "MasterBathRm",
+        "LowerHall"
+    ], "Bedroom.jpg"),
+    "MasterBathRm" : new Room("MasterBathRm", "Master bathroom", [
+        "MasterBdRm"
+    ], "Bathroom.jpg"),
+    "Office" : new Room("Office", "Office", [
+        "LowerHall"
+    ], "Office.jpg"),
+    "PlayerBdRm" : new Room("PlayerBdRm", "Your room", [
+        "LowerHall"
+    ], "Bedroom.jpg"),
+    "Pool" : new Room("Pool", "Pool", [
+        "Garden",
+        "Gym"
+    ], "Pool.jpg"),
+    "Gym" : new Room("Gym", "Gym", [
+        "Garden",
+        "Pool"
+    ], "Gym1.jpg"),
+    "SonBdRm" : new Room("SonBdRm", "Mystery Room", [
+        "UpperHall"
+    ], "Locked.jpg"),
+    "DaughterBdRm" : new Room("DautherBdRm", "Daughter\'s bedroom", [
+        "UpperHall"
+    ], "Bedroom.jpg"),
+    "GuestRm" : new Room("GuestRm", "Guest room", [
+        "UpperHall"
+    ], "Bedroom.jpg")
+}>>

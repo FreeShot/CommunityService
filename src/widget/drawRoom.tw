@@ -1,7 +1,23 @@
 :: widget drawRoom [widget nobr]
 <<widget "drawRoom">>
+<<set _r to $roomList[$args[0]]>>
+<h1><<= _r.name>></h1>
+<<if _r.img != "">>[>img[_r.imgPath]]<</if>>
+<</widget>>
 
-<h1>$args[0]</h1>
-[>img[setup.ImagePath + "estate/" + $args[0]]]
-
+<<widget "linkRoom">>
+<<set _r to $roomList[$currentRoom]>>
+From here you can go to:
+<ul>
+    <<for _adj_id range _r.adjacent>>
+        <<set _adj to $roomList[_adj_id]>>
+        <<capture _adj>>
+            <li>
+                <<link _adj.name _adj.passage>>
+                    <<set Room.moveTo(_adj.id)>>
+                <</link>>
+            </li>
+        <</capture>>
+    <</for>>
+</ul>
 <</widget>>

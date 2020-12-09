@@ -6,3 +6,11 @@ This game is intended for a mature audience. If you are too young, please <a cla
 Feel free to <a href="https://discord.gg/c7pP7mY">join our discord</a>
 
 Else, let's [[ Start | Intro 1 ]]
+
+Alternatively, you can <<link "Skip the intro" "Your room">>
+<<set $flags to {
+    hasCuff: true,
+    canSeeRules: true,
+    finishedIntro: true
+}>>
+<</link>>

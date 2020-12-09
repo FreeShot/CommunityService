@@ -1,0 +1,53 @@
+:: breakfast 1
+
+:: breakfast 2
+
+:: breakfast bossy 1
+$owner.name is in the dining room already as you and $butler.name start layout out breakfast. He doesn't acknowledge either of you and continues reading his tablet and $butler.name hands hims a cup of coffee with milk and two sugars which $owner.name takes as if expecting it right then.
+
+<<speak $butler>>Your preferences today $owner.title?<</speak>>
+
+<<speak $owner>>Just the usual please $butler.name.<</speak>>
+
+You have a platter of fruit in your hands, not really paying attention to them, when you accidentllay put one of the trays' down too hard. Some of the fruit spills off and both $butler.name and $owner.name look up.
+
+<<speak $butler>>Be sure that doesn't stain the upholstery and fetch a replace that fruit.<</speak>>
+
+<<speak $owner>>It's ok $butler.name.<</speak>> $butler.name looks to $owner.name and quickly stops berrating you. <<speak $owner>>You know what. I've changed my mind. I think I'll have some fruit instead. Come here with that tray $player.title.<</speak>>
+
+$owner.name crooks his finger and points to the space beside him. He doesn't give you orders very often but you know when he does disobeying has drastic consequences.
+
+<<chooseOption "Do as he says.">>
+<<speak $player>>Yes $owner.title.<</speak>>
+
+You go to pick up the spilled fruit but $owner.name just gestures for you to leave it. Without a word $butler.name comes over and clears the mess instead. You approach with what's left on the tray and stand beside $owner.name.
+
+Rather than filling the empty plate in front of him $owner.name just picks a piece from the platter and starts eating it. You go to put the tray down next to him.
+
+<<speak $owner>>Don't. Move.<</speak>>
+
+You stop halfway to putting the tray down, unsure of of what to do. $owner.name gestures for you to stand up with the platter still in your hand and takes another piece.
+
+That's how you stay, standing there like a human side table while $owner.name slowly picks from the tray and skims through his tablet while $butler.name serves everyone else during the morning meal. The other residents don't really give you a second thought as they see what $owner.name has you doing. You never realised how demeaning such a simple task could be and your cheeks flush at the humiliation.
+
+After three, long hours $butler.name comes back to the dining room. He finished clearing the rest of the table about fourty mintues ago but you've had to stay here the whole time. Your arms started aching at around the one hour mark.
+
+<<speak $butler>>$owner.title.<</speak>> He taps his wrist.
+
+Without a word $owner.name gets up and leaves with $butler.name right behind him. Once they are both gone you drop the tray to the table and relax your sore muscles. You'll be doing your best not spill a tray again.
+
+<<link "Return to your room." "PlayerBdRm">>
+<<set $time.addTime(0, 1, 0)>>
+<<set $player.submission += 1>>
+<<= $player.increaseArousal(5)>>
+<</link>>
+<</chooseOption>>
+
+:: breakfast default
+$butler.name is already in there to help setup. Fortunately the family isn't particularly fussy in the morning so you can serve a simple continental breakfast. You fill trays with cereal, fruits, pastries and a platter of jams and spreads and place them on the dining room table.
+
+[img[setup.ImagePath + "events/chores/general_breakfast/bfast_continental01.jpg"]]
+
+$owner.name is first to the table as usual. $butler.name helps you bring out the coffee and tea. Over the next hour or two everyone in the estate spends time in the dining room eating and chatting about what they have planned for the day. You attend to anything unique they request until everyone is satisfied and leaves to go about their day. $butler.name leaves with $owner.name so you are alone to do the clean up.
+
+Once everything is tidy you grab a bite to eat and go back to your room.

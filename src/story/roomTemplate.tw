@@ -1,0 +1,9 @@
+:: room template [ room ]
+<<set _r to $roomList[$currentRoom]>>\
+<<drawRoom _r.id>>
+
+## Add events
+
+## Add chores
+
+<<linkRoom>>

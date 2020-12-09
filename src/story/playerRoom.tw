@@ -1,0 +1,33 @@
+:: Your room [ room playerbdrm ]
+<<drawRoom "PlayerBdRm">>
+
+A simple room with a single bed, wardrobe, desk and a small adjoined bathroom
+
+Its furnishing are plain with little to no decorations.
+
+Desk: There is nothing here at the moment
+
+## Todo: events
+
+<<nobr>>
+<<if $time.canStayAwake>>
+    Go to the bathroom and [[ Shower ]]
+    <br>
+    Check the [[ Wardrobe ]]
+    <br>
+    Use the [[ Computer ]]
+    <br>
+    Read something from the [[ Bookshelf ]]
+    <br>
+    [[ Rest | $passage ][ $time.addTime(0, 1, 0); $player.rest() ]]
+    <br>
+    [[ Stay here until the end of the day | $passage ][ $time.hour = 22; $time.minute = 0 ]]
+    <br>
+    ## Todo: chores
+
+    <<linkRoom>>
+<</if>>
+<<if $time.canSleep>>
+    [[ Go to bed | sleep ]]
+<</if>>
+<</nobr>>

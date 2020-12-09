@@ -349,7 +349,7 @@ You follow $butler.name out of the office and down the hall.
 
 <<speak $butler>>The terminal in you room has now been enabled. You should use it during your free time to familiarise yourself with the skills required for your duties.<</speak>>
 
-$butler.name leads you back to your <<link "small living space" "PlayerBdRm">>
+$butler.name leads you back to your <<link "small living space" "Your room">>
 <<set $flags.finishedIntro to true>>
-<<= $time.setDate({hour:22, minute:0})>>
+<<set $time.hour = 22; $time.minute = 0>>
 <</link>>.

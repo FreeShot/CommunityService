@@ -3,9 +3,12 @@
 <<include "Init Setup">>
 <<include "Init Character">>
 <<include "Init Player">>
+<<include "Init Room">>
 
 <<set $flags to {
     hasCuff: false,
     canSeeRules: false,
     finishedIntro: false
 }>>
+
+<<set $time to new Time(1, 0, 0)>>
