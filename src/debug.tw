@@ -1,0 +1,22 @@
+:: debug [ debug nobr]
+
+<hr>
+<h1>Debug</h1>
+<!-- Full debug 
+<<debugVar "State.variables" "Current variable state">>
+-->
+
+<<debugVar "$time" "time">>
+<br>
+<<debugVar "$passage" "current passage">>
+<br>
+<<debugVar "$previous" "previous passage">>
+<br>
+<<debugVar "$currentRoom" "current room">>
+<br>
+<<debugVar "$flags" "flags">>
+<br>
+<<debugVar "$player" "player">>
+<br>
+<<set _npc to setup.npcList.map((npcID) => State.variables[npcID])>>
+<<debugVar "_npc" "npc list">>

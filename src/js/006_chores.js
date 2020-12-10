@@ -10,8 +10,14 @@ window.Chore = class Chore extends Serializable {
         this.todo = false;
     }
 
-    static getChores(todoOnly = false) {
-        var chores = Object.values(State.variables.roomList)
+    getTemplate() {
+        var sel_passages = this.passages.randomMany(random(1, this.passages.length));
+
+        return sel_passages.reduce((str, p) => `${str}\n<<include "${p}">>`, "")
+    }
+
+    static getChores(todoOnly = false, rooms = State.variables.roomList) {
+        var chores = Object.values(rooms)
             .flatMap(room => room.chores);
         if (todoOnly) return chores.filter(chore => chore.todo);
         return chores;

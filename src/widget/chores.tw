@@ -1,0 +1,30 @@
+:: widget chores [ widget nobr ]
+<<widget "linkChores">>
+<<set _c to Chore.getChores(true, [$roomList[$currentRoom]])>>
+
+Here are the chores you need to do here:
+<<if _c.length == 0>>
+    No chores need to be done.<br>
+<<else>>
+<ul class="chore-list">
+    <<for _chore range _c>>
+        <<capture _chore>>
+            <<if !_chore.done>>
+            <li class="chore-todo">
+                <<link _chore.name "choreTemplate">>
+                    <<set $currentChore to _chore>>
+                <</link>>
+            </li>
+            <<else>>
+            <li class="chore-done">
+                <<link _chore.name "choreTemplate">>
+                    <<set $currentChore to _chore>>
+                <</link>>
+            </li>
+            <</if>>
+        <</capture>>
+    <</for>>
+</ul>
+<</if>>
+<br>
+<</widget>>

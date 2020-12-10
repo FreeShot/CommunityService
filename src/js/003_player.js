@@ -20,6 +20,10 @@ window.Player = class Player extends Character {
         this.missedChores = 0;
     }
 
+    addLevel(stat, amnt) {
+        //Todo make work
+    }
+
     rest(amnt = this.stamina.max, resetVoice = true) {
         this.stamina.cur = Math.min(this.stamina.max, amnt + this.stamina.cur);
         if (resetVoice)

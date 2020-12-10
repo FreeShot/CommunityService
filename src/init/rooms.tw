@@ -14,9 +14,8 @@
             "Clean foyer",
             new Time(0, 1, 0),
             [
-                "foyer cleaning",
-                "foyer sweeping",
-                "foyer dusting"
+                "foyer dusting",
+                "foyer sweeping"
             ]
         )
     ], "Foyer.jpg"),
@@ -37,7 +36,6 @@
             "Clean Hall",
             new Time(0, 1, 0),
             [
-                "hall cleaning",
                 "hall sweeping",
                 "hall dusting"
             ]
@@ -55,7 +53,6 @@
             "Clean upper hall",
             new Time(0, 1, 0),
             [
-                "hall cleaning",
                 "hall sweeping",
                 "hall dusting"
             ]
@@ -74,7 +71,6 @@
             "Clean garden",
             new Time(0, 1, 0),
             [
-                "garden cleaning",
                 "garden sweeping"
             ]
         )
@@ -135,7 +131,6 @@
             "Clean lounge",
             new Time(0, 2, 0),
             [
-                "lounge cleaning",
                 "lounge sweeping",
                 "lounge dusting",
                 "lounge windows"
@@ -154,7 +149,6 @@
             "Clean dining",
             new Time(0, 2, 0),
             [
-                "dining cleaning",
                 "dining sweeping",
                 "dining dusting",
                 "dining windows"
@@ -170,7 +164,6 @@
             "Clean the master bedroom",
             new Time(0, 1, 0),
             [
-                "masterBdRm cleaning",
                 "masterBdRm vacuum",
                 "masterBdRm dusting",
                 "masterBdRm windows"
@@ -185,9 +178,9 @@
             "Clean the master bathroom",
             new Time(0, 1, 0),
             [
-                "masterBathRm cleaning",
                 "masterBathRm sweeping",
                 "masterBathRm sink",
+                "masterBathRm toilet",
                 "masterBathRm shower",
                 "masterBathRm bath"
             ]
@@ -201,7 +194,6 @@
             "Clean the office",
             new Time(0, 1, 0),
             [
-                "office cleaning",
                 "office vacuum",
                 "office dusting",
                 "office windows"
@@ -217,7 +209,6 @@
             new Time(0, 1, 0),
             [
                 "playerBdRm cleaning",
-                "playerBdRm clean"
             ]
         )
     ], "Bedroom.jpg"),
@@ -230,7 +221,6 @@
             "Clean pool",
             new Time(0, 1, 0),
             [
-                "pool cleaning",
                 "pool sweeping"
             ]
         )
@@ -244,8 +234,8 @@
             "Clean the gym",
             new Time(0, 2, 0),
             [
-                "gym cleaning",
-                "gym sweep",
+                "gym dusting",
+                "gym sweeping",
                 "gym windows"
             ]
         )
@@ -253,9 +243,7 @@
     "SonBdRm" : new Room("SonBdRm", "Mystery Room", [
         "UpperHall"
     ], 
-    [
-
-    ], "Locked.jpg"),
+    [], "Locked.jpg"),
     "DaughterBdRm" : new Room("DautherBdRm", "Daughter\'s bedroom", [
         "UpperHall"
     ], 
@@ -264,7 +252,6 @@
             "Clean the daughter\'s bedroom",
             new Time(0, 1, 0),
             [
-                "daughterBdRm cleaning",
                 "daughterBdRm vacuum",
                 "daughterBdRm dusting",
                 "daughterBdRm windows"
@@ -279,7 +266,6 @@
             "Clean the guest room",
             new Time(0, 1, 0),
             [
-                "guestRm cleaning",
                 "guestRm vacuum",
                 "guestRm dusting",
                 "guestRm windows"

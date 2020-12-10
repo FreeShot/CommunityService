@@ -4,6 +4,7 @@
 <<include "Init Character">>
 <<include "Init Player">>
 <<include "Init Room">>
+<<include "Init Event">>
 
 <<set $flags to {
     hasCuff: false,

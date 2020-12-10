@@ -1,2 +1,6 @@
 :: PassageHeader
 <<set $passage to passage()>>
+<<set $previous to previous()>>
+
+:: PassageFooter
+<<include "debug">>

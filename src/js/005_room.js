@@ -17,7 +17,7 @@ window.Room = class Room extends Serializable {
     static moveTo(roomName, takeTime = true, moveDuration = 5) {
         if (takeTime) {
             var path = State.variables.roomList[State.variables.currentRoom].findPath(roomName);
-            State.variables.time.addTime(path.length * moveDuration)
+            State.variables.time.addTime(0, 0, (path.length - 1) * moveDuration)
         }
         State.variables.currentRoom = roomName;
     }
