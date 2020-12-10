@@ -21,7 +21,6 @@ He holds out a plain brown box in front of you. It's clear this person is up to 
 The man is rubbing his fingers together with a sly smile.
 
 [[Sounds like a good deal to me.|Intro2]]
-[[Nope. Stranger danger.|EndHomeSweetHome]]
 
 ::Intro2 [intro tutorial]
 <<= $player.speak("Sure. I can help you out.")>>
@@ -106,7 +105,7 @@ One of the reasons this county was isolated from the rest of the world is its po
 
 Having anyone being in control of your life doesn't sound great.
 
-<<= Character.speakAnonymous("Well. I'll leave it to you. [[Hard Labour|EndHardLabour]] or [[Indentured Servitude|Intro5]]?", "DarkGoldenRod")>>
+<<= Character.speakAnonymous("To be honest, given your build I don't think you can handle hard labour so we'll stick to [[Indentured Servitude|Intro5]].", "DarkGoldenRod")>> He removes the other option, more or less deciding your fate for you.
 
 ::Intro5 [intro tutorial]
 The Sentencing Officer does some quick paper work and then pushes foward a tablet with a form open on it titled <b>Private Indenture Contract</b>.
